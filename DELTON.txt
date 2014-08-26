@@ -1,0 +1,32 @@
+-> Comentei tua extensão de classe
+
+-> Alterei o nome da classe para que ela comece com a letra maiúscula
+
+-> Baixei XAMPP, a nova tabela de usuário está pronta. Print dela na Pasta Banco de dados na área de trabalho.
+
+-> Cara, essa classe que tu criou é o que? Diretamente falando? Cada usuário pode ter mais de uma dela?
+ Se cada usuário puder ter mais que uma (acredito que sim, pq tu ta armazenando ID), ao extender usuário, tu vai
+estar duplicando nome, email,... do usuário.
+
+O que eu entendi é o seguinte:
+
+***** Cada usuário tem UM cha. Então isso pode ser uma variável qualquer dentro do usuário, como um vetor associativo:
+
+	Ler sobre array associativo: http://www.tiexpert.net/programacao/web/php/array.php
+
+$cha_usuario = array("atitude"=>0,"conhecimento"=>0,"habilidade"=>0);
+
+OOU
+
+o usuário pode ter um objeto da classe competência que explico abaixo:
+
+***** Cada competência (classe Competencia que NÃO extende Usuario)tem UM array associativo com o CHA dela e
+um ID da competencia:
+
+$cha_competencia = array("atitude"=>0,"conhecimento"=>0,"habilidade"=>0);
+$id = 1; 	//por exemplo, mas realmente acho esse ID inútil, porque o cha sempre vai
+		//pertencer a um usuário ou a um OA que vai ter um id pra ser referenciado. Se cada OA e cada Usuario
+		//tem só um cha, é fácil ver qual é esse cha sem precisar de ID de cha, desde que tenha o ID de
+		//usuário ou de OA.
+
+Fazendo isso, os objetos de aprendizagem que tem um determinado cha, podem ter um objeto do tipo Competencia.
