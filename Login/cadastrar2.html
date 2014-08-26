@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+<head><title>Cadastro - Parte 2</title></head>
+
+<body>
+<!--
+	private $ava;					// (int[0,1])		Conhecimento sobre Ambientes Virtuais de Aprendizagem
+	private $capacitacaoAVA;		// (int[0,1]) 		Realizou capacitação sobre Ambientes Virtuais de Aprendizagem
+	private $conhecimentoOA;		// (int[0,1]) 		Conhecimento sobre objetos de aprendizagem
+	private $ead;					// (int[0,1]) 		Experiência prévia em docência em EAD	
+	private $infoEdu;				// (int[0,1])		Experiência em Informática na Educação
+	private $monitoria;				// (int[0,1])		Experiência prévia em Monitoria
+	private $temaCompetencia;		// (int[0,1])		Conhecimento sobre o Tema de Competências
+	private $tutoria;				// (int[0,1])		Experiência prévia em Tutoria
+-->
+
+	<form method="post" action="form_cadastrar.php">
+				
+		<p>Possui Experiencia em Tutoria?</p>
+		<input type="radio" name="tutoria" value="s">Sim
+		<input type="radio" name="tutoria" value="n">Nao<br />
+		
+		<p>Possui Experiencia em AVA?</p>
+		<input type="radio" name="ava" value="s">Sim
+		<input type="radio" name="ava" value="n">Nao<br />
+		
+		<p>Possui Experiencia em Capacitacao AVA?</p>
+		<input type="radio" name="capacitacaoAVA" value="s">Sim
+		<input type="radio" name="capacitacaoAVA" value="n">Nao<br />
+		
+		<p>Possui Conhecimento em OA?</p>
+		<input type="radio" name="conhecimentoOA" value="s">Sim
+		<input type="radio" name="conhecimentoOA" value="n">Nao<br />
+		
+		<p>Possui Experiencia em EAD?</p>
+		<input type="radio" name="ead" value="s">Sim
+		<input type="radio" name="ead" value="n">Nao<br />
+		
+		<p>Possui Experiencia em infoEdu?</p>
+		<input type="radio" name="infoEdu" value="s">Sim
+		<input type="radio" name="infoEdu" value="n">Nao<br />
+		
+		<p>Possui Experiencia em Competencia?</p>
+		<input type="radio" name="temaCompetencia" value="s">Sim
+		<input type="radio" name="temaCompetencia" value="n">Nao<br />
+		
+		<p>Possui Experiencia em Monitoria?</p>
+		<input type="radio" name="monitoria" value="s">Sim
+		<input type="radio" name="monitoria" value="n">Nao<br /><br />
+		
+		<input type="submit" value="Completar Cadastro" />
+		<input type="reset" value="Limpar" />
+	</form>
+
+</body>
+</html>
