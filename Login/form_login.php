@@ -14,7 +14,7 @@ if( $senha != $pessoa->getSenha_byEmail($email) ){
 }
 else{
 	$id = $pessoa->getID_byEmail($email);
-	$pessoa->carregaUsuario( $id );
+	$pessoa->carregaUsuario( $id , false);
 
 	// session_start inicia a sessão
 	session_start();

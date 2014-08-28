@@ -30,79 +30,6 @@ class Usuario {
 		$pass='';
 	}
 	
-	//Cria usuário no BD
-	function criaUsuario($nome,$email,$senha,$senha2){
-	
-		if( validEmail($email) && validFullName($nome) ){ // ONDE ESTÃO DEFINIDAS AS FUNÇÕES validEmail e validFullName? 
-			if($senha == $senha2){
-		
-			// as próximas 3 linhas são responsáveis em se conectar com o bando de dados.
-			$con = mysql_connect(bd::getIP(),bd::user(),bd::user_pass()) or die ("Sem conexão com o servidor");
-			$select = mysql_select_db(bd::database(),$con) or die("Sem acesso ao DB, Entre em contato com o NUTED");
-			$senha = $this->criptografar($senha);
-			$result = mysql_query ("INSERT INTO usuario (Name, Email, Password) VALUES (\"".$nome."\", \"".$email."\", \"".$senha."\")");
-			mysql_close($con);
-			$this->nome = $nome;
-			$this->email = $email;
-			$this->setPass($senha);
-			$this->id = $this->getID_byBD();
-			
-				if($result != false)
-					echo "Usuario cadastrado com sucesso!";
-				else
-					echo "Ops! Algum erro ocorreu, tente novamente mais tarde!";
-					
-			}else{
-				echo "Senhas não conferem!";
-			}
-
-		}else{
-			echo "Impossível cadastrar esse usuario. Insira um nome e email valido.";
-		}
-	}
-	//Carrega usuário do BD
-	function carregaUsuario($id){
-		$this->id = $id;
-		// as próximas 3 linhas são responsáveis em se conectar com o bando de dados.
-		$con = mysql_connect(bd::getIP(),bd::user(),bd::user_pass()) or die ("Sem conexão com o servidor");
-		$select = mysql_select_db(bd::database(),$con) or die("Sem acesso ao DB, Entre em contato com o NUTED.");
-		$result = mysql_fetch_array ($con,mysql_query("SELECT (Name, Email) FROM usuario WHERE (ID = \"".$id."\")"));
-		$this->nome = $result[0];
-		$this->email = $result[1];
-		
-		mysql_close($con);
-		
-												// FAZ LOGIN COM SESSION
-		
-		// session_start inicia a sessão
-		session_start();
-
-		// as próximas 3 linhas são responsáveis em se conectar com o bando de dados.
-		$con = mysql_connect(bd::getIP(),bd::user(),bd::user_pass()) or die ("Sem conexão com o servidor");
-		$select = mysql_select_db(bd::database(),$con) or die("Sem acesso ao DB, Entre em contato com NUTED");
-
-		// A vriavel $result pega as variaveis $email e $senha, faz uma pesquisa na tabela de usuarios
-		$result = mysql_query("SELECT * FROM usuario WHERE Email = \"".$email."\n AND Senha= \"".$senha."\"");
-		echo ($result);
-		/* Logo abaixo temos um bloco com if e else, verificando se a variável $result foi bem sucedida,
-		ou seja se ela estiver encontrado algum registro idêntico o seu valor será igual a 1, se não,
-		se não tiver registros seu valor será 0. Dependendo do resultado ele redirecionará para a pagina
-		site.php ou retornara para a pagina do formulário inicial para que se possa tentar novamente realizar o email */
-
-		if(mysql_num_rows ($result) != '0' ){
-			$_SESSION['email'] = $email;
-			$_SESSION['senha'] = $senha;
-			header('location:logado.php');
-		} else{
-			unset ($_SESSION['email']);
-			unset ($_SESSION['senha']);
-			header('location:login.html');
-		}
-		
-												//FIM DA PARTE QUE FAZ LOGIN COM SESSION
-		
-	}
-	
 	//Getters e Setters
 	public function getID(){return $this->id;}
 	public function getNome(){return $this->nome;}
@@ -120,6 +47,111 @@ class Usuario {
 		}
 		else
 			return false;
+	}
+	
+	//Cria usuário no BD
+	function criaUsuario($nome,$email,$senha,$senha2){
+	
+		if( validEmail($email) && validFullName($nome) ){ // As funções validEmail e validFullName estão definidas no arquivo email.php na pasta Email
+			if($senha == $senha2){
+		
+			// as próximas 3 linhas são responsáveis em se conectar com o bando de dados.
+			$con = mysql_connect(bd::getIP(),bd::user(),bd::user_pass()) or die ("Sem conexão com o servidor");
+			$select = mysql_select_db(bd::database(),$con) or die("Sem acesso ao DB, Entre em contato com o NUTED");
+			$senha = $this->criptografar($senha);
+			$result = mysql_query ("INSERT INTO usuario (Name, Email, Password) VALUES (\"".$nome."\", \"".$email."\", \"".$senha."\")");
+			mysql_close($con);
+			$this->nome = $nome;
+			$this->email = $email;
+			$this->setPass($senha);
+			$this->id = $this->getID_byBD();
+			
+			$ava = null;
+			$capacitacaoAVA = null;
+			$conhecimentoOA = null;
+			$ead = null;
+			$infoEdu = null;
+			$monitoria = null;
+			$temaCompetencia = null;
+			$tutoria = null;
+			
+			
+				if($result != false){
+					echo "Usuario cadastrado com sucesso!";
+					$this->logaSession();
+					}
+				else
+					echo "Ops! Algum erro ocorreu, tente novamente mais tarde!";
+					
+			}else{
+				echo "Senhas não conferem!";
+			}
+
+		}else{
+			echo "Impossível cadastrar esse usuario. Insira um nome e email valido.";
+		}
+	}
+	//Carrega usuário do BD
+	function carregaUsuario($id,$jaTemSessao = false){
+		$this->id = $id;
+		// as próximas 3 linhas são responsáveis em se conectar com o bando de dados.
+		$con = mysql_connect(bd::getIP(),bd::user(),bd::user_pass()) or die ("Sem conexão com o servidor");
+		$select = mysql_select_db(bd::database(),$con) or die("Sem acesso ao DB, Entre em contato com o NUTED.");
+		//Carrega primeiro formulário
+		$result = mysql_fetch_array (mysql_query("SELECT (Name, Email,Password) FROM usuario WHERE (ID = \"".$id."\")"));
+		$this->nome = $result[0];
+		$this->email = $result[1];
+		$this->pass = $result[2];
+		//Carrega segundo formulário
+		$result = mysql_fetch_array (mysql_query("SELECT (ava,capacitacaoAVA,conhecimentoOA,ead,infoEdu,monitoria,temaCompetencia,tutoria) FROM usuario WHERE (ID = \"".$id."\")"));
+		$ava = $result[0];
+		$capacitacaoAVA = $result[1];
+		$conhecimentoOA = $result[2];
+		$ead = $result[3];
+		$infoEdu = $result[4];
+		$monitoria = $result[5];
+		$temaCompetencia = $result[6];
+		$tutoria = $result[7];
+		
+		mysql_close($con);
+		
+		//FAZ LOGIN
+		if(!$jaTemSessao)
+			$this->logaSession();
+	}
+	
+	private function logaSession(){
+		// session_start inicia a sessão
+		session_start();
+
+		// as próximas 3 linhas são responsáveis em se conectar com o bando de dados.
+		$con = mysql_connect(bd::getIP(),bd::user(),bd::user_pass()) or die ("Sem conexão com o servidor");
+		$select = mysql_select_db(bd::database(),$con) or die("Sem acesso ao DB, Entre em contato com NUTED");
+
+		// A vriavel $result pega as variaveis $email e $senha, faz uma pesquisa na tabela de usuarios
+		$result = mysql_query("SELECT * FROM usuario WHERE Email = \"".$this->email."\n AND Senha= \"".$this->pass."\"");
+		echo ($result);
+		/* Logo abaixo temos um bloco com if e else, verificando se a variável $result foi bem sucedida,
+		ou seja se ela estiver encontrado algum registro idêntico o seu valor será igual a 1, se não,
+		se não tiver registros seu valor será 0. Dependendo do resultado ele redirecionará para a pagina
+		site.php ou retornara para a pagina do formulário inicial para que se possa tentar novamente realizar o email */
+
+		
+		if(mysql_num_rows ($result) != '0' ){
+			$_SESSION['Email'] = $this->email;
+			$_SESSION['Password'] = $this->pass;
+			$_SESSION['ID'] = $this->id;
+			$_SESSION['Name'] = $this->nome;
+			header('location:logado.php');
+		} else{
+			unset ($_SESSION['Email']);
+			unset ($_SESSION['Password']);
+			unset ($_SESSION['ID']);
+			unset ($_SESSION['Name']);
+			header('location:login.html');
+		}
+		
+	
 	}
 	
 	private function criptografar($password = ' '){
@@ -230,10 +262,33 @@ class Usuario {
 	
 	}
 	
+	public function cadastraSegundoQuestionario($id,$vetor){
+		/*
+		$vetor[0] = $_POST['tutoria'];
+		$vetor[1] = $_POST['ava'];
+		$vetor[2] = $_POST['capacitacaoAVA'];
+		$vetor[3] = $_POST['conhecimentoOA'];
+		$vetor[4] = $_POST['ead'];
+		$vetor[5] = $_POST['infoEdu'];
+		$vetor[6] = $_POST['temaCompetencia'];
+		$vetor[7] = $_POST['monitoria'];
+		*/
+		
+		$con = mysql_connect(bd::getIP(),bd::user(),bd::user_pass()) or die ("Sem conexão com o servidor");
+		$select = mysql_select_db(bd::database(),$con) or die("Sem acesso ao DB, Entre em contato com o NUTED.");
+		/*, Email=\"".$this->email."\"*/
+		echo $vetor[1];
+		echo "UPDATE usuario SET (tutoria=\"".$vetor[0]."\", ava=\"".$vetor[1]."\", capacitacaoAVA=\"".$vetor[2]."\", conhecimentoOA=\"".$vetor[3]."\", ead=\"".$vetor[4]."\", infoEdu=\"".$vetor[5]."\", temaCompetencia=\"".$vetor[6]."\", monitoria=\"".$vetor[7]."\") WHERE ID=\"".$id."\";";
+		$result = mysql_query("UPDATE usuario SET (tutoria=\"".$vetor[0]."\", ava=\"".$vetor[1]."\", capacitacaoAVA=\"".$vetor[2]."\", conhecimentoOA=\"".$vetor[3]."\", ead=\"".$vetor[4]."\", infoEdu=\"".$vetor[5]."\", temaCompetencia=\"".$vetor[6]."\", monitoria=\"".$vetor[7]."\") WHERE ID=\"".$id."\";");
+		
+		mysql_close($con);
+		
+	}
+	
 }
 
 }
-
+/*
 if(class_exists('Usuario_cha') != true){
 
 // EXTENSÃO DA CLASSE USÁRIO PARA O CHA DE SUAS COMPETÊNCIAS (UM USUARIO DEVE TER PELO MENOS UMA COMPETÊNCIA ATÉ N COMPETÊNCIAS)
@@ -249,11 +304,11 @@ class Usuario_cha extends Usuario {
 	AO IMPLEMENTAR no banco de dados com SQL, usar tipo tinyint para poupar espaço, pois os valores
 	desses atributos são naturais que variam dentro do intervalo [0,255] e precisam de só 1 byte para
 	serem armazenados
-	*/
+	*//*
 
 }	
 
-}
+}*/
 
 
 

@@ -12,5 +12,7 @@
 	$pessoa->criaUsuario($name,$email,$senha,$senha2,$id_questionario);
 	
 	echo ("O usuario ".$pessoa->getNome() . " foi cadastrado com exito!");
-
+	
+	header("Location: form_cadastrar2.php");
+	exit;
 ?>

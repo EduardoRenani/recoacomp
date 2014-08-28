@@ -4,18 +4,15 @@
 <head><title>Cadastro - Parte 2</title></head>
 
 <body>
-<!--
-	private $ava;					// (int[0,1])		Conhecimento sobre Ambientes Virtuais de Aprendizagem
-	private $capacitacaoAVA;		// (int[0,1]) 		Realizou capacitação sobre Ambientes Virtuais de Aprendizagem
-	private $conhecimentoOA;		// (int[0,1]) 		Conhecimento sobre objetos de aprendizagem
-	private $ead;					// (int[0,1]) 		Experiência prévia em docência em EAD	
-	private $infoEdu;				// (int[0,1])		Experiência em Informática na Educação
-	private $monitoria;				// (int[0,1])		Experiência prévia em Monitoria
-	private $temaCompetencia;		// (int[0,1])		Conhecimento sobre o Tema de Competências
-	private $tutoria;				// (int[0,1])		Experiência prévia em Tutoria
--->
 
-	<form method="post" action="form_cadastrar.php">
+	<?php
+  
+    if( $_SERVER["REQUEST_METHOD"] == "POST")
+    {
+        echo $_POST["nome"];
+    }?>
+
+	<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?> ">
 				
 		<p>Possui Experiencia em Tutoria?</p>
 		<input type="radio" name="tutoria" value="s">Sim
