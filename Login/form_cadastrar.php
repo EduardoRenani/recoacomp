@@ -1,7 +1,8 @@
 <?php 
-	include "../Email/email.php";
-	require_once("usuario.class.php");
-	
+	require_once("../Classes/usuario.php");
+    require_once("../Classes/funcoes_aux.php.php");
+
+
 	$email = $_POST['email'];
 	$senha = $_POST['senha'];
 	$name = $_POST['name'];

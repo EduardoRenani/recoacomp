@@ -1,0 +1,14 @@
+Eu mudei algumas coisas na parte de conexão com o banco de dados utilizando a extensão MYSQLI para evitar possiveis bugs.
+
+
+Descrição dos arquivos:
+
+-> /Clauser/cfg.php
+    Possui dados com as configurações do Recomendador
+
+-> /Clauser/Classes
+    Pasta possui as classes utilizadas no sistema
+
+-> /Clauser/Banco de Dados
+    Pasta possui as querys utilizadas para criação/edição do banco de dados, junto com o modelo.
+

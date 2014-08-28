@@ -1,6 +1,7 @@
 <?php 
 
-require_once("usuario.class.php");
+require_once("../Classes/usuario.php");
+require_once("../Classes/funcoes_aux.php.php");
 
 // as variáveis email e senha recebem os dados digitados na página anterior
 $email = $_POST['email'];
