@@ -1,6 +1,6 @@
 <?php 
 	require_once("../Classes/usuario.php");
-    require_once("../Classes/funcoes_aux.php.php");
+    require_once("../Classes/funcoes_aux.php");
 
 
 	$email = $_POST['email'];
@@ -14,6 +14,6 @@
 	
 	echo ("O usuario ".$pessoa->getNome() . " foi cadastrado com exito!");
 	
-	header("Location: form_cadastrar2.php");
+	header("Location: ../Paginas/index.php");
 	exit;
 ?>

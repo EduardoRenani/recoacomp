@@ -7,10 +7,10 @@ class bd{
 		return "127.0.0.1";
 	}
 	public static function user(){
-		return "root";
+		return "clauser";
 	}
 	public static function user_pass(){
-		return "root";
+		return "senha";
 	}
 
 	public static function database(){

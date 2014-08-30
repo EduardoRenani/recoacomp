@@ -9,6 +9,7 @@
 require_once("../Classes/funcoes_aux.php");
 require_once("../Classes/conexao.php");
 require_once("../cfg.php");
+require_once("bd.class.php");
 
 if(class_exists('Usuario') != true){
     class Usuario {
@@ -51,7 +52,7 @@ if(class_exists('Usuario') != true){
             if( validEmail($email) && validFullName($nome) ){ // As funções validEmail e validFullName estão definidas no arquivo email.php na pasta Email
                 if($senha == $senha2){
 
-                    // as próximas 3 linhas são responsáveis em se conectar com o bando de dados.
+                    // as próximas 3 linhas são responsáveis em se conectar com o banco de dados.
                     $con = mysql_connect(bd::getIP(),bd::user(),bd::user_pass()) or die ("Sem conexão com o servidor");
                     $select = mysql_select_db(bd::database(),$con) or die("Sem acesso ao DB, Entre em contato com o NUTED");
                     $senha = $this->criptografar($senha);
@@ -61,15 +62,6 @@ if(class_exists('Usuario') != true){
                     $this->email = $email;
                     $this->setPass($senha);
                     $this->id = $this->getID_byBD();
-
-                    $ava = null;
-                    $capacitacaoAVA = null;
-                    $conhecimentoOA = null;
-                    $ead = null;
-                    $infoEdu = null;
-                    $monitoria = null;
-                    $temaCompetencia = null;
-                    $tutoria = null;
 
 
                     if($result != false){
@@ -87,8 +79,8 @@ if(class_exists('Usuario') != true){
                 echo "Impossível cadastrar esse usuario. Insira um nome e email valido.";
             }
         }
-        //Carrega usuário do BD PROVAVELMEVTE APAGAR
-        function carregaUsuario($id,$jaTemSessao = false){
+        //Carrega usuário do BD
+        function carregaUsuario($id){
             $this->id = $id;
 
             //TODO
@@ -100,83 +92,30 @@ if(class_exists('Usuario') != true){
             $this->nome = $result[0];
             $this->email = $result[1];
             $this->pass = $result[2];
-            //Carrega segundo formulário
-            $result = mysql_fetch_array (mysql_query("SELECT (ava,capacitacaoAVA,conhecimentoOA,ead,infoEdu,monitoria,temaCompetencia,tutoria) FROM usuario WHERE (ID = \"".$id."\")"));
-            $ava = $result[0];
-            $capacitacaoAVA = $result[1];
-            $conhecimentoOA = $result[2];
-            $ead = $result[3];
-            $infoEdu = $result[4];
-            $monitoria = $result[5];
-            $temaCompetencia = $result[6];
-            $tutoria = $result[7];
-            // FIM TODO
+
             mysql_close($con);
 
             //FAZ LOGIN
-            if(!$jaTemSessao)
-                $this->logaSession();
-        }
-
-        static function logaUsuario($email, $senha){
-
-            $id=getID_byEmail($email);
-
-            //Banco de dados checa se o usuário existe e tem informações corretas.
-            //TODO
-            $existe = true;
-            $nome = "nome";
-
-            session_start();
-
-            if($existe){
-                $_SESSION['Email'] = $email;
-                $_SESSION['Senha'] = $senha;
-                $_SESSION['ID'] = $id;
-                $_SESSION['Nome'] = $nome;
-                return true;
-            } else{
-                unset ($_SESSION['Email']);
-                unset ($_SESSION['Senha']);
-                unset ($_SESSION['ID']);
-                unset ($_SESSION['Nome']);
-                return false;
-            }
-
+            $this->logaSession();
         }
 
         private function logaSession(){
             // session_start inicia a sessão
             session_start();
 
-            // as próximas 3 linhas são responsáveis em se conectar com o bando de dados.
-            $con = mysql_connect(bd::getIP(),bd::user(),bd::user_pass()) or die ("Sem conexão com o servidor");
-            $select = mysql_select_db(bd::database(),$con) or die("Sem acesso ao DB, Entre em contato com NUTED");
+            $_SESSION["usuario"] = serialize($this);
+            $_SESSION['dt_hora_logon'] = date('d/m/y h:i:s');
 
-            // A vriavel $result pega as variaveis $email e $senha, faz uma pesquisa na tabela de usuarios
-            $result = mysql_query("SELECT * FROM usuario WHERE Email = \"".$this->email."\n AND Senha= \"".$this->pass."\"");
-            echo ($result);
-            /* Logo abaixo temos um bloco com if e else, verificando se a variável $result foi bem sucedida,
-            ou seja se ela estiver encontrado algum registro idêntico o seu valor será igual a 1, se não,
-            se não tiver registros seu valor será 0. Dependendo do resultado ele redirecionará para a pagina
-            site.php ou retornara para a pagina do formulário inicial para que se possa tentar novamente realizar o email */
+        }
 
-
-            if(mysql_num_rows ($result) != '0' ){
-                $_SESSION['Email'] = $this->email;
-                $_SESSION['Password'] = $this->pass;
-                $_SESSION['ID'] = $this->id;
-                $_SESSION['Name'] = $this->nome;
-                header('location:logado.php');
-            } else{
-                unset ($_SESSION['Email']);
-                unset ($_SESSION['Password']);
-                unset ($_SESSION['ID']);
-                unset ($_SESSION['Name']);
-                header('location:login.html');
+        public static function isLogado(){
+            if(!isset( $_SESSION["usuario"])){
+                unset($_SESSION["usuario"]);
+                $logado = false;
+            }else{
+                $logado = true;
             }
-
-
+            return $logado;
         }
 
         private function criptografar($password = ' '){
