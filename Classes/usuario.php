@@ -56,7 +56,9 @@ if(class_exists('Usuario') != true){
                     $con = mysql_connect(bd::getIP(),bd::user(),bd::user_pass()) or die ("Sem conexão com o servidor");
                     $select = mysql_select_db(bd::database(),$con) or die("Sem acesso ao DB, Entre em contato com o NUTED");
                     $senha = $this->criptografar($senha);
-                    $result = mysql_query ("INSERT INTO usuario (Name, Email, Password) VALUES (\"".$nome."\", \"".$email."\", \"".$senha."\")");
+                    //$result = mysql_query ("INSERT INTO usuario (Name, Email, Password) VALUES (\"".$nome."\", \"".$email."\", \"".$senha."\")"); -- Metodo Antigo
+                    $result = mysql_query ("INSERT INTO usuario (nome, email, senha) VALUES (\"".$nome."\", \"".$email."\", \"".$senha."\")");
+					echo "Senha Cripto: ".$senha;
                     mysql_close($con);
                     $this->nome = $nome;
                     $this->email = $email;
@@ -182,7 +184,7 @@ if(class_exists('Usuario') != true){
             $con = mysql_connect(bd::getIP(),bd::user(),bd::user_pass()) or die ("Sem conexão com o servidor");
             $select = mysql_select_db(bd::database(),$con) or die("Sem acesso ao DB, Entre em contato com o NUTED.");
 
-            $result = mysql_fetch_array (mysql_query("SELECT ID FROM usuario WHERE (Name = \"".$this->nome."\" AND Email = \"".$this->email."\")"));
+            $result = mysql_fetch_array (mysql_query("SELECT ID FROM usuario WHERE (nome = \"".$this->nome."\" AND email = \"".$this->email."\")"));
 
             mysql_close($con);
 
@@ -215,7 +217,7 @@ if(class_exists('Usuario') != true){
             $con = mysql_connect(bd::getIP(),bd::user(),bd::user_pass()) or die ("Sem conexão com o servidor");
             $select = mysql_select_db(bd::database(),$con) or die("Sem acesso ao DB, Entre em contato com o NUTED.");
 
-            $result = mysql_fetch_array (mysql_query("SELECT Password FROM usuario WHERE (Email = \"".$email."\")"));
+            $result = mysql_fetch_array (mysql_query("SELECT senha FROM usuario WHERE (email = \"".$email."\")"));
 
             if(count($result) <= 0)
                 return false;

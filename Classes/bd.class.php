@@ -4,17 +4,17 @@ if(class_exists('bd') != true){
 class bd{
 
 	public static function getIP(){
-		return "127.0.0.1";
+		return "localhost";
 	}
 	public static function user(){
-		return "clauser";
+		return "root";
 	}
 	public static function user_pass(){
-		return "senha";
+		return "root";
 	}
 
 	public static function database(){
-		return "cadastrousuarios";
+		return "recomendador-test";
 	}
 	
 }

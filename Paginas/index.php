@@ -25,7 +25,7 @@
         echo "Ola ".$pessoa->getNome()." tudo bem?<br />";
         echo "<a href='../Login/logout.php'>Logout</a>";
     }else{
-        echo "Ola, Cadastre-se ou faca Login:D<br />";
+        echo "Ola, Cadastre-se ou faca Login :D<br />";
         echo "<a href='../Login/cadastrar.html'>Cadastre-se</a><br /><a href='../Login/login.html'>Login</a>";
     }
     ?>
