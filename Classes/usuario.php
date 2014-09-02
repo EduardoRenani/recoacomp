@@ -52,14 +52,24 @@ if(class_exists('Usuario') != true){
             if( validEmail($email) && validFullName($nome) ){ // As funções validEmail e validFullName estão definidas no arquivo email.php na pasta Email
                 if($senha == $senha2){
 
+                    /*
+
                     // as próximas 3 linhas são responsáveis em se conectar com o banco de dados.
                     $con = mysql_connect(bd::getIP(),bd::user(),bd::user_pass()) or die ("Sem conexão com o servidor");
                     $select = mysql_select_db(bd::database(),$con) or die("Sem acesso ao DB, Entre em contato com o NUTED");
                     $senha = $this->criptografar($senha);
                     //$result = mysql_query ("INSERT INTO usuario (Name, Email, Password) VALUES (\"".$nome."\", \"".$email."\", \"".$senha."\")"); -- Metodo Antigo
                     $result = mysql_query ("INSERT INTO usuario (nome, email, senha) VALUES (\"".$nome."\", \"".$email."\", \"".$senha."\")");
+
+                    */
+                    $senha = $this->criptografar($senha);
+                    $sql = new bd();
+                    $sql->connect();
+                    $result = $sql->execQuery("INSERT INTO usuario (nome, email, senha) VALUES (\"".$nome."\", \"".$email."\", \"".$senha."\")");
+                    $sql->disconnect();
+
 					echo "Senha Cripto: ".$senha;
-                    mysql_close($con);
+                    //mysql_close($con);
                     $this->nome = $nome;
                     $this->email = $email;
                     $this->setPass($senha);
@@ -179,14 +189,20 @@ if(class_exists('Usuario') != true){
 
         //Retorna o ID do usuário baseado no nome e no email do mesmo através do banco de dados.
         private function getID_byBD(){
-
+/*
             // as próximas 3 linhas são responsáveis em se conectar com o bando de dados.
             $con = mysql_connect(bd::getIP(),bd::user(),bd::user_pass()) or die ("Sem conexão com o servidor");
             $select = mysql_select_db(bd::database(),$con) or die("Sem acesso ao DB, Entre em contato com o NUTED.");
 
             $result = mysql_fetch_array (mysql_query("SELECT ID FROM usuario WHERE (nome = \"".$this->nome."\" AND email = \"".$this->email."\")"));
+*/
+            $con = new bd();
+            $con->connect();
+            $result = $con->execQuery("SELECT ID FROM usuario WHERE (nome = \"".$this->nome."\" AND email = \"".$this->email."\")");
+            $result = mysql_fetch_array ($result);
+            $con->disconnect();
 
-            mysql_close($con);
+            //mysql_close($con);
 
             return $result[0];
 
