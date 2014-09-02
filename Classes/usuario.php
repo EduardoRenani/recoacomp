@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * Created by Delton & Clauser
  * Date: 28/08/14
  * Time: 14:40

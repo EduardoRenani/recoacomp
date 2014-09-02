@@ -1,6 +1,0 @@
--> Comentei tua extensão de classe
-
--> Alterei o nome da classe para que ela comece com a letra maiúscula
-
--> Baixei XAMPP, a nova tabela de usuário está pronta. Print dela na Pasta Banco de dados na área de trabalho.
-
