@@ -13,6 +13,6 @@
 	
 	echo ("O usuario ".$pessoa->getNome() . " foi cadastrado com exito!");
 	
-	//header("Location: ../Paginas/index.php");
+	header("Location: ../Paginas/index.php");
 	exit;
 ?>

@@ -25,10 +25,10 @@ mb_internal_encoding('UTF-8');
 
 $email_administrador = "";
 
-$BD_host1 = "localhost";
-$BD_base1 = "recomendador";
-$BD_user1 = "root";
-$BD_pass1 = "root";
+$BD_host1 = "";
+$BD_base1 = "";
+$BD_user1 = "";
+$BD_pass1 = "";
 
 //Servidor utilizado no momento
 $linkServidor = "http://143.54.95.109/Clauser";
