@@ -20,3 +20,11 @@ Descrição dos arquivos:
     **** O arquivo de UML presente na pasta do GIT não está atualizado. Estou com pouco tempo, quando tu tiver no nuted commita o atual,
     aquele dia de noite saímos com pressa e acho que não commitamos. Só tem a classe Usuario incompleta, as classes OA e Competencia ainda não
     estão adicionadas no arquivo em nuvem. ****
+
+
+-> /Clauser/config
+    Possui arquivo para configuração com banco de dados (por isso não foi comitado)
+
+-> Sistema de Login com hierarquia e confirmação de conta.
+
+-> Pegando dados do usuario por SESSION
