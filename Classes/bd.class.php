@@ -7,7 +7,7 @@
 
 define("_SERVER", "localhost");
 define("_USUARIO", "clauser");
-define("_SENHA", "delton");
+define("_SENHA", "root");
 define("_BD", "recoacomp");
 
 if(class_exists('bd') != true){
@@ -23,7 +23,7 @@ class bd{
      * Método que conecta o banco de dados.
      */
     public function connect(){
-        $this->mysql = new mysqli("localhost:372","clauser", "delton", "recoacomp");
+        $this->mysql = new mysqli(_SERVER,_USUARIO, _SENHA, _BD);
 
         //Checa se conectou.
         if ($this->mysql->connect_errno) {

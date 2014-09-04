@@ -12,7 +12,6 @@ class OA {
     private $url;
     private $palavrachave;
     private $idioma;
-    private $competencias; //lista de IDs de competencias que a OA tem. IDs separados por ponto-e-vírgula.
 
         //GETTERS AND SETTERS
 
@@ -107,6 +106,24 @@ class OA {
     function __construct(){
         $id = 0;
         $nome = $descricao = $url = $palavrachave = $idioma = $competencia = '';
+    }
+
+    public function criaOA($nome,$descricao,$url,$palavrachave,$idioma){
+        $banco = new bd();
+        if( $banco->connect() ){
+
+            $this->nome = $nome;
+            $this->descricao = $descricao;
+            $this->url = $url;
+            $this->palavrachave = $palavrachave;
+            $this->idioma = $idioma;
+
+            $banco->execQuery("INSERT INTO competencia(nome,descricao,url,palavrachave,idioma) VALUES ('".$nome."','".$descricao."','".$url."','".$palavrachave."','".$idioma."')");
+            //TODO receber id
+            $banco->disconnect();
+        }
+
+        unset($banco);
     }
 
 }
