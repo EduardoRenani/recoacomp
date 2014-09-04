@@ -83,3 +83,6 @@ define("WORDING_YOU_ARE_LOGGED_IN_AS_TYPE","Tipo de conta ");
 define("WORDING_USER_STUDENT","Aluno");
 define("WORDING_USER_PROFESSOR","Professor");
 define("WORDING_USER_ADMIN","Admin");
+
+//Cadastro de Disciplina Mensagens
+define("MESSAGE_DISCIPLINA_ALREADY_EXISTS","Disciplina já existe");
