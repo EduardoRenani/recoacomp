@@ -39,16 +39,6 @@ class Registrar{
      * Funcção "_construct()" automaticamente starta quando uma classe desse objeto é criada.
      * ex: $login = new Login();
      */
-    public function __construct(){
-        session_start();
-        // Metodo POST
-        if (isset($_POST(['registrar']))){
-            $this->registrarNovoUsuario($_POST['nome_usuario'], $_POST['senha_usuario'], $_POST['senha_usuario_rep'], $_POST['captcha']);
-        // Metodo GET
-        } else if (isset($_GET['id']) && isset($_GET['codigo_verificacao'])){
-            $this->verificarNovoUsuario($_GET['id'], $_GET['codigo_verificacao']);
-        }
-    }
 
     /**
      * Checagem da conexao com o banco de dados
