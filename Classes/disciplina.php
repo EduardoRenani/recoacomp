@@ -28,6 +28,10 @@ class Disciplina {
      */
     public  $messages                 = array();
     /**
+     * @var array de IDs de competências. Esses ids são referentes à tabela 'competencia' do banco de dados.
+     */
+    public  $idCompetencias           = array();
+    /**
      * @var int $iddisciplina ID da disciplina
      */
     private $iddisciplina = null;
@@ -85,8 +89,9 @@ class Disciplina {
      */
 
     function __construct(){
-        //$this->nomeCurso = $this->nomeDisciplina = $this->descricao = $this->senha = '';
-        //$this->usuarioProfessorID = 0;
+        $this->nomeCurso = $this->nomeDisciplina = $this->descricao = $this->senha = '';
+        $this->usuarioProfessorID = 0;
+        $this->iddisciplina=0;
     }
 
 
@@ -213,7 +218,7 @@ class Disciplina {
     }
 
     /**
-     * Admnistra toda o sistema de Criação de disciplina
+     * Administra toda o sistema de Criação de disciplina
      * Verifica todos os erros possíveis e cria a disciplina se ela não existe
      */
 
@@ -223,6 +228,11 @@ class Disciplina {
         $nomeDisciplina = trim($nomeDisciplina);
         $descricao = trim($descricao);
         $senha = trim($senha);
+
+        $this->nomeCurso  = $nomeCurso;
+        $this->nomeDisciplina = $nomeDisciplina;
+        $this->descricao = $descricao;
+        $this->senha = $senha;
 
         //Validação de dados
         if (empty($nomeCurso)) {
@@ -243,6 +253,7 @@ class Disciplina {
         //Inicio das validações de cadastro repitido
         } else if ($this->databaseConnection()) {
             // Verifica se a disciplina já existe ou curso já existe
+            //TODO nao vai funcionar. Só vai dar para cadastrar uma disciplina por curso. Ver a possivel alteração de OR por AND.
             $query_check_nome_disciplina = $this->db_connection->prepare('SELECT nomedisciplina, nomecurso FROM disciplina WHERE nomedisciplina=:nomeDisciplina OR nomecurso=:nomeCurso');
             $query_check_nome_disciplina->bindValue(':nomedisciplina', $nomeDisciplina, PDO::PARAM_STR);
             $query_check_nome_disciplina->bindValue(':nomecurso', $nomeCurso, PDO::PARAM_STR);
@@ -266,16 +277,70 @@ class Disciplina {
         }
     }
 
+    public function getID_byBD($nomeDisciplina = null,$nomeCurso = null){
+        if($nomeDisciplina == null || $nomeCurso == null){
+            $nomeDisciplina = $this->nomeDisciplina;
+            $nomeCurso = $this->nomeCurso;
+        }
+
+        $query_get_id_disciplina = $this->db_connection->prepare('SELECT iddisciplina FROM disciplina WHERE nomedisciplina=:nomeDisciplina AND nomecurso=:nomeCurso');
+        $query_get_id_disciplina->bindValue(':nomedisciplina', $nomeDisciplina, PDO::PARAM_STR);
+        $query_get_id_disciplina->bindValue(':nomecurso', $nomeCurso, PDO::PARAM_STR);
+        $query_get_id_disciplina->execute();
+        $result = $query_get_id_disciplina->fetchAll();
+        if(count($result)>0)
+            return $result[0];
+        else
+            return 0;
+
+    }
+
+    /*
+     * Recebe o ID da competência, se ela ainda não tiver sido relacionada para essa disciplina é relacionada utilizando a tabela
+     * disciplina_completencia do banco de dados.
+     * @return true se a associação funcionou e false se não.
+     */
+    public function associaCompetencia($idCompetencia){
+        if($this->iddisciplina == 0)
+            $this->iddisciplina = $this->getID_byBD();
+        //Validação de Competência
+        if($idCompetencia <= 0){
+            $this->errors[] = MESSAGE_COMPETENCIA_DOESNT_EXISTS;
+        //Validação da disciplina sendo editada
+        }else if($this->iddisciplina <= 0){
+            $this->errors[] = MESSAGE_DISCIPLINA_DOESNT_EXISTS;
+        }else{
+
+            //Checa se já existe a relação entre essa disciplina e essa competência, para evitar de duplicar o relacionamento.
+            $existeRelacao = false;
+            $query_check_disc_comp = $this->db_connection->prepare('SELECT disciplina_iddisciplina FROM disciplina_competencia WHERE disciplina_iddisciplina=:idDisciplina AND competencia_idcompetencia=:idComp');
+            $query_check_disc_comp->bindValue(':idDisciplina', $this->iddisciplina, PDO::PARAM_INT);
+            $query_check_disc_comp->bindValue(':idComp', $idCompetencia, PDO::PARAM_INT);
+            $query_check_disc_comp->execute();
+            $result = $query_check_disc_comp->fetchAll();
+            if(count($result)>0){
+                $existeRelacao = true;
+                $this->errors[] = MESSAGE_DISCIPLINA_COMPETENCIA_ALREADY_RELATED;
+            }
+
+           if(! $existeRelacao){
+                //Associar a competência com a disciplina pelo ID
+
+                $stmt = $this->db_connection->prepare("INSERT INTO disciplina_competencia(disciplina_iddisciplina,competencia_idcompetencia)  VALUES(:idDisc,:idComp )");
+                $stmt->bindParam(':idDisc',$this->iddisciplina, PDO::PARAM_INT);
+                $stmt->bindParam(':idComp',$idCompetencia, PDO::PARAM_INT);
+                $stmt->execute();
+                return true;
+            }else{
+                return false;
+            }
+
+        }
+    }
+
 }
 
 $coco= new Disciplina();
-/**
-$coco->setDescricao("desc");
-$coco->setNomeCurso("nome");
-$coco->setNomeDisciplina("someo");
-$coco->setSenha("ásdofiu");
-$coco->setUsuarioProfessorID(12);
-**/
 $coco->criaDisc('oioi','nladj','ddesc',12,'ssaee');
 
 ?>

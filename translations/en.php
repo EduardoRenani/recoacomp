@@ -79,3 +79,9 @@ define("WORDING_RESET_PASSWORD", "Reset my password");
 define("WORDING_SUBMIT_NEW_PASSWORD", "Submit new password");
 define("WORDING_USERNAME", "Username");
 define("WORDING_YOU_ARE_LOGGED_IN_AS", "You are logged in as ");
+
+//Cadastro de Disciplina Mensagens
+define("MESSAGE_DISCIPLINA_ALREADY_EXISTS","Disciplina already exists");
+define("MESSAGE_DISCIPLINA_DOESNT_EXISTS","Disciplina doesn't exists");
+define("MESSAGE_COMPETENCIA_DOESNT_EXISTS","The associated 'competencia' isn't valid");
+define("MESSAGE_DISCIPLINA_COMPETENCIA_ALREADY_RELATED","This 'Competencia' is already related to this 'Disciplina'");
