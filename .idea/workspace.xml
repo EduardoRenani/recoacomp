@@ -26,13 +26,13 @@
       <file leaf-file-name="disciplina.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Classes/disciplina.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="311" column="14" selection-start="10333" selection-end="10333" vertical-scroll-proportion="0.3362256" vertical-offset="4892" max-vertical-offset="5882">
+            <state line="288" column="44" selection-start="9465" selection-end="9465" vertical-scroll-proportion="0.46095446" vertical-offset="4386" max-vertical-offset="5882">
               <folding>
-                <marker date="1409924826178" expanded="true" signature="7295:7404" placeholder="SELECT nomed..disciplina..." />
-                <marker date="1409924826178" expanded="true" signature="8172:8337" placeholder="INSERT INTO ..." />
-                <marker date="1409924826178" expanded="true" signature="9136:9233" placeholder="SELECT iddis..disciplina..." />
-                <marker date="1409924826178" expanded="true" signature="10566:10706" placeholder="SELECT disci..disciplina_competencia..." />
-                <marker date="1409924826178" expanded="true" signature="11331:11442" placeholder="INSERT INTO ..." />
+                <marker date="1409924981311" expanded="true" signature="7295:7404" placeholder="SELECT nomed..disciplina..." />
+                <marker date="1409924981311" expanded="true" signature="8172:8337" placeholder="INSERT INTO ..." />
+                <marker date="1409924981311" expanded="true" signature="9136:9233" placeholder="SELECT iddis..disciplina..." />
+                <marker date="1409924981311" expanded="true" signature="10564:10704" placeholder="SELECT disci..disciplina_competencia..." />
+                <marker date="1409924981311" expanded="true" signature="11329:11440" placeholder="INSERT INTO ..." />
               </folding>
             </state>
           </provider>
@@ -48,7 +48,7 @@
       <file leaf-file-name="pt_br.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/translations/pt_br.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="74" column="81" selection-start="5669" selection-end="5669" vertical-scroll-proportion="-22.23077" vertical-offset="612" max-vertical-offset="1581">
+            <state line="89" column="40" selection-start="6501" selection-end="6501" vertical-scroll-proportion="-30.73077" vertical-offset="646" max-vertical-offset="1581">
               <folding />
             </state>
           </provider>
@@ -57,7 +57,7 @@
       <file leaf-file-name="en.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/translations/en.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="86" column="57" selection-start="6446" selection-end="6504" vertical-scroll-proportion="-32.692307" vertical-offset="544" max-vertical-offset="1513">
+            <state line="84" column="66" selection-start="6295" selection-end="6295" vertical-scroll-proportion="-30.076923" vertical-offset="578" max-vertical-offset="1513">
               <folding />
             </state>
           </provider>
@@ -89,8 +89,8 @@
         <option value="$PROJECT_DIR$/Classes/Competencia.php" />
         <option value="$PROJECT_DIR$/Classes/bd.class.php" />
         <option value="$PROJECT_DIR$/Classes/OA.php" />
-        <option value="$PROJECT_DIR$/translations/pt_br.php" />
         <option value="$PROJECT_DIR$/translations/en.php" />
+        <option value="$PROJECT_DIR$/translations/pt_br.php" />
         <option value="$PROJECT_DIR$/Classes/disciplina.php" />
       </list>
     </option>
@@ -213,6 +213,10 @@
     <property name="DefaultHtmlFileTemplate" value="Html5" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="SearchEverywhereHistory" value="'" />
+    <property name="options.lastSelected" value="vcs.Git" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -278,11 +282,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -300,9 +304,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17862372" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -324,6 +328,38 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Classes/disciplina.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="311" column="14" selection-start="10333" selection-end="10333" vertical-scroll-proportion="0.0" vertical-offset="5287" max-vertical-offset="5882">
+          <folding>
+            <marker date="1409924981311" expanded="true" signature="7295:7404" placeholder="SELECT nomed..disciplina..." />
+            <marker date="1409924981311" expanded="true" signature="8172:8337" placeholder="INSERT INTO ..." />
+            <marker date="1409924981311" expanded="true" signature="9136:9233" placeholder="SELECT iddis..disciplina..." />
+            <marker date="1409924981311" expanded="true" signature="10564:10704" placeholder="SELECT disci..disciplina_competencia..." />
+            <marker date="1409924981311" expanded="true" signature="11329:11440" placeholder="INSERT INTO ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Banco de dados/Modelo BD - Recoacomp.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/translations/pt_br.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="74" column="81" selection-start="5669" selection-end="5669" vertical-scroll-proportion="0.0" vertical-offset="1258" max-vertical-offset="1649">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/translations/en.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="86" column="57" selection-start="6446" selection-end="6504" vertical-scroll-proportion="0.0" vertical-offset="1462" max-vertical-offset="1581">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Classes/bd.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="65" selection-start="494" selection-end="494" vertical-scroll-proportion="0.0" vertical-offset="103" max-vertical-offset="1309" />
@@ -471,21 +507,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/register.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="935">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="935" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Classes/Registration [ERRADO].php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4301">
-          <folding>
-            <marker date="1409792937539" expanded="true" signature="-1:-1" placeholder="SELECT nome,..usuario..." />
-            <marker date="1409792937539" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1409792937539" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-            <marker date="1409792937539" expanded="true" signature="-1:-1" placeholder="UPDATE usuar..." />
-          </folding>
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4301" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Banco de dados/Modelo BD - Recoacomp.png">
@@ -493,29 +520,29 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/translations/en.php">
+    <entry file="file://$PROJECT_DIR$/translations/pt_br.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="57" selection-start="6446" selection-end="6504" vertical-scroll-proportion="-32.692307" vertical-offset="544" max-vertical-offset="1513">
+        <state line="89" column="40" selection-start="6501" selection-end="6501" vertical-scroll-proportion="-30.73077" vertical-offset="646" max-vertical-offset="1581">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/translations/pt_br.php">
+    <entry file="file://$PROJECT_DIR$/translations/en.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="81" selection-start="5669" selection-end="5669" vertical-scroll-proportion="-22.23077" vertical-offset="612" max-vertical-offset="1581">
+        <state line="84" column="66" selection-start="6295" selection-end="6295" vertical-scroll-proportion="-30.076923" vertical-offset="578" max-vertical-offset="1513">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Classes/disciplina.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="311" column="14" selection-start="10333" selection-end="10333" vertical-scroll-proportion="0.3362256" vertical-offset="4892" max-vertical-offset="5882">
+        <state line="288" column="44" selection-start="9465" selection-end="9465" vertical-scroll-proportion="0.46095446" vertical-offset="4386" max-vertical-offset="5882">
           <folding>
-            <marker date="1409924826178" expanded="true" signature="7295:7404" placeholder="SELECT nomed..disciplina..." />
-            <marker date="1409924826178" expanded="true" signature="8172:8337" placeholder="INSERT INTO ..." />
-            <marker date="1409924826178" expanded="true" signature="9136:9233" placeholder="SELECT iddis..disciplina..." />
-            <marker date="1409924826178" expanded="true" signature="10566:10706" placeholder="SELECT disci..disciplina_competencia..." />
-            <marker date="1409924826178" expanded="true" signature="11331:11442" placeholder="INSERT INTO ..." />
+            <marker date="1409924981311" expanded="true" signature="7295:7404" placeholder="SELECT nomed..disciplina..." />
+            <marker date="1409924981311" expanded="true" signature="8172:8337" placeholder="INSERT INTO ..." />
+            <marker date="1409924981311" expanded="true" signature="9136:9233" placeholder="SELECT iddis..disciplina..." />
+            <marker date="1409924981311" expanded="true" signature="10564:10704" placeholder="SELECT disci..disciplina_competencia..." />
+            <marker date="1409924981311" expanded="true" signature="11329:11440" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>

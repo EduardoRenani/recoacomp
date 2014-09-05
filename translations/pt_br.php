@@ -86,6 +86,6 @@ define("WORDING_USER_ADMIN","Admin");
 
 //Cadastro de Disciplina Mensagens
 define("MESSAGE_DISCIPLINA_ALREADY_EXISTS","Disciplina já existe");
-define("MESSAGE_DISCIPLINA_DOESNT_EXISTS","Disciplina não existe");
-define("MESSAGE_COMPETENCIA_DOESNT_EXISTS","Competência associada é inválida");
+define("MESSAGE_DISCIPLINA_DOESNT_EXIST","Disciplina não existe");
+define("MESSAGE_COMPETENCIA_DOESNT_EXIST","Competência associada é inválida");
 define("MESSAGE_DISCIPLINA_COMPETENCIA_ALREADY_RELATED","Competência já associada a essa disciplina");

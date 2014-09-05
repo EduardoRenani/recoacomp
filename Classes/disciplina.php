@@ -305,10 +305,10 @@ class Disciplina {
             $this->iddisciplina = $this->getID_byBD();
         //Validação de Competência
         if($idCompetencia <= 0){
-            $this->errors[] = MESSAGE_COMPETENCIA_DOESNT_EXISTS;
+            $this->errors[] = MESSAGE_COMPETENCIA_DOESNT_EXIST;
         //Validação da disciplina sendo editada
         }else if($this->iddisciplina <= 0){
-            $this->errors[] = MESSAGE_DISCIPLINA_DOESNT_EXISTS;
+            $this->errors[] = MESSAGE_DISCIPLINA_DOESNT_EXIST;
         }else{
 
             //Checa se já existe a relação entre essa disciplina e essa competência, para evitar de duplicar o relacionamento.
