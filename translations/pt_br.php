@@ -85,7 +85,13 @@ define("WORDING_USER_PROFESSOR","Professor");
 define("WORDING_USER_ADMIN","Admin");
 
 //Cadastro de Disciplina Mensagens
-define("MESSAGE_DISCIPLINA_ALREADY_EXISTS","Disciplina já existe");
+define("MESSAGE_DISCIPLINA_ALREADY_EXISTS","A seguinte disciplina já exite: ");
 define("MESSAGE_DISCIPLINA_DOESNT_EXIST","Disciplina não existe");
 define("MESSAGE_COMPETENCIA_DOESNT_EXIST","Competência associada é inválida");
 define("MESSAGE_DISCIPLINA_COMPETENCIA_ALREADY_RELATED","Competência já associada a essa disciplina");
+define("WORDING_REGISTER_NOVA_DISCIPLINA", "Registrar nova Disciplina");
+define("WORDING_CREATE_NEW_COURSE", "Criar novo curso");
+define("WORDING_COURSE_NAME", "Nome do curso");
+define("WORDING_DISCIPLINA_NAME", "Nome da disciplina");
+
+

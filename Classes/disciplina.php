@@ -88,11 +88,36 @@ class Disciplina {
      * you know, when you do "$criarDisciplina = new CriarDisciplina();"
      */
 
-    function __construct(){
-        $this->nomeCurso = $this->nomeDisciplina = $this->descricao = $this->senha = '';
-        $this->usuarioProfessorID = 0;
-        $this->iddisciplina=0;
+    public function __construct()
+    {
+        // create/read session
+       // session_start();
+
+    // user try to change his username
+        if (isset($_POST["registrar_nova_disciplina"])) {
+            // Função para cadastro de nova disciplina
+            $this->criaDisc($_POST['nomeCurso'],$_POST['nomeDisciplina'],$_POST['descricao'], $_POST['user_id'], $_POST['senha']);
+
+
+        } /**elseif (isset($_POST["user_edit_submit_email"])) {
+            // function below uses use $_SESSION['user_id'] et $_SESSION['user_email']
+            $this->editUserEmail($_POST['user_email']);
+            // user try to change his password
+        } elseif (isset($_POST["user_edit_submit_password"])) {
+            // function below uses $_SESSION['user_name'] and $_SESSION['user_id']
+            $this->editUserPassword($_POST['user_password_old'], $_POST['user_password_new'], $_POST['user_password_repeat']);
+        }
+        **/
     }
+
+
+
+
+  //  function __construct(){
+  //      $this->nomeCurso = $this->nomeDisciplina = $this->descricao = $this->senha = '';
+  //      $this->usuarioProfessorID = 0;
+  //      $this->iddisciplina=0;
+  //  }
 
 
     // GETTERS E SETTERS
@@ -253,19 +278,16 @@ class Disciplina {
         //Inicio das validações de cadastro repitido
         } else if ($this->databaseConnection()) {
             // Verifica se a disciplina já existe ou curso já existe
-            //TODO nao vai funcionar. Só vai dar para cadastrar uma disciplina por curso. Ver a possivel alteração de OR por AND.
-            $query_check_nome_disciplina = $this->db_connection->prepare('SELECT nomedisciplina, nomecurso FROM disciplina WHERE nomedisciplina=:nomeDisciplina OR nomecurso=:nomeCurso');
-            $query_check_nome_disciplina->bindValue(':nomedisciplina', $nomeDisciplina, PDO::PARAM_STR);
-            $query_check_nome_disciplina->bindValue(':nomecurso', $nomeCurso, PDO::PARAM_STR);
+            $query_check_nome_disciplina = $this->db_connection->prepare('SELECT nomedisciplina FROM disciplina WHERE nomedisciplina=:nomeDisciplina');
+            $query_check_nome_disciplina->bindValue(':nomeDisciplina', $nomeDisciplina, PDO::PARAM_STR);
             $query_check_nome_disciplina->execute();
             $result = $query_check_nome_disciplina->fetchAll();
                 // Se o nome da disciplina for encontrado no banco de dados
                 if (count($result) > 0) {
                     for ($i = 0; $i < count($result); $i++) {
-                        $this->errors[] = ($result[$i]['nomedisciplina'] == $nomeDisciplina) ? MESSAGE_DISCIPLINA_ALREADY_EXISTS : MESSAGE_EMAIL_ALREADY_EXISTS;
+                        $this->errors[] = MESSAGE_DISCIPLINA_ALREADY_EXISTS . $nomeDisciplina;
                     }
                 } else{
-
                     $stmt = $this->db_connection->prepare("INSERT INTO disciplina(nomeCurso, nomeDisciplina, descricao, usuarioProfessorID, senha)  VALUES(:nomeCurso, :nomeDisciplina, :descricao, :usuarioProfessorID, :senha)");
                     $stmt->bindParam(':nomeCurso',$nomeCurso, PDO::PARAM_STR);
                     $stmt->bindParam(':nomeDisciplina',$nomeDisciplina, PDO::PARAM_STR);
@@ -339,8 +361,18 @@ class Disciplina {
     }
 
 }
-
+/**
 $coco= new Disciplina();
-$coco->criaDisc('oioi','nladj','ddesc',12,'ssaee');
+$coco->criaDisc('oioi','nladj','ddesc',12,'ssaee5');
+
+// show potential errors / feedback (from login object)
+    if ($coco->errors){
+        foreach ($coco->errors as $error) {
+            echo $error;
+
+        }
+    }
+
+**/
 
 ?>

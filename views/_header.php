@@ -60,3 +60,19 @@ if (isset($registration)) {
     }
 }
 ?>
+
+<?php
+// mostra erros do cadastro de disciplinas
+if (isset($disciplina)) {
+    if ($disciplina->errors) {
+        foreach ($disciplina->errors as $error) {
+            echo $error;
+        }
+    }
+    if ($disciplina->messages) {
+        foreach ($disciplina->messages as $message) {
+            echo $message;
+        }
+    }
+}
+?>
