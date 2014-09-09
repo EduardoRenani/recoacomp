@@ -223,6 +223,7 @@ class Disciplina {
     /**
      * Checks if database connection is opened and open it if not
      */
+
     private function databaseConnection(){
         // connection already opened
         if ($this->db_connection != null) {

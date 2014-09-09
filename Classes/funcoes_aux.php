@@ -6,6 +6,8 @@
  * Time: 15:04
  */
 
+include_once("../config/config.cfg");
+
     function gen_salt($length) {
         $alph = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
         $max = strlen($alph) - 1;
@@ -205,5 +207,3 @@ function multi_attach_email ( $to, $subject, $message, $senderemail, $anexos = a
 
     return mail( $to, $subject, $message, $headers, '-f'.$senderemail );
 }
-
-

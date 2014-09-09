@@ -12,7 +12,7 @@ class OA {
     private $url;
     private $palavrachave;
     private $idioma;
-
+    private $db_connection = null;
         //GETTERS AND SETTERS
 
     /**
@@ -109,21 +109,47 @@ class OA {
     }
 
     public function criaOA($nome,$descricao,$url,$palavrachave,$idioma){
-        $banco = new bd();
-        if( $banco->connect() ){
 
-            $this->nome = $nome;
-            $this->descricao = $descricao;
-            $this->url = $url;
-            $this->palavrachave = $palavrachave;
-            $this->idioma = $idioma;
+        if($this->databaseConnection()){
 
-            $banco->execQuery("INSERT INTO competencia(nome,descricao,url,palavrachave,idioma) VALUES ('".$nome."','".$descricao."','".$url."','".$palavrachave."','".$idioma."')");
-            //TODO receber id
-            $banco->disconnect();
+            $this->nome = trim($nome);
+            $this->descricao = trim($descricao);
+            $this->url = trim($url);
+            $this->palavrachave = trim($palavrachave);
+            $this->idioma = trim($idioma);
+
+            $this->db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+
+            $stmt = $this->db_connection->prepare("INSERT INTO disciplina(nome, descricao, url, palavrachave, idioma)  VALUES(:nome, :descricao, :url, :palavrachave, :idioma)");
+            $stmt->bindParam(':nome',$this->nome, PDO::PARAM_STR);
+            $stmt->bindParam(':descricao',$this->descricao, PDO::PARAM_STR);
+            $stmt->bindParam(':url',$this->url, PDO::PARAM_STR);
+            $stmt->bindParam(':palavrachave',$this->palavrachave, PDO::PARAM_STR);
+            $stmt->bindParam(':idioma',$this->idioma, PDO::PARAM_STR);
+            $stmt->execute();
+
+
         }
+    }
 
-        unset($banco);
+    private function databaseConnection(){
+        // connection already opened
+        if ($this->db_connection != null) {
+            return true;
+
+        } else {
+            // create a database connection, using the constants from config/config.php
+            try {
+                $this->db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+                return true;
+                // If an error is catched, database connection failed
+            } catch (PDOException $e) {
+                $this->errors[] = MESSAGE_DATABASE_ERROR;
+                print_r($this);
+                return false;
+
+            }
+        }
     }
 
 }
