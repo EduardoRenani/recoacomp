@@ -302,7 +302,7 @@ if(class_exists('Usuario') != true){
         }
 
         public function verificaSenha($senha){
-            if($senha == crypt($senha,$this->senha) ){
+            if($senha == crypt($senha,$this->pass) ){
                 return true;
 
             }
@@ -353,7 +353,7 @@ if(class_exists('Usuario') != true){
             $con = mysql_connect(bd::getIP(),bd::user(),bd::user_pass()) or die ("Sem conexão com o servidor");
             $select = mysql_select_db(bd::database(),$con) or die("Sem acesso ao DB, Entre em contato com o NUTED.");
 
-            $senha = $this->criptografar($senha);
+            $senha = $this->criptografar($this->senha);
 
             $result = mysql_fetch_array (mysql_query("SELECT ID FROM usuario WHERE (Email = \"".$email."\")"));
 

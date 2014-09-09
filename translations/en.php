@@ -47,6 +47,7 @@ define("MESSAGE_USERNAME_EMPTY", "Username field was empty");
 define("MESSAGE_USERNAME_EXISTS", "Sorry, that username is already taken. Please choose another one.");
 define("MESSAGE_USERNAME_INVALID", "Username does not fit the name scheme: only a-Z and numbers are allowed, 2 to 64 characters");
 define("MESSAGE_USERNAME_SAME_LIKE_OLD_ONE", "Sorry, that username is the same as your current one. Please choose another one.");
+define("MESSAGE_YOU_SHOULDNT_BE_HERE", "You shouldn\'t be here");
 
 // views
 define("WORDING_BACK_TO_LOGIN", "Back to Login Page");
@@ -85,3 +86,7 @@ define("MESSAGE_DISCIPLINA_ALREADY_EXISTS","Disciplina already exists");
 define("MESSAGE_DISCIPLINA_DOESNT_EXIST","Disciplina doesn't exist");
 define("MESSAGE_COMPETENCIA_DOESNT_EXIST","The associated 'competencia' isn't valid");
 define("MESSAGE_DISCIPLINA_COMPETENCIA_ALREADY_RELATED","This 'Competencia' is already related to this 'Disciplina'");
+define("WORDING_CREATE_DISCIPLINA", "Create 'Disciplina'");
+define("WORDING_CLEAR_CREATE_DISCIPLINA", "Clear");
+define("WORDING_DISCIPLINA_DESCRICAO", "Description");
+

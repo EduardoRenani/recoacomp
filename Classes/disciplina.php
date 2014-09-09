@@ -94,9 +94,10 @@ class Disciplina {
        // session_start();
 
     // user try to change his username
-        if (isset($_POST["registrar_nova_disciplina"])) {
+        // DAFUK IS THIS? Usar session pra cadastrar a disciplina? G_G
+        /*if (isset($_POST["registrar_nova_disciplina"])) {*/
             // Função para cadastro de nova disciplina
-            $this->criaDisc($_POST['nomeCurso'],$_POST['nomeDisciplina'],$_POST['descricao'], $_POST['user_id'], $_POST['senha']);
+            /*$this->criaDisc($_POST['nomeCurso'],$_POST['nomeDisciplina'],$_POST['descricao'], $_POST['user_id'], $_POST['senha']);*/
 
 
         } /**elseif (isset($_POST["user_edit_submit_email"])) {
@@ -108,7 +109,7 @@ class Disciplina {
             $this->editUserPassword($_POST['user_password_old'], $_POST['user_password_new'], $_POST['user_password_repeat']);
         }
         **/
-    }
+    //} fechamento do if <----
 
 
 

@@ -47,6 +47,7 @@ define("MESSAGE_USERNAME_EMPTY", "Campo nome vazio");
 define("MESSAGE_USERNAME_EXISTS", "Desculpe, esse nome de usuário já está sendo utilizado. Por favor escolha outro.");
 define("MESSAGE_USERNAME_INVALID", "Nome de usuário não se encaixa no modelo: somente letras a-Z e números são permitidos, de 2 a 64 caracteres");
 define("MESSAGE_USERNAME_SAME_LIKE_OLD_ONE", "Desculpe, esse nome de usuário é o mesmo que o atual. Por favor escolha outro.");
+define("MESSAGE_YOU_SHOULDNT_BE_HERE", "Você não devia estar aqui");
 
 // views
 define("WORDING_BACK_TO_LOGIN", "Voltar para tela de Login");
@@ -93,5 +94,6 @@ define("WORDING_REGISTER_NOVA_DISCIPLINA", "Registrar nova Disciplina");
 define("WORDING_CREATE_NEW_COURSE", "Criar novo curso");
 define("WORDING_COURSE_NAME", "Nome do curso");
 define("WORDING_DISCIPLINA_NAME", "Nome da disciplina");
-
-
+define("WORDING_CREATE_DISCIPLINA", "Criar Disciplina");
+define("WORDING_CLEAR_CREATE_DISCIPLINA", "Limpar");
+define("WORDING_DISCIPLINA_DESCRICAO", "Descrição");
