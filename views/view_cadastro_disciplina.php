@@ -17,10 +17,10 @@ if( $_SERVER["REQUEST_METHOD"] == "POST"){
     $senha2 = $_POST['senha2'];
     $usuarioProfessorID = 0;
 
-    if(!$_SESSION['SS_usuario_id'])
+    if(!$_SESSION['SS_usuario_id']) //TODO SUBSTITUIR SS_usuario_id pela session correta
         session_start();
     try{
-        $usuarioProfessorID = $_SESSION['SS_usuario_id'];
+        $usuarioProfessorID = $_SESSION['SS_usuario_id']; //TODO SUBSTITUIR SS_usuario_id pela session correta
         $isProf = false;
 
         if($_SESSION['acesso'] >= 2)
