@@ -152,5 +152,34 @@ class OA {
         }
     }
 
+    public static function getID_byName($nome){
+
+        // connection already opened
+        if ($db_connection != null) {
+
+        } else {
+            // create a database connection, using the constants from config/config.php
+            try {
+                $db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+                // If an error is catched, database connection failed
+            } catch (PDOException $e) {
+                $errors[] = MESSAGE_DATABASE_ERROR;
+
+            }
+        }
+
+        $nome = trim($nome);
+        $db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+
+        $stmt = $db_connection->prepare("SELECT FROM cesta (idcesta)  WHERE nome = :nome");
+        $stmt->bindParam(':nome',$nome, PDO::PARAM_STR);
+        $stmt->execute();
+        $stmt = $stmt->fetchAll();
+        if(count($stmt) > 0)
+            return $stmt[0];
+        else
+            return -1;
+    }
+
 }
 }

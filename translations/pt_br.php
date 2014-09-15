@@ -87,6 +87,9 @@ define("WORDING_USER_ADMIN","Admin");
 define("WORDING_NAME", "Nome");
 define("WORDING_KEYWORDS", "Palavras-chave (separadas por \" ; \")");
 define("WORDING_LANGUAGE", "Idioma");
+define("WORDING_NAME_COMPETENCIA", "Nome da Competência: ");
+define("WORDING_OA_LIST", "Nome dos OA separados por \";\" : ");
+
 
 //Cadastro de Disciplina Mensagens
 define("MESSAGE_DISCIPLINA_ALREADY_EXISTS","A seguinte disciplina já exite: ");

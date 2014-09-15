@@ -26,7 +26,7 @@ class Competencia {
         //TODO
         //iteração com banco de dados para retornar $nome e $valor de acordo com o id;
 
-        $nome='vem do bd';
+        $nome='vem do bd'; //TODO MUDAR ISSO AQUI
         $valor=0;//vem do bd
         if($nome != '' && $id != 0)
             return true;
@@ -63,7 +63,6 @@ class Competencia {
      * @param $com é um objeto do tipo bd.
      */
     private function getID_byNome($con){
-
 
         $result = $con->execQuery("SELECT ID FROM usuario WHERE (nome = \"".$this->nome."\")");
         $result = mysql_fetch_array ($result);

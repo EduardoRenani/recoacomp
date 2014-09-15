@@ -83,6 +83,8 @@ define("WORDING_YOU_ARE_LOGGED_IN_AS", "You are logged in as ");
 define("WORDING_NAME", "Name");
 define("WORDING_KEYWORDS", "Keyords (separated with \" ; \")");
 define("WORDING_LANGUAGE", "Language");
+define("WORDING_NAME_COMPETENCIA", "Nome da Competência: ");
+define("WORDING_OA_LIST", "OA's names separated by \";\" : ");
 
 //Cadastro de Disciplina Mensagens
 define("MESSAGE_DISCIPLINA_ALREADY_EXISTS","Disciplina already exists");
