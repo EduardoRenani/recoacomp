@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Login RecOAcomp</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
     <style type="text/css">
         /* just for the demo */
         body {
@@ -25,7 +29,31 @@
         input[type=checkbox] {
             margin-bottom: 15px;
         }
+        #Grid do cadastro de disciplinas
+        #sortable1, #sortable2 {
+            border: 1px solid #eee;
+            width: 142px;
+            min-height: 20px;
+            list-style-type: none;
+            margin: 0;
+            padding: 5px 0 0 0;
+            float: left;
+            margin-right: 10px;
+        }
+        #sortable1 li, #sortable2 li {
+            margin: 0 5px 5px 5px;
+            padding: 5px;
+            font-size: 1.2em;
+            width: 120px;
+        }
     </style>
+    <script>
+        $(function() {
+            $( "#sortable1, #sortable2" ).sortable({
+                connectWith: ".connectedSortable"
+            }).disableSelection();
+        });
+    </script>
 </head>
 <body>
 

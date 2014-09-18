@@ -6,13 +6,15 @@
  * Time: 09:33
  */
 
-include('_header.php'); ?>
+include('_header.php');
+require_once("classes/OA.php");?>
+
 
 <!-- clean separation of HTML and PHP -->
 <h2><?php echo $_SESSION['user_name']; ?> <?php echo WORDING_EDIT_YOUR_CREDENTIALS; ?></h2>
 
 <?php
-require_once("../Classes/OA.php");
+
 
 // Receber dados do formulário
 
@@ -24,10 +26,11 @@ if( $_SERVER["REQUEST_METHOD"] == "POST"){
     $descricao = $_POST['descricao'];
     $idioma = $_POST['idioma'];
 
-    if(!$_SESSION['SS_usuario_id']) //TODO SUBSTITUIR SS_usuario_id pela session correta
+
+    if(!$_SESSION['user_id']) //TODO SUBSTITUIR SS_usuario_id pela session correta
         session_start();
     try{
-        $usuarioProfessorID = $_SESSION['SS_usuario_id']; //TODO SUBSTITUIR SS_usuario_id pela session correta
+        $usuarioProfessorID = $_SESSION['user_id']; //TODO SUBSTITUIR SS_usuario_id pela session correta
         $isProf = false;
 
         if($_SESSION['acesso'] >= 2)
@@ -43,6 +46,7 @@ if( $_SERVER["REQUEST_METHOD"] == "POST"){
         header('../Paginas/index.php');
         exit;
     }
+
     $oa = new OA();
     $oa->criaOA($nome,$descricao,$url,$palavraschave,$idioma);
 

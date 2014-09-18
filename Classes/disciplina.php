@@ -6,11 +6,13 @@
  * Time: 14:50
  */
 
-require_once('../config/config.cfg');
-require_once('../translations/pt_br.php');
-require_once('../classes/funcoes_aux.php');
+require_once('config/config.cfg');
+require_once('translations/pt_br.php');
+require_once('classes/funcoes_aux.php');
+require_once('classes/Login.php');
 
 class Disciplina {
+
     /**
      * @var object $db_connection The database connection
      */
@@ -91,16 +93,15 @@ class Disciplina {
     public function __construct()
     {
         // create/read session
-       // session_start();
+       //session_start();
 
     // user try to change his username
         // DAFUK IS THIS? Usar session pra cadastrar a disciplina? G_G
-        /*if (isset($_POST["registrar_nova_disciplina"])) {*/
+        if (isset($_POST["registrar_nova_disciplina"])) {
             // Função para cadastro de nova disciplina
-            /*$this->criaDisc($_POST['nomeCurso'],$_POST['nomeDisciplina'],$_POST['descricao'], $_POST['user_id'], $_POST['senha']);*/
-
-
-        } /**elseif (isset($_POST["user_edit_submit_email"])) {
+            $this->criaDisc($_POST['nomeCurso'],$_POST['nomeDisciplina'],$_POST['descricao'], $_POST['user_id'], $_POST['senha']);
+         }
+    }/**elseif (isset($_POST["user_edit_submit_email"])) {
             // function below uses use $_SESSION['user_id'] et $_SESSION['user_email']
             $this->editUserEmail($_POST['user_email']);
             // user try to change his password
@@ -297,6 +298,7 @@ class Disciplina {
                     $stmt->bindParam(':usuarioProfessorID',$usuarioProfessorID, PDO::PARAM_INT);
                     $stmt->bindParam(':senha',$senha, PDO::PARAM_STR);
                     $stmt->execute();
+                    $this->messages[] = WORDING_DISCIPLINA. $nomeDisciplina .WORDING_CREATED_SUCESSFULLY;
                  }
         }
     }

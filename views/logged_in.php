@@ -9,6 +9,7 @@ echo WORDING_YOU_ARE_LOGGED_IN_AS . $_SESSION['user_name'] . "<br />";
 <div>
     <a href="index.php?logout"><?php echo WORDING_LOGOUT; ?></a>
     <a href="edit.php"><?php echo WORDING_EDIT_USER_DATA; ?></a>
+
 </div>
 
 <?php 

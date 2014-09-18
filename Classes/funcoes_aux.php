@@ -6,7 +6,7 @@
  * Time: 15:04
  */
 
-include_once("../config/config.cfg");
+include_once("config/config.cfg");
 
     function gen_salt($length) {
         $alph = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";

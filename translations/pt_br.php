@@ -103,3 +103,4 @@ define("WORDING_DISCIPLINA_NAME", "Nome da disciplina");
 define("WORDING_CREATE_DISCIPLINA", "Criar Disciplina");
 define("WORDING_CLEAR_CREATE_DISCIPLINA", "Limpar");
 define("WORDING_DISCIPLINA_DESCRICAO", "Descrição");
+define("WORDING_CREATE_NEW_COMPETENCIA", "Criar nova competência");

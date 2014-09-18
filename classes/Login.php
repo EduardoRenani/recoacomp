@@ -189,7 +189,7 @@ class Login
     {
         $this->user_name = $_SESSION['user_name'];
         $this->user_email = $_SESSION['user_email'];
-        $this->user_email = $_SESSION['acesso'];
+        $this->acesso = $_SESSION['acesso'];
 
         // set logged in status to true, because we just checked for this:
         // !empty($_SESSION['user_name']) && ($_SESSION['user_logged_in'] == 1)

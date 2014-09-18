@@ -6,13 +6,18 @@
  * Time: 09/29
  */
 
-include('_header.php'); ?>
+include('_header.php');
+require_once("classes/OA.php");
+require_once("translations/pt_br.php");
+require_once("classes/Competencia.php");
+?>
+
 
     <!-- clean separation of HTML and PHP -->
     <h2><?php echo $_SESSION['user_name']; ?> <?php echo WORDING_EDIT_YOUR_CREDENTIALS; ?></h2>
 
 <?php
-require_once("../Classes/OA.php");
+
 
 // Receber dados do formulário
 //TODO Delton, criei uma tabela 1:1 "competencia_OA" no "recomendador-test". Apaga isso se visualizou.
@@ -27,7 +32,7 @@ if( $_SERVER["REQUEST_METHOD"] == "POST"){
         $usuarioProfessorID = $_SESSION['user_id']; //TODO user_id pela session correta
         $isProf = false;
 
-        if($_SESSION['user_access'] >= 2) //TODO user_access pela session correta
+        if($_SESSION['acesso'] >= 2) //TODO user_access pela session correta
             $isProf=true;
     }catch(Exception $e){
         echo "Exceção pega: ".  $e->getMessage(). "\n";
@@ -82,7 +87,7 @@ if( $_SERVER["REQUEST_METHOD"] == "POST"){
             }
         }
     }else{
-        //TODO NENHUMA OA VÁLIDA FOI ESPECIFICADA. COMO VAMOS TRATAR ISSO? 
+        //TODO NENHUMA OA VÁLIDA FOI ESPECIFICADA. COMO VAMOS TRATAR ISSO?
     }
 
 }else{

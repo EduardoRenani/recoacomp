@@ -8,7 +8,7 @@
 define("_SERVER", "localhost");
 define("_USUARIO", "clauser");
 define("_SENHA", "root");
-define("_BD", "recoacomp");
+define("_BD", "recomendador-test");
 
 if(class_exists('bd') != true){
 class bd{

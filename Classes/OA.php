@@ -14,7 +14,6 @@ class OA {
     private $idioma;
     private $db_connection = null;
         //GETTERS AND SETTERS
-
     /**
      * @param mixed $descricao
      */
@@ -120,6 +119,7 @@ class OA {
 
             $this->db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
 
+            //INSERT INTO competencia(nome,descricao,url,palavrachave,idioma) VALUES ('".$nome."','".$descricao."','".$url."','".$palavrachave."','".$idioma."'
             $stmt = $this->db_connection->prepare("INSERT INTO disciplina(nome, descricao, url, palavrachave, idioma)  VALUES(:nome, :descricao, :url, :palavrachave, :idioma)");
             $stmt->bindParam(':nome',$this->nome, PDO::PARAM_STR);
             $stmt->bindParam(':descricao',$this->descricao, PDO::PARAM_STR);
