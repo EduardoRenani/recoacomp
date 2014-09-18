@@ -104,3 +104,8 @@ define("WORDING_CREATE_DISCIPLINA", "Criar Disciplina");
 define("WORDING_CLEAR_CREATE_DISCIPLINA", "Limpar");
 define("WORDING_DISCIPLINA_DESCRICAO", "Descrição");
 define("WORDING_CREATE_NEW_COMPETENCIA", "Criar nova competência");
+
+//Cadastro de OA mensagens
+define("WORDING_PORTUGUES", "Português");
+define("WORDING_ENGLISH", "Inglês");
+define("WORDING_SPANISH", "Espanhol");

@@ -14,8 +14,6 @@ require_once("classes/OA.php");?>
 <h2><?php echo $_SESSION['user_name']; ?> <?php echo WORDING_EDIT_YOUR_CREDENTIALS; ?></h2>
 
 <?php
-
-
 // Receber dados do formulário
 
 if( $_SERVER["REQUEST_METHOD"] == "POST"){
@@ -27,10 +25,10 @@ if( $_SERVER["REQUEST_METHOD"] == "POST"){
     $idioma = $_POST['idioma'];
 
 
-    if(!$_SESSION['user_id']) //TODO SUBSTITUIR SS_usuario_id pela session correta
+    if(!$_SESSION['user_id'])
         session_start();
     try{
-        $usuarioProfessorID = $_SESSION['user_id']; //TODO SUBSTITUIR SS_usuario_id pela session correta
+        $usuarioProfessorID = $_SESSION['user_id'];
         $isProf = false;
 
         if($_SESSION['acesso'] >= 2)
@@ -68,8 +66,17 @@ if( $_SERVER["REQUEST_METHOD"] == "POST"){
     <label for="palavraschave"><?php echo WORDING_KEYWORDS; ?></label>
     <input id="palavraschave" type="text" name="palavraschave" required />
 
-    <label for="idioma"><?php echo WORDING_LANGUAGE; ?></label>         <!--pt_br ou en-->
-    <input id="idioma" type="text" name="idioma" required />
+    <label><?php echo WORDING_LANGUAGE; ?></label>
+    <select id = "idioma" name="idioma" required="true">
+        <option value = "espanhol"><?php echo WORDING_SPANISH ?></option>
+        <option value = "ingles"><?php echo WORDING_ENGLISH ?></option>
+        <option value = "portugues"><?php echo WORDING_PORTUGUES ?></option>
+    </select> <br>
+
+
+
+
+
 
     <label for="descricao"><?php echo WORDING_DISCIPLINA_DESCRICAO; ?></label>
     <textarea name="descricao" ROWS="5" COLS="40"></textarea>
