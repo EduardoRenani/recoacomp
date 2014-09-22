@@ -334,7 +334,7 @@ class Disciplina {
                 $this->errors[] = MESSAGE_DISCIPLINA_COMPETENCIA_ALREADY_RELATED;
             }
 
-           if( (! $existeRelacao) && (count($this->errors) == 0) ){
+           if( (! $existeRelacao) && (strlen($this->errors) == 0) ){
                 //Associar a competência com a disciplina pelo ID
 
                 $stmt = $this->db_connection->prepare("INSERT INTO disciplina_competencia(disciplina_iddisciplina,competencia_idcompetencia)  VALUES(:idDisc,:idComp )");

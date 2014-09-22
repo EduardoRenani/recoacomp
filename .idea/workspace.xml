@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1f52bd4e-bbb3-46df-aea3-27b5d9cd81c2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Classes/disciplina.php" afterPath="$PROJECT_DIR$/Classes/disciplina.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/translations/en.php" afterPath="$PROJECT_DIR$/translations/en.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/translations/pt_br.php" afterPath="$PROJECT_DIR$/translations/pt_br.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/view_cadastro_competencia.php" afterPath="$PROJECT_DIR$/views/view_cadastro_competencia.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/view_cadastro_disciplina.php" afterPath="$PROJECT_DIR$/views/view_cadastro_disciplina.php" />
     </list>
     <ignored path="Clauser.iws" />
@@ -33,7 +29,7 @@
       <file leaf-file-name="view_cadastro_disciplina.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/view_cadastro_disciplina.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="106" selection-start="1911" selection-end="1911" vertical-scroll-proportion="0.121212125" vertical-offset="663" max-vertical-offset="1989">
+            <state line="59" column="20" selection-start="2383" selection-end="2383" vertical-scroll-proportion="0.36185384" vertical-offset="715" max-vertical-offset="1989">
               <folding />
             </state>
           </provider>
@@ -75,10 +71,10 @@
         <option value="$PROJECT_DIR$/js/tresete.html" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/views/view_cadastro_competencia.php" />
-        <option value="$PROJECT_DIR$/Classes/disciplina.php" />
         <option value="$PROJECT_DIR$/translations/en.php" />
         <option value="$PROJECT_DIR$/translations/pt_br.php" />
         <option value="$PROJECT_DIR$/views/view_cadastro_disciplina.php" />
+        <option value="$PROJECT_DIR$/Classes/disciplina.php" />
       </list>
     </option>
   </component>
@@ -648,19 +644,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Classes/disciplina.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="342" column="33" selection-start="11901" selection-end="11901" vertical-scroll-proportion="-5.9215684" vertical-offset="5427" max-vertical-offset="6307">
-          <folding>
-            <marker date="1411391731567" expanded="true" signature="-1:-1" placeholder="SELECT nomed..disciplina..." />
-            <marker date="1411391731567" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1411391731567" expanded="true" signature="-1:-1" placeholder="SELECT iddis..disciplina..." />
-            <marker date="1411391731567" expanded="true" signature="-1:-1" placeholder="SELECT disci..disciplina_competencia..." />
-            <marker date="1411391731567" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/translations/pt_br.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="106" column="21" selection-start="7478" selection-end="7478" vertical-scroll-proportion="-16.846153" vertical-offset="1296" max-vertical-offset="1938">
@@ -668,9 +651,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Classes/disciplina.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="336" column="44" selection-start="11450" selection-end="11450" vertical-scroll-proportion="0.332696" vertical-offset="5453" max-vertical-offset="6307">
+          <folding>
+            <marker date="1411392812122" expanded="true" signature="-1:-1" placeholder="SELECT nomed..disciplina..." />
+            <marker date="1411392812122" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1411392812122" expanded="true" signature="-1:-1" placeholder="SELECT iddis..disciplina..." />
+            <marker date="1411392812122" expanded="true" signature="-1:-1" placeholder="SELECT disci..disciplina_competencia..." />
+            <marker date="1411392812122" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/views/view_cadastro_disciplina.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="106" selection-start="1911" selection-end="1911" vertical-scroll-proportion="0.121212125" vertical-offset="663" max-vertical-offset="1989">
+        <state line="59" column="20" selection-start="2383" selection-end="2383" vertical-scroll-proportion="0.36185384" vertical-offset="715" max-vertical-offset="1989">
           <folding />
         </state>
       </provider>

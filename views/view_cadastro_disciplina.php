@@ -54,7 +54,7 @@ else{
     //Como gerar esse vetor deve ser estudado quando colocarmos JQuery para selecionar as competências.
 
     $disciplina = new Disciplina();
-    if(count($disciplina->getErrors() == 0)){
+    if(strlen($disciplina->getErrors() == 0)){
         $disciplina_id = $disciplina->getID_byBD();
 
         $vectorSize=count($idCompetencia);  //Contar fora do for evita 7 segundos de processamento a cada 1 milhão de iterações.
