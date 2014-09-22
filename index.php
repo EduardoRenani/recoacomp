@@ -21,7 +21,7 @@ if (version_compare(PHP_VERSION, '5.3.7', '<')) {
 // include the config
 require_once('config/config.cfg');
 
-// include the to-be-used language, english by default. feel free to translate your project and include something else
+// include the to-be-used language, pt_br by default. feel free to translate your project and include something else
 require_once('translations/pt_br.php');
 
 // include the PHPMailer library

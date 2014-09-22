@@ -85,6 +85,7 @@ define("WORDING_KEYWORDS", "Keyords (separated with \" ; \")");
 define("WORDING_LANGUAGE", "Language");
 define("WORDING_NAME_COMPETENCIA", "Nome da Competência: ");
 define("WORDING_OA_LIST", "OA's names separated by \";\" : ");
+define("WORDING_CANT_ASSOCIATE_COMPETENCIA","The following competencia couldn't be associated to this disciplina or it already has been associated");
 
 //Cadastro de Disciplina Mensagens
 define("MESSAGE_DISCIPLINA_ALREADY_EXISTS","Disciplina already exists");

@@ -20,7 +20,6 @@ require_once("classes/Competencia.php");
 
 
 // Receber dados do formulário
-//TODO Delton, criei uma tabela 1:1 "competencia_OA" no "recomendador-test". Apaga isso se visualizou.
 if( $_SERVER["REQUEST_METHOD"] == "POST"){
 
     $nome = $_POST['nome'];

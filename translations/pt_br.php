@@ -104,6 +104,7 @@ define("WORDING_CREATE_DISCIPLINA", "Criar Disciplina");
 define("WORDING_CLEAR_CREATE_DISCIPLINA", "Limpar");
 define("WORDING_DISCIPLINA_DESCRICAO", "Descrição");
 define("WORDING_CREATE_NEW_COMPETENCIA", "Criar nova competência");
+define("WORDING_CANT_ASSOCIATE_COMPETENCIA","A competencia citada em sequência não pode ser associada a essa disciplina ou já foi associada previamente");
 
 //Cadastro de OA mensagens
 define("WORDING_PORTUGUES", "Português");

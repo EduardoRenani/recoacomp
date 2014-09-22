@@ -95,32 +95,17 @@ class Disciplina {
         // create/read session
        //session_start();
 
-    // user try to change his username
-        // DAFUK IS THIS? Usar session pra cadastrar a disciplina? G_G
         if (isset($_POST["registrar_nova_disciplina"])) {
             // Função para cadastro de nova disciplina
             $this->criaDisc($_POST['nomeCurso'],$_POST['nomeDisciplina'],$_POST['descricao'], $_POST['user_id'], $_POST['senha']);
+
+            $this->nomeCurso=$_POST['nomeCurso'];
+            $this->nomeDisciplina=$_POST['nomeDisciplina'];
+            $this->descricao=$_POST['descricao'];
+            $this->usuarioProfessorID=$_POST['user_id'];
+            $this->senha=$_POST['senha'];
          }
-    }/**elseif (isset($_POST["user_edit_submit_email"])) {
-            // function below uses use $_SESSION['user_id'] et $_SESSION['user_email']
-            $this->editUserEmail($_POST['user_email']);
-            // user try to change his password
-        } elseif (isset($_POST["user_edit_submit_password"])) {
-            // function below uses $_SESSION['user_name'] and $_SESSION['user_id']
-            $this->editUserPassword($_POST['user_password_old'], $_POST['user_password_new'], $_POST['user_password_repeat']);
-        }
-        **/
-    //} fechamento do if <----
-
-
-
-
-  //  function __construct(){
-  //      $this->nomeCurso = $this->nomeDisciplina = $this->descricao = $this->senha = '';
-  //      $this->usuarioProfessorID = 0;
-  //      $this->iddisciplina=0;
-  //  }
-
+    }
 
     // GETTERS E SETTERS
 
@@ -349,7 +334,7 @@ class Disciplina {
                 $this->errors[] = MESSAGE_DISCIPLINA_COMPETENCIA_ALREADY_RELATED;
             }
 
-           if(! $existeRelacao){
+           if( (! $existeRelacao) && (count($this->errors) == 0) ){
                 //Associar a competência com a disciplina pelo ID
 
                 $stmt = $this->db_connection->prepare("INSERT INTO disciplina_competencia(disciplina_iddisciplina,competencia_idcompetencia)  VALUES(:idDisc,:idComp )");
@@ -362,6 +347,10 @@ class Disciplina {
             }
 
         }
+    }
+
+    public function getErrors(){
+        return $this->errors;
     }
 
 }
