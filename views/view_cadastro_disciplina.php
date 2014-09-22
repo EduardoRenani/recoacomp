@@ -8,9 +8,45 @@
 
  include('_header.php'); ?>
 
+<!-- IMPORTAÇÃO JQUERY-->
+<head>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <style>
+        #sortable1, #sortable2 {
+            border: 1px solid #eee;
+            width: 142px;
+            min-height: 20px;
+            list-style-type: none;
+            margin: 0;
+            padding: 5px 0 0 0;
+            float: left;
+            margin-right: 10px;
+        }
+        #sortable1 li, #sortable2 li {
+            margin: 0 5px 5px 5px;
+            padding: 5px;
+            font-size: 1.2em;
+            width: 120px;
+        }
+    </style>
+    <script>
+        $(function() {
+            $( "#sortable1, #sortable2" ).sortable({
+                connectWith: ".connectedSortable"
+            }).disableSelection();
+        });
+    </script>
+</head>
+<!-- FIM IMPORTAÇÃO JQUERY-->
+
 <!-- clean separation of HTML and PHP -->
 <h2><?php echo $_SESSION['user_name']; ?></h2>
 <h2> <?php echo WORDING_CREATE_DISCIPLINA; ?></h2>
+
+
 
 <!-- formulario para cadastro de disciplinas -->
 <!-- edit form for username / this form uses HTML5 attributes, like "required" and type="email" -->
@@ -30,6 +66,23 @@ if( $_SERVER["REQUEST_METHOD"] != "POST"){ ?>
         <label for="descricao"><?php echo WORDING_DISCIPLINA_DESCRICAO; ?></label>
         <textarea name="descricao" ROWS="5" COLS="40"></textarea>
 
+        <ul id="sortable1" class="connectedSortable">
+            <?php
+
+            //TODO Retornar competencias com getListaCompetencia() e fazer um for para listagem
+
+            if(true){?>
+                <li class="ui-state-default">Item 1</li>
+            <?php } ?>
+        </ul>
+
+        <ul id="sortable2" class="connectedSortable">
+            <li class="ui-state-highlight">Item 1</li>
+            <li class="ui-state-highlight">Item 2</li>
+            <li class="ui-state-highlight">Item 3</li>
+            <li class="ui-state-highlight">Item 4</li>
+            <li class="ui-state-highlight">Item 5</li>
+        </ul>
 
         <input type="submit" name="registrar_nova_disciplina" value="<?php echo WORDING_CREATE_DISCIPLINA; ?>" />
         <input type="reset" name="limpar" value="<?php echo WORDING_CLEAR_CREATE_DISCIPLINA; ?>" />

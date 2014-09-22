@@ -71,5 +71,33 @@ class Competencia {
 
     }
 
+    public static function getListaCompetencia(){
+        if(databaseConnection()){
+            //$db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+            //$stmt = db_connection->prepare(")");
+            //$stmt->bindParam(':nome',, PDO::PARAM_STR);
+            //$stmt->execute();
+        }
+    }
+
+    public function databaseConnection(){
+        // connection already opened
+        if ($this->db_connection != null) {
+            return true;
+
+        } else {
+            // create a database connection, using the constants from config/config.php
+            try {
+                $this->db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+                return true;
+                // If an error is catched, database connection failed
+            } catch (PDOException $e) {
+                $this->errors[] = MESSAGE_DATABASE_ERROR;
+                print_r($this);
+                return false;
+
+            }
+        }
+    }
 }
 }
