@@ -7,9 +7,9 @@
  */
 
 require_once('config/config.cfg');
-require_once('translations/pt_br.php');
 require_once('classes/funcoes_aux.php');
 require_once('classes/Login.php');
+require_once('translations/pt_br.php');
 
 class Disciplina {
 
@@ -62,150 +62,16 @@ class Disciplina {
      */
     private $user_is_logged_in = false;
     /**
-    private $nomeCurso;
-    private $nomeDisciplina;
-    private $descricao;
-    private $usuarioProfessorID;
-    private $senha;
-
-    private $db_connection = null;
-
-   public function __construct()
-    {
-        session_start();
-        if (!empty($_SESSION['user_name']) && ($_SESSION['user_logged_in'] == 1) && ($_SESSION['acesso'] == 2)) { //  Se o usuario estiver efetivamente logado e for professor
-               $this->loginWithSessionData();
-        // if we have such a POST request, call the registerNewUser() method
-        if (isset($_POST["acesso"])) {
-            $this->registerNewUser($_POST['user_name'], $_POST['user_email'], $_POST['user_password_new'], $_POST['user_password_repeat'], $_POST["captcha"]);
-            // if we have such a GET request, call the verifyNewUser() method
-        } else if (isset($_GET["id"]) && isset($_GET["verification_code"])) {
-            $this->verifyNewUser($_GET["id"], $_GET["verification_code"]);
-        }
-    }
-     **/
-
-    /**
      * the function "__construct()" automatically starts whenever an object of this class is created,
      * you know, when you do "$criarDisciplina = new CriarDisciplina();"
      */
-
-    public function __construct()
+    public function __construct() // Essa construct tá certa, seguir modelo
     {
-        // create/read session
-       //session_start();
-
         if (isset($_POST["registrar_nova_disciplina"])) {
             // Função para cadastro de nova disciplina
             $this->criaDisc($_POST['nomeCurso'],$_POST['nomeDisciplina'],$_POST['descricao'], $_POST['user_id'], $_POST['senha']);
-
-            $this->nomeCurso=$_POST['nomeCurso'];
-            $this->nomeDisciplina=$_POST['nomeDisciplina'];
-            $this->descricao=$_POST['descricao'];
-            $this->usuarioProfessorID=$_POST['user_id'];
-            $this->senha=$_POST['senha'];
-         }
+        }
     }
-
-    // GETTERS E SETTERS
-
-    /**
-     * @param null $db_connection
-     */
-    public function setDbConnection($db_connection)
-    {
-        $this->db_connection = $db_connection;
-    }
-
-    /**
-     * @return null
-     */
-    public function getDbConnection()
-    {
-        return $this->db_connection;
-    }
-
-    /**
-     * @param string $descricao
-     */
-    public function setDescricao($descricao)
-    {
-        $this->descricao = $descricao;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDescricao()
-    {
-        return $this->descricao;
-    }
-
-    /**
-     * @param string $nomeCurso
-     */
-    public function setNomeCurso($nomeCurso)
-    {
-        $this->nomeCurso = $nomeCurso;
-    }
-
-    /**
-     * @return string
-     */
-    public function getNomeCurso()
-    {
-        return $this->nomeCurso;
-    }
-
-    /**
-     * @param string $nomeDisciplina
-     */
-    public function setNomeDisciplina($nomeDisciplina)
-    {
-        $this->nomeDisciplina = $nomeDisciplina;
-    }
-
-    /**
-     * @return string
-     */
-    public function getNomeDisciplina()
-    {
-        return $this->nomeDisciplina;
-    }
-
-    /**
-     * @param int $senha
-     */
-    public function setSenha($senha)
-    {
-        $this->senha = $senha;
-    }
-
-    /**
-     * @return int
-     */
-    public function getSenha()
-    {
-        return $this->senha;
-    }
-
-    /**
-     * @param int $usuarioProfessorID
-     */
-    public function setUsuarioProfessorID($usuarioProfessorID)
-    {
-        $this->usuarioProfessorID = $usuarioProfessorID;
-    }
-
-    /**
-     * @return int
-     */
-    public function getUsuarioProfessorID()
-    {
-        return $this->usuarioProfessorID;
-    }
-
-
     /**
      * Checks if database connection is opened and open it if not
      */
@@ -305,7 +171,6 @@ class Disciplina {
             return 0;
 
     }
-
     /*
      * Recebe o ID da competência, se ela ainda não tiver sido relacionada para essa disciplina é relacionada utilizando a tabela
      * disciplina_completencia do banco de dados.
@@ -345,27 +210,10 @@ class Disciplina {
             }else{
                 return false;
             }
-
         }
     }
-
     public function getErrors(){
         return $this->errors;
     }
-
 }
-/**
-$coco= new Disciplina();
-$coco->criaDisc('oioi','nladj','ddesc',12,'ssaee5');
-
-// show potential errors / feedback (from login object)
-    if ($coco->errors){
-        foreach ($coco->errors as $error) {
-            echo $error;
-
-        }
-    }
-
-**/
-
 ?>

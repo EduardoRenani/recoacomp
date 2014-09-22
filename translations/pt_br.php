@@ -90,7 +90,6 @@ define("WORDING_LANGUAGE", "Idioma");
 define("WORDING_NAME_COMPETENCIA", "Nome da Competência: ");
 define("WORDING_OA_LIST", "Nome dos OA separados por \";\" : ");
 
-
 //Cadastro de Disciplina Mensagens
 define("MESSAGE_DISCIPLINA_ALREADY_EXISTS","A seguinte disciplina já exite: ");
 define("MESSAGE_DISCIPLINA_DOESNT_EXIST","Disciplina não existe");
@@ -100,13 +99,16 @@ define("WORDING_REGISTER_NOVA_DISCIPLINA", "Registrar nova Disciplina");
 define("WORDING_CREATE_NEW_COURSE", "Criar novo curso");
 define("WORDING_COURSE_NAME", "Nome do curso");
 define("WORDING_DISCIPLINA_NAME", "Nome da disciplina");
+define("WORDING_DISCIPLINA", "Disciplina ");
 define("WORDING_CREATE_DISCIPLINA", "Criar Disciplina");
 define("WORDING_CLEAR_CREATE_DISCIPLINA", "Limpar");
 define("WORDING_DISCIPLINA_DESCRICAO", "Descrição");
 define("WORDING_CREATE_NEW_COMPETENCIA", "Criar nova competência");
 define("WORDING_CANT_ASSOCIATE_COMPETENCIA","A competencia citada em sequência não pode ser associada a essa disciplina ou já foi associada previamente");
+define("WORDING_CREATED_SUCESSFULLY"," criada com sucesso!");
 
 //Cadastro de OA mensagens
 define("WORDING_PORTUGUES", "Português");
 define("WORDING_ENGLISH", "Inglês");
 define("WORDING_SPANISH", "Espanhol");
+define("WORDING_REGISTER_NOVO_OA", "Registrar Novo Objeto de Aprendizagem");

@@ -15,6 +15,7 @@ require_once("classes/OA.php");?>
 
 <?php
 // Receber dados do formulário
+// TODO COLOCAR NA CLASSE OA ESSA PARTE
 
 if( $_SERVER["REQUEST_METHOD"] == "POST"){
 

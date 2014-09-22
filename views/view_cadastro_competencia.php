@@ -17,7 +17,7 @@ require_once("classes/Competencia.php");
     <h2><?php echo $_SESSION['user_name']; ?> <?php echo WORDING_EDIT_YOUR_CREDENTIALS; ?></h2>
 
 <?php
-
+// TODO COLOCAR ESSA PARTE NA CLASSE COMPETÊNCIA
 
 // Receber dados do formulário
 if( $_SERVER["REQUEST_METHOD"] == "POST"){
@@ -25,13 +25,13 @@ if( $_SERVER["REQUEST_METHOD"] == "POST"){
     $nome = $_POST['nome'];
     $listaOA = $_POST['listaOA'];
 
-    if(!$_SESSION['user_id']) //TODO SUBSTITUIR user_id pela session correta
+    if(!$_SESSION['user_id'])
         session_start();
     try{
-        $usuarioProfessorID = $_SESSION['user_id']; //TODO user_id pela session correta
+        $usuarioProfessorID = $_SESSION['user_id'];
         $isProf = false;
 
-        if($_SESSION['acesso'] >= 2) //TODO user_access pela session correta
+        if($_SESSION['acesso'] >= 2)
             $isProf=true;
     }catch(Exception $e){
         echo "Exceção pega: ".  $e->getMessage(). "\n";
