@@ -1,6 +1,4 @@
 <?php
-
-// check for minimum PHP version
 if (version_compare(PHP_VERSION, '5.3.7', '<')) {
     exit('Sorry, this script does not run on a PHP version smaller than 5.3.7 !');
 } else if (version_compare(PHP_VERSION, '5.5.0', '<')) {
@@ -20,18 +18,15 @@ require_once('libraries/PHPMailer.php');
 // load the login class
 require_once('classes/Login.php');
 
-// create a login object. when this object is created, it will do all login/logout stuff automatically
-// so this single line handles the entire login process.
-$login = new Login();
+// Carrega classe de competências
+require_once('classes/Competencia2.php');
 
+$login = new Login();
+$competencia = new Competencia();
 // ... ask if we are logged in here:
-if ($login->isUserLoggedIn() == true) {
-    // the user is logged in. you can do whatever you want here.
-    // for demonstration purposes, we simply show the "you are logged in" view.
+if (($login->isUserLoggedIn() == true) && ($login->getUserAccess() == 2) || ($login->getUserAccess() == 3)){
     include("views/view_cadastro_competencia.php");
 
 } else {
-    // the user is not logged in. you can do whatever you want here.
-    // for demonstration purposes, we simply show the "you are not logged in" view.
     include("views/not_logged_in.php");
 }

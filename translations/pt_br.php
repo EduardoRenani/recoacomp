@@ -112,3 +112,19 @@ define("WORDING_PORTUGUES", "Português");
 define("WORDING_ENGLISH", "Inglês");
 define("WORDING_SPANISH", "Espanhol");
 define("WORDING_REGISTER_NOVO_OA", "Registrar Novo Objeto de Aprendizagem");
+
+//Cadastro de Competências Mensagens
+define("WORDING_COMPETENCIA", "Competência ");
+define("WORDING_CREATE_COMPETENCA", "Criar nova Competência");
+define("MESSAGE_NAME_EMPTY", "Nome vazio");
+define("MESSAGE_DESCRICAO_EMPTY", "Descrição vazia");
+define("MESSAGE_DESCRICAO_HABILIDADE_EMPTY", "Descrição da habilidade vazia");
+define("MESSAGE_DESCRICAO_CONHECIMENTO_EMPTY", "Descrição do conhecimento vazio");
+define("MESSAGE_DESCRICAO_ATITUDE_EMPTY", "Descrição da atitude vazia");
+define("MESSAGE_NAME_TOO_SHORT", "Nome muito pequeno");
+define("MESSAGE_COMPETENCIA_ALREADY_EXISTS", "A seguinte competência já existe: ");
+define("WORDING_COMPETENCIA_DESCRICAO", "Descrição da Competência");
+define("WORDING_ATITUDE_DESCRICAO", "Descrição da Atitude");
+define("WORDING_HABILIDADE_DESCRICAO", "Descrição da Habilidade");
+define("WORDING_CONHECIMENTO_DESCRICAO", "Descrição do Conhecimento");
+define("WORDING_CLEAN", "Limpar");

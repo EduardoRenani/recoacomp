@@ -12,7 +12,6 @@ require_once('classes/Login.php');
 require_once('translations/pt_br.php');
 
 class Disciplina {
-
     /**
      * @var object $db_connection The database connection
      */

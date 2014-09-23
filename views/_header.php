@@ -104,3 +104,19 @@ if (isset($disciplina)) {
     }
 }
 ?>
+
+<?php
+// mostra erros do cadastro de competencias
+if (isset($competencia)) {
+    if ($competencia->errors) {
+        foreach ($competencia->errors as $error) {
+            echo $error;
+        }
+    }
+    if ($competencia->messages) {
+        foreach ($competencia->messages as $message) {
+            echo $message;
+        }
+    }
+}
+?>
