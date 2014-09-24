@@ -19,7 +19,7 @@ require_once('libraries/PHPMailer.php');
 require_once('classes/Login.php');
 
 // Carrega classe de competências
-require_once('classes/Competencia2.php');
+require_once('classes/Competencia.php');
 
 $login = new Login();
 $competencia = new Competencia();

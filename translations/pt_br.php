@@ -114,6 +114,7 @@ define("WORDING_SPANISH", "Espanhol");
 define("WORDING_REGISTER_NOVO_OA", "Registrar Novo Objeto de Aprendizagem");
 
 //Cadastro de Competências Mensagens
+define("WORDING_REGISTER_NOVA_COMPETENCIA", "Registrar nova competência");
 define("WORDING_COMPETENCIA", "Competência ");
 define("WORDING_CREATE_COMPETENCA", "Criar nova Competência");
 define("MESSAGE_NAME_EMPTY", "Nome vazio");

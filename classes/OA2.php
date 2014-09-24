@@ -1,16 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
  * User: Delton
- * Date: 23/09/14
- * Time: 17:19
+ * Date: 24/09/14
+ * Time: 18:25
+ * Classe responsável pelo gerenciamento de Objetos de Aprendizagem (OA/Cesta)
  */
-
-require_once('config/config.cfg');
-require_once('translations/pt_br.php');
-
-class Competencia{
-
+if(class_exists('OA') != true){
+class OA{
     /**
      * @var object $db_connection The database connection
      */
@@ -18,43 +14,59 @@ class Competencia{
     /**
      * @var bool estado do sucesso do registro de nova disciplina
      */
-    public  $registration_successful  = false;
+    public  $registration_successful    = false;
     /**
      * @var array collection of error messages
      */
-    public  $errors                   = array();
+    public  $errors                     = array();
     /**
      * @var array collection of success / neutral messages
      */
-    public  $messages                 = array();
+    public  $messages                   = array();
     /**
-     * @var int $idProfessor ID do professor que criou competência
+     * @var int $idCesta ID do OA
      */
-    private  $idProfessor           = null;
+    private  $idCesta                   = null;
     /**
-     * @var int $idCompetencia ID da competência
+     * @var int $idCategoriaVida ID da categoria vida
      */
-    private  $idCompetencia           = null;
+    private   $idCategoriaVida          = null;
     /**
-     * @var string $nome nome da competência
+     * @var int $idCategoriaTecnica ID da categoria técnica
      */
-    private $nome = "";
+    private   $idCategoriaTecnica       = null;
     /**
-     * @var string $descricaoCompetencia breve descrição da competência
+     * @var int $idCategoriaEduacional ID da categoria educacional
      */
-    private $descricaoNome = "";
+    private   $idCategoriaEduacional    = null;
     /**
-     * @var string $atitudeDescricao breve descrição do que seria atitude para essa competência
+     * @var int $idUsuario ID do usuário que criou o OA
      */
-    private $atitudeDescricao = "";
+    private   $idUsuario                = null;
     /**
-     * @var string $habilidadeDescricao breve descrição do que seria atitude para essa competência
+     * @var int $idCategoriaDireito ID da categoria direito
      */
-    private $habilidadeDescricao = "";
+    private   $idCategoriaDireito       = null;
     /**
-     * @var string $conhecimentoDescricao breve descrição do que seria conhecimento para essa competência
+     * @var string $descricao descrição do OA
      */
-    private $conhecimentoDescricao = "";
+    private $descricao                  = "";
+    /**
+     * @var string $nome nome do OA
+     */
+    private $nome                       = "";
+    /**
+     * @var string $url URL do OA
+     */
+    private $url                        = "";
+    /**
+     * @var array $palavraChave array de palavras chaves do OA
+     */
+    private $palavraChave               = [];
+    /**
+     * @var string $idioma idioma do OA
+     */
+    private $idioma                     = "";
     /**
      * @var boolean $user_is_logged_in Status para verificar se o usuário está logado
      */
@@ -66,15 +78,14 @@ class Competencia{
     public function __construct() // Essa construct tá certa, seguir modelo
     {
         if (isset($_POST["registrar_nova_competencia"])) {
-            // Função para cadastro de nova competência
-            $this->criaCompetencia($_POST['nome'],$_POST['descricaoNome'],$_POST['atitudeDescricao'], $_POST['habilidadeDescricao'], $_POST['conhecimentoDescricao'], $_POST['user_id']);
+            // Função para cadastro de novo Objeto de Aprendizagem
+            //$this->criaOA($_POST['nome'],$_POST['descricaoNome'],$_POST['atitudeDescricao'], $_POST['habilidadeDescricao'], $_POST['conhecimentoDescricao'], $_POST['user_id']);
         }
         // Se não estiver cadastrando nova competência, no construct ele retorna valores vazios.
         else{
-            $this->idCompetencia = $this->nome = $this->descricaoNome = $this->atitudeDescricao = $this->habilidadeDescricao = $this->conhecimentoDescricao = $this->idProfessor = null;
+            //$this->idCompetencia = $this->nome = $this->descricaoNome = $this->atitudeDescricao = $this->habilidadeDescricao = $this->conhecimentoDescricao = $this->idProfessor = null;
         }
     }
-
     /**
      * Função que verifica se a conexão com o BD existe, se nao existir é aberta
      */
@@ -92,31 +103,12 @@ class Competencia{
             }
         }
     }
-
-    public function getID_byBD($nomeDisciplina = null,$nomeCurso = null){
-        if($nomeDisciplina == null || $nomeCurso == null){
-            $nomeDisciplina = $this->nomeDisciplina;
-            $nomeCurso = $this->nomeCurso;
-        }
-
-        $query_get_id_disciplina = $this->db_connection->prepare('SELECT iddisciplina FROM disciplina WHERE nomedisciplina=:nomeDisciplina AND nomecurso=:nomeCurso');
-        $query_get_id_disciplina->bindValue(':nomedisciplina', $nomeDisciplina, PDO::PARAM_STR);
-        $query_get_id_disciplina->bindValue(':nomecurso', $nomeCurso, PDO::PARAM_STR);
-        $query_get_id_disciplina->execute();
-        $result = $query_get_id_disciplina->fetchAll();
-        if(count($result)>0)
-            return $result[0];
-        else
-            return 0;
-
-    }
-
     /**
-     * Administra toda o sistema de Criação de competência
-     * Verifica todos os erros possíveis e cria a competência se ela não existe
+     * Administra tod@ o sistema de Criação de Objetos de Aprendizagem
+     * Verifica todos os erros possíveis e cria o OA se ele não existe
      */
 
-    public function criaCompetencia($nome, $descricaoNome, $atitudeDescricao, $habilidadeDescricao, $conhecimentoDescricao, $idProfessor){
+    public function criaOA($idcategoria_vida, $descricaoNome, $atitudeDescricao, $habilidadeDescricao, $conhecimentoDescricao, $idProfessor){
         // Remove espaços em branco em excesso das strings
         $nome = trim($nome);
         $descricaoNome = trim($descricaoNome);
@@ -244,9 +236,190 @@ class Competencia{
         }
     }
 }
+
+
 //Case de teste
 //$competencia = new Competencia();
 //$competencia->criaCompetencia('nome','descricao','atitudedesc','habilidadedesc', 'conhhecimentodesc', 1);
 
-?>
 
+
+class OA {
+    private $id;
+    private $nome;
+    private $descricao;
+    private $url;
+    private $palavrachave;
+    private $idioma;
+    private $db_connection = null;
+        //GETTERS AND SETTERS
+    /**
+     * @param mixed $descricao
+     */
+    public function setDescricao($descricao)
+    {
+        $this->descricao = $descricao;
+    }
+     /**
+     * @return mixed $descricao
+     */
+    public function getDescricao()
+    {
+        return $this->descricao;
+    }
+    /**
+     * @param mixed $id
+     */
+    public function setID($id)
+    {
+        $this->id = $id;
+    }
+    /**
+     * @return mixed $id
+     */
+    public function getID()
+    {
+        return $this->id;
+    }
+    /**
+     * @param mixed $idioma
+     */
+    public function setIdioma($idioma)
+    {
+        $this->idioma = $idioma;
+    }
+     /**
+     * @return mixed $idioma
+     */
+    public function getIdioma()
+    {
+        return $this->idioma;
+    }
+     /**
+     * @param mixed $nome
+     */
+    public function setNome($nome)
+    {
+        $this->nome = $nome;
+    }
+     /**
+     * @return mixed $nome
+     */
+    public function getNome()
+    {
+        return $this->nome;
+    }
+    /**
+     * @param mixed $palavrachave
+     */
+    public function setPalavrachave($palavrachave)
+    {
+        $this->palavrachave = $palavrachave;
+    }
+    /**
+     * @return mixed $palavrachave
+     */
+    public function getPalavrachave()
+    {
+        return $this->palavrachave;
+    }
+    /**
+     * @param mixed $url
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    }
+    /**
+     * @return mixed $url
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+
+    // CONSTRUTOR
+
+    function __construct(){
+        $id = 0;
+        $nome = $descricao = $url = $palavrachave = $idioma = $competencia = '';
+    }
+
+    public function criaOA($nome,$descricao,$url,$palavrachave,$idioma){
+
+        if($this->databaseConnection()){
+
+            $this->nome = trim($nome);
+            $this->descricao = trim($descricao);
+            $this->url = trim($url);
+            $this->palavrachave = trim($palavrachave);
+            $this->idioma = trim($idioma);
+
+            $this->db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+
+            //INSERT INTO competencia(nome,descricao,url,palavrachave,idioma) VALUES ('".$nome."','".$descricao."','".$url."','".$palavrachave."','".$idioma."'
+            $stmt = $this->db_connection->prepare("INSERT INTO cesta(nome, descricao, url, palavrachave, idioma)  VALUES(:nome, :descricao, :url, :palavrachave, :idioma)");
+            $stmt->bindParam(':nome',$this->nome, PDO::PARAM_STR);
+            $stmt->bindParam(':descricao',$this->descricao, PDO::PARAM_STR);
+            $stmt->bindParam(':url',$this->url, PDO::PARAM_STR);
+            $stmt->bindParam(':palavrachave',$this->palavrachave, PDO::PARAM_STR);
+            $stmt->bindParam(':idioma',$this->idioma, PDO::PARAM_STR);
+            $stmt->execute();
+
+
+        }
+    }
+
+    private function databaseConnection(){
+        // connection already opened
+        if ($this->db_connection != null) {
+            return true;
+
+        } else {
+            // create a database connection, using the constants from config/config.php
+            try {
+                $this->db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+                return true;
+                // If an error is catched, database connection failed
+            } catch (PDOException $e) {
+                $this->errors[] = MESSAGE_DATABASE_ERROR;
+                print_r($this);
+                return false;
+
+            }
+        }
+    }
+
+    public static function getID_byName($nome){
+
+        // connection already opened
+        if ($db_connection != null) {
+
+        } else {
+            // create a database connection, using the constants from config/config.php
+            try {
+                $db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+                // If an error is catched, database connection failed
+            } catch (PDOException $e) {
+                $errors[] = MESSAGE_DATABASE_ERROR;
+
+            }
+        }
+
+        $nome = trim($nome);
+        $db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+
+        $stmt = $db_connection->prepare("SELECT FROM cesta (idcesta)  WHERE nome = :nome");
+        $stmt->bindParam(':nome',$nome, PDO::PARAM_STR);
+        $stmt->execute();
+        $stmt = $stmt->fetchAll();
+        if(count($stmt) > 0)
+            return $stmt[0];
+        else
+            return -1;
+    }
+
+}
+}
+?>

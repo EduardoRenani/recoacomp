@@ -31,7 +31,7 @@ class Disciplina {
     /**
      * @var array de IDs de competências. Esses ids são referentes à tabela 'competencia' do banco de dados.
      */
-    public  $idCompetencias           = array();
+    private  $idCompetencias           = array();
     /**
      * @var int $iddisciplina ID da disciplina
      */
@@ -159,7 +159,7 @@ class Disciplina {
             $nomeCurso = $this->nomeCurso;
         }
 
-        $query_get_id_disciplina = $this->db_connection->prepare('SELECT iddisciplina FROM disciplina WHERE nomedisciplina=:nomeDisciplina AND nomecurso=:nomeCurso');
+/*        $query_get_id_disciplina = $this->db_connection->prepare('SELECT iddisciplina FROM disciplina WHERE nomedisciplina=:nomeDisciplina AND nomecurso=:nomeCurso');
         $query_get_id_disciplina->bindValue(':nomedisciplina', $nomeDisciplina, PDO::PARAM_STR);
         $query_get_id_disciplina->bindValue(':nomecurso', $nomeCurso, PDO::PARAM_STR);
         $query_get_id_disciplina->execute();
@@ -168,7 +168,7 @@ class Disciplina {
             return $result[0];
         else
             return 0;
-
+*/
     }
     /*
      * Recebe o ID da competência, se ela ainda não tiver sido relacionada para essa disciplina é relacionada utilizando a tabela
