@@ -12,7 +12,8 @@ include('_header.php'); ?>
 
 <!-- formulario para cadastro de disciplinas -->
 <!-- edit form for username / this form uses HTML5 attributes, like "required" and type="email" -->
-<form method="post" action="cadastro_competencia.php" name="registrar_nova_competencia">
+<?php if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["registrar_nova_disciplina"])){ ?>
+<form method="post" action="" name="registrar_nova_competencia">
     <!-- $_POST['conhecimentoDescricao']-->
     <label for="nome"><?php echo WORDING_NAME; ?></label>
     <input id="nome" type="text" name="nome" pattern="[a-zA-Z0-9]{2,64}" required />
@@ -35,6 +36,25 @@ include('_header.php'); ?>
     <input type="reset" name="limpar" value="<?php echo WORDING_CLEAN; ?>" />
 
 </form><hr/>
+<?php }else{
+    $competencia = new Competencia();
+    $oa = new OA(true);
+    $idOA = $oa->getArrayOfIDs();
+    $competencia_id = $competencia->getID_byBD(); //Suponho que esse método esteja funcionando depois de trocar pra PDO.
 
+    $vectorSize=count($idOA);  //Contar fora do for evita 7 segundos de processamento a cada 1 milhão de iterações.
+    //É o grande problema do uso de foreach
+
+    for($i=0;$i<$vectorSize;$i++){
+        //Se houver erro na associação de alguma copetência, o método associaCompetencia retorna false.
+        //Caso contrário, ele associa a competência.
+        if ($competencia->associaOA($idOA[$i]) == false){
+            //Erro na associação da OA $idOA[$i] com a competência sendo criada.
+            echo (WORDING_CANT_ASSOCIATE_COMPETENCIA);
+        }
+    }
+
+    ?>
+<?php } ?>
 <!-- backlink -->
 <a href="index.php"><?php echo WORDING_BACK_TO_LOGIN; ?></a>

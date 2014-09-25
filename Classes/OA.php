@@ -180,6 +180,25 @@ class OA {
         else
             return -1;
     }
+        //TODO NÃO ESQUECER ESSES DOIS MÉTODOS QUANDO TERMINAR A OA2
+    public function getArrayOfIDs(){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT idcesta FROM cesta");
+            $stmt->execute();
+            $retorno = $stmt->fetchAll();
+            return ($retorno);
+        }
+    }
+
+    public function getArrayOfNames(){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT nome FROM cesta");
+            $stmt->execute();
+            $retorno = $stmt->fetchAll();
+            return ($retorno);
+        }
+    }
+    //FIM DO to do ^
 
 }
 }

@@ -72,10 +72,11 @@ include('_header.php');
 
 <?php }
 
-else/*($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["registrar_nova_disciplina"]))*/{
+else{
     $disciplina = new Disciplina();
     //Gambiarra INICIO TODO
-    $comp = new Competencia();
+    //Da onde que instanciar uma classe é gambiarra? '-' SHAUSHAS
+    $comp = new Competencia(true);
     $idCompetencia = $comp->getArrayOfIDs();
     //Gambiarra FINAL TODO
 

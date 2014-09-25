@@ -159,16 +159,16 @@ class Disciplina {
             $nomeCurso = $this->nomeCurso;
         }
 
-/*        $query_get_id_disciplina = $this->db_connection->prepare('SELECT iddisciplina FROM disciplina WHERE nomedisciplina=:nomeDisciplina AND nomecurso=:nomeCurso');
+        $query_get_id_disciplina = $this->db_connection->prepare('SELECT iddisciplina FROM disciplina WHERE nomedisciplina=:nomeDisciplina AND nomecurso=:nomeCurso');
         $query_get_id_disciplina->bindValue(':nomedisciplina', $nomeDisciplina, PDO::PARAM_STR);
         $query_get_id_disciplina->bindValue(':nomecurso', $nomeCurso, PDO::PARAM_STR);
-        $query_get_id_disciplina->execute();
+        $query_get_id_disciplina->execute(array(":nomeDisciplina" => $nomeDisciplina,":nomeCurso" => $nomeCurso ));
         $result = $query_get_id_disciplina->fetchAll();
         if(count($result)>0)
             return $result[0];
         else
             return 0;
-*/
+
     }
     /*
      * Recebe o ID da competência, se ela ainda não tiver sido relacionada para essa disciplina é relacionada utilizando a tabela

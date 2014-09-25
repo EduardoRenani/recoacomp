@@ -110,7 +110,7 @@ class OA{
 
     public function criaOA($idcategoria_vida, $descricaoNome, $atitudeDescricao, $habilidadeDescricao, $conhecimentoDescricao, $idProfessor){
         // Remove espaços em branco em excesso das strings
-        $nome = trim($nome);
+        $nome = trim($this->nome);
         $descricaoNome = trim($descricaoNome);
         $atitudeDescricao = trim($atitudeDescricao);
         $habilidadeDescricao = trim($habilidadeDescricao);

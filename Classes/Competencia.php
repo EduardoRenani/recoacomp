@@ -63,9 +63,9 @@ class Competencia{
      * the function "__construct()" automatically starts whenever an object of this class is created,
      * you know, when you do "$criarCompetencia = new CriarCompetencia();"
      */
-    public function __construct() // Essa construct tá certa, seguir modelo
+    public function __construct($donothing = null) // Essa construct tá certa, seguir modelo
     {
-        if (isset($_POST["registrar_nova_competencia"])) {
+        if (isset($_POST["registrar_nova_competencia"]) && $donothing == null) {
             // Função para cadastro de nova competência
             $this->criaCompetencia($_POST['nome'],$_POST['descricaoNome'],$_POST['atitudeDescricao'], $_POST['habilidadeDescricao'], $_POST['conhecimentoDescricao'], $_POST['user_id']);
         }
@@ -242,6 +242,47 @@ class Competencia{
             $retorno = $stmt->fetchAll();
             return ($retorno);
         }
+    }
+
+    public function associaOA($idOA){
+
+        //TODO MODIFICAR. Está copiado do método associar competência, da classe disciplina.
+
+        if($this->idCompetencia == 0)
+            $this->idCompetencia = $this->getID_byBD();
+        //Validação de Competência
+        if($idOA <= 0){
+            $this->errors[] = MESSAGE_COMPETENCIA_DOESNT_EXIST;
+            //Validação da disciplina sendo editada
+        }else if($this->idCompetencia <= 0){
+            $this->errors[] = MESSAGE_DISCIPLINA_DOESNT_EXIST;
+        }else{
+
+            //Checa se já existe a relação entre essa disciplina e essa competência, para evitar de duplicar o relacionamento.
+            $existeRelacao = false;
+            $query_check_disc_comp = $this->db_connection->prepare('SELECT ID FROM competencia_oa WHERE id_competencia=:idCompetencia AND id_OA=:idOA');
+            $query_check_disc_comp->bindValue(':idCompetencia', $this->idCompetencia, PDO::PARAM_INT);
+            $query_check_disc_comp->bindValue(':idOA', $idOA, PDO::PARAM_INT);
+            $query_check_disc_comp->execute();
+            $result = $query_check_disc_comp->fetchAll();
+            if(count($result)>0){
+                $existeRelacao = true;
+                $this->errors[] = MESSAGE_DISCIPLINA_COMPETENCIA_ALREADY_RELATED;
+            }
+
+            if( (! $existeRelacao) && (strlen($this->errors) == 0) ){
+                //Associar a competência com a disciplina pelo ID
+
+                $stmt = $this->db_connection->prepare("INSERT INTO disciplina_competencia(disciplina_iddisciplina,competencia_idcompetencia)  VALUES(:idDisc,:idComp )");
+                $stmt->bindParam(':idDisc',$this->idCompetencia, PDO::PARAM_INT);
+                $stmt->bindParam(':idComp',$idOA, PDO::PARAM_INT);
+                $stmt->execute();
+                return true;
+            }else{
+                return false;
+            }
+        }
+
     }
 }
 //Case de teste
