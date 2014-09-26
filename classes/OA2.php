@@ -6,7 +6,7 @@
  * Classe responsável pelo gerenciamento de Objetos de Aprendizagem (OA/Cesta)
  */
 if(class_exists('OA') != true){
-class OA{
+class OA2{
     /**
      * @var object $db_connection The database connection
      */

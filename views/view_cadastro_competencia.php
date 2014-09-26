@@ -40,7 +40,6 @@ include('_header.php'); ?>
     $competencia = new Competencia();
     $oa = new OA(true);
     $idOA = $oa->getArrayOfIDs();
-    $competencia_id = $competencia->getID_byBD(); //Suponho que esse método esteja funcionando depois de trocar pra PDO.
 
     $vectorSize=count($idOA);  //Contar fora do for evita 7 segundos de processamento a cada 1 milhão de iterações.
     //É o grande problema do uso de foreach
@@ -48,7 +47,7 @@ include('_header.php'); ?>
     for($i=0;$i<$vectorSize;$i++){
         //Se houver erro na associação de alguma copetência, o método associaCompetencia retorna false.
         //Caso contrário, ele associa a competência.
-        if ($competencia->associaOA($idOA[$i]) == false){
+        if ($competencia->associaOA($idOA[$i]["idcesta"]) == false){
             //Erro na associação da OA $idOA[$i] com a competência sendo criada.
             echo (WORDING_CANT_ASSOCIATE_COMPETENCIA);
         }

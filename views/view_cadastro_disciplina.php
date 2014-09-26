@@ -89,7 +89,7 @@ else{
         for($i=0;$i<$vectorSize;$i++){
             //Se houver erro na associação de alguma copetência, o método associaCompetencia retorna false.
             //Caso contrário, ele associa a competência.
-            if ($disciplina->associaCompetencia($idCompetencia[$i]) == false){
+            if ($disciplina->associaCompetencia($idCompetencia[$i]["idcompetencia"]) == false){
                 //Erro na associação da competência $idCompetencia[$i] com a disciplina sendo criada.
                 echo (WORDING_CANT_ASSOCIATE_COMPETENCIA);
             }

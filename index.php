@@ -9,7 +9,7 @@
  * @link https://github.com/panique/php-login-advanced/
  * @license http://opensource.org/licenses/MIT MIT License
  */
-
+require_once('classes/OA.php');
 // check for minimum PHP version
 if (version_compare(PHP_VERSION, '5.3.7', '<')) {
     exit('Sorry, this script does not run on a PHP version smaller than 5.3.7 !');
@@ -39,7 +39,6 @@ if ($login->isUserLoggedIn() == true) {
     // the user is logged in. you can do whatever you want here.
     // for demonstration purposes, we simply show the "you are logged in" view.
     include("views/logged_in.php");
-
 } else {
     // the user is not logged in. you can do whatever you want here.
     // for demonstration purposes, we simply show the "you are not logged in" view.

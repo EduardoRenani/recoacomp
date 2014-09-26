@@ -155,7 +155,7 @@ class OA {
     public static function getID_byName($nome){
 
         // connection already opened
-        if ($db_connection != null) {
+        if (isset($db_connection)) {
 
         } else {
             // create a database connection, using the constants from config/config.php
@@ -169,7 +169,7 @@ class OA {
         }
 
         $nome = trim($nome);
-        $db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+        //$db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
 
         $stmt = $db_connection->prepare("SELECT FROM cesta (idcesta)  WHERE nome = :nome");
         $stmt->bindParam(':nome',$nome, PDO::PARAM_STR);

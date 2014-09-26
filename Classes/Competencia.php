@@ -68,6 +68,7 @@ class Competencia{
         if (isset($_POST["registrar_nova_competencia"]) && $donothing == null) {
             // Função para cadastro de nova competência
             $this->criaCompetencia($_POST['nome'],$_POST['descricaoNome'],$_POST['atitudeDescricao'], $_POST['habilidadeDescricao'], $_POST['conhecimentoDescricao'], $_POST['user_id']);
+            $this->idCompetencia = $this->getID_byBD();
         }
         // Se não estiver cadastrando nova competência, no construct ele retorna valores vazios.
         else{
@@ -93,21 +94,19 @@ class Competencia{
         }
     }
 
-    public function getID_byBD($nomeDisciplina = null,$nomeCurso = null){
-        if($nomeDisciplina == null || $nomeCurso == null){
-            $nomeDisciplina = $this->nomeDisciplina;
-            $nomeCurso = $this->nomeCurso;
+    public function getID_byBD($nomeCompetencia = null){
+        if($nomeCompetencia == null){
+            $nomeCompetencia = $this->nome;
         }
 
-        $query_get_id_disciplina = $this->db_connection->prepare('SELECT iddisciplina FROM disciplina WHERE nomedisciplina=:nomeDisciplina AND nomecurso=:nomeCurso');
-        $query_get_id_disciplina->bindValue(':nomedisciplina', $nomeDisciplina, PDO::PARAM_STR);
-        $query_get_id_disciplina->bindValue(':nomecurso', $nomeCurso, PDO::PARAM_STR);
-        $query_get_id_disciplina->execute();
+        $query_get_id_disciplina = $this->db_connection->prepare('SELECT idcompetencia FROM competencia WHERE nome=:nome');
+        $query_get_id_disciplina->bindValue(':nome', $nomeCompetencia, PDO::PARAM_STR);
+        $query_get_id_disciplina->execute(array(':nome' => $nomeCompetencia));
         $result = $query_get_id_disciplina->fetchAll();
         if(count($result)>0)
-            return $result[0];
+            return $result[0]["idcompetencia"];
         else
-            return 0;
+            return (-1);
 
     }
 
@@ -152,7 +151,7 @@ class Competencia{
             // Essa query verifica se possuem nomes idênticos
             $query_check_nome_competencia = $this->db_connection->prepare('SELECT nome FROM competencia WHERE nome=:nome');
             $query_check_nome_competencia->bindValue(':nome', $nome, PDO::PARAM_STR);
-            $query_check_nome_competencia->execute();
+            $query_check_nome_competencia->execute(array(':nome' => $nome));
             $result = $query_check_nome_competencia->fetchAll();
             // Se o nome da competência for encontrada no banco de dados
             if (count($result) > 0) {
@@ -187,13 +186,13 @@ class Competencia{
         }else if($this->iddisciplina <= 0){
             $this->errors[] = MESSAGE_DISCIPLINA_DOESNT_EXIST;
         }else{
-
+//TODO SUBSTITUIR DISCIPLINA POR OA
             //Checa se já existe a relação entre essa disciplina e essa competência, para evitar de duplicar o relacionamento.
             $existeRelacao = false;
             $query_check_disc_comp = $this->db_connection->prepare('SELECT disciplina_iddisciplina FROM disciplina_competencia WHERE disciplina_iddisciplina=:idDisciplina AND competencia_idcompetencia=:idComp');
-            $query_check_disc_comp->bindValue(':idDisciplina', $this->iddisciplina, PDO::PARAM_INT);
+            $query_check_disc_comp->bindValue(':idDisciplina', $this->idCompetencia, PDO::PARAM_INT);
             $query_check_disc_comp->bindValue(':idComp', $idCompetencia, PDO::PARAM_INT);
-            $query_check_disc_comp->execute();
+            $query_check_disc_comp->execute( array(':idDisciplina' => $this->iddisciplina) );
             $result = $query_check_disc_comp->fetchAll();
             if(count($result)>0){
                 $existeRelacao = true;
@@ -248,35 +247,46 @@ class Competencia{
 
         //TODO MODIFICAR. Está copiado do método associar competência, da classe disciplina.
 
-        if($this->idCompetencia == 0)
+        //Tratamento de ID da competência inválido
+        if($this->idCompetencia <= 0 || $this->idCompetencia == null)
             $this->idCompetencia = $this->getID_byBD();
-        //Validação de Competência
-        if($idOA <= 0){
+
+        //Validação de OA
+        if($idOA <= 0 || $idOA == null || empty($idOA)){
             $this->errors[] = MESSAGE_COMPETENCIA_DOESNT_EXIST;
             //Validação da disciplina sendo editada
-        }else if($this->idCompetencia <= 0){
+        }else if($this->idCompetencia <= 0 || $this->idCompetencia == null){
             $this->errors[] = MESSAGE_DISCIPLINA_DOESNT_EXIST;
         }else{
 
-            //Checa se já existe a relação entre essa disciplina e essa competência, para evitar de duplicar o relacionamento.
+            //TODO DELT1 LEIA ISSO PELO AMOR DE GÓDI v
+//PDO perde 2.5% de performance em consultas que não é preciso preparar as variáveis. Nas consultas como a de baixo, perde-se 6.5% A CADA CONSULTA.
+            //TODO DELT1 LEIA ISSO PELO AMOR DE DEUS ^ Vamo parar de usar saporra
+            //Sem contar que vamo sofrer sozinhos com os erros que possam vir a acontecer, ngm no NUTED usa PDO pra nos ajudar.
+            //E o coitado do próximo bolsista vai ter que aprender esse traste tb. :P
+            //Cláuser 26/09/14
+
+            //Checa se já existe a relação entre esse OA e essa competência, para evitar de duplicar o relacionamento.
             $existeRelacao = false;
             $query_check_disc_comp = $this->db_connection->prepare('SELECT ID FROM competencia_oa WHERE id_competencia=:idCompetencia AND id_OA=:idOA');
             $query_check_disc_comp->bindValue(':idCompetencia', $this->idCompetencia, PDO::PARAM_INT);
             $query_check_disc_comp->bindValue(':idOA', $idOA, PDO::PARAM_INT);
-            $query_check_disc_comp->execute();
+            $query_check_disc_comp->execute(array(':idCompetencia' => $this->idCompetencia, ':idOA' => $idOA));
             $result = $query_check_disc_comp->fetchAll();
             if(count($result)>0){
                 $existeRelacao = true;
                 $this->errors[] = MESSAGE_DISCIPLINA_COMPETENCIA_ALREADY_RELATED;
             }
+            unset($query_check_disc_comp);
 
             if( (! $existeRelacao) && (strlen($this->errors) == 0) ){
-                //Associar a competência com a disciplina pelo ID
+                //Associar a competência com a OA pelo ID
 
-                $stmt = $this->db_connection->prepare("INSERT INTO disciplina_competencia(disciplina_iddisciplina,competencia_idcompetencia)  VALUES(:idDisc,:idComp )");
-                $stmt->bindParam(':idDisc',$this->idCompetencia, PDO::PARAM_INT);
-                $stmt->bindParam(':idComp',$idOA, PDO::PARAM_INT);
-                $stmt->execute();
+                $stmt = $this->db_connection->prepare("INSERT INTO competencia_oa(id_OA,id_competencia)  VALUES(:idOA,:idComp )");
+                $stmt->bindParam(':idOA',$idOA, PDO::PARAM_INT);
+                $stmt->bindParam(':idComp',$this->idCompetencia, PDO::PARAM_INT);
+                $stmt->execute(array(':idOA' => $idOA, ':idComp' => $this->idCompetencia));
+                unset($stmt);
                 return true;
             }else{
                 return false;
