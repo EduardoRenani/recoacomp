@@ -6,8 +6,41 @@
  * Time: 14:32
  */
 include('_header.php');
-
 ?>
+<!-- IMPORTAÇÃO JQUERY-->
+<head>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <style>
+#sortable1, #sortable2 {
+border: 1px solid #eee;
+            width: 142px;
+            min-height: 20px;
+            list-style-type: none;
+            margin: 0;
+            padding: 5px 0 0 0;
+            float: left;
+            margin-right: 10px;
+        }
+        #sortable1 li, #sortable2 li {
+            margin: 0 5px 5px 5px;
+            padding: 5px;
+            font-size: 1.2em;
+            width: 120px;
+        }
+    </style>
+    <script>
+
+$(function() {
+    $( "#sortable1, #sortable2" ).sortable({
+                connectWith: ".connectedSortable"
+            }).disableSelection();
+        });
+    </script>
+</head>
+<!-- FIM IMPORTAÇÃO JQUERY-->
 
 <h2><?php echo ($_SESSION['user_name']); ?></h2>
 <h2><?php echo (WORDING_CREATE_DISCIPLINA); ?></h2>
@@ -30,9 +63,9 @@ include('_header.php');
         <label for="descricao"><?php echo WORDING_DISCIPLINA_DESCRICAO; ?></label>
         <textarea name="descricao" ROWS="5" COLS="40"></textarea>
         <br />
-
+        <?php//TODO colocar parte de selecionar competencias em outra página e fazer o cadastro da disciplina em 2 páginas?>
         <ul id="sortable1" class="connectedSortable">
-            <li class="ui-state-highlight">Item Inicial</li>
+            <!--<li class="ui-state-highlight">Item Inicial</li>-->
             <?php
             $comp = new Competencia();
             $idCompetencia = $comp->getArrayOfIDs();
@@ -40,13 +73,12 @@ include('_header.php');
             $contador = count($nomeCompetencia);
 
             for($i=0;$i<$contador;$i++){ ?>
-                <li class="ui-state-default"><?php echo "".($nomeCompetencia[$i]["nome"]); ?></li>
+                <li id="<?php echo "".($idCompetencia[$i]["idcompetencia"]); ?>" class="ui-state-default"><?php echo "".($nomeCompetencia[$i]["nome"]); ?></li>
             <?php } ?>
 
         </ul>
         <ul id="sortable2" class="connectedSortable">
-            <li class="ui-state-highlight">Item 1 selecionado</li>
-            <li class="ui-state-highlight">Item 2 selecionado</li>
+            <!--<li class="ui-state-highlight">Item 1 selecionado</li>-->
         </ul>
         <br /><br />
 
@@ -59,9 +91,6 @@ include('_header.php');
                     data: {sorted:sorted}
                 });
             }
-            //Isso aqui é php
-            //session_start();
-            //var_dump($_SESSION["selectedcompetencias"] );
         </script>
         <br /><br />
 
