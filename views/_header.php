@@ -42,14 +42,37 @@
             font-size: 1.2em;
             width: 120px;
         }
+        #tabela1, #tabela2 {
+            border: 1px solid #eee;
+            width: 142px;
+            min-height: 20px;
+            list-style-type: none;
+            margin: 0;
+            padding: 5px 0 0 0;
+            float: left;
+            margin-right: 10px;
+        }
+        #tabela1 li, #tabela2 li {
+            margin: 0 5px 5px 5px;
+            padding: 5px;
+            font-size: 1.2em;
+            width: 120px;
+        }
     </style>
-    <script>
-        $(function() {
-            $( "#sortable1, #sortable2" ).sortable({
-                connectWith: ".connectedSortable"
-            }).disableSelection();
-        });
-    </script>
+    <!-- Importação do Jquery -->
+
+    <!-- script src="http://code.jquery.com/jquery-latest.js"></script-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="jquery.bootstrap.wizard.js"></script>
+
+    <!-- Importação do Bootstrap-->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Importação dos efeitos de cadastros-->
+    <link href="prettify.css" rel="stylesheet">
 </head>
 <body>
 
@@ -66,8 +89,7 @@ if (isset($login)) {
             echo $message;
         }
     }
-}
-?>
+}?>
 
 <?php
 // show potential errors / feedback (from registration object)

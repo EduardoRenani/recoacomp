@@ -27,14 +27,147 @@ class OA2{
      * @var int $idCesta ID do OA
      */
     private  $idCesta                   = null;
+    // Variáveis responsáveis pela categoria vida no banco de dados
+    // -----------------------------INICIO CATEGORIA VIDA-----------------------------
     /**
-     * @var int $idCategoriaVida ID da categoria vida
+     * @var date $time data em que OA foi cadastrado
      */
-    private   $idCategoriaVida          = null;
+    private  $date                   = null;
     /**
-     * @var int $idCategoriaTecnica ID da categoria técnica
+     * @var string $status tipos:
+     * Rascunho
+     * Revisado
+     * Editado
+     * Indisponível
+     * Final
      */
-    private   $idCategoriaTecnica       = null;
+    private  $status                   = "";
+    /**
+     * @var string $versao versão do objeto cadastrado
+     */
+    private  $versao                   = "";
+    /**
+     * @var string $entidade lista de palavras com as entidades
+     */
+    private  $entidade                   = "";
+    /**
+     * @var string $contribuicao tipo de contribuição que objeto inspira
+     * autor
+     * editor
+     * desconhecido
+     * iniciador
+     * designer gráfico
+     * técnico
+     * provedor de conteúdo
+     * roteirista
+     * designer instrucional
+     * especialista em conteúdo
+     */
+    private  $contribuicao                  = "";
+    // -----------------------------FIM CATEGORIA VIDA--------------------------------
+    // Variáveis responsáveis pela categoria técnica no banco de dados
+    // -----------------------------INICIO CATEGORIA TÉCNICA-----------------------------
+    /**
+     * @var time $tempo_video tempo do video a ser cadastrado, se for video.
+     */
+    private   $tempo_video       = null;
+    /**
+     * @var string $tamanho tamanho do video a ser cadastrado, se for video.
+     */
+    private   $tamanho       = "";
+    /**
+     * @var string $tipoTecnologia tipo de tecnologia utilizada no OA:
+     * Navegador
+     * Sistema Operacional
+     */
+    private   $tipoTecnologia       = "";
+    /**
+     * @var string $tipoFormato formato do OA:
+     * Video
+     * Imagem
+     * Audio
+     * Texto
+     * Apresentação
+     * PDF
+     * Site
+     * Sistema Operacional
+     */
+    private   $tipoFormato       = "";
+    // -----------------------------FIM CATEGORIA TÉCNICA--------------------------------
+    // Variáveis responsáveis pela categoria eduacional no banco de dados
+    // -----------------------------INICIO CATEGORIA EDUACIONAL-----------------------------
+    /**
+     * @var string $descricao_educacional breve descrição do OA
+     */
+    private   $descricao_educacional       = "";
+    /**
+     * @var string $nivelIteratividade nivel de iteratividade do OA:
+     * Muito Baixa
+     * Baixo
+     * Medio
+     * Alto
+     * Muito Alto
+     */
+    private   $nivelIteratividade       = "";
+    /**
+     * @var string $tipoIteratividade tipo de iteratividade do OA:
+     * Ativa
+     * Expositiva
+     * Mista
+     */
+    private   $tipoIteratividade       = "";
+     /**
+     * @var string $faixaEtaria faixa etaria recomendada do OA
+     * Criança
+     * Adulto
+     * Idoso
+     */
+     private   $faixaEtaria       = "";
+    /**
+     * @var string $recursoAprendizagem recurso de aprendizagem utilizado no OA
+     * Exercício
+     * Simulação
+     * Questionário
+     * Diagrama
+     * Figura
+     * Gráfico
+     * Video
+     * Indice
+     * Slide
+     * Tabela
+     * Teste
+     * Experiência
+     * Texto
+     * Problema
+     * Auto Avaliação
+     * Palestra
+     */
+    private   $recursoAprendizagem       = "";
+    /**
+     * @var string $usuarioFinal usuário final do OA
+     * Professor
+     * Autor
+     * Aluno
+     * Gerenciar
+     */
+    private   $usuarioFinal       = "";
+    // -----------------------------FIM CATEGORIA EDUACIONAL--------------------------------
+    // Variáveis responsáveis pela categoria direito no banco de dados
+    // -----------------------------INICIO CATEGORIA DIREITO-----------------------------
+    /**
+     * @var boolean $custo se o OA teve custo (sim ou não)
+     */
+    private   $custo            = null;
+    /**
+     * @var boolean $direitoAutoral se o OA possui direito autoral (Sim ou não)
+     */
+    private   $direitoAutoral   = null;
+    /**
+     * @var string $uso descrição do uso do OA
+     */
+    private   $uso              = "";
+
+    // -----------------------------FIM CATEGORIA DIREITO--------------------------------
     /**
      * @var int $idCategoriaEduacional ID da categoria educacional
      */
@@ -107,8 +240,19 @@ class OA2{
      * Administra tod@ o sistema de Criação de Objetos de Aprendizagem
      * Verifica todos os erros possíveis e cria o OA se ele não existe
      */
-
-    public function criaOA($idcategoria_vida, $descricaoNome, $atitudeDescricao, $habilidadeDescricao, $conhecimentoDescricao, $idProfessor){
+    //TODO ESTOU FAZENDO ESSA PARTE
+    public function criaOA(
+        //Categoria vida:
+        $idcategoria_vida,
+        $idcategoria_tecnica,
+        $idcategoria_educacional,
+        $idcategoria_direito,
+        $idusuario,
+        $descricao,
+        $nome,
+        $url,
+        $palavrachave,
+        $idioma){
         // Remove espaços em branco em excesso das strings
         $nome = trim($this->nome);
         $descricaoNome = trim($descricaoNome);

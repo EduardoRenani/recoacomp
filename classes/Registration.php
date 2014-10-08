@@ -34,16 +34,18 @@ class Registration
      * the function "__construct()" automatically starts whenever an object of this class is created,
      * you know, when you do "$login = new Login();"
      */
-    public function __construct()
+    public function __construct($fazeralgo=null)
     {
-        session_start();
+        if($fazeralgo == null){
+            session_start();
 
-        // if we have such a POST request, call the registerNewUser() method
-        if (isset($_POST["register"])) {
-            $this->registerNewUser($_POST['user_name'], $_POST['user_email'], $_POST['user_password_new'], $_POST['user_password_repeat'], $_POST["captcha"]);
-        // if we have such a GET request, call the verifyNewUser() method
-        } else if (isset($_GET["id"]) && isset($_GET["verification_code"])) {
-            $this->verifyNewUser($_GET["id"], $_GET["verification_code"]);
+            // if we have such a POST request, call the registerNewUser() method
+            if (isset($_POST["register"])) {
+                $this->registerNewUser($_POST['user_name'], $_POST['user_email'], $_POST['user_password_new'], $_POST['user_password_repeat'], $_POST["captcha"]);
+            // if we have such a GET request, call the verifyNewUser() method
+            } else if (isset($_GET["id"]) && isset($_GET["verification_code"])) {
+                $this->verifyNewUser($_GET["id"], $_GET["verification_code"]);
+            }
         }
     }
 
@@ -239,4 +241,37 @@ class Registration
             }
         }
     }
+
+    public function getEmail($id=null){
+        if($id==null){
+            //session_start();
+
+            if( isset( $_SESSION['user_id'] )){
+
+                //TODO Usar sacoisa pra retornar o email por bd $_SESSION['user_id'];
+
+                if ($this->databaseConnection()) {
+                    $query_check_nome_competencia = $this->db_connection->prepare('SELECT user_email FROM users WHERE user_id=:id');
+                    //$query_check_nome_competencia->bindValue(':id', $_SESSION['user_id'], PDO::PARAM_INT);
+                    $query_check_nome_competencia->execute(array(":id" => $_SESSION['user_id']));
+                    $result = $query_check_nome_competencia->fetchAll();
+                    var_dump($result);
+                    if(count($result)>0)
+                        return $result[0]["user_email"];
+                    else
+                        return "falha no email";
+                }
+            }
+
+            return -1;
+
+        }
+        else{
+            //passou id como parametro
+            //pega por bd
+            //TODO pegar email por bd
+
+        }
+    }
+
 }
