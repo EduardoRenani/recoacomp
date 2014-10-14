@@ -112,6 +112,8 @@ define("WORDING_PORTUGUES", "Português");
 define("WORDING_ENGLISH", "Inglês");
 define("WORDING_SPANISH", "Espanhol");
 define("WORDING_REGISTER_NOVO_OA", "Registrar Novo Objeto de Aprendizagem");
+define("MESSAGE_OA_WITH_NAME_ALREADY_EXISTS", "Objeto de Aprendizagem com nome e/ou URL já existente!");
+
 
 //Cadastro de Competências Mensagens
 define("WORDING_REGISTER_NOVA_COMPETENCIA", "Registrar nova competência");

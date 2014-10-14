@@ -1,75 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1f52bd4e-bbb3-46df-aea3-27b5d9cd81c2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/teste.html" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\Email\email.php" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\Email\faleconosco.html" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\Email\form_enviaremail.php" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\jquery.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\jquery.steps.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\jquery.steps.min.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\README.md" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\demo\index.html" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\demo\scripts\jquery-1.10.2.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\demo\scripts\raphael.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\demo\stylesheets\style.css" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\.gitattributes" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\.travis.yml" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\CHANGELOG.md" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\Gruntfile.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\LICENSE.txt" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\README.md" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\bower.json" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\build\jQuery.Steps.1.1.0.nupkg" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\build\jquery.steps-1.1.0.zip" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\build\jquery.steps.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\build\jquery.steps.min.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\demo\css\jquery.steps.css" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\demo\css\main.css" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\demo\css\normalize.css" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\demo\index.html" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\demo\tabs.html" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\demo\vertical.html" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\lib\jquery-1.10.2.min.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\lib\jquery-1.11.1.min.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\lib\jquery-1.9.1.min.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\lib\jquery.cookie-1.3.1.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\lib\modernizr-2.6.2.min.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\nuget\NuGet.exe" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\nuget\jQuery.Steps.nuspec" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\package.json" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\src\_banner.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\src\defaults.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\src\enums.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\src\helper.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\src\model.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\src\privates.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\src\publics.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\steps.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\test\index.html" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\test\jquery.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\test\qunit\qunit-1.11.0.css" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\test\qunit\qunit-1.11.0.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery-steps-master\test\tests.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery.steps.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\jquery.steps.min.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\progressStep.jquery.json" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\progressStep.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\progressStep.min.js" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\screenshot.png" afterPath="" />
-      <change type="DELETED" beforePath="Z:\Clauser\Clauser - Git\Clauser\js\tresete.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/OA2.php" afterPath="$PROJECT_DIR$/classes/OA2.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/Registration.php" afterPath="$PROJECT_DIR$/classes/Registration.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/_footer.php" afterPath="$PROJECT_DIR$/views/_footer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/_header.php" afterPath="$PROJECT_DIR$/views/_header.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/view_cadastro_competencia.php" afterPath="$PROJECT_DIR$/views/view_cadastro_competencia.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/view_cadastro_disciplina.php" afterPath="$PROJECT_DIR$/views/view_cadastro_disciplina.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="1f52bd4e-bbb3-46df-aea3-27b5d9cd81c2" name="Default" comment="" />
     <ignored path="Clauser.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -130,20 +62,20 @@
       </file>
       <file leaf-file-name="config.cfg" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/config.cfg">
-          <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-            <state />
-          </provider>
           <provider selected="true" editor-type-id="text-editor">
             <state line="66" column="31" selection-start="3028" selection-end="3046" vertical-scroll-proportion="0.0" vertical-offset="913" max-vertical-offset="2057">
               <folding />
             </state>
+          </provider>
+          <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="Competencia.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/classes/Competencia.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="105" column="18" selection-start="3822" selection-end="3822" vertical-scroll-proportion="0.21715328" vertical-offset="1581" max-vertical-offset="5168">
+            <state line="145" column="13" selection-start="5470" selection-end="5470" vertical-scroll-proportion="-0.09883721" vertical-offset="2465" max-vertical-offset="5168">
               <folding>
                 <marker date="1411740481991" expanded="true" signature="3523:3577" placeholder="SELECT idcom..competencia..." />
                 <marker date="1411740481991" expanded="true" signature="5858:5903" placeholder="SELECT nome ..competencia..." />
@@ -218,8 +150,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -247,6 +179,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -255,96 +188,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Clauser" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Clauser" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Clauser" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Clauser" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Clauser" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Clauser" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="translations" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Clauser" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Clauser" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Paginas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Clauser" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Clauser" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Clauser" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Clauser" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="classes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FullScreen" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="Z:/PrGuilherme" />
     <property name="SearchEverywhereHistory" value="'" />
     <property name="options.lastSelected" value="vcs.Git" />
     <property name="options.splitter.main.proportions" value="0.3" />
@@ -421,15 +273,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18107668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24546827" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25079873" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -572,11 +424,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitattributes">
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="897" />
+      </provider>
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/register.php">
@@ -761,18 +613,18 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/config.cfg">
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state line="66" column="31" selection-start="3028" selection-end="3046" vertical-scroll-proportion="0.0" vertical-offset="913" max-vertical-offset="2057">
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/Competencia.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="105" column="18" selection-start="3822" selection-end="3822" vertical-scroll-proportion="0.21715328" vertical-offset="1581" max-vertical-offset="5168">
+        <state line="145" column="13" selection-start="5470" selection-end="5470" vertical-scroll-proportion="-0.09883721" vertical-offset="2465" max-vertical-offset="5168">
           <folding>
             <marker date="1411740481991" expanded="true" signature="3523:3577" placeholder="SELECT idcom..competencia..." />
             <marker date="1411740481991" expanded="true" signature="5858:5903" placeholder="SELECT nome ..competencia..." />

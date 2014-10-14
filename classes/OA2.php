@@ -121,6 +121,7 @@ class OA2{
      * Criança
      * Adulto
      * Idoso
+     * Todas as idades
      */
      private   $faixaEtaria       = "";
     /**
@@ -151,6 +152,14 @@ class OA2{
      * Gerenciar
      */
     private   $usuarioFinal       = "";
+    /**
+     * @var string $ambiente ambiente do OA
+     * Escola
+     * Faculdade
+     * Treinamento
+     * Outro
+     */
+    private   $ambiente       = "";
     // -----------------------------FIM CATEGORIA EDUACIONAL--------------------------------
     // Variáveis responsáveis pela categoria direito no banco de dados
     // -----------------------------INICIO CATEGORIA DIREITO-----------------------------
@@ -169,9 +178,17 @@ class OA2{
 
     // -----------------------------FIM CATEGORIA DIREITO--------------------------------
     /**
+     * @var int $idCategoriaVida ID da categoria vida
+     */
+    private   $idCategoriaVida    = null;
+    /**
      * @var int $idCategoriaEduacional ID da categoria educacional
      */
     private   $idCategoriaEduacional    = null;
+    /**
+     * @var int $idCategoriaTecnica ID da categoria tecnica
+     */
+    private   $idCategoriaTecnica    = null;
     /**
      * @var int $idUsuario ID do usuário que criou o OA
      */
@@ -210,15 +227,46 @@ class OA2{
      */
     public function __construct() // Essa construct tá certa, seguir modelo
     {
-        if (isset($_POST["registrar_nova_competencia"])) {
+        if (isset($_POST["registrar_novo_OA"])) {
             // Função para cadastro de novo Objeto de Aprendizagem
-            //$this->criaOA($_POST['nome'],$_POST['descricaoNome'],$_POST['atitudeDescricao'], $_POST['habilidadeDescricao'], $_POST['conhecimentoDescricao'], $_POST['user_id']);
+            $this->criaOA(
+                //Categoria vida:
+                $_POST['date'],
+                $_POST['status'],
+                $_POST['versao'],
+                $_POST['entidade'],
+                $_POST['contribuicao'],
+                // Categoria Técnica
+                $_POST['tempo_video'],
+                $_POST['tamanho'],
+                $_POST['tipoTecnologia'],
+                $_POST['tipoFormato'],
+                // Categoria Educacional
+                $_POST['descricao_educacional'],
+                $_POST['nivelIteratividade'],
+                $_POST['tipoIteratividade'],
+                $_POST['faixaEtaria'],
+                $_POST['recursoAprendizagem'],
+                $_POST['usuarioFinal'],
+                $_POST['ambiente'],
+                // Categoria Direito
+                $_POST['custo'],
+                $_POST['direitoAutoral'],
+                $_POST['uso'],
+                // Dados Gerais
+                $_POST['idusuario'],
+                $_POST['descricao'],
+                $_POST['nome'],
+                $_POST['url'],
+                $_POST['palavrachave'],
+                $_POST['idioma']);
         }
         // Se não estiver cadastrando nova competência, no construct ele retorna valores vazios.
         else{
-            //$this->idCompetencia = $this->nome = $this->descricaoNome = $this->atitudeDescricao = $this->habilidadeDescricao = $this->conhecimentoDescricao = $this->idProfessor = null;
+            $this->this = null;
         }
-    }
+
+        }
     /**
      * Função que verifica se a conexão com o BD existe, se nao existir é aberta
      */
@@ -242,34 +290,107 @@ class OA2{
      */
     //TODO ESTOU FAZENDO ESSA PARTE
     public function criaOA(
+        //O cadastro necessita ser nessa ordem!
         //Categoria vida:
-        $idcategoria_vida,
-        $idcategoria_tecnica,
-        $idcategoria_educacional,
-        $idcategoria_direito,
+        $date,
+        $status,
+        $versao,
+        $entidade, // Recebe uma lista de palavras separadas por virgula
+        $contribuicao, // Recebe uma lista das contribuições
+        //Categoria Técnica
+        $tempo_video,
+        $tamanho,
+        $tipoTecnologia,
+        $tipoFormato,
+        //Categoria Educacional
+        $descricao_eduacional,
+        $nivelIteratividade,
+        $tipoIteratividade,
+        $faixaEtaria, // Pode ser mais de uma
+        $recursoAprendizagem,
+        $usuarioFinal,
+        $ambiente,
+        //Categoria Direito
+        $custo,
+        $direitoAutoral,
+        $uso,
+        //Dados gerais
         $idusuario,
         $descricao,
         $nome,
         $url,
         $palavrachave,
         $idioma){
-        // Remove espaços em branco em excesso das strings
-        $nome = trim($this->nome);
-        $descricaoNome = trim($descricaoNome);
-        $atitudeDescricao = trim($atitudeDescricao);
-        $habilidadeDescricao = trim($habilidadeDescricao);
-        $conhecimentoDescricao = trim($conhecimentoDescricao);
 
-        // Atribuição das variáveis ao objeto
+        // Remover espaços em branco em excesso das strings
+        // Categoria vida
+        $status = trim($status);
+        $versao = trim($versao);
+        $entidade = trim($entidade);
+        $contribuicao = trim($contribuicao);
+
+        // Categoria Técnica
+        $tamanho = trim($tamanho);
+        $tipoTecnologia = trim($tipoTecnologia);
+        $tipoFormato = trim($tipoFormato);
+
+        // Categoria Educacional
+        $descricao_eduacional = trim($descricao_eduacional);
+        $nivelIteratividade =  trim($nivelIteratividade);
+        $tipoIteratividade = trim($tipoIteratividade);
+        $faixaEtaria =  trim($faixaEtaria);
+        $recursoAprendizagem = trim($recursoAprendizagem);
+        $usuarioFinal = trim ($usuarioFinal);
+        $ambiente = trim ($ambiente);
+
+        // Categoria Direito
+        $uso = trim($uso);
+
+        // Categoria Geral
+        $descricao= trim($descricao);
+        $nome = trim($nome);
+        $url = trim($url);
+        $palavrachave = trim($palavrachave);
+        $idioma =  trim($idioma);
+
+        // Atribuições das variáveis ao objeto
+
+        // Categoria Vida
+        $this->date = $date;
+        $this->status = $status;
+        $this->versao = $versao;
+        $this->entidade = $entidade;
+        $this->contribuicao= $contribuicao;
+
+        // Categoria Técnica
+        $this->$tempo_video = $tempo_video;
+        $this->$tamanho = $tamanho;
+        $this->$tipoTecnologia = $tipoTecnologia;
+        $this->$tipoFormato = $tipoFormato;
+
+        //Categoria Educacional
+        $this->descricao_educacional = $descricao_eduacional;
+        $this->nivelIteratividade = $nivelIteratividade;
+        $this->tipoIteratividade = $tipoIteratividade;
+        $this->faixaEtaria= $faixaEtaria;
+        $this->recursoAprendizagem= $recursoAprendizagem;
+        $this->usuarioFinal= $usuarioFinal;
+        $this->ambiente= $ambiente;
+
+        // Categoria Direito
+        $this->custo = $custo;
+        $this->direitoAutoral = $direitoAutoral;
+        $this->uso = $uso;
+
+        // Dados Gerais
+        $this->descricao = $descricao;
         $this->nome = $nome;
-        $this->descricaoNome = $descricaoNome;
-        $this->atitudeDescricao = $atitudeDescricao;
-        $this->habilidadeDescricao = $habilidadeDescricao;
-        $this->conhecimentoDescricao = $conhecimentoDescricao;
-        $this->idProfessor = $idProfessor;
+        $this->url = $url;
+        $this->palavraChave= $palavrachave;
+        $this->idioma= $idioma;
 
-        //Validação de dados
-        if (empty($nome)) {
+        //TODO Validação de dados
+        /*if (empty($nome)) {
             $this->errors[] = MESSAGE_NAME_EMPTY;
         } elseif (empty($descricaoNome)){
             $this->errors[] = MESSAGE_DESCRICAO_EMPTY;
@@ -282,27 +403,154 @@ class OA2{
         } elseif (strlen($nome) < 2) {
             $this->errors[] = MESSAGE_NAME_TOO_SHORT;
             //Fim de validações de dados de entrada
+
             //Inicio das validações de cadastro repitido
-        } else if ($this->databaseConnection()) {
-            // Verifica se a competência já existe
-            // Essa query verifica se possuem nomes idênticos
-            $query_check_nome_competencia = $this->db_connection->prepare('SELECT nome FROM competencia WHERE nome=:nome');
-            $query_check_nome_competencia->bindValue(':nome', $nome, PDO::PARAM_STR);
-            $query_check_nome_competencia->execute();
-            $result = $query_check_nome_competencia->fetchAll();
-            // Se o nome da competência for encontrada no banco de dados
-            if (count($result) > 0) {
-                for ($i = 0; $i < count($result); $i++) {
-                    $this->errors[] = MESSAGE_COMPETENCIA_ALREADY_EXISTS . $nome;
+        } else */
+            if ($this->databaseConnection()) {
+            // Verifica se o OA já existe
+            // Essa query verifica se possuem URL's idênticos
+            $query_check_OA = $this->db_connection->prepare('SELECT url, nome FROM cesta WHERE url=:url or nome=:nome');
+            $query_check_OA->bindValue(':url', $url, PDO::PARAM_STR);
+            $query_check_OA->bindValue(':nome', $nome, PDO::PARAM_STR);
+            $query_check_OA->execute();
+            $resultado = $query_check_OA>fetchAll();
+            // Se a URL do OA ou Nome do OA for encontrado no banco de dados, quer dizer que já existe no banco de dados
+            if (count($resultado) > 0) {
+                for ($i = 0; $i < count($resultado); $i++) {
+                    $this->errors[] = MESSAGE_OA_WITH_NAME_ALREADY_EXISTS;
                 }
             } else{
-                $stmt = $this->db_connection->prepare("INSERT INTO competencia(nome, descricao_nome, atitude_descricao, habilidade_descricao, conhecimento_descricao, id_professor)  VALUES(:nome, :descricaoNome, :atitudeDescricao, :habilidadeDescricao, :conhecimentoDescricao, :idProfessor)");
+                // Insert na categoria_direito
+                $stmt = $this->db_connection->prepare("
+                        INSERT INTO
+                        categoria_direito(
+                            custo,
+                            direitoAutoral,
+                            uso
+                        VALUES(
+                            :custo,
+                            :direitoAutoral,
+                            :uso)");
+                $stmt->bindParam(':custo',$custo, PDO::PARAM_INT);
+                $stmt->bindParam(':direitoAutoral',$direitoAutoral, PDO::PARAM_INT);
+                $stmt->bindParam(':uso',$uso, PDO::PARAM_STR);
+                $stmt->execute();
+                // Id categoria direito pega o last insert
+                $this->idCategoriaDireito = $this->db_connection->lastInsertId();
+
+                // TODO
+                // Insert na categoria educacional
+                $stmt = $this->db_connection->prepare("
+                        INSERT INTO
+                        categoria_eduacional(
+                            descricao,
+                            nivelIteratividade,
+                            tipoIteratividade,
+                            ambiente,
+                            faixaEtaria,
+                            recursoAprendizagem,
+                            usuarioFinal
+                        VALUES(
+                            :descricao,
+                            :nivelIteratividade,
+                            :tipoIteratividade,
+                            :ambiente,
+                            :faixaEtaria,
+                            :ambiente,
+                            :faixaEtaria,
+                            :recursoAprendizagem,
+                            :usuarioFinal)");
+                $stmt->bindParam(':descricao',$descricao_eduacional, PDO::PARAM_STR);
+                $stmt->bindParam(':nivelIteratividade',$nivelIteratividade, PDO::PARAM_STR);
+                $stmt->bindParam(':tipoIteratividade',$tipoIteratividade, PDO::PARAM_STR);
+                $stmt->bindParam(':ambiente',$ambiente, PDO::PARAM_STR);
+                $stmt->bindParam(':faixaEtaria',$faixaEtaria, PDO::PARAM_STR);
+                $stmt->bindParam(':recursoAprendizagem',$recursoAprendizagem, PDO::PARAM_STR);
+                $stmt->bindParam(':usuarioFinal',$usuarioFinal, PDO::PARAM_STR);
+                $stmt->execute();
+                // Id categoria educacional pega o last insert
+                $this->idCategoriaEduacional = $this->db_connection->lastInsertId();
+
+                // Insert na categoria técnica
+                $stmt = $this->db_connection->prepare("
+                        INSERT INTO
+                        categoria_tecnica(
+                            tempo_video,
+                            tamanho,
+                            tipoTecnologia,
+                            tipoFormato
+                        VALUES(
+                            :tempo_video,
+                            :tamanho,
+                            :tipoTecnologia,
+                            :tipoFormato)");
+                $stmt->bindParam(':tempo_video',$tempo_video, PDO::PARAM_STR);
+                $stmt->bindParam(':tamanho',$tamanho, PDO::PARAM_STR);
+                $stmt->bindParam(':tipoTecnologia',$tipoTecnologia, PDO::PARAM_STR);
+                $stmt->bindParam(':tipoFormato',$tipoFormato, PDO::PARAM_STR);
+                $stmt->execute();
+                // Id categoria técnica
+                $this->idCategoriaTecnica = $this->db_connection->lastInsertId();
+
+                // Insert na categoria vida
+                $stmt = $this->db_connection->prepare("
+                        INSERT INTO
+                        categoria_vida(
+                            data_2,
+                            status_2,
+                            versao,
+                            entidade,
+                            contribuicao
+                        VALUES(
+                            :date,
+                            :status_2,
+                            :versao,
+                            :entidade,
+                            :contribuicao)");
+                $stmt->bindParam(':date',$date, PDO::PARAM_STR);
+                $stmt->bindParam(':status_2',$status, PDO::PARAM_STR);
+                $stmt->bindParam(':versao',$versao, PDO::PARAM_STR);
+                $stmt->bindParam(':entidade',$entidade, PDO::PARAM_STR);
+                $stmt->bindParam(':contribuicao',$contribuicao, PDO::PARAM_STR);
+                $stmt->execute();
+                // Id categoria vida
+                $this->idCategoriaVida = $this->db_connection->lastInsertId();
+
+                // Insert na CESTA
+                $stmt = $this->db_connection->prepare("
+                        INSERT INTO
+                        cesta(
+                            idcategoria_vida,
+                            idcategoria_tecnica,
+                            idcategoria_educacional,
+                            idusuario,
+                            idcategoria_direito,
+                            descricao,
+                            nome,
+                            url,
+                            palavraChave,
+                            idioma
+                        VALUES(
+                            :idcategoria_vida,
+                            :idcategoria_tecnica,
+                            :idcategoria_educacional,
+                            :idusuario,
+                            :idcategoria_direito,
+                            :descricao,
+                            :nome,
+                            :url,
+                            :palavraChave,
+                            :idioma)");
+                $stmt->bindParam(':idcategoria_vida',$this->idCategoriaVida, PDO::PARAM_INT);
+                $stmt->bindParam(':idcategoria_tecnica',$this->idCategoriaTecnica, PDO::PARAM_INT);
+                $stmt->bindParam(':idcategoria_educacional',$this->idCategoriaEduacional, PDO::PARAM_INT);
+                $stmt->bindParam(':idusuario',$idusuario, PDO::PARAM_INT);
+                $stmt->bindParam(':idcategoria_direito',$this->idCategoriaDireito, PDO::PARAM_INT);
+                $stmt->bindParam(':descricao',$descricao, PDO::PARAM_STR);
                 $stmt->bindParam(':nome',$nome, PDO::PARAM_STR);
-                $stmt->bindParam(':descricaoNome',$descricaoNome, PDO::PARAM_STR);
-                $stmt->bindParam(':atitudeDescricao',$atitudeDescricao, PDO::PARAM_STR);
-                $stmt->bindParam(':habilidadeDescricao',$habilidadeDescricao, PDO::PARAM_STR);
-                $stmt->bindParam(':conhecimentoDescricao',$conhecimentoDescricao, PDO::PARAM_STR);
-                $stmt->bindParam(':idProfessor',$idProfessor, PDO::PARAM_INT);
+                $stmt->bindParam(':url',$url, PDO::PARAM_STR);
+                $stmt->bindParam(':palavraChave',$palavrachave, PDO::PARAM_STR);
+                $stmt->bindParam(':idioma',$idioma, PDO::PARAM_STR);
                 $stmt->execute();
                 $this->messages[] = WORDING_COMPETENCIA. $nome .WORDING_CREATED_SUCESSFULLY;
             }
@@ -379,191 +627,10 @@ class OA2{
             return ($retorno);
         }
     }
-}
-
+} // Fecha CLass
+} // Fecha IF
 
 //Case de teste
 //$competencia = new Competencia();
 //$competencia->criaCompetencia('nome','descricao','atitudedesc','habilidadedesc', 'conhhecimentodesc', 1);
-
-
-
-class OA {
-    private $id;
-    private $nome;
-    private $descricao;
-    private $url;
-    private $palavrachave;
-    private $idioma;
-    private $db_connection = null;
-        //GETTERS AND SETTERS
-    /**
-     * @param mixed $descricao
-     */
-    public function setDescricao($descricao)
-    {
-        $this->descricao = $descricao;
-    }
-     /**
-     * @return mixed $descricao
-     */
-    public function getDescricao()
-    {
-        return $this->descricao;
-    }
-    /**
-     * @param mixed $id
-     */
-    public function setID($id)
-    {
-        $this->id = $id;
-    }
-    /**
-     * @return mixed $id
-     */
-    public function getID()
-    {
-        return $this->id;
-    }
-    /**
-     * @param mixed $idioma
-     */
-    public function setIdioma($idioma)
-    {
-        $this->idioma = $idioma;
-    }
-     /**
-     * @return mixed $idioma
-     */
-    public function getIdioma()
-    {
-        return $this->idioma;
-    }
-     /**
-     * @param mixed $nome
-     */
-    public function setNome($nome)
-    {
-        $this->nome = $nome;
-    }
-     /**
-     * @return mixed $nome
-     */
-    public function getNome()
-    {
-        return $this->nome;
-    }
-    /**
-     * @param mixed $palavrachave
-     */
-    public function setPalavrachave($palavrachave)
-    {
-        $this->palavrachave = $palavrachave;
-    }
-    /**
-     * @return mixed $palavrachave
-     */
-    public function getPalavrachave()
-    {
-        return $this->palavrachave;
-    }
-    /**
-     * @param mixed $url
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-    }
-    /**
-     * @return mixed $url
-     */
-    public function getUrl()
-    {
-        return $this->url;
-    }
-
-
-    // CONSTRUTOR
-
-    function __construct(){
-        $id = 0;
-        $nome = $descricao = $url = $palavrachave = $idioma = $competencia = '';
-    }
-
-    public function criaOA($nome,$descricao,$url,$palavrachave,$idioma){
-
-        if($this->databaseConnection()){
-
-            $this->nome = trim($nome);
-            $this->descricao = trim($descricao);
-            $this->url = trim($url);
-            $this->palavrachave = trim($palavrachave);
-            $this->idioma = trim($idioma);
-
-            $this->db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
-
-            //INSERT INTO competencia(nome,descricao,url,palavrachave,idioma) VALUES ('".$nome."','".$descricao."','".$url."','".$palavrachave."','".$idioma."'
-            $stmt = $this->db_connection->prepare("INSERT INTO cesta(nome, descricao, url, palavrachave, idioma)  VALUES(:nome, :descricao, :url, :palavrachave, :idioma)");
-            $stmt->bindParam(':nome',$this->nome, PDO::PARAM_STR);
-            $stmt->bindParam(':descricao',$this->descricao, PDO::PARAM_STR);
-            $stmt->bindParam(':url',$this->url, PDO::PARAM_STR);
-            $stmt->bindParam(':palavrachave',$this->palavrachave, PDO::PARAM_STR);
-            $stmt->bindParam(':idioma',$this->idioma, PDO::PARAM_STR);
-            $stmt->execute();
-
-
-        }
-    }
-
-    private function databaseConnection(){
-        // connection already opened
-        if ($this->db_connection != null) {
-            return true;
-
-        } else {
-            // create a database connection, using the constants from config/config.php
-            try {
-                $this->db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
-                return true;
-                // If an error is catched, database connection failed
-            } catch (PDOException $e) {
-                $this->errors[] = MESSAGE_DATABASE_ERROR;
-                print_r($this);
-                return false;
-
-            }
-        }
-    }
-
-    public static function getID_byName($nome){
-
-        // connection already opened
-        if ($db_connection != null) {
-
-        } else {
-            // create a database connection, using the constants from config/config.php
-            try {
-                $db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
-                // If an error is catched, database connection failed
-            } catch (PDOException $e) {
-                $errors[] = MESSAGE_DATABASE_ERROR;
-
-            }
-        }
-
-        $nome = trim($nome);
-        $db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
-
-        $stmt = $db_connection->prepare("SELECT FROM cesta (idcesta)  WHERE nome = :nome");
-        $stmt->bindParam(':nome',$nome, PDO::PARAM_STR);
-        $stmt->execute();
-        $stmt = $stmt->fetchAll();
-        if(count($stmt) > 0)
-            return $stmt[0];
-        else
-            return -1;
-    }
-
-}
-}
 ?>
