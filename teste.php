@@ -7,6 +7,8 @@
  */
 
 require_once("classes/lista.php");
+require_once("classes/recomendacao.php");
+//require_once("config/config.cfg");
 
 $lista = new Lista(array(2,3,5,1,4,3,-1,8,0,-15,-4,-3,-2,2,-3));
 
@@ -39,5 +41,8 @@ for($i=0;$i<$cont;$i++){
     echo $matriz[0][$i]." ".$matriz[1][$i]."<br />";
 
 }
+
+$a = new Recomendacao(6,69);
+
 
 ?>
