@@ -43,6 +43,7 @@ for($i=0;$i<$cont;$i++){
 }
 
 $a = new Recomendacao(6,69);
+$a->recomenda();
 
 
 ?>
