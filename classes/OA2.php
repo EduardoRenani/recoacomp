@@ -5,6 +5,8 @@
  * Time: 18:25
  * Classe responsável pelo gerenciamento de Objetos de Aprendizagem (OA/Cesta)
  */
+require_once('../config/config.cfg');
+require_once('../translations/pt_br.php');
 if(class_exists('OA') != true){
 class OA2{
     /**
@@ -389,6 +391,7 @@ class OA2{
         $this->palavraChave= $palavrachave;
         $this->idioma= $idioma;
 
+        echo 'chegou na validação de dados <br>';
         //TODO Validação de dados
         /*if (empty($nome)) {
             $this->errors[] = MESSAGE_NAME_EMPTY;
@@ -413,7 +416,7 @@ class OA2{
             $query_check_OA->bindValue(':url', $url, PDO::PARAM_STR);
             $query_check_OA->bindValue(':nome', $nome, PDO::PARAM_STR);
             $query_check_OA->execute();
-            $resultado = $query_check_OA>fetchAll();
+            $resultado = $query_check_OA->fetchAll();
             // Se a URL do OA ou Nome do OA for encontrado no banco de dados, quer dizer que já existe no banco de dados
             if (count($resultado) > 0) {
                 for ($i = 0; $i < count($resultado); $i++) {
@@ -426,7 +429,7 @@ class OA2{
                         categoria_direito(
                             custo,
                             direitoAutoral,
-                            uso
+                            uso)
                         VALUES(
                             :custo,
                             :direitoAutoral,
@@ -435,11 +438,18 @@ class OA2{
                 $stmt->bindParam(':direitoAutoral',$direitoAutoral, PDO::PARAM_INT);
                 $stmt->bindParam(':uso',$uso, PDO::PARAM_STR);
                 $stmt->execute();
+                $rss = $stmt->fetchAll();
+                $ultimoID = count($rss);
+                echo $ultimoID;
+                echo 'insert da categoria direito <br>';
                 // Id categoria direito pega o last insert
                 $this->idCategoriaDireito = $this->db_connection->lastInsertId();
 
-                // TODO
+                $this->db_connection = null; // Fechar a última conexão
+                $this->databaseConnection(); // Abre Nova conexão
+
                 // Insert na categoria educacional
+                // TODO ARRUMAR NO BANCO DE DADOS PARA CATEGORIA_EDUCACIONAL
                 $stmt = $this->db_connection->prepare("
                         INSERT INTO
                         categoria_eduacional(
@@ -449,18 +459,16 @@ class OA2{
                             ambiente,
                             faixaEtaria,
                             recursoAprendizagem,
-                            usuarioFinal
+                            usuarioFinal)
                         VALUES(
-                            :descricao,
+                            :descricao_educacional,
                             :nivelIteratividade,
                             :tipoIteratividade,
                             :ambiente,
                             :faixaEtaria,
-                            :ambiente,
-                            :faixaEtaria,
                             :recursoAprendizagem,
                             :usuarioFinal)");
-                $stmt->bindParam(':descricao',$descricao_eduacional, PDO::PARAM_STR);
+                $stmt->bindParam(':descricao_educacional',$descricao_eduacional, PDO::PARAM_STR);
                 $stmt->bindParam(':nivelIteratividade',$nivelIteratividade, PDO::PARAM_STR);
                 $stmt->bindParam(':tipoIteratividade',$tipoIteratividade, PDO::PARAM_STR);
                 $stmt->bindParam(':ambiente',$ambiente, PDO::PARAM_STR);
@@ -470,6 +478,9 @@ class OA2{
                 $stmt->execute();
                 // Id categoria educacional pega o last insert
                 $this->idCategoriaEduacional = $this->db_connection->lastInsertId();
+                echo 'id categoria educacional: '. $this->db_connection->lastInsertId() . '<br>';
+                $this->db_connection = null; // Fechar a última conexão
+                $this->databaseConnection(); // Abre Nova conexão
 
                 // Insert na categoria técnica
                 $stmt = $this->db_connection->prepare("
@@ -478,7 +489,7 @@ class OA2{
                             tempo_video,
                             tamanho,
                             tipoTecnologia,
-                            tipoFormato
+                            tipoFormato)
                         VALUES(
                             :tempo_video,
                             :tamanho,
@@ -491,7 +502,8 @@ class OA2{
                 $stmt->execute();
                 // Id categoria técnica
                 $this->idCategoriaTecnica = $this->db_connection->lastInsertId();
-
+                $this->db_connection = null; // Fechar a última conexão
+                $this->databaseConnection(); // Abre Nova conexão
                 // Insert na categoria vida
                 $stmt = $this->db_connection->prepare("
                         INSERT INTO
@@ -500,7 +512,7 @@ class OA2{
                             status_2,
                             versao,
                             entidade,
-                            contribuicao
+                            contribuicao)
                         VALUES(
                             :date,
                             :status_2,
@@ -515,21 +527,22 @@ class OA2{
                 $stmt->execute();
                 // Id categoria vida
                 $this->idCategoriaVida = $this->db_connection->lastInsertId();
-
+                $this->db_connection = null; // Fechar a última conexão
+                $this->databaseConnection(); // Abre Nova conexão
                 // Insert na CESTA
                 $stmt = $this->db_connection->prepare("
                         INSERT INTO
                         cesta(
                             idcategoria_vida,
                             idcategoria_tecnica,
-                            idcategoria_educacional,
+                            idcategoria_eduacional,
                             idusuario,
                             idcategoria_direito,
                             descricao,
                             nome,
                             url,
                             palavraChave,
-                            idioma
+                            idioma)
                         VALUES(
                             :idcategoria_vida,
                             :idcategoria_tecnica,
@@ -631,6 +644,25 @@ class OA2{
 } // Fecha IF
 
 //Case de teste
-//$competencia = new Competencia();
-//$competencia->criaCompetencia('nome','descricao','atitudedesc','habilidadedesc', 'conhhecimentodesc', 1);
+$OA = new OA2();
+$OA->criaOA(time(), 'status', 'versao', 'entidade', 'contribuicao', 'tempo_video',
+    'tamanho',
+    'tipoTecnologia',
+    'tipoFormato',
+    'descricaoeducacional',
+    'niveliteratividade',
+    'tipoiteratividade',
+    'faixaetaria',
+    'recursoaprendizagem',
+    'usuariofinal',
+    'ambiente',
+    1,
+    1,
+    'uso',
+     1,
+    'descricao',
+    'nomedfgdfghfhfg234',
+    'url3dfgdffghfghfgg45435',
+    'palavrachave',
+    'idioma');
 ?>

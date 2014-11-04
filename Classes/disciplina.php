@@ -72,6 +72,9 @@ class Disciplina {
             // Função para cadastro de nova disciplina
             $this->criaDisc($_POST['nomeCurso'],$_POST['nomeDisciplina'],$_POST['descricao'], $_POST['user_id'], $_POST['senha'], $_POST['arrayCompetencias']);
         }
+        else{
+             return null;
+        }
     }
     /**
      * Checks if database connection is opened and open it if not

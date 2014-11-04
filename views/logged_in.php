@@ -1,5 +1,6 @@
 <?php include('_header.php'); ?>
 
+<center>
 <?php
 // if you need the user's information, just put them into the $_SESSION variable and output them here
 echo WORDING_YOU_ARE_LOGGED_IN_AS . $_SESSION['user_name'] . "<br />";
@@ -12,6 +13,14 @@ echo WORDING_YOU_ARE_LOGGED_IN_AS . $_SESSION['user_name'] . "<br />";
 
 </div>
 
+<div>
+<?php
+
+?>
+
+</div>
+
+</center>
 <?php 
 if ($_SESSION['acesso'] == 1)
 	include('_options_aluno.php'); 
