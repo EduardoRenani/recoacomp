@@ -30,6 +30,15 @@ class Recomendacao {
         //Coluna 2: Habilidade
         //Coluna 3: Atitude
 
+    private $objetosDaCompetencia;
+
+    private $cha_obj_comp;//Matriz com o cha dos objetos para essa competência
+    //Coluna 0: ID da comp
+    //Coluna 1: ID do objeto
+    //Coluna 2: Conhecimento
+    //Coluna 3: Habilidade
+    //Coluna 4: Atitude
+
     function __construct($user,$disciplina){
 
         $this->mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -57,6 +66,17 @@ class Recomendacao {
             'A' => array()
         );
         $this->cha_user_comp = $this->cha_disc_comp;
+        $this->objetosDaCompetencia = array(
+            'Competencia' => array(),
+            'Objeto'=>array()
+        );
+        $this->cha_obj_comp=array(
+            'ID_comp' => array(),
+            'ID_oa' => array(),
+            'C' => array(),
+            'H' => array(),
+            'A' => array()
+        );
     }
     //Método que faz a recomendação em si.
     public function recomenda(){
@@ -66,8 +86,17 @@ class Recomendacao {
         $this->getCHAcomp_disciplina();
         //Get do cha do usuário para cada competência.
         $this->getCHAuser_comp();
+        //Get objetos da compêtencia.
+        $this->getObjetosCompetencia();
+        //Pegar o CHA de cada objeto para aquela competência
+        $this->getCHAobjetocompetencia();
 
-        //Get objetos da compêtencia e montar matriz.
+        //Montar matrizes
+        //Cada competência possui duas matrizes!
+        //A primeira possui a seguinte montagem:
+        // A = [Conhecimento OA para essa comp | Habilidade OA para essa comp | Atitude OA pra essa comp], sendo cada linha
+        // um OA diferente.
+        // B = [Conhecimento pessoa para essa comp | Habilidade pessoa para essa comp | Atitude pessoa para essa comp]
 
         //Subtração das matrizes.
 
@@ -83,7 +112,6 @@ class Recomendacao {
 
         //e depois:
         $this->mysqli->close();
-
     }
 
     //Altera a matriz cha_disc_comp que armazena o CHA das competências para a disciplina em questão.
@@ -177,5 +205,46 @@ class Recomendacao {
         //var_dump($this->id_competencias_disciplina);
         return true;
     }
+    private function getObjetosCompetencia(){
 
+
+        $cont=count($this->id_competencias_disciplina);
+        for($i=0;$i<$cont;$i++){
+            $competencia=$this->id_competencias_disciplina[$i];
+            $sql="SELECT `id_OA` FROM `competencia_oa` WHERE `id_competencia`=$competencia";
+            $query = $this->mysqli->query($sql);
+            do{
+                $result = $query->fetch_array(MYSQLI_NUM);
+                if($result != NULL){
+                    array_push($this->objetosDaCompetencia['Competencia'],(int)$competencia);
+                    array_push($this->objetosDaCompetencia['Objeto'],(int)$result[0]);
+                }
+            }while($result !=NULL);
+        }
+    }
+    private function getCHAobjetocompetencia(){
+        $cont = count($this->objetosDaCompetencia['Competencia']);
+
+        for($linha=0;$linha<$cont;$linha++){
+
+            $competencia=$this->objetosDaCompetencia['Competencia'][$linha];
+            $oa=$this->objetosDaCompetencia['Objeto'][$linha];
+
+            $sql="SELECT `conhecimento`, `habilidade`, `atitude` FROM `competencia_oa` WHERE `id_competencia`=$competencia AND `id_OA`=$oa";
+            $query = $this->mysqli->query($sql);
+            do{
+                $result = $query->fetch_assoc();
+                if($result != NULL){
+                    array_push($this->cha_obj_comp['ID_comp'],(int)$competencia);
+                    array_push($this->cha_obj_comp['ID_oa'],(int)$oa);
+                    array_push($this->cha_obj_comp['C'],(int)$result['conhecimento']);
+                    array_push($this->cha_obj_comp['H'],(int)$result['habilidade']);
+                    array_push($this->cha_obj_comp['A'],(int)$result['atitude']);
+                }
+            }while($result !=NULL);
+
+        }
+        var_dump($this->cha_obj_comp);
+        unset($this->objetosDaCompetencia);
+    }
 } 
