@@ -39,6 +39,8 @@ class Recomendacao {
     //Coluna 3: Habilidade
     //Coluna 4: Atitude
 
+    private $A;
+
     function __construct($user,$disciplina){
 
         $this->mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -77,6 +79,7 @@ class Recomendacao {
             'H' => array(),
             'A' => array()
         );
+
     }
     //Método que faz a recomendação em si.
     public function recomenda(){
@@ -101,6 +104,8 @@ class Recomendacao {
         $this->getMatrizes();
 
         //Subtração das matrizes.
+
+        $this->subtraiMatrizes();
 
         //Usar classe Lista para ordenar
 
@@ -252,73 +257,49 @@ class Recomendacao {
     private function getMatrizes(){
 
         // Array de matrizes da competência atual
-        $A=array();
-        //Competência atual
-        $compAtual=2;
-        //Posição no array de matrizes. Indica qual matriz eu me refiro. Cada matriz é relacionada a uma competência.
-        $x=0;
+        $this->A=array();
 
         //Conta quantas competências a disciplina possui
-        $numComp=count($this->cha_user_comp['C']);
-/*
-        $A[$x] = array(
-            'ID_OA' => array(),
-            'C' => array(),
-            'H' => array(),
-            'A' => array()
-        );
-*/
+        $numComp=count($this->id_competencias_disciplina);
 
-        //Array de OAs da competência atual
-        $objetosDaCompetencia = array();
-        $cont = count($this->objetosDaCompetencia['Competencia']);
-        //Filtra os OAs em $this->objetosDaCompetencia que são ligados à competência compAtual para $objetosDaCompetencia
-        for($i=0;$i<$cont;$i++){
-            if($this->objetosDaCompetencia['Competencia'][$i] == $compAtual){
-                array_push($objetosDaCompetencia,$this->objetosDaCompetencia['Objeto'][$i]);
+        /**/
+        for($j=0;$j<$numComp;$j++){
+
+            $compAtual=$this->id_competencias_disciplina[$j];
+
+            //Array de OAs da competência atual
+            unset($objetosDaCompetencia);
+            $objetosDaCompetencia = array();
+            $cont = count($this->objetosDaCompetencia['Competencia']);
+            //Filtra os OAs em $this->objetosDaCompetencia que são ligados à competência compAtual para $objetosDaCompetencia
+            for($i=0;$i<$cont;$i++){
+                if($this->objetosDaCompetencia['Competencia'][$i] == $compAtual){
+                    array_push($objetosDaCompetencia,$this->objetosDaCompetencia['Objeto'][$i]);
+                }
             }
+            $cont = count($objetosDaCompetencia);
+            for($i=0;$i<$cont;$i++){
+                //Retorna o CHA do OA para essa competência e armazena em $matrizFiltrada.
+                $matrizFiltrada=$this->filtraMatrizCHAobj($compAtual,$objetosDaCompetencia[$i]);
+
+                array_push($this->A,
+                    array('ID_comp' => $compAtual,
+                            'ID_OA' => $objetosDaCompetencia[$i],
+                            'C' => $matrizFiltrada['C'],
+                            'H' => $matrizFiltrada['H'],
+                            'A' => $matrizFiltrada['A']
+                    )
+                );
+            }
+
         }
-        $cont = count($objetosDaCompetencia);
-        for($i=0;$i<$cont;$i++){
-            //Retorna o CHA do OA para essa competência e armazena em $matrizFiltrada.
-            $matrizFiltrada=$this->filtraMatrizCHAobj($compAtual,$objetosDaCompetencia[$i]);
 
-            array_push($A,
-                array('ID_OA' => $objetosDaCompetencia[$i],
-                        'C' => $matrizFiltrada['C'],
-                        'H' => $matrizFiltrada['H'],
-                        'A' => $matrizFiltrada['A']
-                )
-            );
-        }
-        //Matriz de CHA pessoa para a comp.
-        //Vetor de matrizes
+        unset($objetosDaCompetencia);
 
-        /*
-
-        $B=array();
-
-        for($i=0;$i<$numComp;$i++){
-            //if($this->cha_user_comp['ID'][$i] == $compAtual){
-                //B se torna uma matriz em que cada linha é uma competência e suas colunas armazenam o CHA d usuário pra competência em questão.
-            array_push($B,array(
-
-                    'ID_comp'=>$this->cha_user_comp['ID'],
-                    'C'=>$this->cha_user_comp['C'][$i],
-                    'H'=>$this->cha_user_comp['H'][$i],
-                    'A'=>$this->cha_user_comp['A'][$i]
-                )
-            );
-
-            //break;
-            //}
-        }*/
-
-
-        $this->testaMatrizCHA($A[0],'ID_OA');
-        echo("\n");
+        /**/
+        $this->testaMatrizCHA($this->A,'ID_OA',$compAtual);
+        echo "<br/>";
         $this->testaMatrizCHA($this->cha_user_comp);
-
     }
     private function filtraMatrizCHAobj($competencia,$objeto){
 
@@ -336,13 +317,24 @@ class Recomendacao {
             }
         }
     }
-    private function testaMatrizCHA($matriz,$stringID='ID'){
+    private function testaMatrizCHA($matriz,$stringID='ID',$comp=0){
 
-        $cont = count($matriz['C']);
-        echo ("".$stringID."C H A");
-        for($linha=0;$linha<$cont;$linha++){
-            echo ("".$matriz[$stringID][$linha]." ".$matriz['C'][$linha]." ".$matriz['H'][$linha]." ".$matriz['A'][$linha]."");
+        if($stringID=='ID'){
+            $cont = count($matriz['C']);
+            echo ("".$stringID."   C   H   A<br/>");
+            for($linha=0;$linha<$cont;$linha++){
+                echo ("".$matriz[$stringID][$linha]."    ".$matriz['C'][$linha]."    ".$matriz['H'][$linha]."    ".$matriz['A'][$linha]."<br/>");
+            }
+        }else if ($stringID == 'ID_OA'){
+            $cont = count($matriz);
+            echo ("ID_comp   ".$stringID."   C   H   A<br/>");
+            for($linha=0;$linha<$cont;$linha++){
+                echo ("".$matriz[$linha]['ID_comp']."   ".$matriz[$linha][$stringID]."    ".$matriz[$linha]['C']."    ".$matriz[$linha]['H']."    ".$matriz[$linha]['A']."<br/>");
+            }
         }
+
+    }
+    private function subtraiMatrizes(){
 
     }
 } 
