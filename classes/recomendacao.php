@@ -39,7 +39,10 @@ class Recomendacao {
     //Coluna 3: Habilidade
     //Coluna 4: Atitude
 
+    //Matriz A é a primeira matriz na subtração. Realmente não imaginei um nome melhor... Sei lá, A-B parece tão aceitável.
     private $A;
+
+    private $matrizSubtraida;
 
     function __construct($user,$disciplina){
 
@@ -100,6 +103,8 @@ class Recomendacao {
         // A = [Conhecimento OA para essa comp | Habilidade OA para essa comp | Atitude OA pra essa comp], sendo cada linha
         // um OA diferente.
         // B = [Conhecimento pessoa para essa comp | Habilidade pessoa para essa comp | Atitude pessoa para essa comp]
+        // Está tudo mais documentado nos arquivos .doc que eu fiz. Dá uma lida lá, é mais fácil do que peneirar códigos.
+        // Vai por mim. (;
 
         $this->getMatrizes();
 
@@ -300,6 +305,12 @@ class Recomendacao {
         $this->testaMatrizCHA($this->A,'ID_OA',$compAtual);
         echo "<br/>";
         $this->testaMatrizCHA($this->cha_user_comp);
+
+        //Matriz A: Primeira Matriz.
+        //Matriz $this->cha_user_comp: Seria a matriz B.
+        //Agora é só subtrair com o método pra isso.
+        //" A - B "
+        //As aspas são porque do jeito que estão salvas, não funcionaria a subtração. Precisa de uma lógica antes.
     }
     private function filtraMatrizCHAobj($competencia,$objeto){
 
@@ -336,5 +347,55 @@ class Recomendacao {
     }
     private function subtraiMatrizes(){
 
+        $this->matrizSubtraida = array(
+            'ID_comp'=>array(),
+            'ID_oa'=>array(),
+            'C'=>array(),
+            'H'=>array(),
+            'A'=>array()
+        );
+
+        $compAtual=1;
+
+        $contador=count($this->A);
+        $listaObjetos=array();
+        for($p=0;$p<$contador;$p++){
+            if($this->A[$p]['ID_comp'] == $compAtual)
+                array_push($listaObjetos,$this->A[$p]['ID_OA']);
+        }
+
+        $cont=count($listaObjetos);
+        for($i=0;$i<$cont;$i++){
+
+            //Saber CHA do objeto $listaObjetos[$i] para a competência $compAtual
+            $cont1=count($this->A['ID_OA']);
+            for($j=0;$j<$cont1;$j++){
+                if($this->A['ID_OA'][$j] == $listaObjetos[$i] && $this->A['ID_comp'][$j] == $compAtual){
+                    $chaA=array($this->A[$j]['C'],$this->A[$j]['H'],$this->A[$j]['A']);
+                    break;
+                }
+            }
+
+            //Saber CHA da competência para o usuário.
+            $cont2=count($this->cha_user_comp['C']);
+            for($k=0;$k<$cont2;$k++){
+                if($this->cha_user_comp['ID']==$compAtual){
+                    $chaB=array($this->cha_user_comp['C'],$this->cha_user_comp['H'],$this->cha_user_comp['A']);
+                    break;
+                }
+            }
+
+            array_push($this->matrizSubtraida,
+                array(
+                    'ID_comp'=>$compAtual,
+                    'ID_oa'=>$listaObjetos[$i],
+                    'C'=>$chaA[0]-$chaB[0],
+                    'H'=>$chaA[1]-$chaB[1],
+                    'A'=>$chaA[2]-$chaB[2]
+                )
+            );
+        }
+        //var_dump($this->A);
+        //var_dump($this->matrizSubtraida);
     }
 } 
