@@ -119,7 +119,10 @@ class Lista {
     }
 
     public function ordenate($from,$to){
-	
+	    //From: onde começa a ordenação
+        //To: fim da ordenação
+
+        //Exemplo: from = 2 to = 4
         $cont = count($this->vector);
 		
         $matriz = array(array(),array());
@@ -129,7 +132,9 @@ class Lista {
             for($i=$from;$i<=$to;$i++){
                 for($j=0;$j<$cont;$j++){
                     if($this->vector[$j] == $i){
+                        //Primeira coluna: valor atual. Varia de from até to.
                         array_push($matriz[0],$i);
+                        //Segunda coluna: posição que o termo ocupava no vetor $this->vector
                         array_push($matriz[1],$j);
                     }
                 }

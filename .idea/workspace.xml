@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1f52bd4e-bbb3-46df-aea3-27b5d9cd81c2" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/lista.php" afterPath="$PROJECT_DIR$/classes/lista.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/recomendacao.php" afterPath="$PROJECT_DIR$/classes/recomendacao.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Clauser.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,9 +29,11 @@
       <file leaf-file-name="recomendacao.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/classes/recomendacao.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="397" column="29" selection-start="14675" selection-end="14675" vertical-scroll-proportion="1.5583942" vertical-offset="1679" max-vertical-offset="2686">
+            <state line="480" column="2" selection-start="17766" selection-end="17766" vertical-scroll-proportion="1.9854015" vertical-offset="0" max-vertical-offset="1190">
               <folding>
                 <element signature="n#__construct#0;n#Recomendacao#0;n#!!top" expanded="false" />
+                <element signature="n#recomenda#0;n#Recomendacao#0;n#!!top" expanded="false" />
+                <element signature="n#mostraRecomendacao#0;n#Recomendacao#0;n#!!top" expanded="false" />
                 <element signature="n#getCHAcomp_disciplina#0;n#Recomendacao#0;n#!!top" expanded="false" />
                 <element signature="n#getCHAuser_comp#0;n#Recomendacao#0;n#!!top" expanded="false" />
                 <element signature="n#get_iscadastrado#0;n#Recomendacao#0;n#!!top" expanded="false" />
@@ -41,12 +43,14 @@
                 <element signature="n#getMatrizes#0;n#Recomendacao#0;n#!!top" expanded="false" />
                 <element signature="n#filtraMatrizCHAobj#0;n#Recomendacao#0;n#!!top" expanded="false" />
                 <element signature="n#testaMatrizCHA#0;n#Recomendacao#0;n#!!top" expanded="false" />
-                <marker date="1415798645544" expanded="true" signature="4616:4783" placeholder="SELECT `conh..." />
-                <marker date="1415798645544" expanded="true" signature="5620:5773" placeholder="SELECT `conh..." />
-                <marker date="1415798645544" expanded="true" signature="6425:6571" placeholder="SELECT `usua..." />
-                <marker date="1415798645544" expanded="true" signature="6945:7063" placeholder="SELECT `comp..." />
-                <marker date="1415798645544" expanded="true" signature="7794:7866" placeholder="SELECT `id_O..." />
-                <marker date="1415798645544" expanded="true" signature="8602:8722" placeholder="SELECT `conh..." />
+                <element signature="n#subtraiMatrizes#0;n#Recomendacao#0;n#!!top" expanded="false" />
+                <element signature="n#ordena#0;n#Recomendacao#0;n#!!top" expanded="false" />
+                <marker date="1415989098581" expanded="true" signature="4373:4540" placeholder="SELECT `conh..." />
+                <marker date="1415989098581" expanded="true" signature="5377:5530" placeholder="SELECT `conh..." />
+                <marker date="1415989098581" expanded="true" signature="6182:6328" placeholder="SELECT `usua..." />
+                <marker date="1415989098581" expanded="true" signature="6702:6820" placeholder="SELECT `comp..." />
+                <marker date="1415989098581" expanded="true" signature="7551:7623" placeholder="SELECT `id_O..." />
+                <marker date="1415989098581" expanded="true" signature="8359:8479" placeholder="SELECT `conh..." />
               </folding>
             </state>
           </provider>
@@ -55,7 +59,7 @@
       <file leaf-file-name="teste.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/teste.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="0" selection-start="857" selection-end="857" vertical-scroll-proportion="-17.346153" vertical-offset="246" max-vertical-offset="833">
+            <state line="38" column="24" selection-start="752" selection-end="752" vertical-scroll-proportion="-21.576923" vertical-offset="0" max-vertical-offset="833">
               <folding />
             </state>
           </provider>
@@ -110,12 +114,12 @@
         <option value="$PROJECT_DIR$/views/view_cadastro_disciplina.php" />
         <option value="$PROJECT_DIR$/views/teste.html" />
         <option value="$PROJECT_DIR$/views/view_solicprof.php" />
-        <option value="$PROJECT_DIR$/classes/lista.php" />
         <option value="$PROJECT_DIR$/config/config.cfg" />
         <option value="$PROJECT_DIR$/views/logged_in.php" />
         <option value="$PROJECT_DIR$/classes/Disciplina.php" />
         <option value="$PROJECT_DIR$/classes/OA2.php" />
         <option value="$PROJECT_DIR$/teste.php" />
+        <option value="$PROJECT_DIR$/classes/lista.php" />
         <option value="$PROJECT_DIR$/classes/recomendacao.php" />
       </list>
     </option>
@@ -153,7 +157,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -202,6 +205,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -306,7 +310,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29456192" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29909366" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -314,11 +318,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17723577" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -336,9 +340,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17862372" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -360,11 +364,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/view_solicprof.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="3" selection-start="968" selection-end="968" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="731" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/classes/OA2.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="233" column="31" selection-start="7386" selection-end="7386" vertical-scroll-proportion="0.0" vertical-offset="3961" max-vertical-offset="9758" />
@@ -376,11 +375,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/config.cfg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="31" selection-start="3028" selection-end="3046" vertical-scroll-proportion="0.0" vertical-offset="913" max-vertical-offset="2057" />
-      </provider>
       <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
         <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="31" selection-start="3028" selection-end="3046" vertical-scroll-proportion="0.0" vertical-offset="913" max-vertical-offset="2057" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/Competencia.php">
@@ -429,11 +428,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitattributes">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="897" />
-      </provider>
       <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
         <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="897" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/register.php">
@@ -552,11 +551,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/config.cfg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="28" selection-start="793" selection-end="793" vertical-scroll-proportion="0.46448088" vertical-offset="0" max-vertical-offset="2057" />
-      </provider>
       <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
         <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="28" selection-start="793" selection-end="793" vertical-scroll-proportion="0.46448088" vertical-offset="0" max-vertical-offset="2057" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/Registration.php">
@@ -616,16 +615,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/teste.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="0" selection-start="857" selection-end="857" vertical-scroll-proportion="-17.346153" vertical-offset="246" max-vertical-offset="833">
+        <state line="38" column="24" selection-start="752" selection-end="752" vertical-scroll-proportion="-21.576923" vertical-offset="0" max-vertical-offset="833">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/lista.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="136" column="92" selection-start="4641" selection-end="4641" vertical-scroll-proportion="0.6363636" vertical-offset="306" max-vertical-offset="1156">
+          <folding>
+            <element signature="n#addMember#0;n#Lista#0;n#!!top" expanded="false" />
+            <element signature="n#is_validPosition#0;n#Lista#0;n#!!top" expanded="false" />
+            <element signature="n#is_validMember#0;n#Lista#0;n#!!top" expanded="false" />
+            <element signature="n#swapMembers#0;n#Lista#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/recomendacao.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="397" column="29" selection-start="14675" selection-end="14675" vertical-scroll-proportion="1.5583942" vertical-offset="1679" max-vertical-offset="2686">
+        <state line="480" column="2" selection-start="17766" selection-end="17766" vertical-scroll-proportion="1.9854015" vertical-offset="0" max-vertical-offset="1190">
           <folding>
             <element signature="n#__construct#0;n#Recomendacao#0;n#!!top" expanded="false" />
+            <element signature="n#recomenda#0;n#Recomendacao#0;n#!!top" expanded="false" />
+            <element signature="n#mostraRecomendacao#0;n#Recomendacao#0;n#!!top" expanded="false" />
             <element signature="n#getCHAcomp_disciplina#0;n#Recomendacao#0;n#!!top" expanded="false" />
             <element signature="n#getCHAuser_comp#0;n#Recomendacao#0;n#!!top" expanded="false" />
             <element signature="n#get_iscadastrado#0;n#Recomendacao#0;n#!!top" expanded="false" />
@@ -635,12 +648,14 @@
             <element signature="n#getMatrizes#0;n#Recomendacao#0;n#!!top" expanded="false" />
             <element signature="n#filtraMatrizCHAobj#0;n#Recomendacao#0;n#!!top" expanded="false" />
             <element signature="n#testaMatrizCHA#0;n#Recomendacao#0;n#!!top" expanded="false" />
-            <marker date="1415798645544" expanded="true" signature="4616:4783" placeholder="SELECT `conh..." />
-            <marker date="1415798645544" expanded="true" signature="5620:5773" placeholder="SELECT `conh..." />
-            <marker date="1415798645544" expanded="true" signature="6425:6571" placeholder="SELECT `usua..." />
-            <marker date="1415798645544" expanded="true" signature="6945:7063" placeholder="SELECT `comp..." />
-            <marker date="1415798645544" expanded="true" signature="7794:7866" placeholder="SELECT `id_O..." />
-            <marker date="1415798645544" expanded="true" signature="8602:8722" placeholder="SELECT `conh..." />
+            <element signature="n#subtraiMatrizes#0;n#Recomendacao#0;n#!!top" expanded="false" />
+            <element signature="n#ordena#0;n#Recomendacao#0;n#!!top" expanded="false" />
+            <marker date="1415989098581" expanded="true" signature="4373:4540" placeholder="SELECT `conh..." />
+            <marker date="1415989098581" expanded="true" signature="5377:5530" placeholder="SELECT `conh..." />
+            <marker date="1415989098581" expanded="true" signature="6182:6328" placeholder="SELECT `usua..." />
+            <marker date="1415989098581" expanded="true" signature="6702:6820" placeholder="SELECT `comp..." />
+            <marker date="1415989098581" expanded="true" signature="7551:7623" placeholder="SELECT `id_O..." />
+            <marker date="1415989098581" expanded="true" signature="8359:8479" placeholder="SELECT `conh..." />
           </folding>
         </state>
       </provider>

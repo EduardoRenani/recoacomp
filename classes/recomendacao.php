@@ -343,7 +343,16 @@ class Recomendacao {
     }
     private function subtraiMatrizes(){
 
-        $this->matrizSubtraida = array();
+        //$this->matrizSubtraida = array();
+
+        $this->matrizSubtraida =
+            array(
+                'ID_comp'=> array(),
+                'ID_oa'=> array(),
+                'C'=> array(),
+                'H'=> array(),
+                'A'=> array()
+            );
 
         //$compAtual=1;
 
@@ -386,26 +395,87 @@ class Recomendacao {
 				}
 
 
-				if($chaA != array(null,null,null) && $chaB != array(null,null,null))
-					array_push($this->matrizSubtraida,
-						array(
-							'ID_comp'=>$compAtual,
-							'ID_oa'=>$listaObjetos[$i],
-							'C'=>$chaA[0]-$chaB[0],
-							'H'=>$chaA[1]-$chaB[1],
-							'A'=>$chaA[2]-$chaB[2]
-						)
-					);
+				if($chaA != array(null,null,null) && $chaB != array(null,null,null)){
+
+                    array_push($this->matrizSubtraida['ID_comp'],$compAtual);
+                    array_push($this->matrizSubtraida['ID_oa'],$listaObjetos[$i]);
+                    array_push($this->matrizSubtraida['C'],$chaA[0]-$chaB[0]);
+                    array_push($this->matrizSubtraida['H'],$chaA[1]-$chaB[1]);
+                    array_push($this->matrizSubtraida['A'],$chaA[2]-$chaB[2]);
+                }
 			}
 		}
 		var_dump($this->matrizSubtraida);
     }
 	private function ordena(){
-		//$this->matrizSubtraida
-		
-		//Ordenar por Conhecimento:
-		$compAtual=1;		
-		
-		
+        /*
+        $contaCHA:
+            C: 0
+            H: 1
+            A: 2
+        */
+        $contaCHA=0;
+        do{
+
+            $index='';
+            if ($contaCHA == 0){
+                $index = 'C';
+                echo "<br/><br/>Ordenando por Conhecimento<br/>";
+            }else if($contaCHA == 1){
+                $index = 'H';
+                echo "<br/><br/>Ordenando por Habilidade<br/>";
+            }else{
+                $index = 'A';
+                echo "<br/><br/>Ordenando por Atitude<br/>";
+            }
+
+
+            $qtscompetencias= count($this->id_competencias_disciplina);
+            for($comp=0;$comp < $qtscompetencias;$comp++){
+                    //Ordenar por Conhecimento:
+                $compAtual=$this->id_competencias_disciplina[$comp];
+                //Valor é, por exemplo, $this->matrizSubtraida['C'][0].
+                //Posicao é a posição que o dado ocupa em $this->matrizSubtraida['C'].
+                $vet=array('valor'=>array(),'posicao'=>array());
+
+                $cont=count($this->matrizSubtraida[$index]);
+                for($i=0;$i<$cont;$i++){
+                    if($this->matrizSubtraida['ID_comp'][$i] == $compAtual){
+                        array_push($vet['valor'],$this->matrizSubtraida[$index][$i]);
+                        array_push($vet['posicao'],$i);
+                    }
+                }
+
+                $listaConhecimento = new Lista($vet['valor']);
+                $v1a2=$listaConhecimento->ordenate(1,2)[1];
+                $v0a_4=$listaConhecimento->ordenate(0,-4)[1];
+                $v3a4=$listaConhecimento->ordenate(3,4)[1];
+                //Os três vetores acima agora possuem os IDs do vetor $vet ordenados de forma que a recomendação fique organizada.
+
+                $posicao_objetos_recomendados=array();
+                $cont=count($v1a2);
+                for($j=0;$j<$cont;$j++){
+                    array_push($posicao_objetos_recomendados,$vet['posicao'][ $v1a2[$j] ]);
+                }
+                $cont=count($v0a_4);
+                for($j=0;$j<$cont;$j++){
+                    array_push($posicao_objetos_recomendados,$vet['posicao'][ $v0a_4[$j] ]);
+                }
+                $cont=count($v3a4);
+                for($j=0;$j<$cont;$j++){
+                    array_push($posicao_objetos_recomendados,$vet['posicao'][ $v3a4[$j] ]);
+                }
+
+                //posicao_objetos_recomendados é -agora- um vetor de posições no array $this->matrizSubtraida['C' ou 'H' ou 'A'];.
+
+                $cont = count($posicao_objetos_recomendados);
+                echo "<br/>Competencia: ".$compAtual;
+                for($j=0;$j<$cont;$j++){
+                    echo "<br/>".$this->matrizSubtraida[$index][ $posicao_objetos_recomendados[$j] ];
+                    echo "    OA:".$this->matrizSubtraida['ID_oa'][ $posicao_objetos_recomendados[$j] ];
+                }
+            }
+            $contaCHA++;
+        }while($contaCHA<3);
 	}
 } 
