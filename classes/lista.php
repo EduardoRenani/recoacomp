@@ -12,7 +12,7 @@ class Lista {
     private $vector;
 
     function __construct($vetorInicial = null){
-        if($vetorInicial != null & is_array($vetorInicial) )
+        if($vetorInicial != null && is_array($vetorInicial) )
             $this->vector = $vetorInicial;
         else
             $this->vector = array();
@@ -88,7 +88,7 @@ class Lista {
     }
 
     private function is_validMember($member){
-        //Tratar casos.
+        //todo Tratar casos.
         if($member != null /* && ...*/)
             return true;
         else
@@ -119,14 +119,9 @@ class Lista {
     }
 
     public function ordenate($from,$to){
-
-        $segundaColuna = array();
+	
         $cont = count($this->vector);
-        //for($i=0;$i<$cont;$i++)
-        //    array_push($segundaColuna[$i], $i);
-
-        //$matriz = array($this->vector,$segundaColuna);
-        //unset($segundaColuna);
+		
         $matriz = array(array(),array());
 
         if($to > $from){
@@ -157,4 +152,4 @@ class Lista {
 
         return false;
     }
-}
+	}

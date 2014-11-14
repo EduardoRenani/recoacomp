@@ -35,7 +35,7 @@ class Disciplina {
     /**
      * @var int $iddisciplina ID da disciplina
      */
-    private $iddisciplina = null;
+    private $idDisciplina = null;
     /**
      * @var string $nomeCurso nome do curso
      */

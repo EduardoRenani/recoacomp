@@ -99,20 +99,16 @@ class Recomendacao {
 
         //Montar matrizes
         //Cada competência possui duas matrizes!
-        //A primeira possui a seguinte montagem:
-        // A = [Conhecimento OA para essa comp | Habilidade OA para essa comp | Atitude OA pra essa comp], sendo cada linha
-        // um OA diferente.
-        // B = [Conhecimento pessoa para essa comp | Habilidade pessoa para essa comp | Atitude pessoa para essa comp]
-        // Está tudo mais documentado nos arquivos .doc que eu fiz. Dá uma lida lá, é mais fácil do que peneirar códigos.
-        // Vai por mim. (;
+        //Está tudo mais documentado nos arquivos .doc que eu fiz. Dá uma lida lá, é mais fácil do que peneirar códigos.
+        //Vai por mim, ainda mais que na prática é mais complicado que na teoria. :p
 
         $this->getMatrizes();
 
         //Subtração das matrizes.
-
         $this->subtraiMatrizes();
 
         //Usar classe Lista para ordenar
+		$this->ordena();		
 
         //Retornar pro usuário usando método mostraRecomendacao.
         $this->mostraRecomendacao();
@@ -347,55 +343,69 @@ class Recomendacao {
     }
     private function subtraiMatrizes(){
 
-        $this->matrizSubtraida = array(
-            'ID_comp'=>array(),
-            'ID_oa'=>array(),
-            'C'=>array(),
-            'H'=>array(),
-            'A'=>array()
-        );
+        $this->matrizSubtraida = array();
 
-        $compAtual=1;
+        //$compAtual=1;
 
-        $contador=count($this->A);
-        $listaObjetos=array();
-        for($p=0;$p<$contador;$p++){
-            if($this->A[$p]['ID_comp'] == $compAtual)
-                array_push($listaObjetos,$this->A[$p]['ID_OA']);
-        }
+		$qtscompetencias= count($this->id_competencias_disciplina);
+		
+		for($comp=0;$comp < $qtscompetencias;$comp++){
+			$compAtual=$this->id_competencias_disciplina[$comp];
+		
+			$contador=count($this->A);
+			$listaObjetos=array();
+			for($p=0;$p<$contador;$p++){
+				if($this->A[$p]['ID_comp'] == $compAtual)
+					array_push($listaObjetos,$this->A[$p]['ID_OA']);
+			}
 
-        $cont=count($listaObjetos);
-        for($i=0;$i<$cont;$i++){
+			$chaB=array(null,null,null);
+			//Saber CHA da competência para o usuário.
+			$cont2=count($this->cha_user_comp['C']);
+			for($k=0;$k<$cont2;$k++){
+				if($this->cha_user_comp['ID'][$k]==$compAtual){
+					$chaB=array($this->cha_user_comp['C'][$k],$this->cha_user_comp['H'][$k],$this->cha_user_comp['A'][$k]);
+					break;
+				}
+			}
+				
+			$cont=count($listaObjetos);		
+			//cont = Número de OAs da competência.
+			for($i=0;$i<$cont;$i++){
+			
+				$chaA=array(null,null,null);
+				
+				
+				//Saber CHA do objeto $listaObjetos[$i] para a competência $compAtual
+				$cont1=count($this->A);
+				for($j=0;$j<$cont1;$j++){
+					if($this->A[$j]['ID_OA'] == $listaObjetos[$i] && $this->A[$j]['ID_comp'] == $compAtual){
+						$chaA=array($this->A[$j]['C'],$this->A[$j]['H'],$this->A[$j]['A']);
+						break;
+					}
+				}
 
-            //Saber CHA do objeto $listaObjetos[$i] para a competência $compAtual
-            $cont1=count($this->A['ID_OA']);
-            for($j=0;$j<$cont1;$j++){
-                if($this->A['ID_OA'][$j] == $listaObjetos[$i] && $this->A['ID_comp'][$j] == $compAtual){
-                    $chaA=array($this->A[$j]['C'],$this->A[$j]['H'],$this->A[$j]['A']);
-                    break;
-                }
-            }
 
-            //Saber CHA da competência para o usuário.
-            $cont2=count($this->cha_user_comp['C']);
-            for($k=0;$k<$cont2;$k++){
-                if($this->cha_user_comp['ID']==$compAtual){
-                    $chaB=array($this->cha_user_comp['C'],$this->cha_user_comp['H'],$this->cha_user_comp['A']);
-                    break;
-                }
-            }
-
-            array_push($this->matrizSubtraida,
-                array(
-                    'ID_comp'=>$compAtual,
-                    'ID_oa'=>$listaObjetos[$i],
-                    'C'=>$chaA[0]-$chaB[0],
-                    'H'=>$chaA[1]-$chaB[1],
-                    'A'=>$chaA[2]-$chaB[2]
-                )
-            );
-        }
-        //var_dump($this->A);
-        //var_dump($this->matrizSubtraida);
+				if($chaA != array(null,null,null) && $chaB != array(null,null,null))
+					array_push($this->matrizSubtraida,
+						array(
+							'ID_comp'=>$compAtual,
+							'ID_oa'=>$listaObjetos[$i],
+							'C'=>$chaA[0]-$chaB[0],
+							'H'=>$chaA[1]-$chaB[1],
+							'A'=>$chaA[2]-$chaB[2]
+						)
+					);
+			}
+		}
+		var_dump($this->matrizSubtraida);
     }
+	private function ordena(){
+		//$this->matrizSubtraida
+		
+		//Ordenar por Conhecimento:
+		$compAtual=1;		
+		
+		
+	}
 } 
