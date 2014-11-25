@@ -13,6 +13,7 @@ include('_header.php');?>
    <form method="post" action="" name="registrar_nova_disciplina">
         <label for="nomeCurso"><?php echo WORDING_COURSE_NAME; ?></label>
         <input id="nomeCurso" type="text" name="nomeCurso" pattern="[a-zA-Z0-9]{2,64}" required />
+        
         <input type="hidden" id="user_id" name="user_id" value="<?php echo $_SESSION['user_id']; ?>" />
 
         <label for="nomeDisciplina"><?php echo WORDING_DISCIPLINA_NAME; ?></label>
