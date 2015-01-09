@@ -13,6 +13,12 @@ require_once("classes/OA.php");?>
 <!-- clean separation of HTML and PHP -->
 <script>
 $(function() {
+    $(".palavra_chave").select2({
+        tags: true
+    });
+});
+
+$(function() {
 
     var $validator = $("#commentForm").validate({
             rules: {
@@ -33,7 +39,7 @@ $(function() {
 
 
     $('#rootwizard').bootstrapWizard({onNext: function(tab, navigation, index) {
-
+    // Categoria geral
         if(index==1) {
             // Verifica se o nome foi preenchido
             if(!$('#nome').val()) {
@@ -41,8 +47,7 @@ $(function() {
                     text     : nome,
                     sticky   : false,
                     position : 'top-left',
-                    type     : 'error',
-                    close    : function () {console.log("toast is closed ...");}
+                    type     : 'error'
                 });
                 $('#nome').focus();
                 return false;
@@ -53,8 +58,7 @@ $(function() {
                     text     : url,
                     sticky   : false,
                     position : 'top-left',
-                    type     : 'error',
-                    close    : function () {console.log("toast is closed ...");}
+                    type     : 'error'
                 });
                 $('#url').focus();
                 return false;
@@ -65,8 +69,7 @@ $(function() {
                     text     : palavrachave,
                     sticky   : false,
                     position : 'top-left',
-                    type     : 'error',
-                    close    : function () {console.log("toast is closed ...");}
+                    type     : 'error'
                 });
                 $('#palavrachave').focus();
                 return false;
@@ -77,13 +80,11 @@ $(function() {
                     text     : descricao,
                     sticky   : false,
                     position : 'top-left',
-                    type     : 'error',
-                    close    : function () {console.log("toast is closed ...");}
+                    type     : 'error'
                 });
                 $('#descricao').focus();
                 return false;
             }
-
         }
 
  
@@ -106,11 +107,6 @@ $(function() {
             var $percent = ($current/$total) * 100;
             $('#rootwizard').find('.bar').css({width:$percent+'%'});
         }});
-
-
-
-
-
 });
     </script>
 
@@ -154,17 +150,34 @@ $(function() {
                     <div class="control-group">
                         <label class="control-label" for="palavrachave"><?php echo WORDING_KEYWORDS; ?></label>
                         <div class="controls">
-                             <input type="text" id="palavrachave" name="palavrachave" class="required">
+                            <select class="palavra_chave" multiple="multiple" id="palavrachave" name="palavrachave" class="required">
+                            </select>
                              <!-- TRADUZIR -->
                         </div>
                     </div>
+                    <div class="#control-group">
+                        <label class="control-label" for="idioma"><?php echo WORDING_LANGUAGE; ?></label>
+                        <div class="controls">
+                            <select id = "idioma" name="idioma">
+                                <option value = "portugues"><?php echo WORDING_PORTUGUES ?></option>
+                                <option value = "espanhol"><?php echo WORDING_SPANISH ?></option>
+                                <option value = "ingles"><?php echo WORDING_ENGLISH ?></option>
+                            </select>
+                        </div>
+                    </div>
 
+
+
+                    <!-- Descrição -->
                     <div class="control-group">
                         <label class="control-label" for="descricao"><?php echo WORDING_DESCRIPTION; ?></label>
                         <div class="controls">
                             <textarea name="descricao" ROWS="5" COLS="40" id="descricao" name="descricao" class="required"></textarea>
                         </div>
                     </div>
+
+
+
 
 
 
@@ -214,18 +227,8 @@ $(function() {
 
 
 
-
-    <!-- PALAVRA CHAVE -->
-    <label for="palavrachave"></label>
-    <input id="palavrachave" type="text" name="palavrachave" required />
-
     <!-- IDIOMA -->
-    <label><?php echo WORDING_LANGUAGE; ?></label>
-    <select id = "idioma" name="idioma" required="true">
-        <option value = "espanhol"><?php echo WORDING_SPANISH ?></option>
-        <option value = "ingles"><?php echo WORDING_ENGLISH ?></option>
-        <option value = "portugues"><?php echo WORDING_PORTUGUES ?></option>
-    </select>
+
     <br><br>
 
 

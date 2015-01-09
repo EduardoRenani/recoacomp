@@ -19,6 +19,7 @@
     <script src="jquery.bootstrap.wizard.js"></script>
     <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
     <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+    <script src="js/select2.min.js"></script>
     <!-- Fim importação Jquery -->
 
 	
@@ -30,6 +31,7 @@
     <link href="css/cadastro_OA.css" rel="stylesheet">
     <link href="css/progress_cadastro_OA.css" rel="stylesheet">
     <link href="css/growl.css" rel="stylesheet">
+    <link href="css/select2.min.css" rel="stylesheet">
 
     <!-- Custom CSS Login Page-->
     <link href="css/landing-page.css" rel="stylesheet">
