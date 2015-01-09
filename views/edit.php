@@ -2,6 +2,7 @@
 
 <!-- clean separation of HTML and PHP -->
 <h2><?php echo $_SESSION['user_name']; ?> <?php echo WORDING_EDIT_YOUR_CREDENTIALS; ?></h2>
+<h2><?php echo $_SESSION['user_email']; ?> <?php echo WORDING_EDIT_YOUR_CREDENTIALS; ?></h2>
 
 <!-- edit form for username / this form uses HTML5 attributes, like "required" and type="email" -->
 <form method="post" action="edit.php" name="user_edit_form_name">

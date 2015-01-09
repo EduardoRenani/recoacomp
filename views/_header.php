@@ -2,79 +2,69 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Login RecOAcomp</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	
+    <title>Recoacomp</title>
 
-    <style type="text/css">
-        /* just for the demo */
-        body {
-            font-family: Arial, sans-serif;
-            font-size: 12px;
-            margin: 10px;
-        }
-        label {
-            position: relative;
-            vertical-align: middle;
-            bottom: 1px;
-        }
-        input[type=text],
-        input[type=password],
-        input[type=submit],
-        input[type=email] {
-            display: block;
-            margin-bottom: 15px;
-        }
-        input[type=checkbox] {
-            margin-bottom: 15px;
-        }
-        #sortable1, #sortable2 {
-            border: 1px solid #eee;
-            width: 142px;
-            min-height: 20px;
-            list-style-type: none;
-            margin: 0;
-            padding: 5px 0 0 0;
-            float: left;
-            margin-right: 10px;
-        }
-        #sortable1 li, #sortable2 li {
-            margin: 0 5px 5px 5px;
-            padding: 5px;
-            font-size: 1.2em;
-            width: 120px;
-        }
-        #tabela1, #tabela2 {
-            border: 1px solid #eee;
-            width: 142px;
-            min-height: 20px;
-            list-style-type: none;
-            margin: 0;
-            padding: 5px 0 0 0;
-            float: left;
-            margin-right: 10px;
-        }
-        #tabela1 li, #tabela2 li {
-            margin: 0 5px 5px 5px;
-            padding: 5px;
-            font-size: 1.2em;
-            width: 120px;
-        }
-    </style>
+
+
     <!-- Importação do Jquery -->
-
-    <!-- script src="http://code.jquery.com/jquery-latest.js"></script-->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/growl.js"></script>
     <script src="jquery.bootstrap.wizard.js"></script>
+    <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+    <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+    <!-- Fim importação Jquery -->
 
-    <!-- Importação do Bootstrap-->
+	
+	<!-- Login -->
+
+	<!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- Importação dos efeitos de cadastros-->
-    <link href="prettify.css" rel="stylesheet">
+	<link href="prettify.css" rel="stylesheet">
+    <link href="css/cadastro_OA.css" rel="stylesheet">
+    <link href="css/progress_cadastro_OA.css" rel="stylesheet">
+    <link href="css/growl.css" rel="stylesheet">
+
+    <!-- Custom CSS Login Page-->
+    <link href="css/landing-page.css" rel="stylesheet">
+    <link rel='stylesheet' media='screen and (min-width: 0px) and (max-width: 425px)' href='css/landing-page-xs.css' />
+    <link rel='stylesheet' media='screen and (min-width: 425px) and (max-width: 1100px)' href='css/landing-page-small.css' />
+    <link rel='stylesheet' media='screen and (min-width: 1100px)' href='css/landing-page-large.css' />
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+	
+	<!-- Fim Login -->
+	
 </head>
 <body>
+    <!-- ============== HEADER ============== -->
+<header class="header-large">
+    <a href="index.php" id="logo"></a> <!--muda quando o usuario estiver logged in e leva para o home.html"-->
+        <nav >
+
+            <a href="#" id="menu-icon"></a>
+
+            <ul>
+
+            <li><a href="index.php" class="current">Home</a></li> <!--muda quando o usuario estiver logged in e leva para o home.html"-->
+            <li><a href="contato.php">Contato</a></li>
+            <li><a href="equipe.php">Equipe</a></li>
+
+            </ul>
+
+        </nav>
+
+</header>
+
+
 
 <?php
 // show potential errors / feedback (from login object)

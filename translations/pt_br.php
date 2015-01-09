@@ -90,12 +90,13 @@ define("WORDING_LANGUAGE", "Idioma");
 define("WORDING_NAME_COMPETENCIA", "Nome da Competência: ");
 define("WORDING_OA_LIST", "Nome dos OA separados por \";\" : ");
 
+
 //Cadastro de Disciplina Mensagens
 define("MESSAGE_DISCIPLINA_ALREADY_EXISTS","A seguinte disciplina já exite: ");
 define("MESSAGE_DISCIPLINA_DOESNT_EXIST","Disciplina não existe");
 define("MESSAGE_COMPETENCIA_DOESNT_EXIST","Competência associada é inválida");
 define("MESSAGE_DISCIPLINA_COMPETENCIA_ALREADY_RELATED","Competência já associada a essa disciplina");
-define("WORDING_REGISTER_NOVA_DISCIPLINA", "Registrar nova Disciplina");
+define("WORDING_REGISTER_NOVA_DISCIPLINA", "Registrar Nova Disciplina");
 define("WORDING_CREATE_NEW_COURSE", "Criar novo curso");
 define("WORDING_COURSE_NAME", "Nome do curso");
 define("WORDING_DISCIPLINA_NAME", "Nome da disciplina");
@@ -113,12 +114,114 @@ define("WORDING_ENGLISH", "Inglês");
 define("WORDING_SPANISH", "Espanhol");
 define("WORDING_REGISTER_NOVO_OA", "Registrar Novo Objeto de Aprendizagem");
 define("MESSAGE_OA_WITH_NAME_ALREADY_EXISTS", "Objeto de Aprendizagem com nome e/ou URL já existente!");
+// -- Categoria Vida mensagens
+define("WORDING_LIFE_CATEGORY", "Categoria Vida");
+define("WORDING_DATE", "Data");
+define("WORDING_STATUS", "Status");
+define("WORDING_REVISED", "Revisado");
+define("WORDING_DRAFT", "Rascunho");
+define("WORDING_EDITED", "Editado");
+define("WORDING_UNAVAILABLE", "Indisponível");
+define("WORDING_FINAL", "Final");
+define("WORDING_VERSION", "Versão");
+define("WORDING_ENTITY", "Entidade");
+define("WORDING_CONTRIBUTION", "Contribuição");
+define("WORDING_AUTHOR", "Autor");
+define("WORDING_EDITOR", "Editor");
+define("WORDING_UNKNOWN", "Desconhecido");
+define("WORDING_INICIATOR", "Iniciador");
+define("WORDING_GRAPHIC_DESIGNER", "Designer Gráfico");
+define("WORDING_TECHNICAL", "Técnico");
+define("WORDING_CONTENT_PROVIDER", "Provedor de Conteúdo");
+define("WORDING_ROTEIRIST", "Roteirista");
+define("WORDING_INSTRUCTIONAL_DESIGNER", "Designer Instrucional");
+define("WORDING_CONTENT_SPECIALIST", "Especialista em Conteúdo");
+
+// -- Categoria Técnica mensagens
+define("WORDING_TECHNICAL_CATEGORY", "Categoria Técnica");
+define("WORDING_VIDEO_TIME", "Tempo de video");
+define("WORDING_SIZE", "Tamanho (MB)");
+define("WORDING_TECHNOLOGY_TYPE", "Tipo de tecnologia");
+define("WORDING_BROWSER", "Navegador");
+define("WORDING_FORMAT", "Formato");
+define("WORDING_OPERATIONAL_SYSTEM", "Sistema Operacional");
+define("WORDING_VIDEO", "Video");
+define("WORDING_IMAGE", "Imagem");
+define("WORDING_AUDIO", "Audio");
+define("WORDING_TEXT", "Texto");
+define("WORDING_APRESENTATION", "Apresentação");
+define("WORDING_PDF", "PDF");
+define("WORDING_SITE", "Site");
+
+// -- Categoria Educacional mensagens
+define("WORDING_EDUCATIONAL_CATEGORY", "Categoria Educacional");
+define("WORDING_EDUCATIONAL_DESCRIPTION", "Descrição Educacional");
+define("WORDING_ITERABILITY_NIVEL", "Nível Iteratividade");
+define("WORDING_ITERABILITY_TYPE", "Tipo Iteratividade");
+define("WORDING_VERY_LOW", "Muito Baixa");
+define("WORDING_LOW", "Baixa");
+define("WORDING_MIDDLE", "Médio");
+define("WORDING_HIGH", "Alto");
+define("WORDING_VERY_HIGH", "Muito Alto");
+define("WORDING_ACTIVE", "Ativa");
+define("WORDING_EXPOSITORY", "Expositiva");
+define("WORDING_MIXED", "Mista");
+define("WORDING_AGE_GROUP", "Faixa Etária");
+define("WORDING_CHILD", "Criança");
+define("WORDING_ADULT", "Adulto");
+define("WORDING_ELDERLY", "Idoso");
+define("WORDING_ALL_AGES", "Todas as idades");
+define("WORDING_EXERCISE", "Exercício");
+define("WORDING_SIMULATION", "Simulação");
+define("WORDING_QUESTIONNAIRE", "Questionário");
+define("WORDING_DIAGRAM", "Diagrama");
+define("WORDING_FIGURE", "Figura");
+define("WORDING_GRAPHIC", "Gráfico");
+define("WORDING_INDICE", "Índice");
+define("WORDING_SLIDE", "Slide");
+define("WORDING_TABLE", "Tabela");
+define("WORDING_TEST", "Teste");
+define("WORDING_EXPERIENCE", "Experiência");
+define("WORDING_PROBLEM", "Problema");
+define("WORDING_AUTO_AVALIATION", "Auto Avaliação");
+define("WORDING_LECTURE", "Palestra");
+define("WORDING_LEARNING_RESOURCE", "Recurso Aprendizagem");
+define("WORDING_FINAL_USER", "Usuário Final");
+define("WORDING_PROFESSOR", "Professor");
+define("WORDING_STUDENT", "Aluno");
+define("WORDING_ADMIN", "Admin");
+define("WORDING_SCHOOL", "Escola");
+define("WORDING_COLLEGE", "Faculdade");
+define("WORDING_TRAINING", "Treinamento");
+define("WORDING_OTHER", "Outro");
+define("WORDING_AMBIENT", "Ambiente");
+
+// -- Categoria Direito mensagens
+define("WORDING_RIGHT_CATEGORY", "Categoria Direito");
+define("WORDING_COST", "Custo");
+define("WORDING_YES", "Sim");
+define("WORDING_NO", "Não");
+define("WORDING_COPYRIGHT", "Direito Autoral");
+define("WORDING_USE", "Uso");
+
+// -- Categoria Geral mensagens
+define("WORDING_GENERAL_INFORMATION","Dados Gerais");
+define("WORDING_DESCRIPTION","Descrição");
+define("WORDING_FILL_DESCRIPTION","Preencha a descrição");
+define("WORDING_FILL_NAME","Preencha o nome");
+define("WORDING_FILL_URL","URL inválido");
+define("WORDING_FILL_KEYWORD","Preencha palavra-chave");
+define("WORDING_URL","URL");
+define("WORDING_KEYWORD","Palavra-chave");
+define("WORDING_CREATE_OA","Criar Objeto de Aprendizagem");
+
+
 
 
 //Cadastro de Competências Mensagens
-define("WORDING_REGISTER_NOVA_COMPETENCIA", "Registrar nova competência");
+define("WORDING_REGISTER_NOVA_COMPETENCIA", "Registrar Nova Competência");
 define("WORDING_COMPETENCIA", "Competência ");
-define("WORDING_CREATE_COMPETENCA", "Criar nova Competência");
+define("WORDING_CREATE_COMPETENCA", "Criar Nova Competência");
 define("MESSAGE_NAME_EMPTY", "Nome vazio");
 define("MESSAGE_DESCRICAO_EMPTY", "Descrição vazia");
 define("MESSAGE_DESCRICAO_HABILIDADE_EMPTY", "Descrição da habilidade vazia");

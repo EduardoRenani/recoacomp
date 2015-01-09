@@ -5,7 +5,7 @@
  * Date: 14/10/14
  * Time: 13:41
  */
-require_once("config/config.cfg");
+require_once("../config/config.cfg");
 class Recomendacao {
 
     private $mysqli;
@@ -86,6 +86,19 @@ class Recomendacao {
     }
     //Método que faz a recomendação em si.
     public function recomenda(){
+        /*
+           A recomendação está colocada de forma que as matrizes são formadas na memória e depois são feitas operações com as mesmas.
+        Esse formato foi escolhido para tornar o código mais claro e para evitar bugs, todavia não é a maneira de melhor performance.
+        Se, quando o recoacomp for mais utilizado houver quaisquer problemas com relação a isso (pouco provável), a documentação em .doc
+        deve ser utilizada para gerar um código mais compacto e objetivo (recomendo, nesse caso, a fazer a recomendação do zero em vez de
+        resolver um quebra-cabeça de funções intermediárias)
+
+           A principal vantagem da recomendação nesse formato é a fácil customização. Sabemos que a cada reunião algo é observado e revisto,
+        então é um bom diferencial.
+
+        -- Cláuser, 07/01/2015 15:45
+        */
+
         //todo transformar esses comentários abaixo em ação.
 
         //Get do cha de cada competência para a disciplina.
@@ -116,7 +129,7 @@ class Recomendacao {
 
     private function mostraRecomendacao(){
 
-        //Faz o que tem que fazer..
+        //todo coloca tudo no formato necessário para exibir na página.
 
         //e depois:
         $this->mysqli->close();
@@ -213,6 +226,11 @@ class Recomendacao {
         //var_dump($this->id_competencias_disciplina);
         return true;
     }
+
+    /*
+     * Armazena na matriz $this->objetosDaCompetencia a relação dos objetos para cada competência
+     * Obs.: todas as competências são relacionadas uma a uma com os objetos e depois é tudo colocado em uma única matriz.
+    */
     private function getObjetosCompetencia(){
 
 
@@ -230,6 +248,10 @@ class Recomendacao {
             }while($result !=NULL);
         }
     }
+    /*
+     * Armazena em $this->cha_obj_comp o CHA de cada objeto para aquela competência em questão. Basicamente,
+     * gera a mesma coisa que a getObjetosCompetencia() adicionando os CHAs dos objetos.
+    */
     private function getCHAobjetocompetencia(){
         $cont = count($this->objetosDaCompetencia['Competencia']);
 
@@ -252,8 +274,6 @@ class Recomendacao {
             }while($result !=NULL);
 
         }
-        //var_dump($this->cha_obj_comp);
-        //unset($this->objetosDaCompetencia);
     }
     private function getMatrizes(){
 
@@ -306,7 +326,7 @@ class Recomendacao {
         //Matriz $this->cha_user_comp: Seria a matriz B.
         //Agora é só subtrair com o método pra isso.
         //" A - B "
-        //As aspas são porque do jeito que estão salvas, não funcionaria a subtração. Precisa de uma lógica antes.
+        //As aspas são porque do jeito que estão salvas, não funcionaria a subtração normal. Precisa-se de uma lógica.
     }
     private function filtraMatrizCHAobj($competencia,$objeto){
 

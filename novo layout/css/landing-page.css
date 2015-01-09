@@ -1,0 +1,567 @@
+/*!
+ * Start Bootstrap - Landing Page Bootstrap Theme (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body{    
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+}
+
+
+/*HEADER---------------------------------------------------------------------*/
+
+
+#logo{
+
+    margin: 5px;
+    float: left;
+    width: 260px;
+    height: 40px;
+    background: url(../img/recoacomp-logo.png) no-repeat center;
+    display: block;
+    margin-bottom:0px;
+
+}
+
+nav {
+
+    float: right;
+    padding: 5px;  
+
+}
+
+#menu-icon {
+    z-index:10;
+    display: hidden;
+    width: 40px;
+    height: 40px;
+    background: #26B3E8 url(../img/menu-icon.png) center;
+
+}
+
+a:hover#menu-icon {
+    background-color: #108AC0;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    display: inline-block;
+    float: left;
+    padding: 10px
+}
+
+.header-large{
+    height:55px;
+    border-bottom:5px solid #108AC0;
+    width:100%;
+    font-weight:100;
+    color:black;
+}
+
+.header-large a{text-decoration:none;color:black;}
+.header-large a:hover, a:active{color:grey;}
+
+@media only screen and (max-width : 640px) {
+
+/*tem que arrumar o menu em mobile porque quando clica não funiona direito (precisa de js)*/
+
+header{
+    z-index:10;
+    position: absolute;
+    background-color:white;
+    height:55px;
+}
+
+#menu-icon{
+    display:inline-block;
+    z-index:10;
+}
+
+nav ul, nav:active ul { 
+        z-index:10;
+        display: none;
+        position: absolute;
+        padding: 20px;
+        background: #fff;
+        border: 5px solid #108AC0;
+        right: 20px;
+        top: 60px;
+        width: 30%;
+        border-radius: 4px 0 4px 4px;
+
+    }
+
+    nav li {
+        z-index:10;
+        text-align: center;
+        width: 100%;
+        padding: 5px 0;
+        margin: 0;
+
+    }
+
+    nav:hover ul {
+        z-index:10;
+        display: block;
+
+    }
+}
+
+/*LOGIN-----------------------------------------------------------------------*/
+
+
+form{ /*customização básica do from*/
+    display:block;
+    width:70%; 
+    margin:0 auto;
+    text-align:left;
+     position:relative;
+     color:#58585B;
+     font-size:16px;
+     font-weight:100;
+}
+
+form a{ /*muda cores e etc de links dentro do form*/
+    font-weight:bold;
+    color:#58585B;
+}
+
+form a:hover, form a:active{ /*muda cores e etc de links quando em hover ou active*/
+    color:#58585B;
+}
+
+input[type=text],[type=password]{ /*customiza input de texto e senha*/
+     position:relative;
+     border:none;
+     background:#F1F1F2;
+     color:#BBBDC0;
+     font-weight:100;
+     width:100%;
+     height:40px;
+     padding-left:10px;
+}
+
+input[type=submit]{ /*customiza input de submit*/
+  border: 0;
+  width:100%;
+    background: -webkit-linear-gradient(left, #26B3E8, #75CCD6); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #26B3E8, #75CCD6); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #26B3E8, #75CCD6); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #26B3E8, #75CCD6); /* Standard syntax (must be last) */
+  color: white;
+  padding: 8px 14px;
+  font-weight: 100;
+  font-size: 18px;
+  text-decoration: none;
+  display: inline-block; /* needed for anchors */
+  position: relative;
+    -webkit-box-shadow: 0px 4px 0px 0px rgba(50, 50, 50, 0.47);
+    -moz-box-shadow:    0px 4px 0px 0px rgba(50, 50, 50, 0.47);
+    box-shadow:         0px 4px 0px 0px rgba(50, 50, 50, 0.47);
+
+  }
+
+
+  input[type=submit]:active{ /*customiza pra quando estiver ativo (click)*/
+    -moz-transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+    -o-transform: translateY(4px);
+    -ms-transform: translateY(4px);
+    transform: translateY(4px);
+    
+    -webkit-box-shadow: 0px 1px 0px 0px rgba(50, 50, 50, 0.47);
+    -moz-box-shadow:    0px 1px 0px 0px rgba(50, 50, 50, 0.47);
+    box-shadow:         0px 1px 0px 0px rgba(50, 50, 50, 0.47);
+  }
+
+
+.wololo form{margin:0;}
+
+.wololo input[type=submit]{ /*customiza input de submit*/
+  border: 0;
+  width:150px;
+  height:66px;
+  white-space: normal;
+  text-align:center;
+  
+
+
+    background: -webkit-linear-gradient(left, #26B3E8, #75CCD6); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #26B3E8, #75CCD6); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #26B3E8, #75CCD6); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #26B3E8, #75CCD6); /* Standard syntax (must be last) */
+ 
+  color: white;
+  padding: 8px 14px;
+  font-weight: 100;
+  font-size: 18px;
+  text-decoration: none;
+  display: inline-block; /* needed for anchors */
+ 
+    -webkit-box-shadow: 0px 4px 0px 0px rgba(50, 50, 50, 0.47);
+    -moz-box-shadow:    0px 4px 0px 0px rgba(50, 50, 50, 0.47);
+    box-shadow:         0px 4px 0px 0px rgba(50, 50, 50, 0.47);
+
+-webkit-border-radius: 20px;
+-moz-border-radius: 20px;
+border-radius: 5px;
+  }
+
+ .wololo input[type=submit]:hover{
+    background: -webkit-linear-gradient(left, #5bc6ee, #75CCD6); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #5bc6ee, #75CCD6); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #5bc6ee, #75CCD6); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #5bc6ee, #75CCD6); /* Standard syntax (must be last) */
+ }
+
+  .wololo input[type=submit]:active{ /*customiza pra quando estiver ativo (click)*/
+    -moz-transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+    -o-transform: translateY(4px);
+    -ms-transform: translateY(4px);
+    transform: translateY(4px);
+    
+    -webkit-box-shadow: 0px 1px 0px 0px rgba(50, 50, 50, 0.47);
+    -moz-box-shadow:    0px 1px 0px 0px rgba(50, 50, 50, 0.47);
+    box-shadow:         0px 1px 0px 0px rgba(50, 50, 50, 0.47);
+  }
+
+.intro-header {
+    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    padding-bottom: 50px;
+    min-height:92%;
+    max-height:92%;
+    text-align: center;
+    color: #f8f8f8;
+    background: url(../img/intro-bg.png) no-repeat center center;
+    background-size: cover;
+
+    padding: 5% 0;
+}
+
+.container{
+    padding: 10% 0;
+}
+
+.top-login{ /*header da janelinha do login*/
+    position:relative;
+    top:0px;
+    width:100%;
+    height:50px;
+    text-align:left;
+    padding-left:15%;
+
+    background-color:#108AC0;
+    color:white;
+    font-size:30px;
+    font-weight:300;
+}
+
+.login{ /*janelinha do login*/
+z-index:50;
+
+    background-color:white;
+    position:inherit;
+    padding:0%;
+    margin-top:6.5%;
+    margin-left:auto;
+    margin-right:auto;
+    height:40%;
+    width: 300px;
+    min-width:30%;
+    min-height:200px;
+    max-height:370px;
+    
+    -webkit-box-shadow: 5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+    -moz-box-shadow:    5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+    box-shadow:         5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+}
+
+/*--modalwindow-------*/
+.modalDialog {
+    position: fixed;
+    font-family: "Lato";
+    font-weight:100;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.3);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+
+
+.modalDialog:target {
+    opacity:1;
+    pointer-events: auto;
+}
+
+.modalDialog > div {     
+    width: 500px;     
+    height:60%;
+    position: relative;     
+    margin: 10% auto;     
+padding: 0px 0px 2% 0px;     
+border-radius: 5px;
+background: #fff;  
+text-align:center;   
+}
+
+.close {
+    z-index:9999;
+    background: #108AC0;
+    color: #FFFFFF;
+    line-height: 25px;
+    position: absolute;
+    right: 10px;
+    text-align: center;
+    top: 10px;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    
+}
+
+.top-cadastro{ /*header da janelinha do login*/
+    position:relative;
+    top:0px;
+    width:100%;
+    height:50px;
+    text-align:left;
+    padding-left:10%;
+    z-index:10;
+    background-color:#108AC0;
+    color:white;
+    font-size:30px;
+    font-weight:300;
+
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.modalDialog input[type=text],[type=password]{ /*customiza input de texto e senha*/
+     position:relative;
+     border:none;
+     background:#F1F1F2;
+     color:#BBBDC0;
+     font-weight:100;
+     width:80%;
+     height:40px;
+     padding-left:10px;
+}
+
+.modalDialog input[type=submit]{ /*customiza input de submit*/
+  border: 0;
+  width:80%;
+    background: -webkit-linear-gradient(left, #26B3E8, #75CCD6); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #26B3E8, #75CCD6); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #26B3E8, #75CCD6); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #26B3E8, #75CCD6); /* Standard syntax (must be last) */
+  color: white;
+  padding: 8px 14px;
+  font-weight: 100;
+  font-size: 18px;
+  text-decoration: none;
+  display: inline-block; /* needed for anchors */
+  position: relative;
+    -webkit-box-shadow: 0px 4px 0px 0px rgba(50, 50, 50, 0.47);
+    -moz-box-shadow:    0px 4px 0px 0px rgba(50, 50, 50, 0.47);
+    box-shadow:         0px 4px 0px 0px rgba(50, 50, 50, 0.47);
+
+  }
+
+
+  .modalDialog input[type=submit]:active{ /*customiza pra quando estiver ativo (click)*/
+    -moz-transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+    -o-transform: translateY(4px);
+    -ms-transform: translateY(4px);
+    transform: translateY(4px);
+    
+    -webkit-box-shadow: 0px 1px 0px 0px rgba(50, 50, 50, 0.47);
+    -moz-box-shadow:    0px 1px 0px 0px rgba(50, 50, 50, 0.47);
+    box-shadow:         0px 1px 0px 0px rgba(50, 50, 50, 0.47);
+  }
+/*SCROLL-----------------------------------------------------------------------*/
+
+#scroll{
+height:60px;
+margin-top:-60px;
+width:100%;
+background:url(../img/scroll.png) no-repeat bottom center scroll;
+position:relative;
+z-index:100;
+}
+
+#scroll a{
+    text-align: center;
+display: block;
+bottom: 0;
+position: absolute;
+left: 48%;
+color: transparent;
+width: 64px;
+height: 42px;
+
+-webkit-transition:opacity 0.4s ease-in;
+transition:opacity 0.4s ease-in;
+-moz-transition:opacity 0.4s ease-in;
+-o-transition:opacity 0.4s ease-in;
+}
+
+
+.intro-message {
+    position: relative;
+    padding-top: 00%;
+    padding-bottom: 20%;
+}
+
+.intro-message > h1 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 5em;
+}
+
+.intro-divider {
+    width: 400px;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.intro-message > h3 {
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+}
+
+@media(max-width:767px) {
+    .intro-message {
+        padding-bottom: 15%;
+    }
+
+    .intro-message > h1 {
+        font-size: 3em;
+    }
+
+    ul.intro-social-buttons > li {
+        display: block;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    ul.intro-social-buttons > li:last-child {
+        margin-bottom: 0;
+    }
+
+    .intro-divider {
+        width: 100%;
+    }
+}
+
+.network-name {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+/*CONTENT SECTION A-----------------------------------------------------------------------*/
+
+
+.content-section-a {
+    padding: 50px 0;
+    background-color: #F1F1F2;
+}
+
+.content-section-b {
+    padding: 50px 0;
+    border-top: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.section-heading {
+    margin-bottom: 30px;
+}
+
+.section-heading-spacer {
+    float: left;
+    width: 200px;
+    border-top: 3px solid #e7e7e7;
+}
+
+
+/*FOOTER-----------------------------------------------------------------------*/
+
+.row-footer{
+    margin-right: -15px;
+    margin-left: -15px;
+
+}
+
+.container-footer{
+    display:block;
+    text-align:center;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto; 
+
+padding:0% 0%;
+}
+
+.span1{
+    text-align:center;
+    margin-left:1%;
+    width:300px;
+    float:left;
+    vertical-align:middle;
+}
+
+.span2{
+    text-align:center;
+    margin-top:20px;
+    width:300px;
+    float:right;
+    margin-right:1%;
+    vertical-align:middle;
+}
+
+.span2 a{
+    font-weight:100;
+    color:#6D6E70;
+}
+
+footer {
+    padding: 20px 0;
+    background-color: #231F20;
+    height:;
+}
+
+p.copyright {
+    margin: 15px 0 0;
+}
+
+.footer-logo{
+    width:50px;
+    height:50px;
+    margin-left:5%;
+    margin-right:5%;
+}
