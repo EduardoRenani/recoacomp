@@ -6,6 +6,8 @@
  * Time: 13:41
  */
 require_once("../config/config.cfg");
+require_once("lista.php");
+require_once("aproveitabilidade.php");
 class Recomendacao {
 
     private $mysqli;
@@ -44,6 +46,9 @@ class Recomendacao {
 
     private $matrizSubtraida;
 
+    //Array de 9 posições: +1,+2,0,-1,-2,-3,-4,+3,+4
+    private $aproveitabilidade;
+
     function __construct($user,$disciplina){
 
         $this->mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -64,17 +69,22 @@ class Recomendacao {
         $this->id_competencias_disciplina= array();
         $this->get_competencias_disciplina();
 
+        //Até onde se quer que o usuário vá (em aprendizado de cada competência: CHA) nessa disciplina?
         $this->cha_disc_comp=array(
             'ID' => array(),
             'C' => array(),
             'H' => array(),
             'A' => array()
         );
+
+        //Qual o CHA do usuário para cada competência?
         $this->cha_user_comp = $this->cha_disc_comp;
         $this->objetosDaCompetencia = array(
             'Competencia' => array(),
             'Objeto'=>array()
         );
+
+        //Até onde o objeto pode levar na evolução do CHA em cada competência?
         $this->cha_obj_comp=array(
             'ID_comp' => array(),
             'ID_oa' => array(),
@@ -107,7 +117,7 @@ class Recomendacao {
         $this->getCHAuser_comp();
         //Get objetos da compêtencia.
         $this->getObjetosCompetencia();
-        //Pegar o CHA de cada objeto para aquela competência
+        //Pegar o CHA de cada objeto para aquelas competências
         $this->getCHAobjetocompetencia();
 
         //Montar matrizes
@@ -249,7 +259,7 @@ class Recomendacao {
         }
     }
     /*
-     * Armazena em $this->cha_obj_comp o CHA de cada objeto para aquela competência em questão. Basicamente,
+     * Armazena em $this->cha_obj_comp o CHA de cada objeto para aquelas competências em questão. Basicamente,
      * gera a mesma coisa que a getObjetosCompetencia() adicionando os CHAs dos objetos.
     */
     private function getCHAobjetocompetencia(){
@@ -488,6 +498,8 @@ class Recomendacao {
 
                 //posicao_objetos_recomendados é -agora- um vetor de posições no array $this->matrizSubtraida['C' ou 'H' ou 'A'];.
 
+
+
                 $cont = count($posicao_objetos_recomendados);
                 echo "<br/>Competencia: ".$compAtual;
                 for($j=0;$j<$cont;$j++){
@@ -497,5 +509,45 @@ class Recomendacao {
             }
             $contaCHA++;
         }while($contaCHA<3);
+
 	}
-} 
+
+    private function ordenacao_simplificada(){
+
+        //9 posições: +1,+2,0,-1,-2,-3,-4,+3,+4
+        //Usar classe aproveitabilidade
+
+        //Essa disciplina possui quantas competencias?
+        $contador = count($this->id_competencias_disciplina);
+        if($contador > 0){
+            //Variável que varre o vetor $id_competencias_disciplina. Ela armazena a competência atual.
+            $compAtual = 0;
+
+            $comp = array();
+            $comp[$compAtual] = new Aproveitabilidade($this->id_competencias_disciplina[$compAtual]);
+
+            $contadorObjetos=count($this->objetosDaCompetencia);
+
+            if($contadorObjetos > 0){
+
+                //Variável que varre o vetor $objetosDaCompetencia. Ela armazena o objeto atual.
+                $obj_atual=0;
+
+                while($obj_atual < $contadorObjetos){
+
+                    //Descobrindo a categoria:
+
+                    //Sabendo a categoria:
+                    $comp[$compAtual]->addOA( $categoria ,$this->objetosDaCompetencia[$obj_atual] );
+
+                    $obj_atual++;
+                }
+
+
+            }
+
+
+
+        }
+    }
+}

@@ -42,6 +42,10 @@ for($i=0;$i<$cont;$i++){
 
 }
 
+//Exemplo de recomendação.
+//
+//O primeiro argumento é o ID do usuário
+////O segundo é o ID da disciplina
 $a = new Recomendacao(6,69);
 $a->recomenda();
 

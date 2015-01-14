@@ -222,7 +222,7 @@ class Login
                     if (isset($result_row->user_id)) {
                         // write user data into PHP SESSION [a file on your server]
                         $_SESSION['user_id'] = $result_row->user_id;
-                        $_SESSION['user_name'] = $result_row->user_name;
+                        $_SESSION['user_name'] = ucfirst($result_row->user_name);
                         $_SESSION['user_email'] = $result_row->user_email;
                         $_SESSION['acesso'] = $result_row->acesso;
                         $_SESSION['user_logged_in'] = 1;
@@ -300,7 +300,7 @@ class Login
             } else {
                 // write user data into PHP SESSION [a file on your server]
                 $_SESSION['user_id'] = $result_row->user_id;
-                $_SESSION['user_name'] = $result_row->user_name;
+                $_SESSION['user_name'] = ucfirst($result_row->user_name);
                 $_SESSION['user_email'] = $result_row->user_email;
                 $_SESSION['acesso'] = $result_row->acesso;
                 $_SESSION['user_logged_in'] = 1;

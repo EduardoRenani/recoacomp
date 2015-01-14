@@ -231,6 +231,9 @@ class OA{
     {
         if (isset($_POST["registrar_novo_OA"])) {
             // Função para cadastro de novo Objeto de Aprendizagem
+            //echo "<pre>";
+            //print_r($_POST);
+            //echo "</pre>";
             $this->criaOA(
                 //Categoria vida:
                 $_POST['date'],
@@ -262,8 +265,11 @@ class OA{
                 $_POST['url'],
                 $_POST['palavrachave'],
                 $_POST['idioma']);
-        }
-        // Se não estiver cadastrando nova competência, no construct ele retorna valores vazios.
+        } elseif (isset($_POST["cadastro_OA"])) {
+            foreach ($_POST as $key => $value)
+                echo $key.'='.$value.'<br />';
+            //$this->loginWithPostData($_POST['user_name'], $_POST['user_password'], $_POST['user_rememberme']);
+        } // Se não estiver cadastrando nova competência, no construct ele retorna valores vazios.
         else{
             $this->this = null;
         }

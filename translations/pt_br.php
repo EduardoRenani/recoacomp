@@ -85,7 +85,7 @@ define("WORDING_USER_STUDENT","Aluno");
 define("WORDING_USER_PROFESSOR","Professor");
 define("WORDING_USER_ADMIN","Admin");
 define("WORDING_NAME", "Nome");
-define("WORDING_KEYWORDS", "Palavras-chave (separadas por \" ; \")");
+define("WORDING_KEYWORDS", "Palavras-chave");
 define("WORDING_LANGUAGE", "Idioma");
 define("WORDING_NAME_COMPETENCIA", "Nome da Competência: ");
 define("WORDING_OA_LIST", "Nome dos OA separados por \";\" : ");
@@ -114,6 +114,8 @@ define("WORDING_ENGLISH", "Inglês");
 define("WORDING_SPANISH", "Espanhol");
 define("WORDING_REGISTER_NOVO_OA", "Registrar Novo Objeto de Aprendizagem");
 define("MESSAGE_OA_WITH_NAME_ALREADY_EXISTS", "Objeto de Aprendizagem com nome e/ou URL já existente!");
+
+
 // -- Categoria Vida mensagens
 define("WORDING_LIFE_CATEGORY", "Categoria Vida");
 define("WORDING_DATE", "Data");
@@ -136,6 +138,7 @@ define("WORDING_CONTENT_PROVIDER", "Provedor de Conteúdo");
 define("WORDING_ROTEIRIST", "Roteirista");
 define("WORDING_INSTRUCTIONAL_DESIGNER", "Designer Instrucional");
 define("WORDING_CONTENT_SPECIALIST", "Especialista em Conteúdo");
+define("WORDING_FILL_DATE", "Preencha a data");
 
 // -- Categoria Técnica mensagens
 define("WORDING_TECHNICAL_CATEGORY", "Categoria Técnica");
@@ -195,6 +198,7 @@ define("WORDING_COLLEGE", "Faculdade");
 define("WORDING_TRAINING", "Treinamento");
 define("WORDING_OTHER", "Outro");
 define("WORDING_AMBIENT", "Ambiente");
+define("WORDING_FILL_EDUCACIONAL_DESCRIPTION", "Preencha a descrição educacional");
 
 // -- Categoria Direito mensagens
 define("WORDING_RIGHT_CATEGORY", "Categoria Direito");
