@@ -19,9 +19,13 @@
     <script src="jquery.bootstrap.wizard.js"></script>
     <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
     <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+<<<<<<< HEAD
     <script src="js/bootstrap-tagsinput-angular.js"></script>
     <script src="js/bootstrap-tagsinput.js"></script>
     
+=======
+    <script src="js/select2.min.js"></script>
+>>>>>>> origin/master
     <!-- Fim importação Jquery -->
 
 	
@@ -34,7 +38,10 @@
     <link href="css/progress_cadastro_OA.css" rel="stylesheet">
     <link href="css/growl.css" rel="stylesheet">
     <link href="css/select2.min.css" rel="stylesheet">
+<<<<<<< HEAD
     <link href="css/bootstrap-tagsinput.css" rel="stylesheet">
+=======
+>>>>>>> origin/master
 
     <!-- Custom CSS Login Page-->
     <link href="css/landing-page.css" rel="stylesheet">
