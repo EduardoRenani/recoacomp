@@ -11,6 +11,7 @@
 
 
 
+
     <!-- Importação do Jquery -->
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
@@ -19,29 +20,30 @@
     <script src="jquery.bootstrap.wizard.js"></script>
     <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
     <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
-<<<<<<< HEAD
     <script src="js/bootstrap-tagsinput-angular.js"></script>
     <script src="js/bootstrap-tagsinput.js"></script>
+    <!-- Picklist cadastro de disciplinas -->
+    <script src="js/picklist.js"></script>
+    <script src="js/primeui-1.0.js"></script>
     
-=======
-    <script src="js/select2.min.js"></script>
->>>>>>> origin/master
     <!-- Fim importação Jquery -->
-
-	
 	<!-- Login -->
 
 	<!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="prettify.css" rel="stylesheet">
+
+    <!-- Loader do cadastro de OA CSS -->
     <link href="css/cadastro_OA.css" rel="stylesheet">
     <link href="css/progress_cadastro_OA.css" rel="stylesheet">
+    <!-- Growl das mensagens de cadastros -->
     <link href="css/growl.css" rel="stylesheet">
-    <link href="css/select2.min.css" rel="stylesheet">
-<<<<<<< HEAD
+    <!-- Seletor das palavras-chaves -->
     <link href="css/bootstrap-tagsinput.css" rel="stylesheet">
-=======
->>>>>>> origin/master
+    <!-- Picklist cadastro de disciplinas -->
+    <link href="css/picklist.css" rel="stylesheet">
+    <link href="css/primeui-1.0.css" rel="stylesheet">
+    <link href="css/theme.css" rel="stylesheet">
 
     <!-- Custom CSS Login Page-->
     <link href="css/landing-page.css" rel="stylesheet">

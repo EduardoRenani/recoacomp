@@ -35,7 +35,7 @@ $(function() {
     $('#rootwizard').bootstrapWizard({onNext: function(tab, navigation, index) {
     // Categoria geral
         if(index==1) {
-            // Verifica se o nome foi preenchido caso contrário dá um aviso
+            // Verifica se o nome foi preenchido
             if(!$('#nome').val()) {
                 $().toastmessage('showToast', {
                     text     : nome,
@@ -81,7 +81,7 @@ $(function() {
             }
         }
 
-        // Se estiver na aba da categoria vida, fazer verficações 
+ 
         if(index==2) {
         // Make sure we entered the date
             if(!$('#date').val()) {
@@ -127,7 +127,7 @@ $(function() {
 		}
 		});		
 });
-</script>
+    </script>
 	
 	
 <h2><?=WORDING_REGISTER_NOVO_OA?></h2>
@@ -135,63 +135,64 @@ $(function() {
     <input type="hidden" id="idusuario" name="idusuario" value="<?php echo $_SESSION['user_id']; ?>" />
     <div id="rootwizard">
         <div class="navbar">
-            <div class="navbar-inner">
-                <div class="container">
-                    <ul>
-                        <li><a href="#tab1" data-toggle="tab"><?php echo WORDING_GENERAL_INFORMATION; ?></a></li>
-                        <li><a href="#tab2" data-toggle="tab"><?php echo WORDING_LIFE_CATEGORY; ?></a></li>
-                        <li><a href="#tab3" data-toggle="tab"><?php echo WORDING_TECHNICAL_CATEGORY; ?></a></li>
-                        <li><a href="#tab4" data-toggle="tab"><?php echo WORDING_EDUCATIONAL_CATEGORY; ?></a></li>
-                        <li><a href="#tab5" data-toggle="tab"><?php echo WORDING_RIGHT_CATEGORY; ?></a></li>
-                    </ul>
-                </div>
-            </div>
+          <div class="navbar-inner">
+            <div class="container">
+        <ul>
+            <li><a href="#tab1" data-toggle="tab"><?php echo WORDING_GENERAL_INFORMATION; ?></a></li>
+            <li><a href="#tab2" data-toggle="tab"><?php echo WORDING_LIFE_CATEGORY; ?></a></li>
+            <li><a href="#tab3" data-toggle="tab"><?php echo WORDING_TECHNICAL_CATEGORY; ?></a></li>
+            <li><a href="#tab4" data-toggle="tab"><?php echo WORDING_EDUCATIONAL_CATEGORY; ?></a></li>
+            <li><a href="#tab5" data-toggle="tab"><?php echo WORDING_RIGHT_CATEGORY; ?></a></li>
+        </ul>
+         </div>
+          </div>
         </div>
         <div id="bar" class="progress progress-striped active">
-            <div class="bar">
-            </div>
+          <div class="bar"></div>
         </div>
         <div class="tab-content">
-        <!-- Inicio-->
-            <div class="tab-pane" id="tab1"> 
+            <!-- Inicio-->
+            <div class="tab-pane" id="tab1">
                 <div class="control-group">
-                    <label class="control-label" for="name"><?php echo WORDING_NAME; ?></label>
-                    <div class="controls">
-                        <input type="text" id="nome" name="nome" class="required">
+                    <div class="control-group">
+                        <label class="control-label" for="name"><?php echo WORDING_NAME; ?></label>
+                        <div class="controls">
+                            <input type="text" id="nome" name="nome" class="required">
+                        </div>
                     </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="url"><?php echo WORDING_URL; ?></label>
-                    <div class="controls">
-                        <input type="text" id="url" name="url" class="required url">
+                    <div class="control-group">
+                        <label class="control-label" for="url"><?php echo WORDING_URL; ?></label>
+                        <div class="controls">
+                            <input type="text" id="url" name="url" class="required url">
+                        </div>
                     </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="palavrachave"><?php echo WORDING_KEYWORDS; ?></label>
-                    <div class="controls">
-                        <!-- input class="palavra_chave" multiple="multiple" id="palavrachave" name="palavrachave" class="required"/-->
-                        <input type="text" data-role="tagsinput" id="palavrachave" name="palavrachave" class="required"/>
-                        
-                         <!-- TRADUZIR -->
+                    <div class="control-group">
+                        <label class="control-label" for="palavrachave"><?php echo WORDING_KEYWORDS; ?></label>
+                        <div class="controls">
+                            <!-- input class="palavra_chave" multiple="multiple" id="palavrachave" name="palavrachave" class="required"/-->
+                            <input type="text" data-role="tagsinput" id="palavrachave" name="palavrachave" class="required"/>
+                            
+                             <!-- TRADUZIR -->
+                        </div>
                     </div>
-                </div>
-                <div class="#control-group">
-                    <label class="control-label" for="idioma"><?php echo WORDING_LANGUAGE; ?></label>
-                    <div class="controls">
-                        <select id = "idioma" name="idioma">
-                            <option value = "portugues"><?php echo WORDING_PORTUGUES ?></option>
-                            <option value = "espanhol"><?php echo WORDING_SPANISH ?></option>
-                            <option value = "ingles"><?php echo WORDING_ENGLISH ?></option>
-                        </select>
+                    <div class="#control-group">
+                        <label class="control-label" for="idioma"><?php echo WORDING_LANGUAGE; ?></label>
+                        <div class="controls">
+                            <select id = "idioma" name="idioma">
+                                <option value = "portugues"><?php echo WORDING_PORTUGUES ?></option>
+                                <option value = "espanhol"><?php echo WORDING_SPANISH ?></option>
+                                <option value = "ingles"><?php echo WORDING_ENGLISH ?></option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <!-- Descrição -->
-                <div class="#control-group">
-                    <label class="control-label" for="descricao"><?php echo WORDING_DESCRIPTION; ?></label>
-                    <div class="controls">
-                        <textarea name="descricao" id="descricao" ROWS="5" COLS="40"></textarea>
+                    <!-- Descrição -->
+                    <div class="#control-group">
+                        <label class="control-label" for="descricao"><?php echo WORDING_DESCRIPTION; ?></label>
+                        <div class="controls">
+                            <textarea name="descricao" id="descricao" ROWS="5" COLS="40"></textarea>
+                        </div>
                     </div>
-                </div>          
+              </div>
             </div>
             <!-- Fim-->
             <div class="tab-pane" id="tab2">

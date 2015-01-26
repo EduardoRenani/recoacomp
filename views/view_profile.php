@@ -67,9 +67,6 @@
                              <li>
                                 <a href="profile_show.php" id="active">Meu Perfil</a>
                             </li>
-                             <li>
-                                <a href="#">Disciplinas</a>
-                            </li>
                         </ul>
                 </div>  
         </div>

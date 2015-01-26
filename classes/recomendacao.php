@@ -5,7 +5,7 @@
  * Date: 14/10/14
  * Time: 13:41
  */
-require_once("../config/config.cfg");
+require_once("config/config.cfg");
 require_once("lista.php");
 require_once("aproveitabilidade.php");
 class Recomendacao {
@@ -45,9 +45,6 @@ class Recomendacao {
     private $A;
 
     private $matrizSubtraida;
-
-    //Array de 9 posições: +1,+2,0,-1,-2,-3,-4,+3,+4
-    private $aproveitabilidade;
 
     function __construct($user,$disciplina){
 
@@ -512,42 +509,4 @@ class Recomendacao {
 
 	}
 
-    private function ordenacao_simplificada(){
-
-        //9 posições: +1,+2,0,-1,-2,-3,-4,+3,+4
-        //Usar classe aproveitabilidade
-
-        //Essa disciplina possui quantas competencias?
-        $contador = count($this->id_competencias_disciplina);
-        if($contador > 0){
-            //Variável que varre o vetor $id_competencias_disciplina. Ela armazena a competência atual.
-            $compAtual = 0;
-
-            $comp = array();
-            $comp[$compAtual] = new Aproveitabilidade($this->id_competencias_disciplina[$compAtual]);
-
-            $contadorObjetos=count($this->objetosDaCompetencia);
-
-            if($contadorObjetos > 0){
-
-                //Variável que varre o vetor $objetosDaCompetencia. Ela armazena o objeto atual.
-                $obj_atual=0;
-
-                while($obj_atual < $contadorObjetos){
-
-                    //Descobrindo a categoria:
-
-                    //Sabendo a categoria:
-                    $comp[$compAtual]->addOA( $categoria ,$this->objetosDaCompetencia[$obj_atual] );
-
-                    $obj_atual++;
-                }
-
-
-            }
-
-
-
-        }
-    }
 }

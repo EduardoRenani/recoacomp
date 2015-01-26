@@ -107,6 +107,9 @@ define("WORDING_DISCIPLINA_DESCRICAO", "Descrição");
 define("WORDING_CREATE_NEW_COMPETENCIA", "Criar nova competência");
 define("WORDING_CANT_ASSOCIATE_COMPETENCIA","A competencia citada em sequência não pode ser associada a essa disciplina ou já foi associada previamente");
 define("WORDING_CREATED_SUCESSFULLY"," criada com sucesso!");
+define("WORDING_FILL_NAME_DISCIPLINA","Preencha o nome da disciplina");
+define("WORDING_FILL_PASSWORD","Preencha a senha");
+define("WORDING_SELECT_COMPETENCIA","Selecione a(s) competências(s)");
 
 //Cadastro de OA mensagens
 define("WORDING_PORTUGUES", "Português");
@@ -218,9 +221,6 @@ define("WORDING_FILL_KEYWORD","Preencha palavra-chave");
 define("WORDING_URL","URL");
 define("WORDING_KEYWORD","Palavra-chave");
 define("WORDING_CREATE_OA","Criar Objeto de Aprendizagem");
-
-
-
 
 //Cadastro de Competências Mensagens
 define("WORDING_REGISTER_NOVA_COMPETENCIA", "Registrar Nova Competência");

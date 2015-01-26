@@ -43,13 +43,13 @@ $registration = new Registration();
 									<?php if (!$registration->registration_successful && !$registration->verification_successful) { ?>
 										<!-- form action="home.html"--><!--action é só para mostrar, no site em si não tem isso"-->
 										<!--form method="post" action="register.php" name="registerform" -->
-										<form method="post" action="register.php" name="registerform">
+										<form method="post" action="index.php" name="registerform">
 											<input id="user_email" type="email" name="user_email" placeholder="<?= WORDING_REGISTRATION_EMAIL; ?>" required />
 	                                        <input id="user_name" type="text" pattern="[a-zA-Z0-9]{2,64}" name="user_name" placeholder="<?= WORDING_REGISTRATION_USERNAME; ?>" required>
     										<input id="user_password_new" type="password" name="user_password_new" pattern=".{6,}" placeholder="<?= WORDING_REGISTRATION_PASSWORD; ?>" required autocomplete="off" />
 											<input id="user_password_repeat" type="password" name="user_password_repeat" pattern=".{6,}" placeholder="<?= WORDING_REGISTRATION_PASSWORD_REPEAT; ?>" required autocomplete="off" />
-											<img src="tools/showCaptcha.php" alt="captcha" />
-											<input type="text" name="captcha" placeholder="<?= WORDING_REGISTRATION_CAPTCHA; ?>" required />
+											<!-- img src="tools/showCaptcha.php" alt="captcha" />
+											<input type="text" name="captcha" placeholder="<?= WORDING_REGISTRATION_CAPTCHA; ?>" required / -->
 											<input type="submit" name="register" value="<?php echo WORDING_REGISTER; ?>" />
 										</form>
 									 <?php } ?>

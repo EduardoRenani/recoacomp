@@ -1,11 +1,9 @@
 <?php
 /**
- * Created by PhpStorm.
  * User: Cláuser
  * Date: 14/10/14
  * Time: 13:47
  */
-
 
 class Lista {
 
@@ -57,10 +55,12 @@ class Lista {
                     //No final desse for, $this->vector[$position] e $this->vector[$position + 1] são iguais.
                 }
                 $this->vector[$position] = $member;
+
                 return true;
             }
             else{
-                array_push($vector,$member);
+                array_push($this->vector,$member);
+                //var_dump($this->vector);
                 return true;
             }
         }
@@ -157,4 +157,56 @@ class Lista {
 
         return false;
     }
+
+    //Return a qtd de membros na lista.
+    public function getSize(){
+        $c = count ($this->vector);
+        return $c;
+    }
+
+    //Método intermediário para funções de remoção de membros.
+    private function remove($pos){
+        $temp = array();
+
+        //Copiando até a posição de corte
+        for($c=0;$c<$pos;$c++){
+            array_push($temp,$this->vector[$c]);
+        }
+
+        //Copiando após a posição de corte
+        for($c=$pos+1;$c<$this->getSize();$c++){
+            array_push($temp,$this->vector[$c]);
+        }
+
+        //Voltando pro $vector
+        $newSize=count($temp);
+        unset($this->vector);
+
+        for($c=0;$c<$newTam;$c++){
+            array_push($this->vector, $temp[$c]);
+        }
+    }
+
+    //Remove a primeira ocorrência de $content na lista.
+    public function removeMember($content){
+
+        if ($content != null){
+
+            for($c=0;$c<$this->getSize();$c++){
+                if($this->vector[$c] == $content){
+                    $this->remove($c);
+                    break;
+                }
+            }
+
+            return true;
+        }
+        else
+            return false;
+    } 
+
+    public function getVector(){
+        return $this->vector;
+    }
+
 	}

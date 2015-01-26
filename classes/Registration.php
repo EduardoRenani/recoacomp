@@ -86,7 +86,7 @@ class Registration
 
         // check provided data validity
         // TODO: check for "return true" case early, so put this first
-        if (strtolower($captcha) != strtolower($_SESSION['captcha'])) {
+        if (strtolower($captcha) != strtolower($_POST['captcha'])) {
             $this->errors[] = MESSAGE_CAPTCHA_WRONG;
         } elseif (empty($user_name)) {
             $this->errors[] = MESSAGE_USERNAME_EMPTY;
@@ -152,6 +152,7 @@ class Registration
                     // send a verification email
                     if ($this->sendVerificationEmail($user_id, $user_email, $user_activation_hash)) {
                         // when mail has been send successfully
+                        echo "Mensagem enviada para confirmar cadastro!";
                         $this->messages[] = MESSAGE_VERIFICATION_MAIL_SENT;
                         $this->registration_successful = true;
                     } else {

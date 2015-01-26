@@ -69,6 +69,7 @@ class Disciplina {
     public function __construct() // Essa construct tá certa, seguir modelo
     {
         if (isset($_POST["registrar_nova_disciplina"])) {
+            //echo $_POST['arrayCompetencias'];
             // Função para cadastro de nova disciplina
             $this->criaDisc($_POST['nomeCurso'],$_POST['nomeDisciplina'],$_POST['descricao'], $_POST['user_id'], $_POST['senha'], $_POST['arrayCompetencias']);
         }

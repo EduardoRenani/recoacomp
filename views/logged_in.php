@@ -37,9 +37,6 @@
                      <li>
                         <a href="#">Disciplinas</a>
                     </li>
-                    <li>
-    					<a href="index.php?logout"><?php echo WORDING_LOGOUT; ?></a>
-    				</li>
     				<li>
    						<?php 
 						if ($_SESSION['acesso'] == 1)
@@ -62,6 +59,9 @@
 						}else if($_SESSION['acesso'] == 3)
 							echo WORDING_USER_ADMIN . "<br/>";
 						?>
+                    </li>
+                    <li>
+                        <a href="index.php?logout"><?php echo WORDING_LOGOUT; ?></a>
                     </li>
                 </ul>
     	</div>  

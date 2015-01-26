@@ -4,7 +4,7 @@
  * Date: 13/01/2015
  * Time: 17:22
  */
-require_once("../config/config.cfg");
+require_once("config/config.cfg");
 require_once("lista.php");
 class Aproveitabilidade {
 

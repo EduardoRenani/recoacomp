@@ -8,6 +8,8 @@
 
 require_once("classes/lista.php");
 require_once("classes/recomendacao.php");
+require_once("classes/Recomendacao/comp.php");
+require_once("classes/Recomendacao/recomendacao.php");
 //require_once("config/config.cfg");
 
 $lista = new Lista(array(2,3,5,1,4,3,-1,8,0,-15,-4,-3,-2,2,-3));
@@ -46,8 +48,15 @@ for($i=0;$i<$cont;$i++){
 //
 //O primeiro argumento é o ID do usuário
 ////O segundo é o ID da disciplina
-$a = new Recomendacao(6,69);
-$a->recomenda();
+	//$b = new Recomendacao(6,69);
+	//$b->recomenda();
+echo "<hr/>";
+$a = new Comp(7,6,69);
+$a->addOA(2);
+$a->addOA(6);
+$a->writeOAs();
+echo "<hr/>";
 
+$c= new Recomendacao2(69);
 
 ?>
