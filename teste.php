@@ -12,6 +12,9 @@ require_once("classes/Recomendacao/comp.php");
 require_once("classes/Recomendacao/recomendacao.php");
 //require_once("config/config.cfg");
 
+
+/*
+
 $lista = new Lista(array(2,3,5,1,4,3,-1,8,0,-15,-4,-3,-2,2,-3));
 
 $matriz = $lista->ordenate(1,2);
@@ -44,19 +47,23 @@ for($i=0;$i<$cont;$i++){
 
 }
 
+*/
+
 //Exemplo de recomendação.
 //
 //O primeiro argumento é o ID do usuário
 ////O segundo é o ID da disciplina
 	//$b = new Recomendacao(6,69);
 	//$b->recomenda();
-echo "<hr/>";
-$a = new Comp(7,6,69);
-$a->addOA(2);
-$a->addOA(6);
-$a->writeOAs();
-echo "<hr/>";
 
-$c= new Recomendacao2(69);
+//echo "<hr/>";
+//$a = new Comp(7,6,69);
+//$a->addOA(2);
+//$a->addOA(6);
+//$a->writeOAs();
+$id = 69;
+echo "<br/><center><font size='6'>Teste de Recomendação para a disciplina de ID: ".$id."</font></center><br/><br/>";
+echo "<hr/>";
+$c= new Recomendacao2($id);
 
 ?>

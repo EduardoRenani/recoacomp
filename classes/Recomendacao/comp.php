@@ -17,9 +17,15 @@ class Comp{
 
 	private $idComp;
 
+	/*Essas variáveis serão mantidas em caso de, no futuro, haver modificações na recomendação e precisar de conhecimento,
+	habilidade e atitude separadas. Não me agradeça, querido futuro bolsista. Apenas dê 3 pulinhos e reze um pai nosso e
+	32 ave marias.
+	Cláuser, 04/02/15*/
 	private $chaUser;
-
 	private $chaDisc;
+
+	private $chaUserS;
+	private $chaDiscS;
 
 	function __construct($idComp,$user,$disc){
 		$this->oa = new lista();
@@ -31,7 +37,7 @@ class Comp{
 
 	//Verifica se $num é numérico maior que zero.
 	private function isValid($num){
-		if($num == null || !is_numeric($num)){
+		if($num == null/* || !is_numeric($num)*/){
 			return false;
 		}else
 			return true;
@@ -39,7 +45,7 @@ class Comp{
 
 	public function addOA($idOA){
 
-		if($this->isValid($idOA)){
+		//if($this->isValid($idOA)){
 
 			$OA = array();
 			$OA['ID'] = $idOA;			
@@ -53,15 +59,19 @@ class Comp{
                     $OA['C']=(int)$result['conhecimento'];
                     $OA['H']=(int)$result['habilidade'];
                     $OA['A']=(int)$result['atitude'];
+                    $OA['chaS']=$OA['C']+$OA['H']+$OA['A'];
+                    //No .doc é relativo ao VC + VH + VA. Ver pg. 3.
+                    $OA['res'] = $OA['chaS'] - $this->chaUserS;
+                    //var_dump($OA);
                 }
             }while($result !=NULL);
             //CHA ^
 
 			$this->oa->addMember($OA);
-
+			/*
 		}
 		else
-			echo "OA invalida";
+			echo "OA invalida";*/
 	}
 
 	public function removeOA($idOA){
@@ -72,23 +82,31 @@ class Comp{
 
 	public function writeOAs(){
 
+		echo "<hr/>";
+
+
+		echo ("ID da Competencia: <b>".$this->idComp."</b><br/>");
 		echo("CHA Usuario: ".$this->chaUser['C']." ".$this->chaUser['H']." ".$this->chaUser['A']."<br/>");
+		echo("Soma CHA Usuario: ".$this->chaUserS."<br/>");
 		echo("CHA Disciplina: ".$this->chaDisc['C']." ".$this->chaDisc['H']." ".$this->chaDisc['A']."<br/>");
+		echo("Soma CHA Disciplina: ".$this->chaDiscS."<br/><br/>");
 
-		echo ("Competencia: ".$this->idComp."<br/>");
+		$cont = $this->oa->getSize();
+		$v=array();
+		$v=$this->oa->getVector();
+		for($c=0;$c<$cont;$c++){
+			echo"<ul><li>";
+			echo ("ID do OA: ".$v[$c]['ID']."<br/>");
+			
+			//	conhecimento = $v[$c]['C'];
+			//	habilidade = $v[$c]['H'];
+			//	atitude = $v[$c]['A'];
 
-		for($c=0;$c<$this->oa->getSize();$c++){
+			echo ("CHA do OA: ".$v[$c]['C']." ".$v[$c]['H']." ".$v[$c]['A']."<br/>");
+			echo "Soma CHA do OA: ".$v[$c]['chaS']."<br/>";
+			echo "Resultado: ".$v[$c]['res']."<br/><br/>";
 
-			$v=array();
-			$v=$this->oa->getVector();
-			//var_dump($v);
-
-
-			echo ("ID: ".$v[$c]['ID']."<br/>");
-			$conhecimento = $v[$c]['C'];
-			$habilidade = $v[$c]['H'];
-			$atitude = $v[$c]['A'];
-			echo ("CHA: ".$v[$c]['C']." ".$v[$c]['H']." ".$v[$c]['A']);
+			echo"</li></ul>";
 		}
 	}
 
@@ -104,6 +122,8 @@ class Comp{
                     $this->chaUser['A']=(int)$result['atitude'];
                 }
             }while($result !=NULL);
+
+            $this->chaUserS = $this->chaUser['C'] + $this->chaUser['H'] + $this->chaUser['A'];
 	}
 
 	private function getCHAdisc($disc){
@@ -118,9 +138,56 @@ class Comp{
                 $this->chaDisc['A']=(int)$dados['atitude'];
             }
         }while($dados !=NULL);
+
+        $this->chaDiscS = $this->chaDisc['C'] + $this->chaDisc['H'] + $this->chaDisc['A'];
 	}
 
 	public function getID(){return $this->idComp;}
+
+	public function ordenaOAs(){
+
+		//Preparar vetor de resultados de OAs
+		$v = $this->oa->getVector();
+		$listaOA = new Lista();
+		$cont = $this->oa->getSize();
+		$vet = array();
+		for($c=0;$c<$cont;$c++){
+			array_push($vet,$v[$c]['res']);
+		}
+
+		//Ordenar:
+			//1 a 2
+		$matriz = $listaOA->ordenate(1,2);
+
+		$cont = count($matriz[1]);
+		for($i=0;$i<$cont;$i++){
+			$oa3[$i] = $this->oa[ $matriz[1][$i] ];
+		}
+			//0 a -4
+		$matriz=null;
+		$matriz = $listaOA->ordenate(0,-4);
+
+		$cont = count($matriz[1]);
+		for($i=0;$i<$cont;$i++){
+			array_push($oa3, $this->oa[ $matriz[1][$i] ]);
+		}
+
+			//3 a 4
+		$matriz=null;
+		$matriz = $listaOA->ordenate(3,4);
+
+		$cont = count($matriz[1]);
+		for($i=0;$i<$cont;$i++){
+			array_push($oa3, $this->oa[ $matriz[1][$i] ]);
+		}
+
+		$this->oa=null;
+		$this->oa=array();
+		$cont = count($oa3);
+		for($i=0;$i<$cont;$i++)
+			array_push($this->oa, $oa3[$i]);
+
+	}
 
 }
 

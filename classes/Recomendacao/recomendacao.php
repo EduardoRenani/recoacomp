@@ -20,7 +20,9 @@ class Recomendacao2 {
 
 		session_start();
 		$this->user = $_SESSION['user_id'];
-		echo("Usuario: ".$_SESSION['user_id']);
+		echo("ID Usuario: ".$_SESSION['user_id']."<br/>");
+        echo("Nome do Usuario: ".$_SESSION['user_name']);
+
 
         $this->associarCompetencias();
         $this->recomenda();
@@ -60,7 +62,7 @@ class Recomendacao2 {
         $this->competencia = array();
         $size = count($listaComp);
         for($c=0;$c<$size;$c++){
-            $comp = new Comp($listaComp[0],$this->user,$this->idDisc);
+            $comp = new Comp($listaComp[$c],$this->user,$this->idDisc);
             array_push($this->competencia, $comp);
             unset($comp);
         }
@@ -85,12 +87,16 @@ class Recomendacao2 {
             }while($result !=NULL);
         
             //Associar de fato:
+
             $qtdOA = count($objetosDaCompetencia);
             for($idOA=0;$idOA<$qtdOA;$idOA++){
-                $this->competencia[$pos]->addOA((int)$idOA);
+
+                $this->competencia[$pos]->addOA( (int)$objetosDaCompetencia[ $idOA ] );
             }
 
-             $this->competencia[$pos]->writeOAs();
+            $this->competencia[$pos]->ordenaOAs();
+
+            $this->competencia[$pos]->writeOAs();
 
     }
 
@@ -98,6 +104,7 @@ class Recomendacao2 {
 
         $compAtual=0;
         $contComp=count($this->competencia);
+        //var_dump($this->competencia);
 
         for($compAtual;$compAtual<$contComp;$compAtual++){
 
@@ -105,5 +112,6 @@ class Recomendacao2 {
 
         }
     }
+
 
 }
