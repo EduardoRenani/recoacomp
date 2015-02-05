@@ -67,8 +67,20 @@ class Competencia{
     {
         if (isset($_POST["registrar_nova_competencia"]) && $donothing == null) {
             // Função para cadastro de nova competência
-            $this->criaCompetencia($_POST['nome'],$_POST['descricaoNome'],$_POST['atitudeDescricao'], $_POST['habilidadeDescricao'], $_POST['conhecimentoDescricao'], $_POST['user_id']);
-            $this->idCompetencia = $this->getID_byBD();
+            /**$this->criaCompetencia(
+                $_POST['nome'],
+                $_POST['descricaoNome'],
+                $_POST['atitudeDescricao'], 
+                $_POST['habilidadeDescricao'], 
+                $_POST['conhecimentoDescricao'], 
+                $_POST['user_id']);
+            **/
+            //echo $_POST['nome'] . ' Cadastro OK!';
+            //$this->idCompetencia = $this->getID_byBD();
+        }
+        // Segunda fase do cadastro de competências
+        elseif (isset($_POST["registrar_nova_competencia_associa_OA"])) {
+        //    # code...
         }
         // Se não estiver cadastrando nova competência, no construct ele retorna valores vazios.
         else{

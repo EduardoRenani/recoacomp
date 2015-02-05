@@ -8,7 +8,7 @@
 require_once("config/config.cfg");
 require_once("lista.php");
 require_once("aproveitabilidade.php");
-class Recomendacao {
+class Recomendacao2 {
 
     private $mysqli;
 

@@ -1,9 +1,7 @@
+
 <?php
 /**
- * Created by PhpStorm.
- * User: Delton
- * Date: 23/09/14
- * Time: 17:19
+ * User: Cláuser
  */
 
 require_once('config/config.cfg');
@@ -96,7 +94,13 @@ class Comp{
 		$v=$this->oa->getVector();
 		for($c=0;$c<$cont;$c++){
 			echo"<ul><li>";
-			echo ("ID do OA: ".$v[$c]['ID']."<br/>");
+
+			if($v[$c]['res'] == 1 || $v[$c]['res'] == 2)
+				echo ("ID do OA: <font color='Green'><b>".$v[$c]['ID']."</b></font><br/>");
+			else if($v[$c]['res'] < 1 && $v[$c]['res'] >=-4)
+				echo ("ID do OA: <font color='Orange'><b>".$v[$c]['ID']."</b></font><br/>");
+			else
+				echo ("ID do OA: <font color='Red'><b>".$v[$c]['ID']."</b></font><br/>");
 			
 			//	conhecimento = $v[$c]['C'];
 			//	habilidade = $v[$c]['H'];
@@ -146,46 +150,68 @@ class Comp{
 
 	public function ordenaOAs(){
 
-		//Preparar vetor de resultados de OAs
-		$v = $this->oa->getVector();
-		$listaOA = new Lista();
-		$cont = $this->oa->getSize();
-		$vet = array();
+		/*Preparar vetor de resultados de OAs: vetorRes
+		 * $vetorOA: 0 {ID,C,H,A,chaS,res} , 1 {ID,C,H,A,chaS,res}, ...
+		 * $vetorRes: 0 {res}, 1 {res}, 2 {res}, ...
+		*/
+		$vetorOA = $this->oa->getVector();
+		$vetorRes = array();
+		$cont = count($vetorOA);
 		for($c=0;$c<$cont;$c++){
-			array_push($vet,$v[$c]['res']);
+			array_push($vetorRes,$vetorOA[$c]['res']);
 		}
 
-		//Ordenar:
-			//1 a 2
-		$matriz = $listaOA->ordenate(1,2);
+		/*Agora vamos aproveitar o método ordenate da classe Lista:
+			1: Criaremos um objeto do tipo lista e iniciá-lo-emos com o vetor $vetorRes.
+			2: Ordenaremos de +1 a +2.
+			3: Ordenaremos de 0 a -4
+			4: Ordenaremos de +3 a +4
+		*/
 
+			// (1)
+		$list = new Lista($vetorRes);
+
+			// (2)
+		//$posicoes é um array com as posições do vetor $vetorRes ordenadas de forma que a recomendação fique correta.
+		$posicoes=array();
+
+		$matriz = $list->ordenate(1,2);
 		$cont = count($matriz[1]);
-		for($i=0;$i<$cont;$i++){
-			$oa3[$i] = $this->oa[ $matriz[1][$i] ];
-		}
-			//0 a -4
-		$matriz=null;
-		$matriz = $listaOA->ordenate(0,-4);
-
-		$cont = count($matriz[1]);
-		for($i=0;$i<$cont;$i++){
-			array_push($oa3, $this->oa[ $matriz[1][$i] ]);
-		}
-
-			//3 a 4
-		$matriz=null;
-		$matriz = $listaOA->ordenate(3,4);
-
-		$cont = count($matriz[1]);
-		for($i=0;$i<$cont;$i++){
-			array_push($oa3, $this->oa[ $matriz[1][$i] ]);
-		}
-
-		$this->oa=null;
-		$this->oa=array();
-		$cont = count($oa3);
 		for($i=0;$i<$cont;$i++)
-			array_push($this->oa, $oa3[$i]);
+		    array_push($posicoes,$matriz[1][$i]);
+		
+			// (3)
+		unset($matriz);
+
+		$matriz = $list->ordenate(0,-4);
+		$cont = count($matriz[1]);
+		for($i=0;$i<$cont;$i++)
+		    array_push($posicoes,$matriz[1][$i]);
+
+			// (4)
+		unset($matriz);
+
+		$matriz = $list->ordenate(3,4);
+		$cont = count($matriz[1]);
+		for($i=0;$i<$cont;$i++)
+		    array_push($posicoes,$matriz[1][$i]);
+
+		//Agora, no vetor $posicoes devemos ter as posições de $vetorRes (consequentemente de $vetorOA e do vetor de $this->oa)
+		//ordenadas na forma que deveriam estar.
+
+		$vetorOA_temp=array();
+
+		$cont= count($posicoes);
+		for($i=0;$i<$cont;$i++)
+			array_push($vetorOA_temp,$vetorOA[ $posicoes[ $i ] ]);
+
+		unset($this->oa);
+		$this->oa = new Lista();
+		$cont = count($vetorOA_temp);
+
+		for($i=0;$i<$cont;$i++){
+			$this->oa->addMember( $vetorOA_temp[$i] );
+		}
 
 	}
 

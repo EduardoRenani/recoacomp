@@ -646,11 +646,30 @@ class OA{
             return ($retorno);
         }
     }
+
+    public function getArrayOfId_OA(){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT idcesta FROM cesta");
+            $stmt->execute();
+            $retorno = $stmt->fetchAll();
+            return ($retorno);
+        }
+    }
+
+    public function getArrayOfName_OA(){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT nome FROM cesta");
+            $stmt->execute();
+            $retorno = $stmt->fetchAll();
+            return ($retorno);
+        }
+    }
+
 } // Fecha CLass
 } // Fecha IF
 
 //Case de teste
-$OA = new OA();
+/**$OA = new OA();
 $OA->criaOA(time(), 'status', 'versao', 'entidade', 'contribuicao', 'tempo_video',
     'tamanho',
     'tipoTecnologia',
@@ -672,3 +691,4 @@ $OA->criaOA(time(), 'status', 'versao', 'entidade', 'contribuicao', 'tempo_video
     'palavrachave',
     'idioma');
 ?>
+**/

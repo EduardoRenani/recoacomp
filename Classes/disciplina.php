@@ -70,11 +70,21 @@ class Disciplina {
     {
         if (isset($_POST["registrar_nova_disciplina"])) {
             //echo $_POST['arrayCompetencias'];
-            // Função para cadastro de nova disciplina
-            $this->criaDisc($_POST['nomeCurso'],$_POST['nomeDisciplina'],$_POST['descricao'], $_POST['user_id'], $_POST['senha'], $_POST['arrayCompetencias']);
+            // Função para primeira parte do cadastro de disciplina
+            //print_r($_POST);
+            //echo 'aqui';
+            //include("views/view_cadastro_disciplina_OA.php");
+            $this->criaDisc(
+            $_POST['nomeCurso'],
+            $_POST['nomeDisciplina'],
+            $_POST['descricao'], 
+            $_POST['user_id'], 
+            $_POST['senha'], 
+            $_POST['arrayCompetencias']);
         }
         else{
-             return null;
+            // Se não estiver cadastrando uma nova disciplina apenas é um constructor que retorna NULL
+            return null;
         }
     }
     /**
@@ -176,6 +186,8 @@ class Disciplina {
         }
     }
 
+
+    // Função que pega retorna o ID da disciplina
     public function getID_byBD($nomeDisciplina = null,$nomeCurso = null){
         if($nomeDisciplina == null || $nomeCurso == null){
             $nomeDisciplina = $this->nomeDisciplina;

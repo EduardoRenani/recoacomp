@@ -1,3 +1,4 @@
+
 <?php
 /**
  * Created by PhpStorm.
@@ -7,7 +8,7 @@
  */
 
 require_once("classes/lista.php");
-require_once("classes/recomendacao.php");
+//require_once("classes/recomendacao.php");
 require_once("classes/Recomendacao/comp.php");
 require_once("classes/Recomendacao/recomendacao.php");
 //require_once("config/config.cfg");
@@ -61,9 +62,16 @@ for($i=0;$i<$cont;$i++){
 //$a->addOA(2);
 //$a->addOA(6);
 //$a->writeOAs();
-$id = 69;
-echo "<br/><center><font size='6'>Teste de Recomendação para a disciplina de ID: ".$id."</font></center><br/><br/>";
-echo "<hr/>";
-$c= new Recomendacao2($id);
+
+//session_start();
+//if ($_SESSION){
+	$id = 69;
+	echo "<br/><center><font size='6'>Teste de Recomendacao para a disciplina de ID: ".$id."</font></center><br/><br/>";
+	echo "<hr/>";
+
+	//$vet é o vetor de ids de competências que devem ser exibidas. Se null, significa todas.
+	$vet = array(1,2);
+	$vet = null;
+	$c= new Recomendacao($id,$vet);
 
 ?>

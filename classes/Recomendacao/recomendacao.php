@@ -1,3 +1,4 @@
+
 <?php
 /**
  * User: Cláuser
@@ -6,17 +7,20 @@
  */
 require_once("config/config.cfg");
 require_once("classes/lista.php");
-class Recomendacao2 {
+class Recomendacao {
 
 	private $idDisc;
 	private $competencia;
 	private $user;
 	private $mysqli;
 
-	function __construct($disc){
+    private $filtraComp;
 
-        $this->idDisc=$disc;
+	function __construct($disc, $filtraComp = null){
+
+        $this->idDisc = $disc;
         $this->mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        $this->filtraComp = $filtraComp;
 
 		session_start();
 		$this->user = $_SESSION['user_id'];
@@ -62,9 +66,18 @@ class Recomendacao2 {
         $this->competencia = array();
         $size = count($listaComp);
         for($c=0;$c<$size;$c++){
-            $comp = new Comp($listaComp[$c],$this->user,$this->idDisc);
-            array_push($this->competencia, $comp);
-            unset($comp);
+
+            if( is_array($this->filtraComp) ){
+                if($this->deveMostrar( $listaComp[$c] ) ){
+                    $comp = new Comp($listaComp[$c],$this->user,$this->idDisc);
+                    array_push($this->competencia, $comp);
+                    unset($comp);
+                }
+            }else{
+                $comp = new Comp($listaComp[$c],$this->user,$this->idDisc);
+                array_push($this->competencia, $comp);
+                unset($comp);           
+            }
         }
         unset ($size);
         unset ($listaComp);
@@ -111,6 +124,19 @@ class Recomendacao2 {
             $this->recomendaCompAtual($compAtual);
 
         }
+    }
+
+    private function deveMostrar($id){
+
+        $cont = count($this->filtraComp);
+
+        for($i=0;$i<$cont;$i++){
+            if ( $this->filtraComp[$i] == $id)
+                return true;
+        }
+
+        return false;
+
     }
 
 

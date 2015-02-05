@@ -21,7 +21,7 @@ require_once('libraries/PHPMailer.php');
 require_once('classes/Login.php');
 
 // load the disciplina class
-require_once('classes/Disciplina.php');
+require_once('classes/disciplina.php');
 require_once('classes/Competencia.php');
 // create a login object. when this object is created, it will do all login/logout stuff automatically
 // so this single line handles the entire login process.
