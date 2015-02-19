@@ -16,7 +16,7 @@ class Comp{
 	private $idComp;
 
 	/*Essas variáveis serão mantidas em caso de, no futuro, haver modificações na recomendação e precisar de conhecimento,
-	habilidade e atitude separadas. Não me agradeça, querido futuro bolsista. Apenas dê 3 pulinhos e reze um pai nosso e
+	habilidade e atitude separadas. Não me agradeça, querido futuro bolsista. Apenas dê 3 pulinhos, reze um pai nosso e
 	32 ave marias.
 	Cláuser, 04/02/15*/
 	private $chaUser;

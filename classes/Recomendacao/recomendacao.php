@@ -16,6 +16,8 @@ class Recomendacao {
 
     private $filtraComp;
 
+	//disc é o ID da disciplina.
+	//filtraComp é o array de IDs das competências que devem receber recomendação. Em caso de null, recomenda para todas as competências da disciplina.
 	function __construct($disc, $filtraComp = null){
 
         $this->idDisc = $disc;
@@ -24,8 +26,8 @@ class Recomendacao {
 
 		session_start();
 		$this->user = $_SESSION['user_id'];
-		echo("ID Usuario: ".$_SESSION['user_id']."<br/>");
-        echo("Nome do Usuario: ".$_SESSION['user_name']);
+		//echo("ID Usuario: ".$_SESSION['user_id']."<br/>");
+        //echo("Nome do Usuario: ".$_SESSION['user_name']);
 
 
         $this->associarCompetencias();
@@ -50,13 +52,9 @@ class Recomendacao {
     }while($result !=NULL);
 
     if($dados != NULL){
-        //$cont = count($dados);
-        //for($i=0;$i<$cont;$i++){
-        //    array_push($id_competencias_disciplina,(int)$dados[$i]);
-        //}
         return $dados;
     }
-    //var_dump($this->id_competencias_disciplina);
+    
     return true;
 	}
 
@@ -117,7 +115,6 @@ class Recomendacao {
 
         $compAtual=0;
         $contComp=count($this->competencia);
-        //var_dump($this->competencia);
 
         for($compAtual;$compAtual<$contComp;$compAtual++){
 
@@ -125,7 +122,7 @@ class Recomendacao {
 
         }
     }
-
+	//Função que verifica se o objeto deve ser mostrado na recomendação.
     private function deveMostrar($id){
 
         $cont = count($this->filtraComp);
