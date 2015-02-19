@@ -34,31 +34,28 @@
                     <li>
                         <a href="profile_show.php">Meu Perfil</a>
                     </li>
-                     <li>
-                        <a href="#">Disciplinas</a>
-                    </li>
     				<li>
-   						<?php 
-						if ($_SESSION['acesso'] == 1)
-							include('_options_aluno.php'); 
-							//echo WORDING_USER_STUDENT . "<br />";
-						else if ($_SESSION['acesso'] == 2){
-							?>
-							<li>
-							<a href="cadastro_disciplina.php"><?php echo WORDING_REGISTER_NOVA_DISCIPLINA; ?></a><br>
-							</li>
-							<li>
-							<a href="cadastro_OA.php"><?php echo WORDING_REGISTER_NOVO_OA; ?></a><br>
-							</li>
-							<li>
-							<a href="cadastro_competencia.php"><?php echo WORDING_REGISTER_NOVA_COMPETENCIA; ?></a><br>
-							</li>
-							<?php
-							//include('_options_professor.php'); 
-							//echo WORDING_USER_PROFESSOR . "<br/>";
-						}else if($_SESSION['acesso'] == 3)
-							echo WORDING_USER_ADMIN . "<br/>";
+					<?php 
+					   if ($_SESSION['acesso'] == 1)
+					       include('_options_aluno.php'); 
+						      //echo WORDING_USER_STUDENT . "<br />";
+					   else if ($_SESSION['acesso'] == 2){
 						?>
+						<li>
+						<a href="cadastro_disciplina.php"><?php echo WORDING_REGISTER_NOVA_DISCIPLINA; ?></a><br>
+						</li>
+						<li>
+						<a href="cadastro_OA.php"><?php echo WORDING_REGISTER_NOVO_OA; ?></a><br>
+						</li>
+						<li>
+						<a href="cadastro_competencia.php"><?php echo WORDING_REGISTER_NOVA_COMPETENCIA; ?></a><br>
+						</li>
+						<?php
+						//include('_options_professor.php'); 
+						//echo WORDING_USER_PROFESSOR . "<br/>";
+					}else if($_SESSION['acesso'] == 3)
+						echo WORDING_USER_ADMIN . "<br/>";
+					?>
                     </li>
                     <li>
                         <a href="index.php?logout"><?php echo WORDING_LOGOUT; ?></a>

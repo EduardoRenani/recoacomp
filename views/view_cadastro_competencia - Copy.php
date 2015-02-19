@@ -5,7 +5,8 @@
  * Date: 11/09/14
  * Time: 14:32
  */
-include('_header.php'); ?>
+include('_header.php'); 
+require_once("classes/OA.php");?>
 
 <head>
 
@@ -27,6 +28,7 @@ include('_header.php'); ?>
 <!-- formulario para cadastro de disciplinas -->
 <!-- edit form for username / this form uses HTML5 attributes, like "required" and type="email" -->
 <!-- Se estiver na segunda fase da criação de competências, deve-se associar pelo menos UM (1) objeto -->
+<?php if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["registrar_nova_competencia"])){ ?>
 <form method="post" action="" name="registrar_nova_competencia">
     <h2> <?php echo WORDING_CREATE_COMPETENCA; ?></h2>
     <!-- $_POST['conhecimentoDescricao']-->
@@ -47,30 +49,53 @@ include('_header.php'); ?>
     <textarea name="conhecimentoDescricao" ROWS="5" COLS="40"></textarea>
     <br>
 
-    <input type="hidden" id="arrayOAS" name="arrayOAS" value="" />
+    <input type="submit" name="registrar_nova_competencia" value="<?php echo WORDING_CREATE_COMPETENCA; ?>" />
+    <input type="reset" name="limpar" value="<?php echo WORDING_CLEAN; ?>" />
 
 
+</form><hr/>
+<?php }else{
+    /** Segunda fase do cadastro de competência
+        Associação dos objetos que já existem no banco de dados e/ou
+        criação de um novo objeto.
+
+        -> Se novo objeto: mostrar cadastro dos objetos
+        -> Se apenas associar: terminar o cadastro da competência
+    **/      
+    ?>
+    <h2> <?php echo WORDING_ASSOCIATE_OA; ?></h2>
+    <div class="tab-pane" id="tab2">
+    <form method="post" action="" name="registrar_nova_competencia_associa">
+        <input type="hidden" id="user_id" name="user_id" value="<?php echo $_SESSION['user_id']; ?>"/>
+        <input type="hidden" id="nome" name="nome" value="<?php echo $_POST['nome']; ?>"/>
+        <input type="hidden" id="descricaoNome" name="descricaoNome" value="<?php echo $_POST['descricaoNome']; ?>" />
+        <input type="hidden" id="atitudeDescricao" name="atitudeDescricao" value="<?php echo $_POST['atitudeDescricao']; ?>" />
+        <input type="hidden" id="habilidadeDescricao" name="habilidadeDescricao" value="<?php echo $_POST['habilidadeDescricao']; ?>" />
+        <input type="hidden" id="conhecimentoDescricao" name="conhecimentoDescricao" value="<?php echo $_POST['conhecimentoDescricao']; ?>" />
+        <input type="hidden" id="arrayOAS" name="arrayOAS" value="" />
         <ul id="tabela1">
             <?php
             $OA = new OA();
             $idOA = $OA->getArrayOfId_OA();
             $nomeOA = $OA->getArrayOfName_OA(); 
             $contador = count($nomeOA);
-            // $idOA[$i] = posição no vetor
-            // ["idcesta"] = parametro do banco de dados
             for($i=0;$i<$contador;$i++){ ?>
-                <li id="<?php echo "".($idOA[$i]["idcesta"]); ?>" class="ui-state-default"><?php echo "".($nomeOA[$i]["nome"]); ?></li>
+                <li id="<?php echo "".($idOA[$i]["idOA"]); ?>" class="ui-state-highlight"><?php echo "".($nomeOA[$i]["nome"]); ?></li>
             <?php } ?>
         </ul>
         <ul id="tabela2">
         <!-- Os objetos que serão associados estarão nessa tabela -->
         </ul>
-
-    <input type="submit" name="registrar_nova_competencia" value="<?php echo WORDING_CREATE_COMPETENCA; ?>" />
+    <input type="submit" name="registrar_nova_competencia_associa" value="<?php echo WORDING_CREATE_COMPETENCA; ?>" />
     <input type="reset" name="limpar" value="<?php echo WORDING_CLEAN; ?>" />
+    </form>
+            <button>Criar novo Objeto</button>
+    </div>
 
 
-</form>
+<?php } ?>
 
+
+<!-- backlink -->
 <a href="index.php"><?php echo WORDING_BACK_TO_LOGIN; ?></a>
 <?php include('_footer.php'); ?>

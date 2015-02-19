@@ -13,22 +13,7 @@ include('_header.php');
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
 
     <style>
-        #tabela1, #tabela2 {
-            border: 1px solid #eee;
-            width: 142px;
-            min-height: 20px;
-            list-style-type: none;
-            margin: 0;
-            padding: 5px 0 0 0;
-            float: left;
-            margin-right: 10px;
-        }
-        #tabela1 li, #tabela2 li {
-            margin: 0 5px 5px 5px;
-            padding: 5px;
-            font-size: 1.2em;
-            width: 120px;
-        }
+
     body { font-size: 62.5%; }
     label, input { display:block; }
     input.text { margin-bottom:12px; width:95%; padding: .4em; }
@@ -42,11 +27,6 @@ include('_header.php');
     </style>
     <!-- FUNÇÃO QUE FAZ O SORTABLE E ENVIA OS ID'S DAS COMPETÊNCIAS-->
     <script>
-
-
-
-
-
     $(function() {
         $('#tabela1, #tabela2').sortable({
             connectWith: "#tabela1, #tabela2",
@@ -57,20 +37,6 @@ include('_header.php');
             });
         });
 
-    // Puipicklist do Primefaces UI (http://www.primefaces.org/primeui/demo.html)
-    $(function() {
-        $('#basic').puipicklist({transfer: function(event, ui) {  
-            var  pl = document.getElementById("target");
-            for (i = 0; i < pl.options.length; i++) {
-               if (i % 2 == 0) {
-                  pl.options[i].selected = true; 
-                }
-                //alert(pl[i].value);
-                var arrayCompetencias = $("#target").puipicklist('toArray').toString();
-                document.getElementById('arrayCompetencias').value = arrayCompetencias;
-                document.getElementById('arrayCompetencias').value = pl[i].value;
-            }}}); // End Basic 
-    });
 
     // Bootstrap wizard, mais info em http://vadimg.com/twitter-bootstrap-wizard-example/
     $(function() {
@@ -83,19 +49,6 @@ include('_header.php');
                 }
             }
         });
-
-
-
-
-
-   var dialog, form,
-    // From http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#e-mail-state-%28type=email%29
-    emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
-    name = $( "#name" ),
-    email = $( "#email" ),
-    password = $( "#password" ),
-    allFields = $( [] ).add( name ).add( email ).add( password ),
-    tips = $( ".validateTips" );
 
     // Mensagens
     var senha = "<?php echo WORDING_FILL_PASSWORD; ?>";
@@ -257,7 +210,8 @@ include('_header.php');
                     <ul id="tabela2">
                     <!--<li class="ui-state-highlight">Item 1 selecionado</li>-->
                     </ul>
-                    <button>Criar nova competência</button>
+                     <a href="cadastro_OA.php" target="_blank"><?=WORDING_REGISTER_NOVO_OA?></a>
+
                 </div>
                 <ul class="pager wizard">
                     <li class="previous"><a href="javascript:;">Anterior</a></li>
@@ -267,13 +221,6 @@ include('_header.php');
 
             </div>  
         </div>
-
-
-
-
-
-
-
         <br /><br />
 
         <input type="submit" name="registrar_nova_disciplina" value="<?php echo WORDING_CREATE_DISCIPLINA; ?>" />

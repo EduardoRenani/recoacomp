@@ -2,26 +2,10 @@
 Para o seletor de competências do cadastro de disciplinas
 */
 
-#sortable1, #sortable2 {
-    border: 1px solid #eee;
-    width: 142px;
-    min-height: 20px;
-    list-style-type: none;
-    margin: 0;
-    padding: 5px 0 0 0;
-    float: left;
-    margin-right: 10px;
-}
-#sortable1 li, #sortable2 li {
-    margin: 0 5px 5px 5px;
-    padding: 5px;
-    font-size: 1.2em;
-    width: 120px;
-}
 #tabela1, #tabela2 {
     border: 1px solid #eee;
-    width: 142px;
-    min-height: 20px;
+    width: 500px;
+    min-height: 500px;
     list-style-type: none;
     margin: 0;
     padding: 5px 0 0 0;
@@ -32,7 +16,7 @@ Para o seletor de competências do cadastro de disciplinas
     margin: 0 5px 5px 5px;
     padding: 5px;
     font-size: 1.2em;
-    width: 120px;
+    width: 500px;
 }
 
 
