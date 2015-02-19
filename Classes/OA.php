@@ -664,12 +664,12 @@ class OA{
             return ($retorno);
         }
     }
-
+    
 } // Fecha CLass
 } // Fecha IF
 
 //Case de teste
-/**$OA = new OA();
+$OA = new OA();
 $OA->criaOA(time(), 'status', 'versao', 'entidade', 'contribuicao', 'tempo_video',
     'tamanho',
     'tipoTecnologia',
@@ -691,4 +691,3 @@ $OA->criaOA(time(), 'status', 'versao', 'entidade', 'contribuicao', 'tempo_video
     'palavrachave',
     'idioma');
 ?>
-**/

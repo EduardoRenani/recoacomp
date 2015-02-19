@@ -56,8 +56,14 @@ class Competencia{
      */
     private $conhecimentoDescricao = "";
     /**
+     * @var string $arrayOAS array com os OAS associados ao objeto
+     */
+    private $arrayOAS = "";
+    /**
      * @var boolean $user_is_logged_in Status para verificar se o usuário está logado
      */
+    private $ultimo_ID = "";
+    private $arrayOASBD = "";
     private $user_is_logged_in = false;
     /**
      * the function "__construct()" automatically starts whenever an object of this class is created,
@@ -65,25 +71,20 @@ class Competencia{
      */
     public function __construct($donothing = null) // Essa construct tá certa, seguir modelo
     {
-        if (isset($_POST["registrar_nova_competencia"]) && $donothing == null) {
+        if (isset($_POST["registrar_nova_competencia"])) {
             // Função para cadastro de nova competência
-            /**$this->criaCompetencia(
+            echo $_POST['arrayOAS'];
+            $this->criaCompetencia(
                 $_POST['nome'],
                 $_POST['descricaoNome'],
                 $_POST['atitudeDescricao'], 
                 $_POST['habilidadeDescricao'], 
                 $_POST['conhecimentoDescricao'], 
-                $_POST['user_id']);
-            **/
-            //echo $_POST['nome'] . ' Cadastro OK!';
-            //$this->idCompetencia = $this->getID_byBD();
-        }
-        // Segunda fase do cadastro de competências
-        elseif (isset($_POST["registrar_nova_competencia_associa_OA"])) {
-        //    # code...
-        }
+                $_POST['user_id'],
+                $_POST['arrayOAS']
+            );
         // Se não estiver cadastrando nova competência, no construct ele retorna valores vazios.
-        else{
+        }else{
             $this->idCompetencia = $this->nome = $this->descricaoNome = $this->atitudeDescricao = $this->habilidadeDescricao = $this->conhecimentoDescricao = $this->idProfessor = null;
         }
     }
@@ -127,13 +128,14 @@ class Competencia{
      * Verifica todos os erros possíveis e cria a competência se ela não existe
      */
 
-    public function criaCompetencia($nome, $descricaoNome, $atitudeDescricao, $habilidadeDescricao, $conhecimentoDescricao, $idProfessor){
+    public function criaCompetencia($nome, $descricaoNome, $atitudeDescricao, $habilidadeDescricao, $conhecimentoDescricao, $idProfessor, $arrayOAS){
         // Remove espaços em branco em excesso das strings
         $nome = trim($nome);
         $descricaoNome = trim($descricaoNome);
         $atitudeDescricao = trim($atitudeDescricao);
         $habilidadeDescricao = trim($habilidadeDescricao);
         $conhecimentoDescricao = trim($conhecimentoDescricao);
+        $arrayOAS = explode(',',$arrayOAS);
 
         // Atribuição das variáveis ao objeto
         $this->nome = $nome;
@@ -142,6 +144,7 @@ class Competencia{
         $this->habilidadeDescricao = $habilidadeDescricao;
         $this->conhecimentoDescricao = $conhecimentoDescricao;
         $this->idProfessor = $idProfessor;
+        $this->arrayOAS = $arrayOAS;
 
         //Validação de dados
         if (empty($nome)) {
@@ -154,6 +157,8 @@ class Competencia{
             $this->errors[] = MESSAGE_DESCRICAO_HABILIDADE_EMPTY;
         } elseif (empty($conhecimentoDescricao)){
             $this->errors[] = MESSAGE_DESCRICAO_CONHECIMENTO_EMPTY;
+        } elseif (empty($arrayOAS)){
+            $this->errors[] = MESSAGE_OAS_EMPTY;
         } elseif (strlen($nome) < 2) {
             $this->errors[] = MESSAGE_NAME_TOO_SHORT;
             //Fim de validações de dados de entrada
@@ -179,7 +184,24 @@ class Competencia{
                 $stmt->bindParam(':conhecimentoDescricao',$conhecimentoDescricao, PDO::PARAM_STR);
                 $stmt->bindParam(':idProfessor',$idProfessor, PDO::PARAM_INT);
                 $stmt->execute();
-                $this->messages[] = WORDING_COMPETENCIA. $nome .WORDING_CREATED_SUCESSFULLY;
+                $ultimo_ID = $this->db_connection->lastInsertId();
+                $this->$ultimo_ID = $ultimo_ID;
+                echo $ultimo_ID;
+                    // Cadastro na tabela Competencia_OA
+                    //Associação com o banco de dados
+                $count = count($arrayOAS);
+                echo $count;
+                for ($i = 0; $i < $count; $i++) {
+                    $arrayOASBD = $arrayOAS[$i];
+                    echo "Aqui " .$arrayOAS[$i];
+                    $this->$arrayOASBD = $arrayOASBD;
+                    $stmt = $this->db_connection->prepare("INSERT INTO competencia_oa(id_competencia, id_OA) VALUES (:ultimo_ID, :arrayOASBD)");
+                    $stmt->bindParam(':ultimo_ID',$ultimo_ID, PDO::PARAM_INT);
+                    $stmt->bindParam(':arrayOASBD',$arrayOASBD, PDO::PARAM_INT);
+                    $stmt->execute();
+                }
+
+                $this->messages[] = WORDING_COMPETENCIA. $nome . WORDING_CREATED_SUCESSFULLY;
             }
         }
     }

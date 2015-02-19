@@ -21,6 +21,9 @@ require_once('classes/Login.php');
 // Carrega classe de competências
 require_once('classes/Competencia.php');
 
+// Carrega classe dos objetos para serem associados
+require_once("classes/OA.php");
+
 $login = new Login();
 $competencia = new Competencia();
 // ... ask if we are logged in here:
