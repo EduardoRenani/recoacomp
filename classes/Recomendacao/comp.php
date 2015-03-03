@@ -15,6 +15,8 @@ class Comp{
 
 	private $idComp;
 
+	private $nomeComp;
+
 	/*Essas variáveis serão mantidas em caso de, no futuro, haver modificações na recomendação e precisar de conhecimento,
 	habilidade e atitude separadas. Não me agradeça, querido futuro bolsista. Apenas dê 3 pulinhos, reze um pai nosso e
 	32 ave marias.
@@ -31,6 +33,7 @@ class Comp{
 		$this->idComp = $idComp;
 		$this->getCHAuser($user);
 		$this->getCHAdisc($disc);
+		$this->setNome();
 	}
 
 	//Verifica se $num é numérico maior que zero.
@@ -48,6 +51,7 @@ class Comp{
 			$OA = array();
 			$OA['ID'] = $idOA;			
 
+			
 			//Pegar CHA
 			$sql="SELECT `conhecimento`, `habilidade`, `atitude` FROM `competencia_oa` WHERE `id_competencia`=$this->idComp AND `id_OA`=$idOA";
             $query = $this->mysqli->query($sql);
@@ -63,7 +67,7 @@ class Comp{
                     //var_dump($OA);
                 }
             }while($result !=NULL);
-            //CHA ^
+            //CHA ^ 
 
 			$this->oa->addMember($OA);
 			/*
@@ -78,9 +82,9 @@ class Comp{
 		}
 	}
 
-	public function writeOAs(){
+	public function old_writeOAs(){
 
-		echo "<hr/>";
+		//echo "<hr/>";
 
 
 		echo ("ID da Competencia: <b>".$this->idComp."</b><br/>");
@@ -92,7 +96,10 @@ class Comp{
 		$cont = $this->oa->getSize();
 		$v=array();
 		$v=$this->oa->getVector();
+		
 		for($c=0;$c<$cont;$c++){
+
+
 			echo"<ul><li>";
 
 			if($v[$c]['res'] == 1 || $v[$c]['res'] == 2)
@@ -114,7 +121,71 @@ class Comp{
 		}
 	}
 
+	public function writeOAs(){
+
+		$cont = $this->oa->getSize();
+		$v=array();
+		$v=$this->oa->getVector();
+
+		echo "<div class='disciplinas-content'>";
+
+			echo "<ul class='disciplinas-list'>";
+
+			echo "Competência: ".$this->nomeComp;
+
+			for($c=0;$c<$cont;$c++){
+
+				//var_dump($v);
+
+				echo"<li class='disciplinas-item'>".
+	                    "<div class='disciplina-item-content'>";
+
+	                    echo "<div class='recomendacao_left'>";
+
+	                    		echo "<h3>".$v[$c]['nome']."</h3>";
+
+	                    		echo "<h6>".$v[$c]['descricao']."</h6><br/>";
+
+	                    		echo "Acesse: <a href='".$v[$c]['url']."'>LINK</a><b>";
+
+                		echo "</div>";
+
+                		echo "<div class='recomendacao_right'>";
+
+	                    	//Deve exibir verde!
+							if($v[$c]['res'] == 1 || $v[$c]['res'] == 2){
+
+								echo "<font color='green'>verde</font>";
+
+							//Deve exibir amarelo
+							}else if($v[$c]['res'] < 1 && $v[$c]['res'] >=-4){
+
+								echo "<font color='yellow'>amarelo</font>";
+
+							//Deve exibir vermelho!
+							}else{
+
+								echo "<font color='red'>vermelho</font>";
+
+							}
+
+						echo "</div>";
+
+
+
+	                	echo "</b></div>".
+	            	"</li>";
+
+	    	}
+
+	    	echo "</ul>".
+    	"</div>";
+
+	}
+
 	private function getCHAuser($user){
+
+			
             $sql="SELECT `conhecimento`,`habilidade`, `atitude` FROM `usuario_competencias` WHERE `usuario_idusuario`=$user AND `competencia_idcompetencia`=$this->idComp";
             $query = $this->mysqli->query($sql);
             do{
@@ -128,6 +199,7 @@ class Comp{
             }while($result !=NULL);
 
             $this->chaUserS = $this->chaUser['C'] + $this->chaUser['H'] + $this->chaUser['A'];
+
 	}
 
 	private function getCHAdisc($disc){
@@ -144,6 +216,7 @@ class Comp{
         }while($dados !=NULL);
 
         $this->chaDiscS = $this->chaDisc['C'] + $this->chaDisc['H'] + $this->chaDisc['A'];
+
 	}
 
 	public function getID(){return $this->idComp;}
@@ -213,6 +286,78 @@ class Comp{
 			$this->oa->addMember( $vetorOA_temp[$i] );
 		}
 
+	}
+
+	public function nomearOAs(){
+
+		$cont = $this->oa->getSize();
+		$v=array();
+		$v=$this->oa->getVector();
+
+		$result=array();
+
+		for($c=0;$c<$cont;$c++){
+
+	        /* Create a prepared statement */
+	        if($stmt = $this->mysqli -> prepare("SELECT `nome`, `descricao`, `url` FROM  `cesta` WHERE `idcesta` = ?")) {
+
+	            /* Bind parameters
+	            s - string, b - blob, i - int, etc */
+	            $stmt -> bind_param("i", $v[$c]['ID'] ); //ID do objeto atual.
+
+	            /* Execute it */
+	            $stmt -> execute();
+
+	            /* Bind results */
+	            $stmt -> bind_result($v[$c]['nome'],$v[$c]['descricao'],$v[$c]['url']);
+
+	            /* Fetch the value */
+	            while ($stmt -> fetch() ){
+	                
+	            }
+
+	            /* Close statement */
+	            $stmt -> close();
+	        }
+
+	    }
+
+        /* Close connection */
+        $this->mysqli -> close();
+
+        unset($this->oa);
+        $this->oa = new lista($v);
+
+	}
+
+	private function setNome(){
+
+		/* Create a prepared statement */
+        if($stmt = $this->mysqli -> prepare("SELECT `nome` FROM `competencia` WHERE `idcompetencia`=?")) {
+
+            /* Bind parameters
+            s - string, b - blob, i - int, etc */
+            $stmt -> bind_param("i", $this->idComp); //ID do objeto atual.
+
+            /* Execute it */
+            $stmt -> execute();
+
+            /* Bind results */
+            $stmt -> bind_result($this->nomeComp);
+
+            /* Fetch the value */
+            while ($stmt -> fetch() ){
+                
+            }
+
+            /* Close statement */
+            $stmt -> close();
+        }
+
+	}
+
+	public function getNome(){
+		return $this->nomeComp;
 	}
 
 }

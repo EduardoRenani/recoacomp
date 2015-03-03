@@ -65,7 +65,7 @@ for($i=0;$i<$cont;$i++){
 
 //session_start();
 //if ($_SESSION){
-	$id = 69;
+	$id = 50;
 	echo "<br/><center><font size='6'>Teste de Recomendacao para a disciplina de ID: ".$id."</font></center><br/><br/>";
 	echo "<hr/>";
 

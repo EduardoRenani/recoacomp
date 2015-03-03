@@ -274,3 +274,15 @@ p.copyright {
     margin-left:5%;
     margin-right:5%;
 }
+
+/*RECOMENDAÇÃO------------------------------------------------------------------------*/
+
+.recomendacao_left{
+    float:left;
+    width: 100px;
+}
+
+.recomendacao_right{
+    float:right;
+    width: 40px;
+}

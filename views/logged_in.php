@@ -19,51 +19,7 @@
 
 </head>
 
-
-
-<div class="sidebar"> 
-	<div class="top-sidebar">Bem Vindo, <?php echo $_SESSION['user_name']?></div>
-        <div class="sidebar-content">           
-                <ul class="sidebar-menu">
-                    <li style="z-index:1000;" id="home">
-                        <a href="#" id="active">Home</a>
-                            <ul > <!--nomes de cadeiras servem só de exemplo do funcionamento-->
-
-                            </ul>
-                    </li>
-                    <li>
-                        <a href="profile_show.php">Meu Perfil</a>
-                    </li>
-    				<li>
-					<?php 
-					   if ($_SESSION['acesso'] == 1)
-					       include('_options_aluno.php'); 
-						      //echo WORDING_USER_STUDENT . "<br />";
-					   else if ($_SESSION['acesso'] == 2){
-						?>
-						<li>
-						<a href="cadastro_disciplina.php"><?php echo WORDING_REGISTER_NOVA_DISCIPLINA; ?></a><br>
-						</li>
-						<li>
-						<a href="cadastro_OA.php"><?php echo WORDING_REGISTER_NOVO_OA; ?></a><br>
-						</li>
-						<li>
-						<a href="cadastro_competencia.php"><?php echo WORDING_REGISTER_NOVA_COMPETENCIA; ?></a><br>
-						</li>
-						<?php
-						//include('_options_professor.php'); 
-						//echo WORDING_USER_PROFESSOR . "<br/>";
-					}else if($_SESSION['acesso'] == 3)
-						echo WORDING_USER_ADMIN . "<br/>";
-					?>
-                    </li>
-                    <li>
-                        <a href="index.php?logout"><?php echo WORDING_LOGOUT; ?></a>
-                    </li>
-                </ul>
-    	</div>  
-</div>
-
+<?php require_once("sidebar.php"); ?>
 
 <!-- ============== DISCIPLINAS ============== -->
 
@@ -71,13 +27,132 @@
 <div class="top-disciplinas">Minhas Disciplinas</div>
         <div class="disciplinas-content">           
             <ul class="disciplinas-list">
+
+            <?php
+
+                //PASSO 1: PEGAR A LISTA DE DISCIPLINAS DO USUÁRIO
+
+                $listaDisc = array();
+                        /* Create a new mysqli object with database connection parameters */
+                $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+                if(mysqli_connect_errno()) {
+                    echo "Connection Failed: " . mysqli_connect_errno();
+                    exit();
+                }
+
+                /* Create a prepared statement */
+                if($stmt = $mysqli -> prepare("SELECT `disciplina_iddisciplina`FROM `usuario_disciplina` WHERE `usuario_idusuario`=?")) {
+
+                    /* Bind parameters
+                    s - string, b - blob, i - int, etc */
+                    $stmt -> bind_param("i", $_SESSION['user_id']);
+
+                    /* Execute it */
+                    $stmt -> execute();
+
+                    /* Bind results */
+                    $stmt -> bind_result($result);
+
+                    /* Fetch the value */
+                    while ($stmt -> fetch() ){
+                        array_push($listaDisc, $result);
+                    }
+
+                    /* Close statement */
+                    $stmt -> close();
+                }
+
+                /* Close connection */
+                //$mysqli -> close();   <-- Fazer depois.
+
+                //PASSO 2: TRATAR CADA DISCIPLINA 1 A 1.
+                $cont = count($listaDisc);
+                
+                for($i=0;$i<$cont;$i++){
+                    
+                    //PASSO 3: PEGAR O TITULO DA DISCIPLINA
+                    if($stmt = $mysqli -> prepare("SELECT `nomeDisciplina`, `nomeCurso`, `usuarioProfessorID`, `descricao` FROM `disciplina` WHERE `iddisciplina`=?")) {
+
+                        $disc=array();
+                        //$result=array();
+
+                        /* Bind parameters
+                        s - string, b - blob, i - int, etc */
+                        $stmt -> bind_param("i", $listaDisc[ $i ]);
+
+                        /* Execute it */
+                        $stmt -> execute();
+
+                        /* Bind results */
+
+                        $stmt -> bind_result($disc['nomeDisc'],$disc['nomeCurso'],$disc['professor_id'], $disc['descricao']);
+
+                        /* Fetch the value */
+
+                        while( $stmt -> fetch() ){
+                            //array_push($disc,$result);
+                            /*$disc['nomeDisc'] = $result['nomeDisc'];
+                            $disc['nomeCurso'] = $result['nomeCurso'];
+                            $disc['professor_id'] = $result['professor_id'];
+                            $disc['descricao'] = $result['descricao'];*/
+                        }
+
+
+
+                        //unset($result);
+
+                        /* Close statement */
+                        $stmt -> close();
+
+                    }
+
+                    if($stmt = $mysqli -> prepare("SELECT `user_name`FROM `users` WHERE `user_id`=?")) {
+
+                    /* Bind parameters
+                    s - string, b - blob, i - int, etc */
+                    $stmt -> bind_param("i", $disc['professor_id']);
+
+                    /* Execute it */
+                    $stmt -> execute();
+
+                    /* Bind results */
+                    $stmt -> bind_result($disc['professor_name']);
+
+                    /* Fetch the value */
+                    while ($stmt -> fetch() ){
+                        //$professorName = $result;
+                    }
+
+                    /* Close statement */
+                    $stmt -> close();
+                    }
+
+                    echo
+                        "<li class='disciplinas-item'>".
+                            "<div class='disciplina-item-content'>".
+                                "<h3>".$disc['nomeDisc']."</h3>".
+                                "<h4>".$disc['nomeCurso']." - ".$disc['professor_name']."</h4>".
+                                "<p>".$disc['descricao']."</p>".
+                            "</div>".
+                            "<div class='button'><form action='recomendacao.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
+                                "<input type='hidden' name='disc' value='".$listaDisc[ $i ]."'>".
+                                "<input type='submit' value='Receber Recomendação'></br></br>".
+                            "</form></div>".
+                        "</li>";
+
+                    unset($disc);
+                }
+                $mysqli -> close();
+            ?>
+                        <!--
                         <li class="disciplinas-item">
                             <div class="disciplina-item-content">
-                                <h3>Ergonomia Aplicada ao Design II</h3> <!--nomes de cadeiras servem só de exemplo do funcionamento-->
+                                <h3>Ergonomia Aplicada ao Design II</h3> <!--nomes de cadeiras servem só de exemplo do funcionamento--
                                 <h4>Júlio Van der Linden - ARQ03140</h4>
                                 <p>Conhecimento dos fundamentos da ergonomia Cognitiva, da Interação Homem Computador e da Experiência do Usuário.</p>
                             </div>
-                            <div class="button"><form action="#"><!--action é só para mostrar, no site em si não tem isso"-->
+                            <div class="button"><form action="#"><!--action é só para mostrar, no site em si não tem isso"--
                                 <input type="submit" value="Receber Recomendação"></br></br>
                             </form></div>
                         </li>
@@ -88,7 +163,7 @@
                                 <p>Correlação entre propriedades, estrutura, processos de fabricação e desempenho dos diferentes materiais utilizados em produtos
 industriais.</p>
                             </div>
-                            <div class="button"><form action="#"><!--action é só para mostrar, no site em si não tem isso"-->
+                            <div class="button"><form action="#"><!--action é só para mostrar, no site em si não tem isso"--
                                 <input type="submit" value="Receber Recomendação"></br></br>
                             </form></div>
                         </li>
@@ -99,11 +174,11 @@ industriais.</p>
                                 <p>Correntes atuais e as diferentes práticas e resultados obtidos por profissionais do design no âmbito internacional. Os vários graus de
 industrialização no mundo. Países na periferia da industrialização.</p>
                             </div>
-                            <div class="button"><form action="#"><!--action é só para mostrar, no site em si não tem isso"-->
+                            <div class="button"><form action="#"><!--action é só para mostrar, no site em si não tem isso"--
                                 <input type="submit" value="Receber Recomendação"></br></br>
                             </form></div>
-                        </li>
-                </ul>
+                        </li>-->
+            </ul>
          </div>  
 </div>
 

@@ -16,6 +16,8 @@ include('_header.php'); ?>
             update: function(event, ui) {
             var arrayOAS = $("#tabela2").sortable('toArray').toString();
             document.getElementById('arrayOAS').value = arrayOAS;
+            var order = $('#tabela1').sortable('serialize'); 
+            $("#tabela1").load("process-sortable.php?"+order); 
             }
             });
         });

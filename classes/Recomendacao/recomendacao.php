@@ -7,6 +7,8 @@
  */
 require_once("config/config.cfg");
 require_once("classes/lista.php");
+require_once("classes/Recomendacao/comp.php");
+
 class Recomendacao {
 
 	private $idDisc;
@@ -24,7 +26,9 @@ class Recomendacao {
         $this->mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
         $this->filtraComp = $filtraComp;
 
-		session_start();
+        if (!isset($_SESSION))
+		  session_start();
+
 		$this->user = $_SESSION['user_id'];
 		//echo("ID Usuario: ".$_SESSION['user_id']."<br/>");
         //echo("Nome do Usuario: ".$_SESSION['user_name']);
@@ -106,6 +110,8 @@ class Recomendacao {
             }
 
             $this->competencia[$pos]->ordenaOAs();
+
+            $this->competencia[$pos]->nomearOAs();
 
             $this->competencia[$pos]->writeOAs();
 
