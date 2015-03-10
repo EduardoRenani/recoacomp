@@ -44,6 +44,8 @@ define("MESSAGE_USERNAME_BAD_LENGTH", "Nome de usuário não pode ter menos de 2
 define("MESSAGE_USERNAME_CHANGE_FAILED", "Desculpe, sua troca de nome de usuário não foi sucedida.");
 define("MESSAGE_USERNAME_CHANGED_SUCCESSFULLY", "Seu nome de usuário foi alterada com sucesso. Seu novo nome de usuário é ");
 define("MESSAGE_USERNAME_EMPTY", "Campo nome vazio");
+define("MESSAGE_USERNAMEID_EMPTY", "User id desconhecido");
+define("MESSAGE_COURSEID_EMPTY", "Id da disciplina desconhecido");
 define("MESSAGE_USERNAME_EXISTS", "Desculpe, esse nome de usuário já está sendo utilizado. Por favor escolha outro.");
 define("MESSAGE_USERNAME_INVALID", "Nome de usuário não se encaixa no modelo: somente letras a-Z e números são permitidos, de 2 a 64 caracteres");
 define("MESSAGE_USERNAME_SAME_LIKE_OLD_ONE", "Desculpe, esse nome de usuário é o mesmo que o atual. Por favor escolha outro.");
@@ -89,6 +91,8 @@ define("WORDING_KEYWORDS", "Palavras-chave");
 define("WORDING_LANGUAGE", "Idioma");
 define("WORDING_NAME_COMPETENCIA", "Nome da Competência: ");
 define("WORDING_OA_LIST", "Nome dos OA separados por \";\" : ");
+define("WORDING_AVAILABLE_COURSES", "Disciplinas disponíveis");
+
 
 
 //Cadastro de Disciplina Mensagens

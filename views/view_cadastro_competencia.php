@@ -9,6 +9,33 @@ include('_header.php'); ?>
 
 <head>
 
+<style type="text/css">
+    body.dragging, body.dragging * {
+  cursor: move !important;
+}
+
+.dragged {
+  position: absolute;
+  opacity: 0.5;
+  z-index: 2000;
+}
+
+ol.example li.placeholder {
+  position: relative;
+  /** More li styles **/
+}
+ol.example li.placeholder:before {
+  position: absolute;
+  /** Define arrowhead **/
+}
+
+</style>
+
+
+<!-- Script de configuração -->
+<script src='js/sortable.js'></script>
+
+
 <script type="text/javascript">
     $(function() {
         $('#tabela1, #tabela2').sortable({
@@ -16,11 +43,53 @@ include('_header.php'); ?>
             update: function(event, ui) {
             var arrayOAS = $("#tabela2").sortable('toArray').toString();
             document.getElementById('arrayOAS').value = arrayOAS;
-            var order = $('#tabela1').sortable('serialize'); 
-            $("#tabela1").load("process-sortable.php?"+order); 
+            //var order = $('#tabela1').sortable('serialize'); 
+            //$("#tabela1").load("process-sortable.php?"+order); 
             }
             });
         });
+
+
+    var adjustment
+
+
+$(function(){
+
+$("ol.simple_with_animation").sortable({
+  group: 'simple_with_animation',
+  pullPlaceholder: false,
+  // animation on drop
+  onDrop: function  (item, targetContainer, _super) {
+    var clonedItem = $('<li/>').css({height: 0})
+    item.before(clonedItem)
+    clonedItem.animate({'height': item.height()})
+    
+    item.animate(clonedItem.position(), function  () {
+      clonedItem.detach()
+      _super(item)
+    })
+  },
+
+  // set item relative to cursor position
+  onDragStart: function ($item, container, _super) {
+    var offset = $item.offset(),
+    pointer = container.rootGroup.pointer
+
+    adjustment = {
+      left: pointer.left - offset.left,
+      top: pointer.top - offset.top
+    }
+
+    _super($item, container)
+  },
+  onDrag: function ($item, position) {
+    $item.css({
+      left: position.left - adjustment.left,
+      top: position.top - adjustment.top
+    })
+  }
+})
+});
 
 </script>
 </head>
@@ -73,6 +142,14 @@ include('_header.php'); ?>
 
 
 </form>
+
+<ol class='simple_with_animation'>
+  <li>First</li>
+  <li>Second</li>
+  <li>Third</li>
+</ol>
+
+
 
 <a href="index.php"><?php echo WORDING_BACK_TO_LOGIN; ?></a>
 <?php include('_footer.php'); ?>

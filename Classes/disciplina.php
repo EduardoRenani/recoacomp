@@ -7,7 +7,6 @@
  */
 
 require_once('config/config.cfg');
-require_once('classes/funcoes_aux.php');
 require_once('classes/Login.php');
 require_once('translations/pt_br.php');
 
@@ -254,5 +253,58 @@ class Disciplina {
     public function getErrors(){
         return $this->errors;
     }
+	
+	public function getMessages(){
+        return $this->messages;
+    }
+	
+	// Retorna o nome de todas as disciplinas
+	public function getNomesDisciplinas(){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT nomeDisciplina FROM disciplina");
+            //$stmt->bindParam(':nome',, PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+	}
+	
+
+    // Função que cria a relação usuario com disciplina
+    public function entrarDisciplina($idUsuario, $idDisciplina, $senha){
+        // Remove espaços em branco em excesso das strings
+        $senha = trim($senha);
+
+        $this->idUsuario  = $idUsuario;
+        $this->idDisciplina = $idDisciplina;
+        $this->senha = $senha;
+        
+        //Validação de dados
+        if (empty($idUsuario)) {
+            $this->errors[] = MESSAGE_USERNAMEID_EMPTY;
+        } elseif (empty($idDisciplina)){
+            $this->errors[] = MESSAGE_COURSEID_EMPTY;
+        } elseif (empty($senha)){
+            $this->errors[] = MESSAGE_PASSWORD_BAD_CONFIRM;
+        //Fim de validações de dados de entrada
+        //Inicio do cadastro no banco de dados
+        } else if ($this->databaseConnection()) {
+            // Cadastro na tabela usuario_disciplina
+            $stmt = $this->db_connection->prepare("INSERT INTO usuario_disciplina(disciplina_iddisciplina, usuario_idusuario)  VALUES(:idDisciplina, :idUsuario)");
+            $stmt->bindParam(':idDisciplina',$this->idDisciplina, PDO::PARAM_INT);
+            $stmt->bindParam(':idUsuario',$this->idUsuario, PDO::PARAM_INT);
+            $stmt->execute();
+            $this->messages[] = WORDING_DISCIPLINA. $this->idUsuario .WORDING_CREATED_SUCESSFULLY;
+			//print_r ($this->messages);
+        }
+
+    }
 }
+
+//Case de teste
+$coisa = new Disciplina();
+//$coisa->getNomesDisciplinas();
+//$coisa->entrarDisciplina(1,2,'aaaaaaaa');
+//entrarDisciplina('1','2','aaaaa');
+
+
 ?>

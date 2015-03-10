@@ -33,7 +33,7 @@
                         <a href="profile_show.php">Meu Perfil</a>
                     </li>
                      <li>
-                        <a href="#">Disciplinas</a>
+                        <a href="disciplinas.php">Disciplinas</a>
                     </li>
     				<li>
    						<?php 

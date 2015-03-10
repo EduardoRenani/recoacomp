@@ -21,23 +21,14 @@
 
 <?php require_once("sidebar.php"); ?>
 
-<!-- ============== DISCIPLINAS DIPONIVEIS ============== -->
+<!-- ============== DISCIPLINAS ============== -->
 
 <div class="disciplinas">
-<div class="top-disciplinas"><?php echo WORDING_AVAILABLE_COURSES?></div>
+<div class="top-disciplinas">Minhas Disciplinas</div>
         <div class="disciplinas-content">           
             <ul class="disciplinas-list">
 
-
-
             <?php
-                // TODO PAREI NA PARTE DO CADASTRO DE USUARIO EM DISCIPLINA
-
-                // Exibir todas as disciplinas disponiveis e permitir cadastros nas mesmas
-                $disciplina = new Disciplina();
-
-                print_r($disciplina->getNomesDisciplinas);
-
 
                 //PASSO 1: PEGAR A LISTA DE DISCIPLINAS DO USUÁRIO
 
