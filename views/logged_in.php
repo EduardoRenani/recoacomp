@@ -16,6 +16,30 @@
 <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
 <!-- Fim Home -->
+<script type="text/javascript">
+
+
+$(document).ready(function() {
+    $('#createFormId').on('show.bs.modal', function(event) {
+        $("#cafeId").val($(event.relatedTarget).data('id'));
+    });
+});
+
+function getDisciplinaId(id){
+    var disciplinaId = id;
+    document.getElementById('idDisciplina').value = id;
+    alert(id);
+}
+
+function reply_click(clicked_id)
+{
+    alert(clicked_id);
+}
+
+</script>
+
+
+
 
 </head>
 
@@ -27,8 +51,7 @@
 <div class="top-disciplinas"><?php echo WORDING_AVAILABLE_COURSES?></div>
         <div class="disciplinas-content">           
             <ul class="disciplinas-list">
-
-
+                
 
             <?php
                 // Exibir todas as disciplinas disponiveis e permitir cadastros nas mesmas
@@ -50,21 +73,23 @@
                                 "<h3>".$listaDisciplina[0][$i][0]."</h3>".
                                 "<h4>".$listaDisciplina[1][$i][0]."</h4>".
                                 "<p>".$listaDisciplina[2][$i][0].
-                                "<br> Cadastrar-se na disciplina &nbsp <a href='#openModal'>Cadastre-se</a>".
+                                "<br> Cadastrar-se na disciplina &nbsp <a href='#openModal' id=".$listaDisciplina[3][$i][0]." onClick='getDisciplinaId(this.id)'>Cadastre-se</a>".
                                 
                             "</div>".
                         "</li>";
+                
                 ?>
+
                 <div id="openModal" class="modalDialog">
                         <div>
                             <a href="#close" title="Close" class="close">X</a>
                             <div class="top-cadastro"><?php echo WORDING_REGISTER_NEW_ACCOUNT; ?></div>
                                 <!-- form action="home.html"--><!--action é só para mostrar, no site em si não tem isso"-->
                                 <!--form method="post" action="register.php" name="registerform" -->
-                                <form method="post" action="disciplinas.php" name="">
+                                <form method="post" action="disciplinas.php" name="cadastrar_usuario_disciplina">
                                     <input id="senha" type="password" name="senha" placeholder="<?= WORDING_REGISTRATION_PASSWORD; ?>" pattern=".{6,}" required/>
                                     <input type="hidden" id="idUsuario" name="idUsuario" value="<?php echo $_SESSION['user_id']; ?>" />
-                                    <input type="hidden" id="idDisciplina" name="idDisciplina" value="<?php $listaDisciplina[3][$i][0]; ?>" />
+                                    <input type="hidden" id="idDisciplina" name="idDisciplina" value="" />
                                     <input type="submit" name="cadastrar_usuario_disciplina" action="" value="<?php echo WORDING_REGISTER; ?>" />
                                 </form>                                                 
                         </div>

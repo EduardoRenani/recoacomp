@@ -80,8 +80,15 @@ class Disciplina {
             $_POST['user_id'], 
             $_POST['senha'], 
             $_POST['arrayCompetencias']);
-        }
-        else{
+        }elseif(isset($_POST["cadastrar_usuario_disciplina"])){
+            echo 'coiseti <br>';
+            echo $_POST['idDisciplina'].'<br>';
+            $this->entrarDisciplina(
+                $_POST['idUsuario'],
+                $_POST['idDisciplina'],
+                $_POST['senha']);
+                 //$idUsuario, $idDisciplina, $senha)
+        }else{
             // Se não estiver cadastrando uma nova disciplina apenas é um constructor que retorna NULL
             return null;
         }
@@ -267,7 +274,37 @@ class Disciplina {
             return $stmt->fetchAll();
         }
 	}
+
+    // Retorna o nome de todos os cursos
+    public function getNomesCursos(){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT nomeCurso FROM disciplina");
+            //$stmt->bindParam(':nome',, PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+    }
 	
+    // Retorna a descrição das disciplinas
+    public function getDescricaoDisciplinas(){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT descricao FROM disciplina");
+            //$stmt->bindParam(':nome',, PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+    }
+
+    // Retorna o ID dos Cursos
+    public function getIdCursos(){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT iddisciplina FROM disciplina");
+            //$stmt->bindParam(':nome',, PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+    }
+    
 
     // Função que cria a relação usuario com disciplina
     public function entrarDisciplina($idUsuario, $idDisciplina, $senha){
