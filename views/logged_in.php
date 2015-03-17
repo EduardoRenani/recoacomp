@@ -31,14 +31,48 @@
 
 
             <?php
-                // TODO PAREI NA PARTE DO CADASTRO DE USUARIO EM DISCIPLINA
-
                 // Exibir todas as disciplinas disponiveis e permitir cadastros nas mesmas
                 $disciplina = new Disciplina();
 
-                print_r($disciplina->getNomesDisciplinas);
+                $listaDisciplina = array();
+                                
+                $listaDisciplina[0] = $disciplina->getNomesDisciplinas();
+                $listaDisciplina[1] = $disciplina->getNomesCursos();
+                $listaDisciplina[2] = $disciplina->getDescricaoDisciplinas();
+                $listaDisciplina[3] = $disciplina->getIdCursos();
+                $contador = count($listaDisciplina[0]);
+                //Imprime o nome de cada disciplina
+                for($i=0; $i<$contador;$i++){
 
-
+                    echo
+                        "<li class='disciplinas-item'>".
+                            "<div class='disciplina-item-content'>".
+                                "<h3>".$listaDisciplina[0][$i][0]."</h3>".
+                                "<h4>".$listaDisciplina[1][$i][0]."</h4>".
+                                "<p>".$listaDisciplina[2][$i][0].
+                                "<br> Cadastrar-se na disciplina &nbsp <a href='#openModal'>Cadastre-se</a>".
+                                
+                            "</div>".
+                        "</li>";
+                ?>
+                <div id="openModal" class="modalDialog">
+                        <div>
+                            <a href="#close" title="Close" class="close">X</a>
+                            <div class="top-cadastro"><?php echo WORDING_REGISTER_NEW_ACCOUNT; ?></div>
+                                <!-- form action="home.html"--><!--action é só para mostrar, no site em si não tem isso"-->
+                                <!--form method="post" action="register.php" name="registerform" -->
+                                <form method="post" action="disciplinas.php" name="">
+                                    <input id="senha" type="password" name="senha" placeholder="<?= WORDING_REGISTRATION_PASSWORD; ?>" pattern=".{6,}" required/>
+                                    <input type="hidden" id="idUsuario" name="idUsuario" value="<?php echo $_SESSION['user_id']; ?>" />
+                                    <input type="hidden" id="idDisciplina" name="idDisciplina" value="<?php $listaDisciplina[3][$i][0]; ?>" />
+                                    <input type="submit" name="cadastrar_usuario_disciplina" action="" value="<?php echo WORDING_REGISTER; ?>" />
+                                </form>                                                 
+                        </div>
+                        <!-- /.top-cadastro -->
+                </div>
+                <?php } ?>
+                <!-- /.modalDialog -->
+                <?php
                 //PASSO 1: PEGAR A LISTA DE DISCIPLINAS DO USUÁRIO
 
                 $listaDisc = array();

@@ -92,6 +92,7 @@ define("WORDING_LANGUAGE", "Idioma");
 define("WORDING_NAME_COMPETENCIA", "Nome da Competência: ");
 define("WORDING_OA_LIST", "Nome dos OA separados por \";\" : ");
 define("WORDING_AVAILABLE_COURSES", "Disciplinas disponíveis");
+define("WORDING_REGISTER_SUCESSFULLY", "Cadastro efetuado com sucesso!");
 
 
 
