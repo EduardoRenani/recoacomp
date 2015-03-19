@@ -17,29 +17,12 @@
 
 <!-- Fim Home -->
 <script type="text/javascript">
-
-
-$(document).ready(function() {
-    $('#createFormId').on('show.bs.modal', function(event) {
-        $("#cafeId").val($(event.relatedTarget).data('id'));
-    });
-});
-
 function getDisciplinaId(id){
     var disciplinaId = id;
     document.getElementById('idDisciplina').value = id;
-    alert(id);
+    //alert(id);
 }
-
-function reply_click(clicked_id)
-{
-    alert(clicked_id);
-}
-
 </script>
-
-
-
 
 </head>
 
@@ -59,10 +42,10 @@ function reply_click(clicked_id)
 
                 $listaDisciplina = array();
                                 
-                $listaDisciplina[0] = $disciplina->getNomesDisciplinas();
-                $listaDisciplina[1] = $disciplina->getNomesCursos();
-                $listaDisciplina[2] = $disciplina->getDescricaoDisciplinas();
-                $listaDisciplina[3] = $disciplina->getIdCursos();
+                $listaDisciplina[0] = $disciplina->getNomeDisciplinasNaoMatriculadas($_SESSION['user_id']);
+                $listaDisciplina[1] = $disciplina->getNomeCursosNaoMatriculados($_SESSION['user_id']);
+                $listaDisciplina[2] = $disciplina->getDescricaoDisciplinasNaoMatriculadas($_SESSION['user_id']);
+                $listaDisciplina[3] = $disciplina->getIdDisciplinasNaoMatriculadas($_SESSION['user_id']);
                 $contador = count($listaDisciplina[0]);
                 //Imprime o nome de cada disciplina
                 for($i=0; $i<$contador;$i++){
@@ -73,7 +56,7 @@ function reply_click(clicked_id)
                                 "<h3>".$listaDisciplina[0][$i][0]."</h3>".
                                 "<h4>".$listaDisciplina[1][$i][0]."</h4>".
                                 "<p>".$listaDisciplina[2][$i][0].
-                                "<br> Cadastrar-se na disciplina &nbsp <a href='#openModal' id=".$listaDisciplina[3][$i][0]." onClick='getDisciplinaId(this.id)'>Cadastre-se</a>".
+                                "<br><a href='#openModal' id=".$listaDisciplina[3][$i][0]." onClick='getDisciplinaId(this.id)'>Cadastre-se</a>".
                                 
                             "</div>".
                         "</li>";
@@ -97,155 +80,6 @@ function reply_click(clicked_id)
                 </div>
                 <?php } ?>
                 <!-- /.modalDialog -->
-                <?php
-                //PASSO 1: PEGAR A LISTA DE DISCIPLINAS DO USUÁRIO
-
-                $listaDisc = array();
-                        /* Create a new mysqli object with database connection parameters */
-                $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-
-                if(mysqli_connect_errno()) {
-                    echo "Connection Failed: " . mysqli_connect_errno();
-                    exit();
-                }
-
-                /* Create a prepared statement */
-                if($stmt = $mysqli -> prepare("SELECT `disciplina_iddisciplina`FROM `usuario_disciplina` WHERE `usuario_idusuario`=?")) {
-
-                    /* Bind parameters
-                    s - string, b - blob, i - int, etc */
-                    $stmt -> bind_param("i", $_SESSION['user_id']);
-
-                    /* Execute it */
-                    $stmt -> execute();
-
-                    /* Bind results */
-                    $stmt -> bind_result($result);
-
-                    /* Fetch the value */
-                    while ($stmt -> fetch() ){
-                        array_push($listaDisc, $result);
-                    }
-
-                    /* Close statement */
-                    $stmt -> close();
-                }
-
-                /* Close connection */
-                //$mysqli -> close();   <-- Fazer depois.
-
-                //PASSO 2: TRATAR CADA DISCIPLINA 1 A 1.
-                $cont = count($listaDisc);
-                
-                for($i=0;$i<$cont;$i++){
-                    
-                    //PASSO 3: PEGAR O TITULO DA DISCIPLINA
-                    if($stmt = $mysqli -> prepare("SELECT `nomeDisciplina`, `nomeCurso`, `usuarioProfessorID`, `descricao` FROM `disciplina` WHERE `iddisciplina`=?")) {
-
-                        $disc=array();
-                        //$result=array();
-
-                        /* Bind parameters
-                        s - string, b - blob, i - int, etc */
-                        $stmt -> bind_param("i", $listaDisc[ $i ]);
-
-                        /* Execute it */
-                        $stmt -> execute();
-
-                        /* Bind results */
-
-                        $stmt -> bind_result($disc['nomeDisc'],$disc['nomeCurso'],$disc['professor_id'], $disc['descricao']);
-
-                        /* Fetch the value */
-
-                        while( $stmt -> fetch() ){
-                            //array_push($disc,$result);
-                            /*$disc['nomeDisc'] = $result['nomeDisc'];
-                            $disc['nomeCurso'] = $result['nomeCurso'];
-                            $disc['professor_id'] = $result['professor_id'];
-                            $disc['descricao'] = $result['descricao'];*/
-                        }
-
-
-
-                        //unset($result);
-
-                        /* Close statement */
-                        $stmt -> close();
-
-                    }
-
-                    if($stmt = $mysqli -> prepare("SELECT `user_name`FROM `users` WHERE `user_id`=?")) {
-
-                    /* Bind parameters
-                    s - string, b - blob, i - int, etc */
-                    $stmt -> bind_param("i", $disc['professor_id']);
-
-                    /* Execute it */
-                    $stmt -> execute();
-
-                    /* Bind results */
-                    $stmt -> bind_result($disc['professor_name']);
-
-                    /* Fetch the value */
-                    while ($stmt -> fetch() ){
-                        //$professorName = $result;
-                    }
-
-                    /* Close statement */
-                    $stmt -> close();
-                    }
-
-                    echo
-                        "<li class='disciplinas-item'>".
-                            "<div class='disciplina-item-content'>".
-                                "<h3>".$disc['nomeDisc']."</h3>".
-                                "<h4>".$disc['nomeCurso']." - ".$disc['professor_name']."</h4>".
-                                "<p>".$disc['descricao']."</p>".
-                            "</div>".
-                            "<div class='button'><form action='recomendacao.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
-                                "<input type='hidden' name='disc' value='".$listaDisc[ $i ]."'>".
-                                "<input type='submit' value='Receber Recomendação'></br></br>".
-                            "</form></div>".
-                        "</li>";
-
-                    unset($disc);
-                }
-                $mysqli -> close();
-            ?>
-                        <!--
-                        <li class="disciplinas-item">
-                            <div class="disciplina-item-content">
-                                <h3>Ergonomia Aplicada ao Design II</h3> <!--nomes de cadeiras servem só de exemplo do funcionamento--
-                                <h4>Júlio Van der Linden - ARQ03140</h4>
-                                <p>Conhecimento dos fundamentos da ergonomia Cognitiva, da Interação Homem Computador e da Experiência do Usuário.</p>
-                            </div>
-                            <div class="button"><form action="#"><!--action é só para mostrar, no site em si não tem isso"--
-                                <input type="submit" value="Receber Recomendação"></br></br>
-                            </form></div>
-                        </li>
-                         <li class="disciplinas-item">
-                            <div class="disciplina-item-content">
-                                <h3>Ciência e Tecnologia dos Materiais</h3>
-                                <h4>Annelise Alves - ENG02033</h4>
-                                <p>Correlação entre propriedades, estrutura, processos de fabricação e desempenho dos diferentes materiais utilizados em produtos
-industriais.</p>
-                            </div>
-                            <div class="button"><form action="#"><!--action é só para mostrar, no site em si não tem isso"--
-                                <input type="submit" value="Receber Recomendação"></br></br>
-                            </form></div>
-                        </li>
-                         <li class="disciplinas-item">
-                            <div class="disciplina-item-content">
-                                <h3>Design Contenporâneo: Teoria e História</h3>
-                                <h4>Maria do Carmo Curtis - ARQ03114</h4>
-                                <p>Correntes atuais e as diferentes práticas e resultados obtidos por profissionais do design no âmbito internacional. Os vários graus de
-industrialização no mundo. Países na periferia da industrialização.</p>
-                            </div>
-                            <div class="button"><form action="#"><!--action é só para mostrar, no site em si não tem isso"--
-                                <input type="submit" value="Receber Recomendação"></br></br>
-                            </form></div>
-                        </li>-->
             </ul>
          </div>  
 </div>

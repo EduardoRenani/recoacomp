@@ -30,17 +30,11 @@ include('_header.php');
     $(function() {
         $('#tabela1, #tabela2').sortable({
             connectWith: "#tabela1, #tabela2",
-            receive : function (event, ui)
-            {
-       
-        //         $("#tabela2").html("<option value='text'>text</option>");
-           },
             update: function(event, ui) {
                 var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
                 document.getElementById('arrayCompetencias').value = arrayCompetencias;
             }
         });
-
 
 
 

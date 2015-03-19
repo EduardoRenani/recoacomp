@@ -68,11 +68,7 @@ class Disciplina {
     public function __construct() // Essa construct tá certa, seguir modelo
     {
         if (isset($_POST["registrar_nova_disciplina"])) {
-            //echo $_POST['arrayCompetencias'];
             // Função para primeira parte do cadastro de disciplina
-            //print_r($_POST);
-            //echo 'aqui';
-            //include("views/view_cadastro_disciplina_OA.php");
             $this->criaDisc(
             $_POST['nomeCurso'],
             $_POST['nomeDisciplina'],
@@ -81,13 +77,10 @@ class Disciplina {
             $_POST['senha'], 
             $_POST['arrayCompetencias']);
         }elseif(isset($_POST["cadastrar_usuario_disciplina"])){
-            echo 'coiseti <br>';
-            echo $_POST['idDisciplina'].'<br>';
             $this->entrarDisciplina(
                 $_POST['idUsuario'],
                 $_POST['idDisciplina'],
                 $_POST['senha']);
-                 //$idUsuario, $idDisciplina, $senha)
         }else{
             // Se não estiver cadastrando uma nova disciplina apenas é um constructor que retorna NULL
             return null;
@@ -121,7 +114,6 @@ class Disciplina {
      * Administra toda o sistema de Criação de disciplina
      * Verifica todos os erros possíveis e cria a disciplina se ela não existe
      */
-//$array_competencias
     public function criaDisc($nomeCurso, $nomeDisciplina, $descricao, $usuarioProfessorID, $senha, $arrayCompetencias){
        // Remove espaços em branco em excesso das strings
         $nomeCurso  = trim($nomeCurso);
@@ -243,10 +235,8 @@ class Disciplina {
                 $existeRelacao = true;
                 $this->errors[] = MESSAGE_DISCIPLINA_COMPETENCIA_ALREADY_RELATED;
             }*/
-
            if( (! $existeRelacao) /*&& (count($this->errors) == 0)*/ ){
                 //Associar a competência com a disciplina pelo ID
-
                 $stmt = $this->db_connection->prepare("INSERT INTO disciplina_competencia(disciplina_iddisciplina,competencia_idcompetencia)  VALUES(:idDisc,:idComp )");
                 $stmt->bindParam(':idDisc',(int)$this->iddisciplina["iddisciplina"], PDO::PARAM_INT);
                 $stmt->bindParam(':idComp',(int)$idCompetencia, PDO::PARAM_INT);
@@ -265,6 +255,48 @@ class Disciplina {
         return $this->messages;
     }
 	
+    // Retorna o ID de todas as disciplinas em que o aluno NÃO está matriculado
+    public function getIdDisciplinasNaoMatriculadas($userID){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT iddisciplina FROM disciplina WHERE iddisciplina NOT IN (SELECT disciplina_iddisciplina FROM usuario_disciplina WHERE usuario_idusuario=:userID)");
+            $stmt->bindParam(':userID',$userID, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+    }
+
+    // Retorna o Nome de todas as disciplinas em que o aluno NÃO está matriculado
+    public function getNomeDisciplinasNaoMatriculadas($userID){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT nomeDisciplina FROM disciplina WHERE iddisciplina NOT IN (SELECT disciplina_iddisciplina FROM usuario_disciplina WHERE usuario_idusuario=:userID)");
+            $stmt->bindParam(':userID',$userID, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+    }
+
+
+    // Retorna o Nome de todos os cursos em que o aluno NÃO está matriculado
+    public function getNomeCursosNaoMatriculados($userID){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT nomeCurso FROM disciplina WHERE iddisciplina NOT IN (SELECT disciplina_iddisciplina FROM usuario_disciplina WHERE usuario_idusuario=:userID)");
+            $stmt->bindParam(':userID',$userID, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+    }
+
+    // Retorna o Nome de todos os cursos em que o aluno NÃO está matriculado
+    public function getDescricaoDisciplinasNaoMatriculadas($userID){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT descricao FROM disciplina WHERE iddisciplina NOT IN (SELECT disciplina_iddisciplina FROM usuario_disciplina WHERE usuario_idusuario=:userID)");
+            $stmt->bindParam(':userID',$userID, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+    }
+
+
 	// Retorna o nome de todas as disciplinas
 	public function getNomesDisciplinas(){
         if($this->databaseConnection()){
@@ -325,20 +357,30 @@ class Disciplina {
         //Fim de validações de dados de entrada
         //Inicio do cadastro no banco de dados
         } else if ($this->databaseConnection()) {
-            // Cadastro na tabela usuario_disciplina
-            $stmt = $this->db_connection->prepare("INSERT INTO usuario_disciplina(disciplina_iddisciplina, usuario_idusuario)  VALUES(:idDisciplina, :idUsuario)");
-            $stmt->bindParam(':idDisciplina',$this->idDisciplina, PDO::PARAM_INT);
-            $stmt->bindParam(':idUsuario',$this->idUsuario, PDO::PARAM_INT);
-            $stmt->execute();
-            $this->messages[] = WORDING_DISCIPLINA. $this->idUsuario .WORDING_CREATED_SUCESSFULLY;
-			//print_r ($this->messages);
-        }
-
-    }
-}
+            // Verifica se a senha está certa
+            $query_check_senha_disciplina = $this->db_connection->prepare('SELECT senha FROM disciplina WHERE senha=:senha AND iddisciplina=:idDisciplina');
+            $query_check_senha_disciplina->bindValue(':senha', $senha, PDO::PARAM_STR);
+            $query_check_senha_disciplina->bindValue(':idDisciplina', $idDisciplina, PDO::PARAM_INT);
+            $query_check_senha_disciplina->execute();
+            $result = $query_check_senha_disciplina->fetchAll();
+                // Se a senha estiver errada retorna erro
+                if (!count($result)) {
+                    $this->errors[] = MESSAGE_PASSWORD_WRONG;
+                } else{
+                    // Cadastro na tabela usuario_disciplina
+                    $stmt = $this->db_connection->prepare("INSERT INTO usuario_disciplina(disciplina_iddisciplina, usuario_idusuario)  VALUES(:idDisciplina, :idUsuario)");
+                    $stmt->bindParam(':idDisciplina',$this->idDisciplina, PDO::PARAM_INT);
+                    $stmt->bindParam(':idUsuario',$this->idUsuario, PDO::PARAM_INT);
+                    $stmt->execute();
+                    $this->messages[] = WORDING_REGISTER_SUCESSFULLY;
+            }
+        } // End verificações
+    } // End Função
+} // End Classe
 
 //Case de teste
-$coisa = new Disciplina();
+//$coisa = new Disciplina();
+//$coisa->getNomesDisciplinasNaoMatriculadas(5);
 //$coisa->getNomesDisciplinas();
 //$coisa->entrarDisciplina(1,2,'aaaaaaaa');
 //entrarDisciplina('1','2','aaaaa');
