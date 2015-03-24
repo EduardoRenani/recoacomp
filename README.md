@@ -28,3 +28,13 @@ Descrição dos arquivos:
 -> Sistema de Login com hierarquia e confirmação de conta.
 
 -> Pegando dados do usuario por SESSION
+
+
+
+TODO
+
+
+-> Tela de cadastro de competências
+	* Arrumar tradução
+	* Validação de dados
+	*Atribuir CHA aos objetos selecionados para competência
