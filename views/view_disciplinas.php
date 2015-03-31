@@ -145,6 +145,39 @@
                 }
                 $mysqli -> close();
             ?>
+                        <!--
+                        <li class="disciplinas-item">
+                            <div class="disciplina-item-content">
+                                <h3>Ergonomia Aplicada ao Design II</h3> <!--nomes de cadeiras servem só de exemplo do funcionamento--
+                                <h4>Júlio Van der Linden - ARQ03140</h4>
+                                <p>Conhecimento dos fundamentos da ergonomia Cognitiva, da Interação Homem Computador e da Experiência do Usuário.</p>
+                            </div>
+                            <div class="button"><form action="#"><!--action é só para mostrar, no site em si não tem isso"--
+                                <input type="submit" value="Receber Recomendação"></br></br>
+                            </form></div>
+                        </li>
+                         <li class="disciplinas-item">
+                            <div class="disciplina-item-content">
+                                <h3>Ciência e Tecnologia dos Materiais</h3>
+                                <h4>Annelise Alves - ENG02033</h4>
+                                <p>Correlação entre propriedades, estrutura, processos de fabricação e desempenho dos diferentes materiais utilizados em produtos
+industriais.</p>
+                            </div>
+                            <div class="button"><form action="#"><!--action é só para mostrar, no site em si não tem isso"--
+                                <input type="submit" value="Receber Recomendação"></br></br>
+                            </form></div>
+                        </li>
+                         <li class="disciplinas-item">
+                            <div class="disciplina-item-content">
+                                <h3>Design Contenporâneo: Teoria e História</h3>
+                                <h4>Maria do Carmo Curtis - ARQ03114</h4>
+                                <p>Correntes atuais e as diferentes práticas e resultados obtidos por profissionais do design no âmbito internacional. Os vários graus de
+industrialização no mundo. Países na periferia da industrialização.</p>
+                            </div>
+                            <div class="button"><form action="#"><!--action é só para mostrar, no site em si não tem isso"--
+                                <input type="submit" value="Receber Recomendação"></br></br>
+                            </form></div>
+                        </li>-->
             </ul>
          </div>  
 </div>

@@ -25,17 +25,17 @@ $registration = new Registration();
 				<div class="login">
 					<div class="top-login">Login:</div></br>
 					
-					<!-- <form action="home.html"><!--action é só para mostrar, no site em si não tem isso"--> -->
+					<!-- <form action="home.html"><!--action é só para mostrar, no site em si não tem isso"--> 
 					<form method="post" action="index.php" name="loginform">
 						<input id="user_name" type="text" name="user_name" placeholder="<?= WORDING_USERNAME; ?>" required>
 						<input id="user_password" type="password" name="user_password" autocomplete="off" required placeholder="<?= WORDING_PASSWORD;?>" required>
-						<input type="checkbox" id="user_rememberme" name="user_rememberme" value="1" /> &nbsp <?= WORDING_REMEMBER_ME; ?>
-						<a href="password_reset.php"><?php echo WORDING_FORGOT_MY_PASSWORD; ?></a>
+						<input type="checkbox" id="user_rememberme" name="user_rememberme" value="1" /> <label for="user_rememberme">Lembrar Usuário</label>
 						<input type="submit" name="login" value="<?= WORDING_LOGIN; ?>">
-					</form>
+					
 						<!-- TODO Fazer tradução dessa parte -->
-						<p>Não tem conta? &nbsp <a href="#openModal">Cadastre-se</a>
-								
+						<span>Não tem uma conta? &nbsp <a href="#openModal" class="text-right">Cadastre-se</a></span><br />
+                        <span class="light"><a href="password_reset.php"><?php echo WORDING_FORGOT_MY_PASSWORD; ?></a></span>
+                    </form>	
 						<div id="openModal" class="modalDialog">
 								<div>
 									<a href="#close" title="Close" class="close">X</a>

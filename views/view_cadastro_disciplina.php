@@ -11,6 +11,7 @@ include('_header.php');
 <!-- IMPORTAÇÃO JQUERY-->
 <head>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+    <link href="css/base_cadastro.css" rel="stylesheet">
 
     <style>
 
@@ -30,10 +31,14 @@ include('_header.php');
     $(function() {
         $('#tabela1, #tabela2').sortable({
             connectWith: "#tabela1, #tabela2",
-            update: function(event, ui){
+            receive : function (event, ui)
+            {
+       
+        //         $("#tabela2").html("<option value='text'>text</option>");
+           },
+            update: function(event, ui) {
                 var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
                 document.getElementById('arrayCompetencias').value = arrayCompetencias;
-                document.getElementsByName('arrayCompetencias').value = arrayNomeCompetencias;
             }
         });
     });
@@ -147,11 +152,15 @@ include('_header.php');
 });
 </script>
 </head>
-<!-- <h2><?php echo ($_SESSION['user_name']); ?></h2> -->
-<center> 
-    <h2><?php echo (WORDING_CREATE_DISCIPLINA); ?></h2> 
-</center>
-   <form method="post" action="cha_disciplina.php" name="registrar_nova_disciplina" id="registrar_nova_disciplina">
+
+
+<div class="fixedBackgroundGradient"></div>
+<h2><?php echo ($_SESSION['user_name']); ?></h2>
+<a href="index.php"><?php echo WORDING_BACK_TO_LOGIN;?></a>
+
+<div class="cadastrobase">
+    <div class="top-cadastrobase"><?php echo (WORDING_CREATE_DISCIPLINA); ?></div>
+   <form method="post" action="" name="registrar_nova_disciplina" id="registrar_nova_disciplina">
     <!-- ID do usuário passado via hidden POST -->
     <input type="hidden" id="user_id" name="user_id" value="<?php echo $_SESSION['user_id']; ?>" />
         <div id="rootwizard">
@@ -199,7 +208,6 @@ include('_header.php');
                 <!-- DIV COM DADOS DAS COMPETÊNCIAS A SEREM ASSOCIADAS A DISCIPLINA -->
                 <div class="tab-pane" id="tab2">
                     <input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" />
-                    <input type="hidden" id="arrayNomeCompetencias" name="arrayNomeCompetencias" value=""/>
                     <ul id="tabela1">
                         <?php
                         $comp = new Competencia();
@@ -207,22 +215,19 @@ include('_header.php');
                         $nomeCompetencia = $comp->getArrayOfNames();
                         $contador = count($nomeCompetencia);
                         for($i=0;$i<$contador;$i++){ ?>
-                            <li id="<?php echo "".($idCompetencia[$i]["idcompetencia"]); ?>" name="<?php echo "".($nomeCompetencia[$i]["nome"]); ?>" class="ui-state-default"><?php echo "".($nomeCompetencia[$i]["nome"]); ?></li>
+                            <li id="<?php echo "".($idCompetencia[$i]["idcompetencia"]); ?>" class="ui-state-default"><?php echo "".($nomeCompetencia[$i]["nome"]); ?></li>
                         <?php } ?>
                     </ul>
-                    <br> <!-- TODO Colocar espaço entre as 2 tabelas -->
                     <ul id="tabela2">
                     <!--<li class="ui-state-highlight">Item 1 selecionado</li>-->
                     </ul>
-                     <a href="cadastro_competencia.php" target="_blank">Registrar Nova Competência</a>
+                     <a href="cadastro_OA.php" target="_blank"><?=WORDING_REGISTER_NOVO_OA?></a>
 
                 </div>
                 <ul class="pager wizard">
                     <li class="previous"><a href="javascript:;">Anterior</a></li>
                     <li class="next"><a href="javascript:;">Próximo</a></li>
                 </ul>
-
-
 
 
             </div>  
@@ -233,10 +238,9 @@ include('_header.php');
         <input type="reset" name="limpar" value="<?php echo WORDING_CLEAR_CREATE_DISCIPLINA; ?>" />
 
     </form><hr/>
+</div>
 
-<center>
-    <a href="index.php"><?php echo WORDING_BACK_TO_LOGIN;?></a>
-</center>
+
 
 
 <?php include('_footer.php'); ?>

@@ -34,42 +34,7 @@
 </head>
 
 <body>
-
-<!-- ============== HEADER ============== -->
-    <header class="header-large">
-        <a href="index.html" id="logo"></a> <!--muda quando o usuario estiver logged in e leva para o home.html"-->
-            <nav>
-
-                <a href="#" id="menu-icon"></a>
-
-                <ul>
-
-                <li><a href="index.html" class="current">Home</a></li> <!--muda quando o usuario estiver logged in e leva para o home.html"-->
-                <li><a href="contato.html">Contato</a></li>
-                <li><a href="equipe.html">Equipe</a></li>
-
-                </ul>
-
-            </nav>
-    
-    </header>
-
-
-    <!-- ============== SIDEBAR ============== -->
-        <div class="sidebar"> 
-
-            <div class="top-sidebar">Bem Vindo, <?php echo $_SESSION['user_name']; ?></div>
-                <div class="sidebar-content">           
-                        <ul class="sidebar-menu">
-                            <li>
-                                <a href="index.php">Home</a>
-                            </li>
-                             <li>
-                                <a href="profile_show.php" id="active">Meu Perfil</a>
-                            </li>
-                        </ul>
-                </div>  
-        </div>
+<?php require_once("sidebar-profile.php"); ?>
 
     <!-- ============== DISCIPLINAS ============== -->
 

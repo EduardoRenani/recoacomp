@@ -10,28 +10,22 @@ include('_header.php'); ?>
 
 <head>
 
-<style type="text/css">
-    body.dragging, body.dragging * {
-  cursor: move !important;
-}
+    <script src="js/jquery.range.js"></script>
+    <link href="css/jquery.range.css" rel="stylesheet">
 
-.dragged {
-  position: absolute;
-  opacity: 0.5;
-  z-index: 2000;
-}
+    <style>
 
-ol.example li.placeholder {
-  position: relative;
-  /** More li styles **/
-}
-ol.example li.placeholder:before {
-  position: absolute;
-  /** Define arrowhead **/
-}
-
-</style>
-
+        body { font-size: 62.5%; }
+        label, input { display:block; }
+        input.text { margin-bottom:12px; width:95%; padding: .4em; }
+        fieldset { padding:0; border:0; margin-top:25px; }
+        h1 { font-size: 1.2em; margin: .6em 0; }
+        div#users-contain { width: 350px; margin: 20px 0; }
+        div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+        div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+        .ui-dialog .ui-state-error { padding: .3em; }
+        .validateTips { border: 1px solid transparent; padding: 0.3em; }
+    </style>
 
 <!-- Script de configuração -->
 
@@ -49,7 +43,18 @@ ol.example li.placeholder:before {
             }
             });
         });
-
+    $(function(){
+        $('.single-slider').jRange({
+            from: 0,
+            to: 5,
+            step: 1,
+            scale: [0,1,2,3,4,5],
+            format: '%s',
+            width: 500,
+            theme: 'theme-blue',
+            showLabels: true
+        });
+    });
 
    $(function() {
     // Mensagens
@@ -78,7 +83,7 @@ ol.example li.placeholder:before {
                 return false;
             }
         }
-        // Preenchimento do CHA das competências
+        // Associação dos OA a competência
         if(index==2) {
        // Make sure we entered the date
             if(!$('#date').val()) {
@@ -91,7 +96,6 @@ ol.example li.placeholder:before {
                 $('#date').focus();
                 return false;
             }
-            
         }
         }, onTabShow: function(tab, navigation, index) {
             var $total = navigation.find('li').length;
@@ -116,6 +120,7 @@ ol.example li.placeholder:before {
 </script>
 </head>
 <!-- clean separation of HTML and PHP -->
+<h2><?php echo $_SESSION['user_name']; ?></h2>
 <form method="post" action="" name="registrar_nova_competencia" id="registrar_nova_competencia">
     <!-- ID do usuário passado via hidden POST -->
     <input type="hidden" id="user_id" name="user_id" value="<?php echo $_SESSION['user_id']; ?>" />
@@ -126,7 +131,7 @@ ol.example li.placeholder:before {
             <ul>
                 <li><a href="#tab1" data-toggle="tab"><?php echo WORDING_CREATE_COMPETENCA; ?></a></li>
                 <li><a href="#tab2" data-toggle="tab"><?php echo 'Associar OAS'; ?></a></li>
-                <li><a href="#tab3" data-toggle="tab"><?php echo 'Preenchimento CHA'; ?></a></li>
+                <li><a href="#tab3" data-toggle="tab"><?php echo 'Preencher CHA'; ?></a></li>
             </ul>
              </div>
               </div>
@@ -189,17 +194,16 @@ ol.example li.placeholder:before {
                       </ul>
                      <a href="cadastro_OA.php" target="_blank"><?=WORDING_REGISTER_NOVO_OA?></a>
 
-                </div>                
-                <!-- Preenchimento de CHA no cadastro de competência -->
+                </div>
                 <div class="tab-pane" id="tab3">
                     <div class="control-group">
-                        <label class="control-label" for="conhecimentoDescricao"><?php echo WORDING_CONHECIMENTO_DESCRICAO; ?></label>
+                        <label class="control-label" for="OA1">OA 1</label>
                         <div class="controls">
-                            <textarea name="conhecimentoDescricao" Rows="5" COLS="40"></textarea>
+                            <center><input type="hidden" class="single-slider" value="0" /></center>
                         </div>
                     </div>
-
                 </div>
+
                 <ul class="pager wizard">
                     <li class="previous"><a href="javascript:;">Anterior</a></li>
                     <li class="next"><a href="javascript:;">Próximo</a></li>
@@ -213,7 +217,6 @@ ol.example li.placeholder:before {
         <input type="reset" name="limpar" value="<?php echo WORDING_CLEAR_CREATE_DISCIPLINA; ?>" />
 
     </form>
-
 
 <a href="index.php"><?php echo WORDING_BACK_TO_LOGIN; ?></a>
 <?php include('_footer.php'); ?>

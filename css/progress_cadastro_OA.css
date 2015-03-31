@@ -979,7 +979,7 @@ legend small {
 
 label,input,button,select,textarea {
     font-size: 14px;
-    font-weight: normal;
+    font-weight: 100;
     line-height: 20px;
 }
 
@@ -988,22 +988,22 @@ input,button,select,textarea {
 }
 
 label {
-    display: block;
+    
     margin-bottom: 5px;
 }
 
 select,textarea,input[type="text"],input[type="password"],input[type="datetime"],input[type="datetime-local"],input[type="date"],input[type="month"],input[type="time"],input[type="week"],input[type="number"],input[type="email"],input[type="url"],input[type="search"],input[type="tel"],input[type="color"],.uneditable-input {
     display: inline-block;
-    height: 20px;
-    padding: 4px 6px;
+    
+    padding: 6px 6px;
     margin-bottom: 10px;
     font-size: 14px;
     line-height: 20px;
     color: #555;
     vertical-align: middle;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 }
 
 input,textarea,.uneditable-input {
@@ -1014,12 +1014,9 @@ textarea {
     height: auto;
 }
 
-textarea,input[type="text"],input[type="password"],input[type="datetime"],input[type="datetime-local"],input[type="date"],input[type="month"],input[type="time"],input[type="week"],input[type="number"],input[type="email"],input[type="url"],input[type="search"],input[type="tel"],input[type="color"],.uneditable-input {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-    -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+textarea,input[type="text"],input[type="datetime"],input[type="datetime-local"],input[type="date"],input[type="month"],input[type="time"],input[type="week"],input[type="number"],input[type="email"],input[type="url"],input[type="search"],input[type="tel"],input[type="color"],.uneditable-input {
+    
+    
     -webkit-transition: border linear .2s,box-shadow linear .2s;
     -moz-transition: border linear .2s,box-shadow linear .2s;
     -o-transition: border linear .2s,box-shadow linear .2s;
@@ -1036,7 +1033,7 @@ textarea:focus,input[type="text"]:focus,input[type="password"]:focus,input[type=
 }
 
 input[type="radio"],input[type="checkbox"] {
-    margin: 4px 0 0;
+    margin: -2px 0 0;
     margin-top: 1px \9;
     *margin-top: 0;
     line-height: normal;

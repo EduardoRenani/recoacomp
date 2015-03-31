@@ -6,10 +6,10 @@
 <!-- Home -->
 
 <!-- Custom CSS -->
-<link href="css/home.css" rel="stylesheet">
-<link rel='stylesheet' media='screen and (min-width: 0px) and (max-width: 425px)' href='css/home-xs.css' />
-<link rel='stylesheet' media='screen and (min-width: 425px) and (max-width: 1100px)' href='css/home-small.css' />
-<link rel='stylesheet' media='screen and (min-width: 1100px)' href='css/home-large.css' />
+<link href="css/perfil.css" rel="stylesheet">
+<link rel='stylesheet' media='screen and (min-width: 0px) and (max-width: 425px)' href='css/perfil-xs.css' />
+<link rel='stylesheet' media='screen and (min-width: 425px) and (max-width: 1100px)' href='css/perfil-small.css' />
+<link rel='stylesheet' media='screen and (min-width: 1100px)' href='css/perfil-large.css' />
 
 <!-- Custom Fonts -->
 <link href="font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
