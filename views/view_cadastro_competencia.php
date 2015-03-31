@@ -116,7 +116,6 @@ ol.example li.placeholder:before {
 </script>
 </head>
 <!-- clean separation of HTML and PHP -->
-<h2><?php echo $_SESSION['user_name']; ?></h2>
 <form method="post" action="" name="registrar_nova_competencia" id="registrar_nova_competencia">
     <!-- ID do usuário passado via hidden POST -->
     <input type="hidden" id="user_id" name="user_id" value="<?php echo $_SESSION['user_id']; ?>" />
@@ -127,6 +126,7 @@ ol.example li.placeholder:before {
             <ul>
                 <li><a href="#tab1" data-toggle="tab"><?php echo WORDING_CREATE_COMPETENCA; ?></a></li>
                 <li><a href="#tab2" data-toggle="tab"><?php echo 'Associar OAS'; ?></a></li>
+                <li><a href="#tab3" data-toggle="tab"><?php echo 'Preenchimento CHA'; ?></a></li>
             </ul>
              </div>
               </div>
@@ -189,6 +189,16 @@ ol.example li.placeholder:before {
                       </ul>
                      <a href="cadastro_OA.php" target="_blank"><?=WORDING_REGISTER_NOVO_OA?></a>
 
+                </div>                
+                <!-- Preenchimento de CHA no cadastro de competência -->
+                <div class="tab-pane" id="tab3">
+                    <div class="control-group">
+                        <label class="control-label" for="conhecimentoDescricao"><?php echo WORDING_CONHECIMENTO_DESCRICAO; ?></label>
+                        <div class="controls">
+                            <textarea name="conhecimentoDescricao" Rows="5" COLS="40"></textarea>
+                        </div>
+                    </div>
+
                 </div>
                 <ul class="pager wizard">
                     <li class="previous"><a href="javascript:;">Anterior</a></li>
@@ -203,13 +213,6 @@ ol.example li.placeholder:before {
         <input type="reset" name="limpar" value="<?php echo WORDING_CLEAR_CREATE_DISCIPLINA; ?>" />
 
     </form>
-
-<ol class='simple_with_animation'>
-  <li>First</li>
-  <li>Second</li>
-  <li>Third</li>
-</ol>
-
 
 
 <a href="index.php"><?php echo WORDING_BACK_TO_LOGIN; ?></a>

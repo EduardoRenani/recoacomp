@@ -69,6 +69,13 @@ class Disciplina {
     {
         if (isset($_POST["registrar_nova_disciplina"])) {
             // Função para primeira parte do cadastro de disciplina
+            $this->nomecurso = $_POST['nomeCurso'];
+            $this->nomeDisciplina = $_POST['nomeDisciplina'];
+            $this->descricao = $_POST['descricao'];
+            $this->user_id = $_POST['user_id'];
+            $this->senha = $_POST['senha'];
+            $this->arrayCompetencias = $_POST['arrayCompetencias'];
+/*
             $this->criaDisc(
             $_POST['nomeCurso'],
             $_POST['nomeDisciplina'],
@@ -76,12 +83,16 @@ class Disciplina {
             $_POST['user_id'], 
             $_POST['senha'], 
             $_POST['arrayCompetencias']);
-        }elseif(isset($_POST["cadastrar_usuario_disciplina"])){
+*/
+        } elseif(isset($_POST["cadastrar_usuario_disciplina"])) {
             $this->entrarDisciplina(
                 $_POST['idUsuario'],
                 $_POST['idDisciplina'],
                 $_POST['senha']);
-        }else{
+        } elseif(isset($_POST["cadastrar_cha_disciplina"])){
+            echo 'aqui';
+
+        } else {
             // Se não estiver cadastrando uma nova disciplina apenas é um constructor que retorna NULL
             return null;
         }
@@ -342,7 +353,6 @@ class Disciplina {
     public function entrarDisciplina($idUsuario, $idDisciplina, $senha){
         // Remove espaços em branco em excesso das strings
         $senha = trim($senha);
-
         $this->idUsuario  = $idUsuario;
         $this->idDisciplina = $idDisciplina;
         $this->senha = $senha;
