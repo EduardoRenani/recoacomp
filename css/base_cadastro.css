@@ -93,20 +93,20 @@ div.fixedBackgroundGradient{
     padding-top: 1.2%;
     background-color:#108AC0;
     color:white;
+    font-size:30px;
     
     font-weight:300;
 }
 
-.disciplinas-content{
+.cadastrobase-content{
+    margin-top:10%;
     position:relative;
     padding-left:0%;
     padding-right:0%;
-    background-color:#efefef;
     
     top:20px;
     
     margin:0 auto;
-    overflow-y:scroll;
 }
 
 .disciplinas-item{

@@ -1,4 +1,4 @@
-<?php include('_header.php'); ?>
+<!-- ERRO QUE TAVA DANDO DA MENSAGEM DUPLA  <?php //include('_header.php'); ?> -->
 
 <!-- TODO TRADUZIR-->
 <head>
@@ -24,7 +24,7 @@
         <div class="sidebar-content">           
                 <ul class="sidebar-menu">
                     <li style="z-index:1000;" id="home">
-                        <a href="index.php" id="active">Home</a>
+                        <a href="index.php" id="active">Disciplinas Disponíveis</a>
                             <ul > <!--nomes de cadeiras servem só de exemplo do funcionamento-->
 
                             </ul>
@@ -33,7 +33,7 @@
                         <a href="profile_show.php">Meu Perfil</a>
                     </li>
                      <li>
-                        <a href="disciplinas.php">Disciplinas</a>
+                        <a href="disciplinas.php">Minhas Disciplinas</a>
                     </li>
     				<li>
    						<?php 

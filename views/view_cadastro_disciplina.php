@@ -155,91 +155,91 @@ include('_header.php');
 
 
 <div class="fixedBackgroundGradient"></div>
-<h2><?php echo ($_SESSION['user_name']); ?></h2>
 <a href="index.php"><?php echo WORDING_BACK_TO_LOGIN;?></a>
 
 <div class="cadastrobase">
     <div class="top-cadastrobase"><?php echo (WORDING_CREATE_DISCIPLINA); ?></div>
-   <form method="post" action="" name="registrar_nova_disciplina" id="registrar_nova_disciplina">
-    <!-- ID do usuário passado via hidden POST -->
-    <input type="hidden" id="user_id" name="user_id" value="<?php echo $_SESSION['user_id']; ?>" />
-        <div id="rootwizard">
-            <div class="navbar">
-              <div class="navbar-inner">
-                <div class="container">
-            <ul>
-                <li><a href="#tab1" data-toggle="tab"><?php echo WORDING_GENERAL_INFORMATION; ?></a></li>
-                <li><a href="#tab2" data-toggle="tab"><?php echo WORDING_COMPETENCIA; ?></a></li>
-            </ul>
-             </div>
-              </div>
-            </div>
-                <div id="bar" class="progress progress-striped active">
-                    <div class="bar">
+        <div class="cadastrobase-content">
+           <form method="post" action="" name="registrar_nova_disciplina" id="registrar_nova_disciplina">
+            <!-- ID do usuário passado via hidden POST -->
+            <input type="hidden" id="user_id" name="user_id" value="<?php echo $_SESSION['user_id']; ?>" />
+                <div id="rootwizard">
+                    <div class="navbar">
+                      <div class="navbar-inner">
+                        <div class="container">
+                    <ul>
+                        <li><a href="#tab1" data-toggle="tab"><?php echo WORDING_GENERAL_INFORMATION; ?></a></li>
+                        <li><a href="#tab2" data-toggle="tab"><?php echo WORDING_COMPETENCIA; ?></a></li>
+                    </ul>
+                     </div>
+                      </div>
                     </div>
-                </div>
-            <div class="tab-content">
-                <div class="tab-pane" id="tab1">
-                    <div class="control-group">
-                        <label class="control-label" for="nomeCurso"><?php echo WORDING_COURSE_NAME; ?></label>
-                        <div class="controls">
-                            <input type="text" id="nomeCurso" name="nomeCurso" class="required">       
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="nomeDisciplina"><?php echo WORDING_DISCIPLINA_NAME; ?></label>
-                        <div class="controls">
-                            <input type="text" id="nomeDisciplina" name="nomeDisciplina" class="required">       
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="senha"><?php echo WORDING_REGISTRATION_PASSWORD; ?></label>
-                        <div class="controls">
-                            <input type="text" id="senha" name="senha" class="required">       
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="descricao"><?php echo WORDING_DISCIPLINA_DESCRICAO; ?></label>
-                            <div class="controls">
-                                <textarea name="descricao" id="descricao" ROWS="5" COLS="40" class="required"></textarea>
+                        <div id="bar" class="progress progress-striped active">
+                            <div class="bar">
                             </div>
-                    </div>
+                        </div>
+                    <div class="tab-content">
+                        <div class="tab-pane" id="tab1">
+                            <div class="control-group">
+                                <label class="control-label" for="nomeCurso"><?php echo WORDING_COURSE_NAME; ?></label>
+                                <div class="controls">
+                                    <input type="text" id="nomeCurso" name="nomeCurso" class="required">       
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="nomeDisciplina"><?php echo WORDING_DISCIPLINA_NAME; ?></label>
+                                <div class="controls">
+                                    <input type="text" id="nomeDisciplina" name="nomeDisciplina" class="required">       
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="senha"><?php echo WORDING_REGISTRATION_PASSWORD; ?></label>
+                                <div class="controls">
+                                    <input type="text" id="senha" name="senha" class="required">       
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="descricao"><?php echo WORDING_DISCIPLINA_DESCRICAO; ?></label>
+                                    <div class="controls">
+                                        <textarea name="descricao" id="descricao" ROWS="5" COLS="40" class="required"></textarea>
+                                    </div>
+                            </div>
+                        </div>
+                        <!-- DIV COM DADOS DAS COMPETÊNCIAS A SEREM ASSOCIADAS A DISCIPLINA -->
+                        <div class="tab-pane" id="tab2">
+                            <input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" />
+                            <ul id="tabela1">
+                                <?php
+                                $comp = new Competencia();
+                                $idCompetencia = $comp->getArrayOfIDs();
+                                $nomeCompetencia = $comp->getArrayOfNames();
+                                $contador = count($nomeCompetencia);
+                                for($i=0;$i<$contador;$i++){ ?>
+                                    <li id="<?php echo "".($idCompetencia[$i]["idcompetencia"]); ?>" class="ui-state-default"><?php echo "".($nomeCompetencia[$i]["nome"]); ?></li>
+                                <?php } ?>
+                            </ul>
+                            <ul id="tabela2">
+                            <!--<li class="ui-state-highlight">Item 1 selecionado</li>-->
+                            </ul>
+                             <a href="cadastro_OA.php" target="_blank"><?=WORDING_REGISTER_NOVO_OA?></a>
+
+                        </div>
+                        <ul class="pager wizard">
+                            <li class="previous"><a href="javascript:;">Anterior</a></li>
+                            <li class="next"><a href="javascript:;">Próximo</a></li>
+                        </ul>
+
+
+                    </div>  
                 </div>
-                <!-- DIV COM DADOS DAS COMPETÊNCIAS A SEREM ASSOCIADAS A DISCIPLINA -->
-                <div class="tab-pane" id="tab2">
-                    <input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" />
-                    <ul id="tabela1">
-                        <?php
-                        $comp = new Competencia();
-                        $idCompetencia = $comp->getArrayOfIDs();
-                        $nomeCompetencia = $comp->getArrayOfNames();
-                        $contador = count($nomeCompetencia);
-                        for($i=0;$i<$contador;$i++){ ?>
-                            <li id="<?php echo "".($idCompetencia[$i]["idcompetencia"]); ?>" class="ui-state-default"><?php echo "".($nomeCompetencia[$i]["nome"]); ?></li>
-                        <?php } ?>
-                    </ul>
-                    <ul id="tabela2">
-                    <!--<li class="ui-state-highlight">Item 1 selecionado</li>-->
-                    </ul>
-                     <a href="cadastro_OA.php" target="_blank"><?=WORDING_REGISTER_NOVO_OA?></a>
+                <br /><br />
 
-                </div>
-                <ul class="pager wizard">
-                    <li class="previous"><a href="javascript:;">Anterior</a></li>
-                    <li class="next"><a href="javascript:;">Próximo</a></li>
-                </ul>
+                <input type="submit" name="registrar_nova_disciplina" value="<?php echo WORDING_CREATE_DISCIPLINA; ?>" />
+                <input type="reset" name="limpar" value="<?php echo WORDING_CLEAR_CREATE_DISCIPLINA; ?>" />
 
-
-            </div>  
+            </form><hr/>
         </div>
-        <br /><br />
-
-        <input type="submit" name="registrar_nova_disciplina" value="<?php echo WORDING_CREATE_DISCIPLINA; ?>" />
-        <input type="reset" name="limpar" value="<?php echo WORDING_CLEAR_CREATE_DISCIPLINA; ?>" />
-
-    </form><hr/>
 </div>
-
 
 
 
