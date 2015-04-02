@@ -101,7 +101,7 @@ define("MESSAGE_DISCIPLINA_ALREADY_EXISTS","A seguinte disciplina já exite: ");
 define("MESSAGE_DISCIPLINA_DOESNT_EXIST","Disciplina não existe");
 define("MESSAGE_COMPETENCIA_DOESNT_EXIST","Competência associada é inválida");
 define("MESSAGE_DISCIPLINA_COMPETENCIA_ALREADY_RELATED","Competência já associada a essa disciplina");
-define("WORDING_REGISTER_NOVA_DISCIPLINA", "Registrar Nova Disciplina");
+define("WORDING_REGISTER_NOVA_DISCIPLINA", "Registrar Disciplina");
 define("WORDING_CREATE_NEW_COURSE", "Criar novo curso");
 define("WORDING_COURSE_NAME", "Nome do curso");
 define("WORDING_DISCIPLINA_NAME", "Nome da disciplina");
@@ -120,7 +120,7 @@ define("WORDING_SELECT_COMPETENCIA","Selecione a(s) competências(s)");
 define("WORDING_PORTUGUES", "Português");
 define("WORDING_ENGLISH", "Inglês");
 define("WORDING_SPANISH", "Espanhol");
-define("WORDING_REGISTER_NOVO_OA", "Registrar Novo Objeto de Aprendizagem");
+define("WORDING_REGISTER_NOVO_OA", "Registrar Objeto de Aprendizagem");
 define("MESSAGE_OA_WITH_NAME_ALREADY_EXISTS", "Objeto de Aprendizagem com nome e/ou URL já existente!");
 
 
@@ -228,8 +228,9 @@ define("WORDING_KEYWORD","Palavra-chave");
 define("WORDING_CREATE_OA","Criar Objeto de Aprendizagem");
 
 //Cadastro de Competências Mensagens
-define("WORDING_REGISTER_NOVA_COMPETENCIA", "Registrar Nova Competência");
+define("WORDING_REGISTER_NOVA_COMPETENCIA", "Registrar Competência");
 define("WORDING_COMPETENCIA", "Competência ");
+define("WORDING_CHA", "CHA ");
 define("WORDING_CREATE_COMPETENCA", "Criar Nova Competência");
 define("WORDING_ASSOCIATE_OA", "Associar OA's para nova competência");
 define("MESSAGE_NAME_EMPTY", "Nome vazio");

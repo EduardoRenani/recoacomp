@@ -14,6 +14,8 @@
 
     <!-- Fim Equipe -->
 </head>
+<body>
+<div class="fixedBackgroundGradient"></div>
 
 <div class="disciplinas">
     <div class="top-disciplinas">Equipe</div>

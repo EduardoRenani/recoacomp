@@ -34,6 +34,7 @@
 </head>
 
 <body>
+<div class="fixedBackgroundGradient"></div>
 
 <?php
 /**

@@ -16,14 +16,20 @@ html {
 body{    
     font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 700;
-    background: -webkit-linear-gradient(bottom, rgba(38,179,232,0.9), rgba(117,204,214,0.9)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(top, rgba(38,179,232,0.9), rgba(117,204,214,0.9)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(top, rgba(38,179,232,0.9), rgba(117,204,214,0.9)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to top, rgba(38,179,232,0.9), rgba(117,204,214,0.9)); /* Standard syntax (must be last) */
     padding-top:55px;
     background-repeat:repeat-y;
 
     
+}
+
+div.fixedBackgroundGradient{  
+      background: -moz-linear-gradient(top, rgba(38,179,232,0.9), rgba(117,204,214,0.9)), url("../img/pattern1.png");
+    background: -webkit-linear-gradient(bottom, rgba(38,179,232,0.9), rgba(117,204,214,0.9)), url("../img/pattern1.png");
+    background: -o-linear-gradient(top, rgba(38,179,232,0.9), rgba(117,204,214,0.9)), url("../img/pattern1.png");
+    background: linear-gradient(to top, rgba(38,179,232,0.9), rgba(117,204,214,0.9)), url("../img/pattern1.png"); 
+  height: 100%; width: 100%;  
+  position: fixed; top: 0px; left: 0px;  
+  z-index: 0000;
 }
 
 /*HEADER---------------------------------------------------------------------*/
@@ -73,6 +79,7 @@ nav li {
 
 .header-large{
     position:fixed;
+    z-index: 9999;
     top:0;
     left:0;
     height:55px;
@@ -123,7 +130,6 @@ nav {
     background-color:white;
     position:relative;
     float:right;
-   
 
     -webkit-box-shadow: 5px 5px 0px 0px rgba(50, 50, 50, 0.2);
     -moz-box-shadow:    5px 5px 0px 0px rgba(50, 50, 50, 0.2);

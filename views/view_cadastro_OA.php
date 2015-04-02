@@ -9,6 +9,25 @@
 include('_header.php');
 require_once("classes/OA.php");?>
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+    <link href="css/base_cadastro_objeto.css" rel="stylesheet">
+    <style>
+    body { font-size: 62.5%; }
+    label, input { display:block; width: 100%; }
+    input.text { margin-bottom:12px; width:95%; padding: .4em; }
+    fieldset { padding:0; border:0; margin-top:25px; }
+    h1 { font-size: 1.2em; margin: .6em 0; }
+    div#users-contain { width: 350px; margin: 20px 0; }
+    div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+    div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+    .ui-dialog .ui-state-error { padding: .3em; }
+    .validateTips { border: 1px solid transparent; padding: 0.3em; }
+    </style>
+
+    <!-- BREADCRUMB BONITO-->
+    <script src="http://thecodeplayer.com/uploads/js/prefixfree-1.0.7.js" type="text/javascript" type="text/javascript"></script>
+
+
 
 <!-- clean separation of HTML and PHP -->
 <script>
@@ -123,18 +142,23 @@ $(function() {
 				$('#rootwizard').find('.pager .finish').hide();
 			}
         }, onTabClick: function(tab, navigation, index) {
-			return false;
+            if(index!=5) {
+                $('#finisher').fadeOut("slow");
+            }
+			return true;
 		}
 		});		
 });
 </script>
-	
-	
-<h2><?=WORDING_REGISTER_NOVO_OA?></h2>
-<form id="registrar_novo_OA" method="post" action="" name="registrar_novo_OA" class="form-horizontal">
+
+<div class="fixedBackgroundGradient"></div>
+<div class="cadastrobase">
+<div class="top-cadastrobase"><?=WORDING_REGISTER_NOVO_OA?></div>
+<div class="cadastrobase-content">
+<form id="registrar_novo_OA" method="post" action="" name="registrar_novo_OA" class="form-horizontal" style="width: 100%;">
     <input type="hidden" id="idusuario" name="idusuario" value="<?php echo $_SESSION['user_id']; ?>" />
     <div id="rootwizard">
-        <div class="navbar">
+        <div class="navbar" style="margin: 0 auto; width: 97%; margin-bottom: 20px;">
             <div class="navbar-inner">
                 <div class="container">
                     <ul>
@@ -147,11 +171,11 @@ $(function() {
                 </div>
             </div>
         </div>
-        <div id="bar" class="progress progress-striped active">
+        <div id="bar" class="progress progress-striped active" style="margin: 0 auto; width: 97%; margin-bottom: 20px;">
             <div class="bar">
             </div>
         </div>
-        <div class="tab-content">
+        <div class="tab-content" style="margin: 0 auto; width: 70%; margin-bottom: 20px;">
         <!-- Inicio-->
             <div class="tab-pane" id="tab1"> 
                 <div class="control-group">
@@ -175,7 +199,7 @@ $(function() {
                          <!-- TRADUZIR -->
                     </div>
                 </div>
-                <div class="#control-group">
+                <div class="control-group">
                     <label class="control-label" for="idioma"><?php echo WORDING_LANGUAGE; ?></label>
                     <div class="controls">
                         <select id = "idioma" name="idioma">
@@ -186,7 +210,7 @@ $(function() {
                     </div>
                 </div>
                 <!-- Descrição -->
-                <div class="#control-group">
+                <div class="control-group">
                     <label class="control-label" for="descricao"><?php echo WORDING_DESCRIPTION; ?></label>
                     <div class="controls">
                         <textarea name="descricao" id="descricao" ROWS="5" COLS="40"></textarea>
@@ -403,22 +427,26 @@ $(function() {
                     <div class="controls">
 						<textarea name="uso" id="uso" ROWS="5" COLS="40"></textarea>
                     </div>
-                </div>				
+                </div>	
+
+			
             </div>
+
 			
 			<ul class="pager wizard">
-				<li class="previous"><a href="javascript:;">Anterior</a></li>
-				<li class="next"><a href="javascript:;">Próximo</a></li>
-			</ul>
+                            <input id="finisher" style="display:none;" type="submit" name="registrar_novo_OA" value="<?php echo WORDING_CREATE_OA ; ?>" />
+                <li class="next" style="float:none"><div class='button'><a href="javascript:;" class='button-next text-left'>Próximo</a></div></li>
+                <li class="previous" style="float:none"><div class="text-right"><a href="javascript:;">Voltar</a></div></li>
+            </ul>
 			
 
   
         </div>  
     </div>
-
-	<input id="finisher" style="display:none;" type="submit" name="registrar_novo_OA" value="<?php echo WORDING_CREATE_OA ; ?>" />
-    <input type="reset" name="limpar" value="<?php echo WORDING_CLEAR_CREATE_DISCIPLINA; ?>" />
+    <!-- <input type="reset" name="limpar" value="<?php echo WORDING_CLEAR_CREATE_DISCIPLINA; ?>" /> -->
 </form>
+</div>
+</div>
     <!-- formulario para cadastro de OAS -->
     <!-- edit form for username / this form uses HTML5 attributes, like "required" and type="email" -->
 

@@ -96,7 +96,7 @@ div.fixedBackgroundGradient{
     min-width:800px;
     max-width:1000px;
     margin:0 auto;
-    margin-top: 100px;
+    margin-top: 75px;
     -webkit-box-shadow: 5px 5px 0px 0px rgba(50, 50, 50, 0.2);
     -moz-box-shadow:    5px 5px 0px 0px rgba(50, 50, 50, 0.2);
     box-shadow:         5px 5px 0px 0px rgba(50, 50, 50, 0.2);
@@ -233,7 +233,7 @@ border-radius: 5px;
 /*FORM-----------------------------------------------------------------------*/
 
 
-div.control-group input[type=text],[type=password],[type="email"]{ /*customiza input de texto e senha*/
+div.control-group input[type=text],[type=password],[type="email"],[type=date],[type=number],[type=time]{ /*customiza input de texto e senha*/
      position:relative;
      border:none;
      background:#F1F1F2;
@@ -387,5 +387,4 @@ input[type=submit]{ /*customiza input de submit*/
     font-size: 14px;
     width: 97%;
     font-weight:100;
-    cursor:pointer;
 }

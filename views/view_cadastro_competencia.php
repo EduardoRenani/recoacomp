@@ -12,6 +12,8 @@ include('_header.php'); ?>
 
     <script src="js/jquery.range.js"></script>
     <link href="css/jquery.range.css" rel="stylesheet">
+    <link href="css/base_cadastro.css" rel="stylesheet">
+
 
     <style>
 
@@ -112,6 +114,9 @@ include('_header.php'); ?>
                 $('#rootwizard').find('.pager .finish').hide();
             }
         }, onTabClick: function(tab, navigation, index) {
+            if(index!=5) {
+                $('#finisher').fadeOut("slow");
+            }
             return true;
         }
         });     
@@ -119,104 +124,112 @@ include('_header.php'); ?>
 
 </script>
 </head>
+<div class="fixedBackgroundGradient"></div>
 <!-- clean separation of HTML and PHP -->
-<h2><?php echo $_SESSION['user_name']; ?></h2>
-<form method="post" action="" name="registrar_nova_competencia" id="registrar_nova_competencia">
-    <!-- ID do usuário passado via hidden POST -->
-    <input type="hidden" id="user_id" name="user_id" value="<?php echo $_SESSION['user_id']; ?>" />
-        <div id="rootwizard">
-            <div class="navbar">
-              <div class="navbar-inner">
-                <div class="container">
-            <ul>
-                <li><a href="#tab1" data-toggle="tab"><?php echo WORDING_CREATE_COMPETENCA; ?></a></li>
-                <li><a href="#tab2" data-toggle="tab"><?php echo 'Associar OAS'; ?></a></li>
-                <li><a href="#tab3" data-toggle="tab"><?php echo 'Preencher CHA'; ?></a></li>
-            </ul>
-             </div>
-              </div>
+
+<div class="cadastrobase" >
+    <div class="top-cadastrobase"><?php echo (WORDING_CREATE_DISCIPLINA); ?></div>
+        <div class="cadastrobase-content">
+            <form method="post" action="" name="registrar_nova_competencia" id="registrar_nova_competencia">
+                <!-- ID do usuário passado via hidden POST -->
+                <input type="hidden" id="user_id" name="user_id" value="<?php echo $_SESSION['user_id']; ?>" />
+                    <div id="rootwizard">
+                        <div class="navbar">
+                          <div class="navbar-inner">
+                            <div class="container">
+                        <ul>
+                            <li><a href="#tab1" data-toggle="tab"><?php echo WORDING_CREATE_COMPETENCA; ?></a></li>
+                            <li><a href="#tab2" data-toggle="tab"><?php echo 'Associar OAS'; ?></a></li>
+                            <li><a href="#tab3" data-toggle="tab"><?php echo 'Preencher CHA'; ?></a></li>
+                        </ul>
+                         </div>
+                          </div>
+                        </div>
+                            <div id="bar" class="progress progress-striped active">
+                                <div class="bar">
+                                </div>
+                            </div>
+
+
+                        <div class="tab-content">
+                            <div class="tab-pane" id="tab1">
+                                <div class="control-group">
+                                    <label class="control-label" for="nome"><?php echo WORDING_NAME; ?></label>
+                                    <div class="controls">
+                                        <input type="text" id="nome" name="nome" class="required">       
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="descricaoNome"><?php echo WORDING_COMPETENCIA_DESCRICAO; ?></label>
+                                    <div class="controls">
+                                        <textarea name="descricaoNome" Rows="5" COLS="40"></textarea>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="atitudeDescricao"><?php echo WORDING_ATITUDE_DESCRICAO; ?></label>
+                                    <div class="controls">
+                                        <textarea name="atitudeDescricao" Rows="5" COLS="40"></textarea>
+                                    </div>
+                                </div>                    
+                                <div class="control-group">
+                                    <label class="control-label" for="habilidadeDescricao"><?php echo WORDING_HABILIDADE_DESCRICAO; ?></label>
+                                    <div class="controls">
+                                        <textarea name="habilidadeDescricao" Rows="5" COLS="40"></textarea>
+                                    </div>
+                                </div>                    
+                                <div class="control-group">
+                                    <label class="control-label" for="conhecimentoDescricao"><?php echo WORDING_CONHECIMENTO_DESCRICAO; ?></label>
+                                    <div class="controls">
+                                        <textarea name="conhecimentoDescricao" Rows="5" COLS="40"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- DIV COM DADOS DAS COMPETÊNCIAS A SEREM ASSOCIADAS A DISCIPLINA -->
+                            <div class="tab-pane" id="tab2">
+                                <input type="hidden" id="arrayOAS" name="arrayOAS" value="" />
+                                  <ul id="tabela1">
+                                      <?php
+                                      $OA = new OA();
+                                      $idOA = $OA->getArrayOfId_OA();
+                                      $nomeOA = $OA->getArrayOfName_OA(); 
+                                      $contador = count($nomeOA);
+                                      // $idOA[$i] = posição no vetor
+                                      // ["idcesta"] = parametro do banco de dados
+                                      for($i=0;$i<$contador;$i++){ ?>
+                                          <li id="<?php echo "".($idOA[$i]["idcesta"]); ?>" class="ui-state-default"><?php echo "".($nomeOA[$i]["nome"]); ?></li>
+                                      <?php } ?>
+                                  </ul>
+                                  <ul id="tabela2">
+                                  <!-- Os objetos que serão associados estarão nessa tabela -->
+                                  </ul>
+                                 <a href="cadastro_OA.php" target="_blank"><?=WORDING_REGISTER_NOVO_OA?></a>
+
+                            </div>
+                            <div class="tab-pane" id="tab3">
+                                <div class="control-group">
+                                    <label class="control-label" for="OA1">OA 1</label>
+                                    <div class="controls">
+                                        <center><input type="hidden" class="single-slider" value="0" /></center>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <ul class="pager wizard">
+                                <input id="finisher" style="display: none;" type="submit" name="registrar_nova_disciplina" value="<?php echo WORDING_CREATE_DISCIPLINA; ?>" />
+                                <li class="next" style="float:none"><div class='button'><a href="javascript:;" class='button-next text-left'>Próximo</a></div></li>
+                                <li class="previous" style="float:none"><div class="text-right"><a href="javascript:;">Voltar</a></div></li>
+                            </ul>
+
+                        </div>  
+                    </div>
+                    <br /><br />
+
+                    <!--<input type="reset" name="limpar" value="<?php echo WORDING_CLEAR_CREATE_DISCIPLINA; ?>" />-->
+
+                </form>
             </div>
-                <div id="bar" class="progress progress-striped active">
-                    <div class="bar">
-                    </div>
-                </div>
-            <div class="tab-content">
-                <div class="tab-pane" id="tab1">
-                    <div class="control-group">
-                        <label class="control-label" for="nome"><?php echo WORDING_NAME; ?></label>
-                        <div class="controls">
-                            <input type="text" id="nome" name="nome" class="required">       
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="descricaoNome"><?php echo WORDING_COMPETENCIA_DESCRICAO; ?></label>
-                        <div class="controls">
-                            <textarea name="descricaoNome" Rows="5" COLS="40"></textarea>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="atitudeDescricao"><?php echo WORDING_ATITUDE_DESCRICAO; ?></label>
-                        <div class="controls">
-                            <textarea name="atitudeDescricao" Rows="5" COLS="40"></textarea>
-                        </div>
-                    </div>                    
-                    <div class="control-group">
-                        <label class="control-label" for="habilidadeDescricao"><?php echo WORDING_HABILIDADE_DESCRICAO; ?></label>
-                        <div class="controls">
-                            <textarea name="habilidadeDescricao" Rows="5" COLS="40"></textarea>
-                        </div>
-                    </div>                    
-                    <div class="control-group">
-                        <label class="control-label" for="conhecimentoDescricao"><?php echo WORDING_CONHECIMENTO_DESCRICAO; ?></label>
-                        <div class="controls">
-                            <textarea name="conhecimentoDescricao" Rows="5" COLS="40"></textarea>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- DIV COM DADOS DAS COMPETÊNCIAS A SEREM ASSOCIADAS A DISCIPLINA -->
-                <div class="tab-pane" id="tab2">
-                    <input type="hidden" id="arrayOAS" name="arrayOAS" value="" />
-                      <ul id="tabela1">
-                          <?php
-                          $OA = new OA();
-                          $idOA = $OA->getArrayOfId_OA();
-                          $nomeOA = $OA->getArrayOfName_OA(); 
-                          $contador = count($nomeOA);
-                          // $idOA[$i] = posição no vetor
-                          // ["idcesta"] = parametro do banco de dados
-                          for($i=0;$i<$contador;$i++){ ?>
-                              <li id="<?php echo "".($idOA[$i]["idcesta"]); ?>" class="ui-state-default"><?php echo "".($nomeOA[$i]["nome"]); ?></li>
-                          <?php } ?>
-                      </ul>
-                      <ul id="tabela2">
-                      <!-- Os objetos que serão associados estarão nessa tabela -->
-                      </ul>
-                     <a href="cadastro_OA.php" target="_blank"><?=WORDING_REGISTER_NOVO_OA?></a>
-
-                </div>
-                <div class="tab-pane" id="tab3">
-                    <div class="control-group">
-                        <label class="control-label" for="OA1">OA 1</label>
-                        <div class="controls">
-                            <center><input type="hidden" class="single-slider" value="0" /></center>
-                        </div>
-                    </div>
-                </div>
-
-                <ul class="pager wizard">
-                    <li class="previous"><a href="javascript:;">Anterior</a></li>
-                    <li class="next"><a href="javascript:;">Próximo</a></li>
-                </ul>
-
-            </div>  
         </div>
-        <br /><br />
-
-        <input type="submit" name="registrar_nova_disciplina" value="<?php echo WORDING_CREATE_DISCIPLINA; ?>" />
-        <input type="reset" name="limpar" value="<?php echo WORDING_CLEAR_CREATE_DISCIPLINA; ?>" />
-
-    </form>
 
 <a href="index.php"><?php echo WORDING_BACK_TO_LOGIN; ?></a>
 <?php include('_footer.php'); ?>

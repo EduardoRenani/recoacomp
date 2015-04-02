@@ -18,7 +18,7 @@
 <!-- Fim Home -->
 
 </head>
-
+<div class="fixedBackgroundGradient"></div>
 <?php require_once("sidebar.php"); ?>
 
 <!-- ============== DISCIPLINAS ============== -->

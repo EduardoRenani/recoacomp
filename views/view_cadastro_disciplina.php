@@ -14,7 +14,6 @@ include('_header.php');
     <link href="css/base_cadastro.css" rel="stylesheet">
 
     <style>
-
     body { font-size: 62.5%; }
     label, input { display:block; }
     input.text { margin-bottom:12px; width:95%; padding: .4em; }
@@ -26,6 +25,10 @@ include('_header.php');
     .ui-dialog .ui-state-error { padding: .3em; }
     .validateTips { border: 1px solid transparent; padding: 0.3em; }
     </style>
+
+    <!-- BREADCRUMB BONITO-->
+    <script src="http://thecodeplayer.com/uploads/js/prefixfree-1.0.7.js" type="text/javascript" type="text/javascript"></script>
+
     <!-- FUNÇÃO QUE FAZ O SORTABLE E ENVIA OS ID'S DAS COMPETÊNCIAS-->
     <script>
     $(function() {
@@ -146,6 +149,9 @@ include('_header.php');
                 $('#rootwizard').find('.pager .finish').hide();
             }
         }, onTabClick: function(tab, navigation, index) {
+            if(index!=5) {
+                $('#finisher').fadeOut("slow");
+            }
             return true;
         }
         });     
@@ -164,16 +170,21 @@ include('_header.php');
             <!-- ID do usuário passado via hidden POST -->
             <input type="hidden" id="user_id" name="user_id" value="<?php echo $_SESSION['user_id']; ?>" />
                 <div id="rootwizard">
+
+
                     <div class="navbar">
                       <div class="navbar-inner">
                         <div class="container">
-                    <ul>
-                        <li><a href="#tab1" data-toggle="tab"><?php echo WORDING_GENERAL_INFORMATION; ?></a></li>
-                        <li><a href="#tab2" data-toggle="tab"><?php echo WORDING_COMPETENCIA; ?></a></li>
-                    </ul>
-                     </div>
+                            <ul>
+                                <li><a href="#tab1" data-toggle="tab"><?php echo WORDING_GENERAL_INFORMATION; ?></a></li>
+                                <li><a href="#tab2" data-toggle="tab"><?php echo WORDING_COMPETENCIA; ?></a></li>
+                                <li><a href="#tab3" data-toggle="tab"><?php echo WORDING_CHA; ?></a></li>
+                            </ul>
+                        </div>
                       </div>
                     </div>
+
+
                         <div id="bar" class="progress progress-striped active">
                             <div class="bar">
                             </div>
@@ -208,6 +219,7 @@ include('_header.php');
                         <!-- DIV COM DADOS DAS COMPETÊNCIAS A SEREM ASSOCIADAS A DISCIPLINA -->
                         <div class="tab-pane" id="tab2">
                             <input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" />
+                            <span style="text-align:left">Competencias Disponíveis</span><span style="float:right">Competencias Selecionadas</span>
                             <ul id="tabela1">
                                 <?php
                                 $comp = new Competencia();
@@ -218,15 +230,24 @@ include('_header.php');
                                     <li id="<?php echo "".($idCompetencia[$i]["idcompetencia"]); ?>" class="ui-state-default"><?php echo "".($nomeCompetencia[$i]["nome"]); ?></li>
                                 <?php } ?>
                             </ul>
+
+                            
                             <ul id="tabela2">
                             <!--<li class="ui-state-highlight">Item 1 selecionado</li>-->
                             </ul>
-                             <a href="cadastro_OA.php" target="_blank"><?=WORDING_REGISTER_NOVO_OA?></a>
-
+                             <div class='button'><a href="cadastro_OA.php" target="_blank"><?=WORDING_REGISTER_NOVO_OA?></a></div>
+                            
                         </div>
+                        
+                        <!-- DIV COM COISA CHA -->
+                        <div class="tab-pane" id="tab3">
+                            <p> oi</p>
+                        </div>
+
                         <ul class="pager wizard">
-                            <li class="previous"><a href="javascript:;">Anterior</a></li>
-                            <li class="next"><a href="javascript:;">Próximo</a></li>
+                            <input id="finisher" style="display: none;" type="submit" name="registrar_nova_disciplina" value="<?php echo WORDING_CREATE_DISCIPLINA; ?>" />
+                            <li class="next" style="float:none"><div class='button'><a href="javascript:;" class='button-next text-left'>Próximo</a></div></li>
+                            <li class="previous" style="float:none"><div class="text-right"><a href="javascript:;">Voltar</a></div></li>
                         </ul>
 
 
@@ -234,10 +255,10 @@ include('_header.php');
                 </div>
                 <br /><br />
 
-                <input type="submit" name="registrar_nova_disciplina" value="<?php echo WORDING_CREATE_DISCIPLINA; ?>" />
-                <input type="reset" name="limpar" value="<?php echo WORDING_CLEAR_CREATE_DISCIPLINA; ?>" />
+                
+                <!--<input type="reset" name="limpar" value="<?php echo WORDING_CLEAR_CREATE_DISCIPLINA; ?>" />-->
 
-            </form><hr/>
+            </form>
         </div>
 </div>
 
