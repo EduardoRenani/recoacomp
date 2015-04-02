@@ -11,6 +11,7 @@ require_once("classes/OA.php");?>
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
     <link href="css/base_cadastro_objeto.css" rel="stylesheet">
+    <link href="css/base_cadastro.css" rel="stylesheet">
     <style>
     body { font-size: 62.5%; }
     label, input { display:block; width: 100%; }
@@ -153,7 +154,7 @@ $(function() {
 
 <div class="fixedBackgroundGradient"></div>
 <div class="cadastrobase">
-<div class="top-cadastrobase"><?=WORDING_REGISTER_NOVO_OA?></div>
+<div class="top-cadastrobase"><div class="text-left"><?php echo (WORDING_REGISTER_NOVO_OA); ?></div><div class="text-right" ><a href="index.php"><?php echo WORDING_BACK_TO_LOGIN;?></a></div></div>
 <div class="cadastrobase-content">
 <form id="registrar_novo_OA" method="post" action="" name="registrar_novo_OA" class="form-horizontal" style="width: 100%;">
     <input type="hidden" id="idusuario" name="idusuario" value="<?php echo $_SESSION['user_id']; ?>" />
@@ -194,7 +195,7 @@ $(function() {
                     <label class="control-label" for="palavrachave"><?php echo WORDING_KEYWORDS; ?></label>
                     <div class="controls">
                         <!-- input class="palavra_chave" multiple="multiple" id="palavrachave" name="palavrachave" class="required"/-->
-                        <input type="text" data-role="tagsinput" id="palavrachave" name="palavrachave" class="required"/>
+                        <input type="text" data-role="tagsinput" id="palavrachave" name="palavrachave" class="required" />
                         
                          <!-- TRADUZIR -->
                     </div>

@@ -128,7 +128,7 @@ include('_header.php'); ?>
 <!-- clean separation of HTML and PHP -->
 
 <div class="cadastrobase" >
-    <div class="top-cadastrobase"><?php echo (WORDING_CREATE_DISCIPLINA); ?></div>
+    <div class="top-cadastrobase"><div class="text-left"><?php echo (WORDING_CREATE_COMPETENCA); ?></div><div class="text-right" ><a href="index.php"><?php echo WORDING_BACK_TO_LOGIN;?></a></div></div>
         <div class="cadastrobase-content">
             <form method="post" action="" name="registrar_nova_competencia" id="registrar_nova_competencia">
                 <!-- ID do usuário passado via hidden POST -->
@@ -203,7 +203,8 @@ include('_header.php'); ?>
                                   <ul id="tabela2">
                                   <!-- Os objetos que serão associados estarão nessa tabela -->
                                   </ul>
-                                 <a href="cadastro_OA.php" target="_blank"><?=WORDING_REGISTER_NOVO_OA?></a>
+                                  <div class='button'><a href="cadastro_OA.php" target="_blank"><?=WORDING_REGISTER_NOVO_OA?></a></div>   
+                                 <!--<a href="cadastro_OA.php" target="_blank"><?=WORDING_REGISTER_NOVO_OA?></a>-->
 
                             </div>
                             <div class="tab-pane" id="tab3">
@@ -216,7 +217,7 @@ include('_header.php'); ?>
                             </div>
 
                             <ul class="pager wizard">
-                                <input id="finisher" style="display: none;" type="submit" name="registrar_nova_disciplina" value="<?php echo WORDING_CREATE_DISCIPLINA; ?>" />
+                                <input id="finisher" style="display: none;" type="submit" name="registrar_nova_disciplina" value="<?php echo WORDING_CREATE_COMPETENCA; ?>" />
                                 <li class="next" style="float:none"><div class='button'><a href="javascript:;" class='button-next text-left'>Próximo</a></div></li>
                                 <li class="previous" style="float:none"><div class="text-right"><a href="javascript:;">Voltar</a></div></li>
                             </ul>

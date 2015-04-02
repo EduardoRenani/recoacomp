@@ -307,12 +307,34 @@ class Disciplina {
         }
 	}
 
+    public function getNomeDisciplinaById($id){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT nomeDisciplina FROM disciplina WHERE iddisciplina=:id");
+            //$stmt->bindParam(':nome',, PDO::PARAM_STR);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            //print_r($stmt->execute());
+            return $stmt->fetchAll();
+        }
+    }
+
     // Retorna o nome de todos os cursos
     public function getNomesCursos(){
         if($this->databaseConnection()){
             $stmt = $this->db_connection->prepare("SELECT nomeCurso FROM disciplina");
             //$stmt->bindParam(':nome',, PDO::PARAM_STR);
             $stmt->execute();
+            return $stmt->fetchAll();
+        }
+    }
+
+    public function getNomeCursoById($id){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT nomeCurso FROM disciplina WHERE iddisciplina=:id");
+            //$stmt->bindParam(':nome',, PDO::PARAM_STR);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            //print_r($stmt->execute());
             return $stmt->fetchAll();
         }
     }
@@ -380,7 +402,7 @@ class Disciplina {
 
 //Case de teste
 //$coisa = new Disciplina();
-//$coisa->getNomesDisciplinasNaoMatriculadas(5);
+//print_r($coisa->getNomeDisciplinaById(78));
 //$coisa->getNomesDisciplinas();
 //$coisa->entrarDisciplina(1,2,'aaaaaaaa');
 //entrarDisciplina('1','2','aaaaa');

@@ -119,33 +119,16 @@ select{width:100%;}
     font-weight:300;
 }
 
-div.top-cadastrobase a{ text-decoration: none; color:white; font-size:16px;position:absolute;right:15px;top:14px}
-
 .cadastrobase-content{
     margin-top:10%;
     position:relative;
     padding-left:0%;
     padding-right:0%;
+    padding-bottom: 40px;
     
     top:20px;
     
     margin:0 auto;
-}
-
-.disciplinas-item{
-    margin-left: -15px;
-    position:relative;
-    background-color:white;
-    display:block;
-    height:125px;
-    top:10px;
-    width:100%;
-    margin-bottom:15px;
-    font-weight:100;
-
-    -webkit-box-shadow: 5px 5px 0px 0px rgba(50, 50, 50, 0.1);
-    -moz-box-shadow:    5px 5px 0px 0px rgba(50, 50, 50, 0.1);
-    box-shadow:         5px 5px 0px 0px rgba(50, 50, 50, 0.1);
 }
 
 .button{
@@ -237,7 +220,43 @@ border-radius: 5px;
 
 /*FORM-----------------------------------------------------------------------*/
 
- input[type=text],[type=password],[type="email"]{ /*customiza input de texto e senha*/
+
+#catalogo-disciplinas {
+    width: 70%;
+    min-width: 200px;
+    max-width: 800px;
+    height: 300px;
+    margin: 0 auto;
+    border: 1px solid #eee;
+    padding: 5px 0 0px 0;
+}
+
+#disciplinas-item {
+  float: left;
+  margin: 0 5px 5px 5px;
+  padding: 5px;
+  font-size: 14px;
+  width: 31.9%;
+  font-weight: 100;
+  cursor: pointer;
+  border: 1px solid #d3d3d3;
+  background: #e6e6e6 url("http://sideshowbob/recoacomp/css/images/ui-bg_glass_75_e6e6e6_1x400.png") 50% 50% repeat-x;
+  color: #555555;
+}
+
+#header-disciplina {
+    width: 90%;
+    margin: 0 auto;
+    font-size: 20px;
+    color: #fff;
+    font-weight: 100;
+    padding: 10px;
+    padding-left: 20px;
+    background-color: rgba(30, 150, 210, 0.7);
+    border-radius: 5px;
+}
+
+div.control-group input[type=text],[type=password],[type="email"]{ /*customiza input de texto e senha*/
      position:relative;
      border:none;
      background:#F1F1F2;

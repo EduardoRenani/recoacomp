@@ -121,6 +121,8 @@ class Comp{
 		}
 	}
 
+
+	// Função que imprime a recomendação
 	public function writeOAs(){
 
 		$cont = $this->oa->getSize();

@@ -52,13 +52,13 @@ define("MESSAGE_USERNAME_SAME_LIKE_OLD_ONE", "Desculpe, esse nome de usuário é
 define("MESSAGE_YOU_SHOULDNT_BE_HERE", "Você não devia estar aqui");
 
 // views
-define("WORDING_BACK_TO_LOGIN", "Voltar para tela de Login");
+define("WORDING_BACK_TO_LOGIN", "Voltar Home");
 define("WORDING_CHANGE_EMAIL", "Mudar email");
 define("WORDING_CHANGE_PASSWORD", "Mudar senha");
 define("WORDING_CHANGE_USERNAME", "Mudar nome de usuario");
 define("WORDING_CURRENTLY", "atual");
 define("WORDING_EDIT_USER_DATA", "Alterar dados do usuário");
-define("WORDING_EDIT_YOUR_CREDENTIALS", "Você pode alterar seus dados aqui");
+define("WORDING_EDIT_YOUR_CREDENTIALS", "Alteração de Dados");
 define("WORDING_FORGOT_MY_PASSWORD", "Esqueci minha senha");
 define("WORDING_LOGIN", "Log in");
 define("WORDING_LOGOUT", "Log out");

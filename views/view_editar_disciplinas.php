@@ -11,28 +11,9 @@ include('_header.php');
 <!-- IMPORTAÇÃO JQUERY-->
 <head>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
-    <link href="css/base_cadastro.css" rel="stylesheet">
-    <link href="css/jquery.nouislider.min.css" rel="stylesheet">
+    <link href="css/base_editar_disciplina.css" rel="stylesheet">
 
     <style>
-  .tooltip {
-    display: block;
-    position: absolute;
-    border: 1px solid #D9D9D9;
-    font: 400 12px/12px Arial;
-    border-radius: 3px;
-    background: #fff;
-    top: -43px;
-    padding: 5px;
-    left: -9px;
-    text-align: center;
-    width: 50px;
-}
-.tooltip strong {
-    display: block;
-    padding: 2px;
-}
-
     body { font-size: 62.5%; }
     label, input { display:block; }
     input.text { margin-bottom:12px; width:95%; padding: .4em; }
@@ -43,47 +24,13 @@ include('_header.php');
     div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
     .ui-dialog .ui-state-error { padding: .3em; }
     .validateTips { border: 1px solid transparent; padding: 0.3em; }
-
-
-
-
     </style>
 
     <!-- BREADCRUMB BONITO-->
     <script src="http://thecodeplayer.com/uploads/js/prefixfree-1.0.7.js" type="text/javascript" type="text/javascript"></script>
-    <script src="js/jquery.nouislider.all.min.js" type="text/javascript"></script>
 
     <!-- FUNÇÃO QUE FAZ O SORTABLE E ENVIA OS ID'S DAS COMPETÊNCIAS-->
     <script>
-
-
-
-    $(function(){
-        $("#exemplo").noUiSlider({
-            start: 1,
-            step: 1,
-            range: {
-                min: 1,
-                max: 5
-            }
-        });
-        function setText( value, handleElement, slider ){
-            $("#exemplo").text( value );
-        }
-        $("#exemplo").Link('lower').to($("#value"), "text");
-
-        $("#exemplo").Link('lower').to('-inline-<div class="tooltip"></div>', function ( value ) {
-
-            // The tooltip HTML is 'this', so additional
-            // markup can be inserted here.
-            $(this).html(
-                '<strong>Value: </strong>' +
-                '<span>' + value + '</span>'
-            );
-        });
-
-    });
-
     $(function() {
         $('#tabela1, #tabela2').sortable({
             connectWith: "#tabela1, #tabela2",
@@ -96,7 +43,7 @@ include('_header.php');
                 var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
                 var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
                 //window.alert(nomesCompetencias);
-                document.getElementById('nomesCompetencias').innerHTML = '<strong>' + nomesCompetencias + '</strong> <div id="exemplo"></div> <div id="value"></div>';
+                document.getElementById('nomesCompetencias').innerHTML = nomesCompetencias;
                 document.getElementById('arrayCompetencias').value = arrayCompetencias;
             }
         });
@@ -217,11 +164,73 @@ include('_header.php');
 
 
 <div class="fixedBackgroundGradient"></div>
+<a href="index.php"><?php echo WORDING_BACK_TO_LOGIN;?></a>
+
+<?php
+if (!isset($_GET['disciplinasId'])) {
+?>
 
 <div class="cadastrobase">
-    <div class="top-cadastrobase"><div class="text-left"><?php echo (WORDING_REGISTER_NOVA_DISCIPLINA); ?></div><div class="text-right" ><a href="index.php"><?php echo WORDING_BACK_TO_LOGIN;?></a></div></div>
+    <div class="top-cadastrobase"><?php echo "Editar Disciplina"; ?></div>
         <div class="cadastrobase-content">
-           <form method="post" action="" name="registrar_nova_disciplina" id="registrar_nova_disciplina">
+            <h2 style="text-align: center;">Escolher a disciplina:</h2>
+            <div id="catalogo-disciplinas">
+                <a href="editarDisciplina.php?disciplinasId=1">
+                <div id="disciplinas-item">
+                    Nome da disciplina
+                </div>
+                </a>
+                <a href="editarDisciplina.php?disciplinasId=2">
+                <div id="disciplinas-item">
+                    Nome da disciplina
+                </div>
+                </a>
+                <a href="editarDisciplina.php?disciplinasId=3">
+                <div id="disciplinas-item">
+                    Nome da disciplina
+                </div>
+                </a>
+                <a href="editarDisciplina.php?disciplinasId=4">
+                <div id="disciplinas-item">
+                    Nome da disciplina
+                </div>
+                </a>
+                <a href="editarDisciplina.php?disciplinasId=5">
+                <div id="disciplinas-item">
+                    Nome da disciplina
+                </div>
+                </a>
+                <a href="editarDisciplina.php?disciplinasId=6">
+                <div id="disciplinas-item">
+                    Nome da disciplina
+                </div>
+                </a>
+                <a href="editarDisciplina.php?disciplinasId=7">
+                <div id="disciplinas-item">
+                    Nome da disciplina
+                </div>
+                </a>
+            </div>
+        </div>
+</div>
+<?php
+}
+else {
+
+    //require_once('classes/disciplina.php');
+    $disciplina = new Disciplina();
+    //$nomedadisciplina = $disciplinas->getNomeDisciplinaById
+        $nomedadisciplina = $disciplina->getNomeDisciplinaById($_GET['disciplinasId']);
+        $nomedocurso = $disciplina->getNomeCursoById($_GET['disciplinasId']);
+
+?>
+<div class="cadastrobase">
+    <div class="top-cadastrobase"><?php echo "Editar Disciplina"; ?></div>
+        <div class="cadastrobase-content">
+            <div id="content-disciplinas">
+                <div id="informacoes-disciplina">
+                    <div id="form-informacoes">
+                             <form method="post" action="" name="registrar_nova_disciplina" id="registrar_nova_disciplina">
             <!-- ID do usuário passado via hidden POST -->
             <input type="hidden" id="user_id" name="user_id" value="<?php echo $_SESSION['user_id']; ?>" />
                 <div id="rootwizard">
@@ -249,25 +258,25 @@ include('_header.php');
                             <div class="control-group">
                                 <label class="control-label" for="nomeCurso"><?php echo WORDING_COURSE_NAME; ?></label>
                                 <div class="controls">
-                                    <input type="text" id="nomeCurso" name="nomeCurso" class="required">       
+                                    <input type="text" id="nomeCurso" name="nomeCurso" value="<?php echo $nomedocurso[0][0]; ?>" class="required">       
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="nomeDisciplina"><?php echo WORDING_DISCIPLINA_NAME; ?></label>
                                 <div class="controls">
-                                    <input type="text" id="nomeDisciplina" name="nomeDisciplina" class="required">       
+                                    <input type="text" id="nomeDisciplina" name="nomeDisciplina" value="<?php echo $nomedadisciplina[0][0]; ?>" class="required">       
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="senha"><?php echo WORDING_REGISTRATION_PASSWORD; ?></label>
                                 <div class="controls">
-                                    <input type="text" id="senha" name="senha" class="required">       
+                                    <input type="text" id="senha" name="senha" value="<?php echo $_GET['disciplinasId']; ?>" class="required">       
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="descricao"><?php echo WORDING_DISCIPLINA_DESCRICAO; ?></label>
                                     <div class="controls">
-                                        <textarea name="descricao" id="descricao" ROWS="5" COLS="40" class="required"></textarea>
+                                        <textarea name="descricao" id="descricao" ROWS="5" COLS="40" class="required"><?php echo "Descrição da disciplina ".$_GET['disciplinasId']; ?></textarea>
                                     </div>
                             </div>
                         </div>
@@ -301,24 +310,16 @@ include('_header.php');
         <!-- DIV COM COISA CHA -->
                         <div class="tab-pane" id="tab3">
                             <p> oi</p>
-                            <div class="control-group">
-                                
-                                <div class="controls">
-                                          
-                            
-
                             <div id='nomesCompetencias'>
-                            <div id="exemplo"></div>
-<div id="value"></div>
+                            
                             </div>
 
-
-                                </div>
-                                                        </div>
+                        <div id="exemplo"></div>
                         </div>
 
                         <ul class="pager wizard">
-                            <input id="finisher" style="display: none;" type="submit" name="registrar_nova_disciplina" value="<?php echo WORDING_CREATE_DISCIPLINA; ?>" />
+                            <!-- <input id="finisher" style="display: none;" type="submit" name="registrar_nova_disciplina" value="<?php echo WORDING_CREATE_DISCIPLINA; ?>" /> -->
+                            <input id="finisher" style="display: none;" type="submit" name="registrar_nova_disciplina" value="Atualizar disciplina" />
                             <li class="next" style="float:none"><div class='button'><a href="javascript:;" class='button-next text-left'>Próximo</a></div></li>
                             <li class="previous" style="float:none"><div class="text-right"><a href="javascript:;">Voltar</a></div></li>
                         </ul>
@@ -332,8 +333,14 @@ include('_header.php');
                 <!--<input type="reset" name="limpar" value="<?php echo WORDING_CLEAR_CREATE_DISCIPLINA; ?>" />-->
 
             </form>
+                        </div>
+                    </div>
+            </div>
         </div>
 </div>
+<?php
+}
+?>
 
 
 
