@@ -277,6 +277,17 @@ class Competencia{
         }
     }
 
+    public function getNomeCompetenciaById($id){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT nome FROM competencia WHERE idCompetencia=:id");
+            //$stmt->bindParam(':nome',, PDO::PARAM_STR);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            //print_r($stmt->execute());
+            return $stmt->fetchAll();
+        }
+    }
+
     public function associaOA($idOA){
 
         //TODO MODIFICAR. Está copiado do método associar competência, da classe disciplina.

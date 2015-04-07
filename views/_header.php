@@ -117,12 +117,20 @@ if (isset($registration)) {
 if (isset($disciplina)) {
     if ($disciplina->errors) {
         foreach ($disciplina->errors as $error) {
-            echo $error;
+            echo"<script type='text/javascript'>";
+
+                echo "alert('".$error."');";
+
+            echo "</script>";
         }
     }
     if ($disciplina->messages) {
         foreach ($disciplina->messages as $message) {
-            echo $message;
+            echo"<script type='text/javascript'>";
+
+                //echo "alert('".$message."');";
+
+            echo "</script>";
         }
     }
 }

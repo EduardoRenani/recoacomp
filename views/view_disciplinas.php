@@ -29,8 +29,10 @@
             <ul class="disciplinas-list">
 
             <?php
+                // PASSO 1: PREENCHER O CHA
+                
 
-                //PASSO 1: PEGAR A LISTA DE DISCIPLINAS DO USUÁRIO
+                //PASSO 2: PEGAR A LISTA DE DISCIPLINAS DO USUÁRIO
 
                 $listaDisc = array();
                         /* Create a new mysqli object with database connection parameters */

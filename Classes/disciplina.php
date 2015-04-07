@@ -61,6 +61,12 @@ class Disciplina {
     private $arrayCompetencias = "";
     private $arrayCompetenciasBD = "";
     private $ultimo_ID = "";
+
+    private $conhecimento = array();
+    private $habilidade = array();
+    private $atitude = array();
+    private $competencias = array();
+    
     /**
      * the function "__construct()" automatically starts whenever an object of this class is created,
      * you know, when you do "$criarDisciplina = new CriarDisciplina();"
@@ -80,7 +86,11 @@ class Disciplina {
             $this->entrarDisciplina(
                 $_POST['idUsuario'],
                 $_POST['idDisciplina'],
-                $_POST['senha']);
+                $_POST['senha'],
+                $_POST['conhecimento'],
+                $_POST['habilidade'],
+                $_POST['atitude'],
+                $_POST['competencias']);
         }else{
             // Se não estiver cadastrando uma nova disciplina apenas é um constructor que retorna NULL
             return null;
@@ -358,16 +368,35 @@ class Disciplina {
             return $stmt->fetchAll();
         }
     }
+
+
+    public function getCompetenciaFromDisciplinaById($id){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT competencia_idcompetencia FROM disciplina_competencia WHERE disciplina_iddisciplina=:id");
+            //$stmt->bindParam(':nome',, PDO::PARAM_STR);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            //print_r($stmt->execute());
+            return $stmt->fetchAll();
+        }
+    }
+
+
     
 
     // Função que cria a relação usuario com disciplina
-    public function entrarDisciplina($idUsuario, $idDisciplina, $senha){
+    public function entrarDisciplina($idUsuario, $idDisciplina, $senha, $conhecimento, $habilidade, $atitude, $competencias){
         // Remove espaços em branco em excesso das strings
         $senha = trim($senha);
 
         $this->idUsuario  = $idUsuario;
         $this->idDisciplina = $idDisciplina;
         $this->senha = $senha;
+        $this->conhecimento = $conhecimento;
+        $this->habilidade = $habilidade;
+        $this->atitude = $atitude;
+        $this->competencias = $competencias;
+
         
         //Validação de dados
         if (empty($idUsuario)) {
@@ -390,6 +419,16 @@ class Disciplina {
                     $this->errors[] = MESSAGE_PASSWORD_WRONG;
                 } else{
                     // Cadastro na tabela usuario_disciplina
+                    foreach ($this->competencias as $idCompetencia){
+                        //echo $idCompetencia.",";
+                        $stmt = $this->db_connection->prepare("INSERT INTO usuario_competencias(usuario_idusuario, competencia_idcompetencia, conhecimento, atitude, habilidade)  VALUES(:idUsuario, :idCompetencia, :conhecimento, :atitude, :habilidade)");
+                        $stmt->bindParam(':idUsuario',$this->idUsuario, PDO::PARAM_INT);
+                        $stmt->bindParam(':idCompetencia',$idCompetencia, PDO::PARAM_INT);
+                        $stmt->bindParam(':habilidade',$this->habilidade[$idCompetencia], PDO::PARAM_INT);
+                        $stmt->bindParam(':conhecimento',$this->conhecimento[$idCompetencia], PDO::PARAM_INT);
+                        $stmt->bindParam(':atitude',$this->atitude[$idCompetencia], PDO::PARAM_INT);
+                        $stmt->execute();
+                    }
                     $stmt = $this->db_connection->prepare("INSERT INTO usuario_disciplina(disciplina_iddisciplina, usuario_idusuario)  VALUES(:idDisciplina, :idUsuario)");
                     $stmt->bindParam(':idDisciplina',$this->idDisciplina, PDO::PARAM_INT);
                     $stmt->bindParam(':idUsuario',$this->idUsuario, PDO::PARAM_INT);

@@ -71,14 +71,14 @@ function getDisciplinaId(id){
                 <div id="openModal" class="modalDialog">
                         <div>
                             <a href="#close" title="Close" class="close">X</a>
-                            <div class="top-cadastro"><?php echo WORDING_REGISTER_NEW_ACCOUNT; ?></div>
+                            <div class="top-cadastro"><?php echo WORDING_FILL_PASSWORD; ?></div>
                                 <!-- form action="home.html"--><!--action é só para mostrar, no site em si não tem isso"-->
                                 <!--form method="post" action="register.php" name="registerform" -->
-                                <form method="post" action="disciplinas.php" name="cadastrar_usuario_disciplina">
+                                <form method="post" action="cadastro_disciplina_cha.php" name="senha_disciplina">
                                     <input id="senha" type="password" name="senha" placeholder="<?= WORDING_REGISTRATION_PASSWORD; ?>" pattern=".{6,}" required/>
                                     <input type="hidden" id="idUsuario" name="idUsuario" value="<?php echo $_SESSION['user_id']; ?>" />
                                     <input type="hidden" id="idDisciplina" name="idDisciplina" value="" />
-                                    <input type="submit" name="cadastrar_usuario_disciplina" action="" value="<?php echo WORDING_REGISTER; ?>" />
+                                    <input type="submit" name="" action="" value="<?php echo WORDING_REGISTER_CHA; ?>" />
                                 </form>                                                 
                         </div>
                         <!-- /.top-cadastro -->

@@ -115,6 +115,9 @@ define("WORDING_CREATED_SUCESSFULLY"," criada com sucesso!");
 define("WORDING_FILL_NAME_DISCIPLINA","Preencha o nome da disciplina");
 define("WORDING_FILL_PASSWORD","Preencha a senha");
 define("WORDING_SELECT_COMPETENCIA","Selecione a(s) competências(s)");
+define("WORDING_FILL_YOUR_CHA","Preencha seu CHA");
+define("WORDING_FINALIZE","Finalizar");
+define("WORDING_REGISTER_CHA","Cadastrar CHA");
 
 //Cadastro de OA mensagens
 define("WORDING_PORTUGUES", "Português");
