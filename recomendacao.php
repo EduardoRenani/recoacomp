@@ -37,8 +37,24 @@ require_once('classes/Recomendacao/recomendacao.php');
 // so this single line handles the entire login process.
 $login = new Login();
 include('views/_header.php');
-echo
-"<div class='fixedBackgroundGradient'></div>";
+?>
+<script language='javascript'>
+    $(document).ready(function(){
+        $('#conteudo').find('span').click(function(){
+            div = $(this).closest('div#conteudo').next('#conteudo-expansivel');
+            if(!div.is(':visible')){
+                div.css('height','auto').slideDown(1000);
+                $(this).removeClass('glyphicon-plus').addClass('glyphicon-minus');
+            }else{
+                div.slideUp();
+                $(this).addClass('glyphicon-plus').removeClass('glyphicon-minus');
+            }
+
+        });
+    });
+</script>
+<div class='fixedBackgroundGradient'></div>
+<?php
 
 
 
@@ -61,7 +77,7 @@ if ($login->isUserLoggedIn() == true) {
         $vet[1]=2;*/
 
         echo
-        "<div class='disciplinas'>".
+        "<div class='disciplinas-recomendacao'>".
         "<div class='top-disciplinas'>Recomendação</div>";
             
             $c= new Recomendacao($id,$vet);

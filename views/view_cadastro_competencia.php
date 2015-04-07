@@ -34,17 +34,32 @@ include('_header.php'); ?>
 
 
 <script type="text/javascript">
+var i = 0;
+
     $(function() {
         $('#tabela1, #tabela2').sortable({
             connectWith: "#tabela1, #tabela2",
+            receive : function (event, ui)
+            {
+                var idCompetencias = $("#tabela2").sortable('toArray').toString();
+                var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
+                var idCompetencias = idCompetencias.split(",");
+                var nomesCompetencias = nomesCompetencias.split(",");
+                var elementoAdd = document.createElement('div');
+                elementoAdd.innerHTML = '<div id="nomesCompetencias"><strong>'+nomesCompetencias[i]+'</strong><div>Conhecimento</div><div><input type="number" name="conhecimento['+idCompetencias[i]+']"</div><div>Habilidade</div><div><input type="number" name="habilidade['+idCompetencias[i]+']"</div><div>Atitude</div><div><input type="number" name="atitude['+idCompetencias[i]+']"</div></div>';
+                document.getElementById('tab3').appendChild(elementoAdd);   
+                i++;
+                
+        //         $("#tabela2").html("<option value='text'>text</option>");
+           },
             update: function(event, ui) {
-            var arrayOAS = $("#tabela2").sortable('toArray').toString();
-            document.getElementById('arrayOAS').value = arrayOAS;
-            //var order = $('#tabela1').sortable('serialize'); 
-            //$("#tabela1").load("process-sortable.php?"+order); 
+                var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
+                //window.alert(nomesCompetencias);
+
+                document.getElementById('arrayOAS').value = arrayCompetencias;
             }
-            });
         });
+    });
     $(function(){
         $('.single-slider').jRange({
             from: 0,
@@ -197,7 +212,7 @@ include('_header.php'); ?>
                                       // $idOA[$i] = posição no vetor
                                       // ["idcesta"] = parametro do banco de dados
                                       for($i=0;$i<$contador;$i++){ ?>
-                                          <li id="<?php echo "".($idOA[$i]["idcesta"]); ?>" class="ui-state-default"><?php echo "".($nomeOA[$i]["nome"]); ?></li>
+                                          <li id="<?php echo "".($idOA[$i]["idcesta"]); ?>"name="<?php echo "".($nomeOA[$i]["nome"]); ?>" class="ui-state-default"><?php echo "".($nomeOA[$i]["nome"]); ?></li>
                                       <?php } ?>
                                   </ul>
                                   <ul id="tabela2">

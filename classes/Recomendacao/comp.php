@@ -129,20 +129,29 @@ class Comp{
 		$v=array();
 		$v=$this->oa->getVector();
 
-		echo "<div class='disciplinas-content'>";
+		
+		echo "<div class='recomendacao-content'>";
 
 			echo "<ul class='disciplinas-list'>";
 
-			echo "Competência: ".$this->nomeComp;
+			echo "<div id='conteudo'><li class='recomendacao-item' style='margin-bottom: 0;'>
+						<div class='recomendacao-item-content'> 
+							<h3>Competência: ".$this->nomeComp."</h3>
+							<p>Pequena descrição da competência.</p>
+						</div>
+							<button type='button' class='btn-recomendacao btn-default btn-lg'>
+							  <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
+							</button>
+						
+					</li></div><div id='conteudo-expansivel'>";
 
 			for($c=0;$c<$cont;$c++){
 
 				//var_dump($v);
 
-				echo"<li class='disciplinas-item'>".
-	                    "<div class='disciplina-item-content'>";
+				echo"<li class='disciplinas-item'  style='border-bottom: 1px solid #ddd; margin-bottom: 0; width: 95%; margin: auto;'>";
 
-	                    echo "<div class='recomendacao_left'>";
+	                    echo "<div class='recomendacao-item-content'>";
 
 	                    		echo "<h3>".$v[$c]['nome']."</h3>";
 
@@ -152,26 +161,26 @@ class Comp{
 
                 		echo "</div>";
 
-                		echo "<div class='recomendacao_right'>";
+                		echo "<div class='circulo-recomendacao' style='background-color:";
 
 	                    	//Deve exibir verde!
 							if($v[$c]['res'] == 1 || $v[$c]['res'] == 2){
 
-								echo "<font color='green'>verde</font>";
+								echo "#ED2825;";
 
 							//Deve exibir amarelo
 							}else if($v[$c]['res'] < 1 && $v[$c]['res'] >=-4){
 
-								echo "<font color='yellow'>amarelo</font>";
+								echo "#FCEF53;";
 
 							//Deve exibir vermelho!
 							}else{
 
-								echo "<font color='red'>vermelho</font>";
+								echo "#ED2825;";
 
 							}
 
-						echo "</div>";
+						echo '\'">';
 
 
 
@@ -180,7 +189,7 @@ class Comp{
 
 	    	}
 
-	    	echo "</ul>".
+	    	echo "</div></ul>".
     	"</div>";
 
 	}

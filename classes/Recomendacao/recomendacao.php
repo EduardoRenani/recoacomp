@@ -11,35 +11,35 @@ require_once("classes/Recomendacao/comp.php");
 
 class Recomendacao {
 
-	private $idDisc;
-	private $competencia;
-	private $user;
-	private $mysqli;
+    private $idDisc;
+    private $competencia;
+    private $user;
+    private $mysqli;
 
     private $filtraComp;
 
-	//disc é o ID da disciplina.
-	//filtraComp é o array de IDs das competências que devem receber recomendação. Em caso de null, recomenda para todas as competências da disciplina.
-	function __construct($disc, $filtraComp = null){
+    //disc é o ID da disciplina.
+    //filtraComp é o array de IDs das competências que devem receber recomendação. Em caso de null, recomenda para todas as competências da disciplina.
+    function __construct($disc, $filtraComp = null){
 
         $this->idDisc = $disc;
         $this->mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
         $this->filtraComp = $filtraComp;
 
         if (!isset($_SESSION))
-		  session_start();
+          session_start();
 
-		$this->user = $_SESSION['user_id'];
-		//echo("ID Usuario: ".$_SESSION['user_id']."<br/>");
+        $this->user = $_SESSION['user_id'];
+        //echo("ID Usuario: ".$_SESSION['user_id']."<br/>");
         //echo("Nome do Usuario: ".$_SESSION['user_name']);
 
 
         $this->associarCompetencias();
         $this->recomenda();
-	}
+    }
 
-	private function getCompDisc(){
-		
+    private function getCompDisc(){
+        
     $dados = array();
 
     // Executa uma consulta
@@ -60,7 +60,7 @@ class Recomendacao {
     }
     
     return true;
-	}
+    }
 
     private function associarCompetencias(){
         //Competências
@@ -128,7 +128,7 @@ class Recomendacao {
 
         }
     }
-	//Função que verifica se o objeto deve ser mostrado na recomendação.
+    //Função que verifica se o objeto deve ser mostrado na recomendação.
     private function deveMostrar($id){
 
         $cont = count($this->filtraComp);

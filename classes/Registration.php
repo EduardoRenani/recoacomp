@@ -38,7 +38,7 @@ class Registration
     {
             // if we have such a POST request, call the registerNewUser() method
         if (isset($_POST["register"])) {
-            $this->registerNewUser($_POST['user_name'], $_POST['user_email'], $_POST['user_password_new'], $_POST['user_password_repeat'], $_POST["captcha"]);
+            $this->registerNewUser($_POST['user_name'], $_POST['user_email'], $_POST['user_password_new'], $_POST['user_password_repeat']);
         // if we have such a GET request, call the verifyNewUser() method
         } 
         else if (isset($_GET["id"]) && isset($_GET["verification_code"])) {
@@ -78,7 +78,7 @@ class Registration
      * handles the entire registration process. checks all error possibilities, and creates a new user in the database if
      * everything is fine
      */
-    private function registerNewUser($user_name, $user_email, $user_password, $user_password_repeat, $captcha)
+    private function registerNewUser($user_name, $user_email, $user_password, $user_password_repeat)
     {
         // we just remove extra space on username and email
         $user_name  = trim($user_name);
@@ -86,9 +86,7 @@ class Registration
 
         // check provided data validity
         // TODO: check for "return true" case early, so put this first
-        if (strtolower($captcha) != strtolower($_POST['captcha'])) {
-            $this->errors[] = MESSAGE_CAPTCHA_WRONG;
-        } elseif (empty($user_name)) {
+        if (empty($user_name)) {
             $this->errors[] = MESSAGE_USERNAME_EMPTY;
         } elseif (empty($user_password) || empty($user_password_repeat)) {
             $this->errors[] = MESSAGE_PASSWORD_EMPTY;
@@ -134,7 +132,7 @@ class Registration
                 $user_password_hash = password_hash($user_password, PASSWORD_DEFAULT, array('cost' => $hash_cost_factor));
                 // generate random hash for email verification (40 char string)
                 $user_activation_hash = sha1(uniqid(mt_rand(), true));
-                $acesso = 1;
+                $acesso = 2;
                 // write new users data into database
                 $query_new_user_insert = $this->db_connection->prepare('INSERT INTO users (user_name, user_password_hash, user_email, user_activation_hash, user_registration_ip, user_registration_datetime, acesso) VALUES(:user_name, :user_password_hash, :user_email, :user_activation_hash, :user_registration_ip, now(), :acesso)');
                 $query_new_user_insert->bindValue(':user_name', $user_name, PDO::PARAM_STR);

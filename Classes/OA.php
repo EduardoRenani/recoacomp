@@ -371,10 +371,10 @@ class OA{
         $this->contribuicao= $contribuicao;
 
         // Categoria Técnica
-        $this->$tempo_video = $tempo_video;
-        $this->$tamanho = $tamanho;
-        $this->$tipoTecnologia = $tipoTecnologia;
-        $this->$tipoFormato = $tipoFormato;
+        $this->tempo_video = $tempo_video;
+        $this->tamanho = $tamanho;
+        $this->tipoTecnologia = $tipoTecnologia;
+        $this->tipoFormato = $tipoFormato;
 
         //Categoria Educacional
         $this->descricao_educacional = $descricao_eduacional;

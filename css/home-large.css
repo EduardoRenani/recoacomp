@@ -163,9 +163,26 @@ li {
     background-color:white;
 
     height:70%;
-    min-height:500px;
-    max-height:800px;
+    min-height: 500px;
+    max-height: 800px;
+    width:55%;
+    left:15%;
+    top:50px;
 
+    margin-right:10%;
+    position:relative;
+
+    float:left;
+
+    -webkit-box-shadow: 5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+    -moz-box-shadow:    5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+    box-shadow:         5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+}
+
+.disciplinas-recomendacao{
+    background-color:white;
+
+    min-height:70%;
     width:55%;
     left:15%;
     top:50px;
