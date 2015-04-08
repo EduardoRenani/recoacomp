@@ -55,6 +55,11 @@
                     <header><h3>Cláuser Mazuim</h3><h4>--</h4></header>
                 </a>
 
+                <a href="#" class="team-member ">
+                    <div class="team-member-avatar" style="background-image:url('img/head.png');"></div>
+                    <header><h3>Arthur Adolfo</h3><h4>Web Developer</h4></header>
+                </a>
+
                 <a href="#" class="team-member">
                     <div class="team-member-avatar" style="background-image:url('img/head.png');"></div>
                     <header><h3>Edimara Heis</h3><h4>--</h4></header>

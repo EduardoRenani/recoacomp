@@ -109,13 +109,13 @@ include('_header.php');
                     $nomeCompetencia = $competencia->getNomeCompetenciaById($competenciaId[0]);
                     echo "<h2>Competência: " . $nomeCompetencia[0][0]."</h2>
                     <br>
-                    <h3>Conhecimento</h3>
+                    <h4>Conhecimento</h4>
                     <input type='number' name='conhecimento[".$competenciaId[0]."]' min='0' max='5' value='0' oninput='this.form.conhecimento".$competenciaId[0].".value=this.value' />
                     <br>
-                    <h3>Habilidade</h3>
+                    <h4>Habilidade</h4>
                     <input type='number' name='habilidade[".$competenciaId[0]."]' min='0' max='5' value='0' oninput='this.form.conhecimento".$competenciaId[0].".value=this.value' />
                     <br>
-                    <h3>Atitude</h3>
+                    <h4>Atitude</h4>
                     <input type='number' name='atitude[".$competenciaId[0]."]' min='0' max='5' value='0' oninput='this.form.conhecimento".$competenciaId[0].".value=this.value' />
                     <br>";
                 }

@@ -96,7 +96,7 @@ var i = 0;
                 var idCompetencias = idCompetencias.split(",");
                 var nomesCompetencias = nomesCompetencias.split(",");
                 var elementoAdd = document.createElement('div');
-                elementoAdd.innerHTML = '<div id="nomesCompetencias"><strong>'+nomesCompetencias[i]+'</strong><div>Conhecimento</div><div><input type="number" name="conhecimento['+idCompetencias[i]+']"</div><div>Habilidade</div><div><input type="number" name="habilidade['+idCompetencias[i]+']"</div><div>Atitude</div><div><input type="number" name="atitude['+idCompetencias[i]+']"</div></div>';
+                elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div><h4>Conhecimento</h4></div><div><input type="number" min="0" max="5" name="conhecimento['+idCompetencias[i]+']"</div><div><h4>Habilidade</h4></div><div><input type="number" name="habilidade['+idCompetencias[i]+']"</div><div><h4>Atitude</h4></div><div><input type="number" name="atitude['+idCompetencias[i]+']"</div></div>';
                 document.getElementById('tab3').appendChild(elementoAdd);   
                 i++;
                 
@@ -285,7 +285,7 @@ var i = 0;
                         <!-- DIV COM DADOS DAS COMPETÊNCIAS A SEREM ASSOCIADAS A DISCIPLINA -->
                         <div class="tab-pane" id="tab2">
                             <input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" />
-                            <span style="text-align:left">Competencias Disponíveis</span><span style="float:right">Competencias Selecionadas</span>
+                            <span style="display block; width: 40%; float: left; text-align:left;">Competencias Disponíveis</span><span style="display: block; width: 30%; float: right; text-align:right;">Competencias Selecionadas</span>
                             <ul id="tabela1">
                                 <?php
                                 $comp = new Competencia();
@@ -309,7 +309,6 @@ var i = 0;
                         
         <!-- DIV COM COISA CHA -->
                         <div class="tab-pane" id="tab3">
-                            <p> oi</p>
                             <div class="control-group">
                                 
                                 <div class="controls">
@@ -317,8 +316,7 @@ var i = 0;
                             
 
                             <div id='nomesCompetencias'>
-                            <div id="exemplo"></div>
-<div id="value"></div>
+                            
                             </div>
 
 
