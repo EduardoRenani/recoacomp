@@ -31,19 +31,55 @@ include('_header.php');
 
     <!-- FUNÇÃO QUE FAZ O SORTABLE E ENVIA OS ID'S DAS COMPETÊNCIAS-->
     <script>
+
     $(function() {
-        $('#tabela1, #tabela2').sortable({
+        $('#tabela2').sortable({
             connectWith: "#tabela1, #tabela2",
             receive : function (event, ui)
             {
-       
+                var idCompetencias = $("#tabela2").sortable('toArray').toString();
+                var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
+                var nomesCompetencias1 = $(".nomesCompetencias").sortable('toArray',{ attribute: "name" } ).toString();
+                var nomesCompetencias1 = nomesCompetencias1.split(",");
+                var idCompetencias = idCompetencias.split(",");
+                var nomesCompetencias = nomesCompetencias.split(",");
+                for (i = 0; i < idCompetencias.length; i++) {
+                    for(j = 0; j < nomesCompetencias1; j++) {
+//                        if(nomesCompetencias[i] == nomesCompetencias1[j]) {
+                            var elementoAdd = document.createElement('div');
+                            elementoAdd.innerHTML = '<div id="nomesCompetencias" class="nomesCompetencias" name="'+nomesCompetencias[i]+'"><h2>'+nomesCompetencias[i]+'</h2><div><h4>Conhecimento</h4></div><div><input type="number" min="0" max="5" name="conhecimento['+idCompetencias[i]+']"</div><div><h4>Habilidade</h4></div><div><input type="number" name="habilidade['+idCompetencias[i]+']"</div><div><h4>Atitude</h4></div><div><input type="number" name="atitude['+idCompetencias[i]+']"</div></div>';
+                            document.getElementById('tab3').appendChild(elementoAdd);
+//                        }
+                    }
+
+                }
+                
         //         $("#tabela2").html("<option value='text'>text</option>");
            },
             update: function(event, ui) {
                 var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
-                var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
                 //window.alert(nomesCompetencias);
-                document.getElementById('nomesCompetencias').innerHTML = nomesCompetencias;
+
+                document.getElementById('arrayCompetencias').value = arrayCompetencias;
+            }
+        });
+    });
+
+    $(function() {
+        $('#tabela1').sortable({
+            connectWith: "#tabela1, #tabela2",
+            receive : function (event, ui)
+            {
+                var elemento;
+                document.getElementById('tab3').removeChild(elemento.lastChild);   
+                i--;
+                
+        //         $("#tabela2").html("<option value='text'>text</option>");
+           },
+            update: function(event, ui) {
+                var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
+                //window.alert(nomesCompetencias);
+
                 document.getElementById('arrayCompetencias').value = arrayCompetencias;
             }
         });
@@ -175,41 +211,15 @@ if (!isset($_GET['disciplinasId'])) {
         <div class="cadastrobase-content">
             <h2 style="text-align: center;">Escolher a disciplina:</h2>
             <div id="catalogo-disciplinas">
-                <a href="editarDisciplina.php?disciplinasId=1">
-                <div id="disciplinas-item">
-                    Nome da disciplina
-                </div>
-                </a>
-                <a href="editarDisciplina.php?disciplinasId=2">
-                <div id="disciplinas-item">
-                    Nome da disciplina
-                </div>
-                </a>
-                <a href="editarDisciplina.php?disciplinasId=3">
-                <div id="disciplinas-item">
-                    Nome da disciplina
-                </div>
-                </a>
-                <a href="editarDisciplina.php?disciplinasId=4">
-                <div id="disciplinas-item">
-                    Nome da disciplina
-                </div>
-                </a>
-                <a href="editarDisciplina.php?disciplinasId=5">
-                <div id="disciplinas-item">
-                    Nome da disciplina
-                </div>
-                </a>
-                <a href="editarDisciplina.php?disciplinasId=6">
-                <div id="disciplinas-item">
-                    Nome da disciplina
-                </div>
-                </a>
-                <a href="editarDisciplina.php?disciplinasId=7">
-                <div id="disciplinas-item">
-                    Nome da disciplina
-                </div>
-                </a>
+            <?php 
+                $id = new Disciplina();
+                $idDisci = $id->getIdCursos();
+                $nomeDisci = $id->getNomesDisciplinas();
+                for ($i = 0; $i < sizeof($idDisci); $i++)
+                {
+                    echo '<a href="editarDisciplina.php?disciplinasId='.$idDisci[$i][0].'"><div id="disciplinas-item">'.$nomeDisci[$i][0].'</div></a>';
+                }
+            ?>
             </div>
         </div>
 </div>
@@ -222,6 +232,8 @@ else {
     //$nomedadisciplina = $disciplinas->getNomeDisciplinaById
         $nomedadisciplina = $disciplina->getNomeDisciplinaById($_GET['disciplinasId']);
         $nomedocurso = $disciplina->getNomeCursoById($_GET['disciplinasId']);
+        $idCompetencias = $disciplina->getCompetenciaFromDisciplinaById($_GET['disciplinasId']);
+
 
 ?>
 <div class="cadastrobase">
@@ -292,14 +304,36 @@ else {
                                 $idCompetencia = $comp->getArrayOfIDs();
                                 $nomeCompetencia = $comp->getArrayOfNames();
                                 $contador = count($nomeCompetencia);
-                                for($i=0;$i<$contador;$i++){ ?>
+                                for($i=0;$i<$contador;$i++){
+                                    for($j = 0; $j < sizeof($idCompetencias); $j++) {
+                                        if($idCompetencia[$i][0] == $idCompetencias[$j][0]) {
+                                            $igual = 1;
+                                        }
+                                    }
+                                    if($igual != 1) {
+                                ?>
                                     <li id="<?php echo "".($idCompetencia[$i]["idcompetencia"]); ?>" name="<?php echo "".($nomeCompetencia[$i]["nome"]);  ?>" class="ui-state-default"><?php echo "".($nomeCompetencia[$i]["nome"]); ?></li>
-                                <?php } ?>
+                                <?php    
+                                    }
+                                    $igual = 0;
+                                }
+                                ?>
                             </ul>
 
                             
                             <ul id="tabela2">
-                            <!--<li class="ui-state-highlight">Item 1 selecionado</li>-->
+                            <?php
+                                $comp = new Competencia();
+                                for($j = 0; $j < sizeof($idCompetencias); $j++) {
+                                $idCompetencia = $comp->getArrayOfIDsById($idCompetencias[$j][0]);
+                                $nomeCompetencia = $comp->getArrayOfNamesById($idCompetencias[$j][0]);
+                                $contador = count($nomeCompetencia);
+                                for($i=0;$i<$contador;$i++){ ?>
+                                    <li id="<?php echo "".($idCompetencia[$i]["idcompetencia"]); ?>" name="<?php echo "".($nomeCompetencia[$i]["nome"]);  ?>" class="ui-state-default"><?php echo "".($nomeCompetencia[$i]["nome"]); ?></li>
+                                <?php
+                                 }
+                                }
+                                ?>
                             </ul>
                              
                     

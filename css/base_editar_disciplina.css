@@ -233,10 +233,14 @@ border-radius: 5px;
 
 #disciplinas-item {
   float: left;
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+  overflow: hidden;
   margin: 0 5px 5px 5px;
   padding: 5px;
   font-size: 14px;
   width: 31.9%;
+  height: 34px;
   font-weight: 100;
   cursor: pointer;
   border: 1px solid #d3d3d3;

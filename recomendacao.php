@@ -40,7 +40,7 @@ include('views/_header.php');
 ?>
 <script language='javascript'>
     $(document).ready(function(){
-        $('#conteudo').find('span').click(function(){
+        $('.conteudo').find('span').click(function(){
             div = $(this).closest('div#conteudo').next('#conteudo-expansivel');
             if(!div.is(':visible')){
                 div.css('height','auto').slideDown(1000);

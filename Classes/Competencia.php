@@ -268,9 +268,29 @@ class Competencia{
         }
     }
 
+    public function getArrayOfIDsById($id){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT idcompetencia FROM competencia WHERE idCompetencia=:id");
+            $stmt->bindValue(':id',$id, PDO::PARAM_INT);
+            $stmt->execute();
+            $retorno = $stmt->fetchAll();
+            return ($retorno);
+        }
+    }
+
     public function getArrayOfNames(){
         if($this->databaseConnection()){
             $stmt = $this->db_connection->prepare("SELECT nome FROM competencia");
+            $stmt->execute();
+            $retorno = $stmt->fetchAll();
+            return ($retorno);
+        }
+    }
+
+    public function getArrayOfNamesById($id){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT nome FROM competencia WHERE idCompetencia=:id");
+            $stmt->bindValue(':id',$id, PDO::PARAM_INT);
             $stmt->execute();
             $retorno = $stmt->fetchAll();
             return ($retorno);
