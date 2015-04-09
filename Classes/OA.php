@@ -224,6 +224,10 @@ class OA{
      */
     private $user_is_logged_in = false;
     /**
+     * @var array $arrayCompetencias Competências as quais esse objeto pode pertencer.
+     */
+    private $arrayCompetencias = array();
+    /**
      * the function "__construct()" automatically starts whenever an object of this class is created,
      * you know, when you do "$criarCompetencia = new CriarCompetencia();"
      */

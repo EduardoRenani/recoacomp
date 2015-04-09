@@ -125,6 +125,7 @@ define("WORDING_ENGLISH", "Inglês");
 define("WORDING_SPANISH", "Espanhol");
 define("WORDING_REGISTER_NOVO_OA", "Registrar Objeto de Aprendizagem");
 define("MESSAGE_OA_WITH_NAME_ALREADY_EXISTS", "Objeto de Aprendizagem com nome e/ou URL já existente!");
+define("WORDING_ASSOCIATE_COMPETENCE", "Associar Competências");
 
 
 // -- Categoria Vida mensagens

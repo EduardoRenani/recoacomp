@@ -71,8 +71,13 @@
             <li><a href="index.php" class="current">Home</a></li> <!--muda quando o usuario estiver logged in e leva para o home.html"-->
             <li><a href="contato.php">Contato</a></li>
             <li><a href="equipe.php">Equipe</a></li>
+<?php
+if ($login->isUserLoggedIn() == true) {
+?>
             <li><a href="index.php?logout"><?php echo WORDING_LOGOUT; ?></a></li>
-
+<?php
+}
+?>
             </ul>
 
         </nav>
@@ -86,12 +91,20 @@
 if (isset($login)) {
     if ($login->errors) {
         foreach ($login->errors as $error) {
-            echo $error;
+            echo"<script type='text/javascript'>";
+
+            echo "alert('".$error."');";
+
+            echo "</script>";
         }
     }
     if ($login->messages) {
         foreach ($login->messages as $message) {
-            echo $message;
+            echo"<script type='text/javascript'>";
+
+            echo "alert('".$message."');";
+
+            echo "</script>";
         }
     }
 }?>
@@ -101,12 +114,20 @@ if (isset($login)) {
 if (isset($registration)) {
     if ($registration->errors) {
         foreach ($registration->errors as $error) {
-            echo $error;
+            echo"<script type='text/javascript'>";
+
+            echo "alert('".$error."');";
+
+            echo "</script>";
         }
     }
     if ($registration->messages) {
         foreach ($registration->messages as $message) {
-            echo $message;
+            echo"<script type='text/javascript'>";
+
+            echo "alert('".$message."');";
+
+            echo "</script>";
         }
     }
 }
@@ -141,12 +162,20 @@ if (isset($disciplina)) {
 if (isset($competencia)) {
     if ($competencia->errors) {
         foreach ($competencia->errors as $error) {
-            echo $error;
+                        echo"<script type='text/javascript'>";
+
+                echo "alert('".$error."');";
+
+            echo "</script>";
         }
     }
     if ($competencia->messages) {
         foreach ($competencia->messages as $message) {
-            echo $message;
+                        echo"<script type='text/javascript'>";
+
+                echo "alert('".$message."');";
+
+            echo "</script>";
         }
     }
 }

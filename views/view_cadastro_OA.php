@@ -32,6 +32,20 @@ require_once("classes/OA.php");?>
 
 <!-- clean separation of HTML and PHP -->
 <script>
+
+$(function() {
+    $('#tabela1, #tabela2').sortable({
+        connectWith: "#tabela1, #tabela2",
+        update: function(event, ui) {
+            var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
+            //window.alert(nomesCompetencias);
+
+            document.getElementById('arrayCompetencias').value = arrayCompetencias;
+        }
+    });
+});
+
+
 $(function() {
 
     var $validator = $("#registrar_novo_OA").validate({
@@ -168,6 +182,7 @@ $(function() {
                         <li><a href="#tab3" data-toggle="tab"><?php echo WORDING_TECHNICAL_CATEGORY; ?></a></li>
                         <li><a href="#tab4" data-toggle="tab"><?php echo WORDING_EDUCATIONAL_CATEGORY; ?></a></li>
                         <li><a href="#tab5" data-toggle="tab"><?php echo WORDING_RIGHT_CATEGORY; ?></a></li>
+                        <li><a href="#tab6" data-toggle="tab"><?php echo WORDING_ASSOCIATE_COMPETENCE; ?></a></li>
                     </ul>
                 </div>
             </div>
@@ -431,6 +446,30 @@ $(function() {
                 </div>	
 
 			
+            </div>
+
+            <div class="tab-pane" id="tab6">
+                <input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" />
+                <span style="display block; width: 40%; float: left; text-align:left;">Competencias Disponíveis</span><span style="display: block; width: 30%; float: right; text-align:right;">Competencias Selecionadas</span>
+                <ul id="tabela1">
+                    <?php
+                    $comp = new Competencia();
+                    $idCompetencia = $comp->getArrayOfIDs();
+                    $nomeCompetencia = $comp->getArrayOfNames();
+                    $contador = count($nomeCompetencia);
+                    for($i=0;$i<$contador;$i++){ ?>
+                        <li id="<?php echo "".($idCompetencia[$i]["idcompetencia"]); ?>" name="<?php echo "".($nomeCompetencia[$i]["nome"]);  ?>" class="ui-state-default"><?php echo "".($nomeCompetencia[$i]["nome"]); ?></li>
+                    <?php } ?>
+                </ul>
+
+                
+                <ul id="tabela2">
+                <!--<li class="ui-state-highlight">Item 1 selecionado</li>-->
+                </ul>
+                 
+        
+
+            <!-- <div class='button'><a href="cadastro_OA.php" target="_blank"><?=WORDING_CREATE_NEW_COMPETENCIA?></a></div>      -->
             </div>
 
 			
