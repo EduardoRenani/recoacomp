@@ -78,11 +78,11 @@ if ($login->isUserLoggedIn() == true) {
 
         echo
         "<div class='disciplinas-recomendacao'>".
-        "<div class='top-disciplinas'>Recomendação</div>";
+        "<div class='top-disciplinas'>Recomendação</div><div class='recomendacao-content' style='padding: 0'>";
             
             $c= new Recomendacao($id,$vet);
 
-        echo "</div></div>";
+        echo "</div></div></div>";
 
 
     }

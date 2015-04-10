@@ -134,7 +134,7 @@ nav {
 
 /*SIDEBAR-----------------------------------------------------------------------*/
 
-#active {font-weight:bold;}
+.active {background-color: rgba(100, 200, 255, 0.4);}
 
 .sidebar{
     position:relative;
@@ -170,9 +170,6 @@ nav {
 .sidebar-menu a {
     text-decoration:none;
     color:#58585B;
-}
-.sidebar-menu a:hover, a:active {
-    color:#bebebe;
 }
 .sidebar-menu li {
     width: 100%;

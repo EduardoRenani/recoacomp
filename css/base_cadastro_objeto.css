@@ -27,6 +27,7 @@ div.fixedBackgroundGradient{
 .header-large{
     position:fixed;
     top:0;
+    font-size: 14px;
     left:0;
     height:55px;
     border-bottom:5px solid #108AC0;

@@ -28,6 +28,7 @@ div.fixedBackgroundGradient{
     position:fixed;
     top:0;
     left:0;
+    font-size: 14px;
     height:55px;
     border-bottom:5px solid #108AC0;
     width:100%;
@@ -97,6 +98,7 @@ select{width:100%;}
     background-color:white;
     position:relative;
     width:70%;
+    padding-bottom: 10px;
     min-width:800px;
     max-width:1000px;
     margin:0 auto;

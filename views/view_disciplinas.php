@@ -19,7 +19,7 @@
 
 </head>
 <div class="fixedBackgroundGradient"></div>
-<?php require_once("sidebar.php"); ?>
+<?php require_once("sidebar-disciplina.php"); ?>
 
 <!-- ============== DISCIPLINAS ============== -->
 
