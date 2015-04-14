@@ -10,7 +10,7 @@
 <div class="fixedBackgroundGradient"></div>
 
 <div class="cadastrobase" >
-    <div class="top-cadastrobase"><div class="text-left"><?php echo (WORDING_EDIT_YOUR_CREDENTIALS); ?></div><div class="text-right" ><a href="index.php"><?php echo WORDING_BACK_TO_LOGIN;?></a></div></div>
+    <div class="top-cadastrobase"><div class="text-left"><?php echo (WORDING_EDIT_YOUR_CREDENTIALS); ?></div><div class="text-right" ><a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a></div></div>
     <div class="cadastrobase-content">
         <!-- edit form for username / this form uses HTML5 attributes, like "required" and type="email" -->
         <form method="post" action="edit.php" name="user_edit_form_name">

@@ -10,7 +10,7 @@ html {
     height: 100%;
 }
 
-body{    
+body {    
     font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 700;
 }
@@ -31,7 +31,7 @@ body{
 /*HEADER---------------------------------------------------------------------*/
 
 
-#logo{
+#logo {
 
     margin: 5px;
     float: left;
@@ -73,29 +73,30 @@ li {
     padding: 10px
 }
 
-.header-large{
+.header-large {
     height:55px;
     border-bottom:5px solid #108AC0;
     width:100%;
     font-weight:100;
     color:black;
+    z-index:999;
 }
 
-.header-large a{text-decoration:none;color:black;}
-.header-large a:hover, a:active{color:grey;}
+.header-large a {text-decoration:none;color:black;}
+.header-large a:hover, a:active {color:grey;}
 
 @media only screen and (max-width : 640px) {
 
 /*tem que arrumar o menu em mobile porque quando clica não funiona direito (precisa de js)*/
 
-header{
+header {
     z-index:10;
     position: absolute;
     background-color:white;
     height:55px;
 }
 
-#menu-icon{
+#menu-icon {
     display:inline-block;
     z-index:10;
 }
@@ -130,10 +131,19 @@ nav ul, nav:active ul {
     }
 }
 
+div.fixedBackgroundGradient {  
+      background: -moz-linear-gradient(top, rgba(38,179,232,0.8), rgba(117,204,214,0.8)), url("../img/pattern1.png");
+    background: -webkit-linear-gradient(bottom, rgba(38,179,232,0.8), rgba(117,204,214,0.8)), url("../img/pattern1.png");
+    background: -o-linear-gradient(top, rgba(38,179,232,0.8), rgba(117,204,214,0.8)), url("../img/pattern1.png");
+    background: linear-gradient(to top, rgba(38,179,232,0.8), rgba(117,204,214,0.8)), url("../img/pattern1.png"); 
+  height: 100%; width: 100%;  
+  position: fixed; top: 55px; left: 0px;  
+  z-index: 0000;
+}
+
 /*LOGIN-----------------------------------------------------------------------*/
 
-
-form{ /*customização básica do from*/
+form { /*customização básica do from*/
     display:block;
     width:70%; 
     margin:0 auto;
@@ -145,17 +155,17 @@ form{ /*customização básica do from*/
      padding-bottom: 10px;
 }
 
-div.login a{ /*muda cores e etc de links dentro do form*/
+div.login a { /*muda cores e etc de links dentro do form*/
     font-weight:700;
     color:#58585B;
     text-align:left;
 }
 
-form a:hover, form a:active{ /*muda cores e etc de links quando em hover ou active*/
+form a:hover, form a:active { /*muda cores e etc de links quando em hover ou active*/
     color:#58585B;
 }
 
-div.login input[type=text],[type=password],[type="email"]{ /*customiza input de texto e senha*/
+div.login input[type=text],[type=password],[type="email"] { /*customiza input de texto e senha*/
      position:relative;
      border:none;
      background:#F1F1F2;
@@ -164,34 +174,35 @@ div.login input[type=text],[type=password],[type="email"]{ /*customiza input de 
      width:100%;
      height:40px;
      padding-left:10px;
+     margin-bottom:20px;
 
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
     -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
     box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
 }
 
-div.login span{
+div.login span {
     color:#58585B;
     font-weight:100;
     font-size:16px;
     margin:15px 0 15px 0;;
 }
 
-div.login span.light a{
+div.login span.light a {
     color:#C0C0C0 ;
     font-weight:100;
     font-size:14px;
 
 }
 
-div.label input[type="checkbox"]+label{
+div.label input[type="checkbox"]+label {
     display:inline;
     margin-left:.2em;
     font-size:16px;
     font-weight:100;
 }
 
-div.login input[type=submit]{ /*customiza input de submit*/
+div.login input[type=submit] { /*customiza input de submit*/
   border: 0;
   margin:10px 0 15px 0;
   width:100%;
@@ -212,7 +223,19 @@ div.login input[type=submit]{ /*customiza input de submit*/
 
   }
 
-input[type=submit]{ /*customiza input de submit*/
+  div.login input[type=submit]:active { /*customiza pra quando estiver ativo (click)*/
+    -moz-transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+    -o-transform: translateY(4px);
+    -ms-transform: translateY(4px);
+    transform: translateY(4px);
+    
+    -webkit-box-shadow: 0px 1px 0px 0px rgba(50, 50, 50, 0.47);
+    -moz-box-shadow:    0px 1px 0px 0px rgba(50, 50, 50, 0.47);
+    box-shadow:         0px 1px 0px 0px rgba(50, 50, 50, 0.47);
+  }
+
+input[type=submit] { /*customiza input de submit*/
   border: 0;
   margin:10px 0 15px 0;
   width:auto;
@@ -234,7 +257,7 @@ input[type=submit]{ /*customiza input de submit*/
   }
 
 
-  input[type=submit]:active{ /*customiza pra quando estiver ativo (click)*/
+  input[type=submit]:active { /*customiza pra quando estiver ativo (click)*/
     -moz-transform: translateY(4px);
     -webkit-transform: translateY(4px);
     -o-transform: translateY(4px);
@@ -249,7 +272,7 @@ input[type=submit]{ /*customiza input de submit*/
 
 .wololo form{margin:0;}
 
-.wololo input[type=submit]{ /*customiza input de submit*/
+.wololo input[type=submit] { /*customiza input de submit*/
   border: 0;
   width:150px;
   height:66px;
@@ -279,14 +302,14 @@ input[type=submit]{ /*customiza input de submit*/
 border-radius: 5px;
   }
 
- .wololo input[type=submit]:hover{
+ .wololo input[type=submit]:hover {
     background: -webkit-linear-gradient(left, #5bc6ee, #75CCD6); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(right, #5bc6ee, #75CCD6); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(right, #5bc6ee, #75CCD6); /* For Firefox 3.6 to 15 */
     background: linear-gradient(to right, #5bc6ee, #75CCD6); /* Standard syntax (must be last) */http://sideshowbob/recoacomp/index.php#openModal
  }
 
-  .wololo input[type=submit]:active{ /*customiza pra quando estiver ativo (click)*/
+  .wololo input[type=submit]:active { /*customiza pra quando estiver ativo (click)*/
     -moz-transform: translateY(4px);
     -webkit-transform: translateY(4px);
     -o-transform: translateY(4px);
@@ -305,17 +328,17 @@ border-radius: 5px;
     max-height:92%;
 
     color: #f8f8f8;
-    background: url(../img/intro-bg.png) no-repeat center center;
     background-size: cover;
 
     padding: 5% 0;
+    z-index:999;
 }
 
-.container{
+.container {
     padding: 10% 0;
 }
 
-.top-login{ /*header da janelinha do login*/
+.top-login { /*header da janelinha do login*/
     height:50px;
     padding-top:12px;
     text-align:left;
@@ -328,7 +351,7 @@ border-radius: 5px;
     margin-bottom:15px;
 }
 
-.login{ /*janelinha do login*/
+.login { /*janelinha do login*/
 z-index:50;
 
     background-color:white;
@@ -338,7 +361,7 @@ z-index:50;
     margin-left:auto;
     margin-right:auto;
     height:40%;
-    width: 330px;
+    width: 380px;
     min-width:30%;
     min-height:340px;
     max-height:370px;
@@ -348,7 +371,40 @@ z-index:50;
     box-shadow:         5px 5px 0px 0px rgba(50, 50, 50, 0.2);
 }
 
-/*--modalwindow-------*/
+/*PATROCINIO-----------------------------------------------------------------------*/
+.patrocinio {
+  margin-top:20px;
+  position:relative;
+  width:36%;
+  margin-left:auto;
+  margin-right:auto;
+
+  color: #f8f8f8;
+  z-index:999;
+  }
+
+.patrocinio-content {
+  margin-left:auto;
+  margin-right:auto;
+  display:flex;
+  width:100%;
+}
+
+.patrocinio-content-item {
+  margin-left:auto;
+  margin-right:auto;
+  display:inline-block;
+  height:100%;
+  font-weight:100;
+  font-size:16px;
+}
+
+.patrocinio-content-item img {
+  padding-top:5px;
+  padding-left:5px;
+}
+
+/*MODALWINDOW-----------------------------------------------------------------------*/
 .modalDialog {
     position: fixed;
     font-family: "Lato";
@@ -399,7 +455,7 @@ text-align:center;
     
 }
 
-.top-cadastro{ /*header da janelinha do login*/
+.top-cadastro { /*header da janelinha do login*/
     height:50px;
     padding-top:12px;
     text-align:left;
@@ -419,11 +475,11 @@ text-align:center;
     border-top-right-radius: 5px;
 }
 
-.modalDialog form{
+.modalDialog form {
     margin-top:30px;
 }
 
-.modalDialog input[type=text],[type=password]{ /*customiza input de texto e senha*/
+.modalDialog input[type=text],[type=password] { /*customiza input de texto e senha*/
      position:relative;
      border:none;
      background:#F1F1F2;
@@ -433,16 +489,14 @@ text-align:center;
      margin-bottom:15px;
      height:40px;
      padding-left:10px;
-     text-align:left;
-
-     
+     text-align:left;     
 }
 
-.modalDialog input[type=checkbox]{
+.modalDialog input[type=checkbox] {
     margin-bottom:2px;
 }
 
-.modalDialog input[type=submit]{ /*customiza input de submit*/
+.modalDialog input[type=submit] { /*customiza input de submit*/
   border: 0;
   width:100%;
     background: -webkit-linear-gradient(left, #26B3E8, #75CCD6); /* For Safari 5.1 to 6.0 */
@@ -463,7 +517,7 @@ text-align:center;
   }
 
 
-  .modalDialog input[type=submit]:active{ /*customiza pra quando estiver ativo (click)*/
+  .modalDialog input[type=submit]:active { /*customiza pra quando estiver ativo (click)*/
     -moz-transform: translateY(4px);
     -webkit-transform: translateY(4px);
     -o-transform: translateY(4px);
@@ -476,7 +530,7 @@ text-align:center;
   }
 /*SCROLL-----------------------------------------------------------------------*/
 
-#scroll{
+#scroll {
 height:60px;
 margin-top:-60px;
 width:100%;
@@ -485,7 +539,7 @@ position:relative;
 z-index:100;
 }
 
-#scroll a{
+#scroll a {
     text-align: center;
 display: block;
 bottom: 0;
@@ -582,13 +636,13 @@ transition:opacity 0.4s ease-in;
 
 /*FOOTER-----------------------------------------------------------------------*/
 
-.row-footer{
+.row-footer {
     margin-right: -15px;
     margin-left: -15px;
 
 }
 
-.container-footer{
+.container-footer {
     display:block;
     text-align:center;
     padding-right: 15px;
@@ -599,7 +653,7 @@ transition:opacity 0.4s ease-in;
 padding:0% 0%;
 }
 
-.span1{
+.span1 {
     text-align:center;
     margin-left:1%;
     width:300px;
@@ -607,7 +661,7 @@ padding:0% 0%;
     vertical-align:middle;
 }
 
-.span2{
+.span2 {
     text-align:center;
     margin-top:20px;
     width:300px;
@@ -616,7 +670,7 @@ padding:0% 0%;
     vertical-align:middle;
 }
 
-.span2 a{
+.span2 a {
     font-weight:100;
     color:#6D6E70;
 }
@@ -631,7 +685,7 @@ p.copyright {
     margin: 15px 0 0;
 }
 
-.footer-logo{
+.footer-logo {
     width:50px;
     height:50px;
     margin-left:5%;

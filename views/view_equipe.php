@@ -4,6 +4,7 @@
     <!-- Equipe -->
     <!-- Custom CSS -->
     <link href="css/equipe.css" rel="stylesheet">
+    <link href="css/base-cadastro.css" rel="stylesheet">
     <link rel='stylesheet' media='screen and (min-width: 0px) and (max-width: 425px)' href='css/equipe-xs.css' />
     <link rel='stylesheet' media='screen and (min-width: 425px) and (max-width: 1100px)' href='css/equipe-small.css' />
     <link rel='stylesheet' media='screen and (min-width: 1100px)' href='css/equipe-large.css' />
@@ -18,7 +19,7 @@
 <div class="fixedBackgroundGradient"></div>
 
 <div class="disciplinas">
-    <div class="top-disciplinas">Equipe</div>
+    <div class="top-disciplinas"><div class="top-disciplinas-titulo"><?php echo (WORDING_EDIT_YOUR_CREDENTIALS); ?></div><div class="text-right" ><a href="index.php"><span class="arrowvoltar glyphicon glyphicon-chevron-left"></span></a></div></div>
             <div class="disciplinas-content">  
                 <a href="http://lattes.cnpq.br/7661737809414762" class="team-member">
                     <div class="team-member-avatar" style="background-image:url('img/head.png');"></div>
@@ -47,17 +48,17 @@
 
                 <a href="#" class="team-member">
                     <div class="team-member-avatar" style="background-image:url('img/head.png');"></div>
-                    <header><h3>Delton de Andrade Vaz</h3><h4>--</h4></header>
-                </a>
-
-                <a href="#" class="team-member">
-                    <div class="team-member-avatar" style="background-image:url('img/head.png');"></div>
-                    <header><h3>Cláuser Mazuim</h3><h4>--</h4></header>
+                    <header><h3>Delton de Andrade Vaz</h3><h4>Programador</h4></header>
                 </a>
 
                 <a href="#" class="team-member ">
                     <div class="team-member-avatar" style="background-image:url('img/head.png');"></div>
-                    <header><h3>Arthur Adolfo</h3><h4>Web Developer</h4></header>
+                    <header><h3>Arthur Adolfo</h3><h4>Mr. Coisinha</h4></header>
+                </a>
+
+                <a href="#" class="team-member">
+                    <div class="team-member-avatar" style="background-image:url('img/head.png');"></div>
+                    <header><h3>Cláuser Mazuim</h3><h4>Programador</h4></header>
                 </a>
 
                 <a href="#" class="team-member">

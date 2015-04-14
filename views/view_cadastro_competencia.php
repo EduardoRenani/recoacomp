@@ -139,35 +139,103 @@ var i = 0;
 
 </script>
 </head>
+<script language="javascript">
+    function mudaTab(qualTab) {
+        if(qualTab == 1) {
+            divTab = document.getElementById('sub-conteudo');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab');
+            divTab = document.getElementById('sub-conteudo1');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab-active');
+            divTab = document.getElementById('menu');
+            document.getElementById('seta').removeAttribute('class');
+            document.getElementById('seta').setAttribute('class', 'meu-active');
+            document.getElementById('menudiv1').removeAttribute('class');
+            document.getElementById('menudiv1').setAttribute('class', 'meu-active');
+            document.getElementById('seta1').removeAttribute('class');
+            document.getElementById('seta1').setAttribute('class', 'seta-active');
+            document.getElementById('buttonNext').removeAttribute('onclick');
+            document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(2)');
+            document.getElementById('buttonPrevious').removeAttribute('style');
+            document.getElementById('buttonPrevious').setAttribute('style', 'float: none; display: inline;');
+        }
+        else if(qualTab == 2) {
+            divTab = document.getElementById('sub-conteudo1');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab');
+            divTab = document.getElementById('sub-conteudo2');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab-active');
+            document.getElementById('menudiv2').removeAttribute('class');
+            document.getElementById('menudiv2').setAttribute('class', 'meu-active');
+            document.getElementById('seta1').removeAttribute('class');
+            document.getElementById('seta1').setAttribute('class', 'meu-active');
+            document.getElementById('buttonNext').removeAttribute('onclick');
+            document.getElementById('buttonPrevious').removeAttribute('onclick');
+            document.getElementById('finisher').removeAttribute('style');
+            document.getElementById('buttonNext').removeAttribute('style');
+            document.getElementById('buttonNext').setAttribute('style', 'float: none; display: none;');
+            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(4)');
+
+        }
+        else if(qualTab == 3) {
+            divTab = document.getElementById('sub-conteudo1');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab');
+            divTab = document.getElementById('sub-conteudo');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab-active');
+            document.getElementById('menudiv1').removeAttribute('class');
+            document.getElementById('seta1').removeAttribute('class');
+            document.getElementById('seta').removeAttribute('class');
+            document.getElementById('seta').setAttribute('class', 'seta-active');
+            document.getElementById('buttonNext').removeAttribute('onclick');
+            document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(1)');
+            document.getElementById('buttonPrevious').removeAttribute('style');
+            document.getElementById('buttonPrevious').setAttribute('style', 'float: none; display: none;');
+
+        }
+        else if(qualTab == 4) {
+            divTab = document.getElementById('sub-conteudo2');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab');
+            divTab = document.getElementById('sub-conteudo1');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab-active');
+            document.getElementById('menudiv2').removeAttribute('class');
+            document.getElementById('seta1').removeAttribute('class');
+            document.getElementById('seta1').setAttribute('class', 'seta-active');
+            document.getElementById('buttonNext').removeAttribute('onclick');
+            document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(2)');
+            document.getElementById('buttonPrevious').removeAttribute('onclick');
+            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(3)');
+            document.getElementById('buttonNext').removeAttribute('style');
+            document.getElementById('finisher').setAttribute('style', 'float: none; display: none;');
+
+        }
+    }
+</script>
+
 <div class="fixedBackgroundGradient"></div>
 <!-- clean separation of HTML and PHP -->
 
 <div class="cadastrobase" >
-    <div class="top-cadastrobase"><div class="text-left"><?php echo (WORDING_CREATE_COMPETENCA); ?></div><div class="text-right" ><a href="index.php"><?php echo WORDING_BACK_TO_LOGIN;?></a></div></div>
+    <div class="top-cadastrobase"><div class="text-left"><?php echo (WORDING_CREATE_COMPETENCA); ?></div><div class="text-right" ><a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a></div></div>
         <div class="cadastrobase-content">
             <form method="post" action="" name="registrar_nova_competencia" id="registrar_nova_competencia">
                 <!-- ID do usuário passado via hidden POST -->
                 <input type="hidden" id="user_id" name="user_id" value="<?php echo $_SESSION['user_id']; ?>" />
                     <div id="rootwizard">
-                        <div class="navbar">
-                          <div class="navbar-inner">
-                            <div class="container">
-                        <ul>
-                            <li><a href="#tab1" data-toggle="tab"><?php echo WORDING_CREATE_COMPETENCA; ?></a></li>
-                            <li><a href="#tab2" data-toggle="tab"><?php echo 'Associar OAS'; ?></a></li>
-                            <li><a href="#tab3" data-toggle="tab"><?php echo 'Preencher CHA'; ?></a></li>
-                        </ul>
-                         </div>
-                          </div>
-                        </div>
-                            <div id="bar" class="progress progress-striped active">
-                                <div class="bar">
-                                </div>
-                            </div>
-
-
-                        <div class="tab-content">
-                            <div class="tab-pane" id="tab1">
+                        <div id="menu">
+                            <div id="menudiv" class="meu-active"><?php echo WORDING_GENERAL_INFORMATION; ?></div>
+                            <div id="seta" class="seta-active"></div>
+                            <div id="menudiv1"><?php echo WORDING_COMPETENCIA; ?></div>
+                            <div id="seta1"></div>
+                            <div id="menudiv2"><?php echo WORDING_CHA; ?></div>
+                    </div>
+                        <div id="conteudo">
+                            <div id="sub-conteudo" class="tab-active">
                                 <div class="control-group">
                                     <label class="control-label" for="nome"><?php echo WORDING_NAME; ?></label>
                                     <div class="controls">
@@ -201,7 +269,7 @@ var i = 0;
 
                             </div>
                             <!-- DIV COM DADOS DAS COMPETÊNCIAS A SEREM ASSOCIADAS A DISCIPLINA -->
-                            <div class="tab-pane" id="tab2">
+                            <div id="sub-conteudo1" class="tab">
                                 <input type="hidden" id="arrayOAS" name="arrayOAS" value="" />
                                   <span style="display block; width: 40%; float: left; text-align:left;">Objetos OAS Disponíveis</span><span style="display: block; width: 30%; float: right; text-align:right;">Objetos OAS Selecionados</span>
                             <ul id="tabela1">
@@ -223,15 +291,14 @@ var i = 0;
                                  <!--<a href="cadastro_OA.php" target="_blank"><?=WORDING_REGISTER_NOVO_OA?></a>-->
 
                             </div>
-                            <div class="tab-pane" id="tab3">
+                            <div id="sub-conteudo2" class="tab">
                                 <div class="control-group">
                                 </div>
                             </div>
-
+                            <input id="finisher" style="display: none;" type="submit" name="registrar_nova_disciplina" value="<?php echo WORDING_CREATE_DISCIPLINA; ?>" />
                             <ul class="pager wizard">
-                                <input id="finisher" style="display: none;" type="submit" name="registrar_nova_disciplina" value="<?php echo WORDING_CREATE_COMPETENCA; ?>" />
-                                <li class="next" style="float:none"><div class='button'><a href="javascript:;" class='button-next text-left'>Próximo</a></div></li>
-                                <li class="previous" style="float:none"><div class="text-right"><a href="javascript:;">Voltar</a></div></li>
+                                <li class="next" style="float:none"><div id="buttonNext" class='button' onclick="mudaTab(1)"><a href="javascript:;" class='button-next text-left'>Próximo</a></div></li>
+                                <li class="previous" style="float:none; display: none;" id="buttonPrevious" onclick="mudaTab(3)"><div class="text-right"><a href="javascript:;">Voltar</a></div></li>
                             </ul>
 
                         </div>  

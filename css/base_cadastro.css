@@ -121,7 +121,32 @@ select{width:100%;}
     font-weight:300;
 }
 
-div.top-cadastrobase a{ text-decoration: none; color:white; font-size:16px;position:absolute;right:15px;top:14px}
+.arrowvoltar{ 
+  padding:10px;
+  float:right;
+ }
+
+.top-disciplinas-titulo{
+  float:left;
+  width:500px;
+
+}
+
+div.top-disciplinas a{ 
+  text-decoration: none; 
+  color:white; 
+  font-size:16px;
+  position:absolute;
+  right:15px;
+  top:14px}
+
+div.top-cadastrobase a{ 
+  text-decoration: none;
+ color:white; 
+ font-size:16px;
+ position:absolute;
+ right:15px;
+ top:14px}
 
 .cadastrobase-content{
     margin-top:10%;

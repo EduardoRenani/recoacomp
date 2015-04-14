@@ -996,7 +996,6 @@ select,textarea,input[type="text"],input[type="password"],input[type="datetime"]
     display: inline-block;
     
     padding: 6px 6px;
-    margin-bottom: 10px;
     font-size: 14px;
     line-height: 20px;
     color: #555;
@@ -3840,6 +3839,104 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
     *z-index: 2;
     margin-bottom: 20px;
     overflow: visible;
+}
+
+#menu {
+    float: left;
+    width: 100%;
+    height: 44px;
+    margin-bottom: 10px;
+    background-color: #f1f1f2;
+}
+
+#menudiv {
+    float: left;
+    width: 31.3%;
+    height: 100%;
+    line-height: 44px;
+    text-align: center;
+}
+
+#menudiv1 {
+    float: left;
+    width: 31.3%;
+    height: 100%;
+    line-height: 44px;
+    text-align: center;
+}
+
+#menudiv2 {
+    float: left;
+    width: 31.3%;
+    height: 100%;
+    line-height: 44px;
+    text-align: center;
+}
+
+#seta {
+    background: url("http://sideshowbob/recoacomp/img/arrow_outro.png") no-repeat;
+    background-clip: content-box;  
+    float: left;
+    width: 3%;
+    height: 100%;
+}
+
+#seta1 {
+    background: url("http://sideshowbob/recoacomp/img/arrow_outro.png") no-repeat;
+    background-clip: content-box;  
+    float: left;
+    width: 3%;
+    height: 100%;
+}
+
+.seta-active {
+    background: url("http://sideshowbob/recoacomp/img/arrow.png") no-repeat !important;
+    background-size: 84%;
+    background-clip: content-box;   
+}
+
+.meu-active {
+    background: #108AC0 !important;
+    color: #fff;
+}
+
+#conteudo {
+    width: 650px;
+    min-height: 356px;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+#sub-conteudo {
+    position: relative;
+    float: left;
+    width: 650px;
+    text-align: left;
+    min-height: 356px;
+}
+
+#sub-conteudo1 {
+    position: relative;
+    float: left;
+    width: 650px;
+    text-align: left;
+    min-height: 356px;
+}
+
+#sub-conteudo2 {
+    position: relative;
+    float: left;
+    width: 650px;
+    text-align: left;
+    min-height: 356px;
+}
+
+.tab {
+    display: none;
+}
+
+.tab-active {
+    display: block;
 }
 
 .navbar-inner {

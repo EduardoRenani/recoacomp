@@ -12,6 +12,7 @@ require_once("classes/OA.php");?>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
     <link href="css/base_cadastro_objeto.css" rel="stylesheet">
     <link href="css/base_cadastro.css" rel="stylesheet">
+    <link href="css/progress_cadastro_OA_breadcrumb.css" rel="stylesheet">
     <style>
     body { font-size: 62.5%; }
     label, input { display:block; width: 100%; }
@@ -166,6 +167,188 @@ $(function() {
 });
 </script>
 
+<script language="javascript">
+    function mudaTab(qualTab) {
+        if(qualTab == 1) {
+            divTab = document.getElementById('sub-conteudo');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab');
+            divTab = document.getElementById('sub-conteudo1');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab-active');
+            divTab = document.getElementById('menu');
+            document.getElementById('seta').removeAttribute('class');
+            document.getElementById('seta').setAttribute('class', 'meu-active');
+            document.getElementById('menudiv1').removeAttribute('class');
+            document.getElementById('menudiv1').setAttribute('class', 'meu-active');
+            document.getElementById('seta1').removeAttribute('class');
+            document.getElementById('seta1').setAttribute('class', 'seta-active');
+            document.getElementById('buttonNext').removeAttribute('onclick');
+            document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(2)');
+            document.getElementById('buttonPrevious').removeAttribute('style');
+            document.getElementById('buttonPrevious').setAttribute('style', 'float: none; display: inline;');
+            document.getElementById('buttonPrevious').removeAttribute('onclick');
+            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(6)');
+        }
+        else if(qualTab == 2) {
+            divTab = document.getElementById('sub-conteudo1');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab');
+            divTab = document.getElementById('sub-conteudo2');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab-active');
+            document.getElementById('menudiv2').removeAttribute('class');
+            document.getElementById('menudiv2').setAttribute('class', 'meu-active');
+            document.getElementById('seta1').removeAttribute('class');
+            document.getElementById('seta1').setAttribute('class', 'meu-active');
+            document.getElementById('seta2').removeAttribute('class');
+            document.getElementById('seta2').setAttribute('class', 'seta-active');
+            document.getElementById('buttonNext').removeAttribute('onclick');
+            document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(3)');
+            document.getElementById('buttonPrevious').removeAttribute('onclick');
+            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(7)');
+
+        }
+        else if(qualTab == 3) {
+            divTab = document.getElementById('sub-conteudo2');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab');
+            divTab = document.getElementById('sub-conteudo3');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab-active');
+            document.getElementById('menudiv3').removeAttribute('class');
+            document.getElementById('menudiv3').setAttribute('class', 'meu-active');
+            document.getElementById('seta2').removeAttribute('class');
+            document.getElementById('seta2').setAttribute('class', 'meu-active');
+            document.getElementById('seta3').removeAttribute('class');
+            document.getElementById('seta3').setAttribute('class', 'seta-active');
+            document.getElementById('buttonNext').removeAttribute('onclick');
+            document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(4)');
+            document.getElementById('buttonPrevious').removeAttribute('onclick');
+            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(8)');
+
+        }
+        else if(qualTab == 4) {
+            divTab = document.getElementById('sub-conteudo3');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab');
+            divTab = document.getElementById('sub-conteudo4');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab-active');
+            document.getElementById('menudiv4').removeAttribute('class');
+            document.getElementById('menudiv4').setAttribute('class', 'meu-active');
+            document.getElementById('seta3').removeAttribute('class');
+            document.getElementById('seta3').setAttribute('class', 'meu-active');
+            document.getElementById('seta4').removeAttribute('class');
+            document.getElementById('seta4').setAttribute('class', 'seta-active');
+            document.getElementById('buttonNext').removeAttribute('onclick');
+            document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(5)');
+            document.getElementById('buttonPrevious').removeAttribute('onclick');
+            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(9)');
+        }
+        else if(qualTab == 5) {
+            divTab = document.getElementById('sub-conteudo4');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab');
+            divTab = document.getElementById('sub-conteudo5');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab-active');
+            document.getElementById('menudiv5').removeAttribute('class');
+            document.getElementById('menudiv5').setAttribute('class', 'meu-active');
+            document.getElementById('seta4').removeAttribute('class');
+            document.getElementById('seta4').setAttribute('class', 'meu-active');
+            document.getElementById('buttonNext').removeAttribute('onclick');
+            document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(4)');
+            document.getElementById('buttonPrevious').removeAttribute('onclick');
+            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(10)');
+            document.getElementById('buttonNext').removeAttribute('style');
+            document.getElementById('buttonNext').setAttribute('style', 'float: none; display: none;');
+            document.getElementById('finisher').removeAttribute('style');
+        }
+        else if(qualTab == 6) {
+            divTab = document.getElementById('sub-conteudo1');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab');
+            divTab = document.getElementById('sub-conteudo');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab-active');
+            document.getElementById('menudiv1').removeAttribute('class');
+            document.getElementById('seta1').removeAttribute('class');
+            document.getElementById('seta').removeAttribute('class');
+            document.getElementById('seta').setAttribute('class', 'seta-active');
+            document.getElementById('buttonNext').removeAttribute('onclick');
+            document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(1)');
+            document.getElementById('buttonPrevious').removeAttribute('style');
+            document.getElementById('buttonPrevious').setAttribute('style', 'float: none; display: none;');
+        }
+        else if(qualTab == 7) {
+            divTab = document.getElementById('sub-conteudo2');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab');
+            divTab = document.getElementById('sub-conteudo1');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab-active');
+            document.getElementById('menudiv2').removeAttribute('class');
+            document.getElementById('seta2').removeAttribute('class');
+            document.getElementById('seta1').removeAttribute('class');
+            document.getElementById('seta1').setAttribute('class', 'seta-active');
+            document.getElementById('buttonNext').removeAttribute('onclick');
+            document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(2)');
+            document.getElementById('buttonPrevious').removeAttribute('onclick');
+            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(6)');
+        }
+        else if(qualTab == 8) {
+            divTab = document.getElementById('sub-conteudo3');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab');
+            divTab = document.getElementById('sub-conteudo2');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab-active');
+            document.getElementById('menudiv3').removeAttribute('class');
+            document.getElementById('seta3').removeAttribute('class');
+            document.getElementById('seta2').removeAttribute('class');
+            document.getElementById('seta2').setAttribute('class', 'seta-active');
+            document.getElementById('buttonNext').removeAttribute('onclick');
+            document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(3)');
+            document.getElementById('buttonPrevious').removeAttribute('onclick');
+            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(7)');
+        }
+        else if(qualTab == 9) {
+            divTab = document.getElementById('sub-conteudo4');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab');
+            divTab = document.getElementById('sub-conteudo3');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab-active');
+            document.getElementById('menudiv4').removeAttribute('class');
+            document.getElementById('seta4').removeAttribute('class');
+            document.getElementById('seta3').removeAttribute('class');
+            document.getElementById('seta3').setAttribute('class', 'seta-active');
+            document.getElementById('buttonNext').removeAttribute('onclick');
+            document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(4)');
+            document.getElementById('buttonPrevious').removeAttribute('onclick');
+            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(8)');
+        }
+        else if(qualTab == 10) {
+            divTab = document.getElementById('sub-conteudo5');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab');
+            divTab = document.getElementById('sub-conteudo4');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab-active');
+            document.getElementById('menudiv5').removeAttribute('class');
+            document.getElementById('seta4').removeAttribute('class');
+            document.getElementById('seta4').setAttribute('class', 'seta-active');
+            document.getElementById('buttonNext').removeAttribute('onclick');
+            document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(5)');
+            document.getElementById('buttonPrevious').removeAttribute('onclick');
+            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(9)');
+            document.getElementById('finisher').removeAttribute('style');
+            document.getElementById('finisher').setAttribute('style', 'float: none; display: none;');
+        }
+    }
+</script>
+
 <div class="fixedBackgroundGradient"></div>
 <div class="cadastrobase">
 <div class="top-cadastrobase"><div class="text-left"><?php echo (WORDING_REGISTER_NOVO_OA); ?></div><div class="text-right" ><a href="index.php"><?php echo WORDING_BACK_TO_LOGIN;?></a></div></div>
@@ -173,27 +356,22 @@ $(function() {
 <form id="registrar_novo_OA" method="post" action="" name="registrar_novo_OA" class="form-horizontal" style="width: 100%;">
     <input type="hidden" id="idusuario" name="idusuario" value="<?php echo $_SESSION['user_id']; ?>" />
     <div id="rootwizard">
-        <div class="navbar" style="margin: 0 auto; width: 97%; margin-bottom: 20px;">
-            <div class="navbar-inner">
-                <div class="container">
-                    <ul>
-                        <li><a href="#tab1" data-toggle="tab"><?php echo WORDING_GENERAL_INFORMATION; ?></a></li>
-                        <li><a href="#tab2" data-toggle="tab"><?php echo WORDING_LIFE_CATEGORY; ?></a></li>
-                        <li><a href="#tab3" data-toggle="tab"><?php echo WORDING_TECHNICAL_CATEGORY; ?></a></li>
-                        <li><a href="#tab4" data-toggle="tab"><?php echo WORDING_EDUCATIONAL_CATEGORY; ?></a></li>
-                        <li><a href="#tab5" data-toggle="tab"><?php echo WORDING_RIGHT_CATEGORY; ?></a></li>
-                        <li><a href="#tab6" data-toggle="tab"><?php echo WORDING_ASSOCIATE_COMPETENCE; ?></a></li>
-                    </ul>
-                </div>
-            </div>
+        <div id="menu">
+            <div id="menudiv" class="meu-active"><?php echo WORDING_GENERAL_INFORMATION; ?></div>
+            <div id="seta" class="seta-active"></div>
+            <div id="menudiv1"><?php echo WORDING_LIFE_CATEGORY; ?></div>
+            <div id="seta1"></div>
+            <div id="menudiv2"><?php echo WORDING_TECHNICAL_CATEGORY; ?></div>
+            <div id="seta2"></div>
+            <div id="menudiv3"><?php echo WORDING_EDUCATIONAL_CATEGORY; ?></div>
+            <div id="seta3"></div>
+            <div id="menudiv4"><?php echo WORDING_RIGHT_CATEGORY; ?></div>
+            <div id="seta4"></div>
+            <div id="menudiv5"><?php echo WORDING_ASSOCIATE_COMPETENCE; ?></div>
         </div>
-        <div id="bar" class="progress progress-striped active" style="margin: 0 auto; width: 97%; margin-bottom: 20px;">
-            <div class="bar">
-            </div>
-        </div>
-        <div class="tab-content" style="margin: 0 auto; width: 70%; margin-bottom: 20px;">
+        <div id="conteudo">
         <!-- Inicio-->
-            <div class="tab-pane" id="tab1"> 
+            <div id="sub-conteudo" class="tab-active"> 
                 <div class="control-group">
                     <label class="control-label" for="name"><?php echo WORDING_NAME; ?></label>
                     <div class="controls">
@@ -234,7 +412,7 @@ $(function() {
                 </div>          
             </div>
             <!-- Fim-->
-            <div class="tab-pane" id="tab2">
+            <div id="sub-conteudo1" class="tab">
                     <div class="control-group">
                         <label class="control-label" for="date"><?php echo WORDING_DATE; ?></label>
                         <div class="controls">
@@ -283,7 +461,7 @@ $(function() {
                         </div>
                     </div>
             </div>
-            <div class="tab-pane" id="tab3">
+            <div id="sub-conteudo2" class="tab">
                  <!-- TEMPO DO VIDEO -->
                 <div class="control-group">
                     <label class="control-label" for="tempo_video"><?php echo WORDING_VIDEO_TIME; ?></label>
@@ -326,7 +504,7 @@ $(function() {
                 </div>               
             </div>
             <!-- CATEGORIA EDUCACIONAL -->
-            <div class="tab-pane" id="tab4">
+            <div id="sub-conteudo3" class="tab">
                 <!-- DESCRIÇÃO EDUCACIONAL -->
                 <div class="control-group">
                     <label class="control-label" for="descricao_educacional"><?php echo WORDING_EDUCATIONAL_DESCRIPTION; ?></label>
@@ -420,7 +598,7 @@ $(function() {
                 </div>				
             </div>
 			<!-- CATEGORIA DIREITO -->
-            <div class="tab-pane" id="tab5">
+            <div id="sub-conteudo4" class="tab">
 			    <!-- CUSTO -->
 				<div class="control-group">
                     <label class="control-label" for="custo"><?php echo WORDING_COST ; ?></label>
@@ -448,7 +626,7 @@ $(function() {
 			
             </div>
 
-            <div class="tab-pane" id="tab6">
+            <div id="sub-conteudo5" class="tab">
                 <input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" />
                 <span style="display block; width: 40%; float: left; text-align:left;">Competencias Disponíveis</span><span style="display: block; width: 30%; float: right; text-align:right;">Competencias Selecionadas</span>
                 <ul id="tabela1">
@@ -473,10 +651,11 @@ $(function() {
             </div>
 
 			
-			<ul class="pager wizard">
-                            <input id="finisher" style="display:none;" type="submit" name="registrar_novo_OA" value="<?php echo WORDING_CREATE_OA ; ?>" />
-                <li class="next" style="float:none"><div class='button'><a href="javascript:;" class='button-next text-left'>Próximo</a></div></li>
-                <li class="previous" style="float:none"><div class="text-right"><a href="javascript:;">Voltar</a></div></li>
+            <input id="finisher" style="display: none;" type="submit" name="registrar_nova_disciplina" value="<?php echo WORDING_CREATE_DISCIPLINA; ?>" />
+                            
+            <ul class="pager wizard">
+                    <li class="next" style="float:none"><div id="buttonNext" class='button' onclick="mudaTab(1)"><a href="javascript:;" class='button-next text-left'>Próximo</a></div></li>
+                    <li class="previous" style="float:none; display: none;" id="buttonPrevious" onclick="mudaTab(3)"><div class="text-right"><a href="javascript:;">Voltar</a></div></li>
             </ul>
 			
 

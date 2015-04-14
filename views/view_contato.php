@@ -71,7 +71,7 @@ require_once("classes/Registration.php");
     <!-- ============== DISCIPLINAS ============== -->
 
 <div class="disciplinas">
-    <div class="top-disciplinas">Contato</div>
+        <div class="top-disciplinas"><div class="text-left">Contato</div><div class="text-right" ><a href="index.php"><span style="color:white" class="glyphicon glyphicon-chevron-left"></span></a></div></div>
             <div class="disciplinas-content">
                 <?php if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["contato"])){ ?>  
                 <form method="post" action="contato.php" name="contato">
@@ -99,40 +99,7 @@ require_once("classes/Registration.php");
                         //}
                     }?>
     </div>
-
-
 </div>
-    <!-- Footer
-    <footer>
-        <div class="container-footer">
-            <div class="row" style="width:100%"> width 100% porque o bootstrap tenta estragar tudo
-                <div class="span1">
-                    <a href="http://www.nuted.ufrgs.br/"><img src="img/nutedYellow.png" class="footer-logo"></a> 
-                    <a href="http://www.ufrgs.br/sead"><img src="img/ufrgs_sead.png" class="footer-logo"></a>
-                </div>
-                <div class="span2">
-                     <ul class="list-inline">
-                        <li>
-                           <a href="#home">Home</a>
-                        </li>
-                        <li class="footer-menu-divider">.</li>
-                         <li>
-                           <a href="#sobre">Sobre</a>
-                        </li>
-                        <li class="footer-menu-divider">.</li>
-                         <li>
-                           <a href="#contato">Contato</a>
-                        </li>
-                        <li class="footer-menu-divider">.</li>
-                         <li>
-                           <a href="#equipe">Equipe</a>
-                        </li>
-                        <li class="footer-menu-divider">.</li>
-                     </ul>
-               </div>
-            </div>
-        </div>
-    </footer> -->
 
 </body>
 

@@ -26,7 +26,7 @@ function getDisciplinaId(id){
 
 </head>
 
-         <div class="fixedBackgroundGradient"></div>
+<div class="fixedBackgroundGradient"></div>
 <!-- ============== SIDEBAR =============== -->
 <?php require_once("sidebar.php"); ?>
 

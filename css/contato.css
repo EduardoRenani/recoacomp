@@ -189,7 +189,7 @@ form a:hover, form a:active{ /*muda cores e etc de links quando em hover ou acti
     color:#58585B;
 }
 
-input[type=text],[type=password],textarea{ /*customiza input de texto e senha*/
+input[type=text],[type=password],[type=email],textarea{ /*customiza input de texto e senha*/
      position:relative;
      border:none;
      background:#F1F1F2;

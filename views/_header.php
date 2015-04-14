@@ -68,14 +68,17 @@
 
             <ul>
 
-            <li><a href="index.php" class="current">Home</a></li> <!--muda quando o usuario estiver logged in e leva para o home.html"-->
+            <li><a href="#">Tutorial</a></li> <!--muda quando o usuario estiver logged in e leva para o home.html"-->
+            <li><a href="#">Sobre</a></li>
             <li><a href="contato.php">Contato</a></li>
             <li><a href="equipe.php">Equipe</a></li>
 <?php
+if (isset($login)) {
 if ($login->isUserLoggedIn() == true) {
 ?>
             <li><a href="index.php?logout"><?php echo WORDING_LOGOUT; ?></a></li>
 <?php
+}
 }
 ?>
             </ul>
