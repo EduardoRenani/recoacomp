@@ -32,7 +32,7 @@
                    <a href="profile_show.php"><li>
                         Meu Perfil
                     </li></a>
-                     <a href="disciplinas.php"><li id="active">
+                     <a href="disciplinas.php"><li class="active">
                         Minhas Disciplinas
                     </li></a>
     				<a href="cadastro_disciplina.php"><li>

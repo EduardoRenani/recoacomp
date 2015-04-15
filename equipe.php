@@ -15,5 +15,7 @@ require_once('translations/pt_br.php');
 
 // include the PHPMailer library
 require_once('libraries/PHPMailer.php');
+require_once("classes/Login.php");
+$login = new Login();
 
 include("views/view_equipe.php");

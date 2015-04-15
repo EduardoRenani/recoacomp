@@ -34,17 +34,60 @@ require_once("classes/OA.php");?>
 <!-- clean separation of HTML and PHP -->
 <script>
 
-$(function() {
-    $('#tabela1, #tabela2').sortable({
-        connectWith: "#tabela1, #tabela2",
-        update: function(event, ui) {
-            var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
-            //window.alert(nomesCompetencias);
+    $(function() {
+        $('#tabela2').sortable({
+            connectWith: "#tabela1, #tabela1",
+            receive : function (event, ui) {
+                $("#tabela1").sortable('refreshPositions');
+                var idCompetencias = $("#tabela2").sortable('toArray').toString();
+                var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
+                idCompetencias = idCompetencias.split(",");
+                nomesCompetencias = nomesCompetencias.split(",");
+                document.getElementById('sub-conteudo6').innerHTML = "";
+                for (i = 0; i < nomesCompetencias.length; i++) {
+                    var elementoAdd = document.createElement('div');
+                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    document.getElementById('sub-conteudo6').appendChild(elementoAdd);
+                }
+        //         $("#tabela2").html("<option value='text'>text</option>");
+           },
+            update: function(event, ui) {
+                var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
+                //window.alert(nomesCompetencias);
 
-            document.getElementById('arrayCompetencias').value = arrayCompetencias;
-        }
+                document.getElementById('arrayCompetencias').value = arrayCompetencias;
+            }
+        });
     });
-});
+
+    $(function() {
+        $('#tabela1').sortable({
+            connectWith: "#tabela1, #tabela2",
+            receive : function (event, ui)
+            {
+                
+                $("#tabela1").sortable('refreshPositions');
+                var idCompetencias = $("#tabela2").sortable('toArray').toString();
+                var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
+                idCompetencias = idCompetencias.split(",");
+                nomesCompetencias = nomesCompetencias.split(",");
+                document.getElementById('sub-conteudo6').innerHTML = "";
+                for (i = 0; i < nomesCompetencias.length; i++) {
+                    var elementoAdd = document.createElement('div');
+                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    document.getElementById('sub-conteudo6').appendChild(elementoAdd);
+                }
+                
+        //         $("#tabela2").html("<option value='text'>text</option>");
+           },
+            update: function(event, ui) {
+                var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
+                //window.alert(nomesCompetencias);
+
+                document.getElementById('arrayCompetencias').value = arrayCompetencias;
+            }
+        });
+    });
 
 
 $(function() {
@@ -188,7 +231,7 @@ $(function() {
             document.getElementById('buttonPrevious').removeAttribute('style');
             document.getElementById('buttonPrevious').setAttribute('style', 'float: none; display: inline;');
             document.getElementById('buttonPrevious').removeAttribute('onclick');
-            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(6)');
+            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(7)');
         }
         else if(qualTab == 2) {
             divTab = document.getElementById('sub-conteudo1');
@@ -206,7 +249,7 @@ $(function() {
             document.getElementById('buttonNext').removeAttribute('onclick');
             document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(3)');
             document.getElementById('buttonPrevious').removeAttribute('onclick');
-            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(7)');
+            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(8)');
 
         }
         else if(qualTab == 3) {
@@ -225,7 +268,7 @@ $(function() {
             document.getElementById('buttonNext').removeAttribute('onclick');
             document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(4)');
             document.getElementById('buttonPrevious').removeAttribute('onclick');
-            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(8)');
+            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(9)');
 
         }
         else if(qualTab == 4) {
@@ -244,7 +287,7 @@ $(function() {
             document.getElementById('buttonNext').removeAttribute('onclick');
             document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(5)');
             document.getElementById('buttonPrevious').removeAttribute('onclick');
-            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(9)');
+            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(10)');
         }
         else if(qualTab == 5) {
             divTab = document.getElementById('sub-conteudo4');
@@ -257,15 +300,31 @@ $(function() {
             document.getElementById('menudiv5').setAttribute('class', 'meu-active');
             document.getElementById('seta4').removeAttribute('class');
             document.getElementById('seta4').setAttribute('class', 'meu-active');
+            document.getElementById('seta5').removeAttribute('class');
+            document.getElementById('seta5').setAttribute('class', 'seta-active');
             document.getElementById('buttonNext').removeAttribute('onclick');
-            document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(4)');
+            document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(6)');
             document.getElementById('buttonPrevious').removeAttribute('onclick');
-            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(10)');
+            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(11)');
+        }
+        else if(qualTab == 6) {
+            divTab = document.getElementById('sub-conteudo5');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab');
+            divTab = document.getElementById('sub-conteudo6');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab-active');
+            document.getElementById('menudiv6').removeAttribute('class');
+            document.getElementById('menudiv6').setAttribute('class', 'meu-active');
+            document.getElementById('seta5').removeAttribute('class');
+            document.getElementById('seta5').setAttribute('class', 'meu-active');
+            document.getElementById('buttonPrevious').removeAttribute('onclick');
+            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(12)');
             document.getElementById('buttonNext').removeAttribute('style');
             document.getElementById('buttonNext').setAttribute('style', 'float: none; display: none;');
             document.getElementById('finisher').removeAttribute('style');
         }
-        else if(qualTab == 6) {
+        else if(qualTab == 7) {
             divTab = document.getElementById('sub-conteudo1');
             divTab.removeAttribute('class');
             divTab.setAttribute('class', 'tab');
@@ -281,7 +340,7 @@ $(function() {
             document.getElementById('buttonPrevious').removeAttribute('style');
             document.getElementById('buttonPrevious').setAttribute('style', 'float: none; display: none;');
         }
-        else if(qualTab == 7) {
+        else if(qualTab == 8) {
             divTab = document.getElementById('sub-conteudo2');
             divTab.removeAttribute('class');
             divTab.setAttribute('class', 'tab');
@@ -295,9 +354,9 @@ $(function() {
             document.getElementById('buttonNext').removeAttribute('onclick');
             document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(2)');
             document.getElementById('buttonPrevious').removeAttribute('onclick');
-            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(6)');
+            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(7)');
         }
-        else if(qualTab == 8) {
+        else if(qualTab == 9) {
             divTab = document.getElementById('sub-conteudo3');
             divTab.removeAttribute('class');
             divTab.setAttribute('class', 'tab');
@@ -311,9 +370,9 @@ $(function() {
             document.getElementById('buttonNext').removeAttribute('onclick');
             document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(3)');
             document.getElementById('buttonPrevious').removeAttribute('onclick');
-            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(7)');
+            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(8)');
         }
-        else if(qualTab == 9) {
+        else if(qualTab == 10) {
             divTab = document.getElementById('sub-conteudo4');
             divTab.removeAttribute('class');
             divTab.setAttribute('class', 'tab');
@@ -327,9 +386,9 @@ $(function() {
             document.getElementById('buttonNext').removeAttribute('onclick');
             document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(4)');
             document.getElementById('buttonPrevious').removeAttribute('onclick');
-            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(8)');
+            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(9)');
         }
-        else if(qualTab == 10) {
+        else if(qualTab == 11) {
             divTab = document.getElementById('sub-conteudo5');
             divTab.removeAttribute('class');
             divTab.setAttribute('class', 'tab');
@@ -337,21 +396,41 @@ $(function() {
             divTab.removeAttribute('class');
             divTab.setAttribute('class', 'tab-active');
             document.getElementById('menudiv5').removeAttribute('class');
+            document.getElementById('seta5').removeAttribute('class');
             document.getElementById('seta4').removeAttribute('class');
             document.getElementById('seta4').setAttribute('class', 'seta-active');
             document.getElementById('buttonNext').removeAttribute('onclick');
             document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(5)');
             document.getElementById('buttonPrevious').removeAttribute('onclick');
-            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(9)');
+            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(10)');
             document.getElementById('finisher').removeAttribute('style');
             document.getElementById('finisher').setAttribute('style', 'float: none; display: none;');
+            document.getElementById('buttonNext').removeAttribute('style');
+        }
+        else if(qualTab == 12) {
+            divTab = document.getElementById('sub-conteudo6');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab');
+            divTab = document.getElementById('sub-conteudo5');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab-active');
+            document.getElementById('menudiv6').removeAttribute('class');
+            document.getElementById('seta5').removeAttribute('class');
+            document.getElementById('seta5').setAttribute('class', 'seta-active');
+            document.getElementById('buttonNext').removeAttribute('onclick');
+            document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(6)');
+            document.getElementById('buttonPrevious').removeAttribute('onclick');
+            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(11)');
+            document.getElementById('finisher').removeAttribute('style');
+            document.getElementById('finisher').setAttribute('style', 'float: none; display: none;');
+            document.getElementById('buttonNext').removeAttribute('style');
         }
     }
 </script>
 
 <div class="fixedBackgroundGradient"></div>
 <div class="cadastrobase">
-<div class="top-cadastrobase"><div class="text-left"><?php echo (WORDING_REGISTER_NOVO_OA); ?></div><div class="text-right" ><a href="index.php"><?php echo WORDING_BACK_TO_LOGIN;?></a></div></div>
+<div class="top-cadastrobase"><div class="text-left"><?php echo (WORDING_REGISTER_NOVO_OA); ?></div><div class="text-right" ><a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a></div></div>
 <div class="cadastrobase-content">
 <form id="registrar_novo_OA" method="post" action="" name="registrar_novo_OA" class="form-horizontal" style="width: 100%;">
     <input type="hidden" id="idusuario" name="idusuario" value="<?php echo $_SESSION['user_id']; ?>" />
@@ -368,6 +447,8 @@ $(function() {
             <div id="menudiv4"><?php echo WORDING_RIGHT_CATEGORY; ?></div>
             <div id="seta4"></div>
             <div id="menudiv5"><?php echo WORDING_ASSOCIATE_COMPETENCE; ?></div>
+            <div id="seta5"></div>
+            <div id="menudiv6"><?php echo WORDING_REGISTER_CHA; ?></div>
         </div>
         <div id="conteudo">
         <!-- Inicio-->
@@ -650,8 +731,18 @@ $(function() {
             <!-- <div class='button'><a href="cadastro_OA.php" target="_blank"><?=WORDING_CREATE_NEW_COMPETENCIA?></a></div>      -->
             </div>
 
-			
-            <input id="finisher" style="display: none;" type="submit" name="registrar_nova_disciplina" value="<?php echo WORDING_CREATE_DISCIPLINA; ?>" />
+
+            <div id="sub-conteudo6" class="tab">
+                <input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" />
+   
+                 
+        
+
+                      
+            </div>
+
+			<input id="finisher" style="display: none;" type="submit" name="registrar_nova_disciplina" value="<?php echo WORDING_CREATE_OA; ?>" />
+            
                             
             <ul class="pager wizard">
                     <li class="next" style="float:none"><div id="buttonNext" class='button' onclick="mudaTab(1)"><a href="javascript:;" class='button-next text-left'>Próximo</a></div></li>

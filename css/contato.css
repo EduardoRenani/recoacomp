@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * Start Bootstrap - Landing Page Bootstrap Theme (http://startbootstrap.com)
  * Code licensed under the Apache License v2.0.
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
@@ -144,7 +144,7 @@ nav {
     height:50px;
     text-align:left;
     padding-left:5%;
-
+    line-height: 40px;
     background-color:#108AC0;
     color:white;
     

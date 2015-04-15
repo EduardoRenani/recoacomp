@@ -12,6 +12,7 @@ include('_header.php'); ?>
 
     <script src="js/jquery.range.js"></script>
     <link href="css/jquery.range.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/base_cadastro_objeto.css">
     <link href="css/base_cadastro.css" rel="stylesheet">
 
 
@@ -34,21 +35,49 @@ include('_header.php'); ?>
 
 
 <script type="text/javascript">
-var i = 0;
+    $(function() {
+        $('#tabela2').sortable({
+            connectWith: "#tabela1, #tabela1",
+            receive : function (event, ui) {
+                $("#tabela1").sortable('refreshPositions');
+                var idCompetencias = $("#tabela2").sortable('toArray').toString();
+                var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
+                idCompetencias = idCompetencias.split(",");
+                nomesCompetencias = nomesCompetencias.split(",");
+                document.getElementById('sub-conteudo2').innerHTML = "";
+                for (i = 0; i < nomesCompetencias.length; i++) {
+                    var elementoAdd = document.createElement('div');
+                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    document.getElementById('sub-conteudo2').appendChild(elementoAdd);
+                }
+        //         $("#tabela2").html("<option value='text'>text</option>");
+           },
+            update: function(event, ui) {
+                var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
+                //window.alert(nomesCompetencias);
+
+                document.getElementById('arrayOAS').value = arrayCompetencias;
+            }
+        });
+    });
 
     $(function() {
-        $('#tabela1, #tabela2').sortable({
+        $('#tabela1').sortable({
             connectWith: "#tabela1, #tabela2",
             receive : function (event, ui)
             {
+                
+                $("#tabela1").sortable('refreshPositions');
                 var idCompetencias = $("#tabela2").sortable('toArray').toString();
                 var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
-                var idCompetencias = idCompetencias.split(",");
-                var nomesCompetencias = nomesCompetencias.split(",");
-                var elementoAdd = document.createElement('div');
-                elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div><h4>Conhecimento</h4></div><div><input type="number" min="0" max="5" name="conhecimento['+idCompetencias[i]+']"</div><div><h4>Habilidade</h4></div><div><input type="number" name="habilidade['+idCompetencias[i]+']"</div><div><h4>Atitude</h4></div><div><input type="number" name="atitude['+idCompetencias[i]+']"</div></div>';
-                document.getElementById('tab3').appendChild(elementoAdd);
-                i++;
+                idCompetencias = idCompetencias.split(",");
+                nomesCompetencias = nomesCompetencias.split(",");
+                document.getElementById('sub-conteudo2').innerHTML = "";
+                for (i = 0; i < nomesCompetencias.length; i++) {
+                    var elementoAdd = document.createElement('div');
+                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    document.getElementById('sub-conteudo2').appendChild(elementoAdd);
+                }
                 
         //         $("#tabela2").html("<option value='text'>text</option>");
            },

@@ -69,8 +69,8 @@ define("WORDING_NEW_USERNAME", "Novo nome de usuário (nome de usuário não pod
 define("WORDING_OLD_PASSWORD", "Sua ANTIGA senha");
 define("WORDING_PASSWORD", "Senha");
 define("WORDING_PROFILE_PICTURE", "Foto do perfil (from gravatar):");
-define("WORDING_REGISTER", "Registrar");
-define("WORDING_REGISTER_NEW_ACCOUNT", "Registrar nova conta");
+define("WORDING_REGISTER", "Cadastrar");
+define("WORDING_REGISTER_NEW_ACCOUNT", "Cadastrar nova conta");
 define("WORDING_REGISTRATION_CAPTCHA", "Por favor escreva os caracteres");
 define("WORDING_REGISTRATION_EMAIL", "Email do Usuário");
 define("WORDING_REGISTRATION_PASSWORD", "Senha");
@@ -101,7 +101,7 @@ define("MESSAGE_DISCIPLINA_ALREADY_EXISTS","A seguinte disciplina já exite: ");
 define("MESSAGE_DISCIPLINA_DOESNT_EXIST","Disciplina não existe");
 define("MESSAGE_COMPETENCIA_DOESNT_EXIST","Competência associada é inválida");
 define("MESSAGE_DISCIPLINA_COMPETENCIA_ALREADY_RELATED","Competência já associada a essa disciplina");
-define("WORDING_REGISTER_NOVA_DISCIPLINA", "Registrar Disciplina");
+define("WORDING_REGISTER_NOVA_DISCIPLINA", "Cadastrar Disciplina");
 define("WORDING_CREATE_NEW_COURSE", "Criar novo curso");
 define("WORDING_COURSE_NAME", "Nome do curso");
 define("WORDING_DISCIPLINA_NAME", "Nome da disciplina");
@@ -123,9 +123,10 @@ define("WORDING_REGISTER_CHA","Cadastrar CHA");
 define("WORDING_PORTUGUES", "Português");
 define("WORDING_ENGLISH", "Inglês");
 define("WORDING_SPANISH", "Espanhol");
-define("WORDING_REGISTER_NOVO_OA", "Registrar Objeto de Aprendizagem");
+define("WORDING_REGISTER_NOVO_OA", "Cadastrar Objeto de Aprendizagem");
 define("MESSAGE_OA_WITH_NAME_ALREADY_EXISTS", "Objeto de Aprendizagem com nome e/ou URL já existente!");
 define("WORDING_ASSOCIATE_COMPETENCE", "Associar Competências");
+
 
 
 // -- Categoria Vida mensagens
@@ -232,7 +233,7 @@ define("WORDING_KEYWORD","Palavra-chave");
 define("WORDING_CREATE_OA","Criar Objeto de Aprendizagem");
 
 //Cadastro de Competências Mensagens
-define("WORDING_REGISTER_NOVA_COMPETENCIA", "Registrar Competência");
+define("WORDING_REGISTER_NOVA_COMPETENCIA", "Cadastrar Competência");
 define("WORDING_COMPETENCIA", "Competência ");
 define("WORDING_CHA", "CHA ");
 define("WORDING_CREATE_COMPETENCA", "Criar Nova Competência");

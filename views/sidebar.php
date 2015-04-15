@@ -1,4 +1,4 @@
-
+﻿
 <!-- ERRO QUE TAVA DANDO DA MENSAGEM DUPLA  <?php //include('_header.php'); ?> -->
 
 <!-- TODO TRADUZIR-->
@@ -21,10 +21,10 @@
 </head>
 
 <div class="sidebar"> 
-	<div class="top-sidebar">Bem Vindo, <?php echo $_SESSION['user_name']?></div>
+	<div class="top-sidebar">Bem-Vindo, <?php echo $_SESSION['user_name']?></div>
         <div class="sidebar-content">           
                 <ul class="sidebar-menu">
-                    <a href="index.php"><li style="z-index:1000; font-weight: 100;" id="active">
+                    <a href="index.php"><li style="z-index:1000; font-weight: 100;" class="active">
                         Disciplinas Disponíveis
                             <ul > <!--nomes de cadeiras servem só de exemplo do funcionamento-->
 

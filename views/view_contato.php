@@ -49,29 +49,13 @@ require_once("classes/Registration.php");
 ?>
 
 <!-- ============== HEADER ============== -->
-    <header class="header-large">
-        <a href="index.php" id="logo"></a> <!--muda quando o usuario estiver logged in e leva para o home.html"-->
-            <nav>
-
-                <a href="#" id="menu-icon"></a>
-
-                <ul>
-
-                <li><a href="index.php" class="current">Home</a></li> <!--muda quando o usuario estiver logged in e leva para o home.html"-->
-                <li><a href="contato.php">Contato</a></li>
-                <li><a href="equipe.php">Equipe</a></li>
-
-                </ul>
-
-            </nav>
-    
-    </header>
+    <?php include("_header.php"); ?>
 
 
     <!-- ============== DISCIPLINAS ============== -->
 
 <div class="disciplinas">
-        <div class="top-disciplinas"><div class="text-left">Contato</div><div class="text-right" ><a href="index.php"><span style="color:white" class="glyphicon glyphicon-chevron-left"></span></a></div></div>
+        <div class="top-disciplinas"><div style="width: 50%; float: left; text-align: left">Contato</div><div  style="width: 50%; float: right; text-align: right; padding-top: 7px; padding-right: 10px;" ><a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a></div></div>
             <div class="disciplinas-content">
                 <?php if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["contato"])){ ?>  
                 <form method="post" action="contato.php" name="contato">
@@ -79,8 +63,8 @@ require_once("classes/Registration.php");
                     <p>Nos mande uma mensagem com suas perguntas, comentários e feedback.</p></br></br>
                     <input type="text" name="nome" placeholder="Nome"></br></br>
                     <input type="email" name="email" placeholder="E-mail"></br></br>
-                    <textarea name="mensagem" placeholder="Escreva a sua mensagem aqui"></textarea></br></br>
-                    <input type="submit" name="contato" value="Enviar"></br></br>
+                    <textarea name="mensagem" style="width:100%;" placeholder="Escreva a sua mensagem aqui"></textarea></br></br>
+                    <input type="submit" style="width: 150px; text-align: center" name="contato" value="Enviar"></br></br>
                 </form>
                 <?php } else{
                             $nome=$_POST["nome"];

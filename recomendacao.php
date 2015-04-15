@@ -40,14 +40,14 @@ include('views/_header.php');
 ?>
 <script language='javascript'>
     $(document).ready(function(){
-        $('.conteudo').find('span').click(function(){
+        $('.conteudo').find('button').click(function(){
             div = $(this).closest('div#conteudo').next('#conteudo-expansivel');
             if(!div.is(':visible')){
                 div.css('height','auto').slideDown(1000);
-                $(this).removeClass('glyphicon-plus').addClass('glyphicon-minus');
+                $(this).closest('.glyphicon-plus').removeClass('glyphicon-plus').addClass('glyphicon-minus');
             }else{
                 div.slideUp();
-                $(this).addClass('glyphicon-plus').removeClass('glyphicon-minus');
+                $(this).closest('.glyphicon-plus').addClass('glyphicon-plus').removeClass('glyphicon-minus');
             }
 
         });

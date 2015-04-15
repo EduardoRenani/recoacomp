@@ -11,6 +11,7 @@ include('_header.php');
 <!-- IMPORTAÇÃO JQUERY-->
 <head>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="css/base_cadastro_objeto.css">
     <link href="css/base_cadastro.css" rel="stylesheet">
     <link href="css/jquery.nouislider.min.css" rel="stylesheet">
 
@@ -81,21 +82,49 @@ include('_header.php');
 
     });
 
-var i = 0;
+    $(function() {
+        $('#tabela2').sortable({
+            connectWith: "#tabela1, #tabela1",
+            receive : function (event, ui) {
+                $("#tabela1").sortable('refreshPositions');
+                var idCompetencias = $("#tabela2").sortable('toArray').toString();
+                var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
+                idCompetencias = idCompetencias.split(",");
+                nomesCompetencias = nomesCompetencias.split(",");
+                document.getElementById('sub-conteudo2').innerHTML = "";
+                for (i = 0; i < nomesCompetencias.length; i++) {
+                    var elementoAdd = document.createElement('div');
+                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    document.getElementById('sub-conteudo2').appendChild(elementoAdd);
+                }
+        //         $("#tabela2").html("<option value='text'>text</option>");
+           },
+            update: function(event, ui) {
+                var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
+                //window.alert(nomesCompetencias);
+
+                document.getElementById('arrayCompetencias').value = arrayCompetencias;
+            }
+        });
+    });
 
     $(function() {
-        $('#tabela1, #tabela2').sortable({
+        $('#tabela1').sortable({
             connectWith: "#tabela1, #tabela2",
             receive : function (event, ui)
             {
+                
+                $("#tabela1").sortable('refreshPositions');
                 var idCompetencias = $("#tabela2").sortable('toArray').toString();
                 var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
-                var idCompetencias = idCompetencias.split(",");
-                var nomesCompetencias = nomesCompetencias.split(",");
-                var elementoAdd = document.createElement('div');
-                elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div><h4>Conhecimento</h4></div><div><input type="number" min="0" max="5" name="conhecimento['+idCompetencias[i]+']"</div><div><h4>Habilidade</h4></div><div><input type="number" name="habilidade['+idCompetencias[i]+']"</div><div><h4>Atitude</h4></div><div><input type="number" name="atitude['+idCompetencias[i]+']"</div></div>';
-                document.getElementById('sub-conteudo2').appendChild(elementoAdd);   
-                i++;
+                idCompetencias = idCompetencias.split(",");
+                nomesCompetencias = nomesCompetencias.split(",");
+                document.getElementById('sub-conteudo2').innerHTML = "";
+                for (i = 0; i < nomesCompetencias.length; i++) {
+                    var elementoAdd = document.createElement('div');
+                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    document.getElementById('sub-conteudo2').appendChild(elementoAdd);
+                }
                 
         //         $("#tabela2").html("<option value='text'>text</option>");
            },
@@ -368,7 +397,7 @@ var i = 0;
                              
                     
 
-                    <div class='button'><a href="cadastro_OA.php" target="_blank"><?=WORDING_CREATE_NEW_COMPETENCIA?></a></div>      
+                    <div class='button'><a href="cadastro_competencia.php" target="_blank"><?=WORDING_CREATE_NEW_COMPETENCIA?></a></div>      
                         </div>
                         
         <!-- DIV COM COISA CHA -->

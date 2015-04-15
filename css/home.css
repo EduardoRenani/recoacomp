@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * Start Bootstrap - Landing Page Bootstrap Theme (http://startbootstrap.com)
  * Code licensed under the Apache License v2.0.
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
@@ -309,7 +309,7 @@ nav {
 }
 
 .recomendacao-item h3{margin-top:0px;display:inline;}
-.recomendacao-item-content{width:70%;float:left;}
+.recomendacao-item-content{width:70%;float:left;text-align: left;}
 
 .button{
     //background-color:blue;

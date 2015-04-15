@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * Start Bootstrap - Landing Page Bootstrap Theme (http://startbootstrap.com)
  * Code licensed under the Apache License v2.0.
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
@@ -74,6 +74,9 @@ li {
 }
 
 .header-large {
+    position: fixed;
+    z-index: 9999;
+    background-color: #fff;
     height:55px;
     border-bottom:5px solid #108AC0;
     width:100%;
@@ -351,8 +354,7 @@ border-radius: 5px;
     margin-bottom:15px;
 }
 
-.login { /*janelinha do login*/
-z-index:50;
+.login { /*janelinha do login*/	
 
     background-color:white;
     position:inherit;
@@ -360,7 +362,7 @@ z-index:50;
     margin-top:6.5%;
     margin-left:auto;
     margin-right:auto;
-    height:40%;
+    height:30%;
     width: 380px;
     min-width:30%;
     min-height:340px;

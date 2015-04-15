@@ -159,6 +159,9 @@ nav {
 
 /*SIDEBAR-----------------------------------------------------------------------*/
 
+
+.active {background-color: rgba(100, 200, 255, 0.4);}
+
 .sidebar{
     position:relative;
     float:left;
@@ -166,12 +169,12 @@ nav {
     -webkit-box-shadow: 5px 5px 0px 0px rgba(50, 50, 50, 0.2);
     -moz-box-shadow:    5px 5px 0px 0px rgba(50, 50, 50, 0.2);
     box-shadow:         5px 5px 0px 0px rgba(50, 50, 50, 0.2);
-
 }
+
 
 .top-sidebar{
     position:relative;
-    width: 200px;
+    width: 100%;
     overflow: hidden;
     padding-top: 4%;
     top:0px;
@@ -184,7 +187,7 @@ nav {
 }
 
 .sidebar-menu{
-    width: 270px;
+    width: 100%;
     padding: 0;
     margin: 0;
     list-style:none;

@@ -19,7 +19,7 @@
 <div class="fixedBackgroundGradient"></div>
 
 <div class="disciplinas">
-    <div class="top-disciplinas"><div class="top-disciplinas-titulo"><?php echo (WORDING_EDIT_YOUR_CREDENTIALS); ?></div><div class="text-right" ><a href="index.php"><span class="arrowvoltar glyphicon glyphicon-chevron-left"></span></a></div></div>
+    <div class="top-disciplinas"><div style="width: 50%; float: left; text-align: left"><?php echo (WORDING_EDIT_YOUR_CREDENTIALS); ?></div><div  style="width: 50%; float: right; text-align: right; padding-right: 10px;" ><a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a></div></div>
             <div class="disciplinas-content">  
                 <a href="http://lattes.cnpq.br/7661737809414762" class="team-member">
                     <div class="team-member-avatar" style="background-image:url('img/head.png');"></div>

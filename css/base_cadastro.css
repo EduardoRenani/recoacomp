@@ -401,12 +401,13 @@ input[type=submit]{ /*customiza input de submit*/
 #tabela1, #tabela2{
     border: 1px solid #eee;
     width: 45%;
-    min-height: 500px;
+    height: 500px;
     list-style-type: none;
     margin: 0;
     padding: 5px 0 0px 0;
     margin-right: 10px;
     margin-bottom:30px;
+    overflow: auto;
 }
 
 #tabela1{float:left;}
