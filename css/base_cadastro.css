@@ -395,7 +395,22 @@ input[type=submit]{ /*customiza input de submit*/
     font-style: normal;
 }
 
-/*BREADCRUMB-----------------------------------------------------------------------*/
+/*CHA-----------------------------------------------------------------------*/
+
+#nomesCompetencias h2{
+  text-align:left;
+  font-size:24px;
+  margin-bottom:0px;
+}
+
+#nomesCompetencias h4{
+  text-align:left;
+}
+
+#sub-conteudo2 input{
+  margin-bottom:25px;
+  text-align:left;
+}
 
 /*DRAGABLE-----------------------------------------------------------------------*/
 #tabela1, #tabela2{

@@ -396,8 +396,8 @@ include('_header.php');
                             </ul>
                              
                     
-
-                    <div class='button'><a href="cadastro_competencia.php" target="_blank"><?=WORDING_CREATE_NEW_COMPETENCIA?></a></div>      
+                    <center><a href="cadastro_competencia.php" target="_blank"><div class='botao-cadastra' style='width: 240px'><?=WORDING_CREATE_NEW_COMPETENCIA?></div></a></center>
+                    <br>
                         </div>
                         
         <!-- DIV COM COISA CHA -->

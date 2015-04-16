@@ -152,7 +152,7 @@ if (isset($disciplina)) {
         foreach ($disciplina->messages as $message) {
             echo"<script type='text/javascript'>";
 
-                //echo "alert('".$message."');";
+                echo "alert('".$message."');";
 
             echo "</script>";
         }
@@ -174,6 +174,30 @@ if (isset($competencia)) {
     }
     if ($competencia->messages) {
         foreach ($competencia->messages as $message) {
+                        echo"<script type='text/javascript'>";
+
+                echo "alert('".$message."');";
+
+            echo "</script>";
+        }
+    }
+}
+?>
+
+<?php
+// mostra erros do cadastro de OAS
+if (isset($OA)) {
+    if ($OA->errors) {
+        foreach ($OA->errors as $error) {
+                        echo"<script type='text/javascript'>";
+
+                echo "alert('".$error."');";
+
+            echo "</script>";
+        }
+    }
+    if ($OA->messages) {
+        foreach ($OA->messages as $message) {
                         echo"<script type='text/javascript'>";
 
                 echo "alert('".$message."');";

@@ -432,6 +432,7 @@ class OA{
                 for ($i = 0; $i < count($resultado); $i++) {
                     $this->errors[] = MESSAGE_OA_WITH_NAME_ALREADY_EXISTS;
                 }
+
             } else{
                 // Insert na categoria_direito
                 $stmt = $this->db_connection->prepare("
@@ -575,7 +576,8 @@ class OA{
                 $stmt->bindParam(':palavraChave',$palavrachave, PDO::PARAM_STR);
                 $stmt->bindParam(':idioma',$idioma, PDO::PARAM_STR);
                 $stmt->execute();
-                $this->messages[] = WORDING_COMPETENCIA. $nome .WORDING_CREATED_SUCESSFULLY;
+                //echo 'aqui2';
+                $this->messages[] = WORDING_OA. ' ' .$nome.WORDING_CREATE_SUCESSFULLY;
             }
         }
     }
@@ -673,6 +675,7 @@ class OA{
 } // Fecha IF
 
 //Case de teste
+/*
 $OA = new OA();
 $OA->criaOA(time(), 'status', 'versao', 'entidade', 'contribuicao', 'tempo_video',
     'tamanho',
@@ -695,3 +698,4 @@ $OA->criaOA(time(), 'status', 'versao', 'entidade', 'contribuicao', 'tempo_video
     'palavrachave',
     'idioma');
 ?>
+*/

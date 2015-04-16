@@ -166,6 +166,7 @@ class Disciplina {
                 if (count($result) > 0) {
                     for ($i = 0; $i < count($result); $i++) {
                         $this->errors[] = MESSAGE_DISCIPLINA_ALREADY_EXISTS . $nomeDisciplina;
+                        //echo 'aqui';
                     }
                 } else{
                     // Cadastro na tabela Disciplina
@@ -189,6 +190,7 @@ class Disciplina {
                         $stmt->bindParam(':arrayCompetenciasBD',$arrayCompetenciasBD, PDO::PARAM_INT);
                         $stmt->execute();
                     }
+               
                     $this->messages[] = WORDING_DISCIPLINA. $nomeDisciplina .WORDING_CREATED_SUCESSFULLY;
                  }
         }

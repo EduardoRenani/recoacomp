@@ -49,10 +49,10 @@ require_once("classes/Registration.php");
 ?>
 
 <!-- ============== HEADER ============== -->
-    <?php include("_header.php"); ?>
+<?php include("_header.php"); ?>
 
 
-    <!-- ============== DISCIPLINAS ============== -->
+<!-- ============== JANELINHA ============== -->
 
 <div class="disciplinas">
         <div class="top-disciplinas"><div style="width: 50%; float: left; text-align: left">Contato</div><div  style="width: 50%; float: right; text-align: right; padding-top: 7px; padding-right: 10px;" ><a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a></div></div>
@@ -82,7 +82,7 @@ require_once("classes/Registration.php");
 
                         //}
                     }?>
-    </div>
+            </div>
 </div>
 
 </body>

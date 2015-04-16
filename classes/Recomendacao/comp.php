@@ -166,7 +166,7 @@ class Comp{
 	                    	//Deve exibir verde!
 							if($v[$c]['res'] == 1 || $v[$c]['res'] == 2){
 
-								echo "#ED2825;";
+								echo "#C4DA5B;";
 
 							//Deve exibir amarelo
 							}else if($v[$c]['res'] < 1 && $v[$c]['res'] >=-4){

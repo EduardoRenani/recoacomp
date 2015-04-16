@@ -48,8 +48,8 @@
 							<a href="cadastro_OA.php"><li class="activeOA">
 							<?php echo WORDING_REGISTER_NOVO_OA; ?><br>
 							</li></a>
-							<a href="cadastro_competencia.php"><li class="activeCompetencia">
-							<?php echo WORDING_REGISTER_NOVA_COMPETENCIA; ?><br>
+							<!-- <a href="cadastro_competencia.php"><li class="activeCompetencia"> -->
+							<!-- <?php echo WORDING_REGISTER_NOVA_COMPETENCIA; ?><br> -->
 							</li></a>
 							<?php
 							//include('_options_professor.php'); 

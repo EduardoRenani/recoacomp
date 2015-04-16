@@ -110,7 +110,29 @@ li {
 
 
 
-/*DISCIPLINAS-----------------------------------------------------------------------*/
+/*janelinha-----------------------------------------------------------------------*/
+
+.janelinha{
+    background-color:white;
+
+    height:35%;
+    min-height:250px;
+    max-height:250px;
+    
+
+    width:45%;
+    left:25%;
+    top:50px;
+
+    margin-right:10%;
+    position:relative;
+
+    float:left;
+
+    -webkit-box-shadow: 5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+    -moz-box-shadow:    5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+    box-shadow:         5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+}
 
 .disciplinas{
     background-color:white;

@@ -46,10 +46,10 @@
 							</li></a>
 							<a href="cadastro_OA.php"><li>
 							<?php echo WORDING_REGISTER_NOVO_OA; ?><br>
-							</li></a>
+							<!-- </li></a>
 							<a href="cadastro_competencia.php"><li>
 							<?php echo WORDING_REGISTER_NOVA_COMPETENCIA; ?><br>
-							</li></a>
+							</li></a> -->
 							<?php
 							//include('_options_professor.php'); 
 							//echo WORDING_USER_PROFESSOR . "<br/>";

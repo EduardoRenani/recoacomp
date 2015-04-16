@@ -27,7 +27,15 @@ body {
     margin: auto;
 }
 
-
+.vertical-container {
+  height: 300px;
+  display: -webkit-flex;
+  display:         flex;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
 /*HEADER---------------------------------------------------------------------*/
 
 
@@ -355,13 +363,15 @@ border-radius: 5px;
 }
 
 .login { /*janelinha do login*/	
-
     background-color:white;
     position:inherit;
+
     padding:0%;
     margin-top:6.5%;
+    
     margin-left:auto;
     margin-right:auto;
+
     height:30%;
     width: 380px;
     min-width:30%;

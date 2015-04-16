@@ -97,7 +97,7 @@ define("WORDING_REGISTER_SUCESSFULLY", "Cadastro efetuado com sucesso!");
 
 
 //Cadastro de Disciplina Mensagens
-define("MESSAGE_DISCIPLINA_ALREADY_EXISTS","A seguinte disciplina já exite: ");
+define("MESSAGE_DISCIPLINA_ALREADY_EXISTS","A seguinte disciplina já existe: ");
 define("MESSAGE_DISCIPLINA_DOESNT_EXIST","Disciplina não existe");
 define("MESSAGE_COMPETENCIA_DOESNT_EXIST","Competência associada é inválida");
 define("MESSAGE_DISCIPLINA_COMPETENCIA_ALREADY_RELATED","Competência já associada a essa disciplina");
@@ -112,6 +112,7 @@ define("WORDING_DISCIPLINA_DESCRICAO", "Descrição");
 define("WORDING_CREATE_NEW_COMPETENCIA", "Criar nova competência");
 define("WORDING_CANT_ASSOCIATE_COMPETENCIA","A competencia citada em sequência não pode ser associada a essa disciplina ou já foi associada previamente");
 define("WORDING_CREATED_SUCESSFULLY"," criada com sucesso!");
+define("WORDING_CREATE_SUCESSFULLY"," criado com sucesso!");
 define("WORDING_FILL_NAME_DISCIPLINA","Preencha o nome da disciplina");
 define("WORDING_FILL_PASSWORD","Preencha a senha");
 define("WORDING_SELECT_COMPETENCIA","Selecione a(s) competências(s)");
@@ -126,6 +127,7 @@ define("WORDING_SPANISH", "Espanhol");
 define("WORDING_REGISTER_NOVO_OA", "Cadastrar Objeto de Aprendizagem");
 define("MESSAGE_OA_WITH_NAME_ALREADY_EXISTS", "Objeto de Aprendizagem com nome e/ou URL já existente!");
 define("WORDING_ASSOCIATE_COMPETENCE", "Associar Competências");
+define("WORDING_OA", "Objeto de Aprendizagem");
 
 
 

@@ -92,15 +92,7 @@ require_once("classes/OA.php");?>
 
 $(function() {
 
-    var $validator = $("#registrar_novo_OA").validate({
-            rules: {
-                url: {
-                    required: true,
-                    minlength: 3,
-                    url: true
-                }
-            }
-        });
+
     // Mensagens
     var descricao = "<?php echo WORDING_FILL_DESCRIPTION; ?>";
     var nome = "<?php echo WORDING_FILL_NAME; ?>";
@@ -728,7 +720,8 @@ $(function() {
                  
         
 
-            <!-- <div class='button'><a href="cadastro_OA.php" target="_blank"><?=WORDING_CREATE_NEW_COMPETENCIA?></a></div>      -->
+                <a href="cadastro_competencia.php" target="_blank"><div class='botao-cadastra' style='width: 240px'><?=WORDING_CREATE_NEW_COMPETENCIA?></div></a>
+            
             </div>
 
 
@@ -741,7 +734,9 @@ $(function() {
                       
             </div>
 
-			<input id="finisher" style="display: none;" type="submit" name="registrar_nova_disciplina" value="<?php echo WORDING_CREATE_OA; ?>" />
+
+
+			<input id="finisher" style="display: none;" type="submit" name="registrar_novo_OA" value="<?php echo WORDING_CREATE_OA; ?>" />
             
                             
             <ul class="pager wizard">
