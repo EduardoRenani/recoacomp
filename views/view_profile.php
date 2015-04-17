@@ -34,57 +34,25 @@
 </head>
 
 <body>
-<div class="fixedBackgroundGradient"></div>
-<?php require_once("sidebar-profile.php"); ?>
+    
+    <div class="fixedBackgroundGradient"></div>
+    <?php require_once("sidebar-profile.php"); ?>
 
-    <!-- ============== DISCIPLINAS ============== -->
+        <!-- ============== DISCIPLINAS ============== -->
 
     <div class="disciplinas">
-    <div class="top-disciplinas">Meu Perfil</div>
+        <div class="top-disciplinas">Meu Perfil</div>
             <div class="disciplinas-content">  </br> 
                 <p class="subtitle">Nome:</p><p class="content-perfil"> <?php echo $_SESSION['user_name']; ?></p></br>
                 <p class="subtitle">E-mail:</p><p class="content-perfil"> <?php echo $_SESSION['user_email']; ?></p>
             </div>  
             <div class="button">
                 <form action="edit.php">
-                <input type="submit" value="Editar"></br></br>
+                    <input type="submit" value="Editar"></br></br>
                 </form>
             </div>
-    </div>
-
-
-</div>
-    <!-- Footer
-    <footer>
-        <div class="container-footer">
-            <div class="row" style="width:100%"> width 100% porque o bootstrap tenta estragar tudo
-                <div class="span1">
-                    <a href="http://www.nuted.ufrgs.br/"><img src="img/nutedYellow.png" class="footer-logo"></a> 
-                    <a href="http://www.ufrgs.br/sead"><img src="img/ufrgs_sead.png" class="footer-logo"></a>
-                </div>
-                <div class="span2">
-                     <ul class="list-inline">
-                        <li>
-                           <a href="#home">Home</a>
-                        </li>
-                        <li class="footer-menu-divider">.</li>
-                         <li>
-                           <a href="#sobre">Sobre</a>
-                        </li>
-                        <li class="footer-menu-divider">.</li>
-                         <li>
-                           <a href="#contato">Contato</a>
-                        </li>
-                        <li class="footer-menu-divider">.</li>
-                         <li>
-                           <a href="#equipe">Equipe</a>
-                        </li>
-                        <li class="footer-menu-divider">.</li>
-                     </ul>
-               </div>
-            </div>
         </div>
-    </footer> -->
+    </div>
 
 </body>
 

@@ -1,4 +1,4 @@
-<?php include('_header.php'); ?>
+<?php include_once('_header.php'); ?>
 
 <!-- TODO TRADUZIR-->
 <head>
@@ -28,7 +28,7 @@ function getDisciplinaId(id){
 
 <div class="fixedBackgroundGradient"></div>
 <!-- ============== SIDEBAR =============== -->
-<?php require_once("sidebar.php"); ?>
+<?php include_once("sidebar.php"); ?>
 
 <!-- ============== DISCIPLINAS DIPONIVEIS ============== -->
 
@@ -91,7 +91,4 @@ function getDisciplinaId(id){
 </div>
 
 
-</div>
 
-
-<?php include('_footer.php'); ?>

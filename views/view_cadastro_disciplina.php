@@ -346,7 +346,7 @@ include('_header.php');
                         <div id="seta1"></div>
                         <div id="menudiv2"><?php echo WORDING_CHA; ?></div>
                     </div>
-                        <div id="conteudo">
+                        <div id="conteudo" class="clearfix">
                             <div id="sub-conteudo" class="tab-active">
                             <div class="control-group">
                                 <label class="control-label" for="nomeCurso"><?php echo WORDING_COURSE_NAME; ?></label>

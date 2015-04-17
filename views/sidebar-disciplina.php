@@ -23,40 +23,47 @@
 	<div class="top-sidebar">Bem Vindo, <?php echo $_SESSION['user_name']?></div>
         <div class="sidebar-content">           
                 <ul class="sidebar-menu">
-                    <a href="index.php"><li style="z-index:1000;" id="home">
-                        Disciplinas Disponíveis
-                            <ul > <!--nomes de cadeiras servem só de exemplo do funcionamento-->
-
-                            </ul>
-                    </li></a>
-                   <a href="profile_show.php"><li>
+                    <a href="index.php">
+                    	<li style="z-index:1000;" id="home">
+                        	Disciplinas Disponíveis
+                    	</li>
+                    </a>
+                   <a href="profile_show.php">
+                   	<li>
                         Meu Perfil
-                    </li></a>
-                     <a href="disciplinas.php"><li class="active">
-                        Minhas Disciplinas
-                    </li></a>
-    				<a href="cadastro_disciplina.php"><li>
-   						<?php 
-						if ($_SESSION['acesso'] == 1)
-							include('_options_aluno.php'); 
-							//echo WORDING_USER_STUDENT . "<br />";
-						else if ($_SESSION['acesso'] == 2){
-							?>
-							<?php echo WORDING_REGISTER_NOVA_DISCIPLINA; ?><br>
-							</li></a>
-							<a href="cadastro_OA.php"><li>
-							<?php echo WORDING_REGISTER_NOVO_OA; ?><br>
-							<!-- </li></a>
-							<a href="cadastro_competencia.php"><li>
-							<?php echo WORDING_REGISTER_NOVA_COMPETENCIA; ?><br>
-							</li></a> -->
-							<?php
-							//include('_options_professor.php'); 
-							//echo WORDING_USER_PROFESSOR . "<br/>";
-						}else if($_SESSION['acesso'] == 3)
-							echo WORDING_USER_ADMIN . "<br/>";
-						?>
                     </li>
+                	</a>
+                     <a href="disciplinas.php">
+                     	<li class="active">
+                        Minhas Disciplinas
+                    	</li>
+                	</a>
+    				<a href="cadastro_disciplina.php">
+    					<li>
+	   						<?php 
+							if ($_SESSION['acesso'] == 1)
+								include('_options_aluno.php'); 
+								//echo WORDING_USER_STUDENT . "<br />";
+							else if ($_SESSION['acesso'] == 2){
+								?>
+								<?php echo WORDING_REGISTER_NOVA_DISCIPLINA; ?><br>
+						</li>
+					</a>
+					<a href="cadastro_OA.php">
+						<li>
+								<?php echo WORDING_REGISTER_NOVO_OA; ?><br>
+								<!-- </li></a>
+								<a href="cadastro_competencia.php"><li>
+								<?php echo WORDING_REGISTER_NOVA_COMPETENCIA; ?><br>
+								</li></a> -->
+								<?php
+								//include('_options_professor.php'); 
+								//echo WORDING_USER_PROFESSOR . "<br/>";
+							}else if($_SESSION['acesso'] == 3)
+								echo WORDING_USER_ADMIN . "<br/>";
+							?>
+                    </li>
+                </a>
                 </ul>
     	</div>  
 </div>

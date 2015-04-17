@@ -73,7 +73,8 @@ class Competencia{
     {
         if (isset($_POST["registrar_nova_competencia"])) {
             // Função para cadastro de nova competência
-            echo $_POST['arrayOAS'];
+            //print_r($_POST);
+
             $this->criaCompetencia(
                 $_POST['nome'],
                 $_POST['descricaoNome'],
@@ -176,26 +177,27 @@ class Competencia{
                     $this->errors[] = MESSAGE_COMPETENCIA_ALREADY_EXISTS . $nome;
                 }
             } else{
-                $stmt = $this->db_connection->prepare("INSERT INTO competencia(nome, descricao_nome, atitude_descricao, habilidade_descricao, conhecimento_descricao, id_professor)  VALUES(:nome, :descricaoNome, :atitudeDescricao, :habilidadeDescricao, :conhecimentoDescricao, :idProfessor)");
+                $stmt = $this->db_connection->prepare("INSERT INTO competencia(nome, descricao_nome, atitude_descricao, habilidade_descricao, conhecimento_descricao)  VALUES(:nome, :descricaoNome, :atitudeDescricao, :habilidadeDescricao, :conhecimentoDescricao)");
                 $stmt->bindParam(':nome',$nome, PDO::PARAM_STR);
                 $stmt->bindParam(':descricaoNome',$descricaoNome, PDO::PARAM_STR);
                 $stmt->bindParam(':atitudeDescricao',$atitudeDescricao, PDO::PARAM_STR);
                 $stmt->bindParam(':habilidadeDescricao',$habilidadeDescricao, PDO::PARAM_STR);
                 $stmt->bindParam(':conhecimentoDescricao',$conhecimentoDescricao, PDO::PARAM_STR);
-                $stmt->bindParam(':idProfessor',$idProfessor, PDO::PARAM_INT);
+                //$stmt->bindParam(':idProfessor',$idProfessor, PDO::PARAM_INT);
                 $stmt->execute();
+                //print_r($stmt->errorInfo());
                 $ultimo_ID = $this->db_connection->lastInsertId();
                 $this->$ultimo_ID = $ultimo_ID;
-                echo $ultimo_ID;
+                //echo 'O ultimo ID é:'.$this->db_connection->lastInsertId().';aaaaaa';
                     // Cadastro na tabela Competencia_OA
                     //Associação com o banco de dados
                 $count = count($arrayOAS);
                 echo $count;
                 for ($i = 0; $i < $count; $i++) {
                     $arrayOASBD = $arrayOAS[$i];
-                    echo "Aqui " .$arrayOAS[$i];
+                    //echo "Aqui " .$arrayOAS[$i];
                     $this->$arrayOASBD = $arrayOASBD;
-                    $stmt = $this->db_connection->prepare("INSERT INTO competencia_oa(id_competencia, id_OA) VALUES (:ultimo_ID, :arrayOASBD)");
+                    $stmt = $this->db_connection->prepare("INSERT INTO competencia_oa(id_competencia, id_OA) VALUES (':ultimo_ID', :arrayOASBD)");
                     $stmt->bindParam(':ultimo_ID',$ultimo_ID, PDO::PARAM_INT);
                     $stmt->bindParam(':arrayOASBD',$arrayOASBD, PDO::PARAM_INT);
                     $stmt->execute();
