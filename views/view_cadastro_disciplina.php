@@ -12,6 +12,7 @@ include('_header.php');
 <head>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="css/base_cadastro_objeto.css">
+    <link rel="stylesheet" href="css/tooltip.css">
     <link href="css/base_cadastro.css" rel="stylesheet">
     <link href="css/jquery.nouislider.min.css" rel="stylesheet">
 
@@ -94,7 +95,7 @@ include('_header.php');
                 document.getElementById('sub-conteudo2').innerHTML = "";
                 for (i = 0; i < nomesCompetencias.length; i++) {
                     var elementoAdd = document.createElement('div');
-                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
                     document.getElementById('sub-conteudo2').appendChild(elementoAdd);
                 }
         //         $("#tabela2").html("<option value='text'>text</option>");
@@ -122,7 +123,7 @@ include('_header.php');
                 document.getElementById('sub-conteudo2').innerHTML = "";
                 for (i = 0; i < nomesCompetencias.length; i++) {
                     var elementoAdd = document.createElement('div');
-                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
                     document.getElementById('sub-conteudo2').appendChild(elementoAdd);
                 }
                 
@@ -253,42 +254,88 @@ include('_header.php');
 <script language="javascript">
     function mudaTab(qualTab) {
         if(qualTab == 1) {
-            divTab = document.getElementById('sub-conteudo');
-            divTab.removeAttribute('class');
-            divTab.setAttribute('class', 'tab');
-            divTab = document.getElementById('sub-conteudo1');
-            divTab.removeAttribute('class');
-            divTab.setAttribute('class', 'tab-active');
-            divTab = document.getElementById('menu');
-            document.getElementById('seta').removeAttribute('class');
-            document.getElementById('seta').setAttribute('class', 'meu-active');
-            document.getElementById('menudiv1').removeAttribute('class');
-            document.getElementById('menudiv1').setAttribute('class', 'meu-active');
-            document.getElementById('seta1').removeAttribute('class');
-            document.getElementById('seta1').setAttribute('class', 'seta-active');
-            document.getElementById('buttonNext').removeAttribute('onclick');
-            document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(2)');
-            document.getElementById('buttonPrevious').removeAttribute('style');
-            document.getElementById('buttonPrevious').setAttribute('style', 'float: none; display: inline;');
+            if(document.getElementsByName('senha')[0].value.length > 5 && document.getElementsByName('nomeCurso')[0].value.length > 0 && document.getElementsByName('nomeDisciplina')[0].value.length > 0 && document.getElementsByName('descricao')[0].value.length > 0) {
+                document.getElementsByName('senha')[0].style.border = "0";
+                document.getElementsByName('nomeCurso')[0].style.border = "0";
+                document.getElementsByName('nomeDisciplina')[0].style.border = "0";
+                document.getElementsByName('descricao')[0].style.border = "0";
+                divTab = document.getElementById('sub-conteudo');
+                divTab.removeAttribute('class');
+                divTab.setAttribute('class', 'tab');
+                divTab = document.getElementById('sub-conteudo1');
+                divTab.removeAttribute('class');
+                divTab.setAttribute('class', 'tab-active');
+                divTab = document.getElementById('menu');
+                document.getElementById('seta').removeAttribute('class');
+                document.getElementById('seta').setAttribute('class', 'meu-active');
+                document.getElementById('menudiv1').removeAttribute('class');
+                document.getElementById('menudiv1').setAttribute('class', 'meu-active');
+                document.getElementById('seta1').removeAttribute('class');
+                document.getElementById('seta1').setAttribute('class', 'seta-active');
+                document.getElementById('buttonNext').removeAttribute('onclick');
+                document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(2)');
+                document.getElementById('buttonPrevious').removeAttribute('style');
+                document.getElementById('buttonPrevious').setAttribute('style', 'float: none; display: inline;');
+            }
+            else {
+                if(document.getElementsByName('senha')[0].value.length < 5) {
+                    document.getElementsByName('senha')[0].style.border = "1px solid #dc8810";
+                    document.getElementsByName('senha')[0].value = "";
+                    document.getElementsByName('senha')[0].setAttribute("placeholder", "Min. 6 digitos");
+                }
+                else {
+                    document.getElementsByName('senha')[0].style.border = "0";
+                }
+                if(document.getElementsByName('nomeCurso')[0].value.length == 0) {
+                    document.getElementsByName('nomeCurso')[0].style.border = "1px solid #dc8810";
+                    document.getElementsByName('nomeCurso')[0].setAttribute("placeholder", "Este campo é necessário");
+                }
+                else {
+                    document.getElementsByName('nomeCurso')[0].style.border = "0";
+                }
+                if(document.getElementsByName('nomeDisciplina')[0].value.length == 0) {
+                    document.getElementsByName('nomeDisciplina')[0].style.border = "1px solid #dc8810";
+                    document.getElementsByName('nomeDisciplina')[0].setAttribute("placeholder", "Este campo é necessário");
+                }
+                else {
+                    document.getElementsByName('nomeDisciplina')[0].style.border = "0";
+                }
+                if(document.getElementsByName('descricao')[0].value.length == 0) {
+                    document.getElementsByName('descricao')[0].style.border = "1px solid #dc8810";
+                    document.getElementsByName('descricao')[0].setAttribute("placeholder", "Este campo é necessário");
+                }
+                else {
+                    document.getElementsByName('descricao')[0].style.border = "0";
+                }
+            }
         }
         else if(qualTab == 2) {
-            divTab = document.getElementById('sub-conteudo1');
-            divTab.removeAttribute('class');
-            divTab.setAttribute('class', 'tab');
-            divTab = document.getElementById('sub-conteudo2');
-            divTab.removeAttribute('class');
-            divTab.setAttribute('class', 'tab-active');
-            document.getElementById('menudiv2').removeAttribute('class');
-            document.getElementById('menudiv2').setAttribute('class', 'meu-active');
-            document.getElementById('seta1').removeAttribute('class');
-            document.getElementById('seta1').setAttribute('class', 'meu-active');
-            document.getElementById('buttonNext').removeAttribute('onclick');
-            document.getElementById('buttonPrevious').removeAttribute('onclick');
-            document.getElementById('finisher').removeAttribute('style');
-            document.getElementById('buttonNext').removeAttribute('style');
-            document.getElementById('buttonNext').setAttribute('style', 'float: none; display: none;');
-            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(4)');
-
+            if(document.getElementsByName('arrayCompetencias')[0].value.length > 0) {
+                document.getElementById('tabela1').style.border = "0";
+                document.getElementById('tabela2').style.border = "0";
+                divTab = document.getElementById('sub-conteudo1');
+                divTab.removeAttribute('class');
+                divTab.setAttribute('class', 'tab');
+                divTab = document.getElementById('sub-conteudo2');
+                divTab.removeAttribute('class');
+                divTab.setAttribute('class', 'tab-active');
+                document.getElementById('menudiv2').removeAttribute('class');
+                document.getElementById('menudiv2').setAttribute('class', 'meu-active');
+                document.getElementById('seta1').removeAttribute('class');
+                document.getElementById('seta1').setAttribute('class', 'meu-active');
+                document.getElementById('buttonNext').removeAttribute('onclick');
+                document.getElementById('buttonPrevious').removeAttribute('onclick');
+                document.getElementById('finisher').removeAttribute('style');
+                document.getElementById('buttonNext').removeAttribute('style');
+                document.getElementById('buttonNext').setAttribute('style', 'float: none; display: none;');
+                document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(4)');
+            }
+            else {
+                document.getElementById("sub-conteudo1").getElementsByTagName('span')[1].innerHTML = "<span style='color: #dc8810'>Escolha uma competência";
+                document.getElementById("tabela1").style.border = "1px solid #dc8810";
+                document.getElementById("tabela2").style.border = "1px solid #dc8810";
+                window.scrollTo(0, 0);
+            }
         }
         else if(qualTab == 3) {
             divTab = document.getElementById('sub-conteudo1');
@@ -326,6 +373,45 @@ include('_header.php');
 
         }
     }
+    opacityTip = 0;
+    function toolTip(id, texto) {
+        div = document.getElementsByClassName('tooltiploco')[id-1];
+        tooltip = document.createElement('div');
+        tooltip.setAttribute('class', 'mensagemTooltiploco');
+        tooltip.innerHTML = texto;
+        tooltip.style.cssFloat = "left";
+        tooltip.style.cssLineHeight = "40px";
+        div1 = document.createElement('div');
+        div1.style.width = "200px";
+        div1.appendChild(tooltip);
+        div.appendChild(div1);
+        opacityTip = 0;
+        fadeInTip(id);
+    }
+    function deleteTooltip(id) {
+        opacityTip = 1;
+        fadeOutTip(id);
+    }
+    function fadeInTip(id) {
+        div = document.getElementsByClassName('tooltiploco')[id-1].lastChild.lastChild;
+        div.style.opacity = opacityTip;
+        opacityTip+=0.1;
+        tTip = setTimeout(function() {fadeInTip(id)}, 10);
+        if (opacityTip >= 1) {
+            clearTimeout(tTip);
+        }
+    }
+    function fadeOutTip(id) {
+        div = document.getElementsByClassName('tooltiploco')[id-1].lastChild.lastChild;
+        div.style.opacity = opacityTip;
+        opacityTip-=0.1;
+        tTip1 = setTimeout(function() {fadeOutTip(id)}, 10);
+        if (opacityTip <= 0) {
+            div = document.getElementsByClassName('tooltiploco')[id-1];
+            div.removeChild(div.lastChild);
+            clearTimeout(tTip1);
+        }
+    }
 </script>
 
 <div class="fixedBackgroundGradient"></div>
@@ -349,25 +435,25 @@ include('_header.php');
                         <div id="conteudo" class="clearfix">
                             <div id="sub-conteudo" class="tab-active">
                             <div class="control-group">
-                                <label class="control-label" for="nomeCurso"><?php echo WORDING_COURSE_NAME; ?></label>
+                                <label class="control-label" for="nomeCurso"><div style="float: left"><?php echo WORDING_COURSE_NAME; ?></div><div class="tooltiploco"><div onmouseover="toolTip(1, 'Ex. Curso Teste')" onmouseout="deleteTooltip(1)">?</div></div></label> <!-- TODO colcoar variaveis mensagem tooltip -->
                                 <div class="controls">
                                     <input type="text" id="nomeCurso" name="nomeCurso" class="required">       
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="nomeDisciplina"><?php echo WORDING_DISCIPLINA_NAME; ?></label>
+                                <label class="control-label" for="nomeDisciplina"><div style="float: left"><?php echo WORDING_DISCIPLINA_NAME; ?></div><div class="tooltiploco"><div onmouseover="toolTip(2, 'Ex. Disciplina Teste')" onmouseout="deleteTooltip(2)">?</div></div></label>
                                 <div class="controls">
                                     <input type="text" id="nomeDisciplina" name="nomeDisciplina" class="required">       
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="senha"><?php echo WORDING_REGISTRATION_PASSWORD; ?></label>
+                                <label class="control-label" for="senha"><div style="float: left"><?php echo WORDING_REGISTRATION_PASSWORD; ?></div><div class="tooltiploco"><div onmouseover="toolTip(3, 'Senha para cadastrar-se na disciplina')" onmouseout="deleteTooltip(3)">?</div></div></label>
                                 <div class="controls">
                                     <input type="text" id="senha" name="senha" class="required">       
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="descricao"><?php echo WORDING_DISCIPLINA_DESCRICAO; ?></label>
+                                <label class="control-label" for="descricao"><div style="float: left"><?php echo WORDING_DISCIPLINA_DESCRICAO; ?></div><div class="tooltiploco"><div onmouseover="toolTip(4, 'Ex. Curso que procura ensinar algo ao aluno')" onmouseout="deleteTooltip(4)">?</div></div></label>
                                     <div class="controls">
                                         <textarea name="descricao" id="descricao" ROWS="5" COLS="40" class="required"></textarea>
                                     </div>

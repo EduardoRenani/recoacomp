@@ -1,0 +1,21 @@
+.tooltip {
+	width: 15px;
+	height: 15px;
+	text-align: center;
+	line-height: 15px;
+	border-radius: 15px;
+	color: #108AC0;
+	border: 1px solid #108AC0;
+}
+
+.mensagemTooltip {
+	position: relative;
+	top: -35px;
+	left: 30px;
+	width: 200px;
+	height: 50px;
+	background-color: rgba(40, 120, 200, 0.4);
+	color: rgba(40, 120, 200, 0.4);
+	border: 1px solid #108AC0;
+	border-radius: 10px;
+}

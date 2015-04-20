@@ -36,12 +36,19 @@ require_once('classes/disciplina.php');
 // create a login object. when this object is created, it will do all login/logout stuff automatically
 // so this single line handles the entire login process.
 $login = new Login();
+$disciplina = new Disciplina();
 
 // ... ask if we are logged in here:
 if ($login->isUserLoggedIn() == true) {
     // the user is logged in. you can do whatever you want here.
     // for demonstration purposes, we simply show the "you are logged in" view.
     include("views/logged_in.php");
+    if ( isset($_SESSION['cadastro_disciplina_cha'] ) ) {
+        echo"<script type='text/javascript'>";
+        echo "alert('".MESSAGE_PASSWORD_WRONG."');";
+        echo "</script>";
+        unset( $_SESSION['cadastro_disciplina_cha'] );
+    } 
 } else {
     // the user is not logged in. you can do whatever you want here.
     // for demonstration purposes, we simply show the "you are not logged in" view.

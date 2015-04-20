@@ -98,6 +98,7 @@ include('_header.php');
             <form method="post" action="disciplinas.php" name="cadastrar_usuario_disciplina" id="cadastrar_usuario_disciplina">
             <input type="hidden" id="idUsuario" name="idUsuario" value="<?php echo $_SESSION['user_id']; ?>" />
             <input type="hidden" name="idDisciplina" value="<?php echo $_POST['idDisciplina']; ?>" />
+            <input type="hidden" name="okay" value="okay" />
             <input type="hidden" name="senha" value="<?php echo $_POST['senha']; ?>" />
 
             <?php 
@@ -122,7 +123,7 @@ include('_header.php');
                                  
             ?>
             <br>
-            <input type="submit" name="cadastrar_usuario_disciplina" value="<?php echo WORDING_FINALIZE; ?>" />
+            <input type="submit" name="verifica_senha" value="<?php echo WORDING_FINALIZE; ?>" />
 
 
 </form>

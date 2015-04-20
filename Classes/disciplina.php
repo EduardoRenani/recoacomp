@@ -82,8 +82,10 @@ class Disciplina {
             $_POST['user_id'], 
             $_POST['senha'], 
             $_POST['arrayCompetencias']);
-        }elseif(isset($_POST["cadastrar_usuario_disciplina"])){
-            $this->entrarDisciplina(
+        }elseif(isset($_POST["verifica_senha"])){
+            if (($this->checkPassword($_POST['senha'], $_POST['idDisciplina']))){
+                if(($_POST['okay']) == 'okay'){
+                $this->entrarDisciplina(
                 $_POST['idUsuario'],
                 $_POST['idDisciplina'],
                 $_POST['senha'],
@@ -91,6 +93,17 @@ class Disciplina {
                 $_POST['habilidade'],
                 $_POST['atitude'],
                 $_POST['competencias']);
+                }
+            }
+            else{
+                $_SESSION['cadastro_disciplina_cha'] = true;
+                header('location: ' .$_POST['link']);
+                /*
+                $this->errors[] = MESSAGE_PASSWORD_WRONG;
+                */
+
+                
+            }
         }else{
             // Se não estiver cadastrando uma nova disciplina apenas é um constructor que retorna NULL
             return null;
@@ -439,6 +452,29 @@ class Disciplina {
             }
         } // End verificações
     } // End Função
+
+
+    // verifica se a senha está correta
+    public function checkPassword($senha, $idDisciplina){
+        $senha = trim($senha);
+        if($this->databaseConnection()){
+            $query_check_senha_disciplina = $this->db_connection->prepare('SELECT senha FROM disciplina WHERE senha=:senha AND iddisciplina=:idDisciplina');
+            $query_check_senha_disciplina->bindValue(':senha', $senha, PDO::PARAM_STR);
+            $query_check_senha_disciplina->bindValue(':idDisciplina', $idDisciplina, PDO::PARAM_INT);
+            $query_check_senha_disciplina->execute();
+            $result = $query_check_senha_disciplina->fetchAll();
+            // Se a senha estiver errada retorna erro
+            if (!count($result)){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+    } //End Função
+
+
+
 } // End Classe
 
 //Case de teste

@@ -134,7 +134,7 @@ class Comp{
 
 			echo "<ul class='disciplinas-list'>";
 
-			echo "<div id='conteudo' class='conteudo'><li class='recomendacao-item' style='margin-bottom: 0;'>
+			echo "<div id='conteudo' class='conteudo clearfix'><li class='recomendacao-item' style='margin-bottom: 0;'>
 						<div class='recomendacao-item-content'> 
 							<h3>Competência: ".$this->nomeComp."</h3>
 							<p>Pequena descrição da competência.</p>

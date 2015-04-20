@@ -10,7 +10,7 @@
 
 #menu {
     width: 96%;
-    margin: 5px 2% 10px 2%;
+    margin: 5px 2% 20px 2%;
     height: 44px;
     background-color: #f1f1f2;
 }
@@ -134,7 +134,6 @@
     min-height: 356px;
     margin: auto;
     text-align: center;
-    overflow-x: hidden;
 }
 
 #sub-conteudo {

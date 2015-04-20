@@ -40,7 +40,7 @@ function getDisciplinaId(id){
 
             <?php
                 // Exibir todas as disciplinas disponiveis e permitir cadastros nas mesmas
-                $disciplina = new Disciplina();
+                
 
                 $listaDisciplina = array();
                                 
@@ -78,7 +78,9 @@ function getDisciplinaId(id){
                                     <input id="senha" type="password" name="senha" placeholder="<?= WORDING_REGISTRATION_PASSWORD; ?>" pattern=".{6,}" required/>
                                     <input type="hidden" id="idUsuario" name="idUsuario" value="<?php echo $_SESSION['user_id']; ?>" />
                                     <input type="hidden" id="idDisciplina" name="idDisciplina" value="" />
-                                    <input type="submit" name="" action="" value="<?php echo WORDING_REGISTER_CHA; ?>" />
+                                    <input type="hidden" name="okay" value="nope" />
+                                    <input type='hidden' id='link' name='link' value='<?= $_SERVER['REQUEST_URI']; ?>' />
+                                    <input type="submit" name="verifica_senha" action="" value="<?php echo WORDING_REGISTER_CHA; ?>" />
                                 </form>                                                 
                         </div>
                         <!-- /.top-cadastro -->

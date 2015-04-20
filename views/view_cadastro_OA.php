@@ -11,6 +11,7 @@ require_once("classes/OA.php");?>
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
     <link href="css/base_cadastro_objeto.css" rel="stylesheet">
+    <link href="css/tooltip.css" rel="stylesheet">
     <link href="css/base_cadastro.css" rel="stylesheet">
     <link href="css/progress_cadastro_OA_breadcrumb.css" rel="stylesheet">
     <style>
@@ -46,7 +47,7 @@ require_once("classes/OA.php");?>
                 document.getElementById('sub-conteudo6').innerHTML = "";
                 for (i = 0; i < nomesCompetencias.length; i++) {
                     var elementoAdd = document.createElement('div');
-                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
                     document.getElementById('sub-conteudo6').appendChild(elementoAdd);
                 }
         //         $("#tabela2").html("<option value='text'>text</option>");
@@ -74,7 +75,7 @@ require_once("classes/OA.php");?>
                 document.getElementById('sub-conteudo6').innerHTML = "";
                 for (i = 0; i < nomesCompetencias.length; i++) {
                     var elementoAdd = document.createElement('div');
-                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
                     document.getElementById('sub-conteudo6').appendChild(elementoAdd);
                 }
                 
@@ -205,43 +206,107 @@ $(function() {
 <script language="javascript">
     function mudaTab(qualTab) {
         if(qualTab == 1) {
-            divTab = document.getElementById('sub-conteudo');
-            divTab.removeAttribute('class');
-            divTab.setAttribute('class', 'tab');
-            divTab = document.getElementById('sub-conteudo1');
-            divTab.removeAttribute('class');
-            divTab.setAttribute('class', 'tab-active');
-            divTab = document.getElementById('menu');
-            document.getElementById('seta').removeAttribute('class');
-            document.getElementById('seta').setAttribute('class', 'meu-active');
-            document.getElementById('menudiv1').removeAttribute('class');
-            document.getElementById('menudiv1').setAttribute('class', 'meu-active');
-            document.getElementById('seta1').removeAttribute('class');
-            document.getElementById('seta1').setAttribute('class', 'seta-active');
-            document.getElementById('buttonNext').removeAttribute('onclick');
-            document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(2)');
-            document.getElementById('buttonPrevious').removeAttribute('style');
-            document.getElementById('buttonPrevious').setAttribute('style', 'float: none; display: inline;');
-            document.getElementById('buttonPrevious').removeAttribute('onclick');
-            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(7)');
+            if(document.getElementsByName('nome')[0].value.length > 0 && document.getElementsByName('url')[0].value.length > 0 && document.getElementsByName('palavrachave')[0].value.length > 0 && document.getElementsByName('idioma')[0].value.length > 0 && document.getElementsByName('descricao')[0].value.length > 0) {
+                document.getElementsByName('nome')[0].style.border = "0";
+                document.getElementsByName('url')[0].style.border = "0";
+                document.getElementsByName('palavrachave')[0].style.border = "0";
+                document.getElementsByName('idioma')[0].style.border = "0";
+                document.getElementsByName('descricao')[0].style.border = "0";
+                divTab = document.getElementById('sub-conteudo');
+                divTab.removeAttribute('class');
+                divTab.setAttribute('class', 'tab');
+                divTab = document.getElementById('sub-conteudo1');
+                divTab.removeAttribute('class');
+                divTab.setAttribute('class', 'tab-active');
+                divTab = document.getElementById('menu');
+                document.getElementById('seta').removeAttribute('class');
+                document.getElementById('seta').setAttribute('class', 'meu-active');
+                document.getElementById('menudiv1').removeAttribute('class');
+                document.getElementById('menudiv1').setAttribute('class', 'meu-active');
+                document.getElementById('seta1').removeAttribute('class');
+                document.getElementById('seta1').setAttribute('class', 'seta-active');
+                document.getElementById('buttonNext').removeAttribute('onclick');
+                document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(2)');
+                document.getElementById('buttonPrevious').removeAttribute('style');
+                document.getElementById('buttonPrevious').setAttribute('style', 'float: none; display: inline;');
+                document.getElementById('buttonPrevious').removeAttribute('onclick');
+                document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(7)');
+            }
+            else {
+                if(document.getElementsByName('nome')[0].value.length == 0) {
+                    document.getElementsByName('nome')[0].style.border = "1px solid #dc8810";
+                    document.getElementsByName('nome')[0].setAttribute("placeholder", "Este campo é necessário");
+                }
+                else {
+                    document.getElementsByName('nome')[0].style.border = "0";
+                }
+                if(document.getElementsByName('url')[0].value.length == 0) {
+                    document.getElementsByName('url')[0].style.border = "1px solid #dc8810";
+                    document.getElementsByName('url')[0].setAttribute("placeholder", "Este campo é necessário");
+                }
+                else {
+                    document.getElementsByName('url')[0].style.border = "0";
+                }
+                if(document.getElementsByName('palavrachave')[0].value.length == 0) {
+                    document.getElementsByName('palavrachave')[0].style.border = "1px solid #dc8810";
+                    document.getElementsByName('palavrachave')[0].setAttribute("placeholder", "Este campo é necessário");
+                }
+                else {
+                    document.getElementsByName('palavrachave')[0].style.border = "0";
+                }
+                if(document.getElementsByName('idioma')[0].value.length == 0) {
+                    document.getElementsByName('idioma')[0].style.border = "1px solid #dc8810";
+                    document.getElementsByName('idioma')[0].setAttribute("placeholder", "Este campo é necessário");
+                }
+                else {
+                    document.getElementsByName('idioma')[0].style.border = "0";
+                }
+                if(document.getElementsByName('descricao')[0].value.length == 0) {
+                    document.getElementsByName('descricao')[0].style.border = "1px solid #dc8810";
+                    document.getElementsByName('descricao')[0].setAttribute("placeholder", "Este campo é necessário");
+                }
+                else {
+                    document.getElementsByName('descricao')[0].style.border = "0";
+                }
+            }
         }
         else if(qualTab == 2) {
-            divTab = document.getElementById('sub-conteudo1');
-            divTab.removeAttribute('class');
-            divTab.setAttribute('class', 'tab');
-            divTab = document.getElementById('sub-conteudo2');
-            divTab.removeAttribute('class');
-            divTab.setAttribute('class', 'tab-active');
-            document.getElementById('menudiv2').removeAttribute('class');
-            document.getElementById('menudiv2').setAttribute('class', 'meu-active');
-            document.getElementById('seta1').removeAttribute('class');
-            document.getElementById('seta1').setAttribute('class', 'meu-active');
-            document.getElementById('seta2').removeAttribute('class');
-            document.getElementById('seta2').setAttribute('class', 'seta-active');
-            document.getElementById('buttonNext').removeAttribute('onclick');
-            document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(3)');
-            document.getElementById('buttonPrevious').removeAttribute('onclick');
-            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(8)');
+            if(document.getElementsByName('date')[0].value.length > 0 && document.getElementsByName('entidade')[0].value.length > 0) {
+                document.getElementsByName('date')[0].style.border = "0";
+                document.getElementsByName('entidade')[0].style.border = "0";
+                divTab = document.getElementById('sub-conteudo1');
+                divTab.removeAttribute('class');
+                divTab.setAttribute('class', 'tab');
+                divTab = document.getElementById('sub-conteudo2');
+                divTab.removeAttribute('class');
+                divTab.setAttribute('class', 'tab-active');
+                document.getElementById('menudiv2').removeAttribute('class');
+                document.getElementById('menudiv2').setAttribute('class', 'meu-active');
+                document.getElementById('seta1').removeAttribute('class');
+                document.getElementById('seta1').setAttribute('class', 'meu-active');
+                document.getElementById('seta2').removeAttribute('class');
+                document.getElementById('seta2').setAttribute('class', 'seta-active');
+                document.getElementById('buttonNext').removeAttribute('onclick');
+                document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(3)');
+                document.getElementById('buttonPrevious').removeAttribute('onclick');
+                document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(8)');
+            }
+            else {
+                if(document.getElementsByName('date')[0].value.length == 0) {
+                    document.getElementsByName('date')[0].style.border = "1px solid #dc8810";
+                    document.getElementsByName('date')[0].setAttribute("placeholder", "Este campo é necessário");
+                }
+                else {
+                    document.getElementsByName('date')[0].style.border = "0";
+                }
+                if(document.getElementsByName('entidade')[0].value.length == 0) {
+                    document.getElementsByName('entidade')[0].style.border = "1px solid #dc8810";
+                    document.getElementsByName('entidade')[0].setAttribute("placeholder", "Este campo é necessário");
+                }
+                else {
+                    document.getElementsByName('entidade')[0].style.border = "0";
+                }
+            }
 
         }
         else if(qualTab == 3) {
@@ -264,22 +329,34 @@ $(function() {
 
         }
         else if(qualTab == 4) {
-            divTab = document.getElementById('sub-conteudo3');
-            divTab.removeAttribute('class');
-            divTab.setAttribute('class', 'tab');
-            divTab = document.getElementById('sub-conteudo4');
-            divTab.removeAttribute('class');
-            divTab.setAttribute('class', 'tab-active');
-            document.getElementById('menudiv4').removeAttribute('class');
-            document.getElementById('menudiv4').setAttribute('class', 'meu-active');
-            document.getElementById('seta3').removeAttribute('class');
-            document.getElementById('seta3').setAttribute('class', 'meu-active');
-            document.getElementById('seta4').removeAttribute('class');
-            document.getElementById('seta4').setAttribute('class', 'seta-active');
-            document.getElementById('buttonNext').removeAttribute('onclick');
-            document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(5)');
-            document.getElementById('buttonPrevious').removeAttribute('onclick');
-            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(10)');
+            if(document.getElementsByName('descricao_educacional')[0].value.length > 0) {
+                document.getElementsByName('descricao_educacional')[0].style.border = "0";
+                divTab = document.getElementById('sub-conteudo3');
+                divTab.removeAttribute('class');
+                divTab.setAttribute('class', 'tab');
+                divTab = document.getElementById('sub-conteudo4');
+                divTab.removeAttribute('class');
+                divTab.setAttribute('class', 'tab-active');
+                document.getElementById('menudiv4').removeAttribute('class');
+                document.getElementById('menudiv4').setAttribute('class', 'meu-active');
+                document.getElementById('seta3').removeAttribute('class');
+                document.getElementById('seta3').setAttribute('class', 'meu-active');
+                document.getElementById('seta4').removeAttribute('class');
+                document.getElementById('seta4').setAttribute('class', 'seta-active');
+                document.getElementById('buttonNext').removeAttribute('onclick');
+                document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(5)');
+                document.getElementById('buttonPrevious').removeAttribute('onclick');
+                document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(10)');
+            }
+            else {
+                if(document.getElementsByName('descricao_educacional')[0].value.length == 0) {
+                    document.getElementsByName('descricao_educacional')[0].style.border = "1px solid #dc8810";
+                    document.getElementsByName('descricao_educacional')[0].setAttribute("placeholder", "Este campo é necessário");
+                }
+                else {
+                    document.getElementsByName('date')[0].style.border = "0";
+                }
+            }
         }
         else if(qualTab == 5) {
             divTab = document.getElementById('sub-conteudo4');
@@ -300,21 +377,31 @@ $(function() {
             document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(11)');
         }
         else if(qualTab == 6) {
-            divTab = document.getElementById('sub-conteudo5');
-            divTab.removeAttribute('class');
-            divTab.setAttribute('class', 'tab');
-            divTab = document.getElementById('sub-conteudo6');
-            divTab.removeAttribute('class');
-            divTab.setAttribute('class', 'tab-active');
-            document.getElementById('menudiv6').removeAttribute('class');
-            document.getElementById('menudiv6').setAttribute('class', 'meu-active');
-            document.getElementById('seta5').removeAttribute('class');
-            document.getElementById('seta5').setAttribute('class', 'meu-active');
-            document.getElementById('buttonPrevious').removeAttribute('onclick');
-            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(12)');
-            document.getElementById('buttonNext').removeAttribute('style');
-            document.getElementById('buttonNext').setAttribute('style', 'float: none; display: none;');
-            document.getElementById('finisher').removeAttribute('style');
+            if(document.getElementsByName('arrayCompetencias')[0].value.length > 0) {
+                document.getElementById('tabela1').style.border = "0";
+                document.getElementById('tabela2').style.border = "0";
+                divTab = document.getElementById('sub-conteudo5');
+                divTab.removeAttribute('class');
+                divTab.setAttribute('class', 'tab');
+                divTab = document.getElementById('sub-conteudo6');
+                divTab.removeAttribute('class');
+                divTab.setAttribute('class', 'tab-active');
+                document.getElementById('menudiv6').removeAttribute('class');
+                document.getElementById('menudiv6').setAttribute('class', 'meu-active');
+                document.getElementById('seta5').removeAttribute('class');
+                document.getElementById('seta5').setAttribute('class', 'meu-active');
+                document.getElementById('buttonPrevious').removeAttribute('onclick');
+                document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(12)');
+                document.getElementById('buttonNext').removeAttribute('style');
+                document.getElementById('buttonNext').setAttribute('style', 'float: none; display: none;');
+                document.getElementById('finisher').removeAttribute('style');
+            }
+            else {
+                document.getElementById("sub-conteudo5").getElementsByTagName('span')[1].innerHTML = "<span style='color: #dc8810'>Escolha uma competência";
+                document.getElementById("tabela1").style.border = "1px solid #dc8810";
+                document.getElementById("tabela2").style.border = "1px solid #dc8810";
+                window.scrollTo(0, 0);
+            }
         }
         else if(qualTab == 7) {
             divTab = document.getElementById('sub-conteudo1');
@@ -418,6 +505,44 @@ $(function() {
             document.getElementById('buttonNext').removeAttribute('style');
         }
     }
+    opacityTip = 0;
+    function toolTip(id, texto) {
+        div = document.getElementsByClassName('tooltiploco')[id-1];
+        tooltip = document.createElement('div');
+        tooltip.setAttribute('class', 'mensagemTooltiploco');
+        tooltip.innerHTML = texto;
+        div1 = document.createElement('div');
+        div1.style.width = "200px";
+        div1.style.zIndex = 9999;
+        div1.appendChild(tooltip);
+        div.appendChild(div1);
+        opacityTip = 0;
+        fadeInTip(id);
+    }
+    function deleteTooltip(id) {
+        opacityTip = 1;
+        fadeOutTip(id);
+    }
+    function fadeInTip(id) {
+        div = document.getElementsByClassName('tooltiploco')[id-1].lastChild.lastChild;
+        div.style.opacity = opacityTip;
+        opacityTip+=0.1;
+        tTip = setTimeout(function() {fadeInTip(id)}, 10);
+        if (opacityTip >= 1) {
+            clearTimeout(tTip);
+        }
+    }
+    function fadeOutTip(id) {
+        div = document.getElementsByClassName('tooltiploco')[id-1].lastChild.lastChild;
+        div.style.opacity = opacityTip;
+        opacityTip-=0.1;
+        tTip1 = setTimeout(function() {fadeOutTip(id)}, 10);
+        if (opacityTip <= 0) {
+            div = document.getElementsByClassName('tooltiploco')[id-1];
+            div.removeChild(div.lastChild);
+            clearTimeout(tTip1);
+        }
+    }
 </script>
 
 <div class="fixedBackgroundGradient"></div>
@@ -487,7 +612,7 @@ $(function() {
             <!-- Fim-->
             <div id="sub-conteudo1" class="tab">
                     <div class="control-group">
-                        <label class="control-label" for="date"><?php echo WORDING_DATE; ?></label>
+                        <label class="control-label" for="date"><div style="float: left"><?php echo WORDING_DATE; ?></div><div class="tooltiploco"><div onmouseover="toolTip(1, 'Data que o objeto foi criado')" onmouseout="deleteTooltip(1)">?</div></div></label>
                         <div class="controls">
                             <input id="date" type="date" name="date" required />
                         </div>
