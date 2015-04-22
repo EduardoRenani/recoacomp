@@ -149,104 +149,7 @@ include('_header.php');
                     url: true
                 }
             }
-        });
-
-    // Mensagens
-    var senha = "<?php echo WORDING_FILL_PASSWORD; ?>";
-    var descricao = "<?php echo WORDING_FILL_DESCRIPTION; ?>";
-    var nome = "<?php echo WORDING_FILL_NAME; ?>";
-    var nomeDisciplina = "<?php echo WORDING_FILL_NAME_DISCIPLINA; ?>";
-    var url = "<?php echo WORDING_FILL_URL; ?>";
-    var palavrachave = "<?php echo WORDING_FILL_KEYWORD; ?>";
-    var data = "<?php echo WORDING_FILL_DATE; ?>";
-    var descricao_educacional = "<?php echo WORDING_FILL_EDUCACIONAL_DESCRIPTION; ?>";
-
-
-    $('#rootwizard').bootstrapWizard({onNext: function(tab, navigation, index) {
-    // Categoria geral
-        if(index==1) {
-            // Verifica se o nome foi preenchido caso contrário dá um aviso
-            if(!$('#nomeCurso').val()) {
-                $().toastmessage('showToast', {
-                    text     : nome, // Mensagem está nas variáveis
-                    sticky   : false,
-                    position : 'top-left',
-                    type     : 'error'
-                });
-                $('#nomeCurso').focus();
-                return false;
-            }
-            // Verificar se o nome da disciplina foi preenchido
-            if(!$('#nomeDisciplina').valid()) {
-                $().toastmessage('showToast', {
-                    text     : nomeDisciplina,
-                    sticky   : false,
-                    position : 'top-left',
-                    type     : 'error'
-                });
-                $('#nomeDisciplina').focus();
-                return false;
-            }
-            // Verificar se a palavra chave foi preenchida
-            if(!$('#senha').valid()) {
-                $().toastmessage('showToast', {
-                    text     : senha,
-                    sticky   : false,
-                    position : 'top-left',
-                    type     : 'error'
-                });
-                $('#senha').focus();
-                return false;
-            }
-            // Verificar se a descrição foi preenchida
-            if(!$('#descricao').val()) {
-                $().toastmessage('showToast', {
-                    text     : descricao,
-                    sticky   : false,
-                    position : 'top-left',
-                    type     : 'error'
-                });
-                $('#descricao').focus();
-                return false;
-            }
-        }
-
-        // Preenchimento do CHA das competências
-        if(index==2) {
-       // Make sure we entered the date
-            if(!$('#date').val()) {
-                $().toastmessage('showToast', {
-                    text     : data,
-                    sticky   : false,
-                    position : 'top-left',
-                    type     : 'error'
-                });
-                $('#date').focus();
-                return false;
-            }
-            
-        }
-        }, onTabShow: function(tab, navigation, index) {
-            var $total = navigation.find('li').length;
-            var $current = index+1;
-            var $percent = ($current/$total) * 100;
-            $('#rootwizard').find('.bar').css({width:$percent+'%'});
-            // If it's the last tab then hide the last button and show the finish instead
-            if($current >= $total) {
-                $('#rootwizard').find('.pager .next').hide();
-                $('#finisher').fadeIn("slow");
-    
-            } else {
-                $('#rootwizard').find('.pager .next').show();
-                $('#rootwizard').find('.pager .finish').hide();
-            }
-        }, onTabClick: function(tab, navigation, index) {
-            if(index!=5) {
-                $('#finisher').fadeOut("slow");
-            }
-            return true;
-        }
-        });     
+        }); 
 });
 </script>
 </head>
@@ -379,8 +282,6 @@ include('_header.php');
         tooltip = document.createElement('div');
         tooltip.setAttribute('class', 'mensagemTooltiploco');
         tooltip.innerHTML = texto;
-        tooltip.style.cssFloat = "left";
-        tooltip.style.cssLineHeight = "40px";
         div1 = document.createElement('div');
         div1.style.width = "200px";
         div1.appendChild(tooltip);

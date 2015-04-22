@@ -58,7 +58,7 @@ include('views/_header.php');
 
 
 
-require_once("views/sidebar.php");
+require_once("views/sidebar-disciplina.php");
 
 // ... ask if we are logged in here:
 if ($login->isUserLoggedIn() == true) {

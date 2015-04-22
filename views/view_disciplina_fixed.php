@@ -29,26 +29,123 @@
             <ul class="disciplinas-list">
 
             <?php
-                $idDisci = $disciplina->getIdDisciplinasMatriculadas($_SESSION['user_id']);
-                for ($i = 0; $i < sizeof($idDisci); $i++) {
-                    $nomeDisci = $disciplina->getNomeDisciplinaById($idDisci[$i][0]);
-                    $nomeCurso = $disciplina->getNomeCursoById($idDisci[$i][0]);
-                    $professorID = $disciplina->getProfessorDisciplinaById($idDisci[$i][0]);
-                    $professorDisci = $disciplina->getProfessorNomeById($professorID[0][0]);
-                    $descricaoDisci = $disciplina->getDescricaoDisciplinaById($idDisci[$i][0]);
+                // PASSO 1: PREENCHER O CHA
+                
+
+                //PASSO 2: PEGAR A LISTA DE DISCIPLINAS DO USUÁRIO
+
+                $listaDisc = array();
+                        /* Create a new mysqli object with database connection parameters */
+                $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+                if(mysqli_connect_errno()) {
+                    echo "Connection Failed: " . mysqli_connect_errno();
+                    exit();
+                }
+
+                /* Create a prepared statement */
+                if($stmt = $mysqli -> prepare("SELECT `disciplina_iddisciplina`FROM `usuario_disciplina` WHERE `usuario_idusuario`=?")) {
+
+                    /* Bind parameters
+                    s - string, b - blob, i - int, etc */
+                    $stmt -> bind_param("i", $_SESSION['user_id']);
+
+                    /* Execute it */
+                    $stmt -> execute();
+
+                    /* Bind results */
+                    $stmt -> bind_result($result);
+
+                    /* Fetch the value */
+                    while ($stmt -> fetch() ){
+                        array_push($listaDisc, $result);
+                    }
+
+                    /* Close statement */
+                    $stmt -> close();
+                }
+
+                /* Close connection */
+                //$mysqli -> close();   <-- Fazer depois.
+
+                //PASSO 2: TRATAR CADA DISCIPLINA 1 A 1.
+                $cont = count($listaDisc);
+                
+                for($i=0;$i<$cont;$i++){
+                    
+                    //PASSO 3: PEGAR O TITULO DA DISCIPLINA
+                    if($stmt = $mysqli -> prepare("SELECT `nomeDisciplina`, `nomeCurso`, `usuarioProfessorID`, `descricao` FROM `disciplina` WHERE `iddisciplina`=?")) {
+
+                        $disc=array();
+                        //$result=array();
+
+                        /* Bind parameters
+                        s - string, b - blob, i - int, etc */
+                        $stmt -> bind_param("i", $listaDisc[ $i ]);
+
+                        /* Execute it */
+                        $stmt -> execute();
+
+                        /* Bind results */
+
+                        $stmt -> bind_result($disc['nomeDisc'],$disc['nomeCurso'],$disc['professor_id'], $disc['descricao']);
+
+                        /* Fetch the value */
+
+                        while( $stmt -> fetch() ){
+                            //array_push($disc,$result);
+                            /*$disc['nomeDisc'] = $result['nomeDisc'];
+                            $disc['nomeCurso'] = $result['nomeCurso'];
+                            $disc['professor_id'] = $result['professor_id'];
+                            $disc['descricao'] = $result['descricao'];*/
+                        }
+
+
+
+                        //unset($result);
+
+                        /* Close statement */
+                        $stmt -> close();
+
+                    }
+
+                    if($stmt = $mysqli -> prepare("SELECT `user_name`FROM `users` WHERE `user_id`=?")) {
+
+                    /* Bind parameters
+                    s - string, b - blob, i - int, etc */
+                    $stmt -> bind_param("i", $disc['professor_id']);
+
+                    /* Execute it */
+                    $stmt -> execute();
+
+                    /* Bind results */
+                    $stmt -> bind_result($disc['professor_name']);
+
+                    /* Fetch the value */
+                    while ($stmt -> fetch() ){
+                        //$professorName = $result;
+                    }
+
+                    /* Close statement */
+                    $stmt -> close();
+                    }
+
                     echo
                         "<li class='disciplinas-item'>".
                             "<div class='disciplina-item-content'>".
-                                "<h3>".$nomeDisci[0][0]."</h3>".
-                                "<h4>".$nomeCurso[0][0]." - ".$professorDisci[0][0]."</h4>".
-                                "<p>".$descricaoDisci[0][0]."</p>".
+                                "<h3>".$disc['nomeDisc']."</h3>".
+                                "<h4>".$disc['nomeCurso']." - ".$disc['professor_name']."</h4>".
+                                "<p>".$disc['descricao']."</p>".
                             "</div>".
                             "<div class='button'><form action='recomendacao.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
-                                "<input type='hidden' name='disc' value='".$idDisci[$i][0]."'>".
+                                "<input type='hidden' name='disc' value='".$listaDisc[ $i ]."'>".
                                 "<input type='submit' value='Receber Recomendação'></br></br>".
                             "</form></div>".
                         "</li>";
+
+                    unset($disc);
                 }
+                $mysqli -> close();
             ?>
                         <!--
                         <li class="disciplinas-item">

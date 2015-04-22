@@ -72,7 +72,7 @@
 }
 
 #seta {
-    background: url("http://sideshowbob/recoacomp/img/arrow_outro.png") no-repeat;
+    background: url("../img/arrow_outro.png") no-repeat;
     background-clip: content-box;   
     float: left;
     width: 2%;
@@ -80,7 +80,7 @@
 }
 
 #seta1 {
-    background: url("http://sideshowbob/recoacomp/img/arrow_outro.png") no-repeat;
+    background: url("../img/arrow_outro.png") no-repeat;
     background-clip: content-box;   
     float: left;
     width: 2%;
@@ -88,7 +88,7 @@
 }
 
 #seta2 {
-    background: url("http://sideshowbob/recoacomp/img/arrow_outro.png") no-repeat;
+    background: url("../img/arrow_outro.png") no-repeat;
     background-clip: content-box;   
     float: left;
     width: 2%;
@@ -96,7 +96,7 @@
 }
 
 #seta3 {
-    background: url("http://sideshowbob/recoacomp/img/arrow_outro.png") no-repeat;
+    background: url("../img/arrow_outro.png") no-repeat;
     background-clip: content-box;   
     float: left;
     width: 2%;
@@ -104,7 +104,7 @@
 }
 
 #seta4 {
-    background: url("http://sideshowbob/recoacomp/img/arrow_outro.png") no-repeat;
+    background: url("../img/arrow_outro.png") no-repeat;
     background-clip: content-box;   
     float: left;
     width: 2%;
@@ -112,7 +112,7 @@
 }
 
 #seta5 {
-    background: url("http://sideshowbob/recoacomp/img/arrow_outro.png") no-repeat;
+    background: url("../img/arrow_outro.png") no-repeat;
     background-clip: content-box;   
     float: left;
     width: 2%;
@@ -120,7 +120,7 @@
 }
 
 .seta-active {
-    background: url("http://sideshowbob/recoacomp/img/arrow.png") no-repeat !important;
+    background: url("../img/arrow.png") no-repeat !important;
     background-clip: content-box;   
 }
 

@@ -90,117 +90,6 @@ require_once("classes/OA.php");?>
         });
     });
 
-
-$(function() {
-
-
-    // Mensagens
-    var descricao = "<?php echo WORDING_FILL_DESCRIPTION; ?>";
-    var nome = "<?php echo WORDING_FILL_NAME; ?>";
-    var url = "<?php echo WORDING_FILL_URL; ?>";
-    var palavrachave = "<?php echo WORDING_FILL_KEYWORD; ?>";
-    var data = "<?php echo WORDING_FILL_DATE; ?>";
-    var descricao_educacional = "<?php echo WORDING_FILL_EDUCACIONAL_DESCRIPTION; ?>";
-
-
-    $('#rootwizard').bootstrapWizard({onNext: function(tab, navigation, index) {
-    // Categoria geral
-        if(index==1) {
-            // Verifica se o nome foi preenchido caso contrário dá um aviso
-            if(!$('#nome').val()) {
-                $().toastmessage('showToast', {
-                    text     : nome,
-                    sticky   : false,
-                    position : 'top-left',
-                    type     : 'error'
-                });
-                $('#nome').focus();
-                return false;
-            }
-            // Verificar se a URL foi preenchida
-            if(!$('#url').valid()) {
-                $().toastmessage('showToast', {
-                    text     : url,
-                    sticky   : false,
-                    position : 'top-left',
-                    type     : 'error'
-                });
-                $('#url').focus();
-                return false;
-            }
-            // Verificar se a palavra chave foi preenchida
-            if(!$('#palavrachave').valid()) {
-                $().toastmessage('showToast', {
-                    text     : palavrachave,
-                    sticky   : false,
-                    position : 'top-left',
-                    type     : 'error'
-                });
-                $('#palavrachave').focus();
-                return false;
-            }
-            // Verificar se a descrição foi preenchida
-            if(!$('#descricao').val()) {
-                $().toastmessage('showToast', {
-                    text     : descricao,
-                    sticky   : false,
-                    position : 'top-left',
-                    type     : 'error'
-                });
-                $('#descricao').focus();
-                return false;
-            }
-        }
-
-        // Se estiver na aba da categoria vida, fazer verficações 
-        if(index==2) {
-        // Make sure we entered the date
-            if(!$('#date').val()) {
-                $().toastmessage('showToast', {
-                    text     : data,
-                    sticky   : false,
-                    position : 'top-left',
-                    type     : 'error'
-                });
-                $('#date').focus();
-                return false;
-            }
-        }
-		if(index==4) {
-        // Make sure we entered the description
-            if(!$('#descricao_educacional').val()) {
-                $().toastmessage('showToast', {
-                    text     : descricao_educacional,
-                    sticky   : false,
-                    position : 'top-left',
-                    type     : 'error'
-                });
-                $('#descricao_educacional').focus();
-                return false;
-            }
-        }
-        }, onTabShow: function(tab, navigation, index) {
-            var $total = navigation.find('li').length;
-            var $current = index+1;
-            var $percent = ($current/$total) * 100;
-            $('#rootwizard').find('.bar').css({width:$percent+'%'});
-			// If it's the last tab then hide the last button and show the finish instead
-			if($current >= $total) {
-				$('#rootwizard').find('.pager .next').hide();
-				$('#finisher').fadeIn("slow");
-	
-			} else {
-				$('#rootwizard').find('.pager .next').show();
-				$('#rootwizard').find('.pager .finish').hide();
-			}
-        }, onTabClick: function(tab, navigation, index) {
-            if(index!=5) {
-                $('#finisher').fadeOut("slow");
-            }
-			return true;
-		}
-		});		
-});
 </script>
 
 <script language="javascript">
@@ -513,7 +402,6 @@ $(function() {
         tooltip.innerHTML = texto;
         div1 = document.createElement('div');
         div1.style.width = "200px";
-        div1.style.zIndex = 9999;
         div1.appendChild(tooltip);
         div.appendChild(div1);
         opacityTip = 0;
@@ -567,7 +455,7 @@ $(function() {
             <div id="seta5"></div>
             <div id="menudiv6"><?php echo WORDING_REGISTER_CHA; ?></div>
         </div>
-        <div id="conteudo">
+        <div id="conteudo" class="clearfix">
         <!-- Inicio-->
             <div id="sub-conteudo" class="tab-active"> 
                 <div class="control-group">

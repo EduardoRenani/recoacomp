@@ -290,10 +290,30 @@ class Disciplina {
         }
     }
 
+    // Retorna o ID de todas as disciplinas em que o aluno está matriculado
+    public function getIdDisciplinasMatriculadas($userID){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT iddisciplina FROM disciplina WHERE iddisciplina IN (SELECT disciplina_iddisciplina FROM usuario_disciplina WHERE usuario_idusuario=:userID)");
+            $stmt->bindParam(':userID',$userID, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+    }
+
     // Retorna o Nome de todas as disciplinas em que o aluno NÃO está matriculado
     public function getNomeDisciplinasNaoMatriculadas($userID){
         if($this->databaseConnection()){
             $stmt = $this->db_connection->prepare("SELECT nomeDisciplina FROM disciplina WHERE iddisciplina NOT IN (SELECT disciplina_iddisciplina FROM usuario_disciplina WHERE usuario_idusuario=:userID)");
+            $stmt->bindParam(':userID',$userID, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+    }
+
+    // Retorna o Nome de todas as disciplinas em que o aluno está matriculado
+    public function getNomeDisciplinasMatriculadas($userID){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT nomeDisciplina FROM disciplina WHERE iddisciplina IN (SELECT disciplina_iddisciplina FROM usuario_disciplina WHERE usuario_idusuario=:userID)");
             $stmt->bindParam(':userID',$userID, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll();
@@ -332,6 +352,7 @@ class Disciplina {
         }
 	}
 
+    // Retorna o nome da disciplina pelo id
     public function getNomeDisciplinaById($id){
         if($this->databaseConnection()){
             $stmt = $this->db_connection->prepare("SELECT nomeDisciplina FROM disciplina WHERE iddisciplina=:id");
@@ -343,6 +364,31 @@ class Disciplina {
         }
     }
 
+    // Retorna o id professor da disciplina pelo id da disciplina
+    public function getProfessorDisciplinaById($id){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT usuarioProfessorID FROM disciplina WHERE iddisciplina=:id");
+            //$stmt->bindParam(':nome',, PDO::PARAM_STR);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            //print_r($stmt->execute());
+            return $stmt->fetchAll();
+        }
+    }
+
+    // Retorna o nome professor da disciplina pelo id
+    public function getProfessorNomeById($id){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT user_name FROM users WHERE user_id=:id");
+            //$stmt->bindParam(':nome',, PDO::PARAM_STR);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            //print_r($stmt->execute());
+            return $stmt->fetchAll();
+        }
+    }
+
+
     // Retorna o nome de todos os cursos
     public function getNomesCursos(){
         if($this->databaseConnection()){
@@ -353,6 +399,7 @@ class Disciplina {
         }
     }
 
+    // Retorna o nome do curso pelo id
     public function getNomeCursoById($id){
         if($this->databaseConnection()){
             $stmt = $this->db_connection->prepare("SELECT nomeCurso FROM disciplina WHERE iddisciplina=:id");
@@ -369,6 +416,17 @@ class Disciplina {
         if($this->databaseConnection()){
             $stmt = $this->db_connection->prepare("SELECT descricao FROM disciplina");
             //$stmt->bindParam(':nome',, PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+    }
+    
+    // Retorna a descrição da disciplina pelo id
+    public function getDescricaoDisciplinaById($id){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT descricao FROM disciplina WHERE iddisciplina=:id");
+            //$stmt->bindParam(':nome',, PDO::PARAM_STR);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll();
         }
