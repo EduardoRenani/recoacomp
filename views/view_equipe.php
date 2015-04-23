@@ -19,62 +19,105 @@
 <div class="fixedBackgroundGradient"></div>
 
 <div class="disciplinas">
-    <div class="top-disciplinas"><div style="width: 50%; float: left; text-align: left"><?php echo (WORDING_EDIT_YOUR_CREDENTIALS); ?></div><div  style="width: 50%; float: right; text-align: right; padding-right: 10px;" ><a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a></div></div>
+    <div class="top-disciplinas"><div style="width: 50%; float: left; text-align: left"><?php echo (WORDING_TEAM); ?></div><div  style="width: 50%; float: right; text-align: right; padding-right: 10px;" ><a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a></div></div>
             <div class="disciplinas-content">  
-                <a href="http://lattes.cnpq.br/7661737809414762" class="team-member">
-                    <div class="team-member-avatar" style="background-image:url('img/head.png');"></div>
-                    <header><h3>Patricia Alejandra Behar</h3><h4>Coordenadora</h4></header>
-                </a>
+                <div class="team-member">
+                    <div class="team-member-avatar" style="background-image:url('img/foto_patricia.jpg');"></div>
+                    <header><h3>Patricia Alejandra Behar</h3>
+                        <h4>Coordenadora - Professora Titular da UFRGS</h4>
+                        <h4>pbehar<span class="arroba"></span>terra.com.br</h4>
+                        <h4><a href="http://lattes.cnpq.br/7661737809414762">Curriculo Lates</a></h4>
+                    </header>
+                </div>
 
-                 <a href="#" class="team-member">
-                    <div class="team-member-avatar" style="background-image:url('img/head.png');"></div>
-                    <header><h3>Daisy Schneider</h3><h4>--</h4></header>
-                </a>
+                 <div class="team-member">
+                    <div class="team-member-avatar" style="background-image:url('img/foto_daisy.jpg');"></div>
+                    <header>
+                        <h3>Daisy Schneider</h3>
+                        <h4>Doutora em Educação – UFRGS</h4>
+                        <h4>daisy.schneider<span class="arroba"></span>gmail.com</h4>
+                        <h4><a href="http://lattes.cnpq.br/8129846539705166">Curriculo Lates</a></h4>
+                    </header>
+                </div>
 
-                <a href="#" class="team-member">
-                    <div class="team-member-avatar" style="background-image:url('img/head.png');"></div>
-                    <header><h3>Silvio Cazella</h3><h4>--</h4></header>
-                </a>
+                <div class="team-member">
+                    <div class="team-member-avatar" style="background-image:url('img/foto_silvio.jpg');"></div>
+                    <header>
+                        <h3>Silvio Cazella</h3>
+                        <h4>Doutorado em Ciência da Computação - UFRGS</h4>
+                        <h4><a href="http://lattes.cnpq.br/9173977294178020">Curriculo Lates</a></h4>
+                    </header>
+                </div>
 
-                <a href="#" class="team-member">
-                    <div class="team-member-avatar" style="background-image:url('img/head.png');"></div>
-                    <header><h3>Ketia Kellen</h3><h4>--</h4></header>
-                </a>
+                <div class="team-member">
+                    <div class="team-member-avatar" style="background-image:url('img/foto_ketia.jpg');"></div>
+                    <header>
+                        <h3>Ketia Kellen</h3>
+                        <h4>Doutoranda em Educação – UFRGS</h4>
+                        <h4>ketiakellen<span class="arroba"></span>gmail.com</h4>
+                        <h4><a href="http://lattes.cnpq.br/4998633057465863">Curriculo Lates</a></h4>
+                    </header>
+                </div>
 
-                <a href="#" class="team-member ">
-                    <div class="team-member-avatar" style="background-image:url('img/head.png');"></div>
-                    <header><h3>Ana Luísa Fonseca</h3><h4>Web/Frontend Designer</h4></header>
-                </a>
+                <div class="team-member ">
+                    <div class="team-member-avatar" style="background-image:url('img/foto_ana.jpg');"></div>
+                    <header>
+                        <h3>Ana Luísa Fonseca</h3>
+                        <h4>Web/Frontend Designer - Graduanda em Design Visual</h4>
+                        <h4>alcfonseca1<span class="arroba"></span>gmail.com</h4>
+                        <h4><a href="http://lattes.cnpq.br/9466270828355582">Curriculo Lates</a></h4>
+                    </header>
+                </div>
 
-                <a href="#" class="team-member">
-                    <div class="team-member-avatar" style="background-image:url('img/head.png');"></div>
-                    <header><h3>Delton de Andrade Vaz</h3><h4>Programador</h4></header>
-                </a>
+                <div class="team-member">
+                    <div class="team-member-avatar" style="background-image:url('img/foto_delton.jpg');"></div>
+                    <header>
+                        <h3>Delton de Andrade Vaz</h3>
+                        <h4>Backend - Graduando em Engenharia de Computação</h4>
+                        <h4>delton.vaz<span class="arroba"></span>gmail.com</h4>
+                        <h4><a href="http://lattes.cnpq.br/4664765912286835">Curriculo Lates</a></h4>
+                    </header>
+                </div>
 
-                <a href="#" class="team-member ">
-                    <div class="team-member-avatar" style="background-image:url('img/head.png');"></div>
-                    <header><h3>Arthur Adolfo</h3><h4>Mr. Coisinha</h4></header>
-                </a>
+                <div class="team-member ">
+                    <div class="team-member-avatar" style="background-image:url('img/foto_adolfo.jpg');"></div>
+                    <header>
+                        <h3>Arthur Adolfo</h3>
+                        <h4>Backend/Frontend - Graduando em Engenharia de Computação</h4>
+                        <h4>arthur_adolfo<span class="arroba"></span>hotmail.com</h4>
+                        <h4><a href="http://lattes.cnpq.br/3560791394856394">Curriculo Lates</a></h4>
+                    </header>
+                </div>
 
-                <a href="#" class="team-member">
-                    <div class="team-member-avatar" style="background-image:url('img/head.png');"></div>
-                    <header><h3>Cláuser Mazuim</h3><h4>Programador</h4></header>
-                </a>
+                <div class="team-member">
+                    <div class="team-member-avatar" style="background-image:url('img/foto_edi.jpg');"></div>
+                    <header>
+                        <h3>Edimara Heis</h3>
+                        <h4>Graduanda em Pedagogia – UFRGS</h4>
+                        <h4>edimara.heis<span class="arroba"></span>hotmail.com</h4>
+                        <h4><a href="http://lattes.cnpq.br/1990146144527438">Curriculo Lates</a></h4>
+                    </header>
+                </div>
 
-                <a href="#" class="team-member">
-                    <div class="team-member-avatar" style="background-image:url('img/head.png');"></div>
-                    <header><h3>Edimara Heis</h3><h4>--</h4></header>
-                </a>
+                <div class="team-member">
+                    <div class="team-member-avatar" style="background-image:url('img/foto_otto.jpg');"></div>
+                    <header>
+                        <h3>Cristina Otto</h3>
+                        <h4>Mestranda em Educação – PPGEDU/UFRGS</h4>
+                        <h4>trise_cris<span class="arroba"></span>yahoo.com.br</h4>
+                        <h4><a href="http://lattes.cnpq.br/7154658497490867">Curriculo Lates</a></h4>
+                    </header>
+                </div>
 
-                <a href="#" class="team-member">
-                    <div class="team-member-avatar" style="background-image:url('img/head.png');"></div>
-                    <header><h3>Cristina Otto</h3><h4>--</h4></header>
-                </a>
-
-                <a href="#" class="team-member">
-                    <div class="team-member-avatar" style="background-image:url('img/head.png');"></div>
-                    <header><h3>Cristina Torrezzan</h3><h4>--</h4></header>
-                </a>
+                <div class="team-member">
+                    <div class="team-member-avatar" style="background-image:url('img/foto_cris.jpg');"></div>
+                    <header>
+                        <h3>Cristina Torrezzan</h3>
+                        <h4>Doutora em Informática na Educação – PPGIE/UFRGS</h4>
+                        <h4>crisawt<span class="arroba"></span>gmail.com</h4>
+                        <h4><a href="http://lattes.cnpq.br/4488496036470245">Curriculo Lates</a></h4>
+                    </header>
+                </div>
     </div>
 </div>
 

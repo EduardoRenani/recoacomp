@@ -288,9 +288,9 @@ include('_header.php'); ?>
                         <div id="menu">
                             <div id="menudiv" class="meu-active"><?php echo WORDING_GENERAL_INFORMATION; ?></div>
                             <div id="seta" class="seta-active"></div>
-                            <div id="menudiv1"><?php echo WORDING_COMPETENCIA; ?></div>
+                            <div id="menudiv1"><?php echo WORDING_OA; ?></div>
                             <div id="seta1"></div>
-                            <div id="menudiv2"><?php echo WORDING_CHA; ?></div>
+                            <div id="menudiv2"><?php echo WORDING_OA_CHA; ?></div>
                     </div>
                         <div id="conteudo" class="clearfix">
                             <div id="sub-conteudo" class="tab-active">
@@ -345,7 +345,7 @@ include('_header.php'); ?>
                                   <ul id="tabela2">
                                   <!-- Os objetos que serão associados estarão nessa tabela -->
                                   </ul>
-                                  <center><a href="cadastro_competencia.php" target="_blank"><div class='botao-cadastra' style='width: 240px'><?=WORDING_REGISTER_NOVO_OA?></div></a></center>
+                                  <center><a href="cadastro_OA.php" target="_blank"><div class='botao-cadastra' style='width: 240px'><?=WORDING_REGISTER_NOVO_OA?></div></a></center>
 
                             </div>
                             <div id="sub-conteudo2" class="tab">

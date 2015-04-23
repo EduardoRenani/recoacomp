@@ -1,21 +1,21 @@
-body{    
+body{
     font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-weight: 700;   
+    font-weight: 700;
 
 }
 
-div.fixedBackgroundGradient{  
+div.fixedBackgroundGradient{
     background: -moz-linear-gradient(top, rgba(38,179,232,0.9), rgba(117,204,214,0.9)), url("../img/pattern1.png");
     background: -webkit-linear-gradient(bottom, rgba(38,179,232,0.9), rgba(117,204,214,0.9)), url("../img/pattern1.png");
     background: -o-linear-gradient(top, rgba(38,179,232,0.9), rgba(117,204,214,0.9)), url("../img/pattern1.png");
-    background: linear-gradient(to top, rgba(38,179,232,0.9), rgba(117,204,214,0.9)), url("../img/pattern1.png"); 
-    height: 100%; width: 100%;  
-    position: fixed; top: 55px; left: 0px;  
+    background: linear-gradient(to top, rgba(38,179,232,0.9), rgba(117,204,214,0.9)), url("../img/pattern1.png");
+    height: 100%; width: 100%;
+    position: fixed; top: 55px; left: 0px;
     z-index: 0000;
 }
 
 .vertical-container {
-  
+
   display: -webkit-flex;
   display:         flex;
   -webkit-align-items: center;
@@ -84,7 +84,7 @@ div.fixedBackgroundGradient{
 }
 
 .sidebar-menu li:hover {
-    background-color: rgba(100, 200, 255, 0.4);    
+    background-color: rgba(100, 200, 255, 0.4);
 }
 
 /*DISCIPLINAS-----------------------------------------------------------------------*/
@@ -121,7 +121,7 @@ select{width:100%;}
     font-weight:300;
 }
 
-.arrowvoltar{ 
+.arrowvoltar{
   padding:10px;
   float:right;
  }
@@ -132,17 +132,17 @@ select{width:100%;}
 
 }
 
-div.top-disciplinas a{ 
-  text-decoration: none; 
-  color:white; 
+div.top-disciplinas a{
+  text-decoration: none;
+  color:white;
   font-size:16px;
   position:absolute;
   right:15px;
   top:14px}
 
-div.top-cadastrobase a{ 
+div.top-cadastrobase a{
   text-decoration: none;
- color:white; 
+ color:white;
  font-size:16px;
  position:absolute;
  right:15px;
@@ -153,9 +153,9 @@ div.top-cadastrobase a{
     position:relative;
     padding-left:0%;
     padding-right:0%;
-    
+
     top:20px;
-    
+
     margin:0 auto;
 }
 
@@ -191,21 +191,21 @@ div.top-cadastrobase a{
   line-height: 24px;
   white-space: normal;
   text-align:center;
-  
+
 
 
     background: -webkit-linear-gradient(left, #26B3E8, #75CCD6); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(right, #26B3E8, #75CCD6); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(right, #26B3E8, #75CCD6); /* For Firefox 3.6 to 15 */
     background: linear-gradient(to right, #26B3E8, #75CCD6); /* Standard syntax (must be last) */
- 
+
   color: white;
   padding: 8px 14px;
   font-weight: 100;
   font-size: 18px;
   text-decoration: none;
   display: inline-block; /* needed for anchors */
- 
+
     -webkit-box-shadow: 0px 4px 0px 0px rgba(50, 50, 50, 0.47);
     -moz-box-shadow:    0px 4px 0px 0px rgba(50, 50, 50, 0.47);
     box-shadow:         0px 4px 0px 0px rgba(50, 50, 50, 0.47);
@@ -239,7 +239,7 @@ border-radius: 5px;
     -o-transform: translateY(4px);
     -ms-transform: translateY(4px);
     transform: translateY(4px);
-    
+
     -webkit-box-shadow: 0px 1px 0px 0px rgba(50, 50, 50, 0.47);
     -moz-box-shadow:    0px 1px 0px 0px rgba(50, 50, 50, 0.47);
     box-shadow:         0px 1px 0px 0px rgba(50, 50, 50, 0.47);
@@ -328,7 +328,7 @@ input[type=submit]{ /*customiza input de submit*/
     -o-transform: translateY(4px);
     -ms-transform: translateY(4px);
     transform: translateY(4px);
-    
+
     -webkit-box-shadow: 0px 1px 0px 0px rgba(50, 50, 50, 0.47);
     -moz-box-shadow:    0px 1px 0px 0px rgba(50, 50, 50, 0.47);
     box-shadow:         0px 1px 0px 0px rgba(50, 50, 50, 0.47);
@@ -340,19 +340,19 @@ input[type=submit]{ /*customiza input de submit*/
       height: auto;
       white-space: normal;
       text-align:center;
-  
+
     background: -webkit-linear-gradient(left, #26B3E8, #75CCD6); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(right, #26B3E8, #75CCD6); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(right, #26B3E8, #75CCD6); /* For Firefox 3.6 to 15 */
     background: linear-gradient(to right, #26B3E8, #75CCD6); /* Standard syntax (must be last) */
- 
+
       color: white;
       padding: 8px 14px;
       font-weight: 100;
       font-size: 18px;
       text-decoration: none;
       display: inline-block; /* needed for anchors */
- 
+
     -webkit-box-shadow: 0px 4px 0px 0px rgba(50, 50, 50, 0.47);
     -moz-box-shadow:    0px 4px 0px 0px rgba(50, 50, 50, 0.47);
     box-shadow:         0px 4px 0px 0px rgba(50, 50, 50, 0.47);
@@ -386,7 +386,7 @@ input[type=submit]{ /*customiza input de submit*/
     -o-transform: translateY(4px);
     -ms-transform: translateY(4px);
     transform: translateY(4px);
-    
+
     -webkit-box-shadow: 0px 1px 0px 0px rgba(50, 50, 50, 0.47);
     -moz-box-shadow:    0px 1px 0px 0px rgba(50, 50, 50, 0.47);
     box-shadow:         0px 1px 0px 0px rgba(50, 50, 50, 0.47);
@@ -416,7 +416,8 @@ input[type=submit]{ /*customiza input de submit*/
 #tabela1, #tabela2{
     border: 1px solid #eee;
     width: 45%;
-    height: 500px;
+    height: 250px;
+	min-height: 250px;
     list-style-type: none;
     margin: 0;
     padding: 5px 0 0px 0;

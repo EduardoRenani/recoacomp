@@ -93,6 +93,8 @@ define("WORDING_NAME_COMPETENCIA", "Nome da Competência: ");
 define("WORDING_OA_LIST", "Nome dos OA separados por \";\" : ");
 define("WORDING_AVAILABLE_COURSES", "Disciplinas disponíveis");
 define("WORDING_REGISTER_SUCESSFULLY", "Cadastro efetuado com sucesso!");
+define("WORDING_TEAM", "Equipe");
+
 
 
 
@@ -254,3 +256,4 @@ define("WORDING_CONHECIMENTO_DESCRICAO", "Descrição do Conhecimento");
 define("WORDING_CLEAN", "Limpar");
 define("MESSAGE_OAS_EMPTY", "Nenhum OA selecionado");
 define("MESSAGE_INVALID_CHA", "CHA inválido!");
+define("WORDING_OA_CHA", "CHA do OA");

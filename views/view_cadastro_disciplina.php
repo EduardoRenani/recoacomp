@@ -20,13 +20,9 @@ include('_header.php');
     .tooltip {
     display: block;
     position: absolute;
-    border: 1px solid #D9D9D9;
     font: 400 12px/12px Arial;
     border-radius: 3px;
     background: #fff;
-    -webkit-box-shadow: 5px 5px 0px 0px rgba(50, 50, 50, 0.2);
-    -moz-box-shadow:    5px 5px 0px 0px rgba(50, 50, 50, 0.2);
-    box-shadow:         5px 5px 0px 0px rgba(50, 50, 50, 0.2);
     top: -43px;
     padding: 5px;
     left: -9px;
