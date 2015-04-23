@@ -253,3 +253,4 @@ define("WORDING_HABILIDADE_DESCRICAO", "Descrição da Habilidade");
 define("WORDING_CONHECIMENTO_DESCRICAO", "Descrição do Conhecimento");
 define("WORDING_CLEAN", "Limpar");
 define("MESSAGE_OAS_EMPTY", "Nenhum OA selecionado");
+define("MESSAGE_INVALID_CHA", "CHA inválido!");

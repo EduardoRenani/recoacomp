@@ -82,7 +82,10 @@ class Competencia{
                 $_POST['habilidadeDescricao'], 
                 $_POST['conhecimentoDescricao'], 
                 $_POST['user_id'],
-                $_POST['arrayOAS']
+                $_POST['arrayOAS'],
+                $_POST['conhecimento'],
+                $_POST['habilidade'],
+                $_POST['atitude']
             );
         // Se não estiver cadastrando nova competência, no construct ele retorna valores vazios.
         }else{
@@ -129,7 +132,7 @@ class Competencia{
      * Verifica todos os erros possíveis e cria a competência se ela não existe
      */
 
-    public function criaCompetencia($nome, $descricaoNome, $atitudeDescricao, $habilidadeDescricao, $conhecimentoDescricao, $idProfessor, $arrayOAS){
+    public function criaCompetencia($nome, $descricaoNome, $atitudeDescricao, $habilidadeDescricao, $conhecimentoDescricao, $idProfessor, $arrayOAS, $conhecimento, $habilidade, $atitude){
         // Remove espaços em branco em excesso das strings
         $nome = trim($nome);
         $descricaoNome = trim($descricaoNome);
@@ -137,7 +140,6 @@ class Competencia{
         $habilidadeDescricao = trim($habilidadeDescricao);
         $conhecimentoDescricao = trim($conhecimentoDescricao);
         $arrayOAS = explode(',',$arrayOAS);
-
         // Atribuição das variáveis ao objeto
         $this->nome = $nome;
         $this->descricaoNome = $descricaoNome;
@@ -162,6 +164,8 @@ class Competencia{
             $this->errors[] = MESSAGE_OAS_EMPTY;
         } elseif (strlen($nome) < 2) {
             $this->errors[] = MESSAGE_NAME_TOO_SHORT;
+        }elseif ((max($conhecimento) > 5) || (min($conhecimento) < 0)) {
+            $this->errors[] = MESSAGE_INVALID_CHA;
             //Fim de validações de dados de entrada
             //Inicio das validações de cadastro repitido
         } else if ($this->databaseConnection()) {
@@ -185,21 +189,21 @@ class Competencia{
                 $stmt->bindParam(':conhecimentoDescricao',$conhecimentoDescricao, PDO::PARAM_STR);
                 //$stmt->bindParam(':idProfessor',$idProfessor, PDO::PARAM_INT);
                 $stmt->execute();
-                //print_r($stmt->errorInfo());
-                $ultimo_ID = $this->db_connection->lastInsertId();
-                $this->$ultimo_ID = $ultimo_ID;
-                //echo 'O ultimo ID é:'.$this->db_connection->lastInsertId().';aaaaaa';
-                    // Cadastro na tabela Competencia_OA
-                    //Associação com o banco de dados
+                $this->ultimo_ID = $this->db_connection->lastInsertId();
+                 // Cadastro na tabela Competencia_OA
+                 //Associação com o banco de dados
                 $count = count($arrayOAS);
-                echo $count;
                 for ($i = 0; $i < $count; $i++) {
                     $arrayOASBD = $arrayOAS[$i];
-                    //echo "Aqui " .$arrayOAS[$i];
-                    $this->$arrayOASBD = $arrayOASBD;
-                    $stmt = $this->db_connection->prepare("INSERT INTO competencia_oa(id_competencia, id_OA) VALUES (':ultimo_ID', :arrayOASBD)");
-                    $stmt->bindParam(':ultimo_ID',$ultimo_ID, PDO::PARAM_INT);
+                    $c = $conhecimento[$arrayOASBD];
+                    $h = $habilidade[$arrayOASBD];
+                    $a = $atitude[$arrayOASBD];
+                    $stmt = $this->db_connection->prepare("INSERT INTO competencia_oa(id_competencia, id_OA, conhecimento, habilidade, atitude) VALUES (:ultimo_ID, :arrayOASBD, :conhecimento, :habilidade, :atitude)");
+                    $stmt->bindParam(':ultimo_ID',$this->ultimo_ID, PDO::PARAM_INT);
                     $stmt->bindParam(':arrayOASBD',$arrayOASBD, PDO::PARAM_INT);
+                    $stmt->bindParam(':conhecimento',$c, PDO::PARAM_INT);
+                    $stmt->bindParam(':habilidade',$h, PDO::PARAM_INT);
+                    $stmt->bindParam(':atitude',$a, PDO::PARAM_INT);
                     $stmt->execute();
                 }
 

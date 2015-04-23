@@ -75,6 +75,7 @@ class Disciplina {
     {
         if (isset($_POST["registrar_nova_disciplina"])) {
             // Função para primeira parte do cadastro de disciplina
+            print_r($_POST);
             $this->criaDisc(
             $_POST['nomeCurso'],
             $_POST['nomeDisciplina'],
