@@ -64,6 +64,8 @@ class Comp{
                     $OA['chaS']=$OA['C']+$OA['H']+$OA['A'];
                     //No .doc é relativo ao VC + VH + VA. Ver pg. 3.
                     $OA['res'] = $OA['chaS'] - $this->chaUserS;
+
+
                     //var_dump($OA);
                 }
             }while($result !=NULL);
@@ -372,5 +374,6 @@ class Comp{
 	}
 
 }
+
 
 ?>

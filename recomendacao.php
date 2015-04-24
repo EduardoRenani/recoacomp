@@ -44,7 +44,7 @@ include('views/_header.php');
             div = $(this).closest('div#conteudo').next('#conteudo-expansivel');
             if(!div.is(':visible')){
                 div.css('height','auto').slideDown(1000);
-                $('.conteudo').find('span').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+                $(this).removeClass('glyphicon-plus').addClass('glyphicon-minus');
             }else{
                 div.slideUp();
                 $('.conteudo').find('span').addClass('glyphicon-plus').removeClass('glyphicon-minus');
@@ -58,7 +58,7 @@ include('views/_header.php');
 
 
 
-require_once("views/sidebar-disciplina.php");
+require_once("views/sidebar.php");
 
 // ... ask if we are logged in here:
 if ($login->isUserLoggedIn() == true) {

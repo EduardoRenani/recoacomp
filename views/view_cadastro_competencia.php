@@ -275,6 +275,51 @@ include('_header.php'); ?>
     }
 </script>
 
+<script>
+//Declara uma nova requisição ajax
+function fazAjax(){
+    console.log('chamou o faz');
+    var meu_ajax = new XMLHttpRequest();
+
+    //Declara um "conteiner" de dados para serem enviados por POST
+    var formData = new FormData();
+    var listaExclusao = $("#tabela2").sortable('toArray').toString();
+    //Adiciona uma variável ao "contêiner", no caso, a variável 'variavel' que contém o dado 'dado'
+    formData.append( 'listaExclusao', listaExclusao ); //$_POST['variavel'] === 'dado
+    //Configuração do ajax: qual o "tipo" (no caso, POST) e qual a página que será acessada (no caso, ajax_page.php)
+    //( o último parâmetro, um booleano, é para especificar se é assíncrono (true) ou síncrono (false) )
+    meu_ajax.open( 'POST', './oa.php', true );
+
+    //Configurar a função que será chamada quando a requisição mudar de estado
+
+    meu_ajax.onreadystatechange = function () {
+        if ( meu_ajax.readyState === 4 ) { //readyState === 4: terminou/completou a requisição
+            if ( meu_ajax.status === 200 ) { //status === 200: sucesso
+                if ( meu_ajax.responseText.length > 0 ) {
+                    var array = JSON.parse(meu_ajax.responseText);
+                    var element_tabela1 = document.getElementById('tabela1');
+                    for(var i = 0; i < array.length; i++) {
+                        if ( element_tabela1.innerHTML.indexOf(array[i]) === -1) {
+                            element_tabela1.innerHTML += array[i];
+                        }
+                    }
+                    //Resposta não-vazia
+                } else {
+                    //Resposta vazia
+                }
+            } else if ( meu_ajax.status !== 0 ) { //status !== 200: erro ( meu_ajax.status === 0: ajax não enviado )
+                console.log( 'DEU ERRO NO AJAX: '+meu_ajax.responseText );
+            }
+        }
+    };
+    meu_ajax.send( formData );
+}
+$(function(){fazAjax()});
+$(window).blur(function(){fazAjax();});
+$(window).focus(function(){fazAjax();});
+$(window).mouseup(function(){fazAjax();});
+</script>
+
 <div class="fixedBackgroundGradient"></div>
 <!-- clean separation of HTML and PHP -->
 
@@ -331,20 +376,10 @@ include('_header.php'); ?>
                                 <input type="hidden" id="arrayOAS" name="arrayOAS" value="" />
                                   <span style="display block; width: 40%; float: left; text-align:left;">Objetos OAS Disponíveis</span><span style="display: block; width: 30%; float: right; text-align:right;">Objetos OAS Selecionados</span>
                             <ul id="tabela1">
-                                      <?php
-                                      $OA = new OA();
-                                      $idOA = $OA->getArrayOfId_OA();
-                                      $nomeOA = $OA->getArrayOfName_OA(); 
-                                      $contador = count($nomeOA);
-                                      // $idOA[$i] = posição no vetor
-                                      // ["idcesta"] = parametro do banco de dados
-                                      for($i=0;$i<$contador;$i++){ ?>
-                                          <li id="<?php echo "".($idOA[$i]["idcesta"]); ?>"name="<?php echo "".($nomeOA[$i]["nome"]); ?>" class="ui-state-default"><?php echo "".($nomeOA[$i]["nome"]); ?></li>
-                                      <?php } ?>
-                                  </ul>
-                                  <ul id="tabela2">
+                            </ul>
+                            <ul id="tabela2">
                                   <!-- Os objetos que serão associados estarão nessa tabela -->
-                                  </ul>
+                            </ul>
                                   <center><a href="cadastro_OA.php" target="_blank"><div class='botao-cadastra' style='width: 240px'><?=WORDING_REGISTER_NOVO_OA?></div></a></center>
 
                             </div>
