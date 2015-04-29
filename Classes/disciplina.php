@@ -75,14 +75,17 @@ class Disciplina {
     {
         if (isset($_POST["registrar_nova_disciplina"])) {
             // Função para primeira parte do cadastro de disciplina
-            print_r($_POST);
+            //print_r($_POST);
             $this->criaDisc(
             $_POST['nomeCurso'],
             $_POST['nomeDisciplina'],
             $_POST['descricao'], 
             $_POST['user_id'], 
             $_POST['senha'], 
-            $_POST['arrayCompetencias']);
+            $_POST['arrayCompetencias'],
+            $_POST['conhecimento'],
+            $_POST['habilidade'],
+            $_POST['atitude']);
         }elseif(isset($_POST["verifica_senha"])){
             if (($this->checkPassword($_POST['senha'], $_POST['idDisciplina']))){
                 if(($_POST['okay']) == 'okay'){
@@ -138,7 +141,7 @@ class Disciplina {
      * Administra toda o sistema de Criação de disciplina
      * Verifica todos os erros possíveis e cria a disciplina se ela não existe
      */
-    public function criaDisc($nomeCurso, $nomeDisciplina, $descricao, $usuarioProfessorID, $senha, $arrayCompetencias){
+    public function criaDisc($nomeCurso, $nomeDisciplina, $descricao, $usuarioProfessorID, $senha, $arrayCompetencias, $conhecimento, $habilidade, $atitude){
        // Remove espaços em branco em excesso das strings
         $nomeCurso  = trim($nomeCurso);
         $nomeDisciplina = trim($nomeDisciplina);
@@ -168,6 +171,15 @@ class Disciplina {
             $this->errors[] = MESSAGE_USERNAME_BAD_LENGTH;
         } elseif (strlen($nomeCurso) > 64 || strlen($nomeCurso) < 2) {
             $this->errors[] = MESSAGE_USERNAME_BAD_LENGTH;
+        }elseif ((max($conhecimento) > 5) || (min($conhecimento) < 0)) {
+            $this->errors[] = MESSAGE_INVALID_CHA;
+        }elseif ((max($habilidade) > 5) || (min($habilidade) < 0)) {
+            $this->errors[] = MESSAGE_INVALID_CHA;
+        }elseif ((max($atitude) > 5) || (min($atitude) < 0)) {
+            $this->errors[] = MESSAGE_INVALID_CHA;
+        }elseif (empty($arrayCompetencias)){
+            $this->errors[] = WORDING_NULL_COMPETENCE;
+
             //Fim de validações de dados de entrada
         //Inicio das validações de cadastro repitido
         } else if ($this->databaseConnection()) {
@@ -199,13 +211,23 @@ class Disciplina {
                     for ($i = 0; $i < $count; $i++) {
                         $arrayCompetenciasBD = $arrayCompetencias[$i];
                         $this->arrayCompetenciasBD = $arrayCompetenciasBD;
-                        $stmt = $this->db_connection->prepare("INSERT INTO disciplina_competencia(disciplina_iddisciplina, competencia_idcompetencia) VALUES (:ultimo_ID, :arrayCompetenciasBD)");
+                        $c = $conhecimento[$arrayCompetenciasBD];
+                        $h = $habilidade[$arrayCompetenciasBD];
+                        $a = $atitude[$arrayCompetenciasBD];
+                        $stmt = $this->db_connection->prepare("INSERT INTO disciplina_competencia(disciplina_iddisciplina, competencia_idcompetencia, conhecimento, habilidade, atitude) VALUES (:ultimo_ID, :arrayCompetenciasBD, :conhecimento, :habilidade, :atitude)");
                         $stmt->bindParam(':ultimo_ID',$ultimo_ID, PDO::PARAM_INT);
                         $stmt->bindParam(':arrayCompetenciasBD',$arrayCompetenciasBD, PDO::PARAM_INT);
+                        $stmt->bindParam(':conhecimento',$c, PDO::PARAM_INT);
+                        $stmt->bindParam(':habilidade',$h, PDO::PARAM_INT);
+                        $stmt->bindParam(':atitude',$a, PDO::PARAM_INT);
                         $stmt->execute();
                     }
                
                     $this->messages[] = WORDING_DISCIPLINA. $nomeDisciplina .WORDING_CREATED_SUCESSFULLY;
+                    $host  = $_SERVER['HTTP_HOST'];
+                    $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+                    $extra = 'index.php';
+                    echo "<script language='JavaScript'> setTimeout(function () {window.location='http://".$host.$uri."/".$extra."';}, 100); </script> ";
                  }
         }
     }

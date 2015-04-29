@@ -10,6 +10,7 @@ include('_header.php'); ?>
 
 <head>
 
+
     <script src="js/jquery.range.js"></script>
     <link href="css/jquery.range.css" rel="stylesheet">
     <link rel="stylesheet" href="css/base_cadastro_objeto.css">
@@ -277,7 +278,7 @@ include('_header.php'); ?>
 
 <script>
 //Declara uma nova requisição ajax
-function fazAjax(){
+function fazAjaxCompetencias(){
     console.log('chamou o faz');
     var meu_ajax = new XMLHttpRequest();
 
@@ -314,10 +315,10 @@ function fazAjax(){
     };
     meu_ajax.send( formData );
 }
-$(function(){fazAjax()});
-$(window).blur(function(){fazAjax();});
-$(window).focus(function(){fazAjax();});
-$(window).mouseup(function(){fazAjax();});
+$(function(){fazAjaxCompetencias()});
+$(window).blur(function(){fazAjaxCompetencias();});
+$(window).focus(function(){fazAjaxCompetencias();});
+$(window).mouseup(function(){fazAjaxCompetencias();});
 </script>
 
 <div class="fixedBackgroundGradient"></div>
@@ -372,15 +373,16 @@ $(window).mouseup(function(){fazAjax();});
 
                             </div>
                             <!-- DIV COM DADOS DAS COMPETÊNCIAS A SEREM ASSOCIADAS A DISCIPLINA -->
-                            <div id="sub-conteudo1" class="tab">
+                            <div id="sub-conteudo1" style="background-image: url(http://images.all-free-download.com/images/graphiclarge/blue_right_arrow_99.jpg); background-repeat: no-repeat; background-position: 49.5% 30%; background-size: 50px;" class="tab">
                                 <input type="hidden" id="arrayOAS" name="arrayOAS" value="" />
+                                <span style="display block; width: 100%; float: left; text-align:center;"><?php echo WORDING_ASSOCIATE_OA; ?>.</span>
                                   <span style="display block; width: 40%; float: left; text-align:left;">Objetos OAS Disponíveis</span><span style="display: block; width: 30%; float: right; text-align:right;">Objetos OAS Selecionados</span>
                             <ul id="tabela1">
                             </ul>
                             <ul id="tabela2">
                                   <!-- Os objetos que serão associados estarão nessa tabela -->
                             </ul>
-                                  <center><a href="cadastro_OA.php" target="_blank"><div class='botao-cadastra' style='width: 240px'><?=WORDING_REGISTER_NOVO_OA?></div></a></center>
+                                  <!-- <center><a href="cadastro_OA.php" target="_blank"><div class='botao-cadastra' style='width: 240px'><?=WORDING_REGISTER_NOVO_OA?></div></a></center> -->
 
                             </div>
                             <div id="sub-conteudo2" class="tab">
@@ -403,5 +405,5 @@ $(window).mouseup(function(){fazAjax();});
             </div>
         </div>
 
-<a href="index.php"><?php echo WORDING_BACK_TO_LOGIN; ?></a>
+<!--<a href="index.php"><?php echo WORDING_BACK_TO_LOGIN; ?></a>-->
 <?php include('_footer.php'); ?>

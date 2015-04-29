@@ -63,7 +63,7 @@
                     <div class="team-member-avatar" style="background-image:url('img/foto_ana.jpg');"></div>
                     <header>
                         <h3>Ana Luísa Fonseca</h3>
-                        <h4>Web/Frontend Designer - Graduanda em Design Visual</h4>
+                        <h4>Designer/Frontend - Graduanda em Design Visual</h4>
                         <h4>alcfonseca1<span class="arroba"></span>gmail.com</h4>
                         <h4><a href="http://lattes.cnpq.br/9466270828355582">Curriculo Lates</a></h4>
                     </header>

@@ -6,8 +6,15 @@
 
 require_once('config/config.cfg');
 require_once('translations/pt_br.php');
+require_once('classes/Competencia.php');
+
 
 class Comp{
+
+    /**
+     * @var object $db_connection The database connection
+     */
+    private $db_connection            = null;
 
 	private $oa;
 
@@ -17,6 +24,7 @@ class Comp{
 
 	private $nomeComp;
 
+	private $descricaoComp;
 	/*Essas variáveis serão mantidas em caso de, no futuro, haver modificações na recomendação e precisar de conhecimento,
 	habilidade e atitude separadas. Não me agradeça, querido futuro bolsista. Apenas dê 3 pulinhos, reze um pai nosso e
 	32 ave marias.
@@ -27,14 +35,38 @@ class Comp{
 	private $chaUserS;
 	private $chaDiscS;
 
+
+    private function databaseConnection(){
+        // connection already opened
+        if ($this->db_connection != null) {
+            return true;
+
+        } else {
+            // create a database connection, using the constants from config/config.php
+            try {
+                $this->db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+                return true;
+                // If an error is catched, database connection failed
+            } catch (PDOException $e) {
+                $this->errors[] = MESSAGE_DATABASE_ERROR;
+                print_r($this);
+                return false;
+
+            }
+        }
+    }
+
 	function __construct($idComp,$user,$disc){
 		$this->oa = new lista();
-		$this->mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+		$this->databaseConnection();
+		//$this->mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 		$this->idComp = $idComp;
 		$this->getCHAuser($user);
 		$this->getCHAdisc($disc);
 		$this->setNome();
+		$this->setDescricao();
 	}
+
 
 	//Verifica se $num é numérico maior que zero.
 	private function isValid($num){
@@ -53,10 +85,14 @@ class Comp{
 
 			
 			//Pegar CHA
-			$sql="SELECT `conhecimento`, `habilidade`, `atitude` FROM `competencia_oa` WHERE `id_competencia`=$this->idComp AND `id_OA`=$idOA";
-            $query = $this->mysqli->query($sql);
+
+			$sql_PDO = $this->db_connection->prepare('SELECT conhecimento, habilidade, atitude FROM competencia_oa WHERE id_competencia=:idComp AND id_OA=:idOA');
+			$sql_PDO->bindValue(':idComp', $this->idComp, PDO::PARAM_INT);
+        	$sql_PDO->bindValue(':idOA', $idOA, PDO::PARAM_INT);
+         	$sql_PDO->execute();
             do{
-                $result = $query->fetch_assoc();
+                //$result = $query->fetch_assoc();
+                $result = $sql_PDO->fetch(PDO::FETCH_ASSOC);
                 if($result != NULL){
                     $OA['C']=(int)$result['conhecimento'];
                     $OA['H']=(int)$result['habilidade'];
@@ -139,7 +175,7 @@ class Comp{
 			echo "<div id='conteudo' class='conteudo clearfix'><li class='recomendacao-item' style='margin-bottom: 0;'>
 						<div class='recomendacao-item-content'> 
 							<h3>Competência: ".$this->nomeComp."</h3>
-							<p>Pequena descrição da competência.</p>
+							<p>".$this->descricaoComp."</p>
 						</div>
 							<button type='button' class='btn-recomendacao btn-default btn-lg'>
 							  <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
@@ -159,7 +195,7 @@ class Comp{
 
 	                    		echo "<h6>".$v[$c]['descricao']."</h6><br/>";
 
-	                    		echo "Acesse: <a href='".$v[$c]['url']."'>LINK</a><b>";
+	                    		echo "<a href='".$v[$c]['url']."'>Acessar Objeto de Aprendizagem</a><b>";
 
                 		echo "</div>";
 
@@ -197,12 +233,13 @@ class Comp{
 	}
 
 	private function getCHAuser($user){
-
-			
-            $sql="SELECT `conhecimento`,`habilidade`, `atitude` FROM `usuario_competencias` WHERE `usuario_idusuario`=$user AND `competencia_idcompetencia`=$this->idComp";
-            $query = $this->mysqli->query($sql);
-            do{
-                $result = $query->fetch_array(MYSQLI_ASSOC);
+			$sql_PDO = $this->db_connection->prepare('SELECT conhecimento, habilidade, atitude FROM usuario_competencias WHERE usuario_idusuario=:user AND competencia_idcompetencia=:idComp');
+			$sql_PDO->bindValue(':user', $user, PDO::PARAM_INT);
+        	$sql_PDO->bindValue(':idComp', $this->idComp, PDO::PARAM_INT);
+         	$sql_PDO->execute();
+           	do{
+                $result = $sql_PDO->fetch(PDO::FETCH_ASSOC);
+                //$result = $query->fetch_array(MYSQLI_ASSOC);
                 if($result != NULL){
 
                     $this->chaUser['C']=(int)$result['conhecimento'];
@@ -217,10 +254,13 @@ class Comp{
 
 	private function getCHAdisc($disc){
 
-        $sql="SELECT `conhecimento`,`habilidade`, `atitude` FROM `disciplina_competencia` WHERE `disciplina_iddisciplina`=$disc AND `competencia_idcompetencia`=$this->idComp";
-        $query = $this->mysqli->query($sql);
+		$sql_PDO = $this->db_connection->prepare('SELECT conhecimento, habilidade, atitude FROM disciplina_competencia WHERE disciplina_iddisciplina=:disc AND competencia_idcompetencia=:idComp');
+		$sql_PDO->bindValue(':disc', $disc, PDO::PARAM_INT);
+    	$sql_PDO->bindValue(':idComp', $this->idComp, PDO::PARAM_INT);
+     	$sql_PDO->execute();
         do{
-        $dados = $query->fetch_array(MYSQLI_ASSOC);
+        //$dados = $query->fetch_array(MYSQLI_ASSOC);
+        $dados = $sql_PDO->fetch(PDO::FETCH_ASSOC);
             if($dados != NULL){
                 $this->chaDisc['C']=(int)$dados['conhecimento'];
                 $this->chaDisc['H']=(int)$dados['habilidade'];
@@ -311,32 +351,39 @@ class Comp{
 
 		for($c=0;$c<$cont;$c++){
 
+     //if($stmt = $this->mysqli -> prepare("SELECT `nome`, `descricao`, `url` FROM  `cesta` WHERE `idcesta` = ?")) {
+
 	        /* Create a prepared statement */
-	        if($stmt = $this->mysqli -> prepare("SELECT `nome`, `descricao`, `url` FROM  `cesta` WHERE `idcesta` = ?")) {
+	        if($sql_PDO = $this->db_connection->prepare('SELECT nome, descricao, url FROM cesta WHERE idcesta=:idCesta')) {
 
 	            /* Bind parameters
 	            s - string, b - blob, i - int, etc */
-	            $stmt -> bind_param("i", $v[$c]['ID'] ); //ID do objeto atual.
+	            $sql_PDO->bindValue(':idCesta', $v[$c]['ID'], PDO::PARAM_INT);
+	            //$stmt -> bind_param("i", $v[$c]['ID'] ); //ID do objeto atual.
 
 	            /* Execute it */
-	            $stmt -> execute();
+	    		$sql_PDO->execute();
 
 	            /* Bind results */
-	            $stmt -> bind_result($v[$c]['nome'],$v[$c]['descricao'],$v[$c]['url']);
+				//$stmt -> bind_result($v[$c]['nome'],$v[$c]['descricao'],$v[$c]['url']);
+				$sql_PDO->bindColumn('nome', $v[$c]['nome']);
+				$sql_PDO->bindColumn('descricao', $v[$c]['descricao']);
+				$sql_PDO->bindColumn('url', $v[$c]['url']);
+
 
 	            /* Fetch the value */
-	            while ($stmt -> fetch() ){
+	            while ($sql_PDO->fetchAll()){
 	                
 	            }
 
 	            /* Close statement */
-	            $stmt -> close();
+	            //$stmt -> close();
 	        }
 
 	    }
 
         /* Close connection */
-        $this->mysqli -> close();
+        //$this->mysqli -> close();
 
         unset($this->oa);
         $this->oa = new lista($v);
@@ -346,25 +393,58 @@ class Comp{
 	private function setNome(){
 
 		/* Create a prepared statement */
-        if($stmt = $this->mysqli -> prepare("SELECT `nome` FROM `competencia` WHERE `idcompetencia`=?")) {
+		if($sql_PDO = $this->db_connection->prepare('SELECT nome FROM competencia WHERE idcompetencia=:idCompetencia')) {
+        //if($stmt = $this->mysqli -> prepare("SELECT `nome` FROM `competencia` WHERE `idcompetencia`=?")) {
 
             /* Bind parameters
             s - string, b - blob, i - int, etc */
-            $stmt -> bind_param("i", $this->idComp); //ID do objeto atual.
+            //$stmt -> bind_param("i", $this->idComp); //ID do objeto atual.
+			$sql_PDO->bindValue(':idCompetencia', $this->idComp, PDO::PARAM_INT);
 
             /* Execute it */
-            $stmt -> execute();
+            $sql_PDO->execute();
 
             /* Bind results */
-            $stmt -> bind_result($this->nomeComp);
+            //$stmt -> bind_result($this->nomeComp);
+            $sql_PDO->bindColumn('nome', $this->nomeComp);
 
             /* Fetch the value */
-            while ($stmt -> fetch() ){
+            while ($sql_PDO->fetchAll()){
                 
             }
 
             /* Close statement */
-            $stmt -> close();
+            //$stmt -> close();
+        }
+
+	}
+
+
+	private function setDescricao(){
+
+		/* Create a prepared statement */
+		if($sql_PDO = $this->db_connection->prepare('SELECT descricao_nome FROM competencia WHERE idcompetencia=:idCompetencia')) {
+        //if($stmt = $this->mysqli -> prepare("SELECT `nome` FROM `competencia` WHERE `idcompetencia`=?")) {
+
+            /* Bind parameters
+            s - string, b - blob, i - int, etc */
+            //$stmt -> bind_param("i", $this->idComp); //ID do objeto atual.
+			$sql_PDO->bindValue(':idCompetencia', $this->idComp, PDO::PARAM_INT);
+
+            /* Execute it */
+            $sql_PDO->execute();
+
+            /* Bind results */
+            //$stmt -> bind_result($this->nomeComp);
+            $sql_PDO->bindColumn('descricao_nome', $this->descricaoComp);
+
+            /* Fetch the value */
+            while ($sql_PDO->fetchAll()){
+                
+            }
+
+            /* Close statement */
+            //$stmt -> close();
         }
 
 	}

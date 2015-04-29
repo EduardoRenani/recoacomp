@@ -27,7 +27,7 @@ $registration = new Registration();
 				<div class="login">
 					<div class="top-login">Login:</div></br>
 					
-					<!-- <form action="home.html"><!--action é só para mostrar, no site em si não tem isso"--> 
+					<!-- <form action="home.html"> <!action é só para mostrar, no site em si não tem isso"--> 
 					<form method="post" action="index.php" name="loginform">
 						<input id="user_name" type="text" name="user_name" placeholder="<?= WORDING_USERNAME; ?>" required>
 						<input id="user_password" type="password" name="user_password" autocomplete="off" required placeholder="<?= WORDING_PASSWORD;?>" required>

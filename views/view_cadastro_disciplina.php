@@ -153,6 +153,73 @@ include('_header.php');
 </script>
 </head>
 
+<script>
+//Declara uma nova requisição ajax
+function fazAjax(){
+    console.log('chamou o faz');
+    var meu_ajax = new XMLHttpRequest();
+
+    //Declara um "conteiner" de dados para serem enviados por POST
+    var formData = new FormData();
+    var listaExclusao = $("#tabela2").sortable('toArray').toString();
+    //Adiciona uma variável ao "contêiner", no caso, a variável 'variavel' que contém o dado 'dado'
+    formData.append( 'listaExclusao', listaExclusao ); //$_POST['variavel'] === 'dado
+    //Configuração do ajax: qual o "tipo" (no caso, POST) e qual a página que será acessada (no caso, ajax_page.php)
+    //( o último parâmetro, um booleano, é para especificar se é assíncrono (true) ou síncrono (false) )
+    meu_ajax.open( 'POST', './competencias.php', true );
+
+    //Configurar a função que será chamada quando a requisição mudar de estado
+
+    meu_ajax.onreadystatechange = function () {
+        if ( meu_ajax.readyState === 4 ) { //readyState === 4: terminou/completou a requisição
+            if ( meu_ajax.status === 200 ) { //status === 200: sucesso
+                if ( meu_ajax.responseText.length > 0 ) {
+                    var array = JSON.parse(meu_ajax.responseText);
+                    var element_tabela1 = document.getElementById('tabela1');
+                    for(var i = 0; i < array.length; i++) {
+                        if ( element_tabela1.innerHTML.indexOf(array[i]) === -1) {
+                            element_tabela1.innerHTML += array[i];
+                        }
+                    }
+                    //Resposta não-vazia
+                } else {
+                    //Resposta vazia
+                }
+            } else if ( meu_ajax.status !== 0 ) { //status !== 200: erro ( meu_ajax.status === 0: ajax não enviado )
+                console.log( 'DEU ERRO NO AJAX: '+meu_ajax.responseText );
+            }
+        }
+    };
+    meu_ajax.send( formData );
+}
+
+//Enviar o ajax/Realizar a requisição
+
+
+//$(function () {
+//    tempoAjax = setInterval(fazAjax, 1000);
+//});
+$(function(){fazAjax()});
+//$(window).mouseup(function(){fazAjax();});
+$(window).blur(function(){fazAjax();});
+$(window).focus(function(){fazAjax();});
+$(window).mouseup(function(){fazAjax();});
+//setInterval(fazAjax, 1000);
+//setInterval(removerLi, 1);
+
+/*    $(function() {
+        $(window)
+            .focus(function() {
+                clearInterval(window.tempoAjax);
+                //setInterval(removerLi, 1);
+            })
+            .blur(function() {
+                tempoAjax =  
+            });
+    });*/
+</script>
+
+
 <script language="javascript">
     function mudaTab(qualTab) {
         if(qualTab == 1) {
@@ -180,7 +247,7 @@ include('_header.php');
                 document.getElementById('buttonPrevious').setAttribute('style', 'float: none; display: inline;');
             }
             else {
-                if(document.getElementsByName('senha')[0].value.length < 5) {
+                if(document.getElementsByName('senha')[0].value.length <= 5) {
                     document.getElementsByName('senha')[0].style.border = "1px solid #dc8810";
                     document.getElementsByName('senha')[0].value = "";
                     document.getElementsByName('senha')[0].setAttribute("placeholder", "Min. 6 digitos");
@@ -312,72 +379,63 @@ include('_header.php');
             clearTimeout(tTip1);
         }
     }
-</script>
 
-<script>
-//Declara uma nova requisição ajax
-function fazAjax(){
-    console.log('chamou o faz');
-    var meu_ajax = new XMLHttpRequest();
-
-    //Declara um "conteiner" de dados para serem enviados por POST
-    var formData = new FormData();
-    var listaExclusao = $("#tabela2").sortable('toArray').toString();
-    //Adiciona uma variável ao "contêiner", no caso, a variável 'variavel' que contém o dado 'dado'
-    formData.append( 'listaExclusao', listaExclusao ); //$_POST['variavel'] === 'dado
-    //Configuração do ajax: qual o "tipo" (no caso, POST) e qual a página que será acessada (no caso, ajax_page.php)
-    //( o último parâmetro, um booleano, é para especificar se é assíncrono (true) ou síncrono (false) )
-    meu_ajax.open( 'POST', './competencias.php', true );
-
-    //Configurar a função que será chamada quando a requisição mudar de estado
-
-    meu_ajax.onreadystatechange = function () {
-        if ( meu_ajax.readyState === 4 ) { //readyState === 4: terminou/completou a requisição
-            if ( meu_ajax.status === 200 ) { //status === 200: sucesso
-                if ( meu_ajax.responseText.length > 0 ) {
-                    var array = JSON.parse(meu_ajax.responseText);
-                    var element_tabela1 = document.getElementById('tabela1');
-                    for(var i = 0; i < array.length; i++) {
-                        if ( element_tabela1.innerHTML.indexOf(array[i]) === -1) {
-                            element_tabela1.innerHTML += array[i];
-                        }
-                    }
-                    //Resposta não-vazia
-                } else {
-                    //Resposta vazia
-                }
-            } else if ( meu_ajax.status !== 0 ) { //status !== 200: erro ( meu_ajax.status === 0: ajax não enviado )
-                console.log( 'DEU ERRO NO AJAX: '+meu_ajax.responseText );
-            }
+    opacityModal = 0;
+    function fadeInModal() {
+        div = document.getElementById('modal-competencia');
+        divDelete = document.getElementById('closeModal');
+        div.style.opacity = opacityModal;
+        divDelete.style.opacity = opacityModal;
+        opacityModal+=0.01;
+        tModal = setTimeout(function() {fadeInModal()}, 1);
+        if (opacityModal >= 1) {
+            clearTimeout(tModal);
         }
-    };
-    meu_ajax.send( formData );
-}
+    }
 
-//Enviar o ajax/Realizar a requisição
+    function fadeOutModal() {
+        div = document.getElementById('modal-competencia');
+        div1 = document.getElementById('closeModal');
+        div1.style.opacity = opacityModal;
+        div.style.opacity = opacityModal;
+        opacityModal-=0.01;
+        tFadeOutModal = setTimeout(function() {fadeOutModal()}, 1);
+        if (opacityModal <= 0) {
+            divDelete = document.getElementById('modal-competencia');
+            divDelete.parentNode.removeChild(divDelete);
+            divDeleteClose = document.getElementById('closeModal');
+            divDeleteClose.parentNode.removeChild(divDeleteClose);
+            fazAjax();
+            clearInterval(window.tDeleteModal);
+            clearTimeout(tFadeOutModal);
+        }
+    }
 
+    function deleteModal() {
+        if(document.getElementById('modal-competencia').contentDocument.getElementsByClassName('lista-disciplina').length != 0) {
+            fadeOutModal();
+            clearInterval(window.tDeleteModal);
+        }
+    }
 
-//$(function () {
-//    tempoAjax = setInterval(fazAjax, 1000);
-//});
-$(function(){fazAjax()});
-//$(window).mouseup(function(){fazAjax();});
-$(window).blur(function(){fazAjax();});
-$(window).focus(function(){fazAjax();});
-$(window).mouseup(function(){fazAjax();});
-//setInterval(fazAjax, 1000);
-//setInterval(removerLi, 1);
+    function modalCompetencia() {
+        modalClose = document.createElement('div');
+        modalClose.setAttribute("id", "closeModal");
+        modalClose.setAttribute("class", "text-right");
+        modalClose.setAttribute("onclick", "fadeOutModal()");
+        modalClose.setAttribute("style", "position: absolute; top: 14px; left: 0; font-size: 20px; background-color: ; z-index: 9999; width: 100%; padding-right: 10px;");
+        modalClose.innerHTML = '<a href="#"><span class="glyphicon glyphicon-remove"></span></a>';
+        modal = document.createElement("iframe");
+        modal.setAttribute("src", "modal_cadastro_competencia.php");
+        modal.setAttribute("id", "modal-competencia");
+        modal.setAttribute("style", "position: absolute; top: 0; left: 0; background-color: #fff; width: 100%; height: 780px; overflow: hidden; opacity: 0; -webkit-box-shadow: 5px 5px 0px 0px rgba(130, 130, 130, 1); -moz-box-shadow: 5px 5px 0px 0px rgba(130, 130, 130, 1); box-shadow: 5px 5px 0px 0px rgba(130, 130, 130, 1);");
+        modal.setAttribute("frameborder", "0");
 
-/*    $(function() {
-        $(window)
-            .focus(function() {
-                clearInterval(window.tempoAjax);
-                //setInterval(removerLi, 1);
-            })
-            .blur(function() {
-                tempoAjax =  
-            });
-    });*/
+        document.getElementsByClassName('cadastrobase')[0].appendChild(modal);
+        document.getElementsByClassName('cadastrobase')[0].appendChild(modalClose);
+        fadeInModal();
+        tDeleteModal = setInterval("deleteModal()", 1);
+    }
 </script>
 
 <div class="fixedBackgroundGradient"></div>
@@ -428,8 +486,9 @@ $(window).mouseup(function(){fazAjax();});
 
 
                         <!-- DIV COM DADOS DAS COMPETÊNCIAS A SEREM ASSOCIADAS A DISCIPLINA -->
-                        <div id="sub-conteudo1" class="tab">
+                        <div id="sub-conteudo1" style="background-image: url(http://images.all-free-download.com/images/graphiclarge/blue_right_arrow_99.jpg); background-repeat: no-repeat; background-position: 49.5% 30%; background-size: 50px;" class="tab">
                             <input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" />
+                            <span style="display block; width: 100%; float: left; text-align:center;"><?php echo WORDING_ASSOCIATE_COMP; ?>.</span>
                             <span style="display block; width: 40%; float: left; text-align:left;">Competencias Disponíveis</span><span style="display: block; width: 30%; float: right; text-align:right;">Competencias Selecionadas</span>
                             <ul id="tabela1">
 
@@ -441,7 +500,7 @@ $(window).mouseup(function(){fazAjax();});
                             </ul>
                              
                     
-                    <center><a href="cadastro_competencia.php" target="_blank"><div class='botao-cadastra' style='width: 240px'><?=WORDING_CREATE_NEW_COMPETENCIA?></div></a></center>
+                    <center><div onclick="modalCompetencia();" class='botao-cadastra' style='width: 240px'><?=WORDING_CREATE_NEW_COMPETENCIA?></div></center>
                     <br>
                         </div>
                         

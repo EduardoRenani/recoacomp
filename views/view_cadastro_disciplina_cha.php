@@ -58,34 +58,7 @@ include('_header.php');
 
 
 
-    $(function(){
 
-
-        $("#input_range").noUiSlider({
-            start: 1,
-            step: 1,
-            range: {
-                min: 1,
-                max: 5
-            }
-        });
-        function setText( value, handleElement, slider ){
-            $("#exemplo").text( value );
-        }
-        $("#exemplo").Link('lower').to($("#value"), "text");
-
-        $("#exemplo").Link('lower').to('-inline-<div class="tooltip"></div>', function ( value ) {
-
-            // The tooltip HTML is 'this', so additional
-            // markup can be inserted here.
-            $(this).html(
-                '<strong>Value: </strong>' +
-                '<span>' + value + '</span>'
-            );
-        });
-
-    });
-});
 </script>
 </head>
 
@@ -102,8 +75,11 @@ include('_header.php');
             <input type="hidden" name="senha" value="<?php echo $_POST['senha']; ?>" />
 
             <?php 
-                $arrayIdCompetencias = $disciplina->getCompetenciaFromDisciplinaById($_POST["idDisciplina"]);
+                //echo $_POST["idDisciplina"];
+                //$disciplina = new Disciplina();
 
+                $arrayIdCompetencias = $disciplina->getCompetenciaFromDisciplinaById($_POST["idDisciplina"]);
+                //print_r($disciplina->getCompetenciaFromDisciplinaById($_POST["idDisciplina"]));
                 foreach ($arrayIdCompetencias as $competenciaId) {
                     echo "<input type='hidden' id='arrayCHA' name='competencias[]' value=".$competenciaId[0]." />";
 

@@ -264,7 +264,7 @@ border-radius: 5px;
 
 /*FORM-----------------------------------------------------------------------*/
 
- input[type=text],[type=password],[type="email"]{ /*customiza input de texto e senha*/
+ input[type=text],[type=password],[type=url],[type="email"]{ /*customiza input de texto e senha*/
      position:relative;
      border:none;
      background:#F1F1F2;

@@ -121,6 +121,7 @@ define("WORDING_SELECT_COMPETENCIA","Selecione a(s) competências(s)");
 define("WORDING_FILL_YOUR_CHA","Preencha seu CHA");
 define("WORDING_FINALIZE","Finalizar");
 define("WORDING_REGISTER_CHA","Cadastrar CHA");
+define("WORDING_NULL_COMPETENCE","Nenhuma competência foi selecionada");
 
 //Cadastro de OA mensagens
 define("WORDING_PORTUGUES", "Português");
@@ -235,6 +236,7 @@ define("WORDING_FILL_KEYWORD","Preencha palavra-chave");
 define("WORDING_URL","URL");
 define("WORDING_KEYWORD","Palavra-chave");
 define("WORDING_CREATE_OA","Criar Objeto de Aprendizagem");
+define("WORDING_REGISTER_OA","Registrar Objeto de Aprendizagem");
 
 //Cadastro de Competências Mensagens
 define("WORDING_REGISTER_NOVA_COMPETENCIA", "Cadastrar Competência");
@@ -242,6 +244,7 @@ define("WORDING_COMPETENCIA", "Competência ");
 define("WORDING_CHA", "CHA ");
 define("WORDING_CREATE_COMPETENCA", "Criar Nova Competência");
 define("WORDING_ASSOCIATE_OA", "Associar OA's para nova competência");
+define("WORDING_ASSOCIATE_COMP", "Associar competências para novo OA");
 define("MESSAGE_NAME_EMPTY", "Nome vazio");
 define("MESSAGE_DESCRICAO_EMPTY", "Descrição vazia");
 define("MESSAGE_DESCRICAO_HABILIDADE_EMPTY", "Descrição da habilidade vazia");

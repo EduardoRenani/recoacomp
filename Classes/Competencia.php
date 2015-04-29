@@ -166,6 +166,10 @@ class Competencia{
             $this->errors[] = MESSAGE_NAME_TOO_SHORT;
         }elseif ((max($conhecimento) > 5) || (min($conhecimento) < 0)) {
             $this->errors[] = MESSAGE_INVALID_CHA;
+        }elseif ((max($habilidade) > 5) || (min($habilidade) < 0)) {
+            $this->errors[] = MESSAGE_INVALID_CHA;
+        }elseif ((max($atitude) > 5) || (min($atitude) < 0)) {
+            $this->errors[] = MESSAGE_INVALID_CHA;                        
             //Fim de validações de dados de entrada
             //Inicio das validações de cadastro repitido
         } else if ($this->databaseConnection()) {
@@ -208,6 +212,10 @@ class Competencia{
                 }
 
                 $this->messages[] = WORDING_COMPETENCIA. $nome . WORDING_CREATED_SUCESSFULLY;
+                $host  = $_SERVER['HTTP_HOST'];
+                $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+                $extra = 'index.php';
+                echo "<script language='JavaScript'> setTimeout(function () {window.location='http://".$host.$uri."/".$extra."'; }, 100); </script> ";
             }
         }
     }

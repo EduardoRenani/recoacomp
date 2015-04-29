@@ -235,7 +235,6 @@ class OA{
     {
         if (isset($_POST["registrar_novo_OA"])) {
             // Função para cadastro de novo Objeto de Aprendizagem
-            //echo "<pre>";
             //print_r($_POST);
             //echo "</pre>";
             $this->criaOA(
@@ -268,7 +267,14 @@ class OA{
                 $_POST['nome'],
                 $_POST['url'],
                 $_POST['palavrachave'],
-                $_POST['idioma']);
+                $_POST['idioma'],
+                // Dados da Competencia
+                $_POST['arrayCompetencias'],
+                $_POST['conhecimento'],
+                $_POST['habilidade'],
+                $_POST['atitude']
+                );
+                
         } elseif (isset($_POST["cadastro_OA"])) {
             foreach ($_POST as $key => $value)
                 echo $key.'='.$value.'<br />';
@@ -332,8 +338,14 @@ class OA{
         $nome,
         $url,
         $palavrachave,
-        $idioma){
+        $idioma,
+        // Dados da competência
+        $arrayCompetencias,
+        $conhecimento,
+        $habilidade,
+        $atitude){
 
+        // -------------------------------------------/
         // Remover espaços em branco em excesso das strings
         // Categoria vida
         $status = trim($status);
@@ -364,6 +376,8 @@ class OA{
         $url = trim($url);
         $palavrachave = trim($palavrachave);
         $idioma =  trim($idioma);
+
+        $arrayCompetencias = explode(',',$arrayCompetencias);
 
         // Atribuições das variáveis ao objeto
 
@@ -576,8 +590,31 @@ class OA{
                 $stmt->bindParam(':palavraChave',$palavrachave, PDO::PARAM_STR);
                 $stmt->bindParam(':idioma',$idioma, PDO::PARAM_STR);
                 $stmt->execute();
+
+                $lastID = $this->db_connection->lastInsertId();
+                echo 'last id: '.$lastID;
+                $count = count($arrayCompetencias);
+                for ($i = 0; $i < $count; $i++) {
+                    $arrayCompBD = $arrayCompetencias[$i];
+                    $c = $conhecimento[$arrayCompBD];
+                    $h = $habilidade[$arrayCompBD];
+                    $a = $atitude[$arrayCompBD];
+                    $stmt = $this->db_connection->prepare("INSERT INTO competencia_oa(id_competencia, id_OA, conhecimento, habilidade, atitude) VALUES (:arrayCompBD, :ultimo_ID_OA, :conhecimento, :habilidade, :atitude)");
+                    $stmt->bindParam(':arrayCompBD',$arrayCompBD, PDO::PARAM_INT);
+                    $stmt->bindParam(':ultimo_ID_OA',$lastID, PDO::PARAM_INT);
+                    $stmt->bindParam(':conhecimento',$c, PDO::PARAM_INT);
+                    $stmt->bindParam(':habilidade',$h, PDO::PARAM_INT);
+                    $stmt->bindParam(':atitude',$a, PDO::PARAM_INT);
+                    $stmt->execute();
+                }
+
+
                 //echo 'aqui2';
                 $this->messages[] = WORDING_OA. ' ' .$nome.WORDING_CREATE_SUCESSFULLY;
+                $host  = $_SERVER['HTTP_HOST'];
+                $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+                $extra = 'index.php';
+                echo "<script language='JavaScript'> setTimeout(function () {window.location='http://".$host.$uri."/".$extra."';}, 100); </script> ";
             }
         }
     }

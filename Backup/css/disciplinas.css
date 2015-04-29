@@ -1,0 +1,335 @@
+/*!
+ * Start Bootstrap - Landing Page Bootstrap Theme (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+    background: #ffffff url("../img/pattern1.png") repeat 0 0;
+
+}
+
+body{    
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    background: -webkit-linear-gradient(bottom, rgba(38,179,232,0.9), rgba(117,204,214,0.9)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(top, rgba(38,179,232,0.9), rgba(117,204,214,0.9)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(top, rgba(38,179,232,0.9), rgba(117,204,214,0.9)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to top, rgba(38,179,232,0.9), rgba(117,204,214,0.9)); /* Standard syntax (must be last) */
+    padding-top:55px;
+}
+
+
+
+/*HEADER---------------------------------------------------------------------*/
+
+
+#logo{
+
+    margin: 5px;
+    float: left;
+    width: 260px;
+    height: 40px;
+    background: url(../img/recoacomp-logo.png) no-repeat center;
+    display: block;
+    margin-bottom:0px;
+
+}
+
+nav {
+
+    float: right;
+    padding: 5px;  
+
+}
+
+#menu-icon {
+    z-index:10;
+    display: hidden;
+    width: 40px;
+    height: 40px;
+    background: #26B3E8 url(../img/menu-icon.png) center;
+
+}
+
+a:hover#menu-icon {
+    background-color: #108AC0;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav li {
+    display: inline-block;
+    float: left;
+    padding: 10px
+}
+
+.header-large{
+    position:fixed;
+    top:0;
+    left:0;
+    height:55px;
+    border-bottom:5px solid #108AC0;
+    width:100%;
+    background-color:white;
+}
+
+
+
+/*HEADER---------------------------------------------------------------------*/
+
+
+#logo{
+
+    margin: 5px;
+    float: left;
+    width: 260px;
+    height: 40px;
+    background: url(../img/recoacomp-logo.png) no-repeat center;
+    display: block;
+    margin-bottom:0px;
+
+}
+
+nav {
+
+    float: right;
+    padding: 5px;  
+
+}
+
+.header-large{
+    height:55px;
+    border-bottom:5px solid #108AC0;
+    width:100%;
+    font-weight:100;
+    color:black;
+}
+
+.header-large a{text-decoration:none;color:black;}
+.header-large a:hover, a:active{color:grey;}
+
+/*SIDEBAR-----------------------------------------------------------------------*/
+
+#active {font-weight:bold;}
+
+.sidebar{
+    position:relative;
+    float:left;
+    margin-right:0%;
+    -webkit-box-shadow: 5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+    -moz-box-shadow:    5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+    box-shadow:         5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+
+}
+
+.top-sidebar{
+    position:relative;
+    top:0px;
+    text-align:left;
+
+    background-color:#108AC0;
+    color:white;
+}
+
+/*.sidebar-menu{
+   // list-style:none;
+}*/
+
+
+
+
+
+.sidebar-menu a{text-decoration:none;color:#58585B;}
+.sidebar-menu a:hover, a:active{color:#bebebe;}
+.sidebar-menu li{padding-top:0px;}
+
+/*DISCIPLINAS-----------------------------------------------------------------------*/
+
+.disciplinas{
+    background-color:white;
+    position:relative;
+    float:right;
+
+    -webkit-box-shadow: 5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+    -moz-box-shadow:    5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+    box-shadow:         5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+}
+
+.top-disciplinas{
+    position:relative;
+    top:0px;
+    width:50%;
+    height:50px;
+    text-align:left;
+    padding-left:5%;
+
+    background-color:#108AC0;
+    color:white;
+    
+    font-weight:300;
+}
+
+.disciplinas-content{
+
+    position:relative;
+    padding-left:0%;
+    padding-right:0%;
+    background-color:#efefef;
+    
+    top:20px;
+    
+    margin:0 auto;
+    overflow-y:scroll;
+}
+
+.disciplinas-item{
+    position:relative;
+    background-color:white;
+    display:block;
+    height:125px;
+    top:10px;
+    width:100%;
+    margin-bottom:15px;
+    font-weight:100;
+
+    -webkit-box-shadow: 5px 5px 0px 0px rgba(50, 50, 50, 0.1);
+    -moz-box-shadow:    5px 5px 0px 0px rgba(50, 50, 50, 0.1);
+    box-shadow:         5px 5px 0px 0px rgba(50, 50, 50, 0.1);
+}
+
+.disciplina-item-content{width:70%;float:left;}
+.disciplinas-item h3{margin-top:0px;}
+
+.button{
+    //background-color:blue;
+    text-align:center;
+    vertical-align:middle;
+    
+    width:30%;
+    height:auto;
+}
+
+input[type=submit]{
+    height:66px;}
+
+
+
+/*--modalwindow-------*/
+.modalDialog {
+    position: fixed;
+    font-family: "Lato";
+    font-weight:100;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.3);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+
+
+.modalDialog:target {
+    opacity:1;
+    pointer-events: auto;
+}
+
+.modalDialog > div {     
+    width: 400px;     
+    height:20%;
+    position: relative;     
+    margin: 10% auto;     
+padding: 5px 20px 13px 20px;     
+border-radius: 5px;
+background: #fff;  
+text-align:center;   
+}
+
+.close {
+    background: #108AC0;
+    color: #FFFFFF;
+    line-height: 25px;
+    position: absolute;
+    right: -12px;
+    text-align: center;
+    top: -10px;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    -moz-box-shadow: 1px 1px 3px #000;
+    -webkit-box-shadow: 1px 1px 3px #000;
+    box-shadow: 1px 1px 3px #000;
+}
+
+.close:hover { background: #108AC0;}
+
+/*FOOTER-----------------------------------------------------------------------*/
+
+.row-footer{
+    margin-right: -15px;
+    margin-left: -15px;
+
+}
+
+.container-footer{
+    display:block;
+    text-align:center;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto; 
+
+padding:0% 0%;
+}
+
+.span1{
+    text-align:center;
+    margin-left:1%;
+    width:300px;
+    float:left;
+    vertical-align:middle;
+}
+
+.span2{
+    text-align:center;
+    margin-top:20px;
+    width:300px;
+    float:right;
+    margin-right:1%;
+    vertical-align:middle;
+}
+
+.span2 a{
+    font-weight:100;
+    color:#6D6E70;
+}
+
+footer {
+    padding: 20px 0;
+    background-color: #231F20;
+    height:;
+}
+
+p.copyright {
+    margin: 15px 0 0;
+}
+
+.footer-logo{
+    width:50px;
+    height:50px;
+    margin-left:5%;
+    margin-right:5%;
+}

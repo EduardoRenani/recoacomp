@@ -1,0 +1,346 @@
+/*!
+ * Start Bootstrap - Landing Page Bootstrap Theme (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+html,body{height:100%;}
+
+html {
+    width: 100%;
+    
+    background: url("../img/pattern1.png") repeat 0 0;
+
+}
+
+body{    
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    padding-top:55px;
+    background-repeat:repeat-y;
+
+    
+}
+
+div.fixedBackgroundGradient{  
+      background: -moz-linear-gradient(top, rgba(38,179,232,0.9), rgba(117,204,214,0.9)), url("../img/pattern1.png");
+    background: -webkit-linear-gradient(bottom, rgba(38,179,232,0.9), rgba(117,204,214,0.9)), url("../img/pattern1.png");
+    background: -o-linear-gradient(top, rgba(38,179,232,0.9), rgba(117,204,214,0.9)), url("../img/pattern1.png");
+    background: linear-gradient(to top, rgba(38,179,232,0.9), rgba(117,204,214,0.9)), url("../img/pattern1.png"); 
+  height: 100%; width: 100%;  
+  position: fixed; top: 0px; left: 0px;  
+  z-index: 0000;
+}
+
+/*HEADER---------------------------------------------------------------------*/
+
+
+#logo{
+
+    margin: 5px;
+    float: left;
+    width: 260px;
+    height: 40px;
+    background: url(../img/recoacomp-logo.png) no-repeat center;
+    display: block;
+    margin-bottom:0px;
+
+}
+
+nav {
+
+    float: right;
+    padding: 5px;  
+
+}
+
+#menu-icon {
+    z-index:10;
+    display: hidden;
+    width: 40px;
+    height: 40px;
+    background: #26B3E8 url(../img/menu-icon.png) center;
+
+}
+
+a:hover#menu-icon {
+    background-color: #108AC0;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav li {
+    display: inline-block;
+    float: left;
+    padding: 10px
+}
+
+.header-large{
+    position:fixed;
+    top:0;
+    left:0;
+    height:55px;
+    border-bottom:5px solid #108AC0;
+    width:100%;
+    background-color:white;
+    z-index: 9999;
+}
+
+
+
+/*HEADER---------------------------------------------------------------------*/
+
+
+#logo{
+
+    margin: 5px;
+    float: left;
+    width: 260px;
+    height: 40px;
+    background: url(../img/recoacomp-logo.png) no-repeat center;
+    display: block;
+    margin-bottom:0px;
+
+}
+
+nav {
+
+    float: right;
+    padding: 5px;  
+
+}
+
+.header-large{
+    height:55px;
+    border-bottom:5px solid #108AC0;
+    width:100%;
+    font-weight:100;
+    color:black;
+}
+
+.header-large a{text-decoration:none;color:black;}
+.header-large a:hover, a:active{color:grey;}
+
+
+/*DISCIPLINAS-----------------------------------------------------------------------*/
+
+.disciplinas{
+    background-color:white;
+    position:relative;
+    float:right;
+
+    -webkit-box-shadow: 5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+    -moz-box-shadow:    5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+    box-shadow:         5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+
+}
+
+.top-disciplinas{
+    position:relative;
+    top:0px;
+    width:50%;
+    height:50px;
+    text-align:left;
+    padding-left:5%;
+    padding-top: 1.2%;
+    background-color:#108AC0;
+    color:white;
+    
+    font-weight:300;
+}
+
+.disciplinas-content{
+
+    position:relative;
+    padding-left:0%;
+    padding-right:0%;
+    font-weight:100;
+    top:5%;
+    
+    margin:0 auto;
+    margin-left:5%;
+    
+    
+}
+
+.alpha{margin-left:0 !important;}
+
+.disciplinas-content a{text-decoration:none;}
+.disciplinas-content header{text-align:center;}
+
+
+.team-member{
+width:205px;
+height: 258px;
+margin-bottom: 100px;
+margin-left: 50px;
+float: left;
+text-align:center;
+
+}
+
+.team-member h4{
+color:#58585B;
+font-size:15px;
+font-weight:300;
+text-align:center;
+}
+
+.team-member h3{
+font-weight: 600;
+font-size: 18px;
+color: #58585B;
+text-align:center;
+}
+
+
+
+.team-member-avatar,.team-member{
+width: 205px;
+height: 205px;
+overflow: inherit;
+position: relative;
+-webkit-box-shadow: inset 0 -120px 60px -60px rgba(42, 82, 113, 0);
+box-shadow: inset 0 -120px 60px -60px rgba(42, 82, 113, 0);
+background-color: #fafafa;
+background-repeat: no-repeat;
+-webkit-border-radius: 100%;
+-moz-border-radius: 100%;
+border-radius: 100%;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+background-size: cover;
+-webkit-font-smoothing: antialiased;
+-webkit-transition: all 0.32s ease;
+-moz-transition: all 0.32s ease;
+-o-transition: all 0.32s ease;
+-ms-transition: all 0.32s ease;
+transition: all 0.32s ease;
+overflow:visible;
+}
+
+
+.button{
+    //background-color:blue;
+    text-align:center;
+    vertical-align:middle;
+    
+    width:30%;
+    height:auto;
+    padding-top:10px;
+}
+
+.subtitle{font-weight:500;padding-right:10px;font-size:20px;padding-top:20px;}
+.content-perfil{font-size:18px;}
+
+.disciplinas-content p{display:inline;padding-top:20px;}
+.disciplinas-content ul{padding-left:0px;margin-left:0px;}
+
+input[type=submit]{ /*customiza input de submit*/
+  border: 0;
+  width:150px;
+  white-space: normal;
+  text-align:center;
+  height:66px;
+  
+
+
+    background: -webkit-linear-gradient(left, #26B3E8, #75CCD6); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #26B3E8, #75CCD6); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #26B3E8, #75CCD6); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #26B3E8, #75CCD6); /* Standard syntax (must be last) */
+ 
+  color: white;
+  padding: 8px 14px;
+  font-weight: 100;
+  font-size: 18px;
+  text-decoration: none;
+  display: inline-block; /* needed for anchors */
+ 
+    -webkit-box-shadow: 0px 4px 0px 0px rgba(50, 50, 50, 0.47);
+    -moz-box-shadow:    0px 4px 0px 0px rgba(50, 50, 50, 0.47);
+    box-shadow:         0px 4px 0px 0px rgba(50, 50, 50, 0.47);
+
+-webkit-border-radius: 20px;
+-moz-border-radius: 20px;
+border-radius: 5px;
+  }
+
+ input[type=submit]:hover{
+    background: -webkit-linear-gradient(left, #5bc6ee, #75CCD6); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #5bc6ee, #75CCD6); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #5bc6ee, #75CCD6); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #5bc6ee, #75CCD6); /* Standard syntax (must be last) */
+ }
+
+  input[type=submit]:active{ /*customiza pra quando estiver ativo (click)*/
+    -moz-transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+    -o-transform: translateY(4px);
+    -ms-transform: translateY(4px);
+    transform: translateY(4px);
+    
+    -webkit-box-shadow: 0px 1px 0px 0px rgba(50, 50, 50, 0.47);
+    -moz-box-shadow:    0px 1px 0px 0px rgba(50, 50, 50, 0.47);
+    box-shadow:         0px 1px 0px 0px rgba(50, 50, 50, 0.47);
+  }
+
+/*FOOTER-----------------------------------------------------------------------*/
+
+.row-footer{
+    margin-right: -15px;
+    margin-left: -15px;
+
+}
+
+.container-footer{
+    display:block;
+    text-align:center;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto; 
+
+padding:0% 0%;
+}
+
+.span1{
+    text-align:center;
+    margin-left:1%;
+    width:300px;
+    float:left;
+    vertical-align:middle;
+}
+
+.span2{
+    text-align:center;
+    margin-top:20px;
+    width:300px;
+    float:right;
+    margin-right:1%;
+    vertical-align:middle;
+}
+
+.span2 a{
+    font-weight:100;
+    color:#6D6E70;
+}
+
+footer {
+    padding: 20px 0;
+    background-color: #231F20;
+    height:;
+}
+
+p.copyright {
+    margin: 15px 0 0;
+}
+
+.footer-logo{
+    width:50px;
+    height:50px;
+    margin-left:5%;
+    margin-right:5%;
+}

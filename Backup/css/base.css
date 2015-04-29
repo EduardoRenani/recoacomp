@@ -1,0 +1,12 @@
+/*CSS BASE----------------------------------------------------------------------*/
+.centralizado-pai {/*use no div externo*/
+    position: relative;
+}
+.centralizado-filho {/*use no div interno que dai o mesmo vai ser centralizado no div externo*/
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}

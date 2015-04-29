@@ -118,7 +118,8 @@ class Registration
             // TODO: this is really awful!
             if (count($result) > 0) {
                 for ($i = 0; $i < count($result); $i++) {
-                    $this->errors[] = ($result[$i]['user_name'] == $user_name) ? MESSAGE_USERNAME_EXISTS : MESSAGE_EMAIL_ALREADY_EXISTS;
+                    //$this->errors[] = ($result[$i]['user_name'] == $user_name) ? MESSAGE_USERNAME_EXISTS : MESSAGE_EMAIL_ALREADY_EXISTS;
+                    $this->showMessage(($result[$i]['user_name'] == $user_name) ? MESSAGE_USERNAME_EXISTS : MESSAGE_EMAIL_ALREADY_EXISTS);
                 }
             } else {
                 // check if we have a constant HASH_COST_FACTOR defined (in config/hashing.php),
@@ -269,6 +270,12 @@ class Registration
             //TODO pegar email por bd
 
         }
+    }
+    // Função que mostra as mensagens do sistema de registro
+    public function showMessage($message){
+        echo"<script type='text/javascript'>";
+        echo "alert('".$message."');";
+        echo "</script>";
     }
 
 }

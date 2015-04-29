@@ -1,0 +1,218 @@
+
+/*LOGIN-----------------------------------------------------------------------*/
+
+.intro-header {
+    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    padding-bottom: 50px;
+    min-height:92%;
+    max-height:92%;
+    text-align: center;
+    color: #f8f8f8;
+    background: url() no-repeat center center;
+    background-size: cover;
+
+    padding: 5% 0;
+}
+
+.container{
+    padding: 10% 0;
+}
+
+.top-login{ /*header da janelinha do login*/
+    position:relative;
+    top:0px;
+    width:100%;
+    height:50px;
+    text-align:left;
+    padding-left:15%;
+
+    background-color:#108AC0;
+    color:white;
+    font-size:30px;
+    font-weight:300;
+}
+
+.login{ /*janelinha do login*/
+z-index:50;
+
+    background-color:white;
+    position:inherit;
+    padding:0%;
+    margin-top:0%;
+    margin-left:auto;
+    margin-right:auto;
+    height:40%;
+    width: 300px;
+    min-width:30%;
+    min-height:200px;
+    max-height:370px;
+    
+    -webkit-box-shadow: 5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+    -moz-box-shadow:    5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+    box-shadow:         5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+}
+
+
+/*SCROLL-----------------------------------------------------------------------*/
+
+#scroll{
+height:60px;
+margin-top:-60px;
+width:100%;
+background:url(../img/scroll.png) no-repeat bottom center scroll;
+position:relative;
+z-index:100;
+}
+
+#scroll a{
+    text-align: center;
+display: block;
+bottom: 0;
+position: absolute;
+left: 48%;
+color: transparent;
+width: 64px;
+height: 42px;
+
+-webkit-transition:opacity 0.4s ease-in;
+transition:opacity 0.4s ease-in;
+-moz-transition:opacity 0.4s ease-in;
+-o-transition:opacity 0.4s ease-in;
+}
+
+
+.intro-message {
+    position: relative;
+    padding-top: 00%;
+    padding-bottom: 20%;
+}
+
+.intro-message > h1 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 5em;
+}
+
+.intro-divider {
+    width: 400px;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.intro-message > h3 {
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+}
+
+@media(max-width:767px) {
+    .intro-message {
+        padding-bottom: 15%;
+    }
+
+    .intro-message > h1 {
+        font-size: 3em;
+    }
+
+    ul.intro-social-buttons > li {
+        display: block;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    ul.intro-social-buttons > li:last-child {
+        margin-bottom: 0;
+    }
+
+    .intro-divider {
+        width: 100%;
+    }
+}
+
+.network-name {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+/*CONTENT SECTION A-----------------------------------------------------------------------*/
+
+
+.content-section-a {
+    padding: 50px 0;
+    background-color: #F1F1F2;
+}
+
+.content-section-b {
+    padding: 50px 0;
+    border-top: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.section-heading {
+    margin-bottom: 30px;
+}
+
+.section-heading-spacer {
+    float: left;
+    width: 200px;
+    border-top: 3px solid #e7e7e7;
+}
+
+
+/*FOOTER-----------------------------------------------------------------------*/
+
+.row-footer{
+    margin-right: -15px;
+    margin-left: -15px;
+
+}
+
+.container-footer{
+    display:block;
+    text-align:center;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto; 
+
+padding:0% 0%;
+}
+
+.span1{
+    text-align:center;
+    margin-left:1%;
+    width:300px;
+    float:left;
+    vertical-align:middle;
+}
+
+.span2{
+    text-align:center;
+    margin-top:20px;
+    width:300px;
+    float:right;
+    margin-right:1%;
+    vertical-align:middle;
+}
+
+.span2 a{
+    font-weight:100;
+    color:#6D6E70;
+}
+
+footer {
+    padding: 20px 0;
+    background-color: #231F20;
+    height:;
+}
+
+p.copyright {
+    margin: 15px 0 0;
+}
+
+.footer-logo{
+    width:50px;
+    height:50px;
+    margin-left:5%;
+    margin-right:5%;
+}
