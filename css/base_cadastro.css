@@ -14,6 +14,16 @@ div.fixedBackgroundGradient{
     z-index: 0000;
 }
 
+.fundoPreto{
+    background-color: rgba(0, 0, 0, 0.8);
+    height: 100%; 
+    width: 100%;
+    position: fixed; 
+    top: 55px; 
+    left: 0px;
+    display: none;
+}
+
 .vertical-container {
 
   display: -webkit-flex;

@@ -64,7 +64,7 @@ class Recomendacao {
     if($dados != NULL){
         return $dados;
     }
-    
+    //$this->db_connection = null;
     return true;
     }
 
@@ -128,6 +128,7 @@ class Recomendacao {
             $this->competencia[$pos]->nomearOAs();
 
             $this->competencia[$pos]->writeOAs();
+            //$this->db_connection = null;
 
     }
 

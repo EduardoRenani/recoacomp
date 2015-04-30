@@ -89,6 +89,7 @@ class Disciplina {
         }elseif(isset($_POST["verifica_senha"])){
             if (($this->checkPassword($_POST['senha'], $_POST['idDisciplina']))){
                 if(($_POST['okay']) == 'okay'){
+                //print_r($_POST);
                 $this->entrarDisciplina(
                 $_POST['idUsuario'],
                 $_POST['idDisciplina'],
@@ -350,7 +351,7 @@ class Disciplina {
             $stmt = $this->db_connection->prepare("SELECT nomeCurso FROM disciplina WHERE iddisciplina NOT IN (SELECT disciplina_iddisciplina FROM usuario_disciplina WHERE usuario_idusuario=:userID)");
             $stmt->bindParam(':userID',$userID, PDO::PARAM_INT);
             $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_NUM);
+            return $stmt->fetchAll();
         }
     }
 
@@ -473,8 +474,7 @@ class Disciplina {
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
             //print_r($stmt->execute());
-            return $stmt->fetchAll();
-            //return $stmt->fetchAll();
+            return $stmt->fetch(PDO::FETCH_NUM);
         }
     }
 
@@ -494,7 +494,6 @@ class Disciplina {
         $this->atitude = $atitude;
         $this->competencias = $competencias;
 
-        
         //Validação de dados
         if (empty($idUsuario)) {
             $this->errors[] = MESSAGE_USERNAMEID_EMPTY;

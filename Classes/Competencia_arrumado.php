@@ -215,7 +215,7 @@ class Competencia{
                 $host  = $_SERVER['HTTP_HOST'];
                 $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
                 $extra = 'index.php';
-                echo "<script language='JavaScript'> setTimeout(function () {window.location='http://".$host.$uri."/".$extra."'; }, 100); </script> ";
+                echo "<script language='JavaScript'> setTimeout(function () {window.close()}, 100); </script> ";
             }
         }
     }
@@ -306,14 +306,15 @@ class Competencia{
             $stmt = $this->db_connection->prepare("SELECT nome FROM competencia WHERE idCompetencia=:id");
             $stmt->bindValue(':id',$id, PDO::PARAM_INT);
             $stmt->execute();
-            $retorno = $stmt->fetchAll(PDO::FETCH_NUM);
+            $retorno = $stmt->fetchAll();
             return ($retorno);
         }
     }
 
-    public function getNomeCompetenciaById($id){
+
+    public function getDescricaoCompetenciaById($id){
         if($this->databaseConnection()){
-            $stmt = $this->db_connection->prepare("SELECT nome FROM competencia WHERE idCompetencia=:id");
+            $stmt = $this->db_connection->prepare("SELECT descricao_nome FROM competencia WHERE idCompetencia=:id");
             //$stmt->bindParam(':nome',, PDO::PARAM_STR);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->execute();

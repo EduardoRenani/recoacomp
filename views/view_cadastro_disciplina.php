@@ -11,7 +11,6 @@ include('_header.php');
 <!-- IMPORTAÇÃO JQUERY-->
 <head>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="css/base_cadastro_objeto.css">
     <link rel="stylesheet" href="css/tooltip.css">
     <link href="css/base_cadastro.css" rel="stylesheet">
     <link href="css/jquery.nouislider.min.css" rel="stylesheet">
@@ -384,6 +383,9 @@ $(window).mouseup(function(){fazAjax();});
     function fadeInModal() {
         div = document.getElementById('modal-competencia');
         divDelete = document.getElementById('closeModal');
+        divFundo = document.getElementsByClassName('fundoPreto')[0];
+        divFundo.style.display = "block";
+        divFundo.style.opacity = opacityModal;
         div.style.opacity = opacityModal;
         divDelete.style.opacity = opacityModal;
         opacityModal+=0.01;
@@ -396,11 +398,14 @@ $(window).mouseup(function(){fazAjax();});
     function fadeOutModal() {
         div = document.getElementById('modal-competencia');
         div1 = document.getElementById('closeModal');
+        divFundo = document.getElementsByClassName('fundoPreto')[0];
+        divFundo.style.opacity = opacityModal;
         div1.style.opacity = opacityModal;
         div.style.opacity = opacityModal;
         opacityModal-=0.01;
         tFadeOutModal = setTimeout(function() {fadeOutModal()}, 1);
         if (opacityModal <= 0) {
+            divFundo.style.display = "none";
             divDelete = document.getElementById('modal-competencia');
             divDelete.parentNode.removeChild(divDelete);
             divDeleteClose = document.getElementById('closeModal');
@@ -423,12 +428,12 @@ $(window).mouseup(function(){fazAjax();});
         modalClose.setAttribute("id", "closeModal");
         modalClose.setAttribute("class", "text-right");
         modalClose.setAttribute("onclick", "fadeOutModal()");
-        modalClose.setAttribute("style", "position: absolute; top: 14px; left: 0; font-size: 20px; background-color: ; z-index: 9999; width: 100%; padding-right: 10px;");
+        modalClose.setAttribute("style", "position: absolute; top: 12%; left: 0; font-size: 20px; background-color: ; z-index: 9999; width: 100%; padding-right: 33px;l");
         modalClose.innerHTML = '<a href="#"><span class="glyphicon glyphicon-remove"></span></a>';
         modal = document.createElement("iframe");
         modal.setAttribute("src", "modal_cadastro_competencia.php");
         modal.setAttribute("id", "modal-competencia");
-        modal.setAttribute("style", "position: absolute; top: 0; left: 0; background-color: #fff; width: 100%; height: 780px; overflow: hidden; opacity: 0; -webkit-box-shadow: 5px 5px 0px 0px rgba(130, 130, 130, 1); -moz-box-shadow: 5px 5px 0px 0px rgba(130, 130, 130, 1); box-shadow: 5px 5px 0px 0px rgba(130, 130, 130, 1);");
+        modal.setAttribute("style", "position: absolute; z-index: 9998; top: 10%; left: 2.5%; background-color: #fff; width: 95%; height: 780px; overflow: hidden; opacity: 0; -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; margin-bottom: 50px;");
         modal.setAttribute("frameborder", "0");
 
         document.getElementsByClassName('cadastrobase')[0].appendChild(modal);
@@ -488,7 +493,7 @@ $(window).mouseup(function(){fazAjax();});
                         <!-- DIV COM DADOS DAS COMPETÊNCIAS A SEREM ASSOCIADAS A DISCIPLINA -->
                         <div id="sub-conteudo1" style="background-image: url(http://images.all-free-download.com/images/graphiclarge/blue_right_arrow_99.jpg); background-repeat: no-repeat; background-position: 49.5% 30%; background-size: 50px;" class="tab">
                             <input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" />
-                            <span style="display block; width: 100%; float: left; text-align:center;"><?php echo WORDING_ASSOCIATE_COMP; ?>.</span>
+                            <span style="display block; width: 100%; float: left; text-align:center;"><?php echo WORDING_ASSOCIATE_COMP; ?></span></br></br>
                             <span style="display block; width: 40%; float: left; text-align:left;">Competencias Disponíveis</span><span style="display: block; width: 30%; float: right; text-align:right;">Competencias Selecionadas</span>
                             <ul id="tabela1">
 
@@ -540,5 +545,7 @@ $(window).mouseup(function(){fazAjax();});
 </div>
 
 
+<div class="fundoPreto"></div>
+<!-- style="background-color: rgba(0, 0, 0, 0.8); height: 100%; width: 100%; position: fixed; top: 55px; left: 0px;"-->
 
 <?php include('_footer.php'); ?>

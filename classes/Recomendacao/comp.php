@@ -195,7 +195,7 @@ class Comp{
 
 	                    		echo "<h6>".$v[$c]['descricao']."</h6><br/>";
 
-	                    		echo "<a href='".$v[$c]['url']."'>Acessar Objeto de Aprendizagem</a><b>";
+	                    		echo "<a target='_blank' href='".$v[$c]['url']."'>Acessar Objeto de Aprendizagem</a><b>";
 
                 		echo "</div>";
 
