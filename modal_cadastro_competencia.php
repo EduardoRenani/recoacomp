@@ -316,6 +316,52 @@ if (isset($OA)) {
 
 </script>
 </head>
+
+<script>
+//Declara uma nova requisição ajax
+function fazAjaxCompetencias(){
+    console.log('chamou o faz');
+    var meu_ajax = new XMLHttpRequest();
+
+    //Declara um "conteiner" de dados para serem enviados por POST
+    var formData = new FormData();
+    var listaExclusao = $("#tabela2").sortable('toArray').toString();
+    //Adiciona uma variável ao "contêiner", no caso, a variável 'variavel' que contém o dado 'dado'
+    formData.append( 'listaExclusao', listaExclusao ); //$_POST['variavel'] === 'dado
+    //Configuração do ajax: qual o "tipo" (no caso, POST) e qual a página que será acessada (no caso, ajax_page.php)
+    //( o último parâmetro, um booleano, é para especificar se é assíncrono (true) ou síncrono (false) )
+    meu_ajax.open( 'POST', './oa.php', true );
+
+    //Configurar a função que será chamada quando a requisição mudar de estado
+
+    meu_ajax.onreadystatechange = function () {
+        if ( meu_ajax.readyState === 4 ) { //readyState === 4: terminou/completou a requisição
+            if ( meu_ajax.status === 200 ) { //status === 200: sucesso
+                if ( meu_ajax.responseText.length > 0 ) {
+                    var array = JSON.parse(meu_ajax.responseText);
+                    var element_tabela1 = document.getElementById('tabela1');
+                    for(var i = 0; i < array.length; i++) {
+                        if ( element_tabela1.innerHTML.indexOf(array[i]) === -1) {
+                            element_tabela1.innerHTML += array[i];
+                        }
+                    }
+                    //Resposta não-vazia
+                } else {
+                    //Resposta vazia
+                }
+            } else if ( meu_ajax.status !== 0 ) { //status !== 200: erro ( meu_ajax.status === 0: ajax não enviado )
+                console.log( 'DEU ERRO NO AJAX: '+meu_ajax.responseText );
+            }
+        }
+    };
+    meu_ajax.send( formData );
+}
+$(function(){fazAjaxCompetencias()});
+$(window).blur(function(){fazAjaxCompetencias();});
+$(window).focus(function(){fazAjaxCompetencias();});
+$(window).mouseup(function(){fazAjaxCompetencias();});
+</script>
+
 <script language="javascript">
     function mudaTab(qualTab) {
         if(qualTab == 1) {
@@ -482,52 +528,72 @@ if (isset($OA)) {
             clearTimeout(tTip1);
         }
     }
-</script>
 
-<script>
-//Declara uma nova requisição ajax
-function fazAjaxCompetencias(){
-    console.log('chamou o faz');
-    var meu_ajax = new XMLHttpRequest();
-
-    //Declara um "conteiner" de dados para serem enviados por POST
-    var formData = new FormData();
-    var listaExclusao = $("#tabela2").sortable('toArray').toString();
-    //Adiciona uma variável ao "contêiner", no caso, a variável 'variavel' que contém o dado 'dado'
-    formData.append( 'listaExclusao', listaExclusao ); //$_POST['variavel'] === 'dado
-    //Configuração do ajax: qual o "tipo" (no caso, POST) e qual a página que será acessada (no caso, ajax_page.php)
-    //( o último parâmetro, um booleano, é para especificar se é assíncrono (true) ou síncrono (false) )
-    meu_ajax.open( 'POST', './oa.php', true );
-
-    //Configurar a função que será chamada quando a requisição mudar de estado
-
-    meu_ajax.onreadystatechange = function () {
-        if ( meu_ajax.readyState === 4 ) { //readyState === 4: terminou/completou a requisição
-            if ( meu_ajax.status === 200 ) { //status === 200: sucesso
-                if ( meu_ajax.responseText.length > 0 ) {
-                    var array = JSON.parse(meu_ajax.responseText);
-                    var element_tabela1 = document.getElementById('tabela1');
-                    for(var i = 0; i < array.length; i++) {
-                        if ( element_tabela1.innerHTML.indexOf(array[i]) === -1) {
-                            element_tabela1.innerHTML += array[i];
-                        }
-                    }
-                    //Resposta não-vazia
-                } else {
-                    //Resposta vazia
-                }
-            } else if ( meu_ajax.status !== 0 ) { //status !== 200: erro ( meu_ajax.status === 0: ajax não enviado )
-                console.log( 'DEU ERRO NO AJAX: '+meu_ajax.responseText );
-            }
+        opacityModal = 0;
+    function fadeInModal() {
+        div = document.getElementById('modal-competencia');
+        divDelete = document.getElementById('closeModal');
+        divFundo = document.getElementsByClassName('fundoPreto')[0];
+        divFundo.style.display = "block";
+        divFundo.style.opacity = opacityModal;
+        div.style.opacity = opacityModal;
+        divDelete.style.opacity = opacityModal;
+        opacityModal+=0.01;
+        tModal = setTimeout(function() {fadeInModal()}, 1);
+        if (opacityModal >= 1) {
+            clearTimeout(tModal);
         }
-    };
-    meu_ajax.send( formData );
-}
-$(function(){fazAjaxCompetencias()});
-$(window).blur(function(){fazAjaxCompetencias();});
-$(window).focus(function(){fazAjaxCompetencias();});
-$(window).mouseup(function(){fazAjaxCompetencias();});
+    }
+
+    function fadeOutModal() {
+        div = document.getElementById('modal-competencia');
+        div1 = document.getElementById('closeModal');
+        divFundo = document.getElementsByClassName('fundoPreto')[0];
+        divFundo.style.opacity = opacityModal;
+        div1.style.opacity = opacityModal;
+        div.style.opacity = opacityModal;
+        opacityModal-=0.01;
+        tFadeOutModal = setTimeout(function() {fadeOutModal()}, 1);
+        if (opacityModal <= 0) {
+            divFundo.style.display = "none";
+            divDelete = document.getElementById('modal-competencia');
+            divDelete.parentNode.removeChild(divDelete);
+            divDeleteClose = document.getElementById('closeModal');
+            divDeleteClose.parentNode.removeChild(divDeleteClose);
+            fazAjaxCompetencias();
+            clearInterval(window.tDeleteModal);
+            clearTimeout(tFadeOutModal);
+        }
+    }
+
+    function deleteModal() {
+        if(document.getElementById('modal-competencia').contentDocument.getElementsByClassName('lista-disciplina').length != 0) {
+            fadeOutModal();
+            clearInterval(window.tDeleteModal);
+        }
+    }
+
+    function modalCompetencia() {
+        modalClose = document.createElement('div');
+        modalClose.setAttribute("id", "closeModal");
+        modalClose.setAttribute("class", "text-right");
+        modalClose.setAttribute("onclick", "fadeOutModal()");
+        modalClose.setAttribute("style", "position: absolute; top: 12%; left: 0; font-size: 20px; background-color: ; z-index: 9999; width: 100%; padding-right: 33px;l");
+        modalClose.innerHTML = '<a href="#"><span class="glyphicon glyphicon-remove"></span></a>';
+        modal = document.createElement("iframe");
+        modal.setAttribute("src", "modal_cadastro_oa.php");
+        modal.setAttribute("id", "modal-competencia");
+        modal.setAttribute("style", "position: absolute; z-index: 9998; top: 10%; left: 2.5%; background-color: #fff; width: 95%; height: 790px; overflow: hidden; opacity: 0; -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; margin-bottom: 50px;");
+        modal.setAttribute("frameborder", "0");
+
+        document.body.appendChild(modal);
+        document.body.appendChild(modalClose);
+        fadeInModal();
+        tDeleteModal = setInterval("deleteModal()", 1);
+    }
 </script>
+
+
 
 <!--<div class="fixedBackgroundGradient"></div>-->
 <!-- clean separation of HTML and PHP -->
@@ -581,7 +647,7 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
 
                             </div>
                             <!-- DIV COM DADOS DAS COMPETÊNCIAS A SEREM ASSOCIADAS A DISCIPLINA -->
-                            <div id="sub-conteudo1" style="background-image: url(http://images.all-free-download.com/images/graphiclarge/blue_right_arrow_99.jpg); background-repeat: no-repeat; background-position: 49.5% 30%; background-size: 50px;" class="tab">
+                            <div id="sub-conteudo1" style="background-image: url(img/seta_drag.png); background-repeat: no-repeat; background-position: 49.5% 40%; background-size: 50px;" class="tab">
                                 <input type="hidden" id="arrayOAS" name="arrayOAS" value="" />
                                 <span style="display block; width: 100%; float: left; text-align:center;"><?php echo WORDING_ASSOCIATE_OA; ?>.</span>
                                   <span style="display block; width: 40%; float: left; text-align:left;">Objetos OAS Disponíveis</span><span style="display: block; width: 30%; float: right; text-align:right;">Objetos OAS Selecionados</span>
@@ -590,7 +656,7 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
                             <ul id="tabela2">
                                   <!-- Os objetos que serão associados estarão nessa tabela -->
                             </ul>
-                                  <!-- <center><a href="cadastro_OA.php" target="_blank"><div class='botao-cadastra' style='width: 240px'><?=WORDING_REGISTER_NOVO_OA?></div></a></center> -->
+                                  <center><div onclick="modalCompetencia();" class='botao-cadastra' style='width: 240px'><?=WORDING_REGISTER_NOVO_OA?></div></center>
 
                             </div>
                             <div id="sub-conteudo2" class="tab">
@@ -611,6 +677,7 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
 
                 </form>
             </div>
+            <div class="fundoPreto" style="top: 0px;"></div>
         <!--</div>-->
 
 <!--<a href="index.php"><?php echo WORDING_BACK_TO_LOGIN; ?></a>-->

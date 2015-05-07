@@ -2,10 +2,6 @@
 /*LOGIN-----------------------------------------------------------------------*/
 
 .intro-header {
-    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
-    padding-bottom: 50px;
-    min-height:92%;
-    max-height:92%;
     color: #f8f8f8;
     background-size: cover;
     padding: 5% 0;

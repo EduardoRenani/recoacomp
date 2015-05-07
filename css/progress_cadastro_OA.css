@@ -3908,7 +3908,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 #sub-conteudo {
     position: relative;
     float: left;
-    width: 650px;
+    width: 100%;
     text-align: left;
     min-height: 356px;
 }
@@ -3916,7 +3916,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 #sub-conteudo1 {
     position: relative;
     float: left;
-    width: 650px;
+    width: 100%;
     text-align: left;
     min-height: 356px;
 }
@@ -3924,7 +3924,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 #sub-conteudo2 {
     position: relative;
     float: left;
-    width: 650px;
+    width: 100%;
     text-align: left;
     min-height: 356px;
 }

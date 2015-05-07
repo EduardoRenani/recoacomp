@@ -433,7 +433,7 @@ $(window).mouseup(function(){fazAjax();});
         modal = document.createElement("iframe");
         modal.setAttribute("src", "modal_cadastro_competencia.php");
         modal.setAttribute("id", "modal-competencia");
-        modal.setAttribute("style", "position: absolute; z-index: 9998; top: 10%; left: 2.5%; background-color: #fff; width: 95%; height: 780px; overflow: hidden; opacity: 0; -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; margin-bottom: 50px;");
+        modal.setAttribute("style", "position: absolute; z-index: 9998; top: 10%; left: 2.5%; background-color: #fff; width: 95%; height: 950px; overflow: hidden; opacity: 0; -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; margin-bottom: 50px;");
         modal.setAttribute("frameborder", "0");
 
         document.getElementsByClassName('cadastrobase')[0].appendChild(modal);
@@ -446,7 +446,7 @@ $(window).mouseup(function(){fazAjax();});
 <div class="fixedBackgroundGradient"></div>
 
 <div class="cadastrobase">
-    <div class="top-cadastrobase"><div class="text-left"><?php echo (WORDING_REGISTER_NOVA_DISCIPLINA); ?></div><div class="text-right" ><a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a></div></div>
+    <div class="top-cadastrobase"><div class="text-left"><?php echo (WORDING_REGISTER_NOVA_DISCIPLINA); ?></div><div class="text-right" ><!-- <a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a>--></div></div>
         <div class="cadastrobase-content">
            <form method="post" action="" name="registrar_nova_disciplina" id="registrar_nova_disciplina">
             <!-- ID do usuário passado via hidden POST -->
@@ -491,7 +491,7 @@ $(window).mouseup(function(){fazAjax();});
 
 
                         <!-- DIV COM DADOS DAS COMPETÊNCIAS A SEREM ASSOCIADAS A DISCIPLINA -->
-                        <div id="sub-conteudo1" style="background-image: url(http://images.all-free-download.com/images/graphiclarge/blue_right_arrow_99.jpg); background-repeat: no-repeat; background-position: 49.5% 30%; background-size: 50px;" class="tab">
+                        <div id="sub-conteudo1" style="background-image: url(img/seta_drag.png); background-repeat: no-repeat; background-position: 49.5% 40%; background-size: 50px;" class="tab">
                             <input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" />
                             <span style="display block; width: 100%; float: left; text-align:center;"><?php echo WORDING_ASSOCIATE_COMP; ?></span></br></br>
                             <span style="display block; width: 40%; float: left; text-align:left;">Competencias Disponíveis</span><span style="display: block; width: 30%; float: right; text-align:right;">Competencias Selecionadas</span>

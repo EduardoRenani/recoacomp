@@ -51,7 +51,7 @@
     float: left;
     width: 12.57%;
     height: 100%;
-    line-height: 44px;
+    line-height: 22px;
     text-align: center;
 }
 
@@ -139,7 +139,7 @@
 #sub-conteudo {
     position: relative;
     float: left;
-    width: 650px;
+    width: 100%;
     text-align: left;
     min-height: 356px;
 }
@@ -147,7 +147,7 @@
 #sub-conteudo1 {
     position: relative;
     float: left;
-    width: 650px;
+    width: 100%;
     text-align: left;
     min-height: 356px;
 }
@@ -155,7 +155,7 @@
 #sub-conteudo2 {
     position: relative;
     float: left;
-    width: 650px;
+    width: 100%;
     text-align: left;
     min-height: 356px;
 }

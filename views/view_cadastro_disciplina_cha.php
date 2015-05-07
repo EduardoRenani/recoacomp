@@ -58,7 +58,33 @@ include('_header.php');
 
 
 
+    $(function(){
 
+
+        $("#input_range").noUiSlider({
+            start: 1,
+            step: 1,
+            range: {
+                min: 1,
+                max: 5
+            }
+        });
+        function setText( value, handleElement, slider ){
+            $("#exemplo").text( value );
+        }
+        $("#exemplo").Link('lower').to($("#value"), "text");
+
+        $("#exemplo").Link('lower').to('-inline-<div class="tooltip"></div>', function ( value ) {
+
+            // The tooltip HTML is 'this', so additional
+            // markup can be inserted here.
+            $(this).html(
+                '<strong>Value: </strong>' +
+                '<span>' + value + '</span>'
+            );
+        });
+
+    });
 </script>
 </head>
 
@@ -76,14 +102,14 @@ include('_header.php');
 
             <?php 
                 //echo $_POST["idDisciplina"];
-                //$disciplina = new Disciplina();
-
                 $arrayIdCompetencias = $disciplina->getCompetenciaFromDisciplinaById($_POST["idDisciplina"]);
-                //print_r($disciplina->getCompetenciaFromDisciplinaById($_POST["idDisciplina"]));
+
                 foreach ($arrayIdCompetencias as $competenciaId) {
+                    
                     echo "<input type='hidden' id='arrayCHA' name='competencias[]' value=".$competenciaId[0]." />";
 
-                    $nomeCompetencia = $competencia->getNomeCompetenciaById($competenciaId[0]);
+                    $nomeCompetencia = $competencia->getArrayOfNamesById($competenciaId[0]);
+                    
                     echo "<h2>Competência: " . $nomeCompetencia[0][0]."</h2>
                     <br>
                     <h4>Conhecimento</h4>

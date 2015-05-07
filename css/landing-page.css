@@ -333,10 +333,13 @@ border-radius: 5px;
   }
 
 .intro-header {
-    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
-    padding-bottom: 50px;
-    min-height:92%;
-    max-height:92%;
+    height: 100%;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
 
     color: #f8f8f8;
     background-size: cover;
@@ -346,7 +349,7 @@ border-radius: 5px;
 }
 
 .container {
-    padding: 10% 0;
+  padding: 10% 0;
 }
 
 .top-login { /*header da janelinha do login*/
@@ -365,9 +368,8 @@ border-radius: 5px;
 .login { /*janelinha do login*/	
     background-color:white;
     position:inherit;
-
     padding:0%;
-    margin-top:6.5%;
+    margin-top:20%;
     
     margin-left:auto;
     margin-right:auto;

@@ -136,7 +136,7 @@ define("WORDING_OA", "Objeto de Aprendizagem");
 
 // -- Categoria Vida mensagens
 define("WORDING_LIFE_CATEGORY", "Categoria Vida");
-define("WORDING_DATE", "Data");
+define("WORDING_DATE", "Data (Ano)");
 define("WORDING_STATUS", "Status");
 define("WORDING_REVISED", "Revisado");
 define("WORDING_DRAFT", "Rascunho");
@@ -236,7 +236,8 @@ define("WORDING_FILL_KEYWORD","Preencha palavra-chave");
 define("WORDING_URL","URL");
 define("WORDING_KEYWORD","Palavra-chave");
 define("WORDING_CREATE_OA","Criar Objeto de Aprendizagem");
-define("WORDING_REGISTER_OA","Registrar Objeto de Aprendizagem");
+define("WORDING_REGISTER_OA","Cadastrar Objeto de Aprendizagem");
+define("WORDING_OA_ALREADY_EXISTS","OA já cadastrado");
 
 //Cadastro de Competências Mensagens
 define("WORDING_REGISTER_NOVA_COMPETENCIA", "Cadastrar Competência");

@@ -19,12 +19,27 @@ $registration = new Registration();
 ?>
 <!-- ============== MAIN LOGIN ============== -->
 
+<!-- <script language="javascript">
+	function centralizaLogin() {
+		heightContainer = document.getElementById('container').offsetHeight;
+		console.log(heightContainer);
+		heightLogin = document.getElementById('login').offsetHeight;
+		console.log(heightLogin);
+		heightPatrocinio = document.getElementById('patrocinio').offsetHeight;
+		console.log(heightPatrocinio);
+		marginCentral = (heightContainer/2)-(heightLogin/2)-(heightPatrocinio/2);
+		console.log(marginCentral);
+		document.getElementById('login').style.marginTop = marginCentral+"px";
+		setTimeout("centralizaLogin()", 1);
+	} -->
+</script>
+<body onload="centralizaLogin();">
 <div class="intro-header">
-	<div class="container">
+	<div id="container" class="container">
 		<div class="row">
 			<div class="col-lg-12">
                 <div class="fixedBackgroundGradient"></div>
-				<div class="login">
+				<div id="login" class="login">
 					<div class="top-login">Login:</div></br>
 					
 					<!-- <form action="home.html"> <!action é só para mostrar, no site em si não tem isso"--> 
@@ -65,7 +80,7 @@ $registration = new Registration();
 				<!-- /.login -->
 
                 <!-- SELOS PATROCINIO ETC ABAIXO DO LOGIN -->
-                <div class="patrocinio">
+                <div id="patrocinio" class="patrocinio">
                     <div class="patrocinio-content">
                         <div class="patrocinio-content-item">
                             <span for="ufrgs">Incentivo:</span><br /><img src="img/ufrgs.png" alt="selo-ufrgs" value="ufrgs">

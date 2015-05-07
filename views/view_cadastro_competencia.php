@@ -373,7 +373,7 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
 
                             </div>
                             <!-- DIV COM DADOS DAS COMPETÊNCIAS A SEREM ASSOCIADAS A DISCIPLINA -->
-                            <div id="sub-conteudo1" style="background-image: url(http://images.all-free-download.com/images/graphiclarge/blue_right_arrow_99.jpg); background-repeat: no-repeat; background-position: 49.5% 30%; background-size: 50px;" class="tab">
+                            <div id="sub-conteudo1" style="background-image: url(img/seta_drag.png); background-repeat: no-repeat; background-position: 49.5% 40%; background-size: 50px;" class="tab">
                                 <input type="hidden" id="arrayOAS" name="arrayOAS" value="" />
                                 <span style="display block; width: 100%; float: left; text-align:center;"><?php echo WORDING_ASSOCIATE_OA; ?>.</span>
                                   <span style="display block; width: 40%; float: left; text-align:left;">Objetos OAS Disponíveis</span><span style="display: block; width: 30%; float: right; text-align:right;">Objetos OAS Selecionados</span>
