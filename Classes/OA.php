@@ -592,7 +592,7 @@ class OA{
                 $stmt->execute();
 
                 $lastID = $this->db_connection->lastInsertId();
-                echo 'last id: '.$lastID;
+                echo '<input type="hidden" id="oacadastrado" name="oacadastrado" value="'.$lastID.'" />';
                 $count = count($arrayCompetencias);
                 for ($i = 0; $i < $count; $i++) {
                     $arrayCompBD = $arrayCompetencias[$i];

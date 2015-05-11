@@ -194,6 +194,7 @@ class Competencia{
                 //$stmt->bindParam(':idProfessor',$idProfessor, PDO::PARAM_INT);
                 $stmt->execute();
                 $this->ultimo_ID = $this->db_connection->lastInsertId();
+                echo '<input type="hidden" id="competenciacadastrada" name="competenciacadastrada" value="'.$this->ultimo_ID.'" />';
                  // Cadastro na tabela Competencia_OA
                  //Associação com o banco de dados
                 $count = count($arrayOAS);

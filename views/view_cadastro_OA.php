@@ -528,6 +528,7 @@
                 fazAjax();
                 clearInterval(window.tDeleteModal);
                 clearTimeout(tFadeOutModal);
+                tAtualizaCompetencia = setInterval('atualizaCompetencia()', 1);
             }
         }
 
@@ -546,7 +547,7 @@
             modalClose.setAttribute("style", "position: absolute; top: 12%; left: 0; font-size: 20px; background-color: ; z-index: 9999; width: 100%; padding-right: 33px;l");
             modalClose.innerHTML = '<a href="#"><span class="glyphicon glyphicon-remove"></span></a>';
             modal = document.createElement("iframe");
-            modal.setAttribute("src", "modal_cadastro_competencia.php");
+            modal.setAttribute("src", "modal_cadastro_competencia_oa.php");
             modal.setAttribute("id", "modal-competencia");
             modal.setAttribute("style", "position: absolute; z-index: 9998; top: 10%; left: 2.5%; background-color: #fff; width: 95%; height: 780px; overflow: hidden; opacity: 0; -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; margin-bottom: 50px;");
             modal.setAttribute("frameborder", "0");
@@ -555,7 +556,43 @@
             document.getElementsByClassName('cadastrobase')[0].appendChild(modalClose);
             fadeInModal();
             tDeleteModal = setInterval("deleteModal()", 1);
+            tPegaCompetencia = setInterval("pegaCompetencia()", 1);
         }
+
+
+
+    function pegaCompetencia() {
+        console.log(document.getElementById('modal-competencia').contentDocument);
+        if(document.getElementById('modal-competencia').contentDocument.getElementById('competenciacadastrada').length != 0) {
+            idCompetencia = document.getElementById('modal-competencia').contentDocument.getElementById('competenciacadastrada').value;
+            //cloneOA = document.getElementById('tabela1').getElementById(idOA).cloneNode();
+            //document.getElementById('tabela2').apendChild(cloneOA);
+            document.getElementById('arrayCompetencias').value += idCompetencia+',';
+            clearInterval(window.tPegaCompetencia);
+
+        }
+    }
+
+    function atualizaCompetencia() {
+        novoCompetencia = document.getElementById('arrayCompetencias').value;
+        novoCompetencia = novoCompetencia.split(',');
+        sizeCompetencia = novoCompetencia.length-2;
+        if(cloneCompetencia = document.getElementById(novoCompetencia[novoCompetencia.length-2]).cloneNode(true)) {
+            document.getElementById(novoCompetencia[novoCompetencia.length-2]).parentNode.removeChild(document.getElementById(novoCompetencia[novoCompetencia.length-2]).parentNode.lastChild)
+            document.getElementById('tabela2').appendChild(cloneCompetencia);
+            var idCompetencias = $("#tabela2").sortable('toArray').toString();
+            var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
+            idCompetencias = idCompetencias.split(",");
+            nomesCompetencias = nomesCompetencias.split(",");
+            document.getElementById('sub-conteudo6').innerHTML = "";
+            for (i = 0; i < nomesCompetencias.length; i++) {
+                var elementoAdd = document.createElement('div');
+                elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
+                document.getElementById('sub-conteudo6').appendChild(elementoAdd);
+            }
+            clearInterval(window.tAtualizaCompetencia);
+        }
+    }
     </script>
 
     <div class="fixedBackgroundGradient"></div>

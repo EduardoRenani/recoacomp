@@ -365,8 +365,6 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
 <script language="javascript">
     function mudaTab(qualTab) {
         if(qualTab == 1) {
-            if(document.getElementsByName('nome')[0].value.length > 0 && document.getElementsByName('descricaoNome')[0].value.length > 0 && document.getElementsByName('conhecimentoDescricao')[0].value.length > 0 && document.getElementsByName('habilidadeDescricao')[0].value.length > 0 && document.getElementsByName('atitudeDescricao')[0].value.length > 0) {
-                document.getElementsByName('nome')[0].style.border = "0";
                 document.getElementsByName('descricaoNome')[0].style.border = "0";
                 document.getElementsByName('conhecimentoDescricao')[0].style.border = "0";
                 document.getElementsByName('habilidadeDescricao')[0].style.border = "0";
@@ -388,47 +386,9 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
                 document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(2)');
                 document.getElementById('buttonPrevious').removeAttribute('style');
                 document.getElementById('buttonPrevious').setAttribute('style', 'float: none; display: inline;');
-            }
-            else {
-                if(document.getElementsByName('nome')[0].value.length == 0) {
-                    document.getElementsByName('nome')[0].style.border = "1px solid #dc8810";
-                    document.getElementsByName('nome')[0].setAttribute("placeholder", "Este campo é necessário");
-                }
-                else {
-                    document.getElementsByName('nome')[0].style.border = "0";
-                }
-                if(document.getElementsByName('descricaoNome')[0].value.length == 0) {
-                    document.getElementsByName('descricaoNome')[0].style.border = "1px solid #dc8810";
-                    document.getElementsByName('descricaoNome')[0].setAttribute("placeholder", "Este campo é necessário");
-                }
-                else {
-                    document.getElementsByName('descricaoNome')[0].style.border = "0";
-                }
-                if(document.getElementsByName('conhecimentoDescricao')[0].value.length == 0) {
-                    document.getElementsByName('conhecimentoDescricao')[0].style.border = "1px solid #dc8810";
-                    document.getElementsByName('conhecimentoDescricao')[0].setAttribute("placeholder", "Este campo é necessário");
-                }
-                else {
-                    document.getElementsByName('conhecimentoDescricao')[0].style.border = "0";
-                }
-                if(document.getElementsByName('habilidadeDescricao')[0].value.length == 0) {
-                    document.getElementsByName('habilidadeDescricao')[0].style.border = "1px solid #dc8810";
-                    document.getElementsByName('habilidadeDescricao')[0].setAttribute("placeholder", "Este campo é necessário");
-                }
-                else {
-                    document.getElementsByName('habilidadeDescricao')[0].style.border = "0";
-                }
-                if(document.getElementsByName('atitudeDescricao')[0].value.length == 0) {
-                    document.getElementsByName('atitudeDescricao')[0].style.border = "1px solid #dc8810";
-                    document.getElementsByName('atitudeDescricao')[0].setAttribute("placeholder", "Este campo é necessário");
-                }
-                else {
-                    document.getElementsByName('atitudeDescricao')[0].style.border = "0";
-                }
-            }
+                mudaTab(2);
         }
         else if(qualTab == 2) {
-            if(document.getElementsByName('arrayOAS')[0].value.length > 0) {
                 document.getElementById('tabela1').style.border = "0";
                 document.getElementById('tabela2').style.border = "0";
                 divTab = document.getElementById('sub-conteudo1');
@@ -447,13 +407,6 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
                 document.getElementById('buttonNext').removeAttribute('style');
                 document.getElementById('buttonNext').setAttribute('style', 'float: none; display: none;');
                 document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(4)');
-            }
-            else {
-                document.getElementById("sub-conteudo1").getElementsByTagName('span')[1].innerHTML = "<span style='color: #dc8810'>Escolha uma competência";
-                document.getElementById("tabela1").style.border = "1px solid #dc8810";
-                document.getElementById("tabela2").style.border = "1px solid #dc8810";
-                window.scrollTo(0, 0);
-            }
         }
         else if(qualTab == 3) {
             divTab = document.getElementById('sub-conteudo1');
@@ -488,7 +441,7 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
             document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(3)');
             document.getElementById('buttonNext').removeAttribute('style');
             document.getElementById('finisher').setAttribute('style', 'float: none; display: none;');
-
+            mudaTab(3);
         }
     }
     opacityTip = 0;

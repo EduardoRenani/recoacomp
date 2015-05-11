@@ -32,7 +32,7 @@ require_once('classes/Competencia.php');
 require_once("classes/OA.php");
 
 $login = new Login();
-$competencia = new OA();
+$OA = new OA();
 
 //include('_header.php');
 
@@ -695,9 +695,23 @@ if (isset($OA)) {
     $(window).mouseup(function(){fazAjax();});
     </script>
 
+    <script type="text/javascript">
+    $(document).ready(function(){
+        console.log("funfou!");
+        $("#url").keyup(function () { //user types username on inputfiled
+            console.log("funfou!");
+            var url = $(this).val(); //get the string typed by user
+            $.post('classes/check_URL.php', {'url':url}, function(data) { //make ajax call to check_username.php
+            $("#status").html(data); //dump the data received from PHP page
+        });
+    });
+    });
+    </script>
+
 <!--<div class="fixedBackgroundGradient"></div>-->
 <!-- clean separation of HTML and PHP -->
  <!--   <div class="cadastrobase"> -->
+
     <div class="top-cadastrobase"><div class="text-left"><?php echo (WORDING_REGISTER_NOVO_OA); ?></div><div class="text-right" ><!--<a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a> --></div></div>
     <div class="cadastrobase-content">
     <form id="registrar_novo_OA" method="post" action="" name="registrar_novo_OA" class="form-horizontal" style="width: 100%;">
@@ -731,6 +745,7 @@ if (isset($OA)) {
                         <label class="control-label" for="url"><?php echo WORDING_URL; ?></label>
                         <div class="controls">
                             <input type="url" id="url" name="url" value="http://" class="required url"> <!-- Deixar type URL pq buga no banco de dados -->
+                            <div id="status"></div>
                         </div>
                     </div>
                     <div class="control-group">
