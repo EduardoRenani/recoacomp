@@ -122,7 +122,9 @@ define("WORDING_FILL_NAME_DISCIPLINA","Preencha o nome da disciplina");
 define("WORDING_FILL_PASSWORD","Preencha a senha");
 define("WORDING_SELECT_COMPETENCIA","Selecione a(s) competências(s)");
 define("WORDING_FILL_YOUR_CHA","Preencha seu CHA");
+define("WORDING_FILL_TEST_CHA","Preencha o CHA de teste");
 define("WORDING_FINALIZE","Finalizar");
+define("WORDING_TEST_REC","Testar recomendação");
 define("WORDING_REGISTER_CHA","Cadastrar CHA");
 define("WORDING_NULL_COMPETENCE","Nenhuma competência foi selecionada");
 

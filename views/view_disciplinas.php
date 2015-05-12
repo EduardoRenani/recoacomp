@@ -29,34 +29,72 @@
             <ul class="disciplinas-list">
 
             <?php
-                $idDisci = $disciplina->getIdDisciplinasMatriculadas($_SESSION['user_id']);
-                for ($i = 0; $i < sizeof($idDisci); $i++) {
-                    $nomeDisci = $disciplina->getNomeDisciplinaById($idDisci[$i][0]);
-                    $nomeCurso = $disciplina->getNomeCursoById($idDisci[$i][0]);
-                    $professorID = $disciplina->getProfessorDisciplinaById($idDisci[$i][0]);
-                    $professorDisci = $disciplina->getProfessorNomeById($professorID[0][0]);
-                    $descricaoDisci = $disciplina->getDescricaoDisciplinaById($idDisci[$i][0]);
-                    echo
-                        "<li class='disciplinas-item'>".
-                            "<div class='disciplina-item-content'>".
-                                "<h3>".$nomeDisci[0][0]."</h3>".
-                                "<h4>".$nomeCurso[0][0]." - ".$professorDisci[0][0]."</h4>".
-                                "<p>".$descricaoDisci[0][0]."</p>".
-                            "</div>".
-                            "<center><div class='button'><form action='recomendacao.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
-                                "<input type='hidden' name='disc' value='".$idDisci[$i][0]."'>".
-                                "<input type='submit' value='Receber Recomendação'></br></br>".
-                            "</form>
-                            </div>".
-                            "<center><div class='button'><form action='editarDisciplina.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
-                                "<input type='hidden' name='disc' value='".$idDisci[$i][0]."'>".
-                                "<input type='submit' value='Editar Disciplina'></br></br>".
-                            "</form></center>".
-                            //"<center><div class='button'><form action='cadastro_disciplina_cha_teste.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
-                            //    "<input type='hidden' name='disc' value='".$idDisci[$i][0]."'>".
-                            //    "<input type='submit' value='Testar recomendação'></br></br>".
-                            //"</form></center>".
-                        "</li>";
+                //print_r($_SESSION['acesso']);
+                if ($_SESSION['acesso'] == 2){
+                    $idDisci = $disciplina->getIdDisciplinasMatriculadas($_SESSION['user_id']);
+                    for ($i = 0; $i < sizeof($idDisci); $i++) {
+                        $nomeDisci = $disciplina->getNomeDisciplinaById($idDisci[$i][0]);
+                        $nomeCurso = $disciplina->getNomeCursoById($idDisci[$i][0]);
+                        $professorID = $disciplina->getProfessorDisciplinaById($idDisci[$i][0]);
+                        $professorDisci = $disciplina->getProfessorNomeById($professorID[0][0]);
+                        $descricaoDisci = $disciplina->getDescricaoDisciplinaById($idDisci[$i][0]);
+                        $criadorDisciplinaId = $disciplina->getDisciplinaCreatorIdByID($idDisci[$i][0]);
+                        if ($criadorDisciplinaId[0][0] == $_SESSION['user_id']){
+                            echo
+                                "<li class='disciplinas-item'>".
+                                    "<div class='disciplina-item-content'>".
+                                        "<h3>".$nomeDisci[0][0]."</h3>".
+                                        "<h4>".$nomeCurso[0][0]." - ".$professorDisci[0][0]."</h4>".
+                                        "<p>".$descricaoDisci[0][0]."</p>".
+                                        "<center><div class='button'><form action='cadastro_disciplina_cha_teste.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
+                                        "<input type='hidden' name='disc' value='".$idDisci[$i][0]."'>".
+                                        "<input type='submit' value='Testar Recomendação'></br></br>".
+                                    "</form>".
+                                    "</div>".
+                                    "<center><div class='button'><form action='editarDisciplina.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
+                                        "<input type='hidden' name='disc' value='".$idDisci[$i][0]."'>".
+                                        "<input type='submit' value='Visualizar/Editar Disciplina'></br></br>".
+                                        "</form>
+                                    </div></center>".
+                                "</li>";
+                        }else{
+                            echo
+                                "<li class='disciplinas-item'>".
+                                    "<div class='disciplina-item-content'>".
+                                        "<h3>".$nomeDisci[0][0]."</h3>".
+                                        "<h4>".$nomeCurso[0][0]." - ".$professorDisci[0][0]."</h4>".
+                                        "<p>".$descricaoDisci[0][0]."</p>".
+                                        "<center><div class='button'><form action='cadastro_disciplina_cha_teste.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
+                                        "<input type='hidden' name='disc' value='".$idDisci[$i][0]."'>".
+                                        "<input type='submit' value='Testar Recomendação'></br></br>".
+                                    "</form>".
+                                    "</div>".
+                                "</li>";
+                        };
+                            
+                    }
+                }
+                else{
+                    $idDisci = $disciplina->getIdDisciplinasMatriculadas($_SESSION['user_id']);
+                    for ($i = 0; $i < sizeof($idDisci); $i++) {
+                        $nomeDisci = $disciplina->getNomeDisciplinaById($idDisci[$i][0]);
+                        $nomeCurso = $disciplina->getNomeCursoById($idDisci[$i][0]);
+                        $professorID = $disciplina->getProfessorDisciplinaById($idDisci[$i][0]);
+                        $professorDisci = $disciplina->getProfessorNomeById($professorID[0][0]);
+                        $descricaoDisci = $disciplina->getDescricaoDisciplinaById($idDisci[$i][0]);
+                        echo
+                            "<li class='disciplinas-item'>".
+                                "<div class='disciplina-item-content'>".
+                                    "<h3>".$nomeDisci[0][0]."</h3>".
+                                    "<h4>".$nomeCurso[0][0]." - ".$professorDisci[0][0]."</h4>".
+                                    "<p>".$descricaoDisci[0][0]."</p>".
+                                "</div>".
+                                "<center><div class='button'><form action='recomendacao.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
+                                    "<input type='hidden' name='disc' value='".$idDisci[$i][0]."'>".
+                                    "<input type='submit' value='Receber Recomendação'></br></br>".
+                                "</form>".
+                            "</li>";
+                    }
                 }
             ?>
             </ul>

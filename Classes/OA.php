@@ -610,11 +610,11 @@ class OA{
 
 
                 //echo 'aqui2';
-                $this->messages[] = WORDING_OA. ' ' .$nome.WORDING_CREATE_SUCESSFULLY;
-                $host  = $_SERVER['HTTP_HOST'];
-                $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-                $extra = 'index.php';
-                echo "<script language='JavaScript'> setTimeout(function () {window.location='http://".$host.$uri."/".$extra."';}, 100); </script> ";
+                //$this->messages[] = WORDING_OA. ' ' .$nome.WORDING_CREATE_SUCESSFULLY;
+                //$host  = $_SERVER['HTTP_HOST'];
+                //$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+                //$extra = 'index.php';
+                //echo "<script language='JavaScript'> setTimeout(function () {window.location='http://".$host.$uri."/".$extra."';}, 100); </script> ";
             }
         }
     }

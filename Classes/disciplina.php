@@ -618,6 +618,17 @@ class Disciplina {
     }
 
 
+    // Retorna o ID dos criador da disciplina pelo ID
+    public function getDisciplinaCreatorIdByID($idDisciplina){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT usuarioProfessorID FROM disciplina WHERE iddisciplina=:idDisciplina");
+            //$stmt->bindParam(':nome',, PDO::PARAM_STR);
+            $stmt->bindValue(':idDisciplina', $idDisciplina, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+    }
+
     public function getCompetenciaFromDisciplinaById($id){
         if($this->databaseConnection()){
             $stmt = $this->db_connection->prepare("SELECT competencia_idcompetencia FROM disciplina_competencia WHERE disciplina_iddisciplina=:id");
