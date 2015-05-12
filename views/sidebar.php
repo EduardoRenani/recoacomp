@@ -24,48 +24,47 @@
 	<div class="top-sidebar">Bem-Vindo, <?php echo $_SESSION['user_name']?></div>
         <div class="sidebar-content">           
                 <ul class="sidebar-menu">
-                    <a href="index.php">
-                    	<li style="z-index:1000; font-weight: 100;" class="active">
-                        	Disciplinas Disponíveis
-                 		</li>
-                 	</a>
-                    <a href="profile_show.php">
-                    	<li>
-                        	Meu Perfil
-                    	</li>
-                    </a>
-
-                     <a href="disciplinas.php">
-                     	<li>
-                        	Minhas Disciplinas
-                    	</li>
-                    </a>
-    				<a href="cadastro_disciplina.php">
-    					<li>
+    					
 	   						<?php 
-							if ($_SESSION['acesso'] == 1)
+							if ($_SESSION['acesso'] == 1) // Se aluno
 								include_once('_options_aluno.php'); 
 								//echo WORDING_USER_STUDENT . "<br />";
-							else if ($_SESSION['acesso'] == 2){
-								?>
-								<?php echo WORDING_REGISTER_NOVA_DISCIPLINA; ?><br>
-						</li>
-					</a>
-					<a href="cadastro_OA.php">
-						<li class="activeOA">
-								<?php echo WORDING_REGISTER_NOVO_OA; ?><br>
-								
-								<!-- <a href="cadastro_competencia.php"><li class="activeCompetencia"> -->
-								<!-- <?php echo WORDING_REGISTER_NOVA_COMPETENCIA; ?><br> -->
-								
+							else if ($_SESSION['acesso'] == 2){ // Se professor
+							?> 
+								<!-- Minhas Disciplinas -->
+								<a href="disciplinas.php">
+									<li> <!--li style="z-index:1000; font-weight: 100;" class="active"-->
+			                        	<?php echo WORDING_MY_COURSES;?>
+			                 		</li>								
+								</a>
+								<!-- Meu perfil -->
+								<a href="profile_show.php">
+			                    	<li>
+			                    		<?php echo WORDING_MY_PROFILE;?>
+			                    	</li>
+				                </a>
+								<a href="disciplinas_disponiveis.php">
+									<li>
+			                        	<?php echo WORDING_AVAILABLE_COURSES;?>
+			                 		</li>
+								</a>
+								<a href="cadastro_disciplina.php">
+									<li>
+			                        	<?php echo WORDING_REGISTER_NOVA_DISCIPLINA;?>
+			                 		</li>
+								</a>
+								<!-- Cadastro de novo objeto -->													
+				                <a href="cadastro_OA.php">
+									<li> <!--class="activeOA"-->
+										<?php echo WORDING_REGISTER_NOVO_OA; ?><br>
+									</li>
+								</a>								
 								<?php
-								//include('_options_professor.php'); 
-								//echo WORDING_USER_PROFESSOR . "<br/>";
 							}else if($_SESSION['acesso'] == 3)
 								echo WORDING_USER_ADMIN . "<br/>";
 							?>
-                    	</li>
-                	</a>
+                    	
+                	
                 </ul>
     	</div>  
 </div>

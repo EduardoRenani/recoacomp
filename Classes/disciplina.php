@@ -86,6 +86,7 @@ class Disciplina {
             $_POST['conhecimento'],
             $_POST['habilidade'],
             $_POST['atitude']);
+            // Professor cria disciplina e entra nela
         }elseif(isset($_POST["verifica_senha"])){
             if (($this->checkPassword($_POST['senha'], $_POST['idDisciplina']))){
                 if(($_POST['okay']) == 'okay'){
@@ -104,10 +105,20 @@ class Disciplina {
                 header('location: ' .$_POST['link']);
                 /*
                 $this->errors[] = MESSAGE_PASSWORD_WRONG;
-                */
-
-                
+                */             
             }
+        }elseif(isset($_POST["editar_disciplina"])){
+            $this->editarDisciplina(            
+            $_POST['nomeCurso'],
+            $_POST['nomeDisciplina'],
+            $_POST['descricao'], 
+            $_POST['user_id'], 
+            $_POST['senha'], 
+            $_POST['arrayCompetencias'],
+            $_POST['conhecimento'],
+            $_POST['habilidade'],
+            $_POST['atitude'],
+            $_POST['idDisciplina']);
         }else{
             // Se não estiver cadastrando uma nova disciplina apenas é um constructor que retorna NULL
             return null;
@@ -188,7 +199,7 @@ class Disciplina {
             $query_check_nome_disciplina->bindValue(':nomeDisciplina', $nomeDisciplina, PDO::PARAM_STR);
             $query_check_nome_disciplina->execute();
             $result = $query_check_nome_disciplina->fetchAll();
-                // Se o nome da disciplina for encontrado no banco de dados
+                // Se o nome de outra disciplina for encontrado no banco de dados
                 if (count($result) > 0) {
                     for ($i = 0; $i < count($result); $i++) {
                         $this->errors[] = MESSAGE_DISCIPLINA_ALREADY_EXISTS . $nomeDisciplina;
@@ -209,11 +220,12 @@ class Disciplina {
                     //Associação com o banco de dados
                     $count = count($arrayCompetencias);
                     for ($i = 0; $i < $count; $i++) {
-                        $arrayCompetenciasBD = $arrayCompetencias[$i];
+                        $arrayCompetenciasBD = $arrayCompetencias[$i]; // ID das competências, serialização
                         $this->arrayCompetenciasBD = $arrayCompetenciasBD;
                         $c = $conhecimento[$arrayCompetenciasBD];
                         $h = $habilidade[$arrayCompetenciasBD];
                         $a = $atitude[$arrayCompetenciasBD];
+                        // Cadastro dos CHA's das competências da disciplina criada
                         $stmt = $this->db_connection->prepare("INSERT INTO disciplina_competencia(disciplina_iddisciplina, competencia_idcompetencia, conhecimento, habilidade, atitude) VALUES (:ultimo_ID, :arrayCompetenciasBD, :conhecimento, :habilidade, :atitude)");
                         $stmt->bindParam(':ultimo_ID',$ultimo_ID, PDO::PARAM_INT);
                         $stmt->bindParam(':arrayCompetenciasBD',$arrayCompetenciasBD, PDO::PARAM_INT);
@@ -221,9 +233,26 @@ class Disciplina {
                         $stmt->bindParam(':habilidade',$h, PDO::PARAM_INT);
                         $stmt->bindParam(':atitude',$a, PDO::PARAM_INT);
                         $stmt->execute();
+                        // Cadastro do professor na tabela usuario competencias
+                        $stmt = $this->db_connection->prepare("INSERT INTO usuario_competencias(usuario_idusuario, competencia_idcompetencia, conhecimento, atitude, habilidade)  VALUES(:idUsuario, :idCompetencia, 5, 5, 5)");
+                        $stmt->bindParam(':idUsuario',$this->idUsuario, PDO::PARAM_INT);
+                        $stmt->bindParam(':idCompetencia',$arrayCompetenciasBD, PDO::PARAM_INT);
+                        //$stmt->bindParam(':habilidade','5', PDO::PARAM_INT);
+                        //$stmt->bindParam(':conhecimento','5', PDO::PARAM_INT);
+                        //$stmt->bindParam(':atitude','5', PDO::PARAM_INT);
+                        $stmt->execute();
                     }
+                    // Cadastro do professor na disciplina que ele criou            
+                    //print_r($ultimo_ID);
+                    $stmt = $this->db_connection->prepare("INSERT INTO usuario_disciplina(disciplina_iddisciplina, usuario_idusuario)  VALUES(:idDisciplina, :idUsuario)");
+                    $stmt->bindParam(':idDisciplina',$ultimo_ID, PDO::PARAM_INT);
+                    $stmt->bindParam(':idUsuario',$usuarioProfessorID, PDO::PARAM_INT);
+                    $stmt->execute();
+                    $this->messages[] = WORDING_REGISTER_SUCESSFULLY;
+
+
                
-                    $this->messages[] = WORDING_DISCIPLINA. $nomeDisciplina .WORDING_CREATED_SUCESSFULLY;
+                    //$this->messages[] = WORDING_DISCIPLINA. $nomeDisciplina .WORDING_CREATED_SUCESSFULLY;
                     $host  = $_SERVER['HTTP_HOST'];
                     $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
                     $extra = 'index.php';
@@ -295,6 +324,118 @@ class Disciplina {
             }
         }
     }
+
+    // Função que edita disciplina
+    public function editarDisciplina($nomeCurso, $nomeDisciplina, $descricao, $usuarioProfessorID, $senha, $arrayCompetencias, $conhecimento, $habilidade, $atitude, $idDisciplina){
+       // Remove espaços em branco em excesso das strings
+        $nomeCurso  = trim($nomeCurso);
+        $nomeDisciplina = trim($nomeDisciplina);
+        $descricao = trim($descricao);
+        $senha = trim($senha);
+        $arrayCompetencias = explode(',',$arrayCompetencias);
+
+        $this->iddisciplina = $idDisciplina;
+        $this->nomeCurso  = $nomeCurso;
+        $this->nomeDisciplina = $nomeDisciplina;
+        $this->descricao = $descricao;
+        $this->senha = $senha;
+        $this->arrayCompetencias = $arrayCompetencias;
+
+        //Validação de dados
+        if (empty($nomeCurso)) {
+            $this->errors[] = MESSAGE_USERNAME_EMPTY;
+        } elseif (empty($nomeDisciplina)){
+            $this->errors[] = MESSAGE_PASSWORD_EMPTY;
+        } elseif (empty($descricao)){
+            $this->errors[] = MESSAGE_PASSWORD_BAD_CONFIRM;
+        } elseif (empty($senha)){
+            $this->errors[] = MESSAGE_PASSWORD_BAD_CONFIRM;
+        } elseif (strlen($senha) < 6) {
+            $this->errors[] = MESSAGE_PASSWORD_TOO_SHORT;
+        } elseif (strlen($nomeCurso) > 64 || strlen($nomeDisciplina) < 2) {
+            $this->errors[] = MESSAGE_USERNAME_BAD_LENGTH;
+        } elseif (strlen($nomeCurso) > 64 || strlen($nomeCurso) < 2) {
+            $this->errors[] = MESSAGE_USERNAME_BAD_LENGTH;
+        }elseif ((max($conhecimento) > 5) || (min($conhecimento) < 0)) {
+            $this->errors[] = MESSAGE_INVALID_CHA;
+        }elseif ((max($habilidade) > 5) || (min($habilidade) < 0)) {
+            $this->errors[] = MESSAGE_INVALID_CHA;
+        }elseif ((max($atitude) > 5) || (min($atitude) < 0)) {
+            $this->errors[] = MESSAGE_INVALID_CHA;
+        }elseif (empty($idDisciplina)){
+            $this->errors[] = MESSAGE_COURSEID_EMPTY;
+        }elseif (empty($arrayCompetencias)){
+            $this->errors[] = WORDING_NULL_COMPETENCE;
+
+            //Fim de validações de dados de entrada
+        //Inicio das validações de cadastro repitido
+        } else if ($this->databaseConnection()) {
+            // Verifica se a disciplina já existe ou curso já existe
+            $query_check_nome_disciplina = $this->db_connection->prepare('SELECT nomedisciplina FROM disciplina WHERE nomedisciplina=:nomeDisciplina');
+            $query_check_nome_disciplina->bindValue(':nomeDisciplina', $nomeDisciplina, PDO::PARAM_STR);
+            $query_check_nome_disciplina->execute();
+            $result = $query_check_nome_disciplina->fetchAll();
+                // Se o nome da disciplina for encontrado no banco de dados, aceitar no max 1
+                if (count($result) > 1) {
+                    for ($i = 0; $i < count($result); $i++) {
+                        $this->errors[] = MESSAGE_DISCIPLINA_ALREADY_EXISTS . $nomeDisciplina;
+                        //echo 'aqui';
+                    }
+                } else{
+                    // Update na tabela Disciplina
+                    $stmt = $this->db_connection->prepare(
+                        "UPDATE disciplina
+                        SET nomeCurso = :nomeCurso, nomeDisciplina = :nomeDisciplina, descricao = :descricao, usuarioProfessorID = :usuarioProfessorID, senha = :senha 
+                        WHERE iddisciplina = :idDisciplina");
+                    $stmt->bindParam(':nomeCurso',$nomeCurso, PDO::PARAM_STR);
+                    $stmt->bindParam(':nomeDisciplina',$nomeDisciplina, PDO::PARAM_STR);
+                    $stmt->bindParam(':descricao',$descricao, PDO::PARAM_STR);
+                    $stmt->bindParam(':usuarioProfessorID',$usuarioProfessorID, PDO::PARAM_INT);
+                    $stmt->bindParam(':senha',$senha, PDO::PARAM_STR);
+                    $stmt->bindParam(':idDisciplina',$idDisciplina, PDO::PARAM_INT);
+                    $stmt->execute();
+                    // Atualização dos CHAs da disciplina editada
+                    // Primeiro deleta o que hava antigamente
+                    $stmt = $this->db_connection->prepare("DELETE FROM disciplina_competencia WHERE disciplina_iddisciplina = :idDisciplina");
+                    $stmt->bindParam(':idDisciplina',$idDisciplina, PDO::PARAM_INT);
+                    $stmt->execute();
+                    $count = count($arrayCompetencias);
+                    for ($i = 0; $i < $count; $i++) {
+                        $arrayCompetenciasBD = $arrayCompetencias[$i]; // ID das competências, serialização
+                        $this->arrayCompetenciasBD = $arrayCompetenciasBD;
+                        $c = $conhecimento[$arrayCompetenciasBD];
+                        $h = $habilidade[$arrayCompetenciasBD];
+                        $a = $atitude[$arrayCompetenciasBD];
+                        // Depois cria uma nova instância
+                        $stmt = $this->db_connection->prepare("INSERT INTO disciplina_competencia(disciplina_iddisciplina, competencia_idcompetencia, conhecimento, habilidade, atitude) VALUES (:idDisciplina, :arrayCompetenciasBD, :conhecimento, :habilidade, :atitude)");
+                        $stmt->bindParam(':idDisciplina',$idDisciplina, PDO::PARAM_INT);
+                        $stmt->bindParam(':arrayCompetenciasBD',$arrayCompetenciasBD, PDO::PARAM_INT);
+                        $stmt->bindParam(':conhecimento',$c, PDO::PARAM_INT);
+                        $stmt->bindParam(':habilidade',$h, PDO::PARAM_INT);
+                        $stmt->bindParam(':atitude',$a, PDO::PARAM_INT);
+                        $stmt->execute();
+                    }
+
+                    $this->messages[] = WORDING_EDIT_SUCESSFULLY;
+
+
+             
+                    //$this->messages[] = WORDING_DISCIPLINA. $nomeDisciplina .WORDING_CREATED_SUCESSFULLY;
+                    $host  = $_SERVER['HTTP_HOST'];
+                    $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+                    $extra = 'disciplinas.php';
+                    echo "<script language='JavaScript'> setTimeout(function () {window.location='http://".$host.$uri."/".$extra."';}, 100); </script> ";
+                }
+        }
+    }
+
+
+
+
+
+
+
+
     public function getErrors(){
         return $this->errors;
     }
@@ -448,6 +589,17 @@ class Disciplina {
     public function getDescricaoDisciplinaById($id){
         if($this->databaseConnection()){
             $stmt = $this->db_connection->prepare("SELECT descricao FROM disciplina WHERE iddisciplina=:id");
+            //$stmt->bindParam(':nome',, PDO::PARAM_STR);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+    }
+
+    // Retorna a senha da disciplina pelo id
+    public function getSenhaDisciplinaById($id){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT senha FROM disciplina WHERE iddisciplina=:id");
             //$stmt->bindParam(':nome',, PDO::PARAM_STR);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->execute();

@@ -93,6 +93,7 @@ define("WORDING_NAME_COMPETENCIA", "Nome da Competência: ");
 define("WORDING_OA_LIST", "Nome dos OA separados por \";\" : ");
 define("WORDING_AVAILABLE_COURSES", "Disciplinas disponíveis");
 define("WORDING_REGISTER_SUCESSFULLY", "Cadastro efetuado com sucesso!");
+define("WORDING_EDIT_SUCESSFULLY", "Edição efetuada com sucesso!");
 define("WORDING_TEAM", "Equipe");
 
 
@@ -104,6 +105,8 @@ define("MESSAGE_DISCIPLINA_DOESNT_EXIST","Disciplina não existe");
 define("MESSAGE_COMPETENCIA_DOESNT_EXIST","Competência associada é inválida");
 define("MESSAGE_DISCIPLINA_COMPETENCIA_ALREADY_RELATED","Competência já associada a essa disciplina");
 define("WORDING_REGISTER_NOVA_DISCIPLINA", "Cadastrar Disciplina");
+define("WORDING_EDIT_COURSE", "Editar Disciplina");
+define("WORDING_EDIT_COURSE_FINAL", "Finalizar edição da disciplina");
 define("WORDING_CREATE_NEW_COURSE", "Criar novo curso");
 define("WORDING_COURSE_NAME", "Nome do curso");
 define("WORDING_DISCIPLINA_NAME", "Nome da disciplina");
@@ -246,6 +249,7 @@ define("WORDING_CHA", "CHA ");
 define("WORDING_CREATE_COMPETENCA", "Criar Nova Competência");
 define("WORDING_ASSOCIATE_OA", "Associar OA's para nova competência");
 define("WORDING_ASSOCIATE_COMP", "Associar uma ou mais competências para nova disciplina");
+define("WORDING_ASSOCIATE_COMP_EDIT", "Editar competências");
 define("MESSAGE_NAME_EMPTY", "Nome vazio");
 define("MESSAGE_DESCRICAO_EMPTY", "Descrição vazia");
 define("MESSAGE_DESCRICAO_HABILIDADE_EMPTY", "Descrição da habilidade vazia");
@@ -261,3 +265,9 @@ define("WORDING_CLEAN", "Limpar");
 define("MESSAGE_OAS_EMPTY", "Nenhum OA selecionado");
 define("MESSAGE_INVALID_CHA", "CHA inválido!");
 define("WORDING_OA_CHA", "CHA do OA");
+
+//Sidebar
+define("WORDING_ACTIVE_COURSES", "Minhas disciplinas ativas");
+define("WORDING_CLOSED_COURSES", "Minhas disciplinas encerradas");
+define("WORDING_MY_COURSES", "Minhas disciplinas");
+define("WORDING_MY_PROFILE", "Meu perfil");

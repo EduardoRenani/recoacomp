@@ -19,7 +19,7 @@
 
 </head>
 <div class="fixedBackgroundGradient"></div>
-<?php require_once("sidebar-disciplina.php"); ?>
+<?php require_once("views/sidebar.php"); ?>
 
 <!-- ============== DISCIPLINAS ============== -->
 
@@ -43,10 +43,19 @@
                                 "<h4>".$nomeCurso[0][0]." - ".$professorDisci[0][0]."</h4>".
                                 "<p>".$descricaoDisci[0][0]."</p>".
                             "</div>".
-                            "<div class='button'><form action='recomendacao.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
+                            "<center><div class='button'><form action='recomendacao.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
                                 "<input type='hidden' name='disc' value='".$idDisci[$i][0]."'>".
                                 "<input type='submit' value='Receber Recomendação'></br></br>".
-                            "</form></div>".
+                            "</form>
+                            </div>".
+                            "<center><div class='button'><form action='editarDisciplina.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
+                                "<input type='hidden' name='disc' value='".$idDisci[$i][0]."'>".
+                                "<input type='submit' value='Editar Disciplina'></br></br>".
+                            "</form></center>".
+                            //"<center><div class='button'><form action='cadastro_disciplina_cha_teste.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
+                            //    "<input type='hidden' name='disc' value='".$idDisci[$i][0]."'>".
+                            //    "<input type='submit' value='Testar recomendação'></br></br>".
+                            //"</form></center>".
                         "</li>";
                 }
             ?>

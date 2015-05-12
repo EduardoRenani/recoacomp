@@ -11,9 +11,28 @@ include('_header.php');
 <!-- IMPORTAÇÃO JQUERY-->
 <head>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
-    <link href="css/base_editar_disciplina.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/tooltip.css">
+    <link href="css/base_cadastro.css" rel="stylesheet">
+    <link href="css/jquery.nouislider.min.css" rel="stylesheet">
 
     <style>
+    .tooltip {
+    display: block;
+    position: absolute;
+    font: 400 12px/12px Arial;
+    border-radius: 3px;
+    background: #fff;
+    top: -43px;
+    padding: 5px;
+    left: -9px;
+    text-align: center;
+    width: 50px;
+    }
+    .tooltip strong {
+        display: block;
+        padding: 2px;
+    }
+
     body { font-size: 62.5%; }
     label, input { display:block; }
     input.text { margin-bottom:12px; width:95%; padding: .4em; }
@@ -24,36 +43,65 @@ include('_header.php');
     div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
     .ui-dialog .ui-state-error { padding: .3em; }
     .validateTips { border: 1px solid transparent; padding: 0.3em; }
+
     </style>
 
     <!-- BREADCRUMB BONITO-->
     <script src="http://thecodeplayer.com/uploads/js/prefixfree-1.0.7.js" type="text/javascript" type="text/javascript"></script>
+    <script src="js/jquery.nouislider.all.min.js" type="text/javascript"></script>
+    <?php
+    $disciplina = new Disciplina();
+    //$nomedadisciplina = $disciplinas->getNomeDisciplinaById
+        $nomedadisciplina = $disciplina->getNomeDisciplinaById($_POST['disc']);
+        $nomedocurso = $disciplina->getNomeCursoById($_POST['disc']);
+        $senhaDisciplina = $disciplina->getSenhaDisciplinaById($_POST['disc']);
+        $descricaoDisciplina = $disciplina->getDescricaoDisciplinaById($_POST['disc']);
+        $idCompetencias = $disciplina->getCompetenciaFromDisciplinaById($_POST['disc']);
+    ?>
 
     <!-- FUNÇÃO QUE FAZ O SORTABLE E ENVIA OS ID'S DAS COMPETÊNCIAS-->
     <script>
+    $(function(){
+        $("#exemplo").noUiSlider({
+            start: 1,
+            step: 1,
+            range: {
+                min: 1,
+                max: 5
+            }
+        });
+        function setText( value, handleElement, slider ){
+            $("#exemplo").text( value );
+        }
+        $("#exemplo").Link('lower').to($("#value"), "text");
+
+        $("#exemplo").Link('lower').to('-inline-<div class="tooltip"></div>', function ( value ) {
+
+            // The tooltip HTML is 'this', so additional
+            // markup can be inserted here.
+            $(this).html(
+                '<strong>Value: </strong>' +
+                '<span>' + value + '</span>'
+            );
+        });
+
+    });
 
     $(function() {
         $('#tabela2').sortable({
-            connectWith: "#tabela1, #tabela2",
-            receive : function (event, ui)
-            {
+            connectWith: "#tabela1, #tabela1",
+            receive : function (event, ui) {
+                $("#tabela1").sortable('refreshPositions');
                 var idCompetencias = $("#tabela2").sortable('toArray').toString();
                 var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
-                var nomesCompetencias1 = $(".nomesCompetencias").sortable('toArray',{ attribute: "name" } ).toString();
-                var nomesCompetencias1 = nomesCompetencias1.split(",");
-                var idCompetencias = idCompetencias.split(",");
-                var nomesCompetencias = nomesCompetencias.split(",");
-                for (i = 0; i < idCompetencias.length; i++) {
-                    for(j = 0; j < nomesCompetencias1; j++) {
-//                        if(nomesCompetencias[i] == nomesCompetencias1[j]) {
-                            var elementoAdd = document.createElement('div');
-                            elementoAdd.innerHTML = '<div id="nomesCompetencias" class="nomesCompetencias" name="'+nomesCompetencias[i]+'"><h2>'+nomesCompetencias[i]+'</h2><div><h4>Conhecimento</h4></div><div><input type="number" min="0" max="5" name="conhecimento['+idCompetencias[i]+']"</div><div><h4>Habilidade</h4></div><div><input type="number" name="habilidade['+idCompetencias[i]+']"</div><div><h4>Atitude</h4></div><div><input type="number" name="atitude['+idCompetencias[i]+']"</div></div>';
-                            document.getElementById('tab3').appendChild(elementoAdd);
-//                        }
-                    }
-
+                idCompetencias = idCompetencias.split(",");
+                nomesCompetencias = nomesCompetencias.split(",");
+                document.getElementById('sub-conteudo2').innerHTML = "";
+                for (i = 0; i < nomesCompetencias.length; i++) {
+                    var elementoAdd = document.createElement('div');
+                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    document.getElementById('sub-conteudo2').appendChild(elementoAdd);
                 }
-                
         //         $("#tabela2").html("<option value='text'>text</option>");
            },
             update: function(event, ui) {
@@ -70,9 +118,18 @@ include('_header.php');
             connectWith: "#tabela1, #tabela2",
             receive : function (event, ui)
             {
-                var elemento;
-                document.getElementById('tab3').removeChild(elemento.lastChild);   
-                i--;
+                
+                $("#tabela1").sortable('refreshPositions');
+                var idCompetencias = $("#tabela2").sortable('toArray').toString();
+                var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
+                idCompetencias = idCompetencias.split(",");
+                nomesCompetencias = nomesCompetencias.split(",");
+                document.getElementById('sub-conteudo2').innerHTML = "";
+                for (i = 0; i < nomesCompetencias.length; i++) {
+                    var elementoAdd = document.createElement('div');
+                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    document.getElementById('sub-conteudo2').appendChild(elementoAdd);
+                }
                 
         //         $("#tabela2").html("<option value='text'>text</option>");
            },
@@ -96,232 +153,402 @@ include('_header.php');
                     url: true
                 }
             }
-        });
-
-    // Mensagens
-    var senha = "<?php echo WORDING_FILL_PASSWORD; ?>";
-    var descricao = "<?php echo WORDING_FILL_DESCRIPTION; ?>";
-    var nome = "<?php echo WORDING_FILL_NAME; ?>";
-    var nomeDisciplina = "<?php echo WORDING_FILL_NAME_DISCIPLINA; ?>";
-    var url = "<?php echo WORDING_FILL_URL; ?>";
-    var palavrachave = "<?php echo WORDING_FILL_KEYWORD; ?>";
-    var data = "<?php echo WORDING_FILL_DATE; ?>";
-    var descricao_educacional = "<?php echo WORDING_FILL_EDUCACIONAL_DESCRIPTION; ?>";
-
-
-    $('#rootwizard').bootstrapWizard({onNext: function(tab, navigation, index) {
-    // Categoria geral
-        if(index==1) {
-            // Verifica se o nome foi preenchido caso contrário dá um aviso
-            if(!$('#nomeCurso').val()) {
-                $().toastmessage('showToast', {
-                    text     : nome, // Mensagem está nas variáveis
-                    sticky   : false,
-                    position : 'top-left',
-                    type     : 'error'
-                });
-                $('#nomeCurso').focus();
-                return false;
-            }
-            // Verificar se o nome da disciplina foi preenchido
-            if(!$('#nomeDisciplina').valid()) {
-                $().toastmessage('showToast', {
-                    text     : nomeDisciplina,
-                    sticky   : false,
-                    position : 'top-left',
-                    type     : 'error'
-                });
-                $('#nomeDisciplina').focus();
-                return false;
-            }
-            // Verificar se a palavra chave foi preenchida
-            if(!$('#senha').valid()) {
-                $().toastmessage('showToast', {
-                    text     : senha,
-                    sticky   : false,
-                    position : 'top-left',
-                    type     : 'error'
-                });
-                $('#senha').focus();
-                return false;
-            }
-            // Verificar se a descrição foi preenchida
-            if(!$('#descricao').val()) {
-                $().toastmessage('showToast', {
-                    text     : descricao,
-                    sticky   : false,
-                    position : 'top-left',
-                    type     : 'error'
-                });
-                $('#descricao').focus();
-                return false;
-            }
-        }
-
-        // Preenchimento do CHA das competências
-        if(index==2) {
-       // Make sure we entered the date
-            if(!$('#date').val()) {
-                $().toastmessage('showToast', {
-                    text     : data,
-                    sticky   : false,
-                    position : 'top-left',
-                    type     : 'error'
-                });
-                $('#date').focus();
-                return false;
-            }
-            
-        }
-        }, onTabShow: function(tab, navigation, index) {
-            var $total = navigation.find('li').length;
-            var $current = index+1;
-            var $percent = ($current/$total) * 100;
-            $('#rootwizard').find('.bar').css({width:$percent+'%'});
-            // If it's the last tab then hide the last button and show the finish instead
-            if($current >= $total) {
-                $('#rootwizard').find('.pager .next').hide();
-                $('#finisher').fadeIn("slow");
-    
-            } else {
-                $('#rootwizard').find('.pager .next').show();
-                $('#rootwizard').find('.pager .finish').hide();
-            }
-        }, onTabClick: function(tab, navigation, index) {
-            if(index!=5) {
-                $('#finisher').fadeOut("slow");
-            }
-            return true;
-        }
-        });     
+        }); 
 });
 </script>
 </head>
 
+<script>
+//Declara uma nova requisição ajax
+function fazAjax(){
+    console.log('chamou o faz');
+    var meu_ajax = new XMLHttpRequest();
+
+    //Declara um "conteiner" de dados para serem enviados por POST
+    var formData = new FormData();
+    var listaExclusao = $("#tabela2").sortable('toArray').toString();
+    //Adiciona uma variável ao "contêiner", no caso, a variável 'variavel' que contém o dado 'dado'
+    formData.append( 'listaExclusao', listaExclusao ); //$_POST['variavel'] === 'dado
+    //Configuração do ajax: qual o "tipo" (no caso, POST) e qual a página que será acessada (no caso, ajax_page.php)
+    //( o último parâmetro, um booleano, é para especificar se é assíncrono (true) ou síncrono (false) )
+    meu_ajax.open( 'POST', './competencias.php', true );
+
+    //Configurar a função que será chamada quando a requisição mudar de estado
+
+    meu_ajax.onreadystatechange = function () {
+        if ( meu_ajax.readyState === 4 ) { //readyState === 4: terminou/completou a requisição
+            if ( meu_ajax.status === 200 ) { //status === 200: sucesso
+                if ( meu_ajax.responseText.length > 0 ) {
+                    var array = JSON.parse(meu_ajax.responseText);
+                    var element_tabela1 = document.getElementById('tabela1');
+                    for(var i = 0; i < array.length; i++) {
+                        if ( element_tabela1.innerHTML.indexOf(array[i]) === -1) {
+                            element_tabela1.innerHTML += array[i];
+                        }
+                    }
+                    //Resposta não-vazia
+                } else {
+                    //Resposta vazia
+                }
+            } else if ( meu_ajax.status !== 0 ) { //status !== 200: erro ( meu_ajax.status === 0: ajax não enviado )
+                console.log( 'DEU ERRO NO AJAX: '+meu_ajax.responseText );
+            }
+        }
+    };
+    meu_ajax.send( formData );
+}
+
+//Enviar o ajax/Realizar a requisição
+
+
+//$(function () {
+//    tempoAjax = setInterval(fazAjax, 1000);
+//});
+$(function(){fazAjax()});
+//$(window).mouseup(function(){fazAjax();});
+$(window).blur(function(){fazAjax();});
+$(window).focus(function(){fazAjax();});
+$(window).mouseup(function(){fazAjax();});
+//setInterval(fazAjax, 1000);
+//setInterval(removerLi, 1);
+
+/*    $(function() {
+        $(window)
+            .focus(function() {
+                clearInterval(window.tempoAjax);
+                //setInterval(removerLi, 1);
+            })
+            .blur(function() {
+                tempoAjax =  
+            });
+    });*/
+</script>
+
+
+<script language="javascript">
+    function mudaTab(qualTab) {
+        if(qualTab == 1) {
+            if(document.getElementsByName('senha')[0].value.length > 5 && document.getElementsByName('nomeCurso')[0].value.length > 0 && document.getElementsByName('nomeDisciplina')[0].value.length > 0 && document.getElementsByName('descricao')[0].value.length > 0) {
+                document.getElementsByName('senha')[0].style.border = "0";
+                document.getElementsByName('nomeCurso')[0].style.border = "0";
+                document.getElementsByName('nomeDisciplina')[0].style.border = "0";
+                document.getElementsByName('descricao')[0].style.border = "0";
+                divTab = document.getElementById('sub-conteudo');
+                divTab.removeAttribute('class');
+                divTab.setAttribute('class', 'tab');
+                divTab = document.getElementById('sub-conteudo1');
+                divTab.removeAttribute('class');
+                divTab.setAttribute('class', 'tab-active');
+                divTab = document.getElementById('menu');
+                document.getElementById('seta').removeAttribute('class');
+                document.getElementById('seta').setAttribute('class', 'meu-active');
+                document.getElementById('menudiv1').removeAttribute('class');
+                document.getElementById('menudiv1').setAttribute('class', 'meu-active');
+                document.getElementById('seta1').removeAttribute('class');
+                document.getElementById('seta1').setAttribute('class', 'seta-active');
+                document.getElementById('buttonNext').removeAttribute('onclick');
+                document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(2)');
+                document.getElementById('buttonPrevious').removeAttribute('style');
+                document.getElementById('buttonPrevious').setAttribute('style', 'float: none; display: inline;');
+            }
+            else {
+                if(document.getElementsByName('senha')[0].value.length <= 5) {
+                    document.getElementsByName('senha')[0].style.border = "1px solid #dc8810";
+                    document.getElementsByName('senha')[0].value = "";
+                    document.getElementsByName('senha')[0].setAttribute("placeholder", "Min. 6 digitos");
+                }
+                else {
+                    document.getElementsByName('senha')[0].style.border = "0";
+                }
+                if(document.getElementsByName('nomeCurso')[0].value.length == 0) {
+                    document.getElementsByName('nomeCurso')[0].style.border = "1px solid #dc8810";
+                    document.getElementsByName('nomeCurso')[0].setAttribute("placeholder", "Este campo é necessário");
+                }
+                else {
+                    document.getElementsByName('nomeCurso')[0].style.border = "0";
+                }
+                if(document.getElementsByName('nomeDisciplina')[0].value.length == 0) {
+                    document.getElementsByName('nomeDisciplina')[0].style.border = "1px solid #dc8810";
+                    document.getElementsByName('nomeDisciplina')[0].setAttribute("placeholder", "Este campo é necessário");
+                }
+                else {
+                    document.getElementsByName('nomeDisciplina')[0].style.border = "0";
+                }
+                if(document.getElementsByName('descricao')[0].value.length == 0) {
+                    document.getElementsByName('descricao')[0].style.border = "1px solid #dc8810";
+                    document.getElementsByName('descricao')[0].setAttribute("placeholder", "Este campo é necessário");
+                }
+                else {
+                    document.getElementsByName('descricao')[0].style.border = "0";
+                }
+            }
+        }
+        else if(qualTab == 2) {
+            if(document.getElementsByName('arrayCompetencias')[0].value.length > 0) {
+                document.getElementById('tabela1').style.border = "0";
+                document.getElementById('tabela2').style.border = "0";
+                divTab = document.getElementById('sub-conteudo1');
+                divTab.removeAttribute('class');
+                divTab.setAttribute('class', 'tab');
+                divTab = document.getElementById('sub-conteudo2');
+                divTab.removeAttribute('class');
+                divTab.setAttribute('class', 'tab-active');
+                document.getElementById('menudiv2').removeAttribute('class');
+                document.getElementById('menudiv2').setAttribute('class', 'meu-active');
+                document.getElementById('seta1').removeAttribute('class');
+                document.getElementById('seta1').setAttribute('class', 'meu-active');
+                document.getElementById('buttonNext').removeAttribute('onclick');
+                document.getElementById('buttonPrevious').removeAttribute('onclick');
+                document.getElementById('finisher').removeAttribute('style');
+                document.getElementById('buttonNext').removeAttribute('style');
+                document.getElementById('buttonNext').setAttribute('style', 'float: none; display: none;');
+                document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(4)');
+            }
+            else {
+                document.getElementById("sub-conteudo1").getElementsByTagName('span')[1].innerHTML = "<span style='color: #dc8810'>Escolha uma competência";
+                document.getElementById("tabela1").style.border = "1px solid #dc8810";
+                document.getElementById("tabela2").style.border = "1px solid #dc8810";
+                window.scrollTo(0, 0);
+            }
+        }
+        else if(qualTab == 3) {
+            divTab = document.getElementById('sub-conteudo1');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab');
+            divTab = document.getElementById('sub-conteudo');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab-active');
+            document.getElementById('menudiv1').removeAttribute('class');
+            document.getElementById('seta1').removeAttribute('class');
+            document.getElementById('seta').removeAttribute('class');
+            document.getElementById('seta').setAttribute('class', 'seta-active');
+            document.getElementById('buttonNext').removeAttribute('onclick');
+            document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(1)');
+            document.getElementById('buttonPrevious').removeAttribute('style');
+            document.getElementById('buttonPrevious').setAttribute('style', 'float: none; display: none;');
+
+        }
+        else if(qualTab == 4) {
+            divTab = document.getElementById('sub-conteudo2');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab');
+            divTab = document.getElementById('sub-conteudo1');
+            divTab.removeAttribute('class');
+            divTab.setAttribute('class', 'tab-active');
+            document.getElementById('menudiv2').removeAttribute('class');
+            document.getElementById('seta1').removeAttribute('class');
+            document.getElementById('seta1').setAttribute('class', 'seta-active');
+            document.getElementById('buttonNext').removeAttribute('onclick');
+            document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(2)');
+            document.getElementById('buttonPrevious').removeAttribute('onclick');
+            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(3)');
+            document.getElementById('buttonNext').removeAttribute('style');
+            document.getElementById('finisher').setAttribute('style', 'float: none; display: none;');
+
+        }
+    }
+    opacityTip = 0;
+    function toolTip(id, texto) {
+        div = document.getElementsByClassName('tooltiploco')[id-1];
+        tooltip = document.createElement('div');
+        tooltip.setAttribute('class', 'mensagemTooltiploco');
+        tooltip.innerHTML = texto;
+        div1 = document.createElement('div');
+        div1.style.width = "200px";
+        div1.appendChild(tooltip);
+        div.appendChild(div1);
+        opacityTip = 0;
+        fadeInTip(id);
+    }
+    function deleteTooltip(id) {
+        opacityTip = 1;
+        fadeOutTip(id);
+    }
+    function fadeInTip(id) {
+        div = document.getElementsByClassName('tooltiploco')[id-1].lastChild.lastChild;
+        div.style.opacity = opacityTip;
+        opacityTip+=0.1;
+        tTip = setTimeout(function() {fadeInTip(id)}, 10);
+        if (opacityTip >= 1) {
+            clearTimeout(tTip);
+        }
+    }
+    function fadeOutTip(id) {
+        div = document.getElementsByClassName('tooltiploco')[id-1].lastChild.lastChild;
+        div.style.opacity = opacityTip;
+        opacityTip-=0.1;
+        tTip1 = setTimeout(function() {fadeOutTip(id)}, 10);
+        if (opacityTip <= 0) {
+            div = document.getElementsByClassName('tooltiploco')[id-1];
+            div.removeChild(div.lastChild);
+            clearTimeout(tTip1);
+        }
+    }
+
+    opacityModal = 0;
+    function fadeInModal() {
+        div = document.getElementById('modal-competencia');
+        divDelete = document.getElementById('closeModal');
+        divFundo = document.getElementsByClassName('fundoPreto')[0];
+        divFundo.style.display = "block";
+        divFundo.style.opacity = opacityModal;
+        div.style.opacity = opacityModal;
+        divDelete.style.opacity = opacityModal;
+        opacityModal+=0.01;
+        tModal = setTimeout(function() {fadeInModal()}, 1);
+        if (opacityModal >= 1) {
+            clearTimeout(tModal);
+        }
+    }
+
+    function fadeOutModal() {
+        div = document.getElementById('modal-competencia');
+        div1 = document.getElementById('closeModal');
+        divFundo = document.getElementsByClassName('fundoPreto')[0];
+        divFundo.style.opacity = opacityModal;
+        div1.style.opacity = opacityModal;
+        div.style.opacity = opacityModal;
+        opacityModal-=0.01;
+        tFadeOutModal = setTimeout(function() {fadeOutModal()}, 1);
+        if (opacityModal <= 0) {
+            divFundo.style.display = "none";
+            divDelete = document.getElementById('modal-competencia');
+            divDelete.parentNode.removeChild(divDelete);
+            divDeleteClose = document.getElementById('closeModal');
+            divDeleteClose.parentNode.removeChild(divDeleteClose);
+            fazAjax();
+            clearInterval(window.tDeleteModal);
+            clearTimeout(tFadeOutModal);
+        }
+    }
+
+    function deleteModal() {
+        if(document.getElementById('modal-competencia').contentDocument.getElementsByClassName('lista-disciplina').length != 0) {
+            fadeOutModal();
+            clearInterval(window.tDeleteModal);
+        }
+    }
+
+    function modalCompetencia() {
+        modalClose = document.createElement('div');
+        modalClose.setAttribute("id", "closeModal");
+        modalClose.setAttribute("class", "text-right");
+        modalClose.setAttribute("onclick", "fadeOutModal()");
+        modalClose.setAttribute("style", "position: absolute; top: 12%; left: 0; font-size: 20px; background-color: ; z-index: 9999; width: 100%; padding-right: 33px;l");
+        modalClose.innerHTML = '<a href="#"><span class="glyphicon glyphicon-remove"></span></a>';
+        modal = document.createElement("iframe");
+        modal.setAttribute("src", "modal_cadastro_competencia.php");
+        modal.setAttribute("id", "modal-competencia");
+        modal.setAttribute("style", "position: absolute; z-index: 9998; top: 10%; left: 2.5%; background-color: #fff; width: 95%; height: 950px; overflow: hidden; opacity: 0; -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; margin-bottom: 50px;");
+        modal.setAttribute("frameborder", "0");
+
+        document.getElementsByClassName('cadastrobase')[0].appendChild(modal);
+        document.getElementsByClassName('cadastrobase')[0].appendChild(modalClose);
+        fadeInModal();
+        tDeleteModal = setInterval("deleteModal()", 1);
+    }
+</script>
 
 <div class="fixedBackgroundGradient"></div>
-<a href="index.php"><?php echo WORDING_BACK_TO_LOGIN;?></a>
-
-<?php
-if (!isset($_GET['disciplinasId'])) {
-?>
 
 <div class="cadastrobase">
-    <div class="top-cadastrobase"><?php echo "Editar Disciplina"; ?></div>
+    <div class="top-cadastrobase"><div class="text-left"><?php echo (WORDING_EDIT_COURSE); ?></div><div class="text-right" ><!-- <a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a>--></div></div>
         <div class="cadastrobase-content">
-            <h2 style="text-align: center;">Escolher a disciplina:</h2>
-            <div id="catalogo-disciplinas">
-            <?php 
-                $id = new Disciplina();
-                $idDisci = $id->getIdCursos();
-                $nomeDisci = $id->getNomesDisciplinas();
-                for ($i = 0; $i < sizeof($idDisci); $i++)
-                {
-                    echo '<a href="editarDisciplina.php?disciplinasId='.$idDisci[$i][0].'"><div id="disciplinas-item">'.$nomeDisci[$i][0].'</div></a>';
-                }
-            ?>
-            </div>
-        </div>
-</div>
-<?php
-}
-else {
-
-    //require_once('classes/disciplina.php');
-    $disciplina = new Disciplina();
-    //$nomedadisciplina = $disciplinas->getNomeDisciplinaById
-        $nomedadisciplina = $disciplina->getNomeDisciplinaById($_GET['disciplinasId']);
-        $nomedocurso = $disciplina->getNomeCursoById($_GET['disciplinasId']);
-        $idCompetencias = $disciplina->getCompetenciaFromDisciplinaById($_GET['disciplinasId']);
-
-
-?>
-<div class="cadastrobase">
-    <div class="top-cadastrobase"><?php echo "Editar Disciplina"; ?></div>
-        <div class="cadastrobase-content">
-            <div id="content-disciplinas">
-                <div id="informacoes-disciplina">
-                    <div id="form-informacoes">
-                             <form method="post" action="" name="registrar_nova_disciplina" id="registrar_nova_disciplina">
+           <form method="post" action="" name="editar_disciplina" id="editar_disciplina">
             <!-- ID do usuário passado via hidden POST -->
             <input type="hidden" id="user_id" name="user_id" value="<?php echo $_SESSION['user_id']; ?>" />
                 <div id="rootwizard">
 
 
-                    <div class="navbar">
-                      <div class="navbar-inner">
-                        <div class="container">
-                            <ul>
-                                <li><a href="#tab1" data-toggle="tab"><?php echo WORDING_GENERAL_INFORMATION; ?></a></li>
-                                <li><a href="#tab2" data-toggle="tab"><?php echo WORDING_COMPETENCIA; ?></a></li>
-                                <li><a href="#tab3" data-toggle="tab"><?php echo WORDING_CHA; ?></a></li>
-                            </ul>
-                        </div>
-                      </div>
+                    <div id="menu">
+                        <div id="menudiv" class="meu-active"><?php echo WORDING_GENERAL_INFORMATION; ?></div>
+                        <div id="seta" class="seta-active"></div>
+                        <div id="menudiv1"><?php echo WORDING_COMPETENCIA; ?></div>
+                        <div id="seta1"></div>
+                        <div id="menudiv2"><?php echo WORDING_CHA; ?></div>
                     </div>
+                        <div id="conteudo" class="clearfix">
+                            <div id="sub-conteudo" class="tab-active">
 
 
-                        <div id="bar" class="progress progress-striped active">
-                            <div class="bar">
-                            </div>
-                        </div>
-                    <div class="tab-content">
-                        <div class="tab-pane" id="tab1">
                             <div class="control-group">
-                                <label class="control-label" for="nomeCurso"><?php echo WORDING_COURSE_NAME; ?></label>
+                                <label class="control-label" for="nomeCurso"><div style="float: left"><?php echo WORDING_COURSE_NAME; ?></div><div class="tooltiploco"><div onmouseover="toolTip(1, 'Ex. Curso Teste')" onmouseout="deleteTooltip(1)">?</div></div></label> <!-- TODO colcoar variaveis mensagem tooltip -->
                                 <div class="controls">
                                     <input type="text" id="nomeCurso" name="nomeCurso" value="<?php echo $nomedocurso[0][0]; ?>" class="required">       
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="nomeDisciplina"><?php echo WORDING_DISCIPLINA_NAME; ?></label>
+                                <label class="control-label" for="nomeDisciplina"><div style="float: left"><?php echo WORDING_DISCIPLINA_NAME; ?></div><div class="tooltiploco"><div onmouseover="toolTip(2, 'Ex. Disciplina Teste')" onmouseout="deleteTooltip(2)">?</div></div></label>
                                 <div class="controls">
                                     <input type="text" id="nomeDisciplina" name="nomeDisciplina" value="<?php echo $nomedadisciplina[0][0]; ?>" class="required">       
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="senha"><?php echo WORDING_REGISTRATION_PASSWORD; ?></label>
+                                <label class="control-label" for="senha"><div style="float: left"><?php echo WORDING_REGISTRATION_PASSWORD; ?></div><div class="tooltiploco"><div onmouseover="toolTip(3, 'Senha para cadastrar-se na disciplina')" onmouseout="deleteTooltip(3)">?</div></div></label>
                                 <div class="controls">
-                                    <input type="text" id="senha" name="senha" value="<?php echo $_GET['disciplinasId']; ?>" class="required">       
+                                    <input type="text" id="senha" name="senha"  value="<?php echo $senhaDisciplina[0][0]; ?>" class="required">       
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="descricao"><?php echo WORDING_DISCIPLINA_DESCRICAO; ?></label>
+                                <label class="control-label" for="descricao"><div style="float: left"><?php echo WORDING_DISCIPLINA_DESCRICAO; ?></div><div class="tooltiploco"><div onmouseover="toolTip(4, 'Ex. Curso que procura ensinar algo ao aluno')" onmouseout="deleteTooltip(4)">?</div></div></label>
                                     <div class="controls">
-                                        <textarea name="descricao" id="descricao" ROWS="5" COLS="40" class="required"><?php echo "Descrição da disciplina ".$_GET['disciplinasId']; ?></textarea>
+                                        <textarea name="descricao" id="descricao" ROWS="5" COLS="40" class="required"><?php echo $descricaoDisciplina[0][0]; ?></textarea>
                                     </div>
                             </div>
                         </div>
 
 
                         <!-- DIV COM DADOS DAS COMPETÊNCIAS A SEREM ASSOCIADAS A DISCIPLINA -->
-                        <div class="tab-pane" id="tab2">
+                        <div id="sub-conteudo1" style="background-image: url(img/seta_drag.png); background-repeat: no-repeat; background-position: 49.5% 40%; background-size: 50px;" class="tab">
                             <input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" />
-                            <span style="text-align:left">Competencias Disponíveis</span><span style="float:right">Competencias Selecionadas</span>
+                            <input type="hidden" id="idDisciplina" name="idDisciplina" value="<?php echo $_POST['disc']?>" />
+                            <span style="display block; width: 100%; float: left; text-align:center;"><?php echo WORDING_ASSOCIATE_COMP_EDIT; ?></span></br></br>
+                            <span style="display block; width: 40%; float: left; text-align:left;">Competencias Disponíveis</span><span style="display: block; width: 30%; float: right; text-align:right;">Competencias Selecionadas</span>
                             <ul id="tabela1">
-                                <?php
-                                $comp = new Competencia();
-                                $idCompetencia = $comp->getArrayOfIDs();
-                                $nomeCompetencia = $comp->getArrayOfNames();
-                                $contador = count($nomeCompetencia);
-                                for($i=0;$i<$contador;$i++){
-                                    for($j = 0; $j < sizeof($idCompetencias); $j++) {
-                                        if($idCompetencia[$i][0] == $idCompetencias[$j][0]) {
-                                            $igual = 1;
-                                        }
-                                    }
-                                    if($igual != 1) {
-                                ?>
-                                    <li id="<?php echo "".($idCompetencia[$i]["idcompetencia"]); ?>" name="<?php echo "".($nomeCompetencia[$i]["nome"]);  ?>" class="ui-state-default"><?php echo "".($nomeCompetencia[$i]["nome"]); ?></li>
-                                <?php    
-                                    }
-                                    $igual = 0;
-                                }
-                                ?>
+
                             </ul>
 
                             
                             <ul id="tabela2">
+                            <!--<li class="ui-state-highlight">Item 1 selecionado</li>-->
+                            </ul>
+                             
+                    
+                    <center><div onclick="modalCompetencia();" class='botao-cadastra' style='width: 240px'><?=WORDING_CREATE_NEW_COMPETENCIA?></div></center>
+                    <br>
+                        </div>
+                        
+                    <!-- DIV COM COISA CHA -->
+                        <div id="sub-conteudo2" class="tab">
+                            <div class="control-group">
+                                <div class="controls">                                    
+                                        <div id='nomesCompetencias'>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input id="finisher" style="display: none;" type="submit" name="editar_disciplina" value="<?php echo WORDING_EDIT_COURSE_FINAL; ?>" />
+                            
+                        <ul class="pager wizard">
+                            <li class="next" style="float:none"><div id="buttonNext" class='button' onclick="mudaTab(1)"><a href="javascript:;" class='button-next text-left'>Próximo</a></div></li>
+                            <li class="previous" style="float:none; display: none;" id="buttonPrevious" onclick="mudaTab(3)"><div class="text-right"><a href="javascript:;">Voltar</a></div></li>
+                        </ul>
+
+
+                    </div>  
+                </div>
+                <br /><br />
+
+                
+                <!--<input type="reset" name="limpar" value="<?php echo WORDING_CLEAR_CREATE_DISCIPLINA; ?>" />-->
+
+            </form>
+        </div>
+</div>
+
+
+<div class="fundoPreto"></div>
+                            <!--ul id="tabela2">
                             <?php
                                 $comp = new Competencia();
                                 for($j = 0; $j < sizeof($idCompetencias); $j++) {
@@ -334,48 +561,7 @@ else {
                                  }
                                 }
                                 ?>
-                            </ul>
-                             
-                    
+                            </ul-->
 
-                    <div class='button'><a href="cadastro_OA.php" target="_blank"><?=WORDING_CREATE_NEW_COMPETENCIA?></a></div>      
-                        </div>
-                        
-        <!-- DIV COM COISA CHA -->
-                        <div class="tab-pane" id="tab3">
-                            <p> oi</p>
-                            <div id='nomesCompetencias'>
-                            
-                            </div>
-
-                        <div id="exemplo"></div>
-                        </div>
-
-                        <ul class="pager wizard">
-                            <!-- <input id="finisher" style="display: none;" type="submit" name="registrar_nova_disciplina" value="<?php echo WORDING_CREATE_DISCIPLINA; ?>" /> -->
-                            <input id="finisher" style="display: none;" type="submit" name="registrar_nova_disciplina" value="Atualizar disciplina" />
-                            <li class="next" style="float:none"><div class='button'><a href="javascript:;" class='button-next text-left'>Próximo</a></div></li>
-                            <li class="previous" style="float:none"><div class="text-right"><a href="javascript:;">Voltar</a></div></li>
-                        </ul>
-
-
-                    </div>  
-                </div>
-                <br /><br />
-
-                
-                <!--<input type="reset" name="limpar" value="<?php echo WORDING_CLEAR_CREATE_DISCIPLINA; ?>" />-->
-
-            </form>
-                        </div>
-                    </div>
-            </div>
-        </div>
-</div>
-<?php
-}
-?>
-
-
-
+<!-- style="background-color: rgba(0, 0, 0, 0.8); height: 100%; width: 100%; position: fixed; top: 55px; left: 0px;"-->
 <?php include('_footer.php'); ?>

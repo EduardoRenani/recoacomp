@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php include_once('_header.php'); ?>
 
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
     <title>Perfil</title>
 
@@ -15,10 +8,11 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
+    
     <link href="css/perfil.css" rel="stylesheet">
     <link rel='stylesheet' media='screen and (min-width: 0px) and (max-width: 425px)' href='css/perfil-xs.css' />
     <link rel='stylesheet' media='screen and (min-width: 425px) and (max-width: 1100px)' href='css/perfil-small.css' />
-    <link rel='stylesheet' media='screen and (min-width: 1100px)' href='css/perfil-large.css' />
+    <link rel='stylesheet' media='screen and (min-width: 1100px)' href='css/perfil-large.css' /> 
 
     <!-- Custom Fonts -->
     <link href="font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">

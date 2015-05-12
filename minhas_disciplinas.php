@@ -20,15 +20,19 @@ require_once('libraries/PHPMailer.php');
 // load the login class
 require_once('classes/Login.php');
 
+// load the login class
+require_once('classes/disciplina.php');
+
 // create a login object. when this object is created, it will do all login/logout stuff automatically
 // so this single line handles the entire login process.
 $login = new Login();
+$disciplina = new Disciplina();
 
 // ... ask if we are logged in here:
-if (($login->isUserLoggedIn() == true) && ($login->getUserAccess() == 2) || ($login->getUserAccess() == 3)){
+if (($login->isUserLoggedIn() == true) && ($_SESSION['acesso'] == 2)) {
     // the user is logged in. you can do whatever you want here.
     // for demonstration purposes, we simply show the "you are logged in" view.
-    include("views/view_cadastro_OA_categoria_geral.php");
+    include("views/view_professor_minhas_disciplinas.php");
 
 } else {
     // the user is not logged in. you can do whatever you want here.
