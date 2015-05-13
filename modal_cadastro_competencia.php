@@ -568,7 +568,7 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
     }
 
     function deleteModal() {
-        if(document.getElementById('modal-oa').contentDocument.getElementsByClassName('lista-disciplina').length != 0) {
+        if(document.getElementById('modal-oa').contentDocument.getElementsByClassName('disciplinas-list').length != 0) {
             fadeOutModal();
             clearInterval(window.tDeleteModal);
         }

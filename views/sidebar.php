@@ -39,7 +39,7 @@
 			                    	</li>
 				                </a>
 								<a href="disciplinas_disponiveis.php">
-									<li>
+									<li style="z-index:1000;" class="active">
 			                        	<?php echo WORDING_AVAILABLE_COURSES;?>
 			                 		</li>
 								</a>
@@ -60,7 +60,7 @@
 			                    	</li>
 				                </a>
 								<a href="disciplinas_disponiveis.php">
-									<li>
+									<li style="z-index:1000;" class="active">
 			                        	<?php echo WORDING_AVAILABLE_COURSES;?>
 			                 		</li>
 								</a>

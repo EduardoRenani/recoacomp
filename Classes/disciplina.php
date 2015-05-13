@@ -328,6 +328,8 @@ class Disciplina {
     // Função que edita disciplina
     public function editarDisciplina($nomeCurso, $nomeDisciplina, $descricao, $usuarioProfessorID, $senha, $arrayCompetencias, $conhecimento, $habilidade, $atitude, $idDisciplina){
        // Remove espaços em branco em excesso das strings
+        print_r($conhecimento);
+
         $nomeCurso  = trim($nomeCurso);
         $nomeDisciplina = trim($nomeDisciplina);
         $descricao = trim($descricao);
@@ -399,7 +401,7 @@ class Disciplina {
                     $stmt = $this->db_connection->prepare("DELETE FROM disciplina_competencia WHERE disciplina_iddisciplina = :idDisciplina");
                     $stmt->bindParam(':idDisciplina',$idDisciplina, PDO::PARAM_INT);
                     $stmt->execute();
-                    $count = count($arrayCompetencias);
+                    $count = count($arrayCompetencias)-1;
                     for ($i = 0; $i < $count; $i++) {
                         $arrayCompetenciasBD = $arrayCompetencias[$i]; // ID das competências, serialização
                         $this->arrayCompetenciasBD = $arrayCompetenciasBD;
@@ -424,7 +426,7 @@ class Disciplina {
                     $host  = $_SERVER['HTTP_HOST'];
                     $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
                     $extra = 'disciplinas.php';
-                    echo "<script language='JavaScript'> setTimeout(function () {window.location='http://".$host.$uri."/".$extra."';}, 100); </script> ";
+                    echo "<script language='JavaScript'> setTimeout(function () {window.location='http://".$host.$uri."/".$extra."';}, 10000); </script> ";
                 }
         }
     }
@@ -634,6 +636,19 @@ class Disciplina {
             $stmt = $this->db_connection->prepare("SELECT competencia_idcompetencia FROM disciplina_competencia WHERE disciplina_iddisciplina=:id");
             //$stmt->bindParam(':nome',, PDO::PARAM_STR);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            //print_r($stmt->execute());
+            return $stmt->fetchAll();
+            //return $stmt->fetchAll();
+        }
+    }
+
+    public function getCHAFromDisciplinaByIdCompetencia($id,$iddisciplina){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT conhecimento, habilidade, atitude FROM disciplina_competencia WHERE competencia_idcompetencia=:id AND disciplina_iddisciplina=:iddisciplina");
+            //$stmt->bindParam(':nome',, PDO::PARAM_STR);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->bindValue(':iddisciplina', $iddisciplina, PDO::PARAM_INT);
             $stmt->execute();
             //print_r($stmt->execute());
             return $stmt->fetchAll();

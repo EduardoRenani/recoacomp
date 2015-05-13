@@ -30,7 +30,7 @@
 <body>
     
     <div class="fixedBackgroundGradient"></div>
-    <?php require_once("sidebar-profile.php"); ?>
+    <?php include("views/sidebar-profile.php"); ?>
 
         <!-- ============== DISCIPLINAS ============== -->
 

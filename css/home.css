@@ -311,14 +311,6 @@ nav {
 .recomendacao-item h3{margin-top:0px;display:inline;}
 .recomendacao-item-content{width:70%;float:left;text-align: left;}
 
-.button{
-    //background-color:blue;
-    text-align:center;
-    vertical-align:middle;
-    float:left;
-    width:30%;
-    height:auto;
-}
 
 .botao-cadastra {
       border: 0;
@@ -390,12 +382,6 @@ border-radius: 5px;
     width: 70%;
 }
 
-.button {
-    position: relative;
-    float: right;
-    width: 30%;
-}
-
 .disciplina-item-content{width:70%;float:left;}
 .disciplinas-item h3{margin-top:0px;display:inline;}
 
@@ -404,8 +390,9 @@ border-radius: 5px;
     text-align:center;
     vertical-align:middle;
     
-    width:30%;
+    width:100%;
     height:auto;
+    max-height: 80px;
 }
 
 

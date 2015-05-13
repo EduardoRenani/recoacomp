@@ -28,8 +28,7 @@ function getDisciplinaId(id){
 
 <div class="fixedBackgroundGradient"></div>
 <!-- ============== SIDEBAR =============== -->
-<?php include_once("views/sidebar.php"); ?>
 
 <!-- ============== DISCIPLINAS DIPONIVEIS ============== -->
 
-<?php //include_once("view_disciplinas_disponiveis.php"); ?>
+<?php include_once("view_disciplinas.php"); ?>

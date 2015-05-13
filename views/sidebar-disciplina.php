@@ -23,21 +23,21 @@
 	<div class="top-sidebar">Bem Vindo, <?php echo $_SESSION['user_name']?></div>
         <div class="sidebar-content">           
                 <ul class="sidebar-menu">
-                    <a href="index.php">
-                    	<li style="z-index:1000;" id="home">
-                        	Disciplinas Disponíveis
-                    	</li>
-                    </a>
-                   <a href="profile_show.php">
-                   	<li>
-                        Meu Perfil
-                    </li>
-                	</a>
                      <a href="disciplinas.php">
                      	<li class="active">
                         Minhas Disciplinas
                     	</li>
                 	</a>
+                   <a href="profile_show.php">
+                   	<li>
+                        Meu Perfil
+                    </li>
+                	</a>
+                    <a href="disciplinas_disponiveis.php">
+                    	<li style="z-index:1000;" id="home">
+                        	Disciplinas Disponíveis
+                    	</li>
+                    </a>
     				<a href="cadastro_disciplina.php">
     					<li>
 	   						<?php 

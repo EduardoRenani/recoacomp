@@ -10,7 +10,6 @@ include('_header.php');
 ?>
 <!-- IMPORTAÇÃO JQUERY-->
 <head>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="css/tooltip.css">
     <link href="css/base_cadastro.css" rel="stylesheet">
     <link href="css/jquery.nouislider.min.css" rel="stylesheet">
@@ -50,17 +49,27 @@ include('_header.php');
     <script src="http://thecodeplayer.com/uploads/js/prefixfree-1.0.7.js" type="text/javascript" type="text/javascript"></script>
     <script src="js/jquery.nouislider.all.min.js" type="text/javascript"></script>
     <?php
-    $disciplina = new Disciplina();
     //$nomedadisciplina = $disciplinas->getNomeDisciplinaById
         $nomedadisciplina = $disciplina->getNomeDisciplinaById($_POST['disc']);
         $nomedocurso = $disciplina->getNomeCursoById($_POST['disc']);
         $senhaDisciplina = $disciplina->getSenhaDisciplinaById($_POST['disc']);
         $descricaoDisciplina = $disciplina->getDescricaoDisciplinaById($_POST['disc']);
         $idCompetencias = $disciplina->getCompetenciaFromDisciplinaById($_POST['disc']);
+        foreach ($idCompetencias as $value) {
+            $idCompetenciasEnviar .= $value[0].",";
+            $chaCompetencias =  $disciplina->getCHAFromDisciplinaByIdCompetencia($value[0], $_POST['disc']);
+            for($i = 0; $i < 3; $i++) {
+                $chaCompetenciasEnviar .= $chaCompetencias[0][$i].",";
+            }
+            $chaCompetenciasEnviar .= "/";
+        }
+        echo $chaCompetenciasEnviar;
     ?>
 
     <!-- FUNÇÃO QUE FAZ O SORTABLE E ENVIA OS ID'S DAS COMPETÊNCIAS-->
     <script>
+
+
     $(function(){
         $("#exemplo").noUiSlider({
             start: 1,
@@ -102,6 +111,7 @@ include('_header.php');
                     elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
                     document.getElementById('sub-conteudo2').appendChild(elementoAdd);
                 }
+                fazAjaxTabela2();
         //         $("#tabela2").html("<option value='text'>text</option>");
            },
             update: function(event, ui) {
@@ -130,6 +140,7 @@ include('_header.php');
                     elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
                     document.getElementById('sub-conteudo2').appendChild(elementoAdd);
                 }
+                fazAjaxTabela2();
                 
         //         $("#tabela2").html("<option value='text'>text</option>");
            },
@@ -161,14 +172,13 @@ include('_header.php');
 <script>
 //Declara uma nova requisição ajax
 function fazAjax(){
-    console.log('chamou o faz');
     var meu_ajax = new XMLHttpRequest();
 
     //Declara um "conteiner" de dados para serem enviados por POST
     var formData = new FormData();
-    var listaExclusao = $("#tabela2").sortable('toArray').toString();
+    var listaExclusao = '<?php echo $idCompetenciasEnviar; ?>';
     //Adiciona uma variável ao "contêiner", no caso, a variável 'variavel' que contém o dado 'dado'
-    formData.append( 'listaExclusao', listaExclusao ); //$_POST['variavel'] === 'dado
+    formData.append( 'listaExclusao', listaExclusao); //$_POST['variavel'] === 'dado
     //Configuração do ajax: qual o "tipo" (no caso, POST) e qual a página que será acessada (no caso, ajax_page.php)
     //( o último parâmetro, um booleano, é para especificar se é assíncrono (true) ou síncrono (false) )
     meu_ajax.open( 'POST', './competencias.php', true );
@@ -197,35 +207,73 @@ function fazAjax(){
     };
     meu_ajax.send( formData );
 }
-
-//Enviar o ajax/Realizar a requisição
-
-
-//$(function () {
-//    tempoAjax = setInterval(fazAjax, 1000);
-//});
 $(function(){fazAjax()});
-//$(window).mouseup(function(){fazAjax();});
 $(window).blur(function(){fazAjax();});
 $(window).focus(function(){fazAjax();});
 $(window).mouseup(function(){fazAjax();});
-//setInterval(fazAjax, 1000);
-//setInterval(removerLi, 1);
 
-/*    $(function() {
-        $(window)
-            .focus(function() {
-                clearInterval(window.tempoAjax);
-                //setInterval(removerLi, 1);
-            })
-            .blur(function() {
-                tempoAjax =  
-            });
-    });*/
+//Declara uma nova requisição ajax
+function fazAjaxTabela2(){
+    var meu_ajax = new XMLHttpRequest();
+
+    //Declara um "conteiner" de dados para serem enviados por POST
+    var formData = new FormData();
+    var listaExclusao = '<?php echo $idCompetenciasEnviar; ?>';
+    //Adiciona uma variável ao "contêiner", no caso, a variável 'variavel' que contém o dado 'dado'
+    formData.append( 'listaExclusao', listaExclusao); //$_POST['variavel'] === 'dado
+    //Configuração do ajax: qual o "tipo" (no caso, POST) e qual a página que será acessada (no caso, ajax_page.php)
+    //( o último parâmetro, um booleano, é para especificar se é assíncrono (true) ou síncrono (false) )
+    meu_ajax.open( 'POST', './competenciasAssociadas.php', true );
+
+    //Configurar a função que será chamada quando a requisição mudar de estado
+
+    meu_ajax.onreadystatechange = function () {
+        if ( meu_ajax.readyState === 4 ) { //readyState === 4: terminou/completou a requisição
+            if ( meu_ajax.status === 200 ) { //status === 200: sucesso
+                if ( meu_ajax.responseText.length > 0 ) {
+                    var array = JSON.parse(meu_ajax.responseText);
+                    var element_tabela1 = document.getElementById('tabela2');
+                    for(var i = 0; i < array.length; i++) {
+                        if ( element_tabela1.innerHTML.indexOf(array[i]) === -1) {
+                            element_tabela1.innerHTML += array[i];
+                        }
+                    }
+                    document.getElementById('arrayCompetencias').value = listaExclusao;
+                    var idCompetencias = $("#tabela2").sortable('toArray').toString();
+                    var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
+                    var chaCompetencias = '<?php echo $chaCompetenciasEnviar; ?>'
+                    chaCompetencias = chaCompetencias.split("/");
+                    for(i = 0; i < chaCompetencias.length; i++) {
+                        chaCompetencias[i] = chaCompetencias[i].split(",");
+                    }
+                    console.log(chaCompetencias);
+                    idCompetencias = idCompetencias.split(",");
+                    nomesCompetencias = nomesCompetencias.split(",");
+                    document.getElementById('sub-conteudo2').innerHTML = "";
+                    for (i = 0; i < nomesCompetencias.length; i++) {
+                        var elementoAdd = document.createElement('div');
+                        elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="'+chaCompetencias[i][0]+'" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="'+chaCompetencias[i][1]+'" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="'+chaCompetencias[i][2]+'" name="atitude['+idCompetencias[i]+']"></div></div>';
+                        document.getElementById('sub-conteudo2').appendChild(elementoAdd);
+                    }
+                    //Resposta não-vazia
+                } else {
+                    //Resposta vazia
+                }
+            } else if ( meu_ajax.status !== 0 ) { //status !== 200: erro ( meu_ajax.status === 0: ajax não enviado )
+                console.log( 'DEU ERRO NO AJAX: '+meu_ajax.responseText );
+            }
+        }
+    };
+    meu_ajax.send( formData );
+}
+$(window).load(function(){fazAjaxTabela2();});
+
+
 </script>
 
 
 <script language="javascript">
+
     function mudaTab(qualTab) {
         if(qualTab == 1) {
             if(document.getElementsByName('senha')[0].value.length > 5 && document.getElementsByName('nomeCurso')[0].value.length > 0 && document.getElementsByName('nomeDisciplina')[0].value.length > 0 && document.getElementsByName('descricao')[0].value.length > 0) {
@@ -419,11 +467,12 @@ $(window).mouseup(function(){fazAjax();});
             fazAjax();
             clearInterval(window.tDeleteModal);
             clearTimeout(tFadeOutModal);
+            tAtualizaCompetencia = setInterval('atualizaCompetencia()', 1);
         }
     }
 
     function deleteModal() {
-        if(document.getElementById('modal-competencia').contentDocument.getElementsByClassName('lista-disciplina').length != 0) {
+        if(document.getElementById('modal-competencia').contentDocument.getElementsByClassName('disciplinas-list').length != 0) {
             fadeOutModal();
             clearInterval(window.tDeleteModal);
         }
@@ -437,16 +486,52 @@ $(window).mouseup(function(){fazAjax();});
         modalClose.setAttribute("style", "position: absolute; top: 12%; left: 0; font-size: 20px; background-color: ; z-index: 9999; width: 100%; padding-right: 33px;l");
         modalClose.innerHTML = '<a href="#"><span class="glyphicon glyphicon-remove"></span></a>';
         modal = document.createElement("iframe");
-        modal.setAttribute("src", "modal_cadastro_competencia.php");
+        modal.setAttribute("src", "modal_cadastro_competencia_oa.php");
         modal.setAttribute("id", "modal-competencia");
-        modal.setAttribute("style", "position: absolute; z-index: 9998; top: 10%; left: 2.5%; background-color: #fff; width: 95%; height: 950px; overflow: hidden; opacity: 0; -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; margin-bottom: 50px;");
+        modal.setAttribute("style", "position: absolute; z-index: 9998; top: 10%; left: 2.5%; background-color: #fff; width: 95%; height: 780px; overflow: hidden; opacity: 0; -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; margin-bottom: 50px;");
         modal.setAttribute("frameborder", "0");
 
         document.getElementsByClassName('cadastrobase')[0].appendChild(modal);
         document.getElementsByClassName('cadastrobase')[0].appendChild(modalClose);
         fadeInModal();
         tDeleteModal = setInterval("deleteModal()", 1);
+        tPegaCompetencia = setInterval("pegaCompetencia()", 1);
     }
+
+
+
+function pegaCompetencia() {
+    console.log(document.getElementById('modal-competencia').contentDocument);
+    if(document.getElementById('modal-competencia').contentDocument.getElementById('competenciacadastrada').length != 0) {
+        idCompetencia = document.getElementById('modal-competencia').contentDocument.getElementById('competenciacadastrada').value;
+        //cloneOA = document.getElementById('tabela1').getElementById(idOA).cloneNode();
+        //document.getElementById('tabela2').apendChild(cloneOA);
+        document.getElementById('arrayCompetencias').value += idCompetencia+',';
+        clearInterval(window.tPegaCompetencia);
+
+    }
+}
+
+function atualizaCompetencia() {
+    novoCompetencia = document.getElementById('arrayCompetencias').value;
+    novoCompetencia = novoCompetencia.split(',');
+    sizeCompetencia = novoCompetencia.length-2;
+    if(cloneCompetencia = document.getElementById(novoCompetencia[novoCompetencia.length-2]).cloneNode(true)) {
+        document.getElementById(novoCompetencia[novoCompetencia.length-2]).parentNode.removeChild(document.getElementById(novoCompetencia[novoCompetencia.length-2]).parentNode.lastChild)
+        document.getElementById('tabela2').appendChild(cloneCompetencia);
+        var idCompetencias = $("#tabela2").sortable('toArray').toString();
+        var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
+        idCompetencias = idCompetencias.split(",");
+        nomesCompetencias = nomesCompetencias.split(",");
+        document.getElementById('sub-conteudo6').innerHTML = "";
+        for (i = 0; i < nomesCompetencias.length; i++) {
+            var elementoAdd = document.createElement('div');
+            elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
+            document.getElementById('sub-conteudo6').appendChild(elementoAdd);
+        }
+        clearInterval(window.tAtualizaCompetencia);
+    }
+}
 </script>
 
 <div class="fixedBackgroundGradient"></div>

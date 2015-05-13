@@ -19,7 +19,7 @@
 
 </head>
 <div class="fixedBackgroundGradient"></div>
-<?php require_once("views/sidebar.php"); ?>
+<?php require_once("views/sidebar-disciplina.php"); ?>
 
 <!-- ============== DISCIPLINAS ============== -->
 
@@ -46,16 +46,20 @@
                                         "<h3>".$nomeDisci[0][0]."</h3>".
                                         "<h4>".$nomeCurso[0][0]." - ".$professorDisci[0][0]."</h4>".
                                         "<p>".$descricaoDisci[0][0]."</p>".
-                                        "<center><div class='button'><form action='cadastro_disciplina_cha_teste.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
-                                        "<input type='hidden' name='disc' value='".$idDisci[$i][0]."'>".
-                                        "<input type='submit' value='Testar Recomendação'></br></br>".
                                     "</form>".
                                     "</div>".
-                                    "<center><div class='button'><form action='editarDisciplina.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
-                                        "<input type='hidden' name='disc' value='".$idDisci[$i][0]."'>".
-                                        "<input type='submit' value='Visualizar/Editar Disciplina'></br></br>".
-                                        "</form>
-                                    </div></center>".
+                                    "<div style='position: relative; float: right; width: 30%;'>".
+                                        "<div class='button'><form action='cadastro_disciplina_cha_teste.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
+                                            "<input type='hidden' name='disc' value='".$idDisci[$i][0]."'>".
+                                            "<input type='submit' value='Testar Recomendação'></br></br>".
+                                            "</form>".
+                                        "</div>".
+                                        "<div class='button'><form action='editarDisciplina.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
+                                            "<input type='hidden' name='disc' value='".$idDisci[$i][0]."'>".
+                                            "<input type='submit' value='Visualizar/Editar Disciplina'></br></br>".
+                                            "</form>".
+                                        "</div>".
+                                    "</div>".
                                 "</li>";
                         }else{
                             echo
@@ -64,10 +68,12 @@
                                         "<h3>".$nomeDisci[0][0]."</h3>".
                                         "<h4>".$nomeCurso[0][0]." - ".$professorDisci[0][0]."</h4>".
                                         "<p>".$descricaoDisci[0][0]."</p>".
+                                    "</form>".
+                                    "</div>".
+                                    "<div style='position: relative; float: right; width: 30%;'>".
                                         "<center><div class='button'><form action='cadastro_disciplina_cha_teste.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
                                         "<input type='hidden' name='disc' value='".$idDisci[$i][0]."'>".
                                         "<input type='submit' value='Testar Recomendação'></br></br>".
-                                    "</form>".
                                     "</div>".
                                 "</li>";
                         };
@@ -89,10 +95,13 @@
                                     "<h4>".$nomeCurso[0][0]." - ".$professorDisci[0][0]."</h4>".
                                     "<p>".$descricaoDisci[0][0]."</p>".
                                 "</div>".
-                                "<center><div class='button'><form action='recomendacao.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
-                                    "<input type='hidden' name='disc' value='".$idDisci[$i][0]."'>".
-                                    "<input type='submit' value='Receber Recomendação'></br></br>".
-                                "</form>".
+                                "<div style='position: relative; float: right; width: 30%;'>".
+                                    "<center><div class='button'><form action='recomendacao.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
+                                        "<input type='hidden' name='disc' value='".$idDisci[$i][0]."'>".
+                                        "<input type='submit' value='Receber Recomendação'></br></br>".
+                                    "</form>".
+                                    "</div></center>".
+                                "</div>".
                             "</li>";
                     }
                 }

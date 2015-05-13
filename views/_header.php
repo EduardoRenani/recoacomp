@@ -18,8 +18,6 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/growl.js"></script>
     <script src="jquery.bootstrap.wizard.js"></script>
-    <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
-    <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
     <script src="js/bootstrap-tagsinput-angular.js"></script>
     <script src="js/bootstrap-tagsinput.js"></script>
     <!-- Picklist cadastro de disciplinas -->
@@ -53,7 +51,6 @@
 
     <!-- Custom Fonts -->
     <link href="font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 	
 	<!-- Fim Login -->
 	
