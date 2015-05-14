@@ -73,7 +73,7 @@ class Competencia{
     {
         if (isset($_POST["registrar_nova_competencia"])) {
             // Função para cadastro de nova competência
-            //print_r($_POST);
+            print_r($_POST);
 
             $this->criaCompetencia(
                 $_POST['nome'],
@@ -197,7 +197,10 @@ class Competencia{
                 echo '<input type="hidden" id="competenciacadastrada" name="competenciacadastrada" value="'.$this->ultimo_ID.'" />';
                  // Cadastro na tabela Competencia_OA
                  //Associação com o banco de dados
-                $count = count($arrayOAS);
+                $count = count($arrayOAS)-1; //O explode pega um campo vazio
+                //echo $count;
+                //echo " ArrayOAS: ";
+                //print_r($arrayOAS);
                 for ($i = 0; $i < $count; $i++) {
                     $arrayOASBD = $arrayOAS[$i];
                     $c = $conhecimento[$arrayOASBD];

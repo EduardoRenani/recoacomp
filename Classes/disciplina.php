@@ -218,7 +218,7 @@ class Disciplina {
                     $this->$ultimo_ID = $ultimo_ID;
                     // Cadastro na tabela Disciplina_Competencia
                     //Associação com o banco de dados
-                    $count = count($arrayCompetencias);
+                    $count = count($arrayCompetencias)-1;
                     for ($i = 0; $i < $count; $i++) {
                         $arrayCompetenciasBD = $arrayCompetencias[$i]; // ID das competências, serialização
                         $this->arrayCompetenciasBD = $arrayCompetenciasBD;

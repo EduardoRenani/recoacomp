@@ -266,7 +266,7 @@ if (isset($OA)) {
                 var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
                 //window.alert(nomesCompetencias);
 
-                document.getElementById('arrayOAS').value = arrayCompetencias;
+                document.getElementById('arrayOAS').value = arrayCompetencias+",";
             }
         });
     });
@@ -295,7 +295,7 @@ if (isset($OA)) {
                 var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
                 //window.alert(nomesCompetencias);
 
-                document.getElementById('arrayOAS').value = arrayCompetencias;
+                document.getElementById('arrayOAS').value = arrayCompetencias+",";
             }
         });
     });
@@ -596,10 +596,8 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
 
     function pegaOA() {
         console.log(document.getElementById('modal-oa').contentDocument);
-        if(document.getElementById('modal-oa').contentDocument.getElementById('oacadastrado').length != 0) {
+        if(document.getElementById('modal-oa').contentDocument.getElementById('oacadastrado')) {
             idOA = document.getElementById('modal-oa').contentDocument.getElementById('oacadastrado').value;
-            //cloneOA = document.getElementById('tabela1').getElementById(idOA).cloneNode();
-            //document.getElementById('tabela2').apendChild(cloneOA);
             document.getElementById('arrayOAS').value += idOA+',';
             clearInterval(window.tPegaOA);
         }

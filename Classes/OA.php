@@ -274,7 +274,44 @@ class OA{
                 $_POST['habilidade'],
                 $_POST['atitude']
                 );
-                
+
+        } elseif (isset($_POST["registrar_novo_OA_modal"])) {
+                $this->criaOA(
+                //Categoria vida:
+                $_POST['date'],
+                $_POST['status'],
+                $_POST['versao'],
+                $_POST['entidade'],
+                $_POST['contribuicao'],
+                // Categoria Técnica
+                $_POST['tempo_video'],
+                $_POST['tamanho'],
+                $_POST['tipoTecnologia'],
+                $_POST['tipoFormato'],
+                // Categoria Educacional
+                $_POST['descricao_educacional'],
+                $_POST['nivelIteratividade'],
+                $_POST['tipoIteratividade'],
+                $_POST['faixaEtaria'],
+                $_POST['recursoAprendizagem'],
+                $_POST['usuarioFinal'],
+                $_POST['ambiente'],
+                // Categoria Direito
+                $_POST['custo'],
+                $_POST['direitoAutoral'],
+                $_POST['uso'],
+                // Dados Gerais
+                $_POST['idusuario'],
+                $_POST['descricao'],
+                $_POST['nome'],
+                $_POST['url'],
+                $_POST['palavrachave'],
+                $_POST['idioma'],
+                // Dados da Competencia
+                $_POST['arrayCompetencias'],
+                0,
+                0,
+                0);               
         } elseif (isset($_POST["cadastro_OA"])) {
             foreach ($_POST as $key => $value)
                 echo $key.'='.$value.'<br />';
@@ -284,7 +321,7 @@ class OA{
             $this->this = null;
         }
 
-        }
+    }
     /**
      * Função que verifica se a conexão com o BD existe, se nao existir é aberta
      */
@@ -593,7 +630,7 @@ class OA{
 
                 $lastID = $this->db_connection->lastInsertId();
                 echo '<input type="hidden" id="oacadastrado" name="oacadastrado" value="'.$lastID.'" />';
-                $count = count($arrayCompetencias);
+                $count = count($arrayCompetencias)-1;
                 for ($i = 0; $i < $count; $i++) {
                     $arrayCompBD = $arrayCompetencias[$i];
                     $c = $conhecimento[$arrayCompBD];
@@ -610,11 +647,11 @@ class OA{
 
 
                 //echo 'aqui2';
-                //$this->messages[] = WORDING_OA. ' ' .$nome.WORDING_CREATE_SUCESSFULLY;
-                //$host  = $_SERVER['HTTP_HOST'];
-                //$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-                //$extra = 'index.php';
-                //echo "<script language='JavaScript'> setTimeout(function () {window.location='http://".$host.$uri."/".$extra."';}, 100); </script> ";
+                $this->messages[] = WORDING_OA. ' ' .$nome.WORDING_CREATE_SUCESSFULLY;
+                $host  = $_SERVER['HTTP_HOST'];
+                $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+                $extra = 'index.php';
+                echo "<script language='JavaScript'> setTimeout(function () {window.location='http://".$host.$uri."/".$extra."';}, 100); </script> ";
             }
         }
     }

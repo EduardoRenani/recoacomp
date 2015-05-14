@@ -150,6 +150,10 @@ if (isset($OA)) {
                         echo"<script type='text/javascript'>";
 
                 echo "alert('".$message."');";
+                $host  = $_SERVER['HTTP_HOST'];
+                $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+                $extra = 'index.php';
+                echo "<script language='JavaScript'> setTimeout(function () {window.location='http://".$host.$uri."/".$extra."';}, 100); </script> ";
 
             echo "</script>";
         }
@@ -714,7 +718,7 @@ if (isset($OA)) {
 
     <div class="top-cadastrobase"><div class="text-left"><?php echo (WORDING_REGISTER_NOVO_OA); ?></div><div class="text-right" ><!--<a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a> --></div></div>
     <div class="cadastrobase-content">
-    <form id="registrar_novo_OA" method="post" action="" name="registrar_novo_OA" class="form-horizontal" style="width: 100%;">
+    <form id="registrar_novo_OA_modal" method="post" action="" name="registrar_novo_OA_modal" class="form-horizontal" style="width: 100%;">
         <input type="hidden" id="idusuario" name="idusuario" value="<?php echo $_SESSION['user_id']; ?>" />
         <div id="rootwizard">
             <div id="menu">
@@ -1020,7 +1024,7 @@ if (isset($OA)) {
 
 
 
-                <input id="finisher" style="display: none;" type="submit" name="registrar_novo_OA" value="<?php echo WORDING_REGISTER_OA; ?>" />
+                <input id="finisher" style="display: none;" type="submit" name="registrar_novo_OA_modal" value="<?php echo WORDING_REGISTER_OA; ?>" />
                 
                                 
                 <ul class="pager wizard">

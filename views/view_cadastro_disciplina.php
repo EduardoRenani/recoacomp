@@ -102,7 +102,7 @@ include('_header.php');
                 var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
                 //window.alert(nomesCompetencias);
 
-                document.getElementById('arrayCompetencias').value = arrayCompetencias;
+                document.getElementById('arrayCompetencias').value = arrayCompetencias+",";
             }
         });
     });
@@ -131,7 +131,7 @@ include('_header.php');
                 var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
                 //window.alert(nomesCompetencias);
 
-                document.getElementById('arrayCompetencias').value = arrayCompetencias;
+                document.getElementById('arrayCompetencias').value = arrayCompetencias+",";
             }
         });
     });
@@ -420,10 +420,12 @@ $(window).mouseup(function(){fazAjax();});
     }
 
     function deleteModal() {
-        if(document.getElementById('modal-competencia').contentDocument.getElementsByClassName('disciplinas-list').length != 0) {
-            fadeOutModal();
-            clearInterval(window.tDeleteModal);
-        }
+        //if(document.getElementById('modal-competencia').contentDocument.getElementsByClassName('disciplinas-list')) {
+        	if(document.getElementById('modal-competencia').contentDocument.getElementsByClassName('disciplinas-list').length != 0) {
+           		fadeOutModal();
+           		clearInterval(window.tDeleteModal);
+        	}
+        //}
     }
 
     function modalCompetencia() {
@@ -434,9 +436,9 @@ $(window).mouseup(function(){fazAjax();});
         modalClose.setAttribute("style", "position: absolute; top: 12%; left: 0; font-size: 20px; background-color: ; z-index: 9999; width: 100%; padding-right: 33px;l");
         modalClose.innerHTML = '<a href="#"><span class="glyphicon glyphicon-remove"></span></a>';
         modal = document.createElement("iframe");
-        modal.setAttribute("src", "modal_cadastro_competencia_oa.php");
+        modal.setAttribute("src", "modal_cadastro_competencia.php");
         modal.setAttribute("id", "modal-competencia");
-        modal.setAttribute("style", "position: absolute; z-index: 9998; top: 10%; left: 2.5%; background-color: #fff; width: 95%; height: 780px; overflow: hidden; opacity: 0; -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; margin-bottom: 50px;");
+        modal.setAttribute("style", "position: absolute; z-index: 9998; top: 10%; left: 2.5%; background-color: #fff; width: 95%; height: 980px; overflow: hidden; opacity: 0; -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; margin-bottom: 50px;");
         modal.setAttribute("frameborder", "0");
 
         document.getElementsByClassName('cadastrobase')[0].appendChild(modal);
@@ -449,14 +451,12 @@ $(window).mouseup(function(){fazAjax();});
 
 
     function pegaCompetencia() {
-        console.log(document.getElementById('modal-competencia').contentDocument);
-        if(document.getElementById('modal-competencia').contentDocument.getElementById('competenciacadastrada').length != 0) {
+        if(document.getElementById('modal-competencia').contentDocument.getElementById('competenciacadastrada')) {
             idCompetencia = document.getElementById('modal-competencia').contentDocument.getElementById('competenciacadastrada').value;
             //cloneOA = document.getElementById('tabela1').getElementById(idOA).cloneNode();
             //document.getElementById('tabela2').apendChild(cloneOA);
-            document.getElementById('arrayCompetencias').value += idCompetencia+',';
+            document.getElementById('arrayCompetencias').value += idCompetencia+",";
             clearInterval(window.tPegaCompetencia);
-
         }
     }
 
@@ -471,11 +471,11 @@ $(window).mouseup(function(){fazAjax();});
             var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
             idCompetencias = idCompetencias.split(",");
             nomesCompetencias = nomesCompetencias.split(",");
-            document.getElementById('sub-conteudo6').innerHTML = "";
+            document.getElementById('sub-conteudo2').innerHTML = "";
             for (i = 0; i < nomesCompetencias.length; i++) {
                 var elementoAdd = document.createElement('div');
                 elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
-                document.getElementById('sub-conteudo6').appendChild(elementoAdd);
+                document.getElementById('sub-conteudo2').appendChild(elementoAdd);
             }
             clearInterval(window.tAtualizaCompetencia);
         }

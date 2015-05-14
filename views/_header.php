@@ -198,7 +198,7 @@ if (isset($OA)) {
                         echo"<script type='text/javascript'>";
 
                 echo "alert('".$message."');";
-
+  
             echo "</script>";
         }
     }

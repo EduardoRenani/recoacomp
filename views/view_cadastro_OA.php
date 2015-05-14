@@ -60,7 +60,7 @@
                     var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
                     //window.alert(nomesCompetencias);
 
-                    document.getElementById('arrayCompetencias').value = arrayCompetencias;
+                    document.getElementById('arrayCompetencias').value = arrayCompetencias+",";
                 }
             });
         });
@@ -89,7 +89,7 @@
                     var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
                     //window.alert(nomesCompetencias);
 
-                    document.getElementById('arrayCompetencias').value = arrayCompetencias;
+                    document.getElementById('arrayCompetencias').value = arrayCompetencias+",";
                 }
             });
         });
