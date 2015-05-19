@@ -628,19 +628,22 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
                                 <div class="control-group">
                                     <label class="control-label" for="conhecimentoDescricao"><?php echo WORDING_CONHECIMENTO_DESCRICAO; ?></label>
                                     <div class="controls">
-                                        <textarea name="conhecimentoDescricao" Rows="5" COLS="40"></textarea>
+                                        <input type="text" data-role="tagsinput" id="conhecimentoDescricao" name="conhecimentoDescricao" class="required" />
+                                        <!--textarea name="conhecimentoDescricao" Rows="5" COLS="40"></textarea-->
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label" for="habilidadeDescricao"><?php echo WORDING_HABILIDADE_DESCRICAO; ?></label>
                                     <div class="controls">
-                                        <textarea name="habilidadeDescricao" Rows="5" COLS="40"></textarea>
+                                        <input type="text" data-role="tagsinput" id="habilidadeDescricao" name="habilidadeDescricao" class="required" />
+                                        <!--textarea name="habilidadeDescricao" Rows="5" COLS="40"></textarea-->
                                     </div>
                                 </div>  
                                 <div class="control-group">
                                     <label class="control-label" for="atitudeDescricao"><?php echo WORDING_ATITUDE_DESCRICAO; ?></label>
                                     <div class="controls">
-                                        <textarea name="atitudeDescricao" Rows="5" COLS="40"></textarea>
+                                        <input type="text" data-role="tagsinput" id="atitudeDescricao" name="atitudeDescricao" class="required" />
+                                        <!-- textarea name="atitudeDescricao" Rows="5" COLS="40"></textarea-->
                                     </div>
                                 </div>                                      
 
