@@ -274,38 +274,5 @@ define("WORDING_CLOSED_COURSES", "Minhas disciplinas encerradas");
 define("WORDING_MY_COURSES", "Minhas disciplinas");
 define("WORDING_MY_PROFILE", "Meu perfil");
 
-//Hints dos metadados dos OAS
-//Categoria Geral 
-define("HINT_NAME", "Nome do objeto"); 
-define("HINT_IDIOMA", "Idioma do objeto"); 
-define("HINT_DESCRIPTION", "Descrição textual do conteúdo do objeto"); 
-define("HINT_KEYWORD", "Palavra(s)-chave descrevendo os tópicos do objeto"); 
 
-//Categoria ciclo de vida
-define("HINT_VERSION", "A versão/edição do objeto");
-define("HINT_STATUS", "Estado atual do objeto");
-define("HINT_CONTRIBUTION", "");
-define("HINT_ENTITY", "Pessoas e/ou organizações que contribuiram na evolução do objeto");
-define("HINT_DATA", "Data da contribuição");
 
-//Categoria Técnica
-define("HINT_FORMAT", "Formato de todos os componentes do objeto (MIME types), este atributo pode ser usado para identificar o programa necessário para acessar o objeto");
-define("HINT_SIZE", "Tamanho do objeto em Megabytes");
-define("HINT_LOCATION", "");
-define("HINT_TECHONOLOGY_TYPE", "");
-define("HINT_TECHONOLOGY_NAME", "");
-define("HINT_DURATION", "Tempo de duração (utilizado para sons, vídeos, animações)");
-
-//Categoria Educacional
-define("HINT_EDUCACIONAL_DESCRIPTION", "Comentários sobre como esse objeto deve ser usado");
-define("HINT_INTERACTIVITY_TYPE", "Modo predominante de aprendizagem");
-define("HINT_INTERACTIVITY_NIVEL", "Grau de interatividade");
-define("HINT_FINAL_USER", "Tipo de usuário para o qual foi desenvolvido o objeto");
-
-//Categoria Direito
-define("HINT_COST", "Se a utilização do objeto requer pagamento");
-define("HINT_AUTHORAL_LEGAL", "se há restrições de direito autoral para o uso do objeto");
-define("HINT_USE", "comentários sobre as condições de uso do objeto");
-
-//Competência
-define("HINT_COMPETENCY", "Este metadado define os tipos de competências que um objeto de aprendizagem tem potencial para desenvolver através do conteúdo e atividades propostas neste recurso. Parte-se da definição que competência é formada por conhecimentos, habilidades e atitudes (CHA) aplicada em um determinado contexto com o objetivo de resolver problemas ou lidar com novidades e imprevistos");

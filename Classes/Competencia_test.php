@@ -6,8 +6,8 @@
  * Time: 17:19
  */
 
-require_once('config/config.cfg');
-require_once('translations/pt_br.php');
+require_once('../config/config.cfg');
+require_once('../translations/pt_br.php');
 
 class Competencia{
 
@@ -73,7 +73,7 @@ class Competencia{
     {
         if (isset($_POST["registrar_nova_competencia"])) {
             // Função para cadastro de nova competência
-            //print_r($_POST);
+            print_r($_POST);
 
             $this->criaCompetencia(
                 $_POST['nome'],
@@ -410,7 +410,9 @@ class Competencia{
 }
 //Case de teste
 $competencia = new Competencia();
-$competencia->getDescricaoConhecimentoById(148);
+print_r($competencia->getDescricaoConhecimentoById(148));
+print_r($competencia->getDescricaoHabilidadeById(148));
+print_r($competencia->getDescricaoAtitudeById(148));
 //$competencia->criaCompetencia('nome','descricao','atitudedesc','habilidadedesc', 'conhhecimentodesc', 1);
 
 ?>

@@ -90,10 +90,19 @@ include('_header.php');
                 var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
                 idCompetencias = idCompetencias.split(",");
                 nomesCompetencias = nomesCompetencias.split(",");
+                listaConhecimentos = document.getElementById('listaConhecimentos').value;
+                listaConhecimentos = listaConhecimentos.split("¬");
+                console.log(listaConhecimentos);
+                listaHabilidades = document.getElementById('listaHabilidades').value;
+                listaHabilidades = listaHabilidades.split("¬");
+                console.log(listaHabilidades);
+                listaAtitudes = document.getElementById('listaAtitudes').value;
+                listaAtitudes = listaAtitudes.split("¬");
+                console.log(listaAtitudes);
                 document.getElementById('sub-conteudo2').innerHTML = "";
                 for (i = 0; i < nomesCompetencias.length; i++) {
                     var elementoAdd = document.createElement('div');
-                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'" >?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
                     document.getElementById('sub-conteudo2').appendChild(elementoAdd);
                 }
         //         $("#tabela2").html("<option value='text'>text</option>");
@@ -118,10 +127,17 @@ include('_header.php');
                 var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
                 idCompetencias = idCompetencias.split(",");
                 nomesCompetencias = nomesCompetencias.split(",");
+                listaConhecimentos = document.getElementById('listaConhecimentos').value;
+                listaConhecimentos = listaConhecimentos.split("¬");
+                listaHabilidades = document.getElementById('listaHabilidades').value;
+                listaHabilidades = listaHabilidades.split("¬");
+                listaAtitudes = document.getElementById('listaAtitudes').value;
+                listaAtitudes = listaAtitudes.split("¬");
                 document.getElementById('sub-conteudo2').innerHTML = "";
                 for (i = 0; i < nomesCompetencias.length; i++) {
                     var elementoAdd = document.createElement('div');
-                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
+                                        elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'" >?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    //elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'" onmouseover="toolTipComp(this.id, '+listaConhecimentos[i]+')" onmouseout="deleteTooltipComp('+idCompetencias[i]+')">?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'" onmouseover="toolTipComp(this.id, '+listaHabilidades[i]+')" onmouseout="deleteTooltipComp('+idCompetencias[i]+')">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'" onmouseover="toolTipComp(this.id, '+listaAtitudes[i]+')" onmouseout="deleteTooltipComp('+idCompetencias[i]+')">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
                     document.getElementById('sub-conteudo2').appendChild(elementoAdd);
                 }
                 
@@ -194,28 +210,56 @@ function fazAjax(){
 
 //Enviar o ajax/Realizar a requisição
 
-
-//$(function () {
-//    tempoAjax = setInterval(fazAjax, 1000);
-//});
 $(function(){fazAjax()});
-//$(window).mouseup(function(){fazAjax();});
 $(window).blur(function(){fazAjax();});
 $(window).focus(function(){fazAjax();});
 $(window).mouseup(function(){fazAjax();});
-//setInterval(fazAjax, 1000);
-//setInterval(removerLi, 1);
 
-/*    $(function() {
-        $(window)
-            .focus(function() {
-                clearInterval(window.tempoAjax);
-                //setInterval(removerLi, 1);
-            })
-            .blur(function() {
-                tempoAjax =  
-            });
-    });*/
+function AjaxCompetenciaListas(){
+    var meu_ajax = new XMLHttpRequest();
+
+    //Declara um "conteiner" de dados para serem enviados por POST
+    var formData = new FormData();
+    var listaExclusao = document.getElementById('arrayCompetencias').value;
+    //Adiciona uma variável ao "contêiner", no caso, a variável 'variavel' que contém o dado 'dado'
+    formData.append( 'listaExclusao', listaExclusao ); //$_POST['variavel'] === 'dado
+    //Configuração do ajax: qual o "tipo" (no caso, POST) e qual a página que será acessada (no caso, ajax_page.php)
+    //( o último parâmetro, um booleano, é para especificar se é assíncrono (true) ou síncrono (false) )
+    meu_ajax.open( 'POST', './listasCompetencias.php', true );
+
+    //Configurar a função que será chamada quando a requisição mudar de estado
+
+    meu_ajax.onreadystatechange = function () {
+        if ( meu_ajax.readyState === 4 ) { //readyState === 4: terminou/completou a requisição
+            if ( meu_ajax.status === 200 ) { //status === 200: sucesso
+                if ( meu_ajax.responseText.length > 0 ) {
+                    valueListas = encodeURI(meu_ajax.responseText);
+                    valueListas = valueListas.replace("%0D%0A", "");
+                    valueListas = decodeURI(valueListas);
+                    console.log(valueListas);
+                    valueListas = valueListas.split("/");
+                    console.log(valueListas);
+                        document.getElementById('listaConhecimentos').value = valueListas[0];
+                        document.getElementById('listaHabilidades').value = valueListas[1];
+                        document.getElementById('listaAtitudes').value = valueListas[2];
+                    //Resposta não-vazia
+                } else {
+                    //Resposta vazia
+                }
+            } else if ( meu_ajax.status !== 0 ) { //status !== 200: erro ( meu_ajax.status === 0: ajax não enviado )
+                console.log( 'DEU ERRO NO AJAX: '+meu_ajax.responseText );
+            }
+        }
+    };
+    meu_ajax.send( formData );
+}
+
+//Enviar o ajax/Realizar a requisição
+
+$(function(){AjaxCompetenciaListas()});
+$(window).blur(function(){AjaxCompetenciaListas();});
+$(window).focus(function(){AjaxCompetenciaListas();});
+$(window).mouseup(function(){AjaxCompetenciaListas();});
 </script>
 
 
@@ -379,6 +423,44 @@ $(window).mouseup(function(){fazAjax();});
         }
     }
 
+//tooltip para competencias
+    function toolTipComp(id, texto) {
+        div = document.getElementById(id);
+        tooltip = document.createElement('div');
+        tooltip.setAttribute('class', 'mensagemTooltiploco');
+        tooltip.innerHTML = texto;
+        div1 = document.createElement('div');
+        div1.style.width = "200px";
+        div1.appendChild(tooltip);
+        div.appendChild(div1);
+        opacityTip = 0;
+        fadeInTipComp(id);
+    }
+    function deleteTooltipComp(id) {
+        opacityTip = 1;
+        fadeOutTipComp(id);
+    }
+    function fadeInTipComp(id) {
+        div = document.getElementById(id).lastChild.lastChild;
+        div.style.opacity = opacityTip;
+        opacityTip+=0.1;
+        tTipInComp = setTimeout(function() {fadeInTipComp(id)}, 10);
+        if (opacityTip >= 1) {
+            clearTimeout(tTipInComp);
+        }
+    }
+    function fadeOutTipComp(id) {
+        div = document.getElementById(id).lastChild.lastChild;
+        div.style.opacity = opacityTip;
+        opacityTip-=0.1;
+        tTipOutComp = setTimeout(function() {fadeOutTipComp(id)}, 10);
+        if (opacityTip <= 0) {
+            div = document.getElementById(id);
+            div.removeChild(div.lastChild);
+            clearTimeout(tTipOutComp);
+        }
+    }
+
 
 
     opacityModal = 0;
@@ -503,7 +585,7 @@ $(window).mouseup(function(){fazAjax();});
                         <div id="conteudo" class="clearfix">
                             <div id="sub-conteudo" class="tab-active">
                             <div class="control-group">
-                                <label class="control-label" for="nomeCurso"><div style="float: left"><?php echo WORDING_COURSE_NAME; ?></div><div class="tooltiploco"><div onmouseover="toolTip(1, 'Ex. Curso Teste')" onmouseout="deleteTooltip(1)">?</div></div></label> <!-- TODO colcoar variaveis mensagem tooltip -->
+                                <label class="control-label" for="nomeCurso"><div style="float: left"><?php echo WORDING_COURSE_NAME; ?></div><div class="tooltiploco"><div onmouseover="toolTip(1, '<?php echo 'Ex. Curso Teste'?>')" onmouseout="deleteTooltip(1)">?</div></div></label> <!-- TODO colocar variaveis mensagem tooltip -->
                                 <div class="controls">
                                     <input type="text" id="nomeCurso" name="nomeCurso" class="required">       
                                 </div>
@@ -532,6 +614,9 @@ $(window).mouseup(function(){fazAjax();});
                         <!-- DIV COM DADOS DAS COMPETÊNCIAS A SEREM ASSOCIADAS A DISCIPLINA -->
                         <div id="sub-conteudo1" style="background-image: url(img/seta_drag.png); background-repeat: no-repeat; background-position: 49.5% 40%; background-size: 50px;" class="tab">
                             <input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" />
+                            <input type="hidden" id="listaConhecimentos" name="listaConhecimentos" value="" />
+                            <input type="hidden" id="listaHabilidades" name="listaHabilidades" value="" />
+                            <input type="hidden" id="listaAtitudes" name="listaAtitudes" value="" />
                             <span style="display block; width: 100%; float: left; text-align:center;"><?php echo WORDING_ASSOCIATE_COMP; ?></span></br></br>
                             <span style="display block; width: 40%; float: left; text-align:left;">Competencias Disponíveis</span><span style="display: block; width: 30%; float: right; text-align:right;">Competencias Selecionadas</span>
                             <ul id="tabela1">

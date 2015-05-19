@@ -740,7 +740,7 @@ if (isset($OA)) {
             <!-- Inicio-->
                 <div id="sub-conteudo" class="tab-active"> 
                     <div class="control-group">
-                        <label class="control-label" for="name"><?php echo WORDING_NAME; ?></label>
+                        <label class="control-label" for="name"><div style="float: left"><?php echo WORDING_NAME; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(1, '<?php echo HINT_NAME ?>')" onmouseout="deleteTooltip(1)">?</div></div>
                         <div class="controls">
                             <input type="text" id="nome" name="nome" class="required">
                         </div>
@@ -753,7 +753,7 @@ if (isset($OA)) {
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="palavrachave"><?php echo WORDING_KEYWORDS; ?></label>
+                        <label class="control-label" for="palavrachave"><div style="float: left"><?php echo WORDING_KEYWORDS; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(2, '<?php echo HINT_KEYWORD ?>')" onmouseout="deleteTooltip(2)">?</div></div>
                         <div class="controls">
                             <!-- input class="palavra_chave" multiple="multiple" id="palavrachave" name="palavrachave" class="required"/-->
                             <input type="text" data-role="tagsinput" id="palavrachave" name="palavrachave" class="required" />
@@ -773,7 +773,7 @@ if (isset($OA)) {
                     </div>
                     <!-- Descrição -->
                     <div class="control-group">
-                        <label class="control-label" for="descricao"><?php echo WORDING_DESCRIPTION; ?></label>
+                        <label class="control-label" for="descricao"><div style="float: left"><?php echo WORDING_DESCRIPTION; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(3, '<?php echo HINT_DESCRIPTION ?>')" onmouseout="deleteTooltip(3)">?</div></div>
                         <div class="controls">
                             <textarea name="descricao" id="descricao" ROWS="5" COLS="40"></textarea>
                         </div>
@@ -782,13 +782,13 @@ if (isset($OA)) {
                 <!-- Fim-->
                 <div id="sub-conteudo1" class="tab">
                         <div class="control-group">
-                            <label class="control-label" for="date"><div style="float: left"><?php echo WORDING_DATE; ?></div><div class="tooltiploco"><div onmouseover="toolTip(1, 'Data que o objeto foi criado')" onmouseout="deleteTooltip(1)">?</div></div></label>
+                            <label class="control-label" for="date"><div style="float: left"><?php echo WORDING_DATE; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(4, '<?php echo HINT_DATA ?>')" onmouseout="deleteTooltip(4)">?</div></div>
                             <div class="controls">
                                 <input id="date" type="text" name="date" required />
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="status"><?php echo WORDING_STATUS; ?></label>
+                            <label class="control-label" for="status"><div style="float: left"><?php echo WORDING_STATUS; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(5, '<?php echo HINT_STATUS ?>')" onmouseout="deleteTooltip(5)">?</div></div>
                             <div class="controls">
                                     <select id = "status" name="status" required="true">
                                         <option value = "revisado"><?php echo WORDING_REVISED ?></option>
@@ -800,13 +800,13 @@ if (isset($OA)) {
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="versao"><?php echo WORDING_VERSION; ?></label>
+                            <label class="control-label" for="versao"><div style="float: left"><?php echo WORDING_VERSION; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(6, '<?php echo HINT_VERSION ?>')" onmouseout="deleteTooltip(6)">?</div></div>
                             <div class="controls">
                                     <input id="versao" type="number" name="versao" min="0" max="100" step="0.1" value="1" class="required">
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="entidade"><?php echo WORDING_ENTITY; ?></label>
+                            <label class="control-label" for="entidade"><div style="float: left"><?php echo WORDING_ENTITY; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(7, '<?php echo HINT_ENTITY ?>')" onmouseout="deleteTooltip(7)">?</div></div>
                             <div class="controls">
                                     <input id="entidade" type="text" name="entidade" class="required" />
                             </div>
@@ -832,14 +832,14 @@ if (isset($OA)) {
                 <div id="sub-conteudo2" class="tab">
                      <!-- TEMPO DO VIDEO -->
                     <div class="control-group">
-                        <label class="control-label" for="tempo_video"><?php echo WORDING_VIDEO_TIME; ?></label>
+                        <label class="control-label" for="tempo_video"><div style="float: left"><?php echo WORDING_VIDEO_TIME; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(8, '<?php echo HINT_DURATION ?>')" onmouseout="deleteTooltip(8)">?</div></div>
                         <div class="controls">
                             <input type="time" name="tempo_video">
                         </div>
                     </div>
                      <!-- TAMANHO -->
                     <div class="control-group">
-                        <label class="control-label" for="tamanho"><?php echo WORDING_SIZE; ?></label>
+                        <label class="control-label" for="tamanho"><div style="float: left"><?php echo WORDING_SIZE; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(9, '<?php echo HINT_SIZE ?>')" onmouseout="deleteTooltip(9)">?</div></div>
                         <div class="controls">
                              <input id="tamanho" type="number" name="tamanho" min="0" max="100" step="0.1" value="1" class="required">
                         </div>
@@ -875,14 +875,14 @@ if (isset($OA)) {
                 <div id="sub-conteudo3" class="tab">
                     <!-- DESCRIÇÃO EDUCACIONAL -->
                     <div class="control-group">
-                        <label class="control-label" for="descricao_educacional"><?php echo WORDING_EDUCATIONAL_DESCRIPTION; ?></label>
+                        <label class="control-label" for="descricao_educacional"><div style="float: left"><?php echo WORDING_EDUCATIONAL_DESCRIPTION; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(10, '<?php echo HINT_EDUCACIONAL_DESCRIPTION ?>')" onmouseout="deleteTooltip(10)">?</div></div>
                         <div class="controls">
                             <textarea name="descricao_educacional" id="descricao_educacional" ROWS="5" COLS="40"></textarea>
                         </div>
                     </div>
                      <!-- NÍVEL ITERATIVIDADE -->
                     <div class="control-group">
-                        <label class="control-label" for="nivelIteratividade"><?php echo WORDING_ITERABILITY_NIVEL; ?></label>
+                        <label class="control-label" for="nivelIteratividade"><div style="float: left"><?php echo WORDING_ITERABILITY_NIVEL; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(11, '<?php echo HINT_INTERACTIVITY_TYPE ?>')" onmouseout="deleteTooltip(11)">?</div></div>
                         <div class="controls">
                                 <select id = "nivelIteratividade" name="nivelIteratividade" required="true">
                                     <option value = "muito baixa"><?php echo WORDING_VERY_LOW ?></option>
@@ -895,7 +895,7 @@ if (isset($OA)) {
                     </div>               
                     <!-- TIPO ITERATIVIDADE -->
                     <div class="control-group">
-                        <label class="control-label" for="tipoIteratividade"><?php echo WORDING_ITERABILITY_TYPE; ?></label>
+                        <label class="control-label" for="tipoIteratividade"><div style="float: left"><?php echo WORDING_ITERABILITY_TYPE; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(12, '<?php echo HINT_INTERACTIVITY_TYPE ?>')" onmouseout="deleteTooltip(12)">?</div></div>
                         <div class="controls">
                             <select id = "tipoIteratividade" name="tipoIteratividade" required="true">
                                 <option value = "ativa"><?php echo WORDING_ACTIVE ?></option>
@@ -969,7 +969,7 @@ if (isset($OA)) {
                 <div id="sub-conteudo4" class="tab">
                     <!-- CUSTO -->
                     <div class="control-group">
-                        <label class="control-label" for="custo"><?php echo WORDING_COST ; ?></label>
+                        <label class="control-label" for="custo"><div style="float: left"><?php echo WORDING_COST ; ?></div><div style="float: left"><div class="tooltiploco"><div onmouseover="toolTip(13, '<?php echo HINT_COST ?>')" onmouseout="deleteTooltip(13)">?</div></div></div></label>
                         <div class="controls">
                             <input type="radio" name="custo" value="true" id="custo" checked><?php echo WORDING_YES?>
                             <input type="radio" name="custo" value="false" id="custo"><?php echo WORDING_NO ?>
@@ -977,7 +977,7 @@ if (isset($OA)) {
                     </div>                  
                     <!-- DIREITO AUTORAL -->
                     <div class="control-group">
-                        <label class="control-label" for="direitoAutoral"><?php echo WORDING_COPYRIGHT ; ?></label>
+                        <label class="control-label" for="direitoAutoral"><div style="float: left"><?php echo WORDING_COPYRIGHT ; ?></div><div style="float: left"><div class="tooltiploco"></label><div onmouseover="toolTip(14, '<?php echo HINT_AUTHORAL_LEGAL ?>')" onmouseout="deleteTooltip(14)">?</div></div></div></label>
                         <div class="controls">
                             <input type="radio" name="direitoAutoral" id="direitoAutoral" value="1" checked><?php echo WORDING_YES?>
                             <input type="radio" name="direitoAutoral" id="direitoAutoral" value="0"><?php echo WORDING_NO ?>
@@ -985,7 +985,7 @@ if (isset($OA)) {
                     </div>                  
                     <!-- USO -->
                     <div class="control-group">
-                        <label class="control-label" for="uso"><?php echo WORDING_USE; ?></label>
+                        <label class="control-label" for="uso"><div style="float: left"><?php echo WORDING_USE; ?></div><div style="float: left"><div class="tooltiploco"><div onmouseover="toolTip(15, '<?php echo HINT_USE ?>')" onmouseout="deleteTooltip(15)">?</div></div></div></label>
                         <div class="controls">
                             <textarea name="uso" id="uso" ROWS="5" COLS="40"></textarea>
                         </div>
@@ -996,7 +996,7 @@ if (isset($OA)) {
 
                 <div id="sub-conteudo5" style="background-image: url(img/seta_drag.png); background-repeat: no-repeat; background-position: 49.5% 40%; background-size: 50px;" class="tab">
                     <input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" />
-                    <span style="display block; width: 100%; float: left; text-align:center;"><?php echo WORDING_ASSOCIATE_COMP; ?>.</span>
+                    <span style="display block; width: 100%; float: left; text-align:center;"><div style="float: center"><?php echo WORDING_ASSOCIATE_COMP; ?>.<div class="tooltiploco"><div onmouseover="toolTip(16, '<?php echo HINT_COMPETENCY ?>')" onmouseout="deleteTooltip(16)">?</div></div></div></span>
                     <span style="display block; width: 40%; float: left; text-align:left;">Competencias Disponíveis</span><span style="display: block; width: 30%; float: right; text-align:right;">Competencias Selecionadas</span>
                     <ul id="tabela1">
                     </ul>
@@ -1008,7 +1008,7 @@ if (isset($OA)) {
                      
             
 
-                    <!-- <div onclick="modalCompetencia();"  class='botao-cadastra' style='width: 240px'><?=WORDING_CREATE_NEW_COMPETENCIA?></div> -->
+                    <div onclick="modalCompetencia();"  class='botao-cadastra' style='width: 240px'><?=WORDING_CREATE_NEW_COMPETENCIA?></div>
                 
                 </div>
 

@@ -584,7 +584,7 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
         modal = document.createElement("iframe");
         modal.setAttribute("src", "modal_cadastro_oa.php");
         modal.setAttribute("id", "modal-oa");
-        modal.setAttribute("style", "position: absolute; z-index: 9998; top: 7%; left: 2.5%; width: 95%; height: 790px; overflow: hidden; opacity: 0; -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; margin-bottom: 50px;");
+        modal.setAttribute("style", "position: absolute; z-index: 9998; top: 7%; left: 2.5%; width: 95%; height: 810px; overflow: hidden; opacity: 0; -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; margin-bottom: 50px;");
         modal.setAttribute("frameborder", "0");
 
         document.body.appendChild(modal);
