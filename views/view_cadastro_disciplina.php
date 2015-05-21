@@ -540,12 +540,12 @@ $(function(){AjaxCompetenciaListas()});
     }
 
     function deleteModal() {
-        //if(document.getElementById('modal-competencia').contentDocument.getElementsByClassName('disciplinas-list')) {
+        if(document.getElementById('modal-competencia')) {
         	if(document.getElementById('modal-competencia').contentDocument.getElementsByClassName('disciplinas-list').length != 0) {
            		fadeOutModal();
            		clearInterval(window.tDeleteModal);
         	}
-        //}
+        }
     }
 
     function modalCompetencia() {
@@ -571,12 +571,15 @@ $(function(){AjaxCompetenciaListas()});
 
 
     function pegaCompetencia() {
-        if(document.getElementById('modal-competencia').contentDocument.getElementById('competenciacadastrada')) {
-            idCompetencia = document.getElementById('modal-competencia').contentDocument.getElementById('competenciacadastrada').value;
-            //cloneOA = document.getElementById('tabela1').getElementById(idOA).cloneNode();
-            //document.getElementById('tabela2').apendChild(cloneOA);
-            document.getElementById('arrayCompetencias').value += idCompetencia+",";
-            clearInterval(window.tPegaCompetencia);
+        if(document.getElementById('modal-competencia')) {
+            if(document.getElementById('modal-competencia').contentDocument.getElementById('competenciacadastrada')) {
+                        idCompetencia = document.getElementById('modal-competencia').contentDocument.getElementById('competenciacadastrada').value;
+                        //cloneOA = document.getElementById('tabela1').getElementById(idOA).cloneNode();
+                        //document.getElementById('tabela2').apendChild(cloneOA);
+                        document.getElementById('arrayCompetencias').value += idCompetencia+",";
+                        clearInterval(window.tPegaCompetencia);
+                        AjaxCompetenciaListas();
+                }
         }
     }
 
@@ -584,17 +587,33 @@ $(function(){AjaxCompetenciaListas()});
         novoCompetencia = document.getElementById('arrayCompetencias').value;
         novoCompetencia = novoCompetencia.split(',');
         sizeCompetencia = novoCompetencia.length-2;
-        if(cloneCompetencia = document.getElementById(novoCompetencia[novoCompetencia.length-2]).cloneNode(true)) {
-            document.getElementById(novoCompetencia[novoCompetencia.length-2]).parentNode.removeChild(document.getElementById(novoCompetencia[novoCompetencia.length-2]).parentNode.lastChild)
+        if(cloneCompetencia = document.getElementById(novoCompetencia[sizeCompetencia]).cloneNode(true)) {
+            document.getElementById(novoCompetencia[sizeCompetencia]).parentNode.removeChild(document.getElementById(novoCompetencia[sizeCompetencia]).parentNode.lastChild)
             document.getElementById('tabela2').appendChild(cloneCompetencia);
             var idCompetencias = $("#tabela2").sortable('toArray').toString();
             var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
             idCompetencias = idCompetencias.split(",");
             nomesCompetencias = nomesCompetencias.split(",");
+            listaConhecimentos = document.getElementById('listaConhecimentos').value;
+            listaConhecimentos = listaConhecimentos.split("¬");
+            console.log(listaConhecimentos);
+            console.log('oioioi');
+            listaHabilidades = document.getElementById('listaHabilidades').value;
+            listaHabilidades = listaHabilidades.split("¬");
+            console.log(listaHabilidades);
+            console.log('oioi');
+            listaAtitudes = document.getElementById('listaAtitudes').value;
+            listaAtitudes = listaAtitudes.split("¬");
+            console.log(listaAtitudes);
+            console.log('oi');
             document.getElementById('sub-conteudo2').innerHTML = "";
             for (i = 0; i < nomesCompetencias.length; i++) {
+                listaConhecimentos[i] = listaConhecimentos[i].replace(/,/g, ' ');
+                listaHabilidades[i] = listaHabilidades[i].replace(/,/g, ' ');
+                listaAtitudes[i] = listaAtitudes[i].replace(/,/g, ' ');
                 var elementoAdd = document.createElement('div');
-                elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
+                //elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'" >?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
+                elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div id="conhecimento'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'conhecimento'+idCompetencias[i]+'\', \''+listaConhecimentos[i]+'\')" onmouseout="deleteTooltipComp(\'conhecimento'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div id="habilidade'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'habilidade'+idCompetencias[i]+'\', \''+listaHabilidades[i]+'\')" onmouseout="deleteTooltipComp(\'habilidade'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div id="atitude'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'atitude'+idCompetencias[i]+'\', \''+listaAtitudes[i]+'\')" onmouseout="deleteTooltipComp(\'atitude'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
                 document.getElementById('sub-conteudo2').appendChild(elementoAdd);
             }
             clearInterval(window.tAtualizaCompetencia);

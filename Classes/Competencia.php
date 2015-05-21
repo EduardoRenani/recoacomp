@@ -182,7 +182,7 @@ class Competencia{
             // Se o nome da competência for encontrada no banco de dados
             if (count($result) > 0) {
                 for ($i = 0; $i < count($result); $i++) {
-                    $this->errors[] = MESSAGE_COMPETENCIA_ALREADY_EXISTS . $nome;
+                    //$this->errors[] = MESSAGE_COMPETENCIA_ALREADY_EXISTS . $nome;
                 }
             } else{
                 $stmt = $this->db_connection->prepare("INSERT INTO competencia(nome, descricao_nome, atitude_descricao, habilidade_descricao, conhecimento_descricao)  VALUES(:nome, :descricaoNome, :atitudeDescricao, :habilidadeDescricao, :conhecimentoDescricao)");

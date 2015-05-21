@@ -171,7 +171,7 @@ class Comp{
 		echo "<div class='recomendacao-content'>";
 
 			echo "<ul class='disciplinas-list'>";
-
+			if ($cont <= 0){
 			echo "<div id='conteudo' class='conteudo clearfix'><li class='recomendacao-item' style='margin-bottom: 0;'>
 						<div class='recomendacao-item-content'> 
 							<h3>Competência: ".$this->nomeComp."</h3>
@@ -179,9 +179,8 @@ class Comp{
 						</div>
 							<button type='button' class='btn-recomendacao btn-default btn-lg'>
 							  <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
-							</button>
-						
-					</li></div><div id='conteudo-expansivel'>";
+							</button>						
+						</li></div><div id='conteudo-expansivel'>";
 
 			for($c=0;$c<$cont;$c++){
 
@@ -229,7 +228,9 @@ class Comp{
 
 	    	echo "</div></ul>".
     	"</div>";
-
+    	} // Fecha if da competencia
+    	else
+    		echo '<br>Competência sem objetos disponíveis no momento';
 	}
 
 	private function getCHAuser($user){
