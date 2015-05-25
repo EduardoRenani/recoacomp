@@ -279,14 +279,14 @@ define("WORDING_MY_PROFILE", "Meu perfil");
 define("HINT_NAME", "Nome do objeto"); 
 define("HINT_IDIOMA", "Idioma do objeto"); 
 define("HINT_DESCRIPTION", "Descrição textual do conteúdo do objeto"); 
-define("HINT_KEYWORD", "Palavra(s)-chave descrevendo os tópicos do objeto"); 
+define("HINT_KEYWORD", "Palavras principais ou termos que remetem ao conteúdo abordado pelo OA."); 
 
 //Categoria ciclo de vida
 define("HINT_VERSION", "A versão/edição do objeto");
 define("HINT_STATUS", "Estado atual do objeto");
 define("HINT_CONTRIBUTION", "");
 define("HINT_ENTITY", "Pessoas e/ou organizações que contribuiram na evolução do objeto");
-define("HINT_DATA", "Data da contribuição");
+define("HINT_DATA", "Ano de elaboração ou de acesso ao OA.");
 
 //Categoria Técnica
 define("HINT_FORMAT", "Formato de todos os componentes do objeto (MIME types), este atributo pode ser usado para identificar o programa necessário para acessar o objeto");
@@ -297,9 +297,9 @@ define("HINT_TECHONOLOGY_NAME", "");
 define("HINT_DURATION", "Tempo de duração (utilizado para sons, vídeos, animações)");
 
 //Categoria Educacional
-define("HINT_EDUCACIONAL_DESCRIPTION", "Comentários sobre como esse objeto deve ser usado");
-define("HINT_INTERACTIVITY_TYPE", "Modo predominante de aprendizagem");
-define("HINT_INTERACTIVITY_NIVEL", "Grau de interatividade");
+define("HINT_EDUCACIONAL_DESCRIPTION", "Exposição sobre possíveis formas de uso educacional deste OA.");
+define("HINT_INTERACTIVITY_TYPE", "Qual modo de aprendizagem é possibilitado a partir da interatividade usuário-OA.");
+define("HINT_INTERACTIVITY_NIVEL", "O nível de comunicação deste OA com o usuário.");
 define("HINT_FINAL_USER", "Tipo de usuário para o qual foi desenvolvido o objeto");
 
 //Categoria Direito

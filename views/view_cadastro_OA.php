@@ -533,9 +533,11 @@
         }
 
         function deleteModal() {
-            if(document.getElementById('modal-competencia').contentDocument.getElementsByClassName('disciplinas-list').length != 0) {
-                fadeOutModal();
-                clearInterval(window.tDeleteModal);
+            if(document.getElementById('modal-competencia').contentDocument.getElementsByClassName('disciplinas-list')){
+                if(document.getElementById('modal-competencia').contentDocument.getElementsByClassName('disciplinas-list').length != 0) {
+                    fadeOutModal();
+                    clearInterval(window.tDeleteModal);
+                }
             }
         }
 
@@ -563,13 +565,15 @@
 
     function pegaCompetencia() {
         console.log(document.getElementById('modal-competencia').contentDocument);
-        if(document.getElementById('modal-competencia').contentDocument.getElementById('competenciacadastrada').length != 0) {
-            idCompetencia = document.getElementById('modal-competencia').contentDocument.getElementById('competenciacadastrada').value;
-            //cloneOA = document.getElementById('tabela1').getElementById(idOA).cloneNode();
-            //document.getElementById('tabela2').apendChild(cloneOA);
-            document.getElementById('arrayCompetencias').value += idCompetencia+',';
-            clearInterval(window.tPegaCompetencia);
+        if(document.getElementById('modal-competencia').contentDocument.getElementById('competenciacadastrada')) {
+            if(document.getElementById('modal-competencia').contentDocument.getElementById('competenciacadastrada').length != 0) {
+                idCompetencia = document.getElementById('modal-competencia').contentDocument.getElementById('competenciacadastrada').value;
+                //cloneOA = document.getElementById('tabela1').getElementById(idOA).cloneNode();
+                //document.getElementById('tabela2').apendChild(cloneOA);
+                document.getElementById('arrayCompetencias').value += idCompetencia+',';
+                clearInterval(window.tPegaCompetencia);
 
+            }
         }
     }
 
@@ -577,20 +581,22 @@
         novoCompetencia = document.getElementById('arrayCompetencias').value;
         novoCompetencia = novoCompetencia.split(',');
         sizeCompetencia = novoCompetencia.length-2;
-        if(cloneCompetencia = document.getElementById(novoCompetencia[novoCompetencia.length-2]).cloneNode(true)) {
-            document.getElementById(novoCompetencia[novoCompetencia.length-2]).parentNode.removeChild(document.getElementById(novoCompetencia[novoCompetencia.length-2]).parentNode.lastChild)
-            document.getElementById('tabela2').appendChild(cloneCompetencia);
-            var idCompetencias = $("#tabela2").sortable('toArray').toString();
-            var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
-            idCompetencias = idCompetencias.split(",");
-            nomesCompetencias = nomesCompetencias.split(",");
-            document.getElementById('sub-conteudo6').innerHTML = "";
-            for (i = 0; i < nomesCompetencias.length; i++) {
-                var elementoAdd = document.createElement('div');
-                elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
-                document.getElementById('sub-conteudo6').appendChild(elementoAdd);
+        if(document.getElementById(novoCompetencia[novoCompetencia.length-2])) {
+            if(cloneCompetencia = document.getElementById(novoCompetencia[novoCompetencia.length-2]).cloneNode(true)) {
+                document.getElementById(novoCompetencia[novoCompetencia.length-2]).parentNode.removeChild(document.getElementById(novoCompetencia[novoCompetencia.length-2]).parentNode.lastChild)
+                document.getElementById('tabela2').appendChild(cloneCompetencia);
+                var idCompetencias = $("#tabela2").sortable('toArray').toString();
+                var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
+                idCompetencias = idCompetencias.split(",");
+                nomesCompetencias = nomesCompetencias.split(",");
+                document.getElementById('sub-conteudo6').innerHTML = "";
+                for (i = 0; i < nomesCompetencias.length; i++) {
+                    var elementoAdd = document.createElement('div');
+                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    document.getElementById('sub-conteudo6').appendChild(elementoAdd);
+                }
+                clearInterval(window.tAtualizaCompetencia);
             }
-            clearInterval(window.tAtualizaCompetencia);
         }
     }
     </script>

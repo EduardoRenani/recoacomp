@@ -32,7 +32,7 @@ $idCompetencia = $comp->getArrayOfIDs();
 $nomeCompetencia = $comp->getArrayOfNames();
 $contador = count($nomeCompetencia);
 $listaExclusao = explode(",", $_POST['listaExclusao']);
-$contadorLi = count($listaExclusao);
+$contadorLi = count($listaExclusao)-1;
 
 $arrayToReturn = array();
 for($i=0;$i<$contador;$i++){

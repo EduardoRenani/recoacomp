@@ -58,12 +58,12 @@ include('_header.php');
         foreach ($idCompetencias as $value) {
             $idCompetenciasEnviar .= $value[0].",";
             $chaCompetencias =  $disciplina->getCHAFromDisciplinaByIdCompetencia($value[0], $_POST['disc']);
+            $chaCompetenciasEnviar .= $idCompetenciasEnviar;
             for($i = 0; $i < 3; $i++) {
                 $chaCompetenciasEnviar .= $chaCompetencias[0][$i].",";
             }
             $chaCompetenciasEnviar .= "/";
         }
-        echo $chaCompetenciasEnviar;
     ?>
 
     <!-- FUNÇÃO QUE FAZ O SORTABLE E ENVIA OS ID'S DAS COMPETÊNCIAS-->
@@ -103,22 +103,35 @@ include('_header.php');
                 $("#tabela1").sortable('refreshPositions');
                 var idCompetencias = $("#tabela2").sortable('toArray').toString();
                 var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
+                var chaCompetencias = '<?php echo $chaCompetenciasEnviar; ?>'
+                chaCompetencias = chaCompetencias.split("/");
+                for(i = 0; i < chaCompetencias.length; i++) {
+                    chaCompetencias[i] = chaCompetencias[i].split(",");
+                }
+                console.log(chaCompetencias);
                 idCompetencias = idCompetencias.split(",");
                 nomesCompetencias = nomesCompetencias.split(",");
                 document.getElementById('sub-conteudo2').innerHTML = "";
                 for (i = 0; i < nomesCompetencias.length; i++) {
+                	j = 0;
                     var elementoAdd = document.createElement('div');
-                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    if(chaCompetencias[j][0] != idCompetencias[i]) {
+                    	elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    }
+                    else {
+                    	elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="'+chaCompetencias[j][1]+'" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="'+chaCompetencias[j][2]+'" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="'+chaCompetencias[j][3]+'" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    	j++;
+                    }
                     document.getElementById('sub-conteudo2').appendChild(elementoAdd);
                 }
-                fazAjaxTabela2();
+                //fazAjaxTabela2();
         //         $("#tabela2").html("<option value='text'>text</option>");
            },
             update: function(event, ui) {
                 var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
                 //window.alert(nomesCompetencias);
 
-                document.getElementById('arrayCompetencias').value = arrayCompetencias;
+                document.getElementById('arrayCompetencias').value = arrayCompetencias+',';
             }
         });
     });
@@ -135,20 +148,43 @@ include('_header.php');
                 idCompetencias = idCompetencias.split(",");
                 nomesCompetencias = nomesCompetencias.split(",");
                 document.getElementById('sub-conteudo2').innerHTML = "";
+                var idCompetencias = $("#tabela2").sortable('toArray').toString();
+                var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
+                var chaCompetencias = '<?php echo $chaCompetenciasEnviar; ?>'
+                chaCompetencias = chaCompetencias.split("/");
+                for(i = 0; i < chaCompetencias.length; i++) {
+                    chaCompetencias[i] = chaCompetencias[i].split(",");
+                }
+                console.log(chaCompetencias);
+                idCompetencias = idCompetencias.split(",");
+                nomesCompetencias = nomesCompetencias.split(",");
+                document.getElementById('sub-conteudo2').innerHTML = "";
                 for (i = 0; i < nomesCompetencias.length; i++) {
+                	j = 0;
                     var elementoAdd = document.createElement('div');
-                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    if(chaCompetencias[j][0] != idCompetencias[i]) {
+                    	elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    }
+                    else {
+                    	elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="'+chaCompetencias[j][1]+'" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="'+chaCompetencias[j][2]+'" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="'+chaCompetencias[j][3]+'" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    	j++;
+                    }
                     document.getElementById('sub-conteudo2').appendChild(elementoAdd);
                 }
-                fazAjaxTabela2();
+                
+                //fazAjaxTabela2();
                 
         //         $("#tabela2").html("<option value='text'>text</option>");
            },
             update: function(event, ui) {
                 var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
                 //window.alert(nomesCompetencias);
-
-                document.getElementById('arrayCompetencias').value = arrayCompetencias;
+                if(arrayCompetencias != "") {
+                	document.getElementById('arrayCompetencias').value = arrayCompetencias+',';
+                }
+                else {
+                	document.getElementById('arrayCompetencias').value = arrayCompetencias;
+                }
             }
         });
     });
@@ -176,7 +212,8 @@ function fazAjax(){
 
     //Declara um "conteiner" de dados para serem enviados por POST
     var formData = new FormData();
-    var listaExclusao = '<?php echo $idCompetenciasEnviar; ?>';
+    var listaExclusao = document.getElementById('arrayCompetencias').value;
+    console.log(listaExclusao);
     //Adiciona uma variável ao "contêiner", no caso, a variável 'variavel' que contém o dado 'dado'
     formData.append( 'listaExclusao', listaExclusao); //$_POST['variavel'] === 'dado
     //Configuração do ajax: qual o "tipo" (no caso, POST) e qual a página que será acessada (no caso, ajax_page.php)
@@ -191,6 +228,7 @@ function fazAjax(){
                 if ( meu_ajax.responseText.length > 0 ) {
                     var array = JSON.parse(meu_ajax.responseText);
                     var element_tabela1 = document.getElementById('tabela1');
+                    element_tabela1.innerHTML = '';
                     for(var i = 0; i < array.length; i++) {
                         if ( element_tabela1.innerHTML.indexOf(array[i]) === -1) {
                             element_tabela1.innerHTML += array[i];
@@ -239,6 +277,7 @@ function fazAjaxTabela2(){
                         }
                     }
                     document.getElementById('arrayCompetencias').value = listaExclusao;
+                    fazAjax();
                     var idCompetencias = $("#tabela2").sortable('toArray').toString();
                     var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
                     var chaCompetencias = '<?php echo $chaCompetenciasEnviar; ?>'
@@ -251,8 +290,15 @@ function fazAjaxTabela2(){
                     nomesCompetencias = nomesCompetencias.split(",");
                     document.getElementById('sub-conteudo2').innerHTML = "";
                     for (i = 0; i < nomesCompetencias.length; i++) {
+                    	j = 0;
                         var elementoAdd = document.createElement('div');
-                        elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="'+chaCompetencias[i][0]+'" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="'+chaCompetencias[i][1]+'" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="'+chaCompetencias[i][2]+'" name="atitude['+idCompetencias[i]+']"></div></div>';
+                        if(chaCompetencias[j][0] != idCompetencias[i]) {
+                        	elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
+                        }
+                        else {
+                        	elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="'+chaCompetencias[j][1]+'" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="'+chaCompetencias[j][2]+'" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="'+chaCompetencias[j][3]+'" name="atitude['+idCompetencias[i]+']"></div></div>';
+                        	j++;
+                        }
                         document.getElementById('sub-conteudo2').appendChild(elementoAdd);
                     }
                     //Resposta não-vazia
@@ -268,6 +314,68 @@ function fazAjaxTabela2(){
 }
 $(window).load(function(){fazAjaxTabela2();});
 
+
+function fazAjaxTabela2Atualiza(){
+    var meu_ajax = new XMLHttpRequest();
+
+    //Declara um "conteiner" de dados para serem enviados por POST
+    var formData = new FormData();
+    var listaExclusao = document.getElementById('arrayCompetencias').value;
+    //Adiciona uma variável ao "contêiner", no caso, a variável 'variavel' que contém o dado 'dado'
+    formData.append( 'listaExclusao', listaExclusao); //$_POST['variavel'] === 'dado
+    //Configuração do ajax: qual o "tipo" (no caso, POST) e qual a página que será acessada (no caso, ajax_page.php)
+    //( o último parâmetro, um booleano, é para especificar se é assíncrono (true) ou síncrono (false) )
+    meu_ajax.open( 'POST', './competenciasAssociadas.php', true );
+
+    //Configurar a função que será chamada quando a requisição mudar de estado
+
+    meu_ajax.onreadystatechange = function () {
+        if ( meu_ajax.readyState === 4 ) { //readyState === 4: terminou/completou a requisição
+            if ( meu_ajax.status === 200 ) { //status === 200: sucesso
+                if ( meu_ajax.responseText.length > 0 ) {
+                    var array = JSON.parse(meu_ajax.responseText);
+                    var element_tabela1 = document.getElementById('tabela2');
+                    for(var i = 0; i < array.length; i++) {
+                        if ( element_tabela1.innerHTML.indexOf(array[i]) === -1) {
+                            element_tabela1.innerHTML += array[i];
+                        }
+                    }
+                    document.getElementById('arrayCompetencias').value = listaExclusao;
+                    fazAjax();
+                    var idCompetencias = $("#tabela2").sortable('toArray').toString();
+                    var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
+                    var chaCompetencias = '<?php echo $chaCompetenciasEnviar; ?>'
+                    chaCompetencias = chaCompetencias.split("/");
+                    for(i = 0; i < chaCompetencias.length; i++) {
+                        chaCompetencias[i] = chaCompetencias[i].split(",");
+                    }
+                    console.log(chaCompetencias);
+                    idCompetencias = idCompetencias.split(",");
+                    nomesCompetencias = nomesCompetencias.split(",");
+                    document.getElementById('sub-conteudo2').innerHTML = "";
+                    for (i = 0; i < nomesCompetencias.length; i++) {
+                    	j = 0;
+                        var elementoAdd = document.createElement('div');
+                        if(chaCompetencias[j][0] != idCompetencias[i]) {
+                        	elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
+                        }
+                        else {
+                        	elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="'+chaCompetencias[j][1]+'" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="'+chaCompetencias[j][2]+'" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="'+chaCompetencias[j][3]+'" name="atitude['+idCompetencias[i]+']"></div></div>';
+                        	j++;
+                        }
+                        document.getElementById('sub-conteudo2').appendChild(elementoAdd);
+                    }
+                    //Resposta não-vazia
+                } else {
+                    //Resposta vazia
+                }
+            } else if ( meu_ajax.status !== 0 ) { //status !== 200: erro ( meu_ajax.status === 0: ajax não enviado )
+                console.log( 'DEU ERRO NO AJAX: '+meu_ajax.responseText );
+            }
+        }
+    };
+    meu_ajax.send( formData );
+}
 
 </script>
 
@@ -467,15 +575,16 @@ $(window).load(function(){fazAjaxTabela2();});
             fazAjax();
             clearInterval(window.tDeleteModal);
             clearTimeout(tFadeOutModal);
-            tAtualizaCompetencia = setInterval('atualizaCompetencia()', 1);
         }
     }
 
     function deleteModal() {
-        if(document.getElementById('modal-competencia').contentDocument.getElementsByClassName('disciplinas-list').length != 0) {
-            fadeOutModal();
-            clearInterval(window.tDeleteModal);
-        }
+    	if(document.getElementById('modal-competencia').contentDocument.getElementsByClassName('disciplinas-list')) {
+	        if(document.getElementById('modal-competencia').contentDocument.getElementsByClassName('disciplinas-list').length != 0) {
+	            fadeOutModal();
+	            clearInterval(window.tDeleteModal);
+	        }
+    	}
     }
 
     function modalCompetencia() {
@@ -501,36 +610,24 @@ $(window).load(function(){fazAjaxTabela2();});
 
 
 function pegaCompetencia() {
-    console.log(document.getElementById('modal-competencia').contentDocument);
-    if(document.getElementById('modal-competencia').contentDocument.getElementById('competenciacadastrada').length != 0) {
-        idCompetencia = document.getElementById('modal-competencia').contentDocument.getElementById('competenciacadastrada').value;
-        //cloneOA = document.getElementById('tabela1').getElementById(idOA).cloneNode();
-        //document.getElementById('tabela2').apendChild(cloneOA);
-        document.getElementById('arrayCompetencias').value += idCompetencia+',';
-        clearInterval(window.tPegaCompetencia);
-
-    }
+	if(document.getElementById('modal-competencia').contentDocument.getElementById('competenciacadastrada')) {
+	    if(document.getElementById('modal-competencia').contentDocument.getElementById('competenciacadastrada').length != 0) {
+	    	console.log("asdasdasdasdasd");
+	        idCompetencia = document.getElementById('modal-competencia').contentDocument.getElementById('competenciacadastrada').value;
+	        //cloneOA = document.getElementById('tabela1').getElementById(idOA).cloneNode();
+	        //document.getElementById('tabela2').apendChild(cloneOA);
+	        document.getElementById('arrayCompetencias').value += idCompetencia+',';
+            atualizaCompetencia();
+	        clearInterval(window.tPegaCompetencia);
+	    }
+	}
 }
 
 function atualizaCompetencia() {
     novoCompetencia = document.getElementById('arrayCompetencias').value;
     novoCompetencia = novoCompetencia.split(',');
-    sizeCompetencia = novoCompetencia.length-2;
-    if(cloneCompetencia = document.getElementById(novoCompetencia[novoCompetencia.length-2]).cloneNode(true)) {
-        document.getElementById(novoCompetencia[novoCompetencia.length-2]).parentNode.removeChild(document.getElementById(novoCompetencia[novoCompetencia.length-2]).parentNode.lastChild)
-        document.getElementById('tabela2').appendChild(cloneCompetencia);
-        var idCompetencias = $("#tabela2").sortable('toArray').toString();
-        var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
-        idCompetencias = idCompetencias.split(",");
-        nomesCompetencias = nomesCompetencias.split(",");
-        document.getElementById('sub-conteudo6').innerHTML = "";
-        for (i = 0; i < nomesCompetencias.length; i++) {
-            var elementoAdd = document.createElement('div');
-            elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
-            document.getElementById('sub-conteudo6').appendChild(elementoAdd);
-        }
-        clearInterval(window.tAtualizaCompetencia);
-    }
+    sizeCompetencia = novoCompetencia.length-1;
+    fazAjaxTabela2Atualiza();
 }
 </script>
 

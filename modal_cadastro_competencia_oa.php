@@ -199,6 +199,7 @@ if (isset($OA)) {
     <!-- Loader do cadastro de OA CSS -->
     <link href="css/cadastro_OA.css" rel="stylesheet">
     <link href="css/progress_cadastro_OA.css" rel="stylesheet">
+    <link href="css/progress_cadastro_OA_modal.css" rel="stylesheet">
     <!-- Growl das mensagens de cadastros -->
     <link href="css/growl.css" rel="stylesheet">
     <!-- Seletor das palavras-chaves -->
@@ -380,35 +381,14 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
                 document.getElementById('seta').setAttribute('class', 'meu-active');
                 document.getElementById('menudiv1').removeAttribute('class');
                 document.getElementById('menudiv1').setAttribute('class', 'meu-active');
-                document.getElementById('seta1').removeAttribute('class');
-                document.getElementById('seta1').setAttribute('class', 'seta-active');
-                document.getElementById('buttonNext').removeAttribute('onclick');
-                document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(2)');
+                document.getElementById('buttonNext').removeAttribute('style');
+                document.getElementById('buttonNext').setAttribute('style', 'display: none;');
                 document.getElementById('buttonPrevious').removeAttribute('style');
                 document.getElementById('buttonPrevious').setAttribute('style', 'float: none; display: inline;');
-                mudaTab(2);
+                document.getElementById('finisher').removeAttribute('style');
+                document.getElementById('finisher').setAttribute('style', 'display: block; margin: auto;');
         }
         else if(qualTab == 2) {
-                document.getElementById('tabela1').style.border = "0";
-                document.getElementById('tabela2').style.border = "0";
-                divTab = document.getElementById('sub-conteudo1');
-                divTab.removeAttribute('class');
-                divTab.setAttribute('class', 'tab');
-                divTab = document.getElementById('sub-conteudo2');
-                divTab.removeAttribute('class');
-                divTab.setAttribute('class', 'tab-active');
-                document.getElementById('menudiv2').removeAttribute('class');
-                document.getElementById('menudiv2').setAttribute('class', 'meu-active');
-                document.getElementById('seta1').removeAttribute('class');
-                document.getElementById('seta1').setAttribute('class', 'meu-active');
-                document.getElementById('buttonNext').removeAttribute('onclick');
-                document.getElementById('buttonPrevious').removeAttribute('onclick');
-                document.getElementById('finisher').removeAttribute('style');
-                document.getElementById('buttonNext').removeAttribute('style');
-                document.getElementById('buttonNext').setAttribute('style', 'float: none; display: none;');
-                document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(4)');
-        }
-        else if(qualTab == 3) {
             divTab = document.getElementById('sub-conteudo1');
             divTab.removeAttribute('class');
             divTab.setAttribute('class', 'tab');
@@ -416,32 +396,15 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
             divTab.removeAttribute('class');
             divTab.setAttribute('class', 'tab-active');
             document.getElementById('menudiv1').removeAttribute('class');
-            document.getElementById('seta1').removeAttribute('class');
             document.getElementById('seta').removeAttribute('class');
             document.getElementById('seta').setAttribute('class', 'seta-active');
-            document.getElementById('buttonNext').removeAttribute('onclick');
-            document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(1)');
-            document.getElementById('buttonPrevious').removeAttribute('style');
-            document.getElementById('buttonPrevious').setAttribute('style', 'float: none; display: none;');
-
-        }
-        else if(qualTab == 4) {
-            divTab = document.getElementById('sub-conteudo2');
-            divTab.removeAttribute('class');
-            divTab.setAttribute('class', 'tab');
-            divTab = document.getElementById('sub-conteudo1');
-            divTab.removeAttribute('class');
-            divTab.setAttribute('class', 'tab-active');
-            document.getElementById('menudiv2').removeAttribute('class');
-            document.getElementById('seta1').removeAttribute('class');
-            document.getElementById('seta1').setAttribute('class', 'seta-active');
-            document.getElementById('buttonNext').removeAttribute('onclick');
-            document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(2)');
-            document.getElementById('buttonPrevious').removeAttribute('onclick');
-            document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(3)');
             document.getElementById('buttonNext').removeAttribute('style');
-            document.getElementById('finisher').setAttribute('style', 'float: none; display: none;');
-            mudaTab(3);
+            document.getElementById('buttonNext').setAttribute('style', 'display: inline;');
+            document.getElementById('buttonPrevious').removeAttribute('style');
+            document.getElementById('buttonPrevious').setAttribute('style', 'display: none;');
+            document.getElementById('finisher').removeAttribute('style');
+            document.getElementById('finisher').setAttribute('style', 'display: none;');
+
         }
     }
     opacityTip = 0;
@@ -607,9 +570,7 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
                         <div id="menu">
                             <div id="menudiv" class="meu-active"><?php echo WORDING_GENERAL_INFORMATION; ?></div>
                             <div id="seta" class="seta-active"></div>
-                            <div id="menudiv1"><?php echo WORDING_OA; ?></div>
-                            <div id="seta1"></div>
-                            <div id="menudiv2"><?php echo WORDING_OA_CHA; ?></div>
+                            <div id="menudiv1"><?php echo WORDING_OA_CHA; ?></div>
                     </div>
                         <div id="conteudo" class="clearfix">
                             <div id="sub-conteudo" class="tab-active">
@@ -648,27 +609,14 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
                                 </div>                                      
 
                             </div>
-                            <!-- DIV COM DADOS DAS COMPETÊNCIAS A SEREM ASSOCIADAS A DISCIPLINA -->
-                            <div id="sub-conteudo1" style="background-image: url(img/seta_drag.png); background-repeat: no-repeat; background-position: 49.5% 40%; background-size: 50px;" class="tab">
-                                <input type="hidden" id="arrayOAS" name="arrayOAS" value="" />
-                                <span style="display block; width: 100%; float: left; text-align:center;"><?php echo WORDING_ASSOCIATE_OA; ?>.</span>
-                                  <span style="display block; width: 40%; float: left; text-align:left;">Objetos OAS Disponíveis</span><span style="display: block; width: 30%; float: right; text-align:right;">Objetos OAS Selecionados</span>
-                            <ul id="tabela1">
-                            </ul>
-                            <ul id="tabela2">
-                                  <!-- Os objetos que serão associados estarão nessa tabela -->
-                            </ul>
-                                  <center><div onclick="modalCompetencia();" class='botao-cadastra' style='width: 240px'><?=WORDING_REGISTER_NOVO_OA?></div></center>
-
-                            </div>
-                            <div id="sub-conteudo2" class="tab">
+                            <div id="sub-conteudo1" class="tab">
                                 <div class="control-group">
                                 </div>
                             </div>
                             <input id="finisher" style="display: none;" type="submit" name="registrar_nova_competencia" value="<?php echo WORDING_CREATE_COMPETENCA; ?>" />
                             <ul class="pager wizard">
                                 <li class="next" style="float:none"><div id="buttonNext" class='button' onclick="mudaTab(1)"><a href="javascript:;" class='button-next text-left'>Próximo</a></div></li>
-                                <li class="previous" style="float:none; display: none;" id="buttonPrevious" onclick="mudaTab(3)"><div class="text-right"><a href="javascript:;">Voltar</a></div></li>
+                                <li class="previous" style="float:none; display: none;" id="buttonPrevious" onclick="mudaTab(2)"><div class="text-right"><a href="javascript:;">Voltar</a></div></li>
                             </ul>
 
                         </div>  

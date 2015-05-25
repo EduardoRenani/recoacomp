@@ -203,7 +203,7 @@ if (isset($OA)) {
     <!-- Loader do cadastro de OA CSS -->
     <link href="css/cadastro_OA.css" rel="stylesheet">
     <link href="css/progress_cadastro_OA.css" rel="stylesheet">
-        <link href="css/progress_cadastro_OA_breadcrumb.css" rel="stylesheet">
+    <link href="css/progress_cadastro_modal_oa.css" rel="stylesheet">
     <!-- Growl das mensagens de cadastros -->
     <link href="css/growl.css" rel="stylesheet">
     <!-- Seletor das palavras-chaves -->
@@ -487,32 +487,13 @@ if (isset($OA)) {
                 document.getElementById('menudiv5').setAttribute('class', 'meu-active');
                 document.getElementById('seta4').removeAttribute('class');
                 document.getElementById('seta4').setAttribute('class', 'meu-active');
-                document.getElementById('seta5').removeAttribute('class');
-                document.getElementById('seta5').setAttribute('class', 'seta-active');
-                document.getElementById('buttonNext').removeAttribute('onclick');
-                document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(6)');
                 document.getElementById('buttonPrevious').removeAttribute('onclick');
-                document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(11)');
-                mudaTab(6);
+                document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(10)');
+                document.getElementById('buttonNext').removeAttribute('style');
+                document.getElementById('buttonNext').setAttribute('style', 'float: none; display: none;');
+                document.getElementById('finisher').removeAttribute('style');
             }
             else if(qualTab == 6) {
-                    divTab = document.getElementById('sub-conteudo5');
-                    divTab.removeAttribute('class');
-                    divTab.setAttribute('class', 'tab');
-                    divTab = document.getElementById('sub-conteudo6');
-                    divTab.removeAttribute('class');
-                    divTab.setAttribute('class', 'tab-active');
-                    document.getElementById('menudiv6').removeAttribute('class');
-                    document.getElementById('menudiv6').setAttribute('class', 'meu-active');
-                    document.getElementById('seta5').removeAttribute('class');
-                    document.getElementById('seta5').setAttribute('class', 'meu-active');
-                    document.getElementById('buttonPrevious').removeAttribute('onclick');
-                    document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(12)');
-                    document.getElementById('buttonNext').removeAttribute('style');
-                    document.getElementById('buttonNext').setAttribute('style', 'float: none; display: none;');
-                    document.getElementById('finisher').removeAttribute('style');
-            }
-            else if(qualTab == 7) {
                 divTab = document.getElementById('sub-conteudo1');
                 divTab.removeAttribute('class');
                 divTab.setAttribute('class', 'tab');
@@ -528,7 +509,7 @@ if (isset($OA)) {
                 document.getElementById('buttonPrevious').removeAttribute('style');
                 document.getElementById('buttonPrevious').setAttribute('style', 'float: none; display: none;');
             }
-            else if(qualTab == 8) {
+            else if(qualTab == 7) {
                 divTab = document.getElementById('sub-conteudo2');
                 divTab.removeAttribute('class');
                 divTab.setAttribute('class', 'tab');
@@ -544,7 +525,7 @@ if (isset($OA)) {
                 document.getElementById('buttonPrevious').removeAttribute('onclick');
                 document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(7)');
             }
-            else if(qualTab == 9) {
+            else if(qualTab == 8) {
                 divTab = document.getElementById('sub-conteudo3');
                 divTab.removeAttribute('class');
                 divTab.setAttribute('class', 'tab');
@@ -560,7 +541,7 @@ if (isset($OA)) {
                 document.getElementById('buttonPrevious').removeAttribute('onclick');
                 document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(8)');
             }
-            else if(qualTab == 10) {
+            else if(qualTab == 9) {
                 divTab = document.getElementById('sub-conteudo4');
                 divTab.removeAttribute('class');
                 divTab.setAttribute('class', 'tab');
@@ -576,7 +557,7 @@ if (isset($OA)) {
                 document.getElementById('buttonPrevious').removeAttribute('onclick');
                 document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(9)');
             }
-            else if(qualTab == 11) {
+            else if(qualTab == 10) {
                 divTab = document.getElementById('sub-conteudo5');
                 divTab.removeAttribute('class');
                 divTab.setAttribute('class', 'tab');
@@ -584,7 +565,6 @@ if (isset($OA)) {
                 divTab.removeAttribute('class');
                 divTab.setAttribute('class', 'tab-active');
                 document.getElementById('menudiv5').removeAttribute('class');
-                document.getElementById('seta5').removeAttribute('class');
                 document.getElementById('seta4').removeAttribute('class');
                 document.getElementById('seta4').setAttribute('class', 'seta-active');
                 document.getElementById('buttonNext').removeAttribute('onclick');
@@ -594,25 +574,6 @@ if (isset($OA)) {
                 document.getElementById('finisher').removeAttribute('style');
                 document.getElementById('finisher').setAttribute('style', 'float: none; display: none;');
                 document.getElementById('buttonNext').removeAttribute('style');
-            }
-            else if(qualTab == 12) {
-                divTab = document.getElementById('sub-conteudo6');
-                divTab.removeAttribute('class');
-                divTab.setAttribute('class', 'tab');
-                divTab = document.getElementById('sub-conteudo5');
-                divTab.removeAttribute('class');
-                divTab.setAttribute('class', 'tab-active');
-                document.getElementById('menudiv6').removeAttribute('class');
-                document.getElementById('seta5').removeAttribute('class');
-                document.getElementById('seta5').setAttribute('class', 'seta-active');
-                document.getElementById('buttonNext').removeAttribute('onclick');
-                document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(6)');
-                document.getElementById('buttonPrevious').removeAttribute('onclick');
-                document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(11)');
-                document.getElementById('finisher').removeAttribute('style');
-                document.getElementById('finisher').setAttribute('style', 'float: none; display: none;');
-                document.getElementById('buttonNext').removeAttribute('style');
-                mudaTab(11);
             }
         }
     opacityTip = 0;
@@ -733,8 +694,6 @@ if (isset($OA)) {
                 <div id="menudiv4"><?php echo WORDING_RIGHT_CATEGORY; ?></div>
                 <div id="seta4"></div>
                 <div id="menudiv5"><?php echo WORDING_ASSOCIATE_COMPETENCE; ?></div>
-                <div id="seta5"></div>
-                <div id="menudiv6"><?php echo WORDING_REGISTER_CHA; ?></div>
             </div>
             <div id="conteudo" class="clearfix">
             <!-- Inicio-->
@@ -993,27 +952,7 @@ if (isset($OA)) {
 
                 
                 </div>
-
-                <div id="sub-conteudo5" style="background-image: url(img/seta_drag.png); background-repeat: no-repeat; background-position: 49.5% 40%; background-size: 50px;" class="tab">
-                    <input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" />
-                    <span style="display block; width: 100%; float: left; text-align:center;"><div style="float: center"><?php echo WORDING_ASSOCIATE_COMP; ?>.<div class="tooltiploco"><div onmouseover="toolTip(16, '<?php echo HINT_COMPETENCY ?>')" onmouseout="deleteTooltip(16)">?</div></div></div></span>
-                    <span style="display block; width: 40%; float: left; text-align:left;">Competencias Disponíveis</span><span style="display: block; width: 30%; float: right; text-align:right;">Competencias Selecionadas</span>
-                    <ul id="tabela1">
-                    </ul>
-
-                    
-                    <ul id="tabela2">
-                    <!--<li class="ui-state-highlight">Item 1 selecionado</li>-->
-                    </ul>
-                     
-            
-
-                    <div onclick="modalCompetencia();"  class='botao-cadastra' style='width: 240px'><?=WORDING_CREATE_NEW_COMPETENCIA?></div>
-                
-                </div>
-
-
-                <div id="sub-conteudo6" class="tab">
+                <div id="sub-conteudo5" class="tab">
                     <!--input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" /-->
        
                      

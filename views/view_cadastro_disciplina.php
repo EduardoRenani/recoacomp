@@ -654,13 +654,13 @@ $(function(){AjaxCompetenciaListas()});
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="senha"><div style="float: left"><?php echo WORDING_REGISTRATION_PASSWORD; ?></div><div class="tooltiploco"><div onmouseover="toolTip(3, 'Senha para cadastrar-se na disciplina')" onmouseout="deleteTooltip(3)">?</div></div></label>
+                                <label class="control-label" for="senha"><div style="float: left"><?php echo WORDING_REGISTRATION_PASSWORD; ?></div><div class="tooltiploco"><div onmouseover="toolTip(3, 'Senha (mín. 6 dígitos) para os alunos cadastrarem-se na disciplina.')" onmouseout="deleteTooltip(3)">?</div></div></label>
                                 <div class="controls">
                                     <input type="text" id="senha" name="senha" class="required">       
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="descricao"><div style="float: left"><?php echo WORDING_DISCIPLINA_DESCRICAO; ?></div><div class="tooltiploco"><div onmouseover="toolTip(4, 'Ex. Curso que procura ensinar algo ao aluno')" onmouseout="deleteTooltip(4)">?</div></div></label>
+                                <label class="control-label" for="descricao"><div style="float: left"><?php echo WORDING_DISCIPLINA_DESCRICAO; ?></div><div class="tooltiploco"><div onmouseover="toolTip(4, 'Exposição do tema abordado pela disciplina e seus objetivos.')" onmouseout="deleteTooltip(4)">?</div></div></label>
                                     <div class="controls">
                                         <textarea name="descricao" id="descricao" ROWS="5" COLS="40" class="required"></textarea>
                                     </div>
