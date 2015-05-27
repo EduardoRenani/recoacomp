@@ -106,6 +106,7 @@ define("MESSAGE_COMPETENCIA_DOESNT_EXIST","Competência associada é inválida")
 define("MESSAGE_DISCIPLINA_COMPETENCIA_ALREADY_RELATED","Competência já associada a essa disciplina");
 define("WORDING_REGISTER_NOVA_DISCIPLINA", "Cadastrar Disciplina");
 define("WORDING_EDIT_COURSE", "Editar Disciplina");
+define("WORDING_GLOBAL_COURSE", "Visão geral");
 define("WORDING_EDIT_COURSE_FINAL", "Finalizar edição da disciplina");
 define("WORDING_CREATE_NEW_COURSE", "Criar novo curso");
 define("WORDING_COURSE_NAME", "Nome do curso");
@@ -127,6 +128,9 @@ define("WORDING_FINALIZE","Finalizar");
 define("WORDING_TEST_REC","Testar recomendação");
 define("WORDING_REGISTER_CHA","Cadastrar CHA");
 define("WORDING_NULL_COMPETENCE","Nenhuma competência foi selecionada");
+define("WORDING_NEW_DISCIPLINA_NAME","Novo nome para disciplina");
+define("WORDING_CHANGE_DISCIPLINA_NAME","Alterar nome da disciplina");
+define("MESSAGE_DISCIPLINA_NAME_INVALID", "Nome da disciplina inválido.");
 
 //Cadastro de OA mensagens
 define("WORDING_PORTUGUES", "Português");
@@ -309,3 +313,7 @@ define("HINT_USE", "comentários sobre as condições de uso do objeto");
 
 //Competência
 define("HINT_COMPETENCY", "Este metadado define os tipos de competências que um objeto de aprendizagem tem potencial para desenvolver através do conteúdo e atividades propostas neste recurso. Parte-se da definição que competência é formada por conhecimentos, habilidades e atitudes (CHA) aplicada em um determinado contexto com o objetivo de resolver problemas ou lidar com novidades e imprevistos");
+
+//Textos de ajuda CHA
+define("TEXT_CHA", "Indicar um valor de o a 5");
+define("HINT_CHA", "Representa o quanto esta disciplina irá abordar os conhecimentos, habilidades e atitudes de cada competência cadastrada.");

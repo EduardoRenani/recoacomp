@@ -316,6 +316,20 @@ if (isset($OA)) {
    
 
 </script>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        console.log("funfou!");
+        $("#nome").keyup(function () { //user types username on inputfiled
+            console.log("funfou!");
+            var nome = $(this).val(); //get the string typed by user
+            $.post('classes/check_Competencia.php', {'nome':nome}, function(data) { //make ajax call to check_username.php
+            $("#status").html(data); //dump the data received from PHP page
+        });
+    });
+    });
+    </script>
+
 </head>
 
 <script>
@@ -366,6 +380,7 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
 <script language="javascript">
     function mudaTab(qualTab) {
         if(qualTab == 1) {
+            if(document.getElementById('status').innerHTML == "OK" && document.getElementsByName('nome')[0].value.length > 0 && document.getElementsByName('descricaoNome')[0].value.length > 0) {
                 document.getElementsByName('descricaoNome')[0].style.border = "0";
                 document.getElementsByName('conhecimentoDescricao')[0].style.border = "0";
                 document.getElementsByName('habilidadeDescricao')[0].style.border = "0";
@@ -387,6 +402,44 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
                 document.getElementById('buttonPrevious').setAttribute('style', 'float: none; display: inline;');
                 document.getElementById('finisher').removeAttribute('style');
                 document.getElementById('finisher').setAttribute('style', 'display: block; margin: auto;');
+            }
+            else {
+                if(document.getElementsByName('nome')[0].value.length == 0) {
+                    document.getElementsByName('nome')[0].style.border = "1px solid #dc8810";
+                    document.getElementsByName('nome')[0].setAttribute("placeholder", "Este campo é necessário");
+                }
+                else {
+                    document.getElementsByName('nome')[0].style.border = "0";
+                }
+                if(document.getElementsByName('descricaoNome')[0].value.length == 0) {
+                    document.getElementsByName('descricaoNome')[0].style.border = "1px solid #dc8810";
+                    document.getElementsByName('descricaoNome')[0].setAttribute("placeholder", "Este campo é necessário");
+                }
+                else {
+                    document.getElementsByName('descricaoNome')[0].style.border = "0";
+                }
+                if(document.getElementsByName('conhecimentoDescricao')[0].value.length == 0) {
+                    document.getElementsByName('conhecimentoDescricao')[0].style.border = "1px solid #dc8810";
+                    document.getElementsByName('conhecimentoDescricao')[0].setAttribute("placeholder", "Este campo é necessário");
+                }
+                else {
+                    document.getElementsByName('conhecimentoDescricao')[0].style.border = "0";
+                }
+                if(document.getElementsByName('habilidadeDescricao')[0].value.length == 0) {
+                    document.getElementsByName('habilidadeDescricao')[0].style.border = "1px solid #dc8810";
+                    document.getElementsByName('habilidadeDescricao')[0].setAttribute("placeholder", "Este campo é necessário");
+                }
+                else {
+                    document.getElementsByName('habilidadeDescricao')[0].style.border = "0";
+                }
+                if(document.getElementsByName('atitudeDescricao')[0].value.length == 0) {
+                    document.getElementsByName('atitudeDescricao')[0].style.border = "1px solid #dc8810";
+                    document.getElementsByName('atitudeDescricao')[0].setAttribute("placeholder", "Este campo é necessário");
+                }
+                else {
+                    document.getElementsByName('atitudeDescricao')[0].style.border = "0";
+                }
+            }
         }
         else if(qualTab == 2) {
             divTab = document.getElementById('sub-conteudo1');
@@ -577,7 +630,8 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
                                 <div class="control-group">
                                     <label class="control-label" for="nome"><?php echo WORDING_NAME; ?></label>
                                     <div class="controls">
-                                        <input type="text" id="nome" name="nome" class="required">       
+                                        <input type="text" id="nome" name="nome" class="required">
+                                        <div id="status"></div>
                                     </div>
                                 </div>
                                 <div class="control-group">

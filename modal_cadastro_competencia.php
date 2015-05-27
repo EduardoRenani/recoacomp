@@ -254,7 +254,7 @@ if (isset($OA)) {
                 var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
                 idCompetencias = idCompetencias.split(",");
                 nomesCompetencias = nomesCompetencias.split(",");
-                document.getElementById('sub-conteudo2').innerHTML = "";
+                document.getElementById('sub-conteudo2').innerHTML = '<div style="text-align: center; margin-bottom: 20px;"><div style="float: left"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div></div>';
                 for (i = 0; i < nomesCompetencias.length; i++) {
                     var elementoAdd = document.createElement('div');
                     elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
@@ -282,7 +282,7 @@ if (isset($OA)) {
                 var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
                 idCompetencias = idCompetencias.split(",");
                 nomesCompetencias = nomesCompetencias.split(",");
-                document.getElementById('sub-conteudo2').innerHTML = "";
+                document.getElementById('sub-conteudo2').innerHTML = '<div style="text-align: center; margin-bottom: 20px;"><div style="float: left"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div></div>';
                 for (i = 0; i < nomesCompetencias.length; i++) {
                     var elementoAdd = document.createElement('div');
                     elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
@@ -315,6 +315,20 @@ if (isset($OA)) {
    
 
 </script>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        console.log("funfou!");
+        $("#nome").keyup(function () { //user types username on inputfiled
+            console.log("funfou!");
+            var nome = $(this).val(); //get the string typed by user
+            $.post('classes/check_Competencia.php', {'nome':nome}, function(data) { //make ajax call to check_username.php
+            $("#status").html(data); //dump the data received from PHP page
+        });
+    });
+    });
+    </script>
+
 </head>
 
 <script>
@@ -365,7 +379,7 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
 <script language="javascript">
     function mudaTab(qualTab) {
         if(qualTab == 1) {
-            if(document.getElementsByName('nome')[0].value.length > 0 && document.getElementsByName('descricaoNome')[0].value.length > 0 && document.getElementsByName('conhecimentoDescricao')[0].value.length > 0 && document.getElementsByName('habilidadeDescricao')[0].value.length > 0 && document.getElementsByName('atitudeDescricao')[0].value.length > 0) {
+            if(document.getElementById('status').innerHTML == "OK" && document.getElementsByName('nome')[0].value.length > 0 && document.getElementsByName('descricaoNome')[0].value.length > 0) {
                 document.getElementsByName('nome')[0].style.border = "0";
                 document.getElementsByName('descricaoNome')[0].style.border = "0";
                 document.getElementsByName('conhecimentoDescricao')[0].style.border = "0";
@@ -656,7 +670,8 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
                                 <div class="control-group">
                                     <label class="control-label" for="nome"><?php echo WORDING_NAME; ?></label>
                                     <div class="controls">
-                                        <input type="text" id="nome" name="nome" class="required">       
+                                        <input type="text" id="nome" name="nome" class="required">
+                                        <div id="status"></div>      
                                     </div>
                                 </div>
                                 <div class="control-group">

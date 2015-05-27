@@ -119,13 +119,29 @@ class Disciplina {
             $_POST['habilidade'],
             $_POST['atitude'],
             $_POST['idDisciplina']);
+        }elseif(isset($_POST["editar_nome_disciplina"])){
+            $this->editDisciplinaName($_POST['disciplina_name'],$_POST['idDisciplina']);
+            //echo 'editar nome disciplina';
         }else{
             // Se não estiver cadastrando uma nova disciplina apenas é um constructor que retorna NULL
             return null;
         }
     }
-    /**
+    /**  
      * Checks if database connection is opened and open it if not
+     *
+     *if (isset($_POST["user_edit_submit_name"])) {
+     *           // function below uses use $_SESSION['user_id'] et $_SESSION['user_email']
+     *          $this->editUserName($_POST['user_name']);
+     *      // user try to change his email
+     *      } elseif (isset($_POST["user_edit_submit_email"])) {
+     *           // function below uses use $_SESSION['user_id'] et $_SESSION['user_email']
+     *           $this->editUserEmail($_POST['user_email']);
+     *       // user try to change his password
+     *       } elseif (isset($_POST["user_edit_submit_password"])) {
+     *           // function below uses $_SESSION['user_name'] and $_SESSION['user_id']
+     *           $this->editUserPassword($_POST['user_password_old'], $_POST['user_password_new'], $_POST['user_password_repeat']);
+     *       }
      */
 
     private function databaseConnection(){
@@ -431,7 +447,30 @@ class Disciplina {
         }
     }
 
+    /**
+     * Edita o nome da disciplina
+     */
+    public function editDisciplinaName($nomeDisciplina, $idDiscplina)
+    {
+        
+        echo $idDiscplina;
+        // prevent database flooding
+        //$nomeDisciplina = substr(trim($nomeDisciplina), 0, 64);
+        echo $nomeDisciplina;
+        if (empty($nomeDisciplina)) {
+            $this->errors[] = MESSAGE_DISCIPLINA_NAME_INVALID;
 
+        } else {
+            // write user's new data into database
+           // $stmt = $this->db_connection->prepare("UPDATE disciplina SET nomeDisciplina = :nomeDisciplina WHERE iddisciplina = :idDisciplina");
+           // $stmt->bindValue(':nomeDisciplina', $nomeDisciplina, PDO::PARAM_STR);
+          //  $stmt->bindValue(':idDisciplina', $idDiscplina, PDO::PARAM_INT);
+          //  $stmt->execute();
+
+            echo 'ok';
+        }
+    }
+    
 
 
 
@@ -653,6 +692,29 @@ class Disciplina {
             //print_r($stmt->execute());
             return $stmt->fetchAll();
             //return $stmt->fetchAll();
+        }
+    }
+    /*
+        $param pode ser do tipo:
+            - id (retorna o id da disciplina)
+            - nomeDisciplina (retorna o nome da Disciplina)
+            - nomeCurso (retorna o nome do Curso)
+            - descricao (retorna a descricao da disciplina)
+    */
+    public function getUserDisciplinas($userId, $param){
+        if($this->databaseConnection()){
+            if ($param == 'id'){
+                $stmt = $this->db_connection->prepare("SELECT iddisciplina FROM disciplina WHERE usuarioProfessorID=:userId");
+            }else if ($param == 'nomeDisciplina'){
+                $stmt = $this->db_connection->prepare("SELECT nomeDisciplina FROM disciplina WHERE usuarioProfessorID=:userId");
+            }else if ($param == 'nomeCurso'){
+                $stmt = $this->db_connection->prepare("SELECT nomeCurso FROM disciplina WHERE usuarioProfessorID=:userId");
+            }else if ($param == 'descricao'){
+                $stmt = $this->db_connection->prepare("SELECT descricao FROM disciplina WHERE usuarioProfessorID=:userId");
+            }
+            $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll();
         }
     }
 

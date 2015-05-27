@@ -48,7 +48,7 @@
                     var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
                     idCompetencias = idCompetencias.split(",");
                     nomesCompetencias = nomesCompetencias.split(",");
-                    document.getElementById('sub-conteudo6').innerHTML = "";
+                    document.getElementById('sub-conteudo2').innerHTML = '<div style="text-align: center; margin-bottom: 20px;"><div style="float: left"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div></div>';
                     for (i = 0; i < nomesCompetencias.length; i++) {
                         var elementoAdd = document.createElement('div');
                         elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
@@ -76,7 +76,7 @@
                     var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
                     idCompetencias = idCompetencias.split(",");
                     nomesCompetencias = nomesCompetencias.split(",");
-                    document.getElementById('sub-conteudo6').innerHTML = "";
+                    document.getElementById('sub-conteudo2').innerHTML = '<div style="text-align: center; margin-bottom: 20px;"><div style="float: left"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div></div>';
                     for (i = 0; i < nomesCompetencias.length; i++) {
                         var elementoAdd = document.createElement('div');
                         elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
@@ -589,7 +589,7 @@
                 var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
                 idCompetencias = idCompetencias.split(",");
                 nomesCompetencias = nomesCompetencias.split(",");
-                document.getElementById('sub-conteudo6').innerHTML = "";
+                document.getElementById('sub-conteudo2').innerHTML = '<div style="text-align: center; margin-bottom: 20px;"><div style="float: left"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div></div>';
                 for (i = 0; i < nomesCompetencias.length; i++) {
                     var elementoAdd = document.createElement('div');
                     elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';

@@ -49,12 +49,13 @@ include('_header.php');
     <script src="http://thecodeplayer.com/uploads/js/prefixfree-1.0.7.js" type="text/javascript" type="text/javascript"></script>
     <script src="js/jquery.nouislider.all.min.js" type="text/javascript"></script>
     <?php
-    //$nomedadisciplina = $disciplinas->getNomeDisciplinaById
+    //pegamos dados da disciplina para a edição
         $nomedadisciplina = $disciplina->getNomeDisciplinaById($_POST['disc']);
         $nomedocurso = $disciplina->getNomeCursoById($_POST['disc']);
         $senhaDisciplina = $disciplina->getSenhaDisciplinaById($_POST['disc']);
         $descricaoDisciplina = $disciplina->getDescricaoDisciplinaById($_POST['disc']);
         $idCompetencias = $disciplina->getCompetenciaFromDisciplinaById($_POST['disc']);
+        //pega cha de cada competencia para edição
         foreach ($idCompetencias as $value) {
             $idCompetenciasEnviar .= $value[0].",";
             $chaCompetencias =  $disciplina->getCHAFromDisciplinaByIdCompetencia($value[0], $_POST['disc']);
@@ -95,12 +96,13 @@ include('_header.php');
         });
 
     });
-
+    //funções para associação das competencias(drag entre tabela 1 e tabela 2)
     $(function() {
         $('#tabela2').sortable({
             connectWith: "#tabela1, #tabela1",
             receive : function (event, ui) {
                 $("#tabela1").sortable('refreshPositions');
+                //pega id e nome das competencias associadas
                 var idCompetencias = $("#tabela2").sortable('toArray').toString();
                 var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
                 var chaCompetencias = '<?php echo $chaCompetenciasEnviar; ?>'
@@ -108,10 +110,9 @@ include('_header.php');
                 for(i = 0; i < chaCompetencias.length; i++) {
                     chaCompetencias[i] = chaCompetencias[i].split(",");
                 }
-                console.log(chaCompetencias);
                 idCompetencias = idCompetencias.split(",");
                 nomesCompetencias = nomesCompetencias.split(",");
-                document.getElementById('sub-conteudo2').innerHTML = "";
+                document.getElementById('sub-conteudo2').innerHTML = '<div style="text-align: center; margin-bottom: 20px;"><div style="float: left"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div></div>';
                 for (i = 0; i < nomesCompetencias.length; i++) {
                 	j = 0;
                     var elementoAdd = document.createElement('div');
@@ -158,7 +159,7 @@ include('_header.php');
                 console.log(chaCompetencias);
                 idCompetencias = idCompetencias.split(",");
                 nomesCompetencias = nomesCompetencias.split(",");
-                document.getElementById('sub-conteudo2').innerHTML = "";
+                                document.getElementById('sub-conteudo2').innerHTML = '<div style="text-align: center; margin-bottom: 20px;"><div style="float: left"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div></div>';
                 for (i = 0; i < nomesCompetencias.length; i++) {
                 	j = 0;
                     var elementoAdd = document.createElement('div');
@@ -288,7 +289,8 @@ function fazAjaxTabela2(){
                     console.log(chaCompetencias);
                     idCompetencias = idCompetencias.split(",");
                     nomesCompetencias = nomesCompetencias.split(",");
-                    document.getElementById('sub-conteudo2').innerHTML = "";
+
+                                    document.getElementById('sub-conteudo2').innerHTML = '<div style="text-align: center; margin-bottom: 20px;"><div style="float: left"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div></div>';
                     for (i = 0; i < nomesCompetencias.length; i++) {
                     	j = 0;
                         var elementoAdd = document.createElement('div');
@@ -352,7 +354,7 @@ function fazAjaxTabela2Atualiza(){
                     console.log(chaCompetencias);
                     idCompetencias = idCompetencias.split(",");
                     nomesCompetencias = nomesCompetencias.split(",");
-                    document.getElementById('sub-conteudo2').innerHTML = "";
+                                    document.getElementById('sub-conteudo2').innerHTML = '<div style="text-align: center; margin-bottom: 20px;"><div style="float: left"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div></div>';
                     for (i = 0; i < nomesCompetencias.length; i++) {
                     	j = 0;
                         var elementoAdd = document.createElement('div');
@@ -595,9 +597,9 @@ function fazAjaxTabela2Atualiza(){
         modalClose.setAttribute("style", "position: absolute; top: 12%; left: 0; font-size: 20px; background-color: ; z-index: 9999; width: 100%; padding-right: 33px;l");
         modalClose.innerHTML = '<a href="#"><span class="glyphicon glyphicon-remove"></span></a>';
         modal = document.createElement("iframe");
-        modal.setAttribute("src", "modal_cadastro_competencia_oa.php");
+        modal.setAttribute("src", "modal_cadastro_competencia.php");
         modal.setAttribute("id", "modal-competencia");
-        modal.setAttribute("style", "position: absolute; z-index: 9998; top: 10%; left: 2.5%; background-color: #fff; width: 95%; height: 780px; overflow: hidden; opacity: 0; -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; margin-bottom: 50px;");
+        modal.setAttribute("style", "position: absolute; z-index: 9998; top: 10%; left: 2.5%; background-color: #fff; width: 95%; height: 950px; overflow: hidden; opacity: 0; -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; margin-bottom: 50px;");
         modal.setAttribute("frameborder", "0");
 
         document.getElementsByClassName('cadastrobase')[0].appendChild(modal);
@@ -610,16 +612,18 @@ function fazAjaxTabela2Atualiza(){
 
 
 function pegaCompetencia() {
-	if(document.getElementById('modal-competencia').contentDocument.getElementById('competenciacadastrada')) {
-	    if(document.getElementById('modal-competencia').contentDocument.getElementById('competenciacadastrada').length != 0) {
-	    	console.log("asdasdasdasdasd");
-	        idCompetencia = document.getElementById('modal-competencia').contentDocument.getElementById('competenciacadastrada').value;
-	        //cloneOA = document.getElementById('tabela1').getElementById(idOA).cloneNode();
-	        //document.getElementById('tabela2').apendChild(cloneOA);
-	        document.getElementById('arrayCompetencias').value += idCompetencia+',';
-            atualizaCompetencia();
-	        clearInterval(window.tPegaCompetencia);
-	    }
+	if(document.getElementById('modal-competencia')) {
+		if(document.getElementById('modal-competencia').contentDocument.getElementById('competenciacadastrada')) {
+		    if(document.getElementById('modal-competencia').contentDocument.getElementById('competenciacadastrada').length != 0) {
+		    	console.log("asdasdasdasdasd");
+		        idCompetencia = document.getElementById('modal-competencia').contentDocument.getElementById('competenciacadastrada').value;
+		        //cloneOA = document.getElementById('tabela1').getElementById(idOA).cloneNode();
+		        //document.getElementById('tabela2').apendChild(cloneOA);
+		        document.getElementById('arrayCompetencias').value += idCompetencia+',';
+	            atualizaCompetencia();
+		        clearInterval(window.tPegaCompetencia);
+		    }
+		}
 	}
 }
 
@@ -701,10 +705,11 @@ function atualizaCompetencia() {
                         </div>
                         
                     <!-- DIV COM COISA CHA -->
-                        <div id="sub-conteudo2" class="tab">
+                        <div id="sub-conteudo2" class="tab">  
                             <div class="control-group">
-                                <div class="controls">                                    
+                                <div class="controls">                                 
                                         <div id='nomesCompetencias'>
+                                        
                                         </div>
                                 </div>
                             </div>

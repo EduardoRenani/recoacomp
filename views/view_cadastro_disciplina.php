@@ -103,7 +103,7 @@ include('_header.php');
                 listaAtitudes = listaAtitudes.split("¬");
                 console.log(listaAtitudes);
                 console.log('oi');
-                document.getElementById('sub-conteudo2').innerHTML = "";
+                document.getElementById('sub-conteudo2').innerHTML = '<div style="text-align: center; margin-bottom: 20px;"><div style="float: left"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div></div>';
                 for (i = 0; i < nomesCompetencias.length; i++) {
                     listaConhecimentos[i] = listaConhecimentos[i].replace(/,/g, ' ');
                     listaHabilidades[i] = listaHabilidades[i].replace(/,/g, ' ');
@@ -145,7 +145,7 @@ include('_header.php');
                 console.log(listaConhecimentos);
                 console.log(listaHabilidades);
                 console.log(listaAtitudes);
-                document.getElementById('sub-conteudo2').innerHTML = "";
+                document.getElementById('sub-conteudo2').innerHTML = '<div style="text-align: center; margin-bottom: 20px;"><div style="float: left"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div></div>';
                 for (i = 0; i < nomesCompetencias.length; i++) {
                     listaConhecimentos[i] = listaConhecimentos[i].replace(/,/g, ' ');
                     listaHabilidades[i] = listaHabilidades[i].replace(/,/g, ' ');
@@ -273,7 +273,7 @@ function AjaxCompetenciaListas(){
                     listaAtitudes = listaAtitudes.split("¬");
                     console.log(listaAtitudes);
                     console.log('oi');
-                    document.getElementById('sub-conteudo2').innerHTML = "";
+                    document.getElementById('sub-conteudo2').innerHTML = '<div style="text-align: center; margin-bottom: 20px;"><div style="float: left"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div></div>';
                     for (i = 0; i < nomesCompetencias.length; i++) {
                         listaConhecimentos[i] = listaConhecimentos[i].replace(/,/g, ' ');
                         listaHabilidades[i] = listaHabilidades[i].replace(/,/g, ' ');
@@ -587,36 +587,38 @@ $(function(){AjaxCompetenciaListas()});
         novoCompetencia = document.getElementById('arrayCompetencias').value;
         novoCompetencia = novoCompetencia.split(',');
         sizeCompetencia = novoCompetencia.length-2;
-        if(cloneCompetencia = document.getElementById(novoCompetencia[sizeCompetencia]).cloneNode(true)) {
-            document.getElementById(novoCompetencia[sizeCompetencia]).parentNode.removeChild(document.getElementById(novoCompetencia[sizeCompetencia]).parentNode.lastChild)
-            document.getElementById('tabela2').appendChild(cloneCompetencia);
-            var idCompetencias = $("#tabela2").sortable('toArray').toString();
-            var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
-            idCompetencias = idCompetencias.split(",");
-            nomesCompetencias = nomesCompetencias.split(",");
-            listaConhecimentos = document.getElementById('listaConhecimentos').value;
-            listaConhecimentos = listaConhecimentos.split("¬");
-            console.log(listaConhecimentos);
-            console.log('oioioi');
-            listaHabilidades = document.getElementById('listaHabilidades').value;
-            listaHabilidades = listaHabilidades.split("¬");
-            console.log(listaHabilidades);
-            console.log('oioi');
-            listaAtitudes = document.getElementById('listaAtitudes').value;
-            listaAtitudes = listaAtitudes.split("¬");
-            console.log(listaAtitudes);
-            console.log('oi');
-            document.getElementById('sub-conteudo2').innerHTML = "";
-            for (i = 0; i < nomesCompetencias.length; i++) {
-                listaConhecimentos[i] = listaConhecimentos[i].replace(/,/g, ' ');
-                listaHabilidades[i] = listaHabilidades[i].replace(/,/g, ' ');
-                listaAtitudes[i] = listaAtitudes[i].replace(/,/g, ' ');
-                var elementoAdd = document.createElement('div');
-                //elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'" >?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
-                elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div id="conhecimento'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'conhecimento'+idCompetencias[i]+'\', \''+listaConhecimentos[i]+'\')" onmouseout="deleteTooltipComp(\'conhecimento'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div id="habilidade'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'habilidade'+idCompetencias[i]+'\', \''+listaHabilidades[i]+'\')" onmouseout="deleteTooltipComp(\'habilidade'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div id="atitude'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'atitude'+idCompetencias[i]+'\', \''+listaAtitudes[i]+'\')" onmouseout="deleteTooltipComp(\'atitude'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
-                document.getElementById('sub-conteudo2').appendChild(elementoAdd);
+        if(document.getElementById(novoCompetencia[sizeCompetencia])) {
+            if(cloneCompetencia = document.getElementById(novoCompetencia[sizeCompetencia]).cloneNode(true)) {
+                document.getElementById(novoCompetencia[sizeCompetencia]).parentNode.removeChild(document.getElementById(novoCompetencia[sizeCompetencia]).parentNode.lastChild)
+                document.getElementById('tabela2').appendChild(cloneCompetencia);
+                var idCompetencias = $("#tabela2").sortable('toArray').toString();
+                var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
+                idCompetencias = idCompetencias.split(",");
+                nomesCompetencias = nomesCompetencias.split(",");
+                listaConhecimentos = document.getElementById('listaConhecimentos').value;
+                listaConhecimentos = listaConhecimentos.split("¬");
+                console.log(listaConhecimentos);
+                console.log('oioioi');
+                listaHabilidades = document.getElementById('listaHabilidades').value;
+                listaHabilidades = listaHabilidades.split("¬");
+                console.log(listaHabilidades);
+                console.log('oioi');
+                listaAtitudes = document.getElementById('listaAtitudes').value;
+                listaAtitudes = listaAtitudes.split("¬");
+                console.log(listaAtitudes);
+                console.log('oi');
+                document.getElementById('sub-conteudo2').innerHTML = '<div style="text-align: center; margin-bottom: 20px;"><div style="float: left"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div></div>';
+                for (i = 0; i < nomesCompetencias.length; i++) {
+                    listaConhecimentos[i] = listaConhecimentos[i].replace(/,/g, ' ');
+                    listaHabilidades[i] = listaHabilidades[i].replace(/,/g, ' ');
+                    listaAtitudes[i] = listaAtitudes[i].replace(/,/g, ' ');
+                    var elementoAdd = document.createElement('div');
+                    //elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'" >?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div id="conhecimento'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'conhecimento'+idCompetencias[i]+'\', \''+listaConhecimentos[i]+'\')" onmouseout="deleteTooltipComp(\'conhecimento'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div id="habilidade'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'habilidade'+idCompetencias[i]+'\', \''+listaHabilidades[i]+'\')" onmouseout="deleteTooltipComp(\'habilidade'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div id="atitude'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'atitude'+idCompetencias[i]+'\', \''+listaAtitudes[i]+'\')" onmouseout="deleteTooltipComp(\'atitude'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    document.getElementById('sub-conteudo2').appendChild(elementoAdd);
+                }
+                clearInterval(window.tAtualizaCompetencia);
             }
-            clearInterval(window.tAtualizaCompetencia);
         }
     }
 </script>
