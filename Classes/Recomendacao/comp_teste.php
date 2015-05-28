@@ -175,24 +175,26 @@ class CompTeste{
 		echo "<div class='recomendacao-content'>";
 
 			echo "<ul class='disciplinas-list'>";
-			
+			if ($cont != 0){
 			echo "<div id='conteudo' class='conteudo clearfix'><li class='recomendacao-item' style='margin-bottom: 0;'>
 						<div class='recomendacao-item-content'> 
 							<h3>Competência: ".$this->nomeComp."</h3>
-							<p>".$this->descricaoComp."</p>
-						</div>
+							<p>".$this->descricaoComp."</p>".
+							'Número de Objeto(s) recomendado(s): '.$cont.'<br/>'.
+						"</div>
 							<button type='button' class='btn-recomendacao btn-default btn-lg'>
 							  <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
 							</button>						
 						</li></div><div id='conteudo-expansivel'>";
-			if ($cont != 0){
+			
 				for($c=0;$c<$cont;$c++){
 					
 					//var_dump($v);
 
 						echo"<li class='disciplinas-item'  style='border-bottom: 1px solid #ddd; margin-bottom: 0; width: 95%; margin: auto;'>";
+			                    
 			                    echo "<div class='recomendacao-item-content'>";
-			                    		echo 'Número de Objeto(s) recomendado(s): '.$cont.'<br/>';
+			                    		
 
 			                    		echo "<h3>".$v[$c]['nome']."</h3>";
 
@@ -228,8 +230,10 @@ class CompTeste{
 			                	echo "</b></div>".
 			            	"</li>";
 		    	}
-		    }else
+		    }else{
+		    	echo "<h3>Competência: ".$this->nomeComp."</h3>";
 	    		echo '<h4><br>Essa competência não possui objetos a serem recomendados no momento.</h4>';
+		    }
 	    	echo "</div></ul>".
     	"</div>";
 
