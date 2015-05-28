@@ -388,7 +388,7 @@ class Competencia{
             $result = $query_check_disc_comp->fetchAll();
             if(count($result)>0){
                 $existeRelacao = true;
-                $this->errors[] = MESSAGE_DISCIPLINA_COMPETENCIA_ALREADY_RELATED;
+                //$this->errors[] = MESSAGE_DISCIPLINA_COMPETENCIA_ALREADY_RELATED;
             }
             unset($query_check_disc_comp);
 

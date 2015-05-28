@@ -183,49 +183,52 @@ class Comp{
 						
 					</li></div><div id='conteudo-expansivel'>";
 
-			for($c=0;$c<$cont;$c++){
+			if ($cont <= 0)   
+	    		echo '<h4><br>Essa competência não possui objetos a serem recomendados no momento.</h4>';
+	    	else{
+				for($c=0;$c<$cont;$c++){
+					
+					//var_dump($v);
 
-				//var_dump($v);
+						echo"<li class='disciplinas-item'  style='border-bottom: 1px solid #ddd; margin-bottom: 0; width: 95%; margin: auto;'>";
+			                    echo "<div class='recomendacao-item-content'>";
+			                    		echo 'Número de Objeto(s) recomendado(s): '.$cont.'<br/>';
 
-				echo"<li class='disciplinas-item'  style='border-bottom: 1px solid #ddd; margin-bottom: 0; width: 95%; margin: auto;'>";
+			                    		echo "<h3>".$v[$c]['nome']."</h3>";
 
-	                    echo "<div class='recomendacao-item-content'>";
+			                    		echo "<h6>".$v[$c]['descricao']."</h6><br/>";
 
-	                    		echo "<h3>".$v[$c]['nome']."</h3>";
+			                    		echo "<a target='_blank' href='".$v[$c]['url']."'>Acessar Objeto de Aprendizagem</a><b>";
 
-	                    		echo "<h6>".$v[$c]['descricao']."</h6><br/>";
+		                		echo "</div>";
 
-	                    		echo "<a target='_blank' href='".$v[$c]['url']."'>Acessar Objeto de Aprendizagem</a><b>";
+		                		echo "<div class='circulo-recomendacao' style='background-color:";
 
-                		echo "</div>";
+			                    	//Deve exibir verde!
+									if($v[$c]['res'] == 1 || $v[$c]['res'] == 2){
 
-                		echo "<div class='circulo-recomendacao' style='background-color:";
+										//echo "#C4DA5B;";
 
-	                    	//Deve exibir verde!
-							if($v[$c]['res'] == 1 || $v[$c]['res'] == 2){
+									//Deve exibir amarelo
+									}else if($v[$c]['res'] < 1 && $v[$c]['res'] >=-4){
 
-								//echo "#C4DA5B;";
+										//echo "#FCEF53;";
 
-							//Deve exibir amarelo
-							}else if($v[$c]['res'] < 1 && $v[$c]['res'] >=-4){
+									//Deve exibir vermelho!
+									}else{
 
-								//echo "#FCEF53;";
+										//echo "#ED2825;";
 
-							//Deve exibir vermelho!
-							}else{
+									}
 
-								//echo "#ED2825;";
-
-							}
-
-						echo '\'">';
+								echo '\'">';
 
 
 
-	                	echo "</b></div>".
-	            	"</li>";
-
-	    	}
+			                	echo "</b></div>".
+			            	"</li>";
+		    	}
+		    }
 
 	    	echo "</div></ul>".
     	"</div>";

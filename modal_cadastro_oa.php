@@ -693,7 +693,7 @@ if (isset($OA)) {
                 <div id="seta3"></div>
                 <div id="menudiv4"><?php echo WORDING_RIGHT_CATEGORY; ?></div>
                 <div id="seta4"></div>
-                <div id="menudiv5"><?php echo WORDING_ASSOCIATE_COMPETENCE; ?></div>
+                <div id="menudiv5"><?php echo WORDING_REGISTER_NOVO_OA; ?></div>
             </div>
             <div id="conteudo" class="clearfix">
             <!-- Inicio-->

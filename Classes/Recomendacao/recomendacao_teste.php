@@ -15,6 +15,9 @@ class RecomendacaoTeste {
     private $idDisc;
     private $competencia;
     private $user;
+    private $conhecimento;
+    private $habilidade;
+    private $atitude;
     private $mysqli;
 
     private $filtraComp;
@@ -23,39 +26,58 @@ class RecomendacaoTeste {
     //disc é o ID da disciplina.
     //filtraComp é o array de IDs das competências que devem receber recomendação. Em caso de null, recomenda para todas as competências da disciplina.
     function __construct($disc, $filtraComp = null){
-
         $this->idDisc = $disc;
-        //$this->mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
         $this->filtraComp = $filtraComp;
-
         if (!isset($_SESSION))
-          session_start();
-
+            session_start();
         $this->user = $_SESSION['user_id'];
-        //echo("ID Usuario: ".$_SESSION['user_id']."<br/>");
-        //echo("Nome do Usuario: ".$_SESSION['user_name']);
-
+        $this->conhecimento = $_POST['conhecimento'];
+        $this->habilidade = $_POST['habilidade'];
+        $this->atitude = $_POST['atitude'];
+        
         $this->associarCompetencias($_POST['competencias']);
         // Atualizar dados do usuário no banco de dados
-        $this->atualizarCompetencias($this->user,$_POST['competencias'], $_POST['conhecimento'], $_POST['habilidade'], $_POST['atitude']);
+        //$this->atualizarCompetencias($this->user,$_POST['competencias'], $_POST['conhecimento'], $_POST['habilidade'], $_POST['atitude']);
 
         $this->recomenda();
     }
 
+    private function databaseConnection(){
+        // connection already opened
+        if ($this->db_connection != null) {
+            return true;
+
+        } else {
+            // create a database connection, using the constants from config/config.php
+            try {
+                $this->db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+                return true;
+                // If an error is catched, database connection failed
+            } catch (PDOException $e) {
+                $this->errors[] = MESSAGE_DATABASE_ERROR;
+                print_r($this);
+                return false;
+
+            }
+        }
+    }
+
+
     private function associarCompetencias($listaComp){
-        //print_r($listaComp);
+        // Indice são os numeros da competência para recomendar
+        // CompTeste é uma classe que está instanciada com dados temporários
         $this->competencia = array();
         $size = count($listaComp);
         for($c=0;$c<$size;$c++){
-
+            $indice = $listaComp[$c];
             if( is_array($this->filtraComp) ){
                 if($this->deveMostrar( $listaComp[$c] ) ){
-                    $comp = new Comp($listaComp[$c],$this->user,$this->idDisc);
+                    $comp = new CompTeste($listaComp[$c],$this->user,$this->idDisc, $this->conhecimento[$indice], $this->habilidade[$indice], $this->atitude[$indice]);
                     array_push($this->competencia, $comp);
                     unset($comp);
                 }
             }else{
-                $comp = new Comp($listaComp[$c],$this->user,$this->idDisc);
+                $comp = new CompTeste($listaComp[$c],$this->user,$this->idDisc, $this->conhecimento[$indice], $this->habilidade[$indice], $this->atitude[$indice]); //Onde Comp é inicializado
                 array_push($this->competencia, $comp);
                 unset($comp);           
             }
@@ -69,7 +91,7 @@ class RecomendacaoTeste {
         //Associar Objetos à Competência:
             //Receber objetos do banco de dados:
             $this->db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
-            $temp = $this->competencia[$pos]->getID();
+            $temp = $this->competencia[$pos]->getID(); // Pega o ID da competência
             $objetosDaCompetencia = array();
 
                 // Executa uma consulta
@@ -86,14 +108,17 @@ class RecomendacaoTeste {
                     //echo $result[0];
                 }
             }while($result !=NULL);
-        
+            
+            //print_r($objetosDaCompetencia); // Imprime os objetos da competência
             //Associar de fato:
-
+            
             $qtdOA = count($objetosDaCompetencia);
+            
             for($idOA=0;$idOA<$qtdOA;$idOA++){
-
                 $this->competencia[$pos]->addOA( (int)$objetosDaCompetencia[ $idOA ] );
             }
+            
+
 
             $this->competencia[$pos]->ordenaOAs();
 
@@ -132,22 +157,17 @@ class RecomendacaoTeste {
 
     private function atualizarCompetencias($idUsuario ,$competencias, $conhecimento, $habilidade, $atitude){
         foreach ($competencias as $idCompetencia){
-            //echo $idCompetencia.",";
-            $this->db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
-            //$stmt = $this->db_connection->prepare("UPDATE usuario_competencias SET conhecimento = :conhecimento, atitude = :atitude, habilidade = :habilidade WHERE competencia_idcompetencia = :idCompetencia");
-            $stmt = $this->db_connection->prepare("INSERT INTO usuario_competencias(usuario_idusuario, competencia_idcompetencia, conhecimento, atitude, habilidade)  VALUES(:idUsuario, :idCompetencia, :conhecimento, :atitude, :habilidade)");
-            if (!$stmt)
-                print_r($dbh->errorInfo());
-            else{
+            if($this->databaseConnection()){
+                $stmt = $this->db_connection->prepare("INSERT INTO usuario_competencias(usuario_idusuario, competencia_idcompetencia, conhecimento, atitude, habilidade)  VALUES(:idUsuario, :idCompetencia, :conhecimento, :atitude, :habilidade)");
                 $stmt->bindParam(':idUsuario',$idUsario, PDO::PARAM_INT);
+                
                 $stmt->bindParam(':idCompetencia',$idCompetencia, PDO::PARAM_INT);
                 $stmt->bindParam(':habilidade',$habilidade[$idCompetencia], PDO::PARAM_INT);
                 $stmt->bindParam(':conhecimento',$conhecimento[$idCompetencia], PDO::PARAM_INT);
                 $stmt->bindParam(':atitude',$atitude[$idCompetencia], PDO::PARAM_INT);
                 $stmt->execute();
-                print_r($stmt->execute());
             }
-        }
+        }            
     }
 
 

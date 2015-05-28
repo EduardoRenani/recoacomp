@@ -623,7 +623,7 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
                         <div id="menu">
                             <div id="menudiv" class="meu-active"><?php echo WORDING_GENERAL_INFORMATION; ?></div>
                             <div id="seta" class="seta-active"></div>
-                            <div id="menudiv1"><?php echo WORDING_OA_CHA; ?></div>
+                            <div id="menudiv1"><?php echo WORDING_REGISTER_NOVO_OA; ?></div>
                     </div>
                         <div id="conteudo" class="clearfix">
                             <div id="sub-conteudo" class="tab-active">

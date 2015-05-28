@@ -98,7 +98,6 @@ include('_header.php');
             <input type="hidden" id="idUsuario" name="idUsuario" value="<?php echo $_SESSION['user_id']; ?>" />
             <input type="hidden" name="disc" value="<?php echo $_POST['disc']; ?>" />
             <input type="hidden" name="okay" value="okay" />
-            <input type="hidden" name="senha" value="<?php echo $_POST['senha']; ?>" />
 
             <?php 
                 //echo $_POST["idDisciplina"];

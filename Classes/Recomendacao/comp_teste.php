@@ -9,7 +9,7 @@ require_once('translations/pt_br.php');
 require_once('classes/Competencia.php');
 
 
-class Comp{
+class CompTeste{
 
     /**
      * @var object $db_connection The database connection
@@ -32,7 +32,7 @@ class Comp{
 	private $chaUser;
 	private $chaDisc;
 
-	private $chaUserS;
+	private $chaUserS; // Soma do CHA
 	private $chaDiscS;
 
 
@@ -56,12 +56,16 @@ class Comp{
         }
     }
 
-	function __construct($idComp,$user,$disc){
+	function __construct($idComp,$user,$disc, $conhecimento, $habilidade, $atitude){
 		$this->oa = new lista();
 		$this->databaseConnection();
-		//$this->mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+		
 		$this->idComp = $idComp;
-		$this->getCHAuser($user);
+		$this->chaUser['C']= $conhecimento;
+        $this->chaUser['H']= $habilidade;
+        $this->chaUser['A']= $atitude;
+        $this->chaUserS = $this->chaUser['C'] + $this->chaUser['H'] + $this->chaUser['A'];
+
 		$this->getCHAdisc($disc);
 		$this->setNome();
 		$this->setDescricao();
@@ -171,7 +175,7 @@ class Comp{
 		echo "<div class='recomendacao-content'>";
 
 			echo "<ul class='disciplinas-list'>";
-			if ($cont <= 0){
+			
 			echo "<div id='conteudo' class='conteudo clearfix'><li class='recomendacao-item' style='margin-bottom: 0;'>
 						<div class='recomendacao-item-content'> 
 							<h3>Competência: ".$this->nomeComp."</h3>
@@ -181,56 +185,54 @@ class Comp{
 							  <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
 							</button>						
 						</li></div><div id='conteudo-expansivel'>";
+			if ($cont != 0){
+				for($c=0;$c<$cont;$c++){
+					
+					//var_dump($v);
 
-			for($c=0;$c<$cont;$c++){
+						echo"<li class='disciplinas-item'  style='border-bottom: 1px solid #ddd; margin-bottom: 0; width: 95%; margin: auto;'>";
+			                    echo "<div class='recomendacao-item-content'>";
+			                    		echo 'Número de Objeto(s) recomendado(s): '.$cont.'<br/>';
 
-				//var_dump($v);
+			                    		echo "<h3>".$v[$c]['nome']."</h3>";
 
-				echo"<li class='disciplinas-item'  style='border-bottom: 1px solid #ddd; margin-bottom: 0; width: 95%; margin: auto;'>";
+			                    		echo "<h6>".$v[$c]['descricao']."</h6><br/>";
 
-	                    echo "<div class='recomendacao-item-content'>";
+			                    		echo "<a target='_blank' href='".$v[$c]['url']."'>Acessar Objeto de Aprendizagem</a><b>";
 
-	                    		echo "<h3>".$v[$c]['nome']."</h3>";
+		                		echo "</div>";
 
-	                    		echo "<h6>".$v[$c]['descricao']."</h6><br/>";
+		                		echo "<div class='circulo-recomendacao' style='background-color:";
 
-	                    		echo "<a target='_blank' href='".$v[$c]['url']."'>Acessar Objeto de Aprendizagem</a><b>";
+			                    	//Deve exibir verde!
+									if($v[$c]['res'] == 1 || $v[$c]['res'] == 2){
 
-                		echo "</div>";
+										//echo "#C4DA5B;";
 
-                		echo "<div class='circulo-recomendacao' style='background-color:";
+									//Deve exibir amarelo
+									}else if($v[$c]['res'] < 1 && $v[$c]['res'] >=-4){
 
-	                    	//Deve exibir verde!
-							if($v[$c]['res'] == 1 || $v[$c]['res'] == 2){
+										//echo "#FCEF53;";
 
-								//echo "#C4DA5B;";
+									//Deve exibir vermelho!
+									}else{
 
-							//Deve exibir amarelo
-							}else if($v[$c]['res'] < 1 && $v[$c]['res'] >=-4){
+										//echo "#ED2825;";
 
-								//echo "#FCEF53;";
+									}
 
-							//Deve exibir vermelho!
-							}else{
-
-								//echo "#ED2825;";
-
-							}
-
-						echo '\'">';
+								echo '\'">';
 
 
 
-	                	echo "</b></div>".
-	            	"</li>";
-
-	    	}
-
+			                	echo "</b></div>".
+			            	"</li>";
+		    	}
+		    }else
+	    		echo '<h4><br>Essa competência não possui objetos a serem recomendados no momento.</h4>';
 	    	echo "</div></ul>".
     	"</div>";
-    	} // Fecha if da competencia
-    	else
-    		echo '<br>Competência sem objetos disponíveis no momento';
+
 	}
 
 	private function getCHAuser($user){
