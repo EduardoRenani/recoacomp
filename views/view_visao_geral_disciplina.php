@@ -53,7 +53,9 @@ include('_header.php');
 <div class="fixedBackgroundGradient"></div>
 
 <div class="cadastrobase">
-    <?php $nomeDisciplina = $disciplina->getNomeDisciplinaById($_POST['idDisciplina'])[0][0];
+    <?php 
+    $nomeDisciplina = $disciplina->getNomeDisciplinaById($_POST['idDisciplina'])[0][0];
+    $nomeCurso = $disciplina->getNomeCursoById($_POST['idDisciplina'])[0][0];
     $idDisciplina = $_POST['idDisciplina'];
     ?>
     <div class="top-cadastrobase"><div class="text-left"><?php echo (WORDING_GLOBAL_COURSE).': '.$nomeDisciplina; ?></div><div class="text-right" ><!-- <a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a>--></div></div>
@@ -79,24 +81,23 @@ include('_header.php');
                     </form><hr/>
 
                     <!-- edit form for user email / this form uses HTML5 attributes, like "required" and type="email" -->
-                    <form method="post" action="editar_disciplina.php" name="user_edit_form_email">
-                        <label for="user_email"><?php echo WORDING_NEW_EMAIL; ?></label>
-                        <input id="user_email" type="email" name="user_email" required /> (<?php echo WORDING_CURRENTLY; ?>: <?php echo $_SESSION['user_email']; ?>)<br />
-                        <input type="submit" name="user_edit_submit_email" value="<?php echo WORDING_CHANGE_EMAIL; ?>" />
+                    <form method="post" action="editar_disciplina.php" name="editar_nome_curso">                  
+                        <label for="curso_name"><?php echo WORDING_NEW_COURSE_NAME; ?></label>
+                        <input id="curso_name" type="text" name="curso_name" required /> (<?php echo WORDING_CURRENTLY; ?>: <?php echo $nomeCurso; ?>)<br />
+                        <input type="hidden" name="idDisciplina" value="<?php echo $idDisciplina ?>" />
+                        <input type="submit" name="editar_nome_curso" value="<?php echo WORDING_CHANGE_COURSE_NAME; ?>" />
                     </form><hr/>
 
                     <!-- edit form for user's password / this form uses the HTML5 attribute "required" -->
-                    <form method="post" action="editar_disciplina.php" name="user_edit_form_password">
-                        <label for="user_password_old"><?php echo WORDING_OLD_PASSWORD; ?></label>
-                        <input id="user_password_old" type="password" name="user_password_old" autocomplete="off" />
+                    <form method="post" action="editar_disciplina.php" name="editar_senha">
+                        <input type="hidden" name="idDisciplina" value="<?php echo $idDisciplina ?>" />
+                        <label for="senha_antiga"><?php echo WORDING_OLD_PASSWORD; ?></label>
+                        <input id="senha_antiga" type="password" name="senha_antiga" autocomplete="off" />
 
-                        <label for="user_password_new"><?php echo WORDING_NEW_PASSWORD; ?></label>
-                        <input id="user_password_new" type="password" name="user_password_new" autocomplete="off" />
+                        <label for="senha_nova"><?php echo WORDING_NEW_PASSWORD; ?></label>
+                        <input id="senha_nova" type="password" name="senha_nova" autocomplete="off" />
 
-                        <label for="user_password_repeat"><?php echo WORDING_NEW_PASSWORD_REPEAT; ?></label>
-                        <input id="user_password_repeat" type="password" name="user_password_repeat" autocomplete="off" />
-
-                        <input type="submit" name="user_edit_submit_password" value="<?php echo WORDING_CHANGE_PASSWORD; ?>" />
+                        <input type="submit" name="editar_senha" value="<?php echo WORDING_CHANGE_PASSWORD; ?>" />
                     </form>
                 </div>
             </div>

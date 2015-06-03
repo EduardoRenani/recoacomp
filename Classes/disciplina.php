@@ -9,6 +9,7 @@
 require_once('config/config.cfg');
 require_once('classes/Login.php');
 require_once('translations/pt_br.php');
+require_once('classes/Database.php');
 
 class Disciplina {
     /**
@@ -122,27 +123,17 @@ class Disciplina {
         }elseif(isset($_POST["editar_nome_disciplina"])){
             $this->editDisciplinaName($_POST['disciplina_name'],$_POST['idDisciplina']);
             //echo 'editar nome disciplina';
+        }elseif(isset($_POST["editar_nome_curso"])){
+            $this->editCursoName($_POST['curso_name'],$_POST['idDisciplina']);
+            //echo 'editar nome disciplina';
+        }elseif(isset($_POST["editar_senha"])){
+            $this->editDisciplinaSenha($_POST['senha_antiga'],$_POST['senha_nova'],$_POST['idDisciplina']);
+            //echo 'editar nome disciplina';
         }else{
             // Se não estiver cadastrando uma nova disciplina apenas é um constructor que retorna NULL
             return null;
         }
     }
-    /**  
-     * Checks if database connection is opened and open it if not
-     *
-     *if (isset($_POST["user_edit_submit_name"])) {
-     *           // function below uses use $_SESSION['user_id'] et $_SESSION['user_email']
-     *          $this->editUserName($_POST['user_name']);
-     *      // user try to change his email
-     *      } elseif (isset($_POST["user_edit_submit_email"])) {
-     *           // function below uses use $_SESSION['user_id'] et $_SESSION['user_email']
-     *           $this->editUserEmail($_POST['user_email']);
-     *       // user try to change his password
-     *       } elseif (isset($_POST["user_edit_submit_password"])) {
-     *           // function below uses $_SESSION['user_name'] and $_SESSION['user_id']
-     *           $this->editUserPassword($_POST['user_password_old'], $_POST['user_password_new'], $_POST['user_password_repeat']);
-     *       }
-     */
 
     private function databaseConnection(){
         // connection already opened
@@ -450,33 +441,75 @@ class Disciplina {
     /**
      * Edita o nome da disciplina
      */
-    public function editDisciplinaName($nomeDisciplina, $idDiscplina)
-    {
-        
-        echo $idDiscplina;
-        // prevent database flooding
-        //$nomeDisciplina = substr(trim($nomeDisciplina), 0, 64);
-        echo $nomeDisciplina;
+    public function editDisciplinaName($nomeDisciplina, $idDiscplina){
         if (empty($nomeDisciplina)) {
             $this->errors[] = MESSAGE_DISCIPLINA_NAME_INVALID;
 
-        } else {
+        } elseif($this->databaseConnection()) {
             // write user's new data into database
-           // $stmt = $this->db_connection->prepare("UPDATE disciplina SET nomeDisciplina = :nomeDisciplina WHERE iddisciplina = :idDisciplina");
-           // $stmt->bindValue(':nomeDisciplina', $nomeDisciplina, PDO::PARAM_STR);
-          //  $stmt->bindValue(':idDisciplina', $idDiscplina, PDO::PARAM_INT);
-          //  $stmt->execute();
+            $editarNomeDisciplina = $this->db_connection->prepare("UPDATE disciplina SET nomeDisciplina = :nomeDisciplina WHERE iddisciplina = :idDisciplina");
+            $editarNomeDisciplina->bindValue(':nomeDisciplina', $nomeDisciplina, PDO::PARAM_STR);
+            $editarNomeDisciplina->bindValue(':idDisciplina', $idDiscplina, PDO::PARAM_INT);
+            $editarNomeDisciplina->execute();
+            $this->messages[] = WORDING_EDIT_SUCESSFULLY;
+        }
+    }
 
-            echo 'ok';
+    public function editCursoName($nomeCurso, $idDiscplina)
+    {
+        if (empty($nomeCurso)) {
+            $this->errors[] = MESSAGE_COURSE_NAME_INVALID;
+
+        }elseif($this->databaseConnection()) {
+            // write user's new data into database
+            $editarCursoName = $this->db_connection->prepare("UPDATE disciplina SET nomeCurso = :nomeCurso WHERE iddisciplina = :idDisciplina");
+            $editarCursoName->bindValue(':nomeCurso', $nomeCurso, PDO::PARAM_STR);
+            $editarCursoName->bindValue(':idDisciplina', $idDiscplina, PDO::PARAM_INT);
+            $editarCursoName->execute();
+            $this->messages[] = WORDING_EDIT_SUCESSFULLY;
+        }
+    }
+
+    public function editDisciplinaSenha($senhaAntiga, $senhaNova, $idDiscplina)
+    {
+        $database = new Database();
+        
+        if (empty($senhaNova)) {
+            $this->errors[] = MESSAGE_PASSWORD_EMPTY;
+        }elseif(strlen($senhaNova) < 6){
+            $this->errors[] = MESSAGE_PASSWORD_TOO_SHORT;
+        }elseif($database->exists('iddisciplina', $idDiscplina, 'disciplina', $senhaAntiga, 'senha')) {
+            // write user's new data into database
+            if ($this->databaseConnection()){
+                $editarDisciplinaSenha = $this->db_connection->prepare("UPDATE disciplina SET senha = :senha WHERE iddisciplina = :idDisciplina");
+                $editarDisciplinaSenha->bindValue(':senha', $senhaNova, PDO::PARAM_STR);
+                $editarDisciplinaSenha->bindValue(':idDisciplina', $idDiscplina, PDO::PARAM_INT);
+                $editarDisciplinaSenha->execute();
+                $this->messages[] = WORDING_EDIT_SUCESSFULLY;
+            }else 
+                $this->errors[]=MESSAGE_DATABASE_ERROR;
+        }else
+            $this->errors[] = MESSAGE_OLD_PASSWORD_WRONG;
+        
+    }
+
+
+
+    
+    public function editDisciplinaDescricao($descricao, $idDiscplina)
+    {
+        if (empty($descricao) or (empty($idDiscplina))) {
+            $this->errors[] = MESSAGE_DESCRICAO_EMPTY;
+        } elseif($this->databaseConnection()) {
+            // write user's new data into database
+            $editarDisciplinaDescricao = $this->db_connection->prepare("UPDATE disciplina SET descricao = :descricao WHERE iddisciplina = :idDisciplina");
+            $editarDisciplinaDescricao->bindValue(':descricao', $descricao, PDO::PARAM_STR);
+            $editarDisciplinaDescricao->bindValue(':idDisciplina', $idDiscplina, PDO::PARAM_INT);
+            $editarDisciplinaDescricao->execute();
+            $this->messages[] = WORDING_EDIT_SUCESSFULLY;
         }
     }
     
-
-
-
-
-
-
     public function getErrors(){
         return $this->errors;
     }

@@ -40,8 +40,6 @@ function getDisciplinaId(id){
 
             <?php
                 // Exibir todas as disciplinas disponiveis e permitir cadastros nas mesmas
-                
-
                 $listaDisciplina = array();
                                 
                 $listaDisciplina[0] = $disciplina->getUserDisciplinas($_SESSION['user_id'], 'nomeDisciplina');

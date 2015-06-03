@@ -22,7 +22,7 @@ define("MESSAGE_LINK_PARAMETER_EMPTY", "Parametro com link vazio.");
 define("MESSAGE_LOGGED_OUT", "Você saiu de sua conta.");
 // The "login failed"-message is a security improved feedback that doesn't show a potential attacker if the user exists or not
 define("MESSAGE_LOGIN_FAILED", "Erro no login.");
-define("MESSAGE_OLD_PASSWORD_WRONG", "Sua antiga senha está errada.");
+define("MESSAGE_OLD_PASSWORD_WRONG", "Senha antiga está errada.");
 define("MESSAGE_PASSWORD_BAD_CONFIRM", "As senhas não são as mesmas");
 define("MESSAGE_PASSWORD_CHANGE_FAILED", "Desculpe, a troca de senha não foi bem sucedida.");
 define("MESSAGE_PASSWORD_CHANGED_SUCCESSFULLY", "Senha trocada com sucesso!");
@@ -129,8 +129,11 @@ define("WORDING_TEST_REC","Testar recomendação");
 define("WORDING_REGISTER_CHA","Cadastrar CHA");
 define("WORDING_NULL_COMPETENCE","Nenhuma competência foi selecionada");
 define("WORDING_NEW_DISCIPLINA_NAME","Novo nome para disciplina");
+define("WORDING_NEW_COURSE_NAME","Novo nome para curso");
 define("WORDING_CHANGE_DISCIPLINA_NAME","Alterar nome da disciplina");
+define("WORDING_CHANGE_COURSE_NAME","Alterar nome do curso");
 define("MESSAGE_DISCIPLINA_NAME_INVALID", "Nome da disciplina inválido.");
+define("MESSAGE_COURSE_NAME_INVALID", "Nome do curso inválido.");
 
 //Cadastro de OA mensagens
 define("WORDING_PORTUGUES", "Português");
@@ -255,6 +258,7 @@ define("WORDING_CHA", "CHA ");
 define("WORDING_CREATE_COMPETENCA", "Criar Nova Competência");
 define("WORDING_ASSOCIATE_OA", "Associar OA's para nova competência");
 define("WORDING_ASSOCIATE_COMP", "Associar uma ou mais competências para nova disciplina");
+define("WORDING_ASSOCIATE_COMP_OA", "Associar uma ou mais competências para novo objeto");
 define("WORDING_ASSOCIATE_COMP_EDIT", "Editar competências");
 define("MESSAGE_NAME_EMPTY", "Nome vazio");
 define("MESSAGE_DESCRICAO_EMPTY", "Descrição vazia");
@@ -317,3 +321,4 @@ define("HINT_COMPETENCY", "Este metadado define os tipos de competências que um
 //Textos de ajuda CHA
 define("TEXT_CHA", "Indicar um valor de o a 5");
 define("HINT_CHA", "Representa o quanto esta disciplina irá abordar os conhecimentos, habilidades e atitudes de cada competência cadastrada.");
+define("HINT_CHA_OA", "Representa o quanto este objeto irá abordar os conhecimentos, habilidades e atitudes de cada competência cadastrada.");
