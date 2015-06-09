@@ -122,15 +122,13 @@ class Disciplina {
             $_POST['idDisciplina']);
         }elseif(isset($_POST["editar_nome_disciplina"])){
             $this->editDisciplinaName($_POST['disciplina_name'],$_POST['idDisciplina']);
-            //echo 'editar nome disciplina';
         }elseif(isset($_POST["editar_nome_curso"])){
             $this->editCursoName($_POST['curso_name'],$_POST['idDisciplina']);
-            //echo 'editar nome disciplina';
         }elseif(isset($_POST["editar_senha"])){
             $this->editDisciplinaSenha($_POST['senha_antiga'],$_POST['senha_nova'],$_POST['idDisciplina']);
-            //echo 'editar nome disciplina';
+        }elseif(isset($_POST["editar_descricao"])){
+            $this->editDisciplinaDescricao($_POST['descricao'],$_POST['idDisciplina']);
         }else{
-            // Se não estiver cadastrando uma nova disciplina apenas é um constructor que retorna NULL
             return null;
         }
     }
@@ -478,7 +476,7 @@ class Disciplina {
             $this->errors[] = MESSAGE_PASSWORD_EMPTY;
         }elseif(strlen($senhaNova) < 6){
             $this->errors[] = MESSAGE_PASSWORD_TOO_SHORT;
-        }elseif($database->exists('iddisciplina', $idDiscplina, 'disciplina', $senhaAntiga, 'senha')) {
+        }elseif($database->exists('iddisciplina', $idDiscplina, 'disciplina', $senhaAntiga, 'senha')) { // Verifica se a senha está certa
             // write user's new data into database
             if ($this->databaseConnection()){
                 $editarDisciplinaSenha = $this->db_connection->prepare("UPDATE disciplina SET senha = :senha WHERE iddisciplina = :idDisciplina");
@@ -490,12 +488,14 @@ class Disciplina {
                 $this->errors[]=MESSAGE_DATABASE_ERROR;
         }else
             $this->errors[] = MESSAGE_OLD_PASSWORD_WRONG;
-        
     }
 
 
-
-    
+    /**
+     * Altera a descrição da disciplina pelo ID
+     * @param $descricao
+     * @param $idDiscplina
+     */
     public function editDisciplinaDescricao($descricao, $idDiscplina)
     {
         if (empty($descricao) or (empty($idDiscplina))) {
@@ -507,7 +507,8 @@ class Disciplina {
             $editarDisciplinaDescricao->bindValue(':idDisciplina', $idDiscplina, PDO::PARAM_INT);
             $editarDisciplinaDescricao->execute();
             $this->messages[] = WORDING_EDIT_SUCESSFULLY;
-        }
+        } else
+            $this->errors[]=MESSAGE_DATABASE_ERROR;
     }
     
     public function getErrors(){
@@ -751,7 +752,25 @@ class Disciplina {
         }
     }
 
+    /**
+     * Função que lista os alunos matriculados na disciplina
+     * @param $idDisciplina
+     */
+    public function listaAlunosMatriculados($idDisciplina){
+        $database = new Database();
+        $sql = "SELECT usuario_idusuario FROM usuario_disciplina WHERE disciplina_iddisciplina = :idDisciplina";
+        $database->query($sql);
+        $database->bind(":idDisciplina", $idDisciplina);
+        return $database->resultSet();
+    }
 
+    public function getUserData($userId){
+        $database = new Database();
+        $sql = "SELECT user_name, user_email, acesso FROM users WHERE user_id = :idUser";
+        $database->query($sql);
+        $database->bind(":idUser", $userId);
+        return $database->resultSet();
+    }
     
 
     // Função que cria a relação usuario com disciplina
@@ -834,6 +853,8 @@ class Disciplina {
 
 //Case de teste
 //$coisa = new Disciplina();
+//$coisa->listaAlunosMatriculados(44);
+//print_r($coisa->getUserData(5));
 //print_r($coisa->getNomeDisciplinaById(78));
 //$coisa->getNomesDisciplinas();
 //$coisa->entrarDisciplina(1,2,'aaaaaaaa');

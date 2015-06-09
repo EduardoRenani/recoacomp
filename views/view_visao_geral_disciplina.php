@@ -14,6 +14,7 @@ include('_header.php');
     <link href="css/base_cadastro.css" rel="stylesheet">
     <link href="css/jquery.nouislider.min.css" rel="stylesheet">
 
+
     <style>
     .tooltip {
     display: block;
@@ -56,6 +57,7 @@ include('_header.php');
     <?php 
     $nomeDisciplina = $disciplina->getNomeDisciplinaById($_POST['idDisciplina'])[0][0];
     $nomeCurso = $disciplina->getNomeCursoById($_POST['idDisciplina'])[0][0];
+    $descricao = $disciplina->getDescricaoDisciplinaById($_POST['idDisciplina'])[0][0];
     $idDisciplina = $_POST['idDisciplina'];
     ?>
     <div class="top-cadastrobase"><div class="text-left"><?php echo (WORDING_GLOBAL_COURSE).': '.$nomeDisciplina; ?></div><div class="text-right" ><!-- <a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a>--></div></div>
@@ -72,7 +74,7 @@ include('_header.php');
                 </div>
             <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body">
-                    <!-- edit form for username / this form uses HTML5 attributes, like "required" and type="email" -->
+                    <!-- Formulário para editar o nome da disciplina  -->
                     <form method="post" action="editar_disciplina.php" name="editar_nome_disciplina">
                         <label for="disciplina_name"><?php echo WORDING_NEW_DISCIPLINA_NAME; ?></label>
                         <input id="disciplina_name" type="text" name="disciplina_name"/> (<?php echo WORDING_CURRENTLY; ?>: <?php echo $nomeDisciplina; ?>)<br />
@@ -80,7 +82,7 @@ include('_header.php');
                         <input type="submit" name="editar_nome_disciplina" value="<?php echo WORDING_CHANGE_DISCIPLINA_NAME; ?>" />
                     </form><hr/>
 
-                    <!-- edit form for user email / this form uses HTML5 attributes, like "required" and type="email" -->
+                    <!-- Formulário para editar o nome do curso -->
                     <form method="post" action="editar_disciplina.php" name="editar_nome_curso">                  
                         <label for="curso_name"><?php echo WORDING_NEW_COURSE_NAME; ?></label>
                         <input id="curso_name" type="text" name="curso_name" required /> (<?php echo WORDING_CURRENTLY; ?>: <?php echo $nomeCurso; ?>)<br />
@@ -88,17 +90,28 @@ include('_header.php');
                         <input type="submit" name="editar_nome_curso" value="<?php echo WORDING_CHANGE_COURSE_NAME; ?>" />
                     </form><hr/>
 
-                    <!-- edit form for user's password / this form uses the HTML5 attribute "required" -->
+                    <!-- Alterar a senha da disciplina -->
                     <form method="post" action="editar_disciplina.php" name="editar_senha">
                         <input type="hidden" name="idDisciplina" value="<?php echo $idDisciplina ?>" />
-                        <label for="senha_antiga"><?php echo WORDING_OLD_PASSWORD; ?></label>
+                        <label for="senha_antiga"><?php echo WORDING_NEW_PASSWORD; ?></label>
                         <input id="senha_antiga" type="password" name="senha_antiga" autocomplete="off" />
 
-                        <label for="senha_nova"><?php echo WORDING_NEW_PASSWORD; ?></label>
+                        <label for="senha_nova"><?php echo WORDING_NEW_PASSWORD_REPEAT; ?></label>
                         <input id="senha_nova" type="password" name="senha_nova" autocomplete="off" />
-
                         <input type="submit" name="editar_senha" value="<?php echo WORDING_CHANGE_PASSWORD; ?>" />
                     </form>
+                    <!-- Alterar a descrição da disciplina -->
+                    <form method="post" action="editar_disciplina.php" name="editar_descricao">
+                        <label for="descricao"><?php echo WORDING_NEW_DESCRIPTION; ?></label>
+                        <?php echo WORDING_CURRENTLY; ?>:<br/>
+                        <?php echo $descricao; ?>
+                        <br/>
+                        <textarea name="descricao" id="descricao" rows="5" cols="40" class="required" aria-required="true" style="width: 100%; height: 150px;"></textarea>
+
+                        <input type="hidden" name="idDisciplina" value="<?php echo $idDisciplina ?>" />
+                        <input type="submit" name="editar_descricao" value="<?php echo WORDING_EDIT_DESCRIPTION; ?>" />
+                    </form>
+
                 </div>
             </div>
             </div>
@@ -107,12 +120,47 @@ include('_header.php');
                         <h4 class="panel-title">
                         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                         Alunos Matriculados
-                        </a>
+                         </a>
                         </h4>
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                         <div class="panel-body">
-                            Lista com alunos matriculados.
+                                    <?php
+                                   $listaAlunosMatriculados = $disciplina->listaAlunosMatriculados($_POST['idDisciplina']);
+                                   if (empty($listaAlunosMatriculados))
+                                       echo 'Nenhum aluno matriculado';
+                                   else{ ?>
+                                       <table class="table table-condensed">
+                                        <thead>
+                                        <tr>
+                                            <th>Nome de Usuário</th>
+                                            <th>Email</th>
+                                            <th>Tipo de Usuário</th>
+                                        </tr>
+                                        </thead>
+                                            <tbody>
+                                        <?php
+                                       $qtde = count($listaAlunosMatriculados);
+                                       for($i=0; $i < $qtde; $i++){
+                                           $idUser = $listaAlunosMatriculados[$i]['usuario_idusuario'];
+                                           $dadosUsuario = $disciplina->getUserData($idUser);
+                                           //print_r($dadosUsuario);
+                                           echo
+                                                "<tr>".
+                                                "<td>".$dadosUsuario[0]['user_name']."</td>".
+                                                "<td>".$dadosUsuario[0]['user_email']."</td>";
+                                                if ($dadosUsuario[0]['acesso'] == 1)
+                                                    echo "<td>".WORDING_USER_STUDENT."</td>";
+                                                elseif ($dadosUsuario[0]['acesso'] == 2)
+                                                    echo "<td>".WORDING_USER_PROFESSOR."</td>";
+                                                elseif ($dadosUsuario[0]['acesso'] == 3)
+                                                    echo "<td>".WORDING_USER_ADMIN."</td>";
+                                                echo "</tr>";
+                                       }
+                                   }
+                                   ?>
+                                            </tbody>
+                                        </table>
                         </div>
                     </div>
                 </div>

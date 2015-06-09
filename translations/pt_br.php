@@ -56,7 +56,7 @@ define("WORDING_BACK_TO_LOGIN", "Voltar Home");
 define("WORDING_CHANGE_EMAIL", "Mudar email");
 define("WORDING_CHANGE_PASSWORD", "Mudar senha");
 define("WORDING_CHANGE_USERNAME", "Mudar nome de usuario");
-define("WORDING_CURRENTLY", "atual");
+define("WORDING_CURRENTLY", "Atual");
 define("WORDING_EDIT_USER_DATA", "Alterar dados do usuário");
 define("WORDING_EDIT_YOUR_CREDENTIALS", "Alteração de Dados");
 define("WORDING_FORGOT_MY_PASSWORD", "Esqueci minha senha");
@@ -96,6 +96,9 @@ define("WORDING_REGISTER_SUCESSFULLY", "Cadastro efetuado com sucesso!");
 define("WORDING_EDIT_SUCESSFULLY", "Edição efetuada com sucesso!");
 define("WORDING_TEAM", "Equipe");
 
+// Página editar disciplina
+define("WORDING_EDIT_DESCRIPTION", "Alterar descrição");
+define("WORDING_NEW_DESCRIPTION", "Nova descrição");
 
 
 

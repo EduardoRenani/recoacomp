@@ -144,6 +144,9 @@ class Database {
     }
 
     /**
+     *
+     * Função que verifica a existência de elementos (ex: nome ja existe, etc.)
+     *
      * @param $nomeCampoId, NOME do campo do ID a ser comparado
      * @param $id, id a ser comparado
      * @param $nomeTabela, NOME da tabela onde será buscado os dados
