@@ -543,6 +543,54 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
         }
     }
 
+//tooltip para competencias
+    function toolTipComp(id, CHA) {
+        div = document.getElementById(id);
+        tooltip = document.createElement('div');
+        tooltip.setAttribute('class', 'mensagemTooltiploco');
+        if(CHA = "conhecimento") {
+            texto = $("#conhecimentoDescricao").tagsinput('items');
+        }
+        if(CHA = "atitude") {
+            texto = $("#conhecimentoDescricao").tagsinput('items');
+        }
+        if(CHA = "conhecimento") {
+            texto = $("#conhecimentoDescricao").tagsinput('items');
+        }
+        texto = implode("<br>", texto);
+        tooltip.innerHTML = texto;
+        div1 = document.createElement('div');
+        div1.style.width = "200px";
+        div1.appendChild(tooltip);
+        div.appendChild(div1);
+        opacityTip = 0;
+        fadeInTipComp(id);
+    }
+    function deleteTooltipComp(id) {
+        opacityTip = 1;
+        fadeOutTipComp(id);
+    }
+    function fadeInTipComp(id) {
+        div = document.getElementById(id).lastChild.lastChild;
+        div.style.opacity = opacityTip;
+        opacityTip+=0.1;
+        tTipInComp = setTimeout(function() {fadeInTipComp(id)}, 10);
+        if (opacityTip >= 1) {
+            clearTimeout(tTipInComp);
+        }
+    }
+    function fadeOutTipComp(id) {
+        div = document.getElementById(id).lastChild.lastChild;
+        div.style.opacity = opacityTip;
+        opacityTip-=0.1;
+        tTipOutComp = setTimeout(function() {fadeOutTipComp(id)}, 10);
+        if (opacityTip <= 0) {
+            div = document.getElementById(id);
+            div.removeChild(div.lastChild);
+            clearTimeout(tTipOutComp);
+        }
+    }
+
         opacityModal = 0;
     function fadeInModal() {
         div = document.getElementById('modal-oa');

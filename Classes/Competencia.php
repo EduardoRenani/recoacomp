@@ -305,6 +305,15 @@ class Competencia{
         }
     }
 
+    public function getArrayOfDescricao(){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT descricao_nome FROM competencia");
+            $stmt->execute();
+            $retorno = $stmt->fetchAll();
+            return ($retorno);
+        }
+    }
+
     public function getArrayOfNamesById($id){
         if($this->databaseConnection()){
             $stmt = $this->db_connection->prepare("SELECT nome FROM competencia WHERE idCompetencia=:id");

@@ -13,6 +13,10 @@ include('_header.php');
     <link rel="stylesheet" href="css/tooltip.css">
     <link href="css/base_cadastro.css" rel="stylesheet">
     <link href="css/jquery.nouislider.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/jquery-ui.css" />
+    <link rel="stylesheet" href="primeui-2.0/production/primeui-2.0-min.css" />
+
+
 
 
     <style>
@@ -44,15 +48,95 @@ include('_header.php');
     .ui-dialog .ui-state-error { padding: .3em; }
     .validateTips { border: 1px solid transparent; padding: 0.3em; }
 
-    </style>
+     /*!
+     * Bootstrap Modal
+     *
+     * Copyright Jordan Schroter
+     * Licensed under the Apache License v2.0
+     * http://www.apache.org/licenses/LICENSE-2.0
+     *
+     * Boostrap 3 patch for for bootstrap-modal. Include BEFORE bootstrap-modal.css!
+     */
 
+    body.modal-open,
+    .modal-open .navbar-fixed-top,
+    .modal-open .navbar-fixed-bottom {
+        margin-right: 0;
+    }
+
+    .modal {
+        left: 50%;
+        bottom: auto;
+        right: auto;
+        z-index: 1050;
+        padding: 0;
+        width: 500px;
+        margin-left: -250px;
+        background-color: #ffffff;
+        border: 1px solid #999999;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 6px;
+        -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+        background-clip: padding-box;
+    }
+
+    .modal.container {
+        max-width: none;
+    }
+
+    .modal-backdrop {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1040;
+    }
+
+
+
+    </style>
     <!-- BREADCRUMB BONITO-->
+    <script type="text/javascript" src="primeui-2.0/production/primeui-2.0-min.js"></script>
     <script src="http://thecodeplayer.com/uploads/js/prefixfree-1.0.7.js" type="text/javascript" type="text/javascript"></script>
     <script src="js/jquery.nouislider.all.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/picklist_prime.js"></script>
+
+
+    <script type="text/javascript">
+        $(function() {
+
+        var themes = new Array('afterdark', 'afternoon', 'afterwork', 'aristo', 'black-tie', 'blitzer', 'bluesky', 'bootstrap', 'casablanca', 'cruze',
+            'cupertino', 'dark-hive', 'dot-luv', 'eggplant', 'excite-bike', 'flick', 'glass-x', 'home', 'hot-sneaks', 'humanity', 'le-frog', 'midnight',
+            'mint-choc', 'overcast', 'pepper-grinder', 'redmond', 'rocket', 'sam', 'smoothness', 'south-street', 'start', 'sunny', 'swanky-purse', 'trontastic',
+            'ui-darkness', 'ui-lightness', 'vader');
+
+        $('#basic').puipicklist();
+
+        $('#advanced').puipicklist({
+            effect: 'clip',
+            showSourceControls: true,
+            showTargetControls: true,
+            sourceCaption: 'Available',
+            targetCaption: 'Selected',
+            filter: true,
+            sourceData: themes
+        });
+
+
+        });
+
+    </script>
+
+
     </head>
 
-<div class="fixedBackgroundGradient"></div>
 
+
+<div class="fixedBackgroundGradient"></div>
 <div class="cadastrobase">
     <?php 
     $nomeDisciplina = $disciplina->getNomeDisciplinaById($_POST['idDisciplina'])[0][0];
@@ -60,6 +144,8 @@ include('_header.php');
     $descricao = $disciplina->getDescricaoDisciplinaById($_POST['idDisciplina'])[0][0];
     $idDisciplina = $_POST['idDisciplina'];
     ?>
+
+
     <div class="top-cadastrobase"><div class="text-left"><?php echo (WORDING_GLOBAL_COURSE).': '.$nomeDisciplina; ?></div><div class="text-right" ><!-- <a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a>--></div></div>
     <div class="cadastrobase-content">
 
@@ -111,6 +197,33 @@ include('_header.php');
                         <input type="hidden" name="idDisciplina" value="<?php echo $idDisciplina ?>" />
                         <input type="submit" name="editar_descricao" value="<?php echo WORDING_EDIT_DESCRIPTION; ?>" />
                     </form>
+
+                    <h3>Basic</h3>
+                    <div id="basic">
+                        <select name="source">
+                            <option value="1">Volkswagen</option>
+                            <option value="2">Ford</option>
+                            <option value="3">Mercedes</option>
+                            <option value="4">Audi</option>
+                            <option value="5">BMW</option>
+                            <option value="6">Honda</option>
+                            <option value="6">Porsche</option>
+                            <option value="6">Chevrolet</option>
+                            <option value="6">Jaguar</option>
+                        </select>
+                        <select name="target">
+                        </select>
+                    </div>
+
+                    <h3>Advanced</h3>
+                    <div id="advanced">
+                        <select name="source">
+                        </select>
+                        <select name="target">
+                        </select>
+                    </div>
+
+
 
                 </div>
             </div>
@@ -181,7 +294,6 @@ include('_header.php');
         </div>
     </div>
 </div>
-
 
 
 <!-- style="background-color: rgba(0, 0, 0, 0.8); height: 100%; width: 100%; position: fixed; top: 55px; left: 0px;"-->

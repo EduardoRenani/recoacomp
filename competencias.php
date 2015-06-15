@@ -30,6 +30,7 @@ $disciplina = new Disciplina();
 $comp = new Competencia();
 $idCompetencia = $comp->getArrayOfIDs();
 $nomeCompetencia = $comp->getArrayOfNames();
+$descricaoCompetencia = $comp->getArrayOfDescricao();
 $contador = count($nomeCompetencia);
 $listaExclusao = explode(",", $_POST['listaExclusao']);
 $contadorLi = count($listaExclusao);
@@ -43,7 +44,7 @@ for($i=0;$i<$contador;$i++){
 		}
 	}
 	if($existeLi == 0) {
-		$arrayToReturn[] = '<li id="'.$idCompetencia[$i]["idcompetencia"].'" name="'.$nomeCompetencia[$i]["nome"].'" class="ui-state-default">'.$nomeCompetencia[$i]["nome"].'</li>';
+		$arrayToReturn[] = '<div class=""><li onmouseover="toolTipComp(\'conhecimento'.$idCompetencia[$i]["idcompetencia"].'\', \''.$descricaoCompetencia[$i]['descricao_nome'].'\')" onmouseout="deleteTooltipComp(\'conhecimento'.$idCompetencia[$i]["idcompetencia"].'\')" id="'.$idCompetencia[$i]["idcompetencia"].'" name="'.$nomeCompetencia[$i]["nome"].'" class="ui-state-default">'.$nomeCompetencia[$i]["nome"].'</li></div>';
 	}
 }
 echo json_encode( $arrayToReturn );
