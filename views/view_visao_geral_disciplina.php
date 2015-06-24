@@ -13,7 +13,7 @@ include('_header.php');
     <link rel="stylesheet" href="css/tooltip.css">
     <link href="css/base_cadastro.css" rel="stylesheet">
     <link href="css/jquery.nouislider.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/jquery-ui.css" />
+    <link rel="stylesheet" href="css/jquery-ui.min.css" />
     <link rel="stylesheet" href="primeui-2.0/production/primeui-2.0-min.css" />
 
 
@@ -107,24 +107,75 @@ include('_header.php');
 
 
     <script type="text/javascript">
+        var array_lindo = JSON.parse( '<?php echo json_encode( array( 'a' => 'amarelo', 'b' => 'bolonhesa' ) ); ?>' );
         $(function() {
 
-        var themes = new Array('afterdark', 'afternoon', 'afterwork', 'aristo', 'black-tie', 'blitzer', 'bluesky', 'bootstrap', 'casablanca', 'cruze',
-            'cupertino', 'dark-hive', 'dot-luv', 'eggplant', 'excite-bike', 'flick', 'glass-x', 'home', 'hot-sneaks', 'humanity', 'le-frog', 'midnight',
-            'mint-choc', 'overcast', 'pepper-grinder', 'redmond', 'rocket', 'sam', 'smoothness', 'south-street', 'start', 'sunny', 'swanky-purse', 'trontastic',
-            'ui-darkness', 'ui-lightness', 'vader');
+            var competencias_disciplina = new Array();
+            var competencias_sistema = new Array();
 
-        $('#basic').puipicklist();
+
+
+        <?php
+            $disciplina = new Disciplina();
+            $competencias = $disciplina->getCompetenciaFromDisciplinaById($_POST['idDisciplina']);
+            $tamanho = count($competencias);
+            //echo 'competencias_disciplina[';
+            for($i=0; $i < $tamanho; $i++){
+                $nomeCompetencia = $competencia->getNomeCompetenciaById($competencias[$i][0]);
+                $tam = count($nomeCompetencia);
+                for ($j=0; $j < $tam; $j++){
+                   // echo "{label: '".$nomeCompetencia[$j][0]."',value: ".$competencias[$i][0]."}, ";
+                }
+            };
+           // echo '];';
+
+            $competenciasSistema = $competencia->getListaCompetencia();
+            $tamanho = count($competenciasSistema);
+            for ($i=0; $i<$tamanho;$i++){
+                //echo "competencias_sistema[{label: '".$competenciasSistema[$i][0]."',value: ".$competenciasSistema[$i][1]."}];";
+                echo "competencias_sistema.push('".$competenciasSistema[$i][0]."');";
+            }
+
+
+
+
+        ?>
 
         $('#advanced').puipicklist({
             effect: 'clip',
-            showSourceControls: true,
-            showTargetControls: true,
-            sourceCaption: 'Available',
-            targetCaption: 'Selected',
+            showSourceControls: false,
+            showTargetControls: false,
+            sourceCaption: 'Disponível',
+            targetCaption: 'Selecionado',
             filter: true,
-            sourceData: themes
+            sourceData: array_lindo,
+            targetData: competencias_disciplina
+
+
         });
+
+
+        $('#myPickListSaveButton').click(function () {
+            var targetData = $.map($('select[name=target] option'), function (v) {
+                return v.value; // maps the values and returns them in an array ["1", "2"]
+            });
+            console.log(targetData);
+        });
+
+
+        //document.getElementById('compete').value = 's';
+
+                document.getElementById('display-text').onclick = function () {
+                    var targetData = $.map($('select[name=target] option'), function (v) {
+                        return v.value; // maps the values and returns them in an array ["1", "2"]
+
+                    //var json = JSON.parse(data)
+
+
+
+                    });
+                    console.log(targetData);
+                }
 
 
         });
@@ -198,31 +249,23 @@ include('_header.php');
                         <input type="submit" name="editar_descricao" value="<?php echo WORDING_EDIT_DESCRIPTION; ?>" />
                     </form>
 
-                    <h3>Basic</h3>
-                    <div id="basic">
-                        <select name="source">
-                            <option value="1">Volkswagen</option>
-                            <option value="2">Ford</option>
-                            <option value="3">Mercedes</option>
-                            <option value="4">Audi</option>
-                            <option value="5">BMW</option>
-                            <option value="6">Honda</option>
-                            <option value="6">Porsche</option>
-                            <option value="6">Chevrolet</option>
-                            <option value="6">Jaguar</option>
-                        </select>
-                        <select name="target">
-                        </select>
-                    </div>
 
-                    <h3>Advanced</h3>
+
+                    <form method="post" action="editar_disciplina.php" name="editar_competencia">
+                        <input type="hidden" id="nomeCompetencia" value="" />
+                    <h3>Competências</h3>
                     <div id="advanced">
                         <select name="source">
                         </select>
                         <select name="target">
                         </select>
                     </div>
+                        <input type="submit" name="editar_competencia" value="<?php echo WORDING_ASSOCIATE_COMP_EDIT; ?>" />
+                    </form>
 
+                    <button id="display-text" type="button">Display text of all options</button>
+
+                    <button onclick="var list = document.getElementsByName('target').value; alert(list)">AAAAAAAAA</button>
 
 
                 </div>
@@ -287,6 +330,17 @@ include('_header.php');
                 </div>
                 <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                     <div class="panel-body">
+                        <?php
+                        $coisas = $competencia->getListaCompetencia();
+                        $nomes = json_encode($competencia->getNomeCompetenciaById($coisas[0][0]));
+                        //print_r([0][0]);
+
+
+
+                        ?>
+
+
+
                         Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
                     </div>
                 </div>

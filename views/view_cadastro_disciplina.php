@@ -49,6 +49,7 @@ include('_header.php');
     <!-- BREADCRUMB BONITO-->
     <script src="http://thecodeplayer.com/uploads/js/prefixfree-1.0.7.js" type="text/javascript" type="text/javascript"></script>
     <script src="js/jquery.nouislider.all.min.js" type="text/javascript"></script>
+    <script src="js/tooltip.js" type="text/javascript"></script>
 
     <!-- FUNÇÃO QUE FAZ O SORTABLE E ENVIA OS ID'S DAS COMPETÊNCIAS-->
     <script>
@@ -441,83 +442,6 @@ $(function(){AjaxCompetenciaListas()});
 
         }
     }
-    opacityTip = 0;
-    function toolTip(id, texto) {
-        div = document.getElementsByClassName('tooltiploco')[id-1];
-        tooltip = document.createElement('div');
-        tooltip.setAttribute('class', 'mensagemTooltiploco');
-        tooltip.innerHTML = texto;
-        div1 = document.createElement('div');
-        div1.style.width = "200px";
-        div1.appendChild(tooltip);
-        div.appendChild(div1);
-        opacityTip = 0;
-        fadeInTip(id);
-    }
-    function deleteTooltip(id) {
-        opacityTip = 1;
-        fadeOutTip(id);
-    }
-    function fadeInTip(id) {
-        div = document.getElementsByClassName('tooltiploco')[id-1].lastChild.lastChild;
-        div.style.opacity = opacityTip;
-        opacityTip+=0.1;
-        tTip = setTimeout(function() {fadeInTip(id)}, 10);
-        if (opacityTip >= 1) {
-            clearTimeout(tTip);
-        }
-    }
-    function fadeOutTip(id) {
-        div = document.getElementsByClassName('tooltiploco')[id-1].lastChild.lastChild;
-        div.style.opacity = opacityTip;
-        opacityTip-=0.1;
-        tTip1 = setTimeout(function() {fadeOutTip(id)}, 10);
-        if (opacityTip <= 0) {
-            div = document.getElementsByClassName('tooltiploco')[id-1];
-            div.removeChild(div.lastChild);
-            clearTimeout(tTip1);
-        }
-    }
-
-//tooltip para competencias
-    function toolTipComp(id, texto) {
-        div = document.getElementById(id);
-        tooltip = document.createElement('div');
-        tooltip.setAttribute('class', 'mensagemTooltiploco');
-        tooltip.innerHTML = texto;
-        div1 = document.createElement('div');
-        div1.style.width = "200px";
-        div1.appendChild(tooltip);
-        div.appendChild(div1);
-        opacityTip = 0;
-        fadeInTipComp(id);
-    }
-    function deleteTooltipComp(id) {
-        opacityTip = 1;
-        fadeOutTipComp(id);
-    }
-    function fadeInTipComp(id) {
-        div = document.getElementById(id).lastChild.lastChild;
-        div.style.opacity = opacityTip;
-        opacityTip+=0.1;
-        tTipInComp = setTimeout(function() {fadeInTipComp(id)}, 10);
-        if (opacityTip >= 1) {
-            clearTimeout(tTipInComp);
-        }
-    }
-    function fadeOutTipComp(id) {
-        div = document.getElementById(id).lastChild.lastChild;
-        div.style.opacity = opacityTip;
-        opacityTip-=0.1;
-        tTipOutComp = setTimeout(function() {fadeOutTipComp(id)}, 10);
-        if (opacityTip <= 0) {
-            div = document.getElementById(id);
-            div.removeChild(div.lastChild);
-            clearTimeout(tTipOutComp);
-        }
-    }
-
-
 
     opacityModal = 0;
     function fadeInModal() {

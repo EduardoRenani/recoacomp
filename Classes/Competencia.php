@@ -335,6 +335,17 @@ class Competencia{
         }
     }
 
+    public function getIdCompetenciaByName($nome){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT idcompetencia FROM competencia WHERE nome=:nome");
+            //$stmt->bindParam(':nome',, PDO::PARAM_STR);
+            $stmt->bindValue(':nome', $nome, PDO::PARAM_STR);
+            $stmt->execute();
+            //print_r($stmt->execute());
+            return $stmt->fetchAll();
+        }
+    }
+
     public function getDescricaoConhecimentoById($id){
         if($this->databaseConnection()){
             $stmt = $this->db_connection->prepare("SELECT conhecimento_descricao FROM competencia WHERE idcompetencia=:id");

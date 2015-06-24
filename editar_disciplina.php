@@ -28,6 +28,7 @@ require_once('classes/Competencia.php');
 // so this single line handles the entire login process.
 $login = new Login();
 $disciplina = new Disciplina();
+$competencia = new Competencia();
 
 // ... ask if we are logged in here:
 if ($login->isUserLoggedIn() == true) {

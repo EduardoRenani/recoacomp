@@ -30,6 +30,8 @@ $OA = new OA();
 $idOA = $OA->getArrayOfId_OA();
 $nomeOA = $OA->getArrayOfName_OA(); 
 $contador = count($nomeOA);
+$descricaoOA = $OA->getArrayOfDescricao_OA();
+$urlOA = $OA->getArrayOfUrl_OA();
 $listaExclusao = explode(",", $_POST['listaExclusao']);
 $contadorLi = count($listaExclusao);
 
@@ -42,7 +44,10 @@ for($i = 0;$i < $contador; $i++){
 		}
 	}
 	if($existeLi === 0) {
-		$arrayToReturn[] = '<li id="'.$idOA[$i]["idcesta"].'" name="'.$nomeOA[$i]["nome"].'" class="ui-state-default">'.$nomeOA[$i]["nome"].'</li>';
+		$descricaoOA[$i]['descricao'] = urlencode($descricaoOA[$i]['descricao']); //retira quebras de linha
+		$descricaoOA[$i]['descricao'] = str_replace('%0D%0A', ' ', $descricaoOA[$i]['descricao']); //retira quebras de linha
+		$descricaoOA[$i]['descricao'] = urldecode($descricaoOA[$i]['descricao']); //retira quebras de linha
+		$arrayToReturn[] = '<li id="'.$idOA[$i]["idcesta"].'" name="'.$nomeOA[$i]["nome"].'" class="ui-state-default">'.$nomeOA[$i]["nome"].'<div class="tooltipSort"><div onclick="toolTipSortable(\''.$idOA[$i]["idcesta"].'\', \''.$descricaoOA[$i]['descricao'].'\')">?</div></div></li>';
 	}
 }
 echo json_encode($arrayToReturn);

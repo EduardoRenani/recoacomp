@@ -716,6 +716,18 @@ class Disciplina {
         }
     }
 
+    public function getCompetenciaNameFromDisciplinaById($id){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT competencia_idcompetencia FROM disciplina_competencia WHERE disciplina_iddisciplina=:id");
+            //$stmt->bindParam(':nome',, PDO::PARAM_STR);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            //print_r($stmt->execute());
+            return $stmt->fetchAll();
+            //return $stmt->fetchAll();
+        }
+    }
+
     public function getCHAFromDisciplinaByIdCompetencia($id,$iddisciplina){
         if($this->databaseConnection()){
             $stmt = $this->db_connection->prepare("SELECT conhecimento, habilidade, atitude FROM disciplina_competencia WHERE competencia_idcompetencia=:id AND disciplina_iddisciplina=:iddisciplina");

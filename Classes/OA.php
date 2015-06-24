@@ -744,6 +744,24 @@ class OA{
             return ($retorno);
         }
     }
+
+    public function getArrayOfDescricao_OA(){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT descricao FROM cesta");
+            $stmt->execute();
+            $retorno = $stmt->fetchAll();
+            return ($retorno);
+        }
+    }
+
+    public function getArrayOfUrl_OA(){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT url FROM cesta");
+            $stmt->execute();
+            $retorno = $stmt->fetchAll();
+            return ($retorno);
+        }
+    }
     
 } // Fecha CLass
 } // Fecha IF

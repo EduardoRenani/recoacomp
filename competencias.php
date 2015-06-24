@@ -44,8 +44,12 @@ for($i=0;$i<$contador;$i++){
 		}
 	}
 	if($existeLi == 0) {
-		$arrayToReturn[] = '<div class=""><li onmouseover="toolTipComp(\'conhecimento'.$idCompetencia[$i]["idcompetencia"].'\', \''.$descricaoCompetencia[$i]['descricao_nome'].'\')" onmouseout="deleteTooltipComp(\'conhecimento'.$idCompetencia[$i]["idcompetencia"].'\')" id="'.$idCompetencia[$i]["idcompetencia"].'" name="'.$nomeCompetencia[$i]["nome"].'" class="ui-state-default">'.$nomeCompetencia[$i]["nome"].'</li></div>';
+		$descricaoCompetencia[$i]['descricao_nome'] = urlencode($descricaoCompetencia[$i]['descricao_nome']);
+		$descricaoCompetencia[$i]['descricao_nome'] = str_replace('%0D%0A', ' ', $descricaoCompetencia[$i]['descricao_nome']);
+		$descricaoCompetencia[$i]['descricao_nome'] = urldecode($descricaoCompetencia[$i]['descricao_nome']);
+		$arrayToReturn[] = '<li id="'.$idCompetencia[$i]["idcompetencia"].'" name="'.$nomeCompetencia[$i]["nome"].'" class="ui-state-default">'.$nomeCompetencia[$i]["nome"].'<div class="tooltipSort"><div onclick="toolTipSortable(\''.$idCompetencia[$i]["idcompetencia"].'\', \''.$descricaoCompetencia[$i]['descricao_nome'].'\')">?</div></div></li>';
 	}
 }
+//onmouseout="deleteTooltipComp(\''.$idCompetencia[$i]["idcompetencia"].'\')"
 echo json_encode( $arrayToReturn );
 ?>
