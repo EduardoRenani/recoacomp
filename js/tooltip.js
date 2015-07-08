@@ -113,3 +113,41 @@
             clearTimeout(tTipOutSortable);
         }
     }
+
+//tooltip para competencias
+    function toolTipCHA(id, CHA) {
+        div = document.getElementById(id);
+        tooltip = document.createElement('div');
+        tooltip.setAttribute('class', 'mensagemTooltiploco');
+        tooltip.innerHTML = $("#"+CHA+"Descricao").val().replace(/\,/g, "<br>");
+        div1 = document.createElement('div');
+        div1.style.width = "200px";
+        div1.appendChild(tooltip);
+        div.appendChild(div1);
+        opacityTip = 0;
+        fadeInTipCHA(id);
+    }
+    function deleteTooltipCHA(id) {
+        opacityTip = 1;
+        fadeOutTipCHA(id);
+    }
+    function fadeInTipCHA(id) {
+        div = document.getElementById(id).lastChild.lastChild;
+        div.style.opacity = opacityTip;
+        opacityTip+=0.1;
+        tTipInCHA = setTimeout(function() {fadeInTipCHA(id)}, 10);
+        if (opacityTip >= 1) {
+            clearTimeout(tTipInCHA);
+        }
+    }
+    function fadeOutTipCHA(id) {
+        div = document.getElementById(id).lastChild.lastChild;
+        div.style.opacity = opacityTip;
+        opacityTip-=0.1;
+        tTipOutCHA = setTimeout(function() {fadeOutTipCHA(id)}, 10);
+        if (opacityTip <= 0) {
+            div = document.getElementById(id);
+            div.removeChild(div.lastChild);
+            clearTimeout(tTipOutCHA);
+        }
+    }
