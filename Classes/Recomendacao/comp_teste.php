@@ -200,7 +200,24 @@ class CompTeste{
 
 			                    		echo "<h6>".$v[$c]['descricao']."</h6><br/>";
 
-			                    		echo "<a target='_blank' href='".$v[$c]['url']."'>Acessar Objeto de Aprendizagem</a><b>";
+			                    		echo "<a href='#' onclick='\"".$v[$c]['ID']."\"'>Acessar Objeto de Aprendizagem</a>";
+
+			                    		echo "<div id='conteudo-expansivel'>";
+											
+											echo "<div class='rating'>";
+    											
+    											echo "<h5>Por favor, classifique:</h5>";
+											    echo "<input type='radio' id='star5' name='rating' value='5' /><label for='star5' title='Rocks!'></label>";
+											    echo "<input type='radio' id='star4' name='rating' value='4' /><label for='star4' title='Pretty good'></label>";
+											    echo "<input type='radio' id='star3' name='rating' value='3' /><label for='star3' title='Meh'></label>";
+												echo "<input type='radio' id='star2' name='rating' value='2' /><label for='star2' title='Kinda bad'></label>";
+												echo "<input type='radio' id='star1' name='rating' value='1' /><label for='star1' title='Sucks big time'></label>";
+											
+											echo "</div>";
+
+											echo "<iframe style='width: 100%; height: 400px;' src='".$v[$c]['url']."'></iframe>";
+			                    		
+			                    		echo "</div>";
 
 		                		echo "</div>";
 

@@ -52,6 +52,20 @@ include('views/_header.php');
 
         });
     });
+
+    $(document).ready(function(){
+            $('.conteudo-expansivel').find('a').click(function(){
+                div = $(this).next('#conteudo-expansivel');
+                if(!div.is(':visible')){
+                    div.css('height','auto').slideDown(1000);
+                    //$(this).find('span').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+                }else{
+                    div.slideUp();
+                    //$(this).find('span').removeClass('glyphicon-minus').addClass('glyphicon-plus');
+                }
+
+            });
+        });
 </script>
 <div class='fixedBackgroundGradient'></div>
 <?php

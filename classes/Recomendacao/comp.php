@@ -198,7 +198,13 @@ class Comp{
 
 			                    		echo "<h6>".$v[$c]['descricao']."</h6><br/>";
 
-			                    		echo "<a target='_blank' href='".$v[$c]['url']."'>Acessar Objeto de Aprendizagem</a><b>";
+			                    		echo "<a href='#' onclick='\"".$v[$c]['id']."\"'>Acessar Objeto de Aprendizagem</a><b>";
+
+			                    		echo "<div id='".$v[$c]['id']."'>";
+
+			                    			echo "<iframe style='width: 100%; height: 400px;' src='".$v[$c]['url']."'></iframe>";
+
+			                    		echo "</div>";
 
 		                		echo "</div>";
 
