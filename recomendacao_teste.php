@@ -54,8 +54,8 @@ include('views/_header.php');
     });
 
     $(document).ready(function(){
-            $('.conteudo-expansivel').find('a').click(function(){
-                div = $(this).next('#conteudo-expansivel');
+            $('.conteudo').next('#conteudo-expansivel').find('a').click(function(){
+                div = $(this).closest('.recomendacao-item-content').find('#conteudo-expansivel');
                 if(!div.is(':visible')){
                     div.css('height','auto').slideDown(1000);
                     //$(this).find('span').removeClass('glyphicon-plus').addClass('glyphicon-minus');
