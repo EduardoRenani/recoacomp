@@ -212,7 +212,8 @@ class CompTeste{
 											    echo "<input type='radio' id='classificacao". $v[$c]['ID'] ."3' name='rating". $v[$c]['ID'] ."' value='3' /><label for='classificacao". $v[$c]['ID'] ."3' title='Meh'></label>";
 												echo "<input type='radio' id='classificacao". $v[$c]['ID'] ."2' name='rating". $v[$c]['ID'] ."' value='2' /><label for='classificacao". $v[$c]['ID'] ."2' title='Kinda bad'></label>";
 												echo "<input type='radio' id='classificacao". $v[$c]['ID'] ."1' name='rating". $v[$c]['ID'] ."' value='1' /><label for='classificacao". $v[$c]['ID'] ."1' title='Sucks big time'></label>";
-											
+												echo "<a href='/visualizarOA.php?url=".$v[$c]['url']."&id=".$v[$c]['ID']."'>Visualizar Online</a>";
+
 											echo "</div>";
 
 											echo "<iframe style='width: 100%; height: 400px;' src='".$v[$c]['url']."'></iframe>";
