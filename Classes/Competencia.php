@@ -8,6 +8,7 @@
 
 require_once('config/config.cfg');
 require_once('translations/pt_br.php');
+require_once('Database.php');
 
 class Competencia{
 
@@ -268,28 +269,57 @@ class Competencia{
         return $this->errors;
     }
 
+    /**
+     * Retorna um array com todas as competências
+     */
     public function getListaCompetencia(){
-        if($this->databaseConnection()){
-            $stmt = $this->db_connection->prepare("SELECT nome, idcompetencia FROM competencia");
-            //$stmt->bindParam(':nome',, PDO::PARAM_STR);
-            $stmt->execute();
-            return $stmt->fetchAll();
+        $database = new Database();
+        $sql = "SELECT * FROM competencia";
+        $database->query($sql);
+        return $database->resultSet();
+        //$database->resultSet()[0]['nome'];
+    }
+
+    /**
+     * Retorna um array com todas as competências da disciplina
+     * @param BOOL se participa ou não, true ou false
+    */
+    public function getListaCompetenciaDisciplina($idDisciplina, $param){
+        $database = new Database();
+        //$sql = "SELECT competencia_idcompetencia FROM disciplina_competencia WHERE disciplina_iddisciplina = :idDisciplina";
+        $competencias = array();
+        $notCompetencias = array();
+        // ANDRÉ QUE FEZ PUQ ELE É LGAU
+        // pega todas que nao sao da disciplina
+        $sql = "SELECT DISTINCT competencia.* FROM disciplina_competencia, disciplina, competencia 
+                WHERE disciplina.iddisciplina = disciplina_competencia.disciplina_iddisciplina
+                AND competencia.idcompetencia
+                NOT IN (
+                    SELECT DISTINCT C.idcompetencia FROM disciplina_competencia AS DC, disciplina AS D, competencia AS C
+                    WHERE D.iddisciplina = DC.disciplina_iddisciplina AND
+                    DC.competencia_idcompetencia = C.idcompetencia AND 
+                    D.iddisciplina = :idDisciplina
+                )";
+        // pega todas da disciplina
+        $sql_2 = "  SELECT DISTINCT C.* FROM disciplina_competencia AS DC, disciplina AS D, competencia AS C
+                    WHERE D.iddisciplina = DC.disciplina_iddisciplina AND
+                    DC.competencia_idcompetencia = C.idcompetencia AND 
+                    D.iddisciplina = :idDisciplina";
+        if (!$param){
+            $database->query($sql);
+            $database->bind(":idDisciplina", $idDisciplina);   
+            return $database->resultSet();    
+        } else {
+            $database->query($sql_2);
+            $database->bind(":idDisciplina", $idDisciplina);   
+            return $database->resultSet();    
         }
+        
     }
 
     public function getArrayOfIDs(){
         if($this->databaseConnection()){
             $stmt = $this->db_connection->prepare("SELECT idcompetencia FROM competencia");
-            $stmt->execute();
-            $retorno = $stmt->fetchAll();
-            return ($retorno);
-        }
-    }
-
-    public function getArrayOfIDsById($id){
-        if($this->databaseConnection()){
-            $stmt = $this->db_connection->prepare("SELECT idcompetencia FROM competencia WHERE idCompetencia=:id");
-            $stmt->bindValue(':id',$id, PDO::PARAM_INT);
             $stmt->execute();
             $retorno = $stmt->fetchAll();
             return ($retorno);
@@ -308,6 +338,46 @@ class Competencia{
     public function getArrayOfDescricao(){
         if($this->databaseConnection()){
             $stmt = $this->db_connection->prepare("SELECT descricao_nome FROM competencia");
+            $stmt->execute();
+            $retorno = $stmt->fetchAll();
+            return ($retorno);
+        }
+    }
+
+    public function getArrayOfIDsByLikeName($busca){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT idcompetencia FROM competencia WHERE nome LIKE ?");
+            $params = array("%$busca%");
+            $stmt->execute($params);
+            $retorno = $stmt->fetchAll();
+            return ($retorno);
+        }
+    }
+
+    public function getArrayOfNamesByLikeName($busca){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT nome FROM competencia WHERE nome LIKE ?");
+            $params = array("%$busca%");
+            $stmt->execute($params);
+            $retorno = $stmt->fetchAll();
+            return ($retorno);
+        }
+    }
+
+    public function getArrayOfDescricaoByLikeName($busca){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT descricao_nome FROM competencia WHERE nome LIKE ?");
+            $params = array("%$busca%");
+            $stmt->execute($params);
+            $retorno = $stmt->fetchAll();
+            return ($retorno);
+        }
+    }
+
+    public function getArrayOfIDsById($id){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT idcompetencia FROM competencia WHERE idCompetencia=:id");
+            $stmt->bindValue(':id',$id, PDO::PARAM_INT);
             $stmt->execute();
             $retorno = $stmt->fetchAll();
             return ($retorno);
@@ -429,8 +499,17 @@ class Competencia{
     }
 }
 //Case de teste
-$competencia = new Competencia();
-$competencia->getDescricaoConhecimentoById(148);
+//$competencia = new Competencia();
+//$coisas = $competencia->getListaCompetencia();
+//$coisas = $competencia->getListaCompetenciaDisciplina(83,true);
+//echo '<pre>';
+//print_r($coisas);
+//for ($i=0;$i < count($coisas);$i++){
+//  echo $coisas[$i]['id']['idcompetencia'] . ", ";  
+//}
+//
+
+//print_r($coisas);
 //$competencia->criaCompetencia('nome','descricao','atitudedesc','habilidadedesc', 'conhhecimentodesc', 1);
 
 ?>

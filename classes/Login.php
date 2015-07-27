@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * handles the user login/logout/session
  * @author Panique
@@ -285,8 +286,9 @@ class Login
             } else if (($result_row->user_failed_logins >= 3) && ($result_row->user_last_failed_login > (time() - 30))) {
                 $this->errors[] = MESSAGE_PASSWORD_WRONG_3_TIMES;
             // using PHP 5.5's password_verify() function to check if the provided passwords fits to the hash of that user's password
-            } else if (! password_verify($user_password, $result_row->user_password_hash)) {
+            } else if (!(crypt($user_password, $result_row->user_password_hash) === $result_row->user_password_hash)) {
                 // increment the failed login counter for that user
+
                 $sth = $this->db_connection->prepare('UPDATE users '
                         . 'SET user_failed_logins = user_failed_logins+1, user_last_failed_login = :user_last_failed_login '
                         . 'WHERE user_name = :user_name OR user_email = :user_name');

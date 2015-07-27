@@ -57,6 +57,22 @@ include('_header.php');
 
 
     $(function(){
+        $("#busca-competencias").keyup(function(e) {
+        $("#tabela1 li").hide();
+        _pesquisa = $(this);
+        tecla = (e.keyCode ? e.keyCode : e.which);
+        if(tecla == 27){ 
+            _pesquisa.val('');  
+            $("#tabela1 li").show();
+        }else{
+            $('#tabela1 li').each(function(){
+               if($(this).attr('name').toUpperCase().indexOf(_pesquisa.val().toUpperCase()) != -1){
+                   $(this).show();
+               }
+            }); 
+        }
+        });
+
         $("#exemplo").noUiSlider({
             start: 1,
             step: 1,
@@ -220,7 +236,8 @@ function fazAjax(){
                     var array = JSON.parse(meu_ajax.responseText);
                     var element_tabela1 = document.getElementById('tabela1');
                     for(var i = 0; i < array.length; i++) {
-                        if ( element_tabela1.innerHTML.indexOf(array[i]) === -1) {
+                        name = $(array[i]).attr('name');
+                        if ( element_tabela1.innerHTML.indexOf(name) === -1) {
                             element_tabela1.innerHTML += array[i];
                         }
                     }
@@ -241,7 +258,10 @@ function fazAjax(){
 $(function(){fazAjax()});
 $(window).blur(function(){fazAjax();});
 $(window).focus(function(){fazAjax();});
-$(window).mouseup(function(){fazAjax();});
+$(window).mouseup(function(){
+
+    fazAjax();
+});
 
 function AjaxCompetenciaListas(){
     var meu_ajax = new XMLHttpRequest();
@@ -316,7 +336,10 @@ function AjaxCompetenciaListas(){
 
 //Enviar o ajax/Realizar a requisição
 
-$(function(){AjaxCompetenciaListas()});
+$(function(){
+    AjaxCompetenciaListas()
+});
+
 </script>
 
 
@@ -626,8 +649,10 @@ $(function(){AjaxCompetenciaListas()});
                             <input type="hidden" id="listaAtitudes" name="listaAtitudes" value="" />
                             <span style="display block; width: 100%; float: left; text-align:center;"><?php echo WORDING_ASSOCIATE_COMP; ?></span></br></br>
                             <span style="display block; width: 40%; float: left; text-align:left;">Competencias Disponíveis</span><span style="display: block; width: 30%; float: right; text-align:right;">Competencias Selecionadas</span>
+                            <div style="width: 45%;">
+                            	<input type="text" id="busca-competencias" placeholder="Pesquise uma competência">
+                            </div>
                             <ul id="tabela1">
-
                             </ul>
 
                             
@@ -640,21 +665,14 @@ $(function(){AjaxCompetenciaListas()});
                     <br>
                         </div>
                         
-        <!-- DIV COM COISA CHA -->
+                        <!-- DIV COM COISA CHA -->
                         <div id="sub-conteudo2" class="tab">
                             <div class="control-group">
-                                
                                 <div class="controls">
-                                          
-                            
-
-                            <div id='nomesCompetencias'>
-                            
-                            </div>
-
-
+                                    <div id='nomesCompetencias'>
+                                    </div>
                                 </div>
-                                                        </div>
+                            </div>
                         </div>
                         <input id="finisher" style="display: none;" type="submit" name="registrar_nova_disciplina" value="<?php echo WORDING_CREATE_DISCIPLINA; ?>" />
                             

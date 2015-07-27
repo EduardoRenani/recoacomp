@@ -247,6 +247,23 @@ if (isset($OA)) {
 
 <script type="text/javascript">
     $(function() {
+        $("#busca-competencias").keyup(function(e) {
+        $("#tabela1 li").hide();
+        _pesquisa = $(this);
+        tecla = (e.keyCode ? e.keyCode : e.which);
+        if(tecla == 27){ 
+            _pesquisa.val('');  
+            $("#tabela1 li").show();
+        }else{
+            $('#tabela1 li').each(function(){
+               if($(this).attr('name').toUpperCase().indexOf(_pesquisa.val().toUpperCase()) != -1){
+                   $(this).show();
+               }
+            }); 
+        }
+        });
+
+
         $('#tabela2').sortable({
             connectWith: "#tabela1, #tabela1",
             receive : function (event, ui) {
@@ -356,7 +373,8 @@ function fazAjaxCompetencias(){
                     var array = JSON.parse(meu_ajax.responseText);
                     var element_tabela1 = document.getElementById('tabela1');
                     for(var i = 0; i < array.length; i++) {
-                        if ( element_tabela1.innerHTML.indexOf(array[i]) === -1) {
+                        name = $(array[i]).attr('name');
+                        if ( element_tabela1.innerHTML.indexOf(name) === -1) {
                             element_tabela1.innerHTML += array[i];
                         }
                     }
@@ -380,7 +398,7 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
 <script language="javascript">
     function mudaTab(qualTab) {
         if(qualTab == 1) {
-            if(document.getElementById('status').innerHTML == "OK" && document.getElementsByName('nome')[0].value.length > 0 && document.getElementsByName('descricaoNome')[0].value.length > 0) {
+            if(document.getElementById('status').innerHTML == "OK" && document.getElementsByName('nome')[0].value.length > 2 && document.getElementsByName('descricaoNome')[0].value.length > 0) {
                 document.getElementsByName('nome')[0].style.border = "0";
                 document.getElementsByName('descricaoNome')[0].style.border = "0";
                 document.getElementsByName('conhecimentoDescricao')[0].style.border = "0";
@@ -408,6 +426,10 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
                 if(document.getElementsByName('nome')[0].value.length == 0) {
                     document.getElementsByName('nome')[0].style.border = "1px solid #dc8810";
                     document.getElementsByName('nome')[0].setAttribute("placeholder", "Este campo é necessário");
+                }
+                else if(document.getElementsByName('nome')[0].value.length < 3) {
+                    document.getElementsByName('nome')[0].style.border = "1px solid #dc8810";
+                    document.getElementsByName('nome')[0].value = "No mínimo 3 dígitos!";
                 }
                 else {
                     document.getElementsByName('nome')[0].style.border = "0";
@@ -672,6 +694,9 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
                                 <input type="hidden" id="arrayOAS" name="arrayOAS" value="" />
                                 <span style="display block; width: 100%; float: left; text-align:center;"><?php echo WORDING_ASSOCIATE_OA; ?>.</span>
                                   <span style="display block; width: 40%; float: left; text-align:left;">Objetos OAS Disponíveis</span><span style="display: block; width: 30%; float: right; text-align:right;">Objetos OAS Selecionados</span>
+                            <div style="width: 45%;">
+                                <input type="text" id="busca-competencias" placeholder="Pesquise uma competência">
+                            </div>
                             <ul id="tabela1">
                             </ul>
                             <ul id="tabela2">

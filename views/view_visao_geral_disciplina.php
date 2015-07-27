@@ -13,8 +13,7 @@ include('_header.php');
     <link rel="stylesheet" href="css/tooltip.css">
     <link href="css/base_cadastro.css" rel="stylesheet">
     <link href="css/jquery.nouislider.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/jquery-ui.min.css" />
-    <link rel="stylesheet" href="primeui-2.0/production/primeui-2.0-min.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
 
 
@@ -97,90 +96,65 @@ include('_header.php');
 
 
     </style>
-    <!-- BREADCRUMB BONITO-->
-    <script type="text/javascript" src="primeui-2.0/production/primeui-2.0-min.js"></script>
-    <script src="http://thecodeplayer.com/uploads/js/prefixfree-1.0.7.js" type="text/javascript" type="text/javascript"></script>
-    <script src="js/jquery.nouislider.all.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/jquery-ui.js"></script>
-    <script type="text/javascript" src="js/picklist_prime.js"></script>
-
-
-    <script type="text/javascript">
-        var array_lindo = JSON.parse( '<?php echo json_encode( array( 'a' => 'amarelo', 'b' => 'bolonhesa' ) ); ?>' );
-        $(function() {
-
-            var competencias_disciplina = new Array();
-            var competencias_sistema = new Array();
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="js/jquery.nouislider.all.min.js" type="text/javascript"></script> <!-- Slider -->
+    <script type="text/javascript" src="js/sortable.js"></script>
 
 
 
-        <?php
-            $disciplina = new Disciplina();
-            $competencias = $disciplina->getCompetenciaFromDisciplinaById($_POST['idDisciplina']);
-            $tamanho = count($competencias);
-            //echo 'competencias_disciplina[';
-            for($i=0; $i < $tamanho; $i++){
-                $nomeCompetencia = $competencia->getNomeCompetenciaById($competencias[$i][0]);
-                $tam = count($nomeCompetencia);
-                for ($j=0; $j < $tam; $j++){
-                   // echo "{label: '".$nomeCompetencia[$j][0]."',value: ".$competencias[$i][0]."}, ";
-                }
-            };
-           // echo '];';
+<script type="text/javascript">
 
-            $competenciasSistema = $competencia->getListaCompetencia();
-            $tamanho = count($competenciasSistema);
-            for ($i=0; $i<$tamanho;$i++){
-                //echo "competencias_sistema[{label: '".$competenciasSistema[$i][0]."',value: ".$competenciasSistema[$i][1]."}];";
-                echo "competencias_sistema.push('".$competenciasSistema[$i][0]."');";
+
+$(document).ready(function(){
+
+    //var tituloCompetencia = document.getElementById('nomeCompetencia').value;
+    
+    
+
+
+
+
+    //$( ".create-user" ).button().on( "click", function() {
+      
+   // });
+
+
+});
+
+    function abrirModal(event) {
+        var tituloCompetencia = event.target || event.srcElement;
+        
+        dialog = $( "#dialog-form" ).dialog({
+          autoOpen: false,
+          title: event.tituloCompetencia.innerHTML,
+          height: 300,
+          width: 350,
+          modal: true,
+          buttons: {
+            //"Create an account": alert('alface'),
+            Cancel: function() {
+              dialog.dialog( "close" );
             }
-
-
-
-
-        ?>
-
-        $('#advanced').puipicklist({
-            effect: 'clip',
-            showSourceControls: false,
-            showTargetControls: false,
-            sourceCaption: 'Disponível',
-            targetCaption: 'Selecionado',
-            filter: true,
-            sourceData: array_lindo,
-            targetData: competencias_disciplina
-
-
+          },
+          close: function() {
+            //form[ 0 ].reset();
+            //allFields.removeClass( "ui-state-error" );
+          }
         });
 
+    form = dialog.find( "form" ).on( "submit", function( event ) {
+      event.preventDefault();
+      //addUser();
+    });
+        
+        dialog.dialog( "open" );
 
-        $('#myPickListSaveButton').click(function () {
-            var targetData = $.map($('select[name=target] option'), function (v) {
-                return v.value; // maps the values and returns them in an array ["1", "2"]
-            });
-            console.log(targetData);
-        });
-
-
-        //document.getElementById('compete').value = 's';
-
-                document.getElementById('display-text').onclick = function () {
-                    var targetData = $.map($('select[name=target] option'), function (v) {
-                        return v.value; // maps the values and returns them in an array ["1", "2"]
-
-                    //var json = JSON.parse(data)
+    }
 
 
+</script>
 
-                    });
-                    console.log(targetData);
-                }
-
-
-        });
-
-    </script>
 
 
     </head>
@@ -232,7 +206,6 @@ include('_header.php');
                         <input type="hidden" name="idDisciplina" value="<?php echo $idDisciplina ?>" />
                         <label for="senha_antiga"><?php echo WORDING_NEW_PASSWORD; ?></label>
                         <input id="senha_antiga" type="password" name="senha_antiga" autocomplete="off" />
-
                         <label for="senha_nova"><?php echo WORDING_NEW_PASSWORD_REPEAT; ?></label>
                         <input id="senha_nova" type="password" name="senha_nova" autocomplete="off" />
                         <input type="submit" name="editar_senha" value="<?php echo WORDING_CHANGE_PASSWORD; ?>" />
@@ -253,19 +226,63 @@ include('_header.php');
 
                     <form method="post" action="editar_disciplina.php" name="editar_competencia">
                         <input type="hidden" id="nomeCompetencia" value="" />
-                    <h3>Competências</h3>
-                    <div id="advanced">
-                        <select name="source">
-                        </select>
-                        <select name="target">
-                        </select>
-                    </div>
-                        <input type="submit" name="editar_competencia" value="<?php echo WORDING_ASSOCIATE_COMP_EDIT; ?>" />
-                    </form>
+                        <h3>Competências</h3>
+                            
+                            <ul id="tabela1">
+                            <?php
+                                $comp = new Competencia();
+                                $competencias = $comp->getListaCompetenciaDisciplina($_POST['idDisciplina'],false);
+                                $contador = count($competencias);
+                                //echo $competencias[0]['idcompetencia'];
+                                for($i=0;$i<$contador;$i++){  ?>
+                                    <li id="<?php echo "".$competencias[$i]['idcompetencia']; ?>" class="ui-state-default"><?php echo "".$competencias[$i]['nome']; ?></li>                 
+                            <?php                                        
+                                } //end for
+                            ?>
 
-                    <button id="display-text" type="button">Display text of all options</button>
+                            </ul>
+                            
+    
 
-                    <button onclick="var list = document.getElementsByName('target').value; alert(list)">AAAAAAAAA</button>
+                            <ul id="tabela2">
+                            <?php
+                                $comp = new Competencia();
+                                $competencias = $comp->getListaCompetenciaDisciplina($_POST['idDisciplina'],true);
+                                $contador = count($competencias);
+                                for($i=0;$i<$contador;$i++){ ?>                           
+                                    <li id="<?php echo "".$competencias[$i]['idcompetencia']; ?>" class="ui-state-default">
+                                        <?php echo "".$competencias[$i]['nome']; ?>
+                                        
+                                        <button type="button" id="create-user" onclick="abrirModal(event)">+</button>
+                                        ?
+
+                                    </li>
+                            <?php 
+                                } //end for
+                            ?>
+                            </ul>
+                
+
+                        <!-- Teste -->
+
+                        <div id="dialog-form" title="Editar Competência">
+                          <p class="validateTips">All form fields are required.</p>
+                         
+                          <form>
+                            <fieldset>
+                              <label for="name">Name</label>
+                              <input type="text" name="name" id="name" value="Jane Smith" class="text ui-widget-content ui-corner-all">
+                              <label for="email">Email</label>
+                              <input type="text" name="email" id="email" value="jane@smith.com" class="text ui-widget-content ui-corner-all">
+                              <label for="password">Password</label>
+                              <input type="password" name="password" id="password" value="xxxxxxx" class="text ui-widget-content ui-corner-all">
+                         
+                              <!-- Allow form submission with keyboard without duplicating the dialog button -->
+                              <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+                            </fieldset>
+                          </form>
+                        </div>
+
 
 
                 </div>
@@ -324,24 +341,13 @@ include('_header.php');
                 <div class="panel-heading" role="tab" id="headingThree">
                     <h4 class="panel-title">
                         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Relatório da Recomendação
+                            OAS Vinculados
                         </a>
                     </h4>
                 </div>
                 <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                     <div class="panel-body">
-                        <?php
-                        $coisas = $competencia->getListaCompetencia();
-                        $nomes = json_encode($competencia->getNomeCompetenciaById($coisas[0][0]));
-                        //print_r([0][0]);
 
-
-
-                        ?>
-
-
-
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
                     </div>
                 </div>
             </div>

@@ -539,6 +539,36 @@ class Disciplina {
         }
     }
 
+    /**
+     * Retorna os seguintes dados (via param) da disciplina
+     * idCompetencia associados a disciplina
+     * conhecimento
+     * habilidade
+     * atitude
+     * Retorna esses respectivos valores das disciplinas
+     * @param $disciplinaId
+     * @param $param
+     * @return mixed
+     */
+    public function getCompetenciasDisciplina($disciplinaId, $param){
+        if($this->databaseConnection()){
+            if ($param == 'idDisciplina'){
+                $stmt = $this->db_connection->prepare("SELECT competencia_idcompetencia FROM disciplina_competencia WHERE disciplina_iddisciplina=:disciplinaId");
+            }else if ($param == 'conhecimento'){
+                $stmt = $this->db_connection->prepare("SELECT conhecimento FROM disciplina_competencia WHERE disciplina_iddisciplina=:disciplinaId");
+            }else if ($param == 'habilidade'){
+                $stmt = $this->db_connection->prepare("SELECT habilidade FROM disciplina_competencia WHERE disciplina_iddisciplina=:disciplinaId");
+            }else if ($param == 'atitude'){
+                $stmt = $this->db_connection->prepare("SELECT atitude FROM disciplina_competencia WHERE disciplina_iddisciplina=:disciplinaId");
+            }
+            $stmt->bindValue(':disciplinaId', $disciplinaId, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+    }
+
+
+
     // Retorna o Nome de todas as disciplinas em que o aluno NÃO está matriculado
     public function getNomeDisciplinasNaoMatriculadas($userID){
         if($this->databaseConnection()){
@@ -763,6 +793,19 @@ class Disciplina {
             return $stmt->fetchAll();
         }
     }
+
+    /**
+     * @param $id
+     * @return competências da disciplina selecionada
+     */
+    public function getIdCompetenciaById($idDisciplina){
+        $database = new Database();
+        $sql = "SELECT competencia_idcompetencia FROM disciplina_competencia WHERE disciplina_iddisciplina = :idDisciplina";
+        $database->query($sql);
+        $database->bind(":idDisciplina", $idDisciplina);
+        return $database->resultSet();
+    }
+
 
     /**
      * Função que lista os alunos matriculados na disciplina

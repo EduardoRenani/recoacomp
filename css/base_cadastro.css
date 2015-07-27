@@ -427,7 +427,7 @@ input[type=submit]{ /*customiza input de submit*/
     border: 1px solid #eee;
     width: 45%;
     height: 250px;
-	min-height: 250px;
+	  min-height: 250px;
     list-style-type: none;
     margin: 0;
     padding: 5px 0 0px 0;
@@ -436,8 +436,14 @@ input[type=submit]{ /*customiza input de submit*/
     overflow: auto;
 }
 
-#tabela1{float:left;}
-#tabela2{float:right;}
+#tabela1 {
+  float: left;
+}
+
+#tabela2 {
+  float: right;
+}
+
 
 #tabela1 li, #tabela2 li {
     margin: 0 5px 5px 5px;

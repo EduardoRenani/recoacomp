@@ -14,6 +14,9 @@
         <link href="css/tooltip.css" rel="stylesheet">
         <link href="css/base_cadastro.css" rel="stylesheet">
         <link href="css/progress_cadastro_OA_breadcrumb.css" rel="stylesheet">
+        <!-- Estava no Header-->
+        
+        
         <style>
         body { font-size: 62.5%; }
         label, input { display:block; width: 100%; }
@@ -41,6 +44,23 @@
     <script>
 
         $(function() {
+        $("#busca-competencias").keyup(function(e) {
+        $("#tabela1 li").hide();
+        _pesquisa = $(this);
+        tecla = (e.keyCode ? e.keyCode : e.which);
+        if(tecla == 27){ 
+            _pesquisa.val('');  
+            $("#tabela1 li").show();
+        }else{
+            $('#tabela1 li').each(function(){
+               if($(this).attr('name').toUpperCase().indexOf(_pesquisa.val().toUpperCase()) != -1){
+                   $(this).show();
+               }
+            }); 
+        }
+        });
+
+
             $('#tabela2').sortable({
                 connectWith: "#tabela1, #tabela1",
                 receive : function (event, ui) {
@@ -995,6 +1015,9 @@ $(function(){AjaxCompetenciaListas()});
                     <input type="hidden" id="listaAtitudes" name="listaAtitudes" value="" />
                     <span style="display block; width: 100%; float: left; text-align:center;"><div style="float: center"><?php echo WORDING_ASSOCIATE_COMP_OA; ?>.<div class="tooltiploco"><div onmouseover="toolTip(16, '<?php echo HINT_COMPETENCY ?>')" onmouseout="deleteTooltip(16)">?</div></div></div></span>
                     <span style="display block; width: 40%; float: left; text-align:left;">Competencias Disponíveis</span><span style="display: block; width: 30%; float: right; text-align:right;">Competencias Selecionadas</span>
+                    <div style="width: 45%;">
+                        <input type="text" id="busca-competencias" placeholder="Pesquise uma competência">
+                    </div>
                     <ul id="tabela1">
                     </ul>
 

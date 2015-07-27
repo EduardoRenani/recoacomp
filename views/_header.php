@@ -20,27 +20,27 @@
     <script src="jquery.bootstrap.wizard.js"></script>
     <script src="js/bootstrap-tagsinput-angular.js"></script>
     <script src="js/bootstrap-tagsinput.js"></script>
-    <!-- Picklist cadastro de disciplinas -->
-    <script src="js/picklist.js"></script>
-    <script src="js/primeui-1.0.js"></script>
     
     <!-- Fim importação Jquery -->
 	<!-- Login -->
 
 	<!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="prettify.css" rel="stylesheet">
+	<link href="css/prettify.css" rel="stylesheet">
+
+
 
     <!-- Loader do cadastro de OA CSS -->
     <link href="css/cadastro_OA.css" rel="stylesheet">
     <link href="css/progress_cadastro_OA.css" rel="stylesheet">
+
     <!-- Growl das mensagens de cadastros -->
     <link href="css/growl.css" rel="stylesheet">
     <!-- Seletor das palavras-chaves -->
     <link href="css/bootstrap-tagsinput.css" rel="stylesheet">
     <!-- Picklist cadastro de disciplinas -->
-    <link href="css/picklist.css" rel="stylesheet">
-    <link href="css/primeui-1.0.css" rel="stylesheet">
+
+    <!--MODIFICADO DELTON 16/07 link href="css/picklist.css" rel="stylesheet"-->    
     <link href="css/theme.css" rel="stylesheet">
 
     <!-- Custom CSS Login Page-->
