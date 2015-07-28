@@ -200,9 +200,9 @@ class CompTeste{
 
 			                    		echo "<h6>".$v[$c]['descricao']."</h6><br/>";
 
-			                    		echo "<a>Acessar Objeto de Aprendizagem</a>";
+			                    		echo "<a href='visualizarOA.php?url=".$v[$c]['url']."&id=".$v[$c]['ID']."'>Acessar Objeto de Aprendizagem</a>";
 
-			                    		echo "<div id='conteudo-expansivel'>";
+			                    		/*echo "<div id='conteudo-expansivel'>";
 											
 											echo "<div class='rating'>";
     											
@@ -218,7 +218,7 @@ class CompTeste{
 
 											echo "<iframe style='width: 100%; height: 400px;' src='".$v[$c]['url']."'></iframe>";
 			                    		
-			                    		echo "</div>";
+			                    		echo "</div>";*/
 
 		                		echo "</div>";
 

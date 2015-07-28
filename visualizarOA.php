@@ -1,5 +1,5 @@
 <html>
-	<?php include('_header.php'); ?>
+	<?php include('views/_header.php'); ?>
 	<head>
 
 		<!-- Home -->

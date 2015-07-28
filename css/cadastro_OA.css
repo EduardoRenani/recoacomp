@@ -297,7 +297,7 @@ ol.linenums li {
 
 #conteudo {
     width: 650px;
-    min-height: 356px;
+    min-height: auto;
     margin: auto;
     text-align: center;
 }

@@ -504,6 +504,7 @@ class Competencia{
 //$coisas = $competencia->getListaCompetenciaDisciplina(83,true);
 //echo '<pre>';
 //print_r($coisas);
+//echo 'w';
 //for ($i=0;$i < count($coisas);$i++){
 //  echo $coisas[$i]['id']['idcompetencia'] . ", ";  
 //}

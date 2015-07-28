@@ -73,32 +73,6 @@ include('_header.php');
     <!-- FUNÇÃO QUE FAZ O SORTABLE E ENVIA OS ID'S DAS COMPETÊNCIAS-->
     <script>
 
-
-    $(function(){
-        $("#exemplo").noUiSlider({
-            start: 1,
-            step: 1,
-            range: {
-                min: 1,
-                max: 5
-            }
-        });
-        function setText( value, handleElement, slider ){
-            $("#exemplo").text( value );
-        }
-        $("#exemplo").Link('lower').to($("#value"), "text");
-
-        $("#exemplo").Link('lower').to('-inline-<div class="tooltip"></div>', function ( value ) {
-
-            // The tooltip HTML is 'this', so additional
-            // markup can be inserted here.
-            $(this).html(
-                '<strong>Value: </strong>' +
-                '<span>' + value + '</span>'
-            );
-        });
-
-    });
     //funções para associação das competencias(drag entre tabela 1 e tabela 2)
     $(function() {
         $('#tabela2').sortable({
@@ -110,6 +84,8 @@ include('_header.php');
                 var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
                 var chaCompetencias = '<?php echo $chaCompetenciasEnviar; ?>'
                 chaCompetencias = chaCompetencias.split("/");
+
+                // Para conhecimento, habilidade e atitude ele preenche os dados para mostrar
                 for(i = 0; i < chaCompetencias.length; i++) {
                     chaCompetencias[i] = chaCompetencias[i].split(",");
                 }
@@ -147,10 +123,10 @@ include('_header.php');
             {
                 
                 $("#tabela1").sortable('refreshPositions');
-                var idCompetencias = $("#tabela2").sortable('toArray').toString();
-                var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
-                idCompetencias = idCompetencias.split(",");
-                nomesCompetencias = nomesCompetencias.split(",");
+                var idCompetencias = $("#tabela2").sortable('toArray').toString(); // Preenche as competências que serão da disciplina após editada
+                var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString(); // Pega o array com o nome das disciplinas
+                idCompetencias = idCompetencias.split(","); // Splita os ids das competencias selecionadas para disciplina
+                nomesCompetencias = nomesCompetencias.split(","); // Splita os nomes das competencias selecionadas para disciplina
                 document.getElementById('sub-conteudo2').innerHTML = "";
                 var idCompetencias = $("#tabela2").sortable('toArray').toString();
                 var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
@@ -194,18 +170,7 @@ include('_header.php');
     });
 
 
-    // Bootstrap wizard, mais info em http://vadimg.com/twitter-bootstrap-wizard-example/
-    $(function() {
-       var $validator = $("#registrar_nova_disciplina").validate({
-            rules: {
-                url: {
-                    required: true,
-                    minlength: 3,
-                    url: true
-                }
-            }
-        }); 
-});
+
 </script>
 </head>
 
@@ -670,7 +635,7 @@ function atualizaCompetencia() {
                     <br>
                         </div>
                         
-                    <!-- DIV COM COISA CHA -->
+                    <!-- DIV COM NUMERADOR DO CHA -->
                         <div id="sub-conteudo2" class="tab">  
                             <div class="control-group">
                                 <div class="controls">                                 
