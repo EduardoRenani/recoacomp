@@ -107,14 +107,14 @@ include('_header.php');
 <script type="text/javascript">
 
 $(document).ready(function(){
-    $('#tabela1, #tabela2')
+/*    $('#tabela1, #tabela2')
         .accordion({
             header: "> div > h3"
         })
         .sortable({
             connectWith: "#tabela1, #tabela2",
             //axis: "y",
-            handle: "h3",
+            handle: 'h3',
             update: function(event, ui) {
                 var arrayDados = $("#tabela2").sortable('toArray').toString();
                 document.getElementById('nomeCompetencia').value = arrayDados;
@@ -127,17 +127,18 @@ $(document).ready(function(){
             $( this ).accordion( "refresh" );
             }
         });
-});
+*/
 
-
-$(function() {
-    $( "#accordion" )
+    $( "#tabela1" )
       .accordion({
-        header: "> div > h3"
+        header: "> div > h3",
+        active: false,
+        collapsible: true
       })
       .sortable({
-        //axis: "y",
+        axis: "y",
         handle: "h3",
+        connectWith: "#tabela2",
         stop: function( event, ui ) {
           // IE doesn't register the blur when sorting
           // so trigger focusout handlers to remove .ui-state-focus
@@ -147,7 +148,33 @@ $(function() {
           $( this ).accordion( "refresh" );
         }
       });
-  });
+
+    $( "#tabela2" )
+      .accordion({
+        header: "> div > h3",
+        active: false,
+        collapsible: true
+      })
+      .sortable({
+        axis: "y",
+        handle: "h3",
+        connectWith: "#tabela1",
+        stop: function( event, ui ) {
+          // IE doesn't register the blur when sorting
+          // so trigger focusout handlers to remove .ui-state-focus
+          ui.item.children( "h3" ).triggerHandler( "focusout" );
+ 
+          // Refresh accordion to handle new order
+          $( this ).accordion( "refresh" );
+        }
+      });
+
+
+
+});
+
+
+
 
 
   $(function() {
@@ -216,48 +243,62 @@ $(function() {
                         <input type="hidden" id="nomeCompetencia" value="" />
                         <h3>Competências</h3>
                             
-                            <ul id="tabela1">
-                            <?php
+
+                            
+                            
+
+                            <div id="tabela1">
+                                <?php
                                 $comp = new Competencia();
                                 $competencias = $comp->getListaCompetenciaDisciplina($_POST['idDisciplina'],false);
                                 $contador = count($competencias);
-                                //echo $competencias[0]['idcompetencia'];
-                                for($i=0;$i<$contador;$i++){  ?>
-                                    <li id="<?php echo "".$competencias[$i]['idcompetencia']; ?>" class="ui-state-default"><?php echo "".$competencias[$i]['nome']; ?></li>                 
-                            <?php                                        
-                                } //end for
-                            ?>
-
-                            </ul>
-                            
-                            <br>
-
-                            <ul id="tabela2">
-                            <?php
-                                $comp = new Competencia();
-                                $competencias = $comp->getListaCompetenciaDisciplina($_POST['idDisciplina'],true);
-                                $contador = count($competencias);
+                                //id="<?php echo "".$competencias[$i]['idcompetencia']; 
                                 for($i=0;$i<$contador;$i++){ ?>                           
-                                    <li id="<?php echo "".$competencias[$i]['idcompetencia']; ?>" class="ui-state-default">
-                                       <!--div id="accordion"-->
-                                          <div class="group">
-                                            <h3><?php echo "".$competencias[$i]['nome']; ?></h3>
-                                            <div>
-                                              <p>Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.</p>
-                                            </div>
-                                          </div>
-                                        <!--/div-->
-                                        
-                                      
+                                    <!--li  class="ui-state-default"-->
+                                    <!--div class"group"-->
+                                    <div class="group">
+                                        <h3 >
+                                        <?php echo "".$competencias[$i]['nome']; ?>
+                                        </h3>
+                                        <div>
+                                            <p>Dados.</p>
+                                        </div>
 
+                                    </div>
                                         <!--button type="button" id="mostra_dados_competencia" onclick="abrirModal(event)">+</button-->
-                                    </li>
+                                    <!--/li-->
                             <?php 
                                 } //end for
                             ?>
-                            </ul>
+                            </div>
+                            <br>
+                            <div id="tabela2">
+                                <?php
+                                $comp = new Competencia();
+                                $competencias = $comp->getListaCompetenciaDisciplina($_POST['idDisciplina'],true);
+                                $contador = count($competencias);
+                                //id="<?php echo "".$competencias[$i]['idcompetencia']; 
+                                for($i=0;$i<$contador;$i++){ ?>                           
+                                    <!--li  class="ui-state-default"-->
+                                    <!--div class"group"-->
+                                    <div class="group">
+                                        <h3 >
+                                        <?php echo "".$competencias[$i]['nome']; ?>
+                                        </h3>
+                                        <div>
+                                            <p>Dados.</p>
+                                        </div>
+
+                                    </div>
+                                        <!--button type="button" id="mostra_dados_competencia" onclick="abrirModal(event)">+</button-->
+                                    <!--/li-->
+                            <?php 
+                                } //end for
+                            ?>
+                            </div>
                 </form>
                         <!-- Teste -->
+
 
 
 
