@@ -9,345 +9,296 @@ include('_header.php');
 
 ?>
 <head>
+    <!-- CSS -->
     <link rel="stylesheet" href="css/tooltip.css">
-    <link href="css/base_cadastro_editar_disciplina.css" rel="stylesheet">
+    <link href="css/editar_disciplina.css" rel="stylesheet">
     <link href="css/jquery.nouislider.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
-
-
-
-    <style>
-    .group { zoom: 1 }
-
-    .tooltip {
-    display: block;
-    position: absolute;
-    font: 400 12px/12px Arial;
-    border-radius: 3px;
-    background: #fff;
-    top: -43px;
-    padding: 5px;
-    left: -9px;
-    text-align: center;
-    width: 50px;
-    }
-    .tooltip strong {
-        display: block;
-        padding: 2px;
-    }
-
-    body { font-size: 62.5%; }
-    label, input { display:block; }
-    input.text { margin-bottom:12px; width:95%; padding: .4em; }
-    fieldset { padding:0; border:0; margin-top:25px; }
-    h1 { font-size: 1.2em; margin: .6em 0; }
-    div#users-contain { width: 350px; margin: 20px 0; }
-    div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
-    div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
-    .ui-dialog .ui-state-error { padding: .3em; }
-    .validateTips { border: 1px solid transparent; padding: 0.3em; }
-
-     /*!
-     * Bootstrap Modal
-     *
-     * Copyright Jordan Schroter
-     * Licensed under the Apache License v2.0
-     * http://www.apache.org/licenses/LICENSE-2.0
-     *
-     * Boostrap 3 patch for for bootstrap-modal. Include BEFORE bootstrap-modal.css!
-     */
-
-    body.modal-open,
-    .modal-open .navbar-fixed-top,
-    .modal-open .navbar-fixed-bottom {
-        margin-right: 0;
-    }
-
-    .modal {
-        left: 50%;
-        bottom: auto;
-        right: auto;
-        z-index: 1050;
-        padding: 0;
-        width: 500px;
-        margin-left: -250px;
-        background-color: #ffffff;
-        border: 1px solid #999999;
-        border: 1px solid rgba(0, 0, 0, 0.2);
-        border-radius: 6px;
-        -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
-        box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
-        background-clip: padding-box;
-    }
-
-    .modal.container {
-        max-width: none;
-    }
-
-    .modal-backdrop {
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        z-index: 1040;
-    }
-
-
-
-    </style>
+    <!-- JS -->
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="js/jquery.nouislider.all.min.js" type="text/javascript"></script> <!-- Slider -->
     <script type="text/javascript" src="js/jquery.form.js"></script>
 
-
-
-<script type="text/javascript">
-
-$(document).ready(function(){
-/*    $('#tabela1, #tabela2')
-        .accordion({
-            header: "> div > h3"
-        })
-        .sortable({
-            connectWith: "#tabela1, #tabela2",
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $( "#competenciasDisponiveis" )
+          .accordion({
+            header: "> div > h3",
+            active: false,
+            collapsible: true
+          })
+          .sortable({
             //axis: "y",
             handle: 'h3',
+            connectWith: "#competenciasDisciplina",
+            //items: '> div > h3',
+            stop: function( event, ui ) {
+              // IE doesn't register the blur when sorting
+              // so trigger focusout handlers to remove .ui-state-focus
+              ui.item.children( "h3" ).triggerHandler( "focusout" );
+     
+              // Refresh accordion to handle new order
+              $( this ).accordion( "refresh" );
+            },
             update: function(event, ui) {
-                var arrayDados = $("#tabela2").sortable('toArray').toString();
+                var arrayDados = $("#competenciasDisciplina").sortable('toArray').toString();
+                //console.log(arrayDados);
+                document.getElementById('nomeCompetencia').value = arrayDados;
+            }
+          });
+
+        $( "#competenciasDisciplina" )
+          .accordion({
+            header: "> div > h3",
+            active: false,
+            collapsible: true
+          })
+          .sortable({
+            //axis: "y",
+            handle: "h3",
+            connectWith: "#competenciasDisponiveis",
+            //items: '> div > h3',
+            stop: function( event, ui ) {
+              // IE doesn't register the blur when sorting
+              // so trigger focusout handlers to remove .ui-state-focus
+              ui.item.children( "h3" ).triggerHandler( "focusout" );
+     
+              // Refresh accordion to handle new order
+              $( this ).accordion( "refresh" );
+            },
+            // Preencher array das competências
+            update: function(event, ui) {
+                var arrayDados = $("#competenciasDisciplina").sortable('toArray').toString();
+                //console.log(arrayDados);
                 document.getElementById('nomeCompetencia').value = arrayDados;
             },
-            stop: function( event, ui ) {
-            // IE doesn't register the blur when sorting
-            // so trigger focusout handlers to remove .ui-state-focus
-            ui.item.children( "h3" ).triggerHandler( "focusout" );
-            // Refresh accordion to handle new order
-            $( this ).accordion( "refresh" );
+            // Inicializar array com IDs das competências
+            create: function( event, ui ) {
+                var arrayDados = $("#competenciasDisciplina").sortable('toArray').toString();
+                document.getElementById('nomeCompetencia').value = arrayDados;
+
             }
+          });
+        }); //end document ready
+
+		// Tabs function
+        $(function() {
+            $( "#tabs" ).tabs();
         });
-*/
 
-    $( "#tabela1" )
-      .accordion({
-        header: "> div > h3",
-        active: false,
-        collapsible: true
-      })
-      .sortable({
-        axis: "y",
-        handle: "h3",
-        connectWith: "#tabela2",
-        stop: function( event, ui ) {
-          // IE doesn't register the blur when sorting
-          // so trigger focusout handlers to remove .ui-state-focus
-          ui.item.children( "h3" ).triggerHandler( "focusout" );
- 
-          // Refresh accordion to handle new order
-          $( this ).accordion( "refresh" );
-        }
-      });
+		//Tooltips
+		$(function() {
+			$( document ).tooltip();
+		});
 
-    $( "#tabela2" )
-      .accordion({
-        header: "> div > h3",
-        active: false,
-        collapsible: true
-      })
-      .sortable({
-        axis: "y",
-        handle: "h3",
-        connectWith: "#tabela1",
-        stop: function( event, ui ) {
-          // IE doesn't register the blur when sorting
-          // so trigger focusout handlers to remove .ui-state-focus
-          ui.item.children( "h3" ).triggerHandler( "focusout" );
- 
-          // Refresh accordion to handle new order
-          $( this ).accordion( "refresh" );
-        }
-      });
+    </script>
+</head>
 
-
-
-});
-
-
-
-
-
-  $(function() {
-    $( "#tabs" ).tabs();
-  });
-
-</script>
-
-
-
-    </head>
-
-
-
-<div class="fixedBackgroundGradient"></div>
-<div class="cadastrobase">
-    <?php 
-    $nomeDisciplina = $disciplina->getNomeDisciplinaById($_POST['idDisciplina'])[0][0];
-    $nomeCurso = $disciplina->getNomeCursoById($_POST['idDisciplina'])[0][0];
-    $descricao = $disciplina->getDescricaoDisciplinaById($_POST['idDisciplina'])[0][0];
-    $idDisciplina = $_POST['idDisciplina'];
-    ?>
-<div class="top-cadastrobase"><div class="text-left"><?php echo (WORDING_GLOBAL_COURSE).': '.$nomeDisciplina; ?></div><div class="text-right" ><!-- <a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a>--></div></div>
-    <div class="cadastrobase-content">
-        <div id="tabs">
-            <ul>
-                <li><a href="#tabs-1">Alterar dados gerais</a></li>
-                <li><a href="#tabs-2">Alunos Matriculados</a></li>
-                <li><a href="#tabs-3">OAS Vinculados</a></li>
-            </ul>
-            <div id="tabs-1">
-                <form method="post" action="editar_disciplina.php" name="editar_nome_disciplina">
-                    <label for="disciplina_name"><?php echo WORDING_NEW_DISCIPLINA_NAME; ?></label>
-                    <input id="disciplina_name" type="text" name="disciplina_name"/> (<?php echo WORDING_CURRENTLY; ?>: <?php echo $nomeDisciplina; ?>)<br />
-                    <input type="hidden" name="idDisciplina" value="<?php echo $idDisciplina ?>" />
-                    <input type="submit" name="editar_nome_disciplina" value="<?php echo WORDING_CHANGE_DISCIPLINA_NAME; ?>" />
-                </form><hr/>
-                <!-- Formulário para editar o nome do curso -->
-                <form method="post" action="editar_disciplina.php" name="editar_nome_curso">                  
-                    <label for="curso_name"><?php echo WORDING_NEW_COURSE_NAME; ?></label>
-                    <input id="curso_name" type="text" name="curso_name" required /> (<?php echo WORDING_CURRENTLY; ?>: <?php echo $nomeCurso; ?>)<br />
-                    <input type="hidden" name="idDisciplina" value="<?php echo $idDisciplina ?>" />
-                    <input type="submit" name="editar_nome_curso" value="<?php echo WORDING_CHANGE_COURSE_NAME; ?>" />
-                </form><hr/>
-                <!-- Alterar a senha da disciplina -->
-                <form method="post" action="editar_disciplina.php" name="editar_senha">
-                    <input type="hidden" name="idDisciplina" value="<?php echo $idDisciplina ?>" />
-                    <label for="senha_antiga"><?php echo WORDING_NEW_PASSWORD; ?></label>
-                    <input id="senha_antiga" type="password" name="senha_antiga" autocomplete="off" />
-                    <label for="senha_nova"><?php echo WORDING_NEW_PASSWORD_REPEAT; ?></label>
-                    <input id="senha_nova" type="password" name="senha_nova" autocomplete="off" />
-                    <input type="submit" name="editar_senha" value="<?php echo WORDING_CHANGE_PASSWORD; ?>" />
-                </form>
-                <!-- Alterar a descrição da disciplina -->
-                <form method="post" action="editar_disciplina.php" name="editar_descricao">
-                    <label for="descricao"><?php echo WORDING_NEW_DESCRIPTION; ?></label>
-                    <?php echo WORDING_CURRENTLY; ?>:<br/>
-                    <?php echo $descricao; ?>
-                    <br/>
-                    <textarea name="descricao" id="descricao" rows="5" cols="40" class="required" aria-required="true" style="width: 100%; height: 150px;"></textarea>
-                    <input type="hidden" name="idDisciplina" value="<?php echo $idDisciplina ?>" />
-                    <input type="submit" name="editar_descricao" value="<?php echo WORDING_EDIT_DESCRIPTION; ?>" />
-                </form>  
-                <!-- Lista de competências -->
-                <form method="post" action="editar_disciplina.php" name="editar_competencia">
-                        <input type="hidden" id="nomeCompetencia" value="" />
-                        <h3>Competências</h3>
-                            
-
-                            
-                            
-
-                            <div id="tabela1">
-                                <?php
-                                $comp = new Competencia();
-                                $competencias = $comp->getListaCompetenciaDisciplina($_POST['idDisciplina'],false);
-                                $contador = count($competencias);
-                                //id="<?php echo "".$competencias[$i]['idcompetencia']; 
-                                for($i=0;$i<$contador;$i++){ ?>                           
-                                    <!--li  class="ui-state-default"-->
-                                    <!--div class"group"-->
-                                    <div class="group">
-                                        <h3 >
-                                        <?php echo "".$competencias[$i]['nome']; ?>
-                                        </h3>
-                                        <div>
-                                            <p>Dados.</p>
-                                        </div>
-
-                                    </div>
-                                        <!--button type="button" id="mostra_dados_competencia" onclick="abrirModal(event)">+</button-->
-                                    <!--/li-->
-                            <?php 
-                                } //end for
-                            ?>
-                            </div>
-                            <br>
-                            <div id="tabela2">
-                                <?php
-                                $comp = new Competencia();
-                                $competencias = $comp->getListaCompetenciaDisciplina($_POST['idDisciplina'],true);
-                                $contador = count($competencias);
-                                //id="<?php echo "".$competencias[$i]['idcompetencia']; 
-                                for($i=0;$i<$contador;$i++){ ?>                           
-                                    <!--li  class="ui-state-default"-->
-                                    <!--div class"group"-->
-                                    <div class="group">
-                                        <h3 >
-                                        <?php echo "".$competencias[$i]['nome']; ?>
-                                        </h3>
-                                        <div>
-                                            <p>Dados.</p>
-                                        </div>
-
-                                    </div>
-                                        <!--button type="button" id="mostra_dados_competencia" onclick="abrirModal(event)">+</button-->
-                                    <!--/li-->
-                            <?php 
-                                } //end for
-                            ?>
-                            </div>
-                </form>
-                        <!-- Teste -->
-
-
-
-
-            </div> <!-- END TAB 1-->
-            <div id="tabs-2">
-                 <?php
-                    $listaAlunosMatriculados = $disciplina->listaAlunosMatriculados($_POST['idDisciplina']);
-                    if (empty($listaAlunosMatriculados))
-                       echo 'Nenhum aluno matriculado';
-                    else{ ?>
-                       <table class="table table-condensed">
-                        <thead>
-                        <tr>
-                            <th>Nome de Usuário</th>
-                            <th>Email</th>
-                            <th>Tipo de Usuário</th>
-                        </tr>
-                        </thead>
-                            <tbody>
-                            <?php
-                            $qtde = count($listaAlunosMatriculados);
-                            for($i=0; $i < $qtde; $i++){
-                            $idUser = $listaAlunosMatriculados[$i]['usuario_idusuario'];
-                            $dadosUsuario = $disciplina->getUserData($idUser);
-                            echo
-                                "<tr>".
-                                "<td>".$dadosUsuario[0]['user_name']."</td>".
-                                "<td>".$dadosUsuario[0]['user_email']."</td>";
-                                if ($dadosUsuario[0]['acesso'] == 1)
-                                    echo "<td>".WORDING_USER_STUDENT."</td>";
-                                elseif ($dadosUsuario[0]['acesso'] == 2)
-                                    echo "<td>".WORDING_USER_PROFESSOR."</td>";
-                                elseif ($dadosUsuario[0]['acesso'] == 3)
-                                    echo "<td>".WORDING_USER_ADMIN."</td>";
-                                echo "</tr>";
-                       }
-                   }
-                   ?>
-                            </tbody>
-                        </table>        
-            </div> <!-- END TAB 2 -->
-          <div id="tabs-3">
-            <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
-          </div>
-        </div>
-
-        </div>
+    <div class="fixedBackgroundGradient">
     </div>
-</div>
+    <div class="cadastrobase">
+        <?php 
+        $nomeDisciplina = $disciplina->getNomeDisciplinaById($_POST['idDisciplina'])[0][0];
+        $nomeCurso = $disciplina->getNomeCursoById($_POST['idDisciplina'])[0][0];
+        $descricao = $disciplina->getDescricaoDisciplinaById($_POST['idDisciplina'])[0][0];
+        $idDisciplina = $_POST['idDisciplina'];
+        ?>
+        <div class="top-cadastrobase">
+            <div class="text-left"><?php echo (WORDING_GLOBAL_COURSE).': '.$nomeDisciplina; ?>
+            </div>
+            <div class="text-right" ><!-- <a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a>-->
+            </div>
+        </div>
+            <div class="cadastrobase-content">
+                <div id="tabs">
+                    <ul>
+                        <li><a href="#tabs-1">Alterar dados gerais</a></li>
+                        <li><a href="#tabs-2">Alunos Matriculados</a></li>
+                        <li><a href="#tabs-3">OAS Vinculados</a></li>
+                        <li><a href="#tabs-4">Alterar competências</a></li>
+                    </ul>
+                    <div id="tabs-1">
+                        <form method="post" action="editar_disciplina.php" name="editar_nome_disciplina">
+                            <label for="disciplina_name"><?php echo WORDING_NEW_DISCIPLINA_NAME; ?></label>
+                            <input id="disciplina_name" type="text" name="disciplina_name"/> (<?php echo WORDING_CURRENTLY; ?>: <?php echo $nomeDisciplina; ?>)<br />
+                            <input type="hidden" name="idDisciplina" value="<?php echo $idDisciplina ?>" />
+                            <input type="submit" name="editar_nome_disciplina" value="<?php echo WORDING_CHANGE_DISCIPLINA_NAME; ?>" />
+                        </form><hr/>
+                        <!-- Formulário para editar o nome do curso -->
+                        <form method="post" action="editar_disciplina.php" name="editar_nome_curso">                  
+                            <label for="curso_name"><?php echo WORDING_NEW_COURSE_NAME; ?></label>
+                            <input id="curso_name" type="text" name="curso_name" required /> (<?php echo WORDING_CURRENTLY; ?>: <?php echo $nomeCurso; ?>)<br />
+                            <input type="hidden" name="idDisciplina" value="<?php echo $idDisciplina ?>" />
+                            <input type="submit" name="editar_nome_curso" value="<?php echo WORDING_CHANGE_COURSE_NAME; ?>" />
+                        </form><hr/>
+                        <!-- Alterar a senha da disciplina -->
+                        <form method="post" action="editar_disciplina.php" name="editar_senha">
+                            <input type="hidden" name="idDisciplina" value="<?php echo $idDisciplina ?>" />
+                            <label for="senha_antiga"><?php echo WORDING_NEW_PASSWORD; ?></label>
+                            <input id="senha_antiga" type="password" name="senha_antiga" autocomplete="off" />
+                            <label for="senha_nova"><?php echo WORDING_NEW_PASSWORD_REPEAT; ?></label>
+                            <input id="senha_nova" type="password" name="senha_nova" autocomplete="off" />
+                            <input type="submit" name="editar_senha" value="<?php echo WORDING_CHANGE_PASSWORD; ?>" />
+                        </form>
+                         <!-- Alterar a descrição da disciplina -->
+                        <form method="post" action="editar_disciplina.php" name="editar_descricao">
+                            <label for="descricao"><?php echo WORDING_NEW_DESCRIPTION; ?></label>
+                            <?php echo WORDING_CURRENTLY; ?>:<br/>
+                            <?php echo $descricao; ?>
+                            <br/>
+                            <textarea name="descricao" id="descricao" rows="5" cols="40" class="required" aria-required="true" style="width: 100%; height: 150px;"></textarea>
+                            <input type="hidden" name="idDisciplina" value="<?php echo $idDisciplina ?>" />
+                            <input type="submit" name="editar_descricao" value="<?php echo WORDING_EDIT_DESCRIPTION; ?>" />
+                        </form>  
+                    </div> <!-- END TAB 1-->
+                    <div id="tabs-2">
+                         <?php
+                            $listaAlunosMatriculados = $disciplina->listaAlunosMatriculados($_POST['idDisciplina']);
+                            if (empty($listaAlunosMatriculados))
+                               echo 'Nenhum aluno matriculado';
+                            else{ ?>
+                               <table class="table table-condensed">
+                                <thead>
+                                <tr>
+                                    <th>Nome de Usuário</th>
+                                    <th>Email</th>
+                                    <th>Tipo de Usuário</th>
+                                </tr>
+                                </thead>
+                                    <tbody>
+                                    <?php
+                                    $qtde = count($listaAlunosMatriculados);
+                                    for($i=0; $i < $qtde; $i++){
+                                    $idUser = $listaAlunosMatriculados[$i]['usuario_idusuario'];
+                                    $dadosUsuario = $disciplina->getUserData($idUser);
+                                    echo
+                                        "<tr>".
+                                        "<td>".$dadosUsuario[0]['user_name']."</td>".
+                                        "<td>".$dadosUsuario[0]['user_email']."</td>";
+                                        if ($dadosUsuario[0]['acesso'] == 1)
+                                            echo "<td>".WORDING_USER_STUDENT."</td>";
+                                        elseif ($dadosUsuario[0]['acesso'] == 2)
+                                            echo "<td>".WORDING_USER_PROFESSOR."</td>";
+                                        elseif ($dadosUsuario[0]['acesso'] == 3)
+                                            echo "<td>".WORDING_USER_ADMIN."</td>";
+                                        echo "</tr>";
+                               }
+                           }
+                           ?>
+                                    </tbody>
+                                </table>        
+                    </div> <!-- END TAB 2 -->
+                    <div id="tabs-3">
+                        <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
+                    </div>
+                    <!-- Dados da competência -->
+                    <div id="tabs-4">
+                        <!-- Lista de competências -->
+                        <form method="post" action="editar_disciplina.php" name="editar_competencia" class="editarCompetencia">
+                                <input type="hidden" id="nomeCompetencia" value="" />
+                                <h3>Editar Competências</h3>    
+                                    <!-- DIV com as competências do sistema -->
+
+                                    <div id="competenciasDisponiveis">
+                                        <div class"tituloTabelaCompetencias">
+                                            Competências disponíveis
+                                        </div>
+                                        <?php
+                                        $comp = new Competencia();
+                                        $competencias = $comp->getListaCompetenciaDisciplina($_POST['idDisciplina'],false);
+                                        $contador = count($competencias);
+                                        for($i=0;$i<$contador;$i++){ ?>                           
+                                            <div class="group" id="<?php echo "".$competencias[$i]['idcompetencia']; ?>">
+                                                <h3 >
+                                                <?php echo "".$competencias[$i]['nome']; ?>
+                                                </h3>
+                                                <div>
+                                                    Descrição: 
+                                                    <div class="alert alert-info" role="alert">
+                                                        <p><?php echo "".$competencias[$i]['descricao_nome']; ?></p>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                    <?php 
+                                        } //end for
+                                    ?>
+                                    </div>
+                                    
+                                    <!-- DIV com competências da disciplina a ser editada -->
+                                    <div id="competenciasDisciplina">
+                                        <div class"tituloTabelaCompetencias">
+                                            Competências disponíveis
+                                        </div>
+                                        <?php
+                                        $comp = new Competencia();
+                                        $competencias = $comp->getListaCompetenciaDisciplina($_POST['idDisciplina'],true);
+                                        // Pega os dados das competências para essa disciplina
+                                        $conhecimento = $disciplina->getCompetenciasDisciplina($_POST['idDisciplina'], 'conhecimento');
+                                        $habilidade = $disciplina->getCompetenciasDisciplina($_POST['idDisciplina'], 'habilidade');
+                                        $atitude = $disciplina->getCompetenciasDisciplina($_POST['idDisciplina'], 'atitude');
+                                        //echo '<pre>';
+                                        //$coisas = array($conhecimento, $habilidade, $atitude);
+                                        //print_r($conhecimento);
+                                        //echo $conhecimento[0]['conhecimento'];
+                                        $contador = count($competencias);
+                                        for($i=0;$i<$contador;$i++){ 
+                                        	$idCompetencia = $competencias[$i]['idcompetencia'];
+                                        	$descricaoConhecimento = $comp->getDescricaoConhecimentoById($idCompetencia);
+                                        	$descricaoHabilidade = $comp->getDescricaoHabilidadeById($idCompetencia);
+                                        	$descricaoAtitude = $comp->getDescricaoAtitudeById($idCompetencia);
+                                        	//echo '<pre>';
+                                        	//print_r($descricaoConhecimento);
+                                        	?>
+                                            <div class="group" id="<?php echo "".$idCompetencia; ?>">
+                                                <h3 >
+                                                <?php echo "".$competencias[$i]['nome']; ?>
+                                                </h3>
+                                                <div>
+                                                    Descrição:
+                                                    <div class="alert alert-info" role="alert">
+                                                        <p><?php echo "".$competencias[$i]['descricao_nome']; ?></p>
+                                                    </div>
+                                                    <!-- Conhecimento -->
+                                                    <div class"content-valor-competencias">
+                                                    	
+	                                                   	<label for="conhecimento" title="<?php echo "".$descricaoConhecimento['conhecimento_descricao']; ?>">Conhecimento: (?)</label>
+                                                    	<br>
+                                                    	<input type="number" min="0" max="5" value="<?php echo "".$conhecimento[$i]['conhecimento']; ?>" ></input>
+                                                    </div>
+                                                    <br>
+                                                    <!-- Habilidade -->
+                                                    <div class"content-valor-competencias">
+                                                    	<label for="habilidade" title="<?php echo "".$descricaoHabilidade['habilidade_descricao']; ?>">Habilidade: (?)</label>
+                                                    	<br>
+                                                    	<input type="number" min="0" max="5" value="<?php echo "".$habilidade[$i]['habilidade']; ?>" ></input>
+                                                	</div>
+                                                	<br>
+                                                    <!-- Atitude -->
+                                                    <div class"content-valor-competencias">
+                                                    	<label for="atitude" title="<?php echo "".$descricaoAtitude['atitude_descricao']; ?>">Atitude: (?)</label>
+                                                    	<br>
+                                                    	<input type="number" min="0" max="5" value="<?php echo "".$atitude[$i]['atitude']; ?>" ></input>
+                                                	</div>
+                                                </div>
+
+                                            </div>
+                                    <?php 
+                                        } //end for
+                                    ?>
+                                    </div>
+                        </form>
+                    </div> <!-- END Dados da competencia-->
+            </div> <!-- END DIV TABS -->
+        </div> <!-- END cadastrobase-content -->
+    </div> <!-- END cadastrobase -->
+    
+
+
+
 
 
 <!-- style="background-color: rgba(0, 0, 0, 0.8); height: 100%; width: 100%; position: fixed; top: 55px; left: 0px;"-->

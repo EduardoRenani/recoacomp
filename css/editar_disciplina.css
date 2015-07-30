@@ -405,6 +405,10 @@ input[type=submit]{ /*customiza input de submit*/
     font-style: normal;
 }
 
+.editarCompetencia{
+  width: 100%;
+}
+
 /*CHA-----------------------------------------------------------------------*/
 
 #nomesCompetencias h2{
@@ -424,9 +428,9 @@ input[type=submit]{ /*customiza input de submit*/
 
 /*DRAGABLE-----------------------------------------------------------------------*/
 
-#tabela1, #tabela2{
+#competenciasDisponiveis, #competenciasDisciplina{
     border: 1px solid #eee;
-    width: 100%;
+    width: 48%;
     height: 250px;
 	  min-height: 250px;
     list-style-type: none;
@@ -437,16 +441,24 @@ input[type=submit]{ /*customiza input de submit*/
     overflow: auto;
 }
 
-#tabela1 {
+#competenciasDisponiveis {
   /*float: left; */
+  display: inline-block;
+  width: 45%;
+  height: 400px;
+  margin: 1em;
 }
 
-#tabela2 {
-  /*float: right; */
+#competenciasDisciplina {
+ /* float: right;*/
+  display: inline-block;
+  width: 45%;
+  height: 400px;
+  margin: 1em;
 }
 
 
-#tabela1 li, #tabela2 li {
+#competenciasDisponiveis li, #competenciasDisciplina li {
     margin: 0 5px 5px 5px;
     padding: 5px;
     font-size: 14px;
@@ -460,4 +472,9 @@ input[type=submit]{ /*customiza input de submit*/
 
 #mostra_dados_competencia{
     float: right;
+}
+
+/* Números das competências */
+input[type="number"]{
+  width: 50px;
 }

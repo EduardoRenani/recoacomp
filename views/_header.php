@@ -18,7 +18,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/growl.js"></script>
     <script src="jquery.bootstrap.wizard.js"></script>
-    <script src="js/bootstrap-tagsinput-angular.js"></script>
+    
     <script src="js/bootstrap-tagsinput.js"></script>
     
     <!-- Fim importação Jquery -->

@@ -1,3 +1,4 @@
+/*
 angular.module('bootstrap-tagsinput', [])
 .directive('bootstrapTagsinput', [function() {
 
@@ -85,3 +86,4 @@ angular.module('bootstrap-tagsinput', [])
     }
   };
 }]);
+*/
