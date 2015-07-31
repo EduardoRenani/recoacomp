@@ -478,3 +478,8 @@ input[type=submit]{ /*customiza input de submit*/
 input[type="number"]{
   width: 50px;
 }
+
+/* Cor dos icones */
+.glyphicon {
+  color: black !important;
+}

@@ -15,11 +15,16 @@ include('_header.php');
     <link href="css/jquery.nouislider.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
+
+
+
     <!-- JS -->
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
     <script src="js/jquery.nouislider.all.min.js" type="text/javascript"></script> <!-- Slider -->
     <script type="text/javascript" src="js/jquery.form.js"></script>
+    <script type="text/javascript" src="js/jquery.noty.packaged.min.js"></script>
 
     <script type="text/javascript">
     $(document).ready(function(){
@@ -91,6 +96,51 @@ include('_header.php');
 		//Tooltips
 		$(function() {
 			$( document ).tooltip();
+		});
+
+		$(function(){
+			$('.input-dados').on('change', function(){
+				var valor = this.value;
+				var id = this.id;
+				var tipo = this.name; // no nome está se é conhecimento, habilidade ou atitude
+				var titulo = $(this).prev('h3').text();
+				var idDisciplina = <?php echo $_POST["idDisciplina"] ?>;
+				jQuery.ajax({
+					type: "GET",
+					url: "ajax/update_competencia.php",
+					data: { 
+						valor: valor, 
+						id : id,
+						tipo : tipo,
+						idDisciplina : idDisciplina,
+					},
+					cache: false,
+					// importantinho.
+					error: function(e){
+						alert(e);
+					},
+					success: function(response){
+						//console.log(response);
+						var n = noty({
+						    text: 'Competência atualizada com sucesso',
+						    layout: 'topCenter',
+    						theme: 'relax', // or 'relax'
+    						type: 'information',
+    						killer: true, // MATA OS OUTROS NOTYS MWHAHAHA
+						    animation: {
+						        open: {height: 'toggle'}, // jQuery animate function property object
+						        close: {height: 'toggle'}, // jQuery animate function property object
+						        easing: 'swing', // easing
+						        speed: 200 // opening & closing animation speed
+						    },
+						    timeout: 200
+						    // Desaparecer
+						    
+						});
+					}
+				});
+				//console.log(this.value);
+			});
 		});
 
     </script>
@@ -264,24 +314,24 @@ include('_header.php');
                                                     </div>
                                                     <!-- Conhecimento -->
                                                     <div class"content-valor-competencias">
-                                                    	
-	                                                   	<label for="conhecimento" title="<?php echo "".$descricaoConhecimento['conhecimento_descricao']; ?>">Conhecimento: (?)</label>
+	                                                   	<label for="conhecimento" title="<?php echo "".$descricaoConhecimento['conhecimento_descricao']; ?>">Conhecimento: <span class="glyphicon glyphicon-question-sign"></span></label>
                                                     	<br>
-                                                    	<input type="number" min="0" max="5" value="<?php echo "".$conhecimento[$i]['conhecimento']; ?>" ></input>
+                                                    	<input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="conhecimento" type="number" min="0" max="5" value="<?php echo "".$conhecimento[$i]['conhecimento']; ?>" ></input>
                                                     </div>
                                                     <br>
                                                     <!-- Habilidade -->
                                                     <div class"content-valor-competencias">
-                                                    	<label for="habilidade" title="<?php echo "".$descricaoHabilidade['habilidade_descricao']; ?>">Habilidade: (?)</label>
+                                                    	<label for="habilidade" title="<?php echo "".$descricaoHabilidade['habilidade_descricao']; ?>">Habilidade: <span class="glyphicon glyphicon-question-sign"></span></label>
                                                     	<br>
-                                                    	<input type="number" min="0" max="5" value="<?php echo "".$habilidade[$i]['habilidade']; ?>" ></input>
+                                                    	<input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="habilidade" type="number" min="0" max="5" value="<?php echo "".$habilidade[$i]['habilidade']; ?>" ></input>
+
                                                 	</div>
                                                 	<br>
                                                     <!-- Atitude -->
                                                     <div class"content-valor-competencias">
-                                                    	<label for="atitude" title="<?php echo "".$descricaoAtitude['atitude_descricao']; ?>">Atitude: (?)</label>
+                                                    	<label for="atitude" title="<?php echo "".$descricaoAtitude['atitude_descricao']; ?>">Atitude: <span class="glyphicon glyphicon-question-sign"></span></label>
                                                     	<br>
-                                                    	<input type="number" min="0" max="5" value="<?php echo "".$atitude[$i]['atitude']; ?>" ></input>
+                                                    	<input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="atitude" type="number" min="0" max="5" value="<?php echo "".$atitude[$i]['atitude']; ?>" ></input>
                                                 	</div>
                                                 </div>
 
