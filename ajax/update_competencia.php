@@ -9,10 +9,10 @@ $idDisciplina = $_GET['idDisciplina'];
 
 try {
 	$db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
-	echo 'ID competência: '.$id . '/n';
-	echo $valor;
-	echo "Id Disciplina: ".$idDisciplina;
-
+	//echo 'ID competência: '.$id . '/n';
+	//echo $valor;
+	//echo "Id Disciplina: ".$idDisciplina;
+	
 	switch ($tipo) {
 		case 'conhecimento':
 				$editarCompetencia = $db_connection->prepare("UPDATE disciplina_competencia SET conhecimento = :conhecimento WHERE competencia_idcompetencia = :idCompetencia AND disciplina_iddisciplina = :idDisciplina");

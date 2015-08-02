@@ -65,6 +65,7 @@ class Registration
                 // "Adding the charset to the DSN is very important for security reasons,
                 // most examples you'll see around leave it out. MAKE SURE TO INCLUDE THE CHARSET!"
                 $this->db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
+                echo 'conexaoBD';
                 return true;
             // If an error is catched, database connection failed
             } catch (PDOException $e) {
@@ -83,6 +84,7 @@ class Registration
         // we just remove extra space on username and email
         $user_name  = trim($user_name);
         $user_email = trim($user_email);
+
 
         // check provided data validity
         // TODO: check for "return true" case early, so put this first
@@ -108,6 +110,7 @@ class Registration
         // finally if all the above checks are ok
         } else if ($this->databaseConnection()) {
             // check if username or email already exists
+            echo 'here';
             $query_check_user_name = $this->db_connection->prepare('SELECT user_name, user_email FROM users WHERE user_name=:user_name OR user_email=:user_email');
             $query_check_user_name->bindValue(':user_name', $user_name, PDO::PARAM_STR);
             $query_check_user_name->bindValue(':user_email', $user_email, PDO::PARAM_STR);
@@ -167,6 +170,7 @@ class Registration
                 }
             }
         }
+        echo 'nope';
     }
 
     /*

@@ -25,6 +25,6 @@ require_once('classes/Registration.php');
 $registration = new Registration();
 
 // showing the register view (with the registration form, and messages/errors)
-include("index.php");
+include("views/register.php");
 
 ?>
