@@ -196,7 +196,7 @@ include('_header.php');
                     alert(e);
                 },
                 success: function(response){
-                    console.log(response);
+                    //console.log(response);
                     var n = noty({
                         text: 'Competência adicionada com sucesso',
                         layout: 'topCenter',

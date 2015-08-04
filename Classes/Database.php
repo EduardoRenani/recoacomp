@@ -6,7 +6,7 @@
  * Time: 18:29
  */
 
-require_once('../config/config.cfg');
+require_once('config/config.cfg');
 
 /**
  * Class Database

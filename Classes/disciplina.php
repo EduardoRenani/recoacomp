@@ -6,10 +6,10 @@
  * Time: 14:50
  */
 
-require_once('../config/config.cfg');
-require_once('../classes/Login.php');
-require_once('../translations/pt_br.php');
-require_once('../classes/Database.php');
+require_once('config/config.cfg');
+require_once('classes/Login.php');
+require_once('translations/pt_br.php');
+require_once('classes/Database.php');
 
 class Disciplina {
     /**
@@ -926,9 +926,9 @@ class Disciplina {
 } // End Classe
 
 //Case de teste
-$coisa = new Disciplina();
-echo "<pre>";
-print_r($coisa->listaObjetosDisciplina(44));
+//$coisa = new Disciplina();
+//echo "<pre>";
+//print_r($coisa->listaObjetosDisciplina(44));
 //print_r($coisa->getUserData(5));
 //print_r($coisa->getNomeDisciplinaById(78));
 //$coisa->getNomesDisciplinas();
