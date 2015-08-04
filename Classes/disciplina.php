@@ -6,10 +6,10 @@
  * Time: 14:50
  */
 
-require_once('config/config.cfg');
-require_once('classes/Login.php');
-require_once('translations/pt_br.php');
-require_once('classes/Database.php');
+require_once('../config/config.cfg');
+require_once('../classes/Login.php');
+require_once('../translations/pt_br.php');
+require_once('../classes/Database.php');
 
 class Disciplina {
     /**
@@ -819,6 +819,25 @@ class Disciplina {
         return $database->resultSet();
     }
 
+    /**
+     * Função que retorna uma lista de OAS associados as competências das disciplina
+     * @param $idDisciplina
+     */
+    public function listaObjetosDisciplina($idDisciplina){
+        $competencias_disciplina = $this->getCompetenciasDisciplina($idDisciplina, 'idDisciplina');
+        $database = new Database();
+        $arrayIdCompetencias = array();
+        foreach ($competencias_disciplina as $idCompetencia) {
+            $sql = "SELECT id_OA FROM competencia_oa WHERE id_competencia = :idCompetencia";
+            $database->query($sql);
+            $param = $idCompetencia[0];
+            $database->bind(":idCompetencia", $param);
+            // Popula array
+            array_push($arrayIdCompetencias, $database->resultSet());
+        }
+        return $arrayIdCompetencias;
+    }
+
     public function getUserData($userId){
         $database = new Database();
         $sql = "SELECT user_name, user_email, acesso FROM users WHERE user_id = :idUser";
@@ -907,8 +926,9 @@ class Disciplina {
 } // End Classe
 
 //Case de teste
-//$coisa = new Disciplina();
-//$coisa->listaAlunosMatriculados(44);
+$coisa = new Disciplina();
+echo "<pre>";
+print_r($coisa->listaObjetosDisciplina(44));
 //print_r($coisa->getUserData(5));
 //print_r($coisa->getNomeDisciplinaById(78));
 //$coisa->getNomesDisciplinas();

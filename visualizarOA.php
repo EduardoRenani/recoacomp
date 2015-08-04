@@ -14,7 +14,42 @@
 		<link href="font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
+		<!-- Notificações -->
+		<script type="text/javascript" src="js/jquery.noty.packaged.min.js"></script>
 		<!-- Fim Home -->
+		</script>
+		<script type="text/javascript">
+
+			//Função que adiciona as avaliações no banco de dados
+			//Faz validações também
+			function submitAvaliacoes() {
+				if (($( "input[type=radio][name=av_quali]" ).is(":checked")) && ($('input[type=radio][name=rating]').is(":checked"))){ // Verifica se os dados foram coletados
+					document.getElementById('form_avaliacoes').submit();
+				}else{
+					//alert('Preencher os dados do formulário');
+					var n = noty({
+                        text: 'Por favor, classifique',
+                        layout: 'topCenter',
+                        theme: 'relax', // or 'relax'
+                        type: 'warning',
+                        killer: true, // MATA OS OUTROS NOTYS MWHAHAHA
+                        animation: {
+                            open: {height: 'toggle'}, // jQuery animate function property object
+                            close: {height: 'toggle'}, // jQuery animate function property object
+                            easing: 'swing', // easing
+                            speed: 500 // opening & closing animation speed
+                        },
+                        //timeout: 500
+                        // Desaparecer
+                        
+                    });
+
+					
+				}
+				
+			}
+
+
 		</script>
 	</head>
 	<body>
@@ -47,7 +82,7 @@
 
 			</div>
 			<input type="hidden" name="id" value="<?php echo $_GET['id']; ?>" />
-			<button onclick="document.getElementById('form_avaliacoes').submit();" style="width:100%;float:left;">Enviar Avaliações</button>
+			<button onclick="submitAvaliacoes();" style="width:100%;float:left;">Enviar Avaliações</button>
 		</div>
 		<iframe name="Stack" style="width: 100%; height: 80%" frameborder="0" id="iframe" src="<?php echo $_GET['url']; ?>"></iframe>
 	</body>
