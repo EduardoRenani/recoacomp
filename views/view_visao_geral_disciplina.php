@@ -1,12 +1,11 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Cláuser
+ * User: Delton
  * Date: 11/09/14
  * Time: 14:32
  */
 include('_header.php');
-
 ?>
 <head>
     <!-- CSS -->
@@ -113,7 +112,6 @@ include('_header.php');
             create: function( event, ui ) {
                 var arrayDados = $("#competenciasDisciplina").sortable('toArray').toString();
                 document.getElementById('nomeCompetencia').value = arrayDados;
-
             },
             over: function (e, ui) {
                 removeCompInput = false;
@@ -122,7 +120,6 @@ include('_header.php');
             out: function (event, ui) {               
                 removeCompInput = true;
                 
-
             },
             // não deixa multiplicar os elementos
             // Remove competencia
@@ -145,7 +142,6 @@ include('_header.php');
             }
           });
         }); //end document ready
-
         //função que remove competência da disciplina 
         function removeCompetenciaComAjax(idCompetencia, idDisciplina) {
             jQuery.ajax({
@@ -161,7 +157,7 @@ include('_header.php');
                     alert(e);
                 },
                 success: function(response){
-                    console.log(response);
+                    //console.log(response);
                     var n = noty({
                         text: 'Competência removida com sucesso',
                         layout: 'topCenter',
@@ -216,62 +212,58 @@ include('_header.php');
                 }
             });     
         }
-
-		// Tabs function
+        // Tabs function
         $(function() {
             $( "#tabs" ).tabs();
         });
-
-		//Tooltips
-		$(function() {
-			$( document ).tooltip();
-		});
-
-		$(function(){
-			$('.input-dados').on('change', function(){
-				var valor = this.value;
-				var id = this.id;
-				var tipo = this.name; // no nome está se é conhecimento, habilidade ou atitude
-				var titulo = $(this).prev('h3').text();
-				var idDisciplina = <?php echo $_POST["idDisciplina"] ?>;
-				jQuery.ajax({
-					type: "GET",
-					url: "ajax/update_competencia.php",
-					data: { 
-						valor: valor, 
-						id : id,
-						tipo : tipo,
-						idDisciplina : idDisciplina,
-					},
-					cache: false,
-					// importantinho.
-					error: function(e){
-						alert(e);
-					},
-					success: function(response){
-						console.log(response);
-						var n = noty({
-						    text: 'Competência atualizada com sucesso',
-						    layout: 'topCenter',
-    						theme: 'relax', // or 'relax'
-    						type: 'information',
-    						killer: true, // MATA OS OUTROS NOTYS MWHAHAHA
-						    animation: {
-						        open: {height: 'toggle'}, // jQuery animate function property object
-						        close: {height: 'toggle'}, // jQuery animate function property object
-						        easing: 'swing', // easing
-						        speed: 500 // opening & closing animation speed
-						    },
-						    timeout: 500
-						    // Desaparecer
-						    
-						});
-					}
-				});
-				//console.log(this.value);
-			});
-		});
-
+        //Tooltips
+        $(function() {
+            $( document ).tooltip();
+        });
+        $(function(){
+            $('.input-dados').on('change', function(){
+                var valor = this.value;
+                var id = this.id;
+                var tipo = this.name; // no nome está se é conhecimento, habilidade ou atitude
+                var titulo = $(this).prev('h3').text();
+                var idDisciplina = <?php echo $_POST["idDisciplina"] ?>;
+                jQuery.ajax({
+                    type: "GET",
+                    url: "ajax/update_competencia.php",
+                    data: { 
+                        valor: valor, 
+                        id : id,
+                        tipo : tipo,
+                        idDisciplina : idDisciplina,
+                    },
+                    cache: false,
+                    // importantinho.
+                    error: function(e){
+                        alert(e);
+                    },
+                    success: function(response){
+                        console.log(response);
+                        var n = noty({
+                            text: 'Competência atualizada com sucesso',
+                            layout: 'topCenter',
+                            theme: 'relax', // or 'relax'
+                            type: 'information',
+                            killer: true, // MATA OS OUTROS NOTYS MWHAHAHA
+                            animation: {
+                                open: {height: 'toggle'}, // jQuery animate function property object
+                                close: {height: 'toggle'}, // jQuery animate function property object
+                                easing: 'swing', // easing
+                                speed: 500 // opening & closing animation speed
+                            },
+                            timeout: 500
+                            // Desaparecer
+                            
+                        });
+                    }
+                });
+                //console.log(this.value);
+            });
+        });
     </script>
 </head>
 
@@ -370,7 +362,31 @@ include('_header.php');
                                 </table>        
                     </div> <!-- END TAB 2 -->
                     <div id="tabs-3">
-                        <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
+                        <!-- TODO -->
+                        <?php 
+                        require_once('classes/OA.php');
+                        $disciplina = new Disciplina();
+                        $OA = new OA();
+                        $listaOAS = $disciplina->listaObjetosDisciplina($_POST['idDisciplina']);
+                        $qtdeComp = count($listaOAS);
+                        $arrayObjetos = array();
+                        for ($i=0; $i < $qtdeComp; $i++){
+                            $qtdeOA = count($listaOAS[$i]);
+                            echo '<pre>';
+                            for($j=0; $j < $qtdeOA; $j++){
+                                // fazer o array push e o arrayunique
+                                //echo $listaOAS[$i][$j]['id_OA'];
+                                print_r($OA->getDadosOA($listaOAS[$i][$j]['id_OA']));
+
+                            }
+                        }
+                        //echo 
+                        ?>
+
+
+
+
+
                     </div>
                     <!-- Dados da competência -->
                     <div id="tabs-4">
@@ -447,11 +463,11 @@ include('_header.php');
                                         $contador = count($competencias);
                                         // Preenche a tabela
                                         for($i=0;$i<$contador;$i++){ 
-                                        	$idCompetencia = $competencias[$i]['idcompetencia'];
-                                        	$descricaoConhecimento = $comp->getDescricaoConhecimentoById($idCompetencia);
-                                        	$descricaoHabilidade = $comp->getDescricaoHabilidadeById($idCompetencia);
-                                        	$descricaoAtitude = $comp->getDescricaoAtitudeById($idCompetencia);
-                                        	?>
+                                            $idCompetencia = $competencias[$i]['idcompetencia'];
+                                            $descricaoConhecimento = $comp->getDescricaoConhecimentoById($idCompetencia);
+                                            $descricaoHabilidade = $comp->getDescricaoHabilidadeById($idCompetencia);
+                                            $descricaoAtitude = $comp->getDescricaoAtitudeById($idCompetencia);
+                                            ?>
                                             <div class="group" id="<?php echo "".$idCompetencia; ?>">
                                                 <h3 >
                                                 <?php echo "".$competencias[$i]['nome']; ?>
@@ -463,25 +479,25 @@ include('_header.php');
                                                     </div>
                                                     <!-- Conhecimento -->
                                                     <div class"content-valor-conhecimento">
-	                                                   	<label for="conhecimento" title="<?php echo "".$descricaoConhecimento['conhecimento_descricao']; ?>">Conhecimento: <span class="glyphicon glyphicon-question-sign"></span></label>
-                                                    	<br>
-                                                    	<input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="conhecimento" type="number" min="0" max="5" value="<?php echo "".$conhecimento[$i]['conhecimento']; ?>" ></input>
+                                                        <label for="conhecimento" title="<?php echo "".$descricaoConhecimento['conhecimento_descricao']; ?>">Conhecimento: <span class="glyphicon glyphicon-question-sign"></span></label>
+                                                        <br>
+                                                        <input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="conhecimento" type="number" min="0" max="5" value="<?php echo "".$conhecimento[$i]['conhecimento']; ?>" ></input>
                                                     </div>
                                                     <br>
                                                     <!-- Habilidade -->
                                                     <div class"content-valor-habilidade">
-                                                    	<label for="habilidade" title="<?php echo "".$descricaoHabilidade['habilidade_descricao']; ?>">Habilidade: <span class="glyphicon glyphicon-question-sign"></span></label>
-                                                    	<br>
-                                                    	<input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="habilidade" type="number" min="0" max="5" value="<?php echo "".$habilidade[$i]['habilidade']; ?>" ></input>
+                                                        <label for="habilidade" title="<?php echo "".$descricaoHabilidade['habilidade_descricao']; ?>">Habilidade: <span class="glyphicon glyphicon-question-sign"></span></label>
+                                                        <br>
+                                                        <input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="habilidade" type="number" min="0" max="5" value="<?php echo "".$habilidade[$i]['habilidade']; ?>" ></input>
 
-                                                	</div>
-                                                	<br>
+                                                    </div>
+                                                    <br>
                                                     <!-- Atitude -->
                                                     <div class"content-valor-atitude">
-                                                    	<label for="atitude" title="<?php echo "".$descricaoAtitude['atitude_descricao']; ?>">Atitude: <span class="glyphicon glyphicon-question-sign"></span></label>
-                                                    	<br>
-                                                    	<input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="atitude" type="number" min="0" max="5" value="<?php echo "".$atitude[$i]['atitude']; ?>" ></input>
-                                                	</div>
+                                                        <label for="atitude" title="<?php echo "".$descricaoAtitude['atitude_descricao']; ?>">Atitude: <span class="glyphicon glyphicon-question-sign"></span></label>
+                                                        <br>
+                                                        <input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="atitude" type="number" min="0" max="5" value="<?php echo "".$atitude[$i]['atitude']; ?>" ></input>
+                                                    </div>
                                                 </div>
 
                                             </div>

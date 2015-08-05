@@ -819,6 +819,25 @@ class Disciplina {
         return $database->resultSet();
     }
 
+    /**
+     * Função que retorna uma lista de OAS associados as competências das disciplina
+     * @param $idDisciplina
+     */
+    public function listaObjetosDisciplina($idDisciplina){
+        $competencias_disciplina = $this->getCompetenciasDisciplina($idDisciplina, 'idDisciplina');
+        $database = new Database();
+        $arrayIdCompetencias = array();
+        foreach ($competencias_disciplina as $idCompetencia) {
+            $sql = "SELECT id_OA FROM competencia_oa WHERE id_competencia = :idCompetencia";
+            $database->query($sql);
+            $param = $idCompetencia[0];
+            $database->bind(":idCompetencia", $param);
+            // Popula array
+            array_push($arrayIdCompetencias, $database->resultSet());
+        }
+        return $arrayIdCompetencias;
+    }
+
     public function getUserData($userId){
         $database = new Database();
         $sql = "SELECT user_name, user_email, acesso FROM users WHERE user_id = :idUser";

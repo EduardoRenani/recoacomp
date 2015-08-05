@@ -20,13 +20,17 @@ require_once('libraries/PHPMailer.php');
 // load the login class
 require_once('classes/Login.php');
 
-// load the login class
+// load the disciplina class
 require_once('classes/disciplina.php');
+
+// load the OA class
+require_once('classes/OA.php');
 
 // create a login object. when this object is created, it will do all login/logout stuff automatically
 // so this single line handles the entire login process.
 $login = new Login();
 $disciplina = new Disciplina();
+$OA = new OA();
 
 // ... ask if we are logged in here:
 if (($login->isUserLoggedIn() == true) && ($_SESSION['acesso'] == 2)) {

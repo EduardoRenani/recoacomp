@@ -7,7 +7,9 @@
  */
 require_once('config/config.cfg');
 require_once('translations/pt_br.php');
-if(class_exists('OA') != true){
+require_once('classes/Database.php');
+
+//if(class_exists('OA') != true){
 class OA{
     /**
      * @var object $db_connection The database connection
@@ -762,9 +764,21 @@ class OA{
             return ($retorno);
         }
     }
+
+    /**
+     * Função que retorna dados de um OA
+     * @param $idOA
+     */
+    public function getDadosOA($idOA){
+        $database = new Database();
+        $sql = "SELECT * FROM cesta WHERE idcesta = :idOA";
+        $database->query($sql);
+        $database->bind(":idOA", $idOA);
+        return $database->resultSet();
+        }
     
 } // Fecha CLass
-} // Fecha IF
+
 
 //Case de teste
 /*
