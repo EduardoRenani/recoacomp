@@ -52,23 +52,8 @@ body {
 }
 
 nav {
-
     float: right;
     padding: 5px;  
-
-}
-
-#menu-icon {
-    z-index:10;
-    display: hidden;
-    width: 40px;
-    height: 40px;
-    background: #26B3E8 url(../img/menu-icon.png) center;
-
-}
-
-a:hover#menu-icon {
-    background-color: #108AC0;
 }
 
 ul {
@@ -96,6 +81,34 @@ li {
 .header-large a {text-decoration:none;color:black;}
 .header-large a:hover, a:active {color:grey;}
 
+/*#menu-icon {
+    z-index:10;
+    display: hidden;
+    width: 40px;
+    height: 40px;
+    background: #26B3E8 url(../img/menu-icon.png) center;
+}*/
+
+#menu-button {
+  z-index:10;
+  display:none;
+  position:absolute;
+  right:9px;
+  top:15px;
+}
+
+#menu-button span{
+  display:block;
+  margin: 4px 0px 4px 0px;
+  height:2px;
+  background:#333333;
+  width:22px;
+}
+
+/*a:hover#menu-icon {
+    background-color: #108AC0;
+}*/
+
 @media only screen and (max-width : 640px) {
 
 /*tem que arrumar o menu em mobile porque quando clica não funiona direito (precisa de js)*/
@@ -107,14 +120,41 @@ header {
     height:55px;
 }
 
-#menu-icon {
+/*#menu-icon {
     display:inline-block;
     z-index:10;
+}*/
+
+nav {
+  float:none;
+  padding:0px;
 }
 
-nav ul, nav:active ul { 
+#menu-button {
+  display:block;
+}
+
+#menu-nav {
+  display:none;
+  top:5px;
+  position:relative;
+  margin:0px;
+  height:100%;
+  width:100%;
+  box-shadow:rgba(50, 50, 50, 0.2) 5px 5px 0px 0px;
+}
+
+#menu-nav li{
+  background:white;
+  border-top: 1px solid #dedede;
+}
+
+#last-item {
+  box-shadow:rgba(50, 50, 50, 0.2) 0px 5px 0px 0px;
+}
+
+nav ul, { 
         z-index:10;
-        display: none;
         position: absolute;
         padding: 20px;
         background: #fff;
@@ -135,11 +175,11 @@ nav ul, nav:active ul {
 
     }
 
-    nav:hover ul {
+    /*nav:hover ul {
         z-index:10;
         display: block;
 
-    }
+    }*/
 }
 
 div.fixedBackgroundGradient {  
@@ -154,7 +194,7 @@ div.fixedBackgroundGradient {
 
 /*LOGIN-----------------------------------------------------------------------*/
 
-form { /*customização básica do from*/
+div.login form { /*customização básica do from*/
     display:block;
     width:70%; 
     margin:0 auto;
@@ -164,6 +204,7 @@ form { /*customização básica do from*/
      font-size:16px;
      font-weight:100;
      padding-bottom: 10px;
+     line-height:150%;
 }
 
 div.login a { /*muda cores e etc de links dentro do form*/
@@ -179,7 +220,7 @@ form a:hover, form a:active { /*muda cores e etc de links quando em hover ou act
 div.login input[type=text],[type=password],[type="email"] { /*customiza input de texto e senha*/
      position:relative;
      border:none;
-     background:#F1F1F2;
+     background:#e6e6e6;
      color:#BBBDC0;
      font-weight:100;
      width:100%;
@@ -195,7 +236,7 @@ div.login input[type=text],[type=password],[type="email"] { /*customiza input de
 div.login span {
     color:#58585B;
     font-weight:100;
-    font-size:16px;
+    font-size:14px;
     margin:15px 0 15px 0;;
 }
 
@@ -496,7 +537,7 @@ text-align:center;
 .modalDialog input[type=text],[type=password] { /*customiza input de texto e senha*/
      position:relative;
      border:none;
-     background:#F1F1F2;
+
      color:#BBBDC0;
      font-weight:100;
      margin-top:0px;
@@ -647,61 +688,20 @@ transition:opacity 0.4s ease-in;
     border-top: 3px solid #e7e7e7;
 }
 
+@media only screen and (max-width : 450px) {
 
-/*FOOTER-----------------------------------------------------------------------*/
-
-.row-footer {
-    margin-right: -15px;
-    margin-left: -15px;
-
+.login {
+  width:100%;
+  margin-top:0px;
 }
 
-.container-footer {
-    display:block;
-    text-align:center;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto; 
-
-padding:0% 0%;
+.patrocinio {
+  width:100%;
 }
 
-.span1 {
-    text-align:center;
-    margin-left:1%;
-    width:300px;
-    float:left;
-    vertical-align:middle;
+.col-lg-12 {
+  padding-right:0px;
 }
 
-.span2 {
-    text-align:center;
-    margin-top:20px;
-    width:300px;
-    float:right;
-    margin-right:1%;
-    vertical-align:middle;
-}
 
-.span2 a {
-    font-weight:100;
-    color:#6D6E70;
-}
-
-footer {
-    padding: 20px 0;
-    background-color: #231F20;
-    height:;
-}
-
-p.copyright {
-    margin: 15px 0 0;
-}
-
-.footer-logo {
-    width:50px;
-    height:50px;
-    margin-left:5%;
-    margin-right:5%;
 }

@@ -14,6 +14,7 @@ include('_header.php');
     <link rel="stylesheet" href="css/tooltip.css">
     <link href="css/base_cadastro.css" rel="stylesheet">
     <link href="css/jquery.nouislider.min.css" rel="stylesheet">
+    <link href="css/landing-page.css" rel="stylesheet">
 
     <style>
     .tooltip {

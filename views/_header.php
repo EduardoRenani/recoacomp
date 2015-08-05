@@ -45,7 +45,7 @@
 
     <!-- Custom CSS Login Page-->
     <link href="css/landing-page.css" rel="stylesheet">
-    <link rel='stylesheet' media='screen and (min-width: 0px) and (max-width: 425px)' href='css/landing-page-xs.css' />
+
     <link rel='stylesheet' media='screen and (min-width: 425px) and (max-width: 1100px)' href='css/landing-page-small.css' />
     <link rel='stylesheet' media='screen and (min-width: 1100px)' href='css/landing-page-large.css' />
 
@@ -55,29 +55,44 @@
 	<!-- Fim Login -->
 	
 </head>
+
+<script>
+$(document).ready(function(){
+    $('#menu-button' ).on( 'click', function () {
+         $('#menu-nav').toggle();   
+    });
+});
+</script>
+
 <body>
     <!-- ============== HEADER ============== -->
 <header class="header-large">
     <a href="index.php" id="logo"></a> <!--muda quando o usuario estiver logged in e leva para o home.html"-->
         <nav >
 
-            <a href="#" id="menu-icon"></a>
+            <div id="menu-button">
+                <a href="#">
+                    <span>&nbsp;</span>
+                    <span>&nbsp;</span>
+                    <span>&nbsp;</span>
+                </a>
+            </div>
 
-            <ul>
+            <ul id="menu-nav">
 
-            <li><a href="#">Tutorial</a></li> <!--muda quando o usuario estiver logged in e leva para o home.html"-->
-            <li><a href="#">Sobre</a></li>
-            <li><a href="contato.php">Contato</a></li>
-            <li><a href="equipe.php">Equipe</a></li>
-<?php
-if (isset($login)) {
-if ($login->isUserLoggedIn() == true) {
-?>
-            <li><a href="index.php?logout"><?php echo WORDING_LOGOUT; ?></a></li>
-<?php
-}
-}
-?>
+                <li><a href="#">Tutorial</a></li> <!--muda quando o usuario estiver logged in e leva para o home.html"-->
+                <li><a href="#">Sobre</a></li>
+                <li><a href="contato.php">Contato</a></li>
+                <li id="last-item"><a href="equipe.php">Equipe</a></li>
+    <?php
+    if (isset($login)) {
+    if ($login->isUserLoggedIn() == true) {
+    ?>
+                <li><a href="index.php?logout"><?php echo WORDING_LOGOUT; ?></a></li>
+    <?php
+    }
+    }
+    ?>
             </ul>
 
         </nav>

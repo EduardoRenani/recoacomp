@@ -1,0 +1,49 @@
+﻿/*================================== BASE ==================================*/
+
+.font-family {
+  font-family:"Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.bold {
+    font-weight:400;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.upper {
+  text-transform: uppercase;
+}
+
+.pointer {
+    cursor:pointer;
+}
+
+.middle {
+    margin:0 auto;
+}
+
+/*================================== FORMS ==================================*/
+
+input[type=text], [type=password], [type=checkbox], [type=submit], [type="email"] {
+  display: inline-block;
+  position:relative;
+  height:40px;
+  width:100%;
+  padding:6px 6px;
+  padding-left:10px;
+  margin-bottom:20px;
+  background:#e6e6e6;
+  color:#999999;
+  font-weight:100;
+  border:none;
+  border-radius:3px;
+  -webkit-border-radius:3px;
+  -moz-border-radius:3px;
+  box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
+  -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
+  -moz-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
+}
+

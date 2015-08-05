@@ -3842,7 +3842,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 }
 
 #menu {
-    width: 100%;
+    width: 96%;
     height: 44px;
     margin-bottom: 20px;
     background-color: #f1f1f2;
@@ -3900,8 +3900,8 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 }
 
 #conteudo {
-    width: 100%;
-    height: auto;
+    width: 650px;
+    min-height: 356px;
     text-align: center;
 }
 
