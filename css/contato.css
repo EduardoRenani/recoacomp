@@ -1,16 +1,11 @@
-﻿/*!
- * Start Bootstrap - Landing Page Bootstrap Theme (http://startbootstrap.com)
- * Code licensed under the Apache License v2.0.
- * For details, see http://www.apache.org/licenses/LICENSE-2.0.
- */
+﻿/*================================== RECOACOMP CONTATO CSS ==================================*/
+
 
 html,body{height:100%;}
 
 html {
     width: 100%;
-    
     background: url("../img/pattern1.png") repeat 0 0;
-
 }
 
 body{    
@@ -18,141 +13,55 @@ body{
     font-weight: 700;
     padding-top:55px;
     background-repeat:repeat-y;
-
-    
-}
-
-div.fixedBackgroundGradient{  
-      background: -moz-linear-gradient(top, rgba(38,179,232,0.9), rgba(117,204,214,0.9)), url("../img/pattern1.png");
-    background: -webkit-linear-gradient(bottom, rgba(38,179,232,0.9), rgba(117,204,214,0.9)), url("../img/pattern1.png");
-    background: -o-linear-gradient(top, rgba(38,179,232,0.9), rgba(117,204,214,0.9)), url("../img/pattern1.png");
-    background: linear-gradient(to top, rgba(38,179,232,0.9), rgba(117,204,214,0.9)), url("../img/pattern1.png"); 
-  height: 100%; width: 100%;  
-  position: fixed; top: 0px; left: 0px;  
-  z-index: 0000;
 }
 
 /*HEADER---------------------------------------------------------------------*/
 
-
-#logo{
-
-    margin: 5px;
-    float: left;
-    width: 260px;
-    height: 40px;
-    background: url(../img/recoacomp-logo.png) no-repeat center;
-    display: block;
-    margin-bottom:0px;
-
-}
-
-nav {
-
-    float: right;
-    padding: 5px;  
-
-}
-
-#menu-icon {
-    z-index:10;
-    display: hidden;
-    width: 40px;
-    height: 40px;
-    background: #26B3E8 url(../img/menu-icon.png) center;
-
-}
-
-a:hover#menu-icon {
-    background-color: #108AC0;
-}
-
-nav ul {
-    list-style: none;
-}
-
-nav li {
-    display: inline-block;
-    float: left;
-    padding: 10px
-}
-
 .header-large{
     position:fixed;
-    z-index: 9999;
     top:0;
     left:0;
     height:55px;
     border-bottom:5px solid #108AC0;
     width:100%;
     background-color:white;
+    z-index: 9999;
 }
 
+/*CONTATO-----------------------------------------------------------------------*/
 
-
-/*HEADER---------------------------------------------------------------------*/
-
-
-#logo{
-
-    margin: 5px;
-    float: left;
-    width: 260px;
-    height: 40px;
-    background: url(../img/recoacomp-logo.png) no-repeat center;
-    display: block;
-    margin-bottom:0px;
-
-}
-
-nav {
-
-    float: right;
-    padding: 5px;  
-
-}
-
-.header-large{
-    height:55px;
-    border-bottom:5px solid #108AC0;
-    width:100%;
-    font-weight:100;
-    color:black;
-}
-
-.header-large a{text-decoration:none;color:black;}
-.header-large a:hover, a:active{color:grey;}
-
-
-/*DISCIPLINAS-----------------------------------------------------------------------*/
-
-.disciplinas{
+.disciplinas { /*base da janela*/
     background-color:white;
+    height:65%;
+    min-height:500px;
+    max-height:800px;
+    width:45%;
+    left:25%;
+    top:50px;
+    margin-right:10%;
     position:relative;
-    float:right;
-
+    float:left;
     -webkit-box-shadow: 5px 5px 0px 0px rgba(50, 50, 50, 0.2);
     -moz-box-shadow:    5px 5px 0px 0px rgba(50, 50, 50, 0.2);
     box-shadow:         5px 5px 0px 0px rgba(50, 50, 50, 0.2);
-
 }
 
-.top-disciplinas{
+
+.top-disciplinas { /*header da janela*/
+    padding-top:13px;
     position:relative;
     top:0px;
-    width:50%;
+    width:100%;
     height:50px;
     text-align:left;
     padding-left:5%;
-    line-height: 40px;
     background-color:#108AC0;
     color:white;
-    
+    font-size:30px;
     font-weight:300;
 }
 
-.disciplinas-content{
-
+.disciplinas-content { /*conteúdo janela*/
     position:relative;
     padding-left:0%;
     padding-right:0%;
@@ -160,18 +69,16 @@ nav {
     top:5%;
     
     margin:0 auto;
-    margin-left:5%;
-    
-    
+    margin-left:5%;  
 }
 
 .disciplinas-content a{text-decoration:none;}
 .disciplinas-content header{text-align:center;}
 
 
-form{ /*customização básica do from*/
+div.disciplinas-content form{ /*customização básica do from*/
     display:block;
-    width:70%; 
+    width:80%; 
     margin:0 auto;
     text-align:left;
      position:relative;
@@ -180,149 +87,86 @@ form{ /*customização básica do from*/
      font-weight:100;
 }
 
-form a{ /*muda cores e etc de links dentro do form*/
-    font-weight:bold;
-    color:#58585B;
-}
-
-form a:hover, form a:active{ /*muda cores e etc de links quando em hover ou active*/
-    color:#58585B;
-}
-
-input[type=text],[type=password],[type=email],textarea{ /*customiza input de texto e senha*/
-     position:relative;
-     border:none;
-     background:#F1F1F2;
-     color:#BBBDC0;
-     font-weight:100;
-     width:100%;
-     height:40px;
-     padding-left:10px;
-     resize: none;
-}
-
-textarea{height:80px;}
-
-
-.button{
-    //background-color:blue;
-    text-align:center;
-    vertical-align:middle;
-    
-    width:30%;
-    height:auto;
-    padding-top:10px;
-}
-
 .subtitle{font-weight:500;padding-right:10px;font-size:20px;padding-top:20px;}
 .content-perfil{font-size:18px;}
 
 .disciplinas-content p{display:inline;padding-top:20px;}
 .disciplinas-content ul{padding-left:0px;margin-left:0px;}
 
-input[type=submit]{ /*customiza input de submit*/
-  border: 0;
-  width:150px;
-  white-space: normal;
-  text-align:center;
-  height:66px;
-  
+@media only screen and (max-width : 900px) {
 
+    .disciplinas{
+        background-color:white;
 
-    background: -webkit-linear-gradient(left, #26B3E8, #75CCD6); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(right, #26B3E8, #75CCD6); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(right, #26B3E8, #75CCD6); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, #26B3E8, #75CCD6); /* Standard syntax (must be last) */
- 
-  color: white;
-  padding: 8px 14px;
-  font-weight: 100;
-  font-size: 18px;
-  text-decoration: none;
-  display: inline-block; /* needed for anchors */
- 
-    -webkit-box-shadow: 0px 4px 0px 0px rgba(50, 50, 50, 0.47);
-    -moz-box-shadow:    0px 4px 0px 0px rgba(50, 50, 50, 0.47);
-    box-shadow:         0px 4px 0px 0px rgba(50, 50, 50, 0.47);
+        height:65%;
+        min-height:500px;
+        max-height:800px;
 
--webkit-border-radius: 20px;
--moz-border-radius: 20px;
-border-radius: 5px;
-  }
+        width:90%;
+        left:5%;
+        top:50px;
 
- input[type=submit]:hover{
-    background: -webkit-linear-gradient(left, #5bc6ee, #75CCD6); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(right, #5bc6ee, #75CCD6); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(right, #5bc6ee, #75CCD6); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, #5bc6ee, #75CCD6); /* Standard syntax (must be last) */
- }
+        margin-right:10%;
+        position:relative;
+        float:left;
+        -webkit-box-shadow: 5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+        -moz-box-shadow:    5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+        box-shadow:         5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+    }
 
-  input[type=submit]:active{ /*customiza pra quando estiver ativo (click)*/
-    -moz-transform: translateY(4px);
-    -webkit-transform: translateY(4px);
-    -o-transform: translateY(4px);
-    -ms-transform: translateY(4px);
-    transform: translateY(4px);
+    .top-disciplinas{
+        width:100%;
+        font-size:30px;
+        font-weight:300;
+    }
+
+    .disciplinas-content{
+        padding-left:5%;
+        padding-right:5%;
+        width:95%;
+        height:80%;
+    }
     
-    -webkit-box-shadow: 0px 1px 0px 0px rgba(50, 50, 50, 0.47);
-    -moz-box-shadow:    0px 1px 0px 0px rgba(50, 50, 50, 0.47);
-    box-shadow:         0px 1px 0px 0px rgba(50, 50, 50, 0.47);
-  }
-
-/*FOOTER-----------------------------------------------------------------------*/
-
-.row-footer{
-    margin-right: -15px;
-    margin-left: -15px;
-
 }
 
-.container-footer{
-    display:block;
-    text-align:center;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto; 
+@media only screen and (max-width : 425px) {
 
-padding:0% 0%;
-}
+    .disciplinas{
+        background-color:white;
 
-.span1{
-    text-align:center;
-    margin-left:1%;
-    width:300px;
-    float:left;
-    vertical-align:middle;
-}
+        height:auto;
+        min-height:550px;
+        
 
-.span2{
-    text-align:center;
-    margin-top:20px;
-    width:300px;
-    float:right;
-    margin-right:1%;
-    vertical-align:middle;
-}
+        width:100%;
+        left:0%;
+        top:70px;
 
-.span2 a{
-    font-weight:100;
-    color:#6D6E70;
-}
+        margin-right:0%;
+        position:relative;
 
-footer {
-    padding: 20px 0;
-    background-color: #231F20;
-    height:;
-}
+        float:left;
 
-p.copyright {
-    margin: 15px 0 0;
-}
+        -webkit-box-shadow: 5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+        -moz-box-shadow:    5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+        box-shadow:         5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+    }
 
-.footer-logo{
-    width:50px;
-    height:50px;
-    margin-left:5%;
-    margin-right:5%;
+    .top-disciplinas{
+        text-align:center;
+        padding:14px;
+        width:100%;
+
+        font-size:26px;
+        font-weight:300;
+    }
+
+    .disciplinas-content{
+        padding-top:7%;
+        padding-left:0%;
+        padding-right:0%;
+        width:100%;
+        height:100%;
+        
+    }
 }

@@ -19,7 +19,7 @@
 <div class="fixedBackgroundGradient"></div>
 
 <div class="disciplinas">
-    <div class="top-disciplinas"><div style="width: 50%; float: left; text-align: left"><?php echo (WORDING_TEAM); ?></div><div  style="width: 50%; float: right; text-align: right; padding-right: 10px;" ><a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a></div></div>
+    <div class="top-disciplinas"><div style="width: 50%; float: left; text-align: left"><?php echo (WORDING_TEAM); ?></div><div  class="icon-voltar" ><a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a></div></div>
             <div class="disciplinas-content">  
                 <div class="team-member">
                     <div class="team-member-avatar" style="background-image:url('img/foto_patricia.jpg');"></div>

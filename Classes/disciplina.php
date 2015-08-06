@@ -806,6 +806,30 @@ class Disciplina {
         return $database->resultSet();
     }
 
+    /**
+     * @param $idDisciplina
+     * @return bool se a disciplina está com a flag de excluida ou não
+     */
+    public function isExcluida($idDisciplina){
+        $database = new Database();
+        $sql = "SELECT excluida FROM disciplina WHERE iddisciplina = :idDisciplina";
+        $database->query($sql);
+        $database->bind(":idDisciplina", $idDisciplina);
+        $temp = $database->resultSet();
+        //echo '<pre>';
+        //echo $temp[0]['excluida'];
+        //print_r($database->resultSet());
+        if ($temp[0]['excluida'] == 1){
+            return true;
+            
+        }
+        else{
+            return false;
+        }
+
+            
+    }
+
 
     /**
      * Função que lista os alunos matriculados na disciplina

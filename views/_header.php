@@ -28,7 +28,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/prettify.css" rel="stylesheet">
 
-
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
     <!-- Loader do cadastro de OA CSS -->
     <link href="css/cadastro_OA.css" rel="stylesheet">
@@ -44,6 +44,7 @@
     <link href="css/theme.css" rel="stylesheet">
 
     <!-- Custom CSS Login Page-->
+    <link href="css/estilo-base.css" rel="stylesheet">
     <link href="css/landing-page.css" rel="stylesheet">
 
     <link rel='stylesheet' media='screen and (min-width: 425px) and (max-width: 1100px)' href='css/landing-page-small.css' />

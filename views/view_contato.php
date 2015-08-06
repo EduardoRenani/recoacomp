@@ -15,10 +15,8 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
+    <link href="css/estilo-base.css" rel="stylesheet">
     <link href="css/contato.css" rel="stylesheet">
-    <link rel='stylesheet' media='screen and (min-width: 0px) and (max-width: 425px)' href='css/contato-xs.css' />
-    <link rel='stylesheet' media='screen and (min-width: 425px) and (max-width: 1100px)' href='css/contato-small.css' />
-    <link rel='stylesheet' media='screen and (min-width: 1100px)' href='css/contato-large.css' />
 
     <!-- Custom Fonts -->
     <link href="font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -55,16 +53,16 @@ require_once("classes/Registration.php");
 <!-- ============== JANELINHA ============== -->
 
 <div class="disciplinas">
-        <div class="top-disciplinas"><div style="width: 50%; float: left; text-align: left">Contato</div><div  style="width: 50%; float: right; text-align: right; padding-top: 7px; padding-right: 10px;" ><a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a></div></div>
+        <div class="top-disciplinas"><div style="width: 50%; float: left; text-align: left">Contato</div><div class="icon-voltar"><a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a></div></div>
             <div class="disciplinas-content">
                 <?php if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["contato"])){ ?>  
                 <form method="post" action="contato.php" name="contato">
                     <h4>Entre em contato com a nossa equipe</h4>
                     <p>Nos mande uma mensagem com suas perguntas, comentários e feedback.</p></br></br>
-                    <input type="text" name="nome" placeholder="Nome"></br></br>
-                    <input type="email" name="email" placeholder="E-mail"></br></br>
-                    <textarea name="mensagem" style="width:100%;" placeholder="Escreva a sua mensagem aqui"></textarea></br></br>
-                    <input type="submit" style="width: 150px; text-align: center" name="contato" value="Enviar"></br></br>
+                    <input type="text" name="nome" placeholder="Nome" required>
+                    <input type="email" name="email" placeholder="E-mail" required>
+                    <textarea name="mensagem" placeholder="Escreva a sua mensagem aqui" required></textarea>
+                    <input type="submit" class="botao-med" style="width: 150px; text-align: center" name="contato" value="Enviar"></br></br>
                 </form>
                 <?php } else{
                             $nome=$_POST["nome"];
@@ -72,12 +70,16 @@ require_once("classes/Registration.php");
                             $mensagem=$_POST["mensagem"];
 
                             $sendEmail = new Email();
-                            $confirmacao = $sendEmail->sendContact($nome, $email, $mensagem);
+                            
 
-                            if($confirmacao){
-                                echo "Em breve entraremos em contato";
-                            }else{
-                                echo"Ouve um erro ao enviar a mensagem";
+                            if(!empty($nome) && !empty($email) && ($mensagem.length > 5)){
+                                echo "<p class='alert-text'>Em breve entraremos em contato</p>";
+                                $confirmacao = $sendEmail->sendContact($nome, $email, $mensagem);
+                            }
+
+                            else{
+                                echo"<p class='alert-text'>Ouve um erro ao enviar a mensagem</p>";
+
                             }
 
                         //}

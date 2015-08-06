@@ -57,7 +57,16 @@ include('_header.php');
                 var input = $(this).find('input')
                 //console.log(input);
                 input.attr('disabled','disabled'); 
-                var numComp = <?php echo $_SESSION["numComp"] ?>;
+                <?php 
+                $comp = new Competencia();
+                $numComp = $comp->getListaCompetencia();
+                $numComp = count($numComp);
+                //echo 'var numComp = '..';';
+                ?>;
+
+                var numComp = <?php echo $numComp;?>
+                //$numComp =  ?>
+                //var numComp = <?php echo $_SESSION["numComp"] ?>;
                 //console.log(this.children.length);     
                 //console.log(numComp-1);               
                 // Verifica se o número de competências é minimo                
