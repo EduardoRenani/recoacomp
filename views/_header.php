@@ -47,7 +47,7 @@
     <link href="css/estilo-base.css" rel="stylesheet">
     <link href="css/landing-page.css" rel="stylesheet">
 
-    <link rel='stylesheet' media='screen and (min-width: 425px) and (max-width: 1100px)' href='css/landing-page-small.css' />
+
     <link rel='stylesheet' media='screen and (min-width: 1100px)' href='css/landing-page-large.css' />
 
     <!-- Custom Fonts -->

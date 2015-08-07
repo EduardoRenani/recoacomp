@@ -1,8 +1,4 @@
-﻿/*!
- * Start Bootstrap - Landing Page Bootstrap Theme (http://startbootstrap.com)
- * Code licensed under the Apache License v2.0.
- * For details, see http://www.apache.org/licenses/LICENSE-2.0.
- */
+﻿/*================================== RECOACOMP LANDING PAGE CSS ==================================*/
 
 body,
 html {
@@ -10,32 +6,16 @@ html {
     height: 100%;
 }
 
-body {    
-    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-weight: 700;
+div.fixedBackgroundGradient {  
+      background: -moz-linear-gradient(top, rgba(38,179,232,0.8), rgba(117,204,214,0.8)), url("../img/pattern1.png");
+    background: -webkit-linear-gradient(bottom, rgba(38,179,232,0.8), rgba(117,204,214,0.8)), url("../img/pattern1.png");
+    background: -o-linear-gradient(top, rgba(38,179,232,0.8), rgba(117,204,214,0.8)), url("../img/pattern1.png");
+    background: linear-gradient(to top, rgba(38,179,232,0.8), rgba(117,204,214,0.8)), url("../img/pattern1.png"); 
+  height: 100%; width: 100%;  
+  position: fixed; top: 55px; left: 0px;  
+  z-index: 0000;
 }
 
-.centralizado-pai {/*use no div externo*/
-    position: relative;
-}
-.centralizado-filho {/*use no div interno que dai o mesmo vai ser centralizado no div externo*/
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-}
-
-.vertical-container {
-  height: 300px;
-  display: -webkit-flex;
-  display:         flex;
-  -webkit-align-items: center;
-          align-items: center;
-  -webkit-justify-content: center;
-          justify-content: center;
-}
 /*HEADER---------------------------------------------------------------------*/
 
 
@@ -81,14 +61,6 @@ li {
 .header-large a {text-decoration:none;color:black;}
 .header-large a:hover, a:active {color:grey;}
 
-/*#menu-icon {
-    z-index:10;
-    display: hidden;
-    width: 40px;
-    height: 40px;
-    background: #26B3E8 url(../img/menu-icon.png) center;
-}*/
-
 #menu-button {
   z-index:10;
   display:none;
@@ -105,13 +77,7 @@ li {
   width:22px;
 }
 
-/*a:hover#menu-icon {
-    background-color: #108AC0;
-}*/
-
 @media only screen and (max-width : 640px) {
-
-/*tem que arrumar o menu em mobile porque quando clica não funiona direito (precisa de js)*/
 
 header {
     z-index:10;
@@ -119,11 +85,6 @@ header {
     background-color:white;
     height:55px;
 }
-
-/*#menu-icon {
-    display:inline-block;
-    z-index:10;
-}*/
 
 nav {
   float:none;
@@ -174,22 +135,6 @@ nav ul, {
         margin: 0;
 
     }
-
-    /*nav:hover ul {
-        z-index:10;
-        display: block;
-
-    }*/
-}
-
-div.fixedBackgroundGradient {  
-      background: -moz-linear-gradient(top, rgba(38,179,232,0.8), rgba(117,204,214,0.8)), url("../img/pattern1.png");
-    background: -webkit-linear-gradient(bottom, rgba(38,179,232,0.8), rgba(117,204,214,0.8)), url("../img/pattern1.png");
-    background: -o-linear-gradient(top, rgba(38,179,232,0.8), rgba(117,204,214,0.8)), url("../img/pattern1.png");
-    background: linear-gradient(to top, rgba(38,179,232,0.8), rgba(117,204,214,0.8)), url("../img/pattern1.png"); 
-  height: 100%; width: 100%;  
-  position: fixed; top: 55px; left: 0px;  
-  z-index: 0000;
 }
 
 /*LOGIN-----------------------------------------------------------------------*/
@@ -217,22 +162,6 @@ form a:hover, form a:active { /*muda cores e etc de links quando em hover ou act
     color:#58585B;
 }
 
-div.login input[type=text],[type=password],[type="email"] { /*customiza input de texto e senha*/
-     position:relative;
-     border:none;
-     background:#e6e6e6;
-     color:#BBBDC0;
-     font-weight:100;
-     width:100%;
-     height:40px;
-     padding-left:10px;
-     margin-bottom:20px;
-
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-    -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-}
-
 div.login span {
     color:#58585B;
     font-weight:100;
@@ -244,17 +173,9 @@ div.login span.light a {
     color:#C0C0C0 ;
     font-weight:100;
     font-size:14px;
-
 }
 
-div.label input[type="checkbox"]+label {
-    display:inline;
-    margin-left:.2em;
-    font-size:16px;
-    font-weight:100;
-}
-
-div.login input[type=submit] { /*customiza input de submit*/
+div.login input[type=submit] { /*botão login*/
   border: 0;
   margin:10px 0 15px 0;
   width:100%;
@@ -275,93 +196,7 @@ div.login input[type=submit] { /*customiza input de submit*/
 
   }
 
-  div.login input[type=submit]:active { /*customiza pra quando estiver ativo (click)*/
-    -moz-transform: translateY(4px);
-    -webkit-transform: translateY(4px);
-    -o-transform: translateY(4px);
-    -ms-transform: translateY(4px);
-    transform: translateY(4px);
-    
-    -webkit-box-shadow: 0px 1px 0px 0px rgba(50, 50, 50, 0.47);
-    -moz-box-shadow:    0px 1px 0px 0px rgba(50, 50, 50, 0.47);
-    box-shadow:         0px 1px 0px 0px rgba(50, 50, 50, 0.47);
-  }
-
-input[type=submit] { /*customiza input de submit*/
-  border: 0;
-  margin:10px 0 15px 0;
-  width:auto;
-    background: -webkit-linear-gradient(left, #26B3E8, #75CCD6); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(right, #26B3E8, #75CCD6); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(right, #26B3E8, #75CCD6); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, #26B3E8, #75CCD6); /* Standard syntax (must be last) */
-  color: white;
-  padding: 8px 14px;
-  font-weight: 100;
-  font-size: 18px;
-  text-decoration: none;
-  display: inline-block; /* needed for anchors */
-  position: relative;
-    -webkit-box-shadow: 0px 4px 0px 0px rgba(50, 50, 50, 0.47);
-    -moz-box-shadow:    0px 4px 0px 0px rgba(50, 50, 50, 0.47);
-    box-shadow:         0px 4px 0px 0px rgba(50, 50, 50, 0.47);
-
-  }
-
-
-  input[type=submit]:active { /*customiza pra quando estiver ativo (click)*/
-    -moz-transform: translateY(4px);
-    -webkit-transform: translateY(4px);
-    -o-transform: translateY(4px);
-    -ms-transform: translateY(4px);
-    transform: translateY(4px);
-    
-    -webkit-box-shadow: 0px 1px 0px 0px rgba(50, 50, 50, 0.47);
-    -moz-box-shadow:    0px 1px 0px 0px rgba(50, 50, 50, 0.47);
-    box-shadow:         0px 1px 0px 0px rgba(50, 50, 50, 0.47);
-  }
-
-
-.wololo form{margin:0;}
-
-.wololo input[type=submit] { /*customiza input de submit*/
-  border: 0;
-  width:150px;
-  height:66px;
-  white-space: normal;
-  text-align:center;
-  
-
-
-    background: -webkit-linear-gradient(left, #26B3E8, #75CCD6); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(right, #26B3E8, #75CCD6); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(right, #26B3E8, #75CCD6); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, #26B3E8, #75CCD6); /* Standard syntax (must be last) */
- 
-  color: white;
-  padding: 8px 14px;
-  font-weight: 100;
-  font-size: 18px;
-  text-decoration: none;
-  display: inline-block; /* needed for anchors */
- 
-    -webkit-box-shadow: 0px 4px 0px 0px rgba(50, 50, 50, 0.47);
-    -moz-box-shadow:    0px 4px 0px 0px rgba(50, 50, 50, 0.47);
-    box-shadow:         0px 4px 0px 0px rgba(50, 50, 50, 0.47);
-
--webkit-border-radius: 20px;
--moz-border-radius: 20px;
-border-radius: 5px;
-  }
-
- .wololo input[type=submit]:hover {
-    background: -webkit-linear-gradient(left, #5bc6ee, #75CCD6); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(right, #5bc6ee, #75CCD6); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(right, #5bc6ee, #75CCD6); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, #5bc6ee, #75CCD6); /* Standard syntax (must be last) */http://sideshowbob/recoacomp/index.php#openModal
- }
-
-  .wololo input[type=submit]:active { /*customiza pra quando estiver ativo (click)*/
+  div.login input[type=submit]:active { /*botão login pressionado*/
     -moz-transform: translateY(4px);
     -webkit-transform: translateY(4px);
     -o-transform: translateY(4px);
@@ -410,7 +245,7 @@ border-radius: 5px;
     background-color:white;
     position:inherit;
     padding:0%;
-    margin-top:20%;
+    margin-top:10%;
     
     margin-left:auto;
     margin-right:auto;
@@ -462,7 +297,7 @@ border-radius: 5px;
 /*MODALWINDOW-----------------------------------------------------------------------*/
 .modalDialog {
     position: fixed;
-    font-family: "Lato";
+    font-family:"Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight:100;
     top: 0;
     right: 0;
@@ -477,7 +312,6 @@ border-radius: 5px;
     pointer-events: none;
 }
 
-
 .modalDialog:target {
     opacity:1;
     pointer-events: auto;
@@ -489,10 +323,10 @@ border-radius: 5px;
 
     position: relative;     
     margin: 10% auto;     
-padding: 0px 0px 2% 0px;     
-border-radius: 5px;
-background: #fff;  
-text-align:center;   
+    padding: 0px 0px 2% 0px;     
+    border-radius: 5px;
+    background: #fff;  
+    text-align:center;   
 }
 
 .close {
@@ -583,125 +417,68 @@ text-align:center;
     -moz-box-shadow:    0px 1px 0px 0px rgba(50, 50, 50, 0.47);
     box-shadow:         0px 1px 0px 0px rgba(50, 50, 50, 0.47);
   }
-/*SCROLL-----------------------------------------------------------------------*/
 
-#scroll {
-height:60px;
-margin-top:-60px;
-width:100%;
-background:url(../img/scroll.png) no-repeat bottom center scroll;
-position:relative;
-z-index:100;
-}
+@media only screen and (max-width : 425px) {
+    
+    .intro-header {
+        padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+        padding-bottom: 50px;
+        min-height:62%;
+        max-height:62%;
+        text-align: center;
+        color: #f8f8f8;
+        background: url(../img/intro-bg.png) no-repeat center center;
+        background-size: cover;
 
-#scroll a {
-    text-align: center;
-display: block;
-bottom: 0;
-position: absolute;
-left: 48%;
-color: transparent;
-width: 64px;
-height: 42px;
-
--webkit-transition:opacity 0.4s ease-in;
-transition:opacity 0.4s ease-in;
--moz-transition:opacity 0.4s ease-in;
--o-transition:opacity 0.4s ease-in;
-}
-
-
-.intro-message {
-    position: relative;
-    padding-top: 00%;
-    padding-bottom: 20%;
-}
-
-.intro-message > h1 {
-    margin: 0;
-    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
-    font-size: 5em;
-}
-
-.intro-divider {
-    width: 400px;
-    border-top: 1px solid #f8f8f8;
-    border-bottom: 1px solid rgba(0,0,0,0.2);
-}
-
-.intro-message > h3 {
-    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
-}
-
-@media(max-width:767px) {
-    .intro-message {
-        padding-bottom: 15%;
+        padding: 5% 0;
     }
 
-    .intro-message > h1 {
-        font-size: 3em;
+    .container{
+        padding: 10% 0;
     }
 
-    ul.intro-social-buttons > li {
-        display: block;
-        margin-bottom: 20px;
-        padding: 0;
+    .top-login{ /*header da janelinha do login*/
+        position:relative;
+        top:0px;
+        width:100%;
+        height:50px;
+        text-align:left;
+        padding-left:15%;
+
+        background-color:#108AC0;
+        color:white;
+        font-size:30px;
+        font-weight:300;
     }
 
-    ul.intro-social-buttons > li:last-child {
-        margin-bottom: 0;
-    }
-
-    .intro-divider {
+    .login{ /*janelinha do login*/
+        z-index:50;
+      
+        background-color:white;
+        position:inherit;
+        padding:0%;
+        margin-top:200px;
+        margin-left:auto;
+        margin-right:auto;
+        height:40%;
         width: 100%;
+        min-width:30%;
+        min-height:200px;
+        max-height:370px;
+        
+        -webkit-box-shadow: 5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+        -moz-box-shadow:    5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+        box-shadow:         5px 5px 0px 0px rgba(50, 50, 50, 0.2);
     }
-}
 
-.network-name {
-    text-transform: uppercase;
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 2px;
-}
+    .patrocinio {
+      margin-top:20px;
+      position:relative;
+      width:100%;
+      margin-left:auto;
+      margin-right:auto;
 
-/*CONTENT SECTION A-----------------------------------------------------------------------*/
-
-
-.content-section-a {
-    padding: 50px 0;
-    background-color: #F1F1F2;
-}
-
-.content-section-b {
-    padding: 50px 0;
-    border-top: 1px solid #e7e7e7;
-    border-bottom: 1px solid #e7e7e7;
-}
-
-.section-heading {
-    margin-bottom: 30px;
-}
-
-.section-heading-spacer {
-    float: left;
-    width: 200px;
-    border-top: 3px solid #e7e7e7;
-}
-
-@media only screen and (max-width : 450px) {
-
-.login {
-  width:100%;
-  margin-top:0px;
-}
-
-.patrocinio {
-  width:100%;
-}
-
-.col-lg-12 {
-  padding-right:0px;
-}
-
-
+      color: #f8f8f8;
+      z-index:999;
+      }
 }

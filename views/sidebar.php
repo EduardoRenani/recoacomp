@@ -64,17 +64,22 @@
 			                        	<?php echo WORDING_AVAILABLE_COURSES;?>
 			                 		</li>
 								</a>
+								<!-- Registrar nova disciplina -->
 								<a href="cadastro_disciplina.php">
 									<li>
 			                        	<?php echo WORDING_REGISTER_NOVA_DISCIPLINA;?>
 			                 		</li>
 								</a>
-								<!-- Cadastro de novo objeto -->													
+								<!-- Cadastro de novo objeto -->
 				                <a href="cadastro_OA.php">
 									<li> <!--class="activeOA"-->
 										<?php echo WORDING_REGISTER_NOVO_OA; ?><br>
 									</li>
-								</a>								
+								</a>
+								<select>
+								  <option value="1">Visão de aluno</option>
+								  <option value="2">Visão de professor</option>
+								</select>
 								<?php
 							}else if($_SESSION['acesso'] == 3)
 								echo WORDING_USER_ADMIN . "<br/>";

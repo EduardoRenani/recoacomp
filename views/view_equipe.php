@@ -5,9 +5,6 @@
     <!-- Custom CSS -->
     <link href="css/equipe.css" rel="stylesheet">
     <link href="css/base-cadastro.css" rel="stylesheet">
-    <link rel='stylesheet' media='screen and (min-width: 0px) and (max-width: 425px)' href='css/equipe-xs.css' />
-    <link rel='stylesheet' media='screen and (min-width: 425px) and (max-width: 1100px)' href='css/equipe-small.css' />
-    <link rel='stylesheet' media='screen and (min-width: 1100px)' href='css/equipe-large.css' />
 
     <!-- Custom Fonts -->
     <link href="font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">

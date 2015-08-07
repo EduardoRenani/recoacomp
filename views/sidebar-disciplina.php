@@ -17,6 +17,38 @@
 
 <!-- Fim Home -->
 
+    <script type="text/javascript">
+    //$(function() {
+		function mudaVisao(tipoVisao){
+        	var selectBox = document.getElementById("tipoVisao");
+    		var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+    		//console.log(selectedValue);
+    		//$.get("ajax/mudaVisao.php");
+    		
+    		//jQuery('#tipoVisao').load('ajax/mudaVisao.php?acesso=1');
+    		//
+    		//return false;
+    		jQuery.ajax({
+                type: "POST",
+                url: "ajax/mudaVisao.php",
+                data: { 
+                    tipoUsuario : 'tipoUsuario',
+                },
+                cache: false,
+                // importantinho.
+                error: function(e){
+                    alert(e);
+                },
+                success: function(response){
+                    console.log(response);
+                }
+            });
+            location.reload();
+        };
+	//});
+
+    </script>
+
 </head>
 
 <div class="sidebar"> 
@@ -49,6 +81,7 @@
 								<?php echo WORDING_REGISTER_NOVA_DISCIPLINA; ?><br>
 						</li>
 					</a>
+
 					<a href="cadastro_OA.php">
 						<li>
 								<?php echo WORDING_REGISTER_NOVO_OA; ?><br>
@@ -63,7 +96,13 @@
 								echo WORDING_USER_ADMIN . "<br/>";
 							?>
                     </li>
-                </a>
+                	</a>
+                	<form>
+                	<select id='tipoVisao' onchange="mudaVisao()"> <!-- -->
+						<option value="1">Visão de aluno</option>
+						<option value="2">Visão de professor</option>
+					</select>
+					</form>
                 </ul>
     	</div>  
 </div>
