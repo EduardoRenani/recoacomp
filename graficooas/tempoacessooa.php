@@ -13,6 +13,10 @@ class TempoAcessoOA {
 
 	private $tempoReal;
 
+	const TEMPO_MINIMO = 300;
+
+	const TEMPO_MAXIMO = 4800;
+
 	/**
 	 * Calculo do tempo real: Tempo Total - Tempo Ocioso
 	 */
@@ -42,6 +46,15 @@ class TempoAcessoOA {
 
 	public function getTempoReal() {
 		return $tempoReal;
+	}
+
+	public function validaTempoReal() {
+		if($this->getTempoReal() < self::TEMPO_MINIMO || $this->getTempoReal() > self::TEMPO_MAXIMO) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 }
 

@@ -30,6 +30,7 @@
 
             <?php
                 //print_r($_SESSION['acesso']);
+                // Trocar 2 por constante de acesso de administrador
                 if ($_SESSION['acesso'] == 2){
                     $idDisci = $disciplina->getIdDisciplinasMatriculadas($_SESSION['user_id']);
                     for ($i = 0; $i < sizeof($idDisci); $i++) {

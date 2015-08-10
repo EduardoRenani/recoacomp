@@ -19,6 +19,10 @@
 
     <script type="text/javascript">
     //$(function() {
+        function submitVisao(){
+            document.getElementById('tipoUsuario').submit();
+        }
+
 		function mudaVisao(tipoVisao){
         	var selectBox = document.getElementById("tipoVisao");
     		var selectedValue = selectBox.options[selectBox.selectedIndex].value;
@@ -28,11 +32,32 @@
     		//jQuery('#tipoVisao').load('ajax/mudaVisao.php?acesso=1');
     		//
     		//return false;
+            //console.log(selectedValue);
+            /*
+            jQuery.ajax({
+                url: 'ajax/mudaVisao.php',
+                type: 'POST',
+                data: {
+                    tipoVisao: selectedValue,
+                },
+                //dataType : 'json',
+                success: function(data, textStatus, xhr) {
+                    console.log(data); // do with data e.g success message
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    console.log(textStatus.reponseText);
+                }
+            });
+            location.reload();
+
+
+*/
+
     		jQuery.ajax({
                 type: "POST",
                 url: "ajax/mudaVisao.php",
                 data: { 
-                    tipoUsuario : 'tipoUsuario',
+                    tipoUsuario : 1,
                 },
                 cache: false,
                 // importantinho.
@@ -43,7 +68,7 @@
                     console.log(response);
                 }
             });
-            location.reload();
+            //location.reload();
         };
 	//});
 
@@ -77,28 +102,27 @@
 								include('_options_aluno.php'); 
 								//echo WORDING_USER_STUDENT . "<br />";
 							else if ($_SESSION['acesso'] == 2){
-								?>
-								<?php echo WORDING_REGISTER_NOVA_DISCIPLINA; ?><br>
+								echo WORDING_REGISTER_NOVA_DISCIPLINA; ?>
+                            <br>
 						</li>
 					</a>
-
 					<a href="cadastro_OA.php">
 						<li>
-								<?php echo WORDING_REGISTER_NOVO_OA; ?><br>
-								<!-- </li></a>
-								<a href="cadastro_competencia.php"><li>
-								<?php echo WORDING_REGISTER_NOVA_COMPETENCIA; ?><br>
-								</li></a> -->
-								<?php
-								//include('_options_professor.php'); 
-								//echo WORDING_USER_PROFESSOR . "<br/>";
-							}else if($_SESSION['acesso'] == 3)
-								echo WORDING_USER_ADMIN . "<br/>";
-							?>
-                    </li>
+							<?= WORDING_REGISTER_NOVO_OA; ?>
+                        <br>					
+                        </li>
                 	</a>
-                	<form>
-                	<select id='tipoVisao' onchange="mudaVisao()"> <!-- -->
+
+                    <?php
+                        //include('_options_professor.php'); 
+                        //echo WORDING_USER_PROFESSOR . "<br/>";
+                    }else if($_SESSION['acesso'] == 3)
+                        echo WORDING_USER_ADMIN . "<br/>";
+                    ?>
+
+
+                	<form method="post" action="index.php" id="tipoUsuario">
+                	<select id='tipoVisao' onchange="submitVisao();"> <!-- -->
 						<option value="1">Visão de aluno</option>
 						<option value="2">Visão de professor</option>
 					</select>

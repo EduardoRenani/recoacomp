@@ -1,4 +1,4 @@
-<?
-	$_SESSION['acesso'] = 1;
-	return true;
+<?php
+	$_SESSION['acesso'] = $_POST['tipoUsuario'];
+	print_r($_SESSION);
 ?>
