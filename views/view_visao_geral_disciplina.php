@@ -33,7 +33,8 @@ include('_header.php');
           .accordion({
             header: "> div > h3",
             active: false,
-            collapsible: true
+            collapsible: true,
+            heightStyle: "content"
           })
           .sortable({
             //axis: "y",
@@ -66,7 +67,7 @@ include('_header.php');
 
                 var numComp = <?php echo $numComp;?>
                 //$numComp =  ?>
-                //var numComp = <?php echo $_SESSION["numComp"] ?>;
+                
                 //console.log(this.children.length);     
                 //console.log(numComp-1);               
                 // Verifica se o número de competências é minimo                
@@ -96,7 +97,8 @@ include('_header.php');
           .accordion({
             header: "> div > h3",
             active: false,
-            collapsible: true
+            collapsible: true,
+            heightStyle: "content"
           })
           .sortable({
             //axis: "y",
@@ -273,6 +275,21 @@ include('_header.php');
                 //console.log(this.value);
             });
         });
+        $(document).ready(function(){
+            var icons = {
+            //"header": "ui-icon-plus", "activeHeader": "ui-icon-minus"
+            header: "ui-icon-plus",
+            activeHeader: "ui-icon-minus"
+            };
+            $("#objetos").accordion({
+                header: "> div > h3",
+                active: false,
+                collapsible: true,
+                icons: icons,
+                heightStyle: "content"
+            });
+
+        });
     </script>
 </head>
 
@@ -370,8 +387,10 @@ include('_header.php');
                                     </tbody>
                                 </table>        
                     </div> <!-- END TAB 2 -->
+                    <!-- Objetos associados a disciplina -->
                     <div id="tabs-3">
                         <!-- TODO -->
+                        <div id="objetos">
                         <?php 
                         require_once('classes/OA.php');
                         $disciplina = new Disciplina();
@@ -381,22 +400,36 @@ include('_header.php');
                         $arrayObjetos = array();
                         for ($i=0; $i < $qtdeComp; $i++){
                             $qtdeOA = count($listaOAS[$i]);
-                            echo '<pre>';
                             for($j=0; $j < $qtdeOA; $j++){
-                                // fazer o array push e o arrayunique
-                                //echo $listaOAS[$i][$j]['id_OA'];
-                                print_r($OA->getDadosOA($listaOAS[$i][$j]['id_OA']));
-
+                                $idObjeto = $listaOAS[$i][$j]['id_OA'];
+                                array_push($arrayObjetos, $idObjeto);
                             }
                         }
-                        //echo 
+                        // Remove Objetos Duplicados (talvez queiram saber quantas vezes esse objeto está aparecendo (?))
+                        $arrayObjetos = array_unique($arrayObjetos);
+                        foreach ($arrayObjetos as $idObjeto) {
+                            $dadosObjeto = $OA->getDadosOA($idObjeto);
+                            echo '
+                                <div class="group">
+                                    <h3>'.$dadosObjeto[0]['nome'].'</h3>
+                                    <div>
+                                        <dl>
+                                            <dt>Descrição</dt>
+                                                <dd>'.$dadosObjeto[0]['descricao'].'</dd>
+                                            <br>
+                                            <dt>URL</dt>
+                                                <dd><a href="'.$dadosObjeto[0]['url'].'">'.$dadosObjeto[0]['url'].'</a></dd>
+                                            <br>
+                                            <dt>Idioma</dt>
+                                                <dd>'.$dadosObjeto[0]['idioma'].'</dd>
+                                            <br>
+                                        </dl>
+                                    </div>
+                                </div>';
+                        }
                         ?>
-
-
-
-
-
-                    </div>
+                        </div><!-- END DIV objetos -->
+                    </div><!-- END TAB 3-->
                     <!-- Dados da competência -->
                     <div id="tabs-4">
                         <!-- Lista de competências -->

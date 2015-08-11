@@ -7,39 +7,61 @@
  */
 
 class IndicesOA {
+	private $idOA;
+
 	private $indiceRejeicao;
 
-	private $indiceRelevancia;
+	private $acessosOA;
+
+	function __construct() {
+		$this->acessosOA = new AcessosOA;
+		$this->calculaIndiceRejeicao();
+	}
+
+	public function calculaIndiceRejeicao() {
+		setIndiceRejeicao($this->getAcessosOA()->getAcessosInvalidos()/$this->getAcessosOA()->getTotalAcessos());
+	}
+
+	public function getIdOA() {
+		return $this->idOA;
+	}
+
+	public function setIdOA($idOA) {
+		$this->validaInteiro($idOA);
+		$this->idOA = $idOA;
+	}
+
+	public function getIndiceRejeicao() {
+		return $this->indiceRejeicao;
+	}
+
+	public function setIndiceRejeicao($indice) {
+		$this->validaFloat($indice);
+		$this->indiceRejeicao = $indice;
+	}
+
+	public function getAcessosOA() {
+		return $this->acessosOA;
+	}
 
 	/**
-	 * Calculo do tempo real: Tempo Total - Tempo Ocioso
+	 * Verifica se variável é do tipo inteiro
+	 * @throws InvalidArgumentException em caso de argumento inválido
 	 */
-	public function calculaTempoReal() {
-		$this->setTempoReal($this->getTempoTotal()-$this->getTempoOcioso());
+	private validaInteiro($variavel) {
+		if(!is_float($variavel)) {
+			throw new InvalidArgumentException("Erro! Esperava receber inteiro, recebeu ".gettype($variavel), E_USER_ERROR);
+		}
 	}
 
-	public function setTempoTotal($tempo) {
-		$tempoTotal = $tempo;
-	}
-
-	public function getTempoTotal() {
-		return $tempoTotal;
-	}
-
-	public function setTempoOcioso($tempo) {
-		$tempoOcioso = $tempo;
-	}
-
-	public function getTempoOcioso() {
-		return $tempoOcioso;
-	}
-
-	public function setTempoReal($tempo) {
-		$tempoReal = $tempo;
-	}
-
-	public function getTempoReal() {
-		return $tempoReal;
+	/**
+	 * Verifica se variável é do tipo float
+	 * @throws InvalidArgumentException em caso de argumento inválido
+	 */
+	private validaFloat($variavel) {
+		if(!is_float($variavel)) {
+			throw new InvalidArgumentException("Erro! Esperava receber float, recebeu ".gettype($variavel), E_USER_ERROR);
+		}
 	}
 }
 

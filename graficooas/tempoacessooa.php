@@ -7,53 +7,40 @@
  */
 
 class TempoAcessoOA {
-	private $tempoTotal;
-
-	private $tempoOcioso;
-
-	private $tempoReal;
-
 	const TEMPO_MINIMO = 300;
 
 	const TEMPO_MAXIMO = 4800;
 
-	/**
-	 * Calculo do tempo real: Tempo Total - Tempo Ocioso
-	 */
-	public function calculaTempoReal() {
-		$this->setTempoReal($this->getTempoTotal()-$this->getTempoOcioso());
-	}
+	const OA_ACESSADO = 1;
 
-	public function setTempoTotal($tempo) {
-		$tempoTotal = $tempo;
-	}
+	const OA_NAO_ACESSADO = 0;
 
-	public function getTempoTotal() {
-		return $tempoTotal;
-	}
+	private $tempoReal;
 
-	public function setTempoOcioso($tempo) {
-		$tempoOcioso = $tempo;
-	}
-
-	public function getTempoOcioso() {
-		return $tempoOcioso;
-	}
+	private $acessoValido = OA_NAO_ACESSADO;
 
 	public function setTempoReal($tempo) {
-		$tempoReal = $tempo;
+		$this->tempoReal = $tempo;
 	}
 
 	public function getTempoReal() {
-		return $tempoReal;
+		return $this->tempoReal;
+	}
+
+	public function validaAcesso() {
+		$this->acessoValido = self::OA_ACESSADO;
+	}
+
+	public function getAcessoValido() {
+		return $this->acessoValido;
 	}
 
 	public function validaTempoReal() {
 		if($this->getTempoReal() < self::TEMPO_MINIMO || $this->getTempoReal() > self::TEMPO_MAXIMO) {
-			return false;
+			return;
 		}
 		else {
-			return true;
+			$this->validaAcesso();
 		}
 	}
 }
