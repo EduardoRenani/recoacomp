@@ -9,19 +9,22 @@
 			    //Declara um "conteiner" de dados para serem enviados por POST
 			    var formData = new FormData();
 
-			    var dadosEnviados;
+			    var dadosEnviados = [];
 
 			    var getDadosEnviados = function () {
 			    	return dadosEnviados;
 			    };
 
-			    var setDadosEnviados = function (dados, index) {
+			    this.setDadosEnviados = function (dados, index) {
 			    	dadosEnviados[index] = dados;
+			    	console.log(dadosEnviados[index]);
 			    };
 
 			    this.adicionaDataPost = function () {
 				    //Adiciona uma variável ao "contêiner", no caso, a variável 'variavel' que contém o dado 'dado'
-				    formData.append('dadosEnviados', getDadosEnviados()); //$_POST['variavel'] === 'dado
+				    console.log(getDadosEnviados());
+				    console.log(JSON.stringify(getDadosEnviados()));
+				    formData.append('dadosEnviados', JSON.stringify(getDadosEnviados())); //$_POST['variavel'] === 'dado
 			    };
 			    
 			    this.abreAjax = function (pagina, tipoData) {
@@ -33,6 +36,7 @@
 					meu_ajax.onreadystatechange = function () {
 				        if ( meu_ajax.readyState === 4 ) { //readyState === 4: terminou/completou a requisição
 				            if ( meu_ajax.status === 200 ) { //status === 200: sucesso
+				                console.log(meu_ajax.responseText);
 				                return true;
 				            } else if ( meu_ajax.status !== 0 ) { //status !== 200: erro ( meu_ajax.status === 0: ajax não enviado )
 				                console.log( 'DEU ERRO NO AJAX: '+meu_ajax.responseText );
@@ -47,6 +51,11 @@
 			}
 
 			function TempoGasto() {
+				const ID_USUARIO = 0;
+				const ID_DISCIPLINA = 1;
+				const ID_OA = 2;
+				const TEMPO_REAL = 3;
+
 				var tempoReal = 0;
 			    var tempoTotal = 0;
 			    var tempoOcioso = 0;
@@ -105,13 +114,12 @@
 			    	clearTimeout(window.tCalculaTempoOcioso);
 			    };
 
-			    this.registraAcesso = function() {
-			    	alert("oi");
+			    var registraAcesso = function() {
 				    oAjax = new Ajax();
-				    oAjax.adicionaDataPost(1, "idUsuario");
-				    oAjax.adicionaDataPost(1, "idDisciplina");
-				    oAjax.adicionaDataPost(1, "idOA");
-				    oAjax.adicionaDataPost(getTempoReal(), "tempoReal");
+				    oAjax.setDadosEnviados(<?=$_GET['idUsuario']?>, ID_USUARIO);
+				    oAjax.setDadosEnviados(<?=$_GET['idDisciplina']?>, ID_DISCIPLINA);
+				    oAjax.setDadosEnviados(<?=$_GET['idOA']?>, ID_OA);
+				    oAjax.setDadosEnviados(getTempoReal(), TEMPO_REAL);
 				    oAjax.adicionaDataPost();
 				    oAjax.abreAjax("cadastraAcesso.php", "POST");
 				    oAjax.getRetornoAjax();
@@ -122,17 +130,16 @@
 
 			    window.onfocus = paraTempoOcioso;
 
-			    window.onbeforeunload = function (evt) {
-					//registraAcesso();
-					return "Tempo decorrido: "+getTempoTotal()+"\nTempo ocioso: "+getTempoOcioso()+"\nTempo real: "+getTempoReal();
-				};
+				$(window).bind('beforeunload', function(){ 
+					return registraAcesso();
+				});
 			}
 
 			function document_OnLoad() {
 			    oTempoGasto = new TempoGasto();
 			    oTempoGasto.iniciaTempoTotal();
-			    oTempoGasto.registraAcesso();
 			}
+			
 		</script>
 	</head>
 	<body onload="document_OnLoad();">

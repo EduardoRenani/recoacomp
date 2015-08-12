@@ -10,9 +10,9 @@ require_once('config.cfg');
  */
 
 class AcessosOA {
-	const OA_ACESSADO = 1;
+	const TEMPO_MINIMO = 120;
 
-	const OA_NAO_ACESSADO = 0;
+	const TEMPO_MAXIMO = 4800;
 
 	/**
 	 * Id do usuário que acessou a página do objeto de aprendizagem
@@ -43,6 +43,67 @@ class AcessosOA {
 	 */
 	function __construct() {
 		$this->tempoAcessoOA = new TempoAcessoOA;
+	}
+
+	/**
+	 * Insere os dados de acesso do objeto de aprendizagem no banco de dados
+	 * @throws Exception Em caso de erro
+	 */
+	public function salvaDados() {
+		try {
+			$this->validaDados();
+			$this->getTempoAcessoOA()->validaTempoReal();
+			$dados = $this->getDados();
+			var_dump($dados);
+			$database = new Database();
+    		$sql = "INSERT INTO acessos_oa (id, id_usuario, id_disciplina, id_oa, tempo_acesso) 
+    		VALUES (:id, :idUsuario, :idDisciplina, :idOA, :tempoReal)";
+	        $database->query($sql);
+	        $database->bind(":id", NULL);
+	        $database->bind(":idUsuario", $dados['idUsuario']);
+	        $database->bind(":idDisciplina", $dados['idDisciplina']);
+	        $database->bind(":idOA", $dados['idOA']);
+	        $database->bind(":tempoReal", $dados['tempoReal']);
+	        var_dump($database->execute());
+		}
+		catch(Exception $e) {
+			trigger_error("Erro ao cadastrar no banco de dados!".$e->getMessage(), $e->getCode());
+		}
+	}
+
+	/**
+	 * Retorna dados para inserir no0 banco de dados
+	 * @return array $dados = array("idUsuario"    => $idUsuario,
+	 *								"idDisciplina" => $idDisciplina,
+	 *								"idOA"         => $idOA,
+	 *								"tempoReal"    => $tempoReal
+	 *								);
+	 */
+	private function getDados() {
+		$dados['idUsuario'] = $this->getIdUsuario();
+		$dados['idDisciplina'] = $this->getIdDisciplina();
+		$dados['idOA'] = $this->getIdOA();
+		$dados['tempoReal'] = $this->getTempoAcessoOA()->getTempoReal();
+		return $dados;
+	}
+
+	/**
+	 * Insere os dados de acesso do objeto de aprendizagem no banco de dados
+	 * @throws InvalidArgumentException Em caso de argumento inválido
+	 */
+	private function validaDados() {
+		if(is_null($this->getIdUsuario())) {
+			throw new InvalidArgumentException("Erro! Id usuário nulo!");
+		}
+		if(is_null($this->getIdDisciplina())) {
+			throw new InvalidArgumentException("Erro! Id disciplina nulo!");
+		}
+		if(is_null($this->getIdOA())) {
+			throw new InvalidArgumentException("Erro! Id objeto de aprendizagem nulo!");
+		}
+		if(is_null($this->getTempoAcessoOA())) {
+			throw new InvalidArgumentException("Erro! Objeto tempo de acesso nulo!");
+		}
 	}
 
 	/**
@@ -101,83 +162,21 @@ class AcessosOA {
 	}
 
 	/**
-	 * Insere os dados de acesso do objeto de aprendizagem no banco de dados
-	 * @throws Exception Em caso de erro
-	 */
-	public function salvaDados() {
-		try {
-			$this->validaDados();
-			$this->getTempoAcessoOA()->validaTempoReal();
-			$dados = $this->getDados();
-			var_dump($dados);
-			$database = new Database();
-    		$sql = "INSERT INTO acessos_oa (id, id_usuario, id_disciplina, id_oa, tempo_acesso, acesso_valido) 
-    		VALUES (:id, :idUsuario, :idDisciplina, :idOA, :tempoReal, :acessoValido)";
-	        $database->query($sql);
-	        $database->bind(":id", NULL);
-	        $database->bind(":idUsuario", $dados['idUsuario']);
-	        $database->bind(":idDisciplina", $dados['idDisciplina']);
-	        $database->bind(":idOA", $dados['idOA']);
-	        $database->bind(":tempoReal", $dados['tempoReal']);
-	        $database->bind(":acessoValido", $dados['acessoValido']);
-	        var_dump($database->execute());
-		}
-		catch(Exception $e) {
-			trigger_error("Erro ao cadastrar no banco de dados!".$e->getMessage(), $e->getCode());
-		}
-	}
-
-	/**
-	 * Retorna dados para inserir no0 banco de dados
-	 * @return array $dados = array("idUsuario"    => $idUsuario,
-	 *								"idDisciplina" => $idDisciplina,
-	 *								"idOA"         => $idOA,
-	 *								"tempoReal"    => $tempoReal,
-	 *								"acessoValido" => $acessoValido
-	 *								);
-	 */
-	private function getDados() {
-		$dados['idUsuario'] = $this->getIdUsuario();
-		$dados['idDisciplina'] = $this->getIdDisciplina();
-		$dados['idOA'] = $this->getIdOA();
-		$dados['tempoReal'] = $this->getTempoAcessoOA()->getTempoReal();
-		$dados['acessoValido'] = $this->getTempoAcessoOA()->getAcessoValido();
-		return $dados;
-	}
-
-	/**
-	 * Insere os dados de acesso do objeto de aprendizagem no banco de dados
-	 * @throws InvalidArgumentException Em caso de argumento inválido
-	 */
-	private function validaDados() {
-		if(is_null($this->getIdUsuario())) {
-			throw new InvalidArgumentException("Erro! Id usuário nulo!");
-		}
-		if(is_null($this->getIdDisciplina())) {
-			throw new InvalidArgumentException("Erro! Id disciplina nulo!");
-		}
-		if(is_null($this->getIdOA())) {
-			throw new InvalidArgumentException("Erro! Id objeto de aprendizagem nulo!");
-		}
-		if(is_null($this->getTempoAcessoOA())) {
-			throw new InvalidArgumentException("Erro! Objeto tempo de acesso nulo!");
-		}
-	}
-
-	/**
 	 * @return object tempoAcessoOA
 	 */
 	public function getTempoAcessoOA() {
 		return $this->tempoAcessoOA;
 	}
 
-	public function getAcessosInvalidos($idOA) {
+	public function getAcessosInvalidos($dados) {
 		try {
 			$database = new Database;
-        	$sql = "SELECT * FROM acessos_oa WHERE id_oa = :idOA AND acesso_valido = :acessoValido";
+        	$sql = "SELECT * FROM acessos_oa WHERE id_oa = :idOA AND id_disciplina = :idDisciplina AND tempo_acesso >= :tempoMinimo AND tempo_acesso <= :tempoMaximo";
         	$database->query($sql);
-        	$database->bind(":idOA", $idOA);
-        	$database->bind(":idValido", self::OA_NAO_ACESSADO);
+        	$database->bind(":idOA", $dados['idOA']);
+        	$database->bind(":idDisciplina", $dados['idDisciplina']);
+        	$database->bind(":tempoMinimo", self::TEMPO_MINIMO);
+        	$database->bind(":tempoMaximo", self::TEMPO_MAXIMO);
         	$database->execute();
         	return $database->rowCount();
 		}
@@ -186,12 +185,13 @@ class AcessosOA {
 		}
 	}
 
-	public function getTotalAcessos($idOA) {
+	public function getTotalAcessos($dados) {
 		try {
 			$database = new Database;
-        	$sql = "SELECT * FROM acessos_oa WHERE id_oa = :idOA";
+        	$sql = "SELECT * FROM acessos_oa WHERE id_oa = :idOA AND id_disciplina = :idDisciplina";
         	$database->query($sql);
-        	$database->bind(":idOA", $idOA);
+        	$database->bind(":idOA", $dados['idOA']);
+        	$database->bind(":idDisciplina", $dados['idDisciplina']);
         	$database->execute();
         	return $database->rowCount();
 		}
@@ -200,13 +200,15 @@ class AcessosOA {
 		}
 	}
 
-	public function getAcessosValidos($idOA) {
+	public function getAcessosValidos($dados) {
 		try {
 			$database = new Database;
-        	$sql = "SELECT * FROM acessos_oa WHERE id_oa = :idOA AND acesso_valido = :acessoValido";
+        	$sql = "SELECT * FROM acessos_oa WHERE id_oa = :idOA AND id_disciplina = :idDisciplina AND tempo_acesso >= :tempoMinimo AND tempo_acesso <= :tempoMaximo";
         	$database->query($sql);
-        	$database->bind(":idOA", $idOA);
-        	$database->bind(":idValido", self::OA_ACESSADO);
+        	$database->bind(":idOA", $dados['idOA']);
+        	$database->bind(":idDisciplina", $dados['idDisciplina']);
+        	$database->bind(":tempoMinimo", self::TEMPO_MINIMO);
+        	$database->bind(":tempoMaximo", self::TEMPO_MAXIMO);
         	$database->execute();
         	return $database->rowCount();
 		}

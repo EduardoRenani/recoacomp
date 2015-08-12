@@ -6,10 +6,10 @@
  * Time: 14:50
  */
 
-require_once('config/config.cfg');
-require_once('classes/Login.php');
-require_once('translations/pt_br.php');
-require_once('classes/Database.php');
+require_once('config.cfg');
+require_once('Login.php');
+require_once('pt_br.php');
+require_once('Database.php');
 
 class Disciplina {
     /**
@@ -958,7 +958,6 @@ class Disciplina {
         arsort($indicesRejeicao);
         return $indicesRejeicao;
     }
-
 
     public function setIdDisciplina($id) {
         if(!is_int($id)) {
