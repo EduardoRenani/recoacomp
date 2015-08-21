@@ -775,7 +775,19 @@ class OA{
         $database->query($sql);
         $database->bind(":idOA", $idOA);
         return $database->resultSet();
-        }
+    }
+
+    /**
+     * Função que retorna dados da categoria vida de um OA
+     * @param $idCategoriaVida
+     */
+    public function getDadosCategoriaVidaOA($idCategoriaVida){
+        $database = new Database();
+        $sql = "SELECT * FROM categoria_vida WHERE idcategoria_vida = :idCategoriaVida";
+        $database->query($sql);
+        $database->bind(":idCategoriaVida", $idCategoriaVida);
+        return $database->resultSet();
+    }
     
 } // Fecha CLass
 

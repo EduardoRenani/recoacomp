@@ -13,17 +13,52 @@ class IndicesOA {
 
 	private $indiceRejeicao;
 
+	private $indiceRelevancia;
+
 	private $acessosOA;
 
-	function __construct() {
-		$this->acessosOA = new AcessosOA;
+	function __construct($dados) {
+		$this->acessosOA = new AcessosOA($dados);
+		if(!is_null($dados)) {
+			$this->carregaDados($dados);
+		}
+	}
+
+	private function carregaDados($dados) {
+		$this->setIdOA($dados['idOA']);
+		$this->setIdDisciplina($dados['idDisciplina']);
+		$this->calculaIndiceRejeicao();
 	}
 
 	public function calculaIndiceRejeicao() {
 		$dados = array( "idOA" => $this->getIdOA(),
 						"idDisciplina" => $this->getIdDisciplina()
 						);
-		$this->setIndiceRejeicao(floatval($this->getAcessosOA()->getAcessosInvalidos($dados)/$this->getAcessosOA()->getTotalAcessos($dados)));
+
+		$indiceRejeicao = $this->getAcessosOA()->getAcessosInvalidos()/$this->getAcessosOA()->getAcessosTotais();
+		
+		$this->setIndiceRejeicao(floatval($indiceRejeicao));
+	}
+
+	public function calculaIndiceRelevancia($idOAMaisAcessosValidos) {
+		$dados = array( "idOA" => $this->getIdOA(),
+						"idDisciplina" => $this->getIdDisciplina()
+						);
+
+		$dadosOAMaisAcessosValidos = array( "idOA" => $idOAMaisAcessosValidos,
+											"idDisciplina" => $this->getIdDisciplina()
+											);
+
+		echo $dadosOAMaisAcessosValidos['idOA'];
+		echo "<pre>";
+		var_dump($this->getAcessosOA()->getMaisAcessosValidos($dadosOAMaisAcessosValidos));
+		echo "</pre>";
+
+		$indiceRelevancia = $this->getAcessosOA()->getAcessosValidos()/$this->getAcessosOA()->getMaisAcessosValidos($dadosOAMaisAcessosValidos);
+		$indiceRelevancia += $this->getAcessosOA()->getTempoAcessoOA()->getTempoMedioOA()/$this->getAcessosOA()->getTempoAcessoOA()->getTempoMedioTodosOAS();
+		$indiceRelevancia *= (1-$this->getIndiceRejeicao());
+
+		$this->setIndiceRelevancia(floatval($indiceRelevancia));
 	}
 
 	public function getIdOA() {
@@ -33,6 +68,7 @@ class IndicesOA {
 	public function setIdOA($idOA) {
 		$this->validaInteiro($idOA);
 		$this->idOA = $idOA;
+		$this->getAcessosOA()->setIdOA($idOA);
 	}
 
 	public function getIdDisciplina() {
@@ -42,6 +78,7 @@ class IndicesOA {
 	public function setIdDisciplina($idDisciplina) {
 		$this->validaInteiro($idDisciplina);
 		$this->idDisciplina = $idDisciplina;
+		$this->getAcessosOA()->setIdDisciplina($idDisciplina);
 	}
 
 	public function getIndiceRejeicao() {
@@ -51,6 +88,15 @@ class IndicesOA {
 	public function setIndiceRejeicao($indice) {
 		$this->validaFloat($indice);
 		$this->indiceRejeicao = $indice;
+	}
+
+	public function getIndiceRelevancia() {
+		return $this->indiceRelevancia;
+	}
+
+	public function setIndiceRelevancia($indice) {
+		$this->validaFloat($indice);
+		$this->indiceRelevancia = $indice;
 	}
 
 	public function getAcessosOA() {

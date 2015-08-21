@@ -19,6 +19,8 @@ arsort($indicesRejeicao);
 var_dump($indicesRejeicao);*/
 $disciplina = new Disciplina;
 $disciplina->setIdDisciplina(44);
-$indicesRejeicao = $disciplina->getIndicesRejeicao();
-var_dump($indicesRejeicao);
+$indices = $disciplina->getIndices();
+echo "<pre>";
+var_dump($indices);
+echo "</pre>";
 ?>

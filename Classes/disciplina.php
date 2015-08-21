@@ -952,11 +952,51 @@ class Disciplina {
             $indicesOA[$index] = new IndicesOA;
             $indicesOA[$index]->setIdOA(intval($idOA[0]["id_OA"]));
             $indicesOA[$index]->setIdDisciplina($this->idDisciplina);
-            $indicesOA[$index]->calculaIndiceRejeicao();
-            $indicesRejeicao[$idOA[0]["id_OA"]] = $indicesOA[$index]->getIndiceRejeicao();
+            if($indicesOA[$index]->getAcessosOA()->temAcessos()) {
+                $indicesOA[$index]->calculaIndiceRejeicao();
+                $indicesRejeicao[$idOA[0]["id_OA"]] = $indicesOA[$index]->getIndiceRejeicao();
+            }
+            else 
+                return NULL;
         }
         arsort($indicesRejeicao);
         return $indicesRejeicao;
+    }
+
+
+/* COMENTEI PQ TAVA DANDO ERRO :V - Delton
+    //Retorna os índices de relevância do objeto
+    public function getIndicesRelevancia($idOAMaisAcessosValidos) {
+        $oas = $this->listaObjetosDisciplina($this->idDisciplina);
+        foreach($oas as $index => $idOA){
+            $indicesOA[$index] = new IndicesOA;
+            $indicesOA[$index]->setIdOA(intval($idOA[0]["id_OA"]));
+            $indicesOA[$index]->setIdDisciplina($this->idDisciplina);
+            if($indicesOA[$index]->getAcessosOA()->temAcessos() {
+                $indicesOA[$index]->calculaIndiceRelevancia($idOAMaisAcessosValidos);
+                $indicesRelevancia[$idOA[0]["id_OA"]] = $indicesOA[$index]->getIndiceRelevancia();
+            }
+            else{
+                return NULL;
+            }
+        };
+        arsort($indicesRelevancia);
+        return $indicesRelevancia;
+    }
+    */
+
+    public function getOAMaisAcessosValidos() {
+        if(!is_null($this->getIndicesRejeicao())) {
+            $oas = $this->getIndicesRejeicao();
+            asort($oas);
+            return key($oas);
+        }
+        else
+            return NULL;
+    }
+
+    public function getIdDisciplina() {
+        return $this->idDisciplina;
     }
 
 

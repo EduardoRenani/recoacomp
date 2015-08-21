@@ -237,9 +237,10 @@ li {
 input[type=submit]{ /*customiza input de submit*/ 
   /*height: 50px; TODO ARRUMAR ESSES BOTÕES*/
   border: 0;
-  width:150px;
+  width:180px;
   white-space: normal;
   text-align:center;
+  height: 50px;
   
 
 

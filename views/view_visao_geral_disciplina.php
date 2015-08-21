@@ -409,6 +409,15 @@ include('_header.php');
                         $arrayObjetos = array_unique($arrayObjetos);
                         foreach ($arrayObjetos as $idObjeto) {
                             $dadosObjeto = $OA->getDadosOA($idObjeto);
+                            // Pega dados da categoria vida
+                            $idCategoriaVida = $dadosObjeto[0]['idcategoria_vida']; 
+                            $dadosCategoriaVida = $OA->getDadosCategoriaVidaOA($idCategoriaVida);
+                            //echo '<pre>';
+                            //print_r($dadosCategoriaVida);
+                            
+                            // Faz explode nas palavras chaves do objeto
+                            $keyWords  = $dadosObjeto[0]['palavraChave'];
+                            $palavrasChaves = explode(",", $keyWords);
                             echo '
                                 <div class="group">
                                     <h3>'.$dadosObjeto[0]['nome'].'</h3>
@@ -418,11 +427,40 @@ include('_header.php');
                                                 <dd>'.$dadosObjeto[0]['descricao'].'</dd>
                                             <br>
                                             <dt>URL</dt>
-                                                <dd><a href="'.$dadosObjeto[0]['url'].'">'.$dadosObjeto[0]['url'].'</a></dd>
+                                                <dd><a href="'.$dadosObjeto[0]['url'].'" target="_blank">'.$dadosObjeto[0]['url'].'</a></dd>
                                             <br>
-                                            <dt>Idioma</dt>
-                                                <dd>'.$dadosObjeto[0]['idioma'].'</dd>
+                                            <dt>Idioma</dt>';
+                                            // Reescreve com acentos
+                                            if ($dadosObjeto[0]['idioma'] == 'portugues'){
+                                                echo '<dd>Português</dd>';
+                                            } else if($dadosObjeto[0]['idioma'] == 'espanhol'){
+                                                echo '<dd>Espanhol</dd>';
+                                            } else if($dadosObjeto[0]['idioma'] == 'ingles'){
+                                                echo '<dd>Inglês</dd>';
+                                            };
+                                            echo '<br>
+                                            <dt>Palavra(s)-chave</dt>';
+                                                foreach ($palavrasChaves as $palavra) {
+                                                    echo '<dd>'.ucfirst($palavra).'</dd>';
+                                                };
+                                            echo '
                                             <br>
+                                            <dt>Categoria Vida</dt>';
+                                                //$data = date("d-m-Y", strtotime($originalDate));
+                                                $originalDate = $dadosCategoriaVida [0]['data_2'];
+                                                $status = $dadosCategoriaVida [0]['status_2'];
+                                                $versao = $dadosCategoriaVida [0]['versao'];
+                                                $entidade = $dadosCategoriaVida [0]['entidade'];
+                                                $contribuicao = $dadosCategoriaVida [0]['contribuicao'];
+                                                if ($originalDate == NULL){
+                                                    echo 'nada';
+                                                }
+                                                echo '<dd> Data: '.date("d-m-Y", strtotime($originalDate)).'</dd>';
+                                                echo '<dd> Status: '.$status.'</dd>';
+                                                echo '<dd> Versao: '.$versao.'</dd>';
+                                                echo '<dd> Entidade: '.$entidade.'</dd>';
+                                                echo '<dd> Contribuição: '.$contribuicao.'</dd>';
+                                            echo '
                                         </dl>
                                     </div>
                                 </div>';

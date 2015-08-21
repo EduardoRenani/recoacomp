@@ -117,7 +117,7 @@
                                             "<br><a href='#openModalDeleteDisciplina' id=".$listaDisciplina[3][$i][0]." class='botao-med' onClick='getDisciplinaId(this.id)'>Excluir</a>". // 
                                         "</div>".
                                     "</div>".
-                                    "<div style='float: right; width: 20%; text-align: right;'>".
+                                    "<div style='display: block;'>".
                                         "<form method='post' action='editar_disciplina.php' name='senha_disciplina'>".
                                             "<input type='hidden' id='idDisciplina' name='idDisciplina' value=".$listaDisciplina[3][$i][0]." />".
                                             "<input type='submit' name='editar_disciplina.php' action='' value='Ver Disciplina' />".

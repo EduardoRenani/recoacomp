@@ -945,18 +945,80 @@ class Disciplina {
         }
     } //End Função
 
-    //Retorna os índices de rejeição do objeto
-    public function getIndicesRejeicao() {
+    public function getIndices() {
         $oas = $this->listaObjetosDisciplina($this->idDisciplina);
-        foreach($oas as $index => $idOA) {
-            $indicesOA[$index] = new IndicesOA;
-            $indicesOA[$index]->setIdOA(intval($idOA[0]["id_OA"]));
-            $indicesOA[$index]->setIdDisciplina($this->idDisciplina);
-            $indicesOA[$index]->calculaIndiceRejeicao();
-            $indicesRejeicao[$idOA[0]["id_OA"]] = $indicesOA[$index]->getIndiceRejeicao();
+        $dados = array( 'idOA' => NULL,
+                        'idDisciplina' => $this->getIdDisciplina());
+
+        $indicesOAS = $this->getIndicesOAS($oas, $dados);
+
+        $indicesRejeicao = $this->getIndicesRejeicao($indicesOAS);
+
+        $idOAMaisAcessosValidos = $this->getOAMaisAcessosValidos($indicesRejeicao);
+
+        $indicesRelevancia = $this->getIndicesRelevancia($indicesOAS, $idOAMaisAcessosValidos);
+
+        $topDezOAS = $this->topDezOASMaisAcessados($indicesOAS);
+
+        $indices = array(   'indices_rejeicao'   => $indicesRejeicao, 
+                            'indices_relevancia' => $indicesRelevancia,
+                            'top_10'             => $topDezOAS
+                            );
+
+        return $indices;
+    }
+
+    protected function topDezOASMaisAcessados($indicesOAS) {
+        foreach ($indicesOAS as $oas) {
+            $topDezOAS[$oas->getIdOA()] = $oas->getAcessosOA()->getAcessosValidos();
         }
-        arsort($indicesRejeicao);
+
+        arsort($topDezOAS);
+
+        array_slice($topDezOAS, 10);
+
+        return $topDezOAS;
+    }
+
+    //Retorna os índices de rejeição do objeto
+    protected function getIndicesOAS($oas, $dados) {
+        foreach($oas as $index => $idOA) {
+            $dados['idOA'] = intval($idOA[0]["id_OA"]);
+            $indicesOAS[$index] = new IndicesOA($dados);
+        }
+        return $indicesOAS;
+    }
+
+    //Retorna os índices de rejeição do objeto
+    protected function getIndicesRejeicao($indicesOAS) {
+        foreach($indicesOAS as $indiceOA) {
+            $indicesRejeicao[$indiceOA->getIdOA()] = $indiceOA->getIndiceRejeicao();
+        }
+        asort($indicesRejeicao);
         return $indicesRejeicao;
+    }
+
+    //Retorna os índices de rejeição do objeto
+    protected function getIndicesRelevancia($indicesOAS, $idOAMaisAcessosValidos) {
+        foreach($indicesOAS as $indiceOA) {
+            $indiceOA->calculaIndiceRelevancia($idOAMaisAcessosValidos);
+            $indicesRelevancia[$indiceOA->getIdOA()] = $indiceOA->getIndiceRelevancia();
+        }
+        arsort($indicesRelevancia);
+        return $indicesRelevancia;
+    }
+
+    protected function getOAMaisAcessosValidos($indicesRejeicao) {
+        if(!is_null($indicesRejeicao)) {
+            asort($indicesRejeicao);
+            return key($indicesRejeicao);
+        }
+        else
+            return NULL;
+    }
+
+    public function getIdDisciplina() {
+        return $this->idDisciplina;
     }
 
     public function setIdDisciplina($id) {

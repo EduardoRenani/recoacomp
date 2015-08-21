@@ -15,10 +15,10 @@ class AcessosOA {
 	const TEMPO_MAXIMO = 4800;
 
 	/**
-	 * Id do usuário que acessou a página do objeto de aprendizagem
-	 * @var int id do usuário
+	 * Id dos usuários que acessaram a página do objeto de aprendizagem
+	 * @var array id dos usuários
 	 */
-	private $idUsuario;
+	private $idUsuarios;
 
 	/**
 	 * Id da disciplina a qual o objeto de aprendizagem está associado
@@ -32,6 +32,12 @@ class AcessosOA {
 	 */
 	private $idOA;
 
+	private $acessosTotais;
+
+	private $acessosValidos;
+
+	private $acessosInvalidos;
+
 	/**
 	 * Objeto que possui métodos e parâmetros para tratar o tempo de acesso do objeto de aprendizagem
 	 * @var object tempo de acesso do objeto de aprendizagem
@@ -41,8 +47,38 @@ class AcessosOA {
 	/**
 	 * Quando instancia o objeto, seta as variáveis de instâncias 'tempoAcessoOA' e 'indicesOA'
 	 */
-	function __construct() {
-		$this->tempoAcessoOA = new TempoAcessoOA;
+	function __construct($dados = NULL) {
+		$this->tempoAcessoOA = new TempoAcessoOA($dados);
+		if(!is_null($dados)) {
+			$this->carregaDados($dados);
+		}
+	}
+
+	/**
+	 * Carrega os dados do OA pelo banco de dados
+	 * @param int Id do usuário
+	 * @throws Exception Em caso de erro
+	 */
+	public function carregaDados($dados) {
+		try {
+			$this->setIdOA($dados['idOA']);
+			$this->setIdDisciplina($dados['idDisciplina']);
+			$this->calculaTotalAcessos($dados);
+			$this->calculaAcessosValidos($dados);
+			$this->calculaAcessosInvalidos($dados);
+			echo "<pre>";
+			var_dump($this->getAcessosTotais());
+			echo "</pre>";
+			echo "<pre>";
+			var_dump($this->getAcessosValidos());
+			echo "</pre>";
+			echo "<pre>";
+			var_dump($this->getAcessosInvalidos());
+			echo "</pre>";
+		}
+		catch(Exception $e) {
+			trigger_error("Erro ao carregar dados do banco!".$e->getMessage(), $e->getCode());
+		}
 	}
 
 	/**
@@ -72,7 +108,7 @@ class AcessosOA {
 	}
 
 	/**
-	 * Retorna dados para inserir no0 banco de dados
+	 * Retorna dados para inserir no banco de dados
 	 * @return array $dados = array("idUsuario"    => $idUsuario,
 	 *								"idDisciplina" => $idDisciplina,
 	 *								"idOA"         => $idOA,
@@ -109,23 +145,23 @@ class AcessosOA {
 	/**
 	 * @param int idUsuario
 	 */
-	public function setIdUsuario($idUsuario) {
-		$this->validaId($idUsuario);
-		$this->idUsuario = $idUsuario;
+	public function setIdUsuarios($idUsuarios) {
+		$this->validaArray($idUsuarios);
+		$this->idUsuarios = $idUsuarios;
 	}
 
 	/**
 	 * @return int idUsuario
 	 */
-	public function getIdUsuario() {
-		return $this->idUsuario;
+	public function getIdUsuarios() {
+		return $this->idUsuarios;
 	}
 
 	/**
 	 * @param int idDisciplina
 	 */
 	public function setIdDisciplina($idDisciplina) {
-		$this->validaId($idDisciplina);
+		$this->validaInteiro($idDisciplina);
 		$this->idDisciplina = $idDisciplina;
 	}
 
@@ -140,7 +176,7 @@ class AcessosOA {
 	 * @param int idOA
 	 */
 	public function setIdOA($idOA) {
-		$this->validaId($idOA);
+		$this->validaInteiro($idOA);
 		$this->idOA = $idOA;
 	}
 
@@ -152,12 +188,67 @@ class AcessosOA {
 	}
 
 	/**
+	 * @param int idOA
+	 */
+	public function setAcessosTotais($acessos) {
+		$this->validaInteiro($acessos);
+		$this->acessosTotais = $acessos;
+	}
+
+	/**
+	 * @return int idOA
+	 */
+	public function getAcessosTotais() {
+		return $this->acessosTotais;
+	}
+
+	/**
+	 * @param int idOA
+	 */
+	public function setAcessosValidos($acessos) {
+		$this->validaInteiro($acessos);
+		$this->acessosValidos = $acessos;
+	}
+
+	/**
+	 * @return int idOA
+	 */
+	public function getAcessosValidos() {
+		return $this->acessosValidos;
+	}
+
+	/**
+	 * @param int idOA
+	 */
+	public function setAcessosInvalidos($acessos) {
+		$this->validaInteiro($acessos);
+		$this->acessosInvalidos = $acessos;
+	}
+
+	/**
+	 * @return int idOA
+	 */
+	public function getAcessosInvalidos() {
+		return $this->acessosInvalidos;
+	}
+
+	/**
 	 * Verifica se variável é do tipo inteiro
 	 * @throws InvalidArgumentException em caso de argumento inválido
 	 */
-	private function validaId($id) {
-		if(!is_int($id)) {
-			throw new InvalidArgumentException("Erro! Esperava receber inteiro, recebeu ".gettype($id), E_USER_ERROR);
+	private function validaInteiro($var) {
+		if(!is_int($var)) {
+			throw new InvalidArgumentException("Erro! Esperava receber inteiro, recebeu ".gettype($var), E_USER_ERROR);
+		}
+	}
+
+	/**
+	 * Verifica se variável é do tipo array
+	 * @throws InvalidArgumentException em caso de argumento inválido
+	 */
+	private function validaArray($var) {
+		if(!is_array($var)) {
+			throw new InvalidArgumentException("Erro! Esperava receber array, recebeu ".gettype($var), E_USER_ERROR);
 		}
 	}
 
@@ -168,9 +259,10 @@ class AcessosOA {
 		return $this->tempoAcessoOA;
 	}
 
-	public function getAcessosInvalidos($dados) {
+	public function getMaisAcessosValidos($dados) {
 		try {
 			$database = new Database;
+
         	$sql = "SELECT * FROM acessos_oa WHERE id_oa = :idOA AND id_disciplina = :idDisciplina AND tempo_acesso >= :tempoMinimo AND tempo_acesso <= :tempoMaximo";
         	$database->query($sql);
         	$database->bind(":idOA", $dados['idOA']);
@@ -178,31 +270,54 @@ class AcessosOA {
         	$database->bind(":tempoMinimo", self::TEMPO_MINIMO);
         	$database->bind(":tempoMaximo", self::TEMPO_MAXIMO);
         	$database->execute();
+
         	return $database->rowCount();
+		}
+		catch(Exception $e) {
+			trigger_error("Erro ao pegar número de acessos do OA!".$e->getMessage(), $e->getCode());
+		}
+	}
+
+	public function calculaAcessosInvalidos($dados) {
+		try {
+			$database = new Database;
+
+        	$sql = "SELECT * FROM acessos_oa WHERE id_oa = :idOA AND id_disciplina = :idDisciplina AND (tempo_acesso <= :tempoMinimo OR tempo_acesso >= :tempoMaximo)";
+        	$database->query($sql);
+        	$database->bind(":idOA", $dados['idOA']);
+        	$database->bind(":idDisciplina", $dados['idDisciplina']);
+        	$database->bind(":tempoMinimo", self::TEMPO_MINIMO);
+        	$database->bind(":tempoMaximo", self::TEMPO_MAXIMO);
+        	$database->execute();
+
+        	$this->setAcessosInvalidos($database->rowCount());
 		}
 		catch(Exception $e) {
 			trigger_error("Erro ao pegar número de acessos inválidos do OA!".$e->getMessage(), $e->getCode());
 		}
 	}
 
-	public function getTotalAcessos($dados) {
+	public function calculaTotalAcessos($dados) {
 		try {
 			$database = new Database;
+
         	$sql = "SELECT * FROM acessos_oa WHERE id_oa = :idOA AND id_disciplina = :idDisciplina";
         	$database->query($sql);
         	$database->bind(":idOA", $dados['idOA']);
         	$database->bind(":idDisciplina", $dados['idDisciplina']);
         	$database->execute();
-        	return $database->rowCount();
+
+        	$this->setAcessosTotais($database->rowCount());
 		}
 		catch(Exception $e) {
 			trigger_error("Erro ao pegar número de acessos do OA!".$e->getMessage(), $e->getCode());
 		}
 	}
 
-	public function getAcessosValidos($dados) {
+	public function calculaAcessosValidos($dados) {
 		try {
 			$database = new Database;
+
         	$sql = "SELECT * FROM acessos_oa WHERE id_oa = :idOA AND id_disciplina = :idDisciplina AND tempo_acesso >= :tempoMinimo AND tempo_acesso <= :tempoMaximo";
         	$database->query($sql);
         	$database->bind(":idOA", $dados['idOA']);
@@ -210,10 +325,24 @@ class AcessosOA {
         	$database->bind(":tempoMinimo", self::TEMPO_MINIMO);
         	$database->bind(":tempoMaximo", self::TEMPO_MAXIMO);
         	$database->execute();
-        	return $database->rowCount();
+
+        	$this->setAcessosValidos($database->rowCount());
 		}
 		catch(Exception $e) {
 			trigger_error("Erro ao pegar número de acessos do OA!".$e->getMessage(), $e->getCode());
+		}
+	}
+
+	/**
+	 * Verifica se OA teve algum acesso
+	 * @return boolean true - se tiver acessos, false - se não tiver acessos
+	 */
+	public function temAcessos($dados) {
+		if(($this->getTotalAcessos($dados) == 0)) {
+			return false;
+		}
+		else {
+			return true;
 		}
 	}
 }
