@@ -7,6 +7,8 @@
  */
 
 class IndicesOA {
+	private $nomeOA;
+
 	private $idOA;
 
 	private $idDisciplina;
@@ -26,8 +28,17 @@ class IndicesOA {
 
 	private function carregaDados($dados) {
 		$this->setIdOA($dados['idOA']);
+		$this->carregaNomeOA($this->getIdOA());
 		$this->setIdDisciplina($dados['idDisciplina']);
 		$this->calculaIndiceRejeicao();
+	}
+
+	private function carregaNomeOA($idOA) {
+		$database = new Database;
+		$sql = "SELECT nome FROM cesta WHERE idcesta = :idOA";
+    	$database->query($sql);
+    	$database->bind(":idOA", $idOA);
+    	$this->setNomeOA($database->single()["nome"]);
 	}
 
 	public function calculaIndiceRejeicao() {
@@ -59,6 +70,15 @@ class IndicesOA {
 		$indiceRelevancia *= (1-$this->getIndiceRejeicao());
 
 		$this->setIndiceRelevancia(floatval($indiceRelevancia));
+	}
+
+	public function getNomeOA() {
+		return $this->nomeOA;
+	}
+
+	public function setNomeOA($nomeOA) {
+		$this->validaString($nomeOA);
+		$this->nomeOA = $nomeOA;
 	}
 
 	public function getIdOA() {
@@ -110,6 +130,16 @@ class IndicesOA {
 	private function validaInteiro($variavel) {
 		if(!is_int($variavel)) {
 			throw new InvalidArgumentException("Erro! Esperava receber inteiro, recebeu ".gettype($variavel), E_USER_ERROR);
+		}
+	}
+
+	/**
+	 * Verifica se variável é do tipo string
+	 * @throws InvalidArgumentException em caso de argumento inválido
+	 */
+	private function validaString($variavel) {
+		if(!is_string($variavel)) {
+			throw new InvalidArgumentException("Erro! Esperava receber string, recebeu ".gettype($variavel), E_USER_ERROR);
 		}
 	}
 

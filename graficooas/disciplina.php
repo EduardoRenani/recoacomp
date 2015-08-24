@@ -951,10 +951,14 @@ class Disciplina {
                         'idDisciplina' => $this->getIdDisciplina());
 
         $indicesOAS = $this->getIndicesOAS($oas, $dados);
-
+        
         $indicesRejeicao = $this->getIndicesRejeicao($indicesOAS);
 
-        $idOAMaisAcessosValidos = $this->getOAMaisAcessosValidos($indicesRejeicao);
+        $idOAMaisAcessosValidos = array_search($this->getOAMaisAcessosValidos($indicesRejeicao), $indicesOAS);
+
+        echo $idOAMaisAcessosValidos;
+
+        $idOAMaisAcessosValidos = $indicesOAS[$idOAMaisAcessosValidos]->getIdOA();
 
         $indicesRelevancia = $this->getIndicesRelevancia($indicesOAS, $idOAMaisAcessosValidos);
 
@@ -970,7 +974,7 @@ class Disciplina {
 
     protected function topDezOASMaisAcessados($indicesOAS) {
         foreach ($indicesOAS as $oas) {
-            $topDezOAS[$oas->getIdOA()] = $oas->getAcessosOA()->getAcessosValidos();
+            $topDezOAS[$oas->getNomeOA()] = $oas->getAcessosOA()->getAcessosValidos();
         }
 
         arsort($topDezOAS);
@@ -992,7 +996,7 @@ class Disciplina {
     //Retorna os índices de rejeição do objeto
     protected function getIndicesRejeicao($indicesOAS) {
         foreach($indicesOAS as $indiceOA) {
-            $indicesRejeicao[$indiceOA->getIdOA()] = $indiceOA->getIndiceRejeicao();
+            $indicesRejeicao[$indiceOA->getNomeOA()] = $indiceOA->getIndiceRejeicao();
         }
         asort($indicesRejeicao);
         return $indicesRejeicao;
@@ -1002,7 +1006,7 @@ class Disciplina {
     protected function getIndicesRelevancia($indicesOAS, $idOAMaisAcessosValidos) {
         foreach($indicesOAS as $indiceOA) {
             $indiceOA->calculaIndiceRelevancia($idOAMaisAcessosValidos);
-            $indicesRelevancia[$indiceOA->getIdOA()] = $indiceOA->getIndiceRelevancia();
+            $indicesRelevancia[$indiceOA->getNomeOA()] = $indiceOA->getIndiceRelevancia();
         }
         arsort($indicesRelevancia);
         return $indicesRelevancia;
