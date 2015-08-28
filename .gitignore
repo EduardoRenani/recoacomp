@@ -220,3 +220,4 @@ pip-log.txt
 #############
 #Arquivos de configuração
 .cfg
+*.htaccess

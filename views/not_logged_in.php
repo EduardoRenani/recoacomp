@@ -1,16 +1,5 @@
 <?php 	
 include('_header.php'); 
-// include the config
-require_once('config/config.cfg');
-
-// include the to-be-used language, english by default. feel free to translate your project and include something else
-require_once('translations/pt_br.php');
-
-// include the PHPMailer library
-require_once('libraries/PHPMailer.php');
-
-// load the registration class
-require_once('classes/Registration.php');
 
 // create the registration object. when this object is created, it will do all registration stuff automatically
 // so this single line handles the entire registration process.
@@ -44,7 +33,7 @@ $registration = new Registration();
 					
 					<!-- <form action="home.html"> <!action é só para mostrar, no site em si não tem isso"--> 
 					<form method="post" action="index.php" name="loginform">
-						<input id="user_name" type="text" name="user_name" placeholder="<?= WORDING_USERNAME; ?>" required>
+						<input id="user_name" type="text" name="user_name" placeholder="<?= WORDING_USERNAME; ?>" required autofocus>
 						<input id="user_password" type="password" name="user_password" autocomplete="off" required placeholder="<?= WORDING_PASSWORD;?>" required>
 						<input type="checkbox" id="user_rememberme" name="user_rememberme" value="1" /> <label for="user_rememberme">Lembrar Usuário</label>
 						<input type="submit" name="login" value="<?= WORDING_LOGIN; ?>">

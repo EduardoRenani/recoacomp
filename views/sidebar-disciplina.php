@@ -20,62 +20,18 @@
     <script type="text/javascript">
     //$(function() {
         function submitVisao(){
-            document.getElementById('tipoUsuario').submit();
+            //document.getElementById('tipoUsuario').submit();
+            $("#tipoUsuario").submit();
+            //var selectBox = document.getElementById("tipoVisao");
+            //$( "#tipoVisao" ).val();
+            //var selectedValue = selectBox.options[selectBox.selectedIndex].value;
         }
-
-		function mudaVisao(tipoVisao){
-        	var selectBox = document.getElementById("tipoVisao");
-    		var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-    		//console.log(selectedValue);
-    		//$.get("ajax/mudaVisao.php");
-    		
-    		//jQuery('#tipoVisao').load('ajax/mudaVisao.php?acesso=1');
-    		//
-    		//return false;
-            //console.log(selectedValue);
-            /*
-            jQuery.ajax({
-                url: 'ajax/mudaVisao.php',
-                type: 'POST',
-                data: {
-                    tipoVisao: selectedValue,
-                },
-                //dataType : 'json',
-                success: function(data, textStatus, xhr) {
-                    console.log(data); // do with data e.g success message
-                },
-                error: function(xhr, textStatus, errorThrown) {
-                    console.log(textStatus.reponseText);
-                }
-            });
-            location.reload();
-
-
-*/
-
-    		jQuery.ajax({
-                type: "POST",
-                url: "ajax/mudaVisao.php",
-                data: { 
-                    tipoUsuario : 1,
-                },
-                cache: false,
-                // importantinho.
-                error: function(e){
-                    alert(e);
-                },
-                success: function(response){
-                    console.log(response);
-                }
-            });
-            //location.reload();
-        };
-	//});
-
     </script>
 
 </head>
+<?php
 
+?>
 <div class="sidebar"> 
 	<div class="top-sidebar">Bem Vindo, <?php echo $_SESSION['user_name']?></div>
         <div class="sidebar-content">           
@@ -95,38 +51,86 @@
                         	Disciplinas Disponíveis
                     	</li>
                     </a>
-    				<a href="cadastro_disciplina.php">
-    					<li>
-	   						<?php 
+    		
+       						<?php
 							if ($_SESSION['acesso'] == 1)
 								include('_options_aluno.php'); 
 								//echo WORDING_USER_STUDENT . "<br />";
-							else if ($_SESSION['acesso'] == 2){
-								echo WORDING_REGISTER_NOVA_DISCIPLINA; ?>
-                            <br>
-						</li>
-					</a>
-					<a href="cadastro_OA.php">
-						<li>
-							<?= WORDING_REGISTER_NOVO_OA; ?>
-                        <br>					
-                        </li>
-                	</a>
+							else if ($_SESSION['acesso'] == 2) {
+                                if(isset($_POST['codTipoUsuario'])){
+                                    $tipoUsuario = $_POST['codTipoUsuario'];
+                                    if (($tipoUsuario  == 1) && ($_SESSION['acesso'] == 2)){
+                                        echo '
+                                            <form method="post" action="#" id="tipoUsuario" name="tipoUsuario">
+                                                <select name="codTipoUsuario" onchange ="this.form.submit()" onfocus="this.selectedIndex = -1;"> <!-- -->
+                                                    <option value="" selected>Ver como...</option>
+                                                    <option value="1">Aluno</option>
+                                                    <option value="2">Professor</option>
+                                                </select>
+                                            </form>';
+                                    }else{?>
+                                        <a href="cadastro_OA.php">
+                                            <li>
+                                                <?= WORDING_REGISTER_NOVO_OA; ?>
+                                            <br>                    
+                                            </li>
+                                        </a>
+                                        <a href="cadastro_disciplina.php">
+                                            <li>
+                                                <?= WORDING_REGISTER_NOVA_DISCIPLINA; ?>
+                                            </li>
+                                        </a>
+                                        <form method="post" action="#" id="tipoUsuario" name="tipoUsuario">
+                                                    <select name="codTipoUsuario" onchange ="this.form.submit()" onfocus="this.selectedIndex = -1;"> <!-- -->
+                                                        <option value="" selected>Ver como...</option>
+                                                        <option value="1">Aluno</option>
+                                                        <option value="2">Professor</option>
+                                                    </select>
+                                        </form>
+                                    <?php
+                                    } // end if
+                                    ?>
 
-                    <?php
-                        //include('_options_professor.php'); 
-                        //echo WORDING_USER_PROFESSOR . "<br/>";
-                    }else if($_SESSION['acesso'] == 3)
-                        echo WORDING_USER_ADMIN . "<br/>";
-                    ?>
+
+                                    
+                                
+                            <!--li-->
+
+                            
+                            <!--/li-->
+
+                        <?php
+                            //include('_options_professor.php'); 
+                            //echo WORDING_USER_PROFESSOR . "<br/>";
+                        }elseif(!(isset($_POST['codTipoUsuario']))){ ?>
+                            <a href="cadastro_OA.php">
+                                <li>
+                                    <?= WORDING_REGISTER_NOVO_OA; ?>
+                                <br>                    
+                                </li>
+                            </a>
+                            <a href="cadastro_disciplina.php">
+                                <li>
+                                    <?= WORDING_REGISTER_NOVA_DISCIPLINA; ?>
+                                </li>
+                            </a>
+                            <form method="post" action="#" id="tipoUsuario" name="tipoUsuario">
+                                        <select name="codTipoUsuario" onchange ="this.form.submit()" onfocus="this.selectedIndex = -1;"> <!-- -->
+                                            <option value="" selected>Ver como...</option>
+                                            <option value="1">Aluno</option>
+                                            <option value="2">Professor</option>
+                                        </select>
+                            </form>
+                        <?php
+                        }
+                        else if($_SESSION['acesso'] == 3)
+                            echo WORDING_USER_ADMIN . "<br/>";
+                        }// End isset?>
 
 
-                	<form method="post" action="index.php" id="tipoUsuario">
-                	<select id='tipoVisao' onchange="submitVisao();"> <!-- -->
-						<option value="1">Visão de aluno</option>
-						<option value="2">Visão de professor</option>
-					</select>
-					</form>
-                </ul>
+
+
+
+                    </ul>
     	</div>  
 </div>

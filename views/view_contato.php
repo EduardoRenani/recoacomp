@@ -42,8 +42,6 @@
  * Time: 15:49
  */
 
-require_once("classes/email.php");
-require_once("classes/Registration.php");
 ?>
 
 <!-- ============== HEADER ============== -->

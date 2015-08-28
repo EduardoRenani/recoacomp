@@ -5,7 +5,7 @@
  * Date: Julho 2015
  */
 //RECEBENDO AVALIACOES
-require_once("config/config.cfg");
+require_once('base.php');
 $av_quanti = $_POST['rating'];
 $av_quali = $_POST['av_quali'];
 $id_oa = $_POST['id'];

@@ -3900,8 +3900,9 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini {
 }
 
 #conteudo {
-    width: 650px;
-    min-height: 356px;
+    width: auto;
+    min-height: auto;
+
     text-align: center;
 }
 

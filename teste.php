@@ -7,11 +7,7 @@
  * Time: 15:59
  */
 
-require_once("classes/lista.php");
-//require_once("classes/recomendacao.php");
-require_once("classes/Recomendacao/comp.php");
-require_once("classes/Recomendacao/recomendacao.php");
-//require_once("config/config.cfg");
+require_once('base.php');
 
 
 /*

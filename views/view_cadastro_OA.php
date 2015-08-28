@@ -6,8 +6,7 @@
      * Time: 17:36
      */
 
-    include('_header.php');
-    require_once("classes/OA.php");?>
+    include('_header.php');?>
 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
         <link href="css/base_cadastro_objeto.css" rel="stylesheet">

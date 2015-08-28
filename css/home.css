@@ -285,7 +285,7 @@ nav {
     position:relative;
     background-color:white;
     display:block;
-    height:125px;
+    height:auto;
     top:10px;
     width:100%;
     margin-bottom:15px;

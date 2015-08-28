@@ -16,7 +16,6 @@ include('_header.php');
 
 
 
-
     <!-- JS -->
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -315,6 +314,7 @@ include('_header.php');
                         <li><a href="#tabs-2">Alunos Matriculados</a></li>
                         <li><a href="#tabs-3">OAS Vinculados</a></li>
                         <li><a href="#tabs-4">Alterar competências</a></li>
+                        <li><a href="#tabs-5">Relatório</a></li>
                     </ul>
                     <div id="tabs-1">
                         <form method="post" action="editar_disciplina.php" name="editar_nome_disciplina">
@@ -392,7 +392,6 @@ include('_header.php');
                         <!-- TODO -->
                         <div id="objetos">
                         <?php 
-                        require_once('classes/OA.php');
                         $disciplina = new Disciplina();
                         $OA = new OA();
                         $listaOAS = $disciplina->listaObjetosDisciplina($_POST['idDisciplina']);
@@ -587,6 +586,14 @@ include('_header.php');
                                     </div>
                         </form>
                     </div> <!-- END Dados da competencia-->
+                    <div id="tabs-5">
+                        <?php
+                            echo "<iframe style='width: 100%; height: 1100px;' frameborder='0' scrolling='no' src='painel_disciplina.php?idDisciplina=".$_POST['idDisciplina']."'>";
+                            echo "</iframe>";
+                        ?>
+
+                    </div> <!-- END TAB 5-->
+                    <!-- Objetos associados a disciplina -->
             </div> <!-- END DIV TABS -->
         </div> <!-- END cadastrobase-content -->
     </div> <!-- END cadastrobase -->

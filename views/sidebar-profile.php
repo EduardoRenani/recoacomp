@@ -74,10 +74,6 @@
 										<?php echo WORDING_REGISTER_NOVO_OA; ?><br>
 									</li>
 								</a>
-								<select>
-									<option value="1">Visão de aluno</option>
-									<option value="2">Visão de professor</option>
-								</select>
 								<?php
 							}else if($_SESSION['acesso'] == 3)
 								echo WORDING_USER_ADMIN . "<br/>";

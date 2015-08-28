@@ -6,8 +6,6 @@
  * Time: 15:49
  */
 
-require_once("../classes/email.php");
-require_once("../classes/Registration.php");
 ?>
 <?php if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["solicprof"])){ ?>
 <form method="post" action="" name="solicprof">

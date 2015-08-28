@@ -95,6 +95,7 @@ define("WORDING_AVAILABLE_COURSES", "Disciplinas disponíveis");
 define("WORDING_REGISTER_SUCESSFULLY", "Cadastro efetuado com sucesso!");
 define("WORDING_EDIT_SUCESSFULLY", "Edição efetuada com sucesso!");
 define("WORDING_TEAM", "Equipe");
+define("ADMIN_ACCESS", "2");
 
 // Página editar disciplina
 define("WORDING_EDIT_DESCRIPTION", "Alterar descrição");

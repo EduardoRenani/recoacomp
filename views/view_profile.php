@@ -37,6 +37,12 @@
     <div class="disciplinas">
         <div class="top-disciplinas">Meu Perfil</div>
             <div class="disciplinas-content">  </br> 
+<?php
+    $email = $_SESSION['user_email'];
+    $default = "http://www.somewhere.com/homestar.jpg";
+    $size = 40;
+    $grav_url = "http://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?d=" . urlencode( $default ) . "&s=" . $size;
+?>              <img src="<?php echo $grav_url; ?>" alt="" /><br>
                 <p class="subtitle">Nome:</p><p class="content-perfil"> <?php echo $_SESSION['user_name']; ?></p></br>
                 <p class="subtitle">E-mail:</p><p class="content-perfil"> <?php echo $_SESSION['user_email']; ?></p>
             </div>  
