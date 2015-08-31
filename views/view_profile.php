@@ -1,4 +1,5 @@
 <?php include_once('_header.php'); ?>
+<?php include_once('libraries/gravatar.php'); ?>
 
 <head>
 
@@ -32,27 +33,32 @@
     <div class="fixedBackgroundGradient"></div>
     <?php include("views/sidebar-profile.php"); ?>
 
-        <!-- ============== DISCIPLINAS ============== -->
-
-    <div class="disciplinas">
-        <div class="top-disciplinas">Meu Perfil</div>
-            <div class="disciplinas-content">  </br> 
-<?php
-    $email = $_SESSION['user_email'];
-    $default = "http://www.somewhere.com/homestar.jpg";
-    $size = 40;
-    $grav_url = "http://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?d=" . urlencode( $default ) . "&s=" . $size;
-?>              <img src="<?php echo $grav_url; ?>" alt="" /><br>
-                <p class="subtitle">Nome:</p><p class="content-perfil"> <?php echo $_SESSION['user_name']; ?></p></br>
-                <p class="subtitle">E-mail:</p><p class="content-perfil"> <?php echo $_SESSION['user_email']; ?></p>
-            </div>  
-            <div class="button">
-                <form action="edit.php">
-                    <input type="submit" value="Editar"></br></br>
-                </form>
-            </div>
+<!-- ============== DADOS DO USUÁRIO ============== -->
+<div class="disciplinas">
+    <div class="top-disciplinas">Meu Perfil</div>
+        <div class="disciplinas-content">  </br> 
+                <?php
+                    $gravatar = new Gravatar();
+                    $gravatar->setDefaultImage('mm')->setAvatarSize(75);
+                    // example: setting maximum allowed avatar rating
+                    $gravatar->setMaxRating('pg');
+                    $avatar = $gravatar->buildGravatarURL($_SESSION['user_email']);
+                ?>
+            <a href="http://www.gravatar.com" target="_blank">
+            <img src="<?php echo $avatar; ?>" alt=""/>
+            </a>
+            
+            <br>
+            <p class="subtitle">Nome:</p><p class="content-perfil"> <?php echo $_SESSION['user_name']; ?></p></br>
+            <p class="subtitle">E-mail:</p><p class="content-perfil"> <?php echo $_SESSION['user_email']; ?></p>
+        </div>  
+        <div class="button">
+            <form action="edit.php">
+                <input type="submit" value="Editar"></br></br>
+            </form>
         </div>
     </div>
+</div>
 
 </body>
 
