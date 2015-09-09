@@ -118,7 +118,7 @@ li {
     min-width:250px;
     max-width:300px;
 
-    left:5%;
+    left:10%;
     top:50px;
     position:relative;
 
@@ -139,7 +139,7 @@ li {
     padding-top: 4%;
     background-color:#108AC0;
     color:white;
-    font-size:30px;
+    font-size:25px;
     font-weight:300;
 }
 

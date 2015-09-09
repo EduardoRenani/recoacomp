@@ -161,8 +161,8 @@ div.top-cadastrobase a{
 .cadastrobase-content{
     margin-top:10%;
     position:relative;
-    padding-left:0%;
-    padding-right:0%;
+    padding-left:3%;
+    padding-right:3%;
 
     top:20px;
 
@@ -200,16 +200,17 @@ div.top-cadastrobase a{
     //background-color:blue;
     text-align:center;
     vertical-align:middle;
-    float:left;
+    float:right;
     width:30%;
     height:auto;
 }
+
 
 .botao-cadastra {
       border: 0;
   width:150px;
   height: 66px;
-  line-height: 24px;
+  line-height: 50px;
   white-space: normal;
   text-align:center;
 

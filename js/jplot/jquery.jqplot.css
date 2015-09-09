@@ -39,6 +39,7 @@
 
 .jqplot-xaxis-tick {
     top: 0px;
+    width: 90px;
     /* initial position untill tick is drawn in proper place */
     left: 15px;
 /*    padding-top: 10px;*/
@@ -92,7 +93,8 @@
 
 .jqplot-x2axis-label {
     margin-bottom: 10px;
-    font-size: 11pt;
+    width: 20px;
+    font-size: 21pt;
     position: absolute;
 }
 

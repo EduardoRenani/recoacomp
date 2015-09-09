@@ -331,7 +331,7 @@ input[type=submit]{ /*customiza input de submit*/
   }
 
   .button-next {
-      border: 0;
+      border: 35;
       width:130px;
       height: auto;
       white-space: normal;

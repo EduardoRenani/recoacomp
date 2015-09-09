@@ -19,6 +19,8 @@ class CompTeste{
 
 	private $idComp;
 
+	private $idDisciplina;
+
 	private $nomeComp;
 
 	private $descricaoComp;
@@ -56,6 +58,7 @@ class CompTeste{
 	function __construct($idComp,$user,$disc, $conhecimento, $habilidade, $atitude){
 		$this->oa = new lista();
 		$this->databaseConnection();
+		$this->idDisciplina = $disc;  //Adicionei para o pegaTempo!
 		
 		$this->idComp = $idComp;
 		$this->chaUser['C']= $conhecimento;
@@ -191,13 +194,12 @@ class CompTeste{
 						echo"<li class='disciplinas-item'  style='border-bottom: 1px solid #ddd; margin-bottom: 0; width: 95%; margin: auto;'>";
 			                    
 			                    echo "<div class='recomendacao-item-content'>";
-			                    		
 
 			                    		echo "<h3>".$v[$c]['nome']."</h3>";
 
 			                    		echo "<h6>".$v[$c]['descricao']."</h6><br/>";
 
-			                    		echo "<a href='visualizarOA.php?url=".$v[$c]['url']."&id=".$v[$c]['ID']."'>Acessar Objeto de Aprendizagem</a>";
+			                    		echo "<a href='visualizarOA.php?url=".$v[$c]['url']."&idOA=".$v[$c]['ID']."&idDisciplina=".$this->idDisciplina."&idUsuario=".$_SESSION['user_id']."'>Acessar Objeto de Aprendizagem</a>";
 
 			                    		/*echo "<div id='conteudo-expansivel'>";
 											

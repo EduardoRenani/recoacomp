@@ -129,7 +129,7 @@ class CompTeste{
 		//echo "<hr/>";
 
 
-		echo ("ID da Competencia: <b>".$this->idComp."</b><br/>");
+		echo("ID da Competencia: <b>".$this->idComp."</b><br/>");
 		echo("CHA Usuario: ".$this->chaUser['C']." ".$this->chaUser['H']." ".$this->chaUser['A']."<br/>");
 		echo("Soma CHA Usuario: ".$this->chaUserS."<br/>");
 		echo("CHA Disciplina: ".$this->chaDisc['C']." ".$this->chaDisc['H']." ".$this->chaDisc['A']."<br/>");
@@ -194,7 +194,6 @@ class CompTeste{
 						echo"<li class='disciplinas-item'  style='border-bottom: 1px solid #ddd; margin-bottom: 0; width: 95%; margin: auto;'>";
 			                    
 			                    echo "<div class='recomendacao-item-content'>";
-			                    		
 
 			                    		echo "<h3>".$v[$c]['nome']."</h3>";
 

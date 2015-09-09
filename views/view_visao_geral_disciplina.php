@@ -56,8 +56,8 @@ include('_header.php');
                 // Não deixa alterar os valores das competências
                 var input = $(this).find('input')
                 //console.log(input);
-                input.attr('disabled','disabled'); 
-                <?php 
+                input.attr('disabled','disabled');
+                <?php
                 $comp = new Competencia();
                 $numComp = $comp->getListaCompetencia();
                 $numComp = count($numComp);
@@ -66,10 +66,10 @@ include('_header.php');
 
                 var numComp = <?php echo $numComp;?>
                 //$numComp =  ?>
-                
-                //console.log(this.children.length);     
-                //console.log(numComp-1);               
-                // Verifica se o número de competências é minimo                
+
+                //console.log(this.children.length);
+                //console.log(numComp-1);
+                // Verifica se o número de competências é minimo
                 if(this.children.length > numComp-1){
                     $(ui.sender).sortable('cancel');
                     var n = noty({
@@ -86,7 +86,7 @@ include('_header.php');
                             },
                             timeout: 1000
                             // Desaparecer
-                            
+
                     });
                 }
             }
@@ -108,7 +108,7 @@ include('_header.php');
               // IE doesn't register the blur when sorting
               // so trigger focusout handlers to remove .ui-state-focus
               ui.item.children( "h3" ).triggerHandler( "focusout" );
-     
+
               // Refresh accordion to handle new order
               $( this ).accordion( "refresh" );
             },
@@ -116,7 +116,7 @@ include('_header.php');
             update: function(event, ui) {
                 var arrayDados = $("#competenciasDisciplina").sortable('toArray').toString();
                 //console.log(arrayDados);
-                document.getElementById('nomeCompetencia').value = arrayDados;                
+                document.getElementById('nomeCompetencia').value = arrayDados;
             },
             // Inicializar array com IDs das competências
             create: function( event, ui ) {
@@ -125,11 +125,11 @@ include('_header.php');
             },
             over: function (e, ui) {
                 removeCompInput = false;
-                
+
             },
-            out: function (event, ui) {               
+            out: function (event, ui) {
                 removeCompInput = true;
-                
+
             },
             // não deixa multiplicar os elementos
             // Remove competencia
@@ -152,12 +152,12 @@ include('_header.php');
             }
           });
         }); //end document ready
-        //função que remove competência da disciplina 
+        //função que remove competência da disciplina
         function removeCompetenciaComAjax(idCompetencia, idDisciplina) {
             jQuery.ajax({
                 type: "GET",
                 url: "ajax/remove_competencia.php",
-                data: { 
+                data: {
                     idCompetencia : idCompetencia,
                     idDisciplina : idDisciplina,
                 },
@@ -182,17 +182,17 @@ include('_header.php');
                         },
                         timeout: 500
                         // Desaparecer
-                        
+
                     });
                 }
-            });          
+            });
         }
         //função que adiciona competência na disciplina
         function adicionaCompetenciaComAjax(idCompetencia, idDisciplina) {
             jQuery.ajax({
                 type: "GET",
                 url: "ajax/adiciona_competencia.php",
-                data: { 
+                data: {
                     idCompetencia : idCompetencia,
                     idDisciplina : idDisciplina,
                 },
@@ -217,10 +217,10 @@ include('_header.php');
                         },
                         timeout: 500
                         // Desaparecer
-                        
+
                     });
                 }
-            });     
+            });
         }
         // Tabs function
         $(function() {
@@ -240,8 +240,8 @@ include('_header.php');
                 jQuery.ajax({
                     type: "GET",
                     url: "ajax/update_competencia.php",
-                    data: { 
-                        valor: valor, 
+                    data: {
+                        valor: valor,
                         id : id,
                         tipo : tipo,
                         idDisciplina : idDisciplina,
@@ -267,7 +267,7 @@ include('_header.php');
                             },
                             timeout: 500
                             // Desaparecer
-                            
+
                         });
                     }
                 });
@@ -295,7 +295,7 @@ include('_header.php');
     <div class="fixedBackgroundGradient">
     </div>
     <div class="cadastrobase">
-        <?php 
+        <?php
         $nomeDisciplina = $disciplina->getNomeDisciplinaById($_POST['idDisciplina'])[0][0];
         $nomeCurso = $disciplina->getNomeCursoById($_POST['idDisciplina'])[0][0];
         $descricao = $disciplina->getDescricaoDisciplinaById($_POST['idDisciplina'])[0][0];
@@ -324,7 +324,7 @@ include('_header.php');
                             <input type="submit" name="editar_nome_disciplina" value="<?php echo WORDING_CHANGE_DISCIPLINA_NAME; ?>" />
                         </form><hr/>
                         <!-- Formulário para editar o nome do curso -->
-                        <form method="post" action="editar_disciplina.php" name="editar_nome_curso">                  
+                        <form method="post" action="editar_disciplina.php" name="editar_nome_curso">
                             <label for="curso_name"><?php echo WORDING_NEW_COURSE_NAME; ?></label>
                             <input id="curso_name" type="text" name="curso_name" required /> (<?php echo WORDING_CURRENTLY; ?>: <?php echo $nomeCurso; ?>)<br />
                             <input type="hidden" name="idDisciplina" value="<?php echo $idDisciplina ?>" />
@@ -348,7 +348,7 @@ include('_header.php');
                             <textarea name="descricao" id="descricao" rows="5" cols="40" class="required" aria-required="true" style="width: 100%; height: 150px;"></textarea>
                             <input type="hidden" name="idDisciplina" value="<?php echo $idDisciplina ?>" />
                             <input type="submit" name="editar_descricao" value="<?php echo WORDING_EDIT_DESCRIPTION; ?>" />
-                        </form>  
+                        </form>
                     </div> <!-- END TAB 1-->
                     <div id="tabs-2">
                          <?php
@@ -385,13 +385,13 @@ include('_header.php');
                            }
                            ?>
                                     </tbody>
-                                </table>        
+                                </table>
                     </div> <!-- END TAB 2 -->
                     <!-- Objetos associados a disciplina -->
                     <div id="tabs-3">
                         <!-- TODO -->
                         <div id="objetos">
-                        <?php 
+                        <?php
                         $disciplina = new Disciplina();
                         $OA = new OA();
                         $listaOAS = $disciplina->listaObjetosDisciplina($_POST['idDisciplina']);
@@ -409,11 +409,11 @@ include('_header.php');
                         foreach ($arrayObjetos as $idObjeto) {
                             $dadosObjeto = $OA->getDadosOA($idObjeto);
                             // Pega dados da categoria vida
-                            $idCategoriaVida = $dadosObjeto[0]['idcategoria_vida']; 
+                            $idCategoriaVida = $dadosObjeto[0]['idcategoria_vida'];
                             $dadosCategoriaVida = $OA->getDadosCategoriaVidaOA($idCategoriaVida);
                             //echo '<pre>';
                             //print_r($dadosCategoriaVida);
-                            
+
                             // Faz explode nas palavras chaves do objeto
                             $keyWords  = $dadosObjeto[0]['palavraChave'];
                             $palavrasChaves = explode(",", $keyWords);
@@ -472,7 +472,7 @@ include('_header.php');
                         <!-- Lista de competências -->
                         <form method="post" action="editar_disciplina.php" name="editar_competencia" class="editarCompetencia">
                                 <input type="hidden" id="nomeCompetencia" value="" />
-                                <h3>Editar Competências</h3>    
+                                <h3>Editar Competências</h3>
                                     <!-- DIV com as competências do sistema -->
 
                                     <div id="competenciasDisponiveis">
@@ -483,18 +483,18 @@ include('_header.php');
                                         $numComp = count($numComp);
                                         $_SESSION["numComp"] = $numComp;
                                         $contador = count($competencias);
-                                        for($i=0;$i<$contador;$i++){ 
+                                        for($i=0;$i<$contador;$i++){
                                             $idCompetencia = $competencias[$i]['idcompetencia'];
                                             $descricaoConhecimento = $comp->getDescricaoConhecimentoById($idCompetencia);
                                             $descricaoHabilidade = $comp->getDescricaoHabilidadeById($idCompetencia);
                                             $descricaoAtitude = $comp->getDescricaoAtitudeById($idCompetencia);
-                                            ?>                           
+                                            ?>
                                             <div class="group" id="<?php echo "".$competencias[$i]['idcompetencia']; ?>">
                                                 <h3 >
                                                 <?php echo "".$competencias[$i]['nome']; ?>
                                                 </h3>
                                                 <div> <!-- div com as competencias -->
-                                                    Descrição: 
+                                                    Descrição:
                                                     <div class="alert alert-info" role="alert">
                                                         <p><?php echo "".$competencias[$i]['descricao_nome']; ?></p>
 
@@ -525,11 +525,11 @@ include('_header.php');
                                                 </div>
 
                                             </div>
-                                    <?php 
+                                    <?php
                                         } //end for
                                     ?>
                                     </div>
-                                    
+
                                     <!-- DIV com competências da disciplina a ser editada -->
                                     <div id="competenciasDisciplina">
                                         <?php
@@ -541,7 +541,7 @@ include('_header.php');
                                         $atitude = $disciplina->getCompetenciasDisciplina($_POST['idDisciplina'], 'atitude');
                                         $contador = count($competencias);
                                         // Preenche a tabela
-                                        for($i=0;$i<$contador;$i++){ 
+                                        for($i=0;$i<$contador;$i++){
                                             $idCompetencia = $competencias[$i]['idcompetencia'];
                                             $descricaoConhecimento = $comp->getDescricaoConhecimentoById($idCompetencia);
                                             $descricaoHabilidade = $comp->getDescricaoHabilidadeById($idCompetencia);
@@ -580,7 +580,7 @@ include('_header.php');
                                                 </div>
 
                                             </div>
-                                    <?php 
+                                    <?php
                                         } //end for
                                     ?>
                                     </div>
@@ -588,7 +588,7 @@ include('_header.php');
                     </div> <!-- END Dados da competencia-->
                     <div id="tabs-5">
                         <?php
-                            echo "<iframe style='width: 100%; height: 1100px;' frameborder='0' scrolling='no' src='painel_disciplina.php?idDisciplina=".$_POST['idDisciplina']."'>";
+                            echo "<iframe style='width: 100%; height: 1350px;' frameborder='0' scrolling='no' src='painel_disciplina.php?idDisciplina=".$_POST['idDisciplina']."'>";
                             echo "</iframe>";
                         ?>
 
@@ -597,7 +597,7 @@ include('_header.php');
             </div> <!-- END DIV TABS -->
         </div> <!-- END cadastrobase-content -->
     </div> <!-- END cadastrobase -->
-    
+
 
 
 

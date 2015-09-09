@@ -347,8 +347,8 @@ div.login input[type=submit] { /*botão login*/
 .top-cadastro { /*header da janelinha do login*/
     height:50px;
     padding-top:12px;
-    text-align:left;
-    padding-left:12%;
+    text-align:center;
+    padding-left:0%;
 
     background-color:#108AC0;
     color:white;
@@ -375,10 +375,10 @@ div.login input[type=submit] { /*botão login*/
      color:#BBBDC0;
      font-weight:100;
      margin-top:0px;
-     margin-bottom:15px;
      height:40px;
      padding-left:10px;
      text-align:left;     
+     width:80%;
 }
 
 .modalDialog input[type=checkbox] {
@@ -387,7 +387,7 @@ div.login input[type=submit] { /*botão login*/
 
 .modalDialog input[type=submit] { /*customiza input de submit*/
   border: 0;
-  width:100%;
+  width:50%;
     background: -webkit-linear-gradient(left, #26B3E8, #75CCD6); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(right, #26B3E8, #75CCD6); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(right, #26B3E8, #75CCD6); /* For Firefox 3.6 to 15 */

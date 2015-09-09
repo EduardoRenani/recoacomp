@@ -1,6 +1,5 @@
 <?php
-require_once("acessosoa.php");
-require_once("tempoacessooa.php");
+require_once("base.php");
 
 define("ID_USUARIO", 0);
 define("ID_DISCIPLINA", 1);

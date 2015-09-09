@@ -18,6 +18,11 @@ class AcessosOA {
 	private $idUsuarios;
 
 	/**
+	 * Id do usuário cujo acesso será cadastrado
+	 * @var int id dos usuário
+	 */
+	private $idUsuario;
+	/**
 	 * Id da disciplina a qual o objeto de aprendizagem está associado
 	 * @var int id da disciplina
 	 */
@@ -76,7 +81,6 @@ class AcessosOA {
 	public function salvaDados() {
 		try {
 			$this->validaDados();
-			$this->getTempoAcessoOA()->validaTempoReal();
 			$dados = $this->getDados();
 			$database = new Database();
     		$sql = "INSERT INTO acessos_oa (id, id_usuario, id_disciplina, id_oa, tempo_acesso) 
@@ -130,7 +134,7 @@ class AcessosOA {
 	}
 
 	/**
-	 * @param int idUsuario
+	 * @param array idUsuarios
 	 */
 	public function setIdUsuarios($idUsuarios) {
 		$this->validaArray($idUsuarios);
@@ -138,10 +142,25 @@ class AcessosOA {
 	}
 
 	/**
-	 * @return int idUsuario
+	 * @return array idUsuarios
 	 */
 	public function getIdUsuarios() {
 		return $this->idUsuarios;
+	}
+
+	/**
+	 * @param int idUsuario
+	 */
+	public function setIdUsuario($idUsuario) {
+		$this->validaInteiro($idUsuario);
+		$this->idUsuario = $idUsuario;
+	}
+
+	/**
+	 * @return int idUsuario
+	 */
+	public function getIdUsuario() {
+		return $this->idUsuario;
 	}
 
 	/**

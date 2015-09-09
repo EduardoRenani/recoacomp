@@ -1,4 +1,45 @@
+<style>
+#table-estatisticas {
+    display: inline-block;
+    margin-bottom: 50px;
+}
+
+#table-estatisticas td {
+    text-align: center;
+    vertical-align: middle;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#table-estatisticas tr {
+    background: #cccccc url("images/ui-bg_highlight-soft_75_cccccc_1x100.png") 50% 50% repeat-x;
+}
+
+#table-estatisticas tr:first-child {
+    font-weight: 700;
+    background: #108AC0;
+    color: white;
+}
+
+
+
+#mais-estatisticas {
+    font-family: "Lato", "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
+    text-align: center;
+    display: none;
+}
+</style>
 <script language="javascript">
+$(function () {
+    $("#ver-mais").click(function(){
+        $("#graficos").toggle(500);
+        $("#mais-estatisticas").toggle(500);
+    });
+    $("#fechar").click(function(){
+        $("#mais-estatisticas").toggle(500);
+        $("#graficos").toggle(500);
+    });
+});
 <?php
     $indicesRejeicao = '';
     $nomesIndicesRejeicao = '';
@@ -136,7 +177,8 @@ $(document).ready(function(){
     // Ticks should match up one for each y value (category) in the series.
     var ticks = [<?php echo $nomesIndicesRejeicao; ?>];
      
-    var plot1 = $.jqplot('indicesRejeicao', [s1], {
+    if(ticks.length != 0) {
+        var plot1 = $.jqplot('indicesRejeicao', [s1], {
         // The "seriesDefaults" option is an options object that will
         // be applied to all series in the chart.
         seriesColors: [ "#ff5800", "#EAA228", "#4bb2c5", "#c5b47f", "#579575", "#839557", "#958c12",
@@ -176,13 +218,15 @@ $(document).ready(function(){
             }
         }
     });
+    }
 
     var s1 = [<?php echo $indicesRelevancia; ?>];
     // Can specify a custom tick Array.
     // Ticks should match up one for each y value (category) in the series.
     var ticks = [<?php echo $nomesIndicesRelevancia; ?>];
      
-    var plot1 = $.jqplot('indicesRelevancia', [s1], {
+    if(ticks.length != 0) {
+        var plot1 = $.jqplot('indicesRelevancia', [s1], {
         // The "seriesDefaults" option is an options object that will
         // be applied to all series in the chart.
         animate: !$.jqplot.use_excanvas,
@@ -222,89 +266,94 @@ $(document).ready(function(){
             }
         }
     });
+    }
 });
 </script>
-<div id="graficos">
-    <div id="top10" style="width: 933px; height: 250px; position: relative; margin-bottom: 20px;" class="jqplot-target">
+<div id="graficos" style="width: 100%; text-align: center;">
+    <div id="top10" style="margin: 0 auto; width: 800px; margin-bottom: 20px;" class="jqplot-target">
     </div>
 
-    <div id="acessos" style="width: 933px; height: 250px; position:relative; margin-bottom: 20px;" class="jqplot-target">
+    <div id="acessos" style="margin: 0 auto; width: 800px; margin-bottom: 20px;" class="jqplot-target">
     </div>
 
-    <div id="indicesRejeicao" style="width: 933px; height: 250px; position: relative; margin-bottom: 20px;" class="jqplot-target">
+    <div id="indicesRejeicao" style="margin: 0 auto; width: 800px; margin-bottom: 20px;" class="jqplot-target">
     </div>
 
-    <div id="indicesRelevancia" style="width: 933px; height: 250px; position: relative; margin-bottom: 20px;" class="jqplot-target">
+    <div id="indicesRelevancia" style="margin: 0 auto; width: 800px; margin-bottom: 20px;" class="jqplot-target">
+    </div>
+    <div id="ver-mais">
+    <a href="#">Ver Mais</a>
     </div>
 </div>
 <div id="mais-estatisticas">
     <?php
-        echo "<h2>Indices de Relevância</h2>";
-        echo "<table>";
+        echo "<div style='float: left; text-align: center; width: 50%;'><h2>Indices de Relevância</h2>";
+        echo "<table id='table-estatisticas'>";
         echo "<tr>
-                <td style='text-align: center;'>
-                    <h4>Nome do OA</h4>
+                <td>
+                    Nome do OA
                 </td>
-                <td style='text-align: center;'>
-                    <h4>Índice</h4>
+                <td>
+                    Índice
                 </td>
             </tr>";
         foreach ($indices['indices_relevancia'] as $key => $indice) {
             echo "<tr>";
             if($indice != -1) {
-                echo "<td style='padding: 5px 15px 5px 5px;'>".$key."</td><td>".$indice."</td>";
+                echo "<td>".$key."</td><td>".number_format($indice, 2, '.', '')."</td>";
             }
             else {
-                echo "<td style='padding: 5px 15px 5px 5px;'>".$key."</td><td>"."Não há informações"."</td>";
+                echo "<td>".$key."</td><td>"."Não há informações"."</td>";
             }
             echo "</tr>";
         }
-        echo "</table>";
-        echo "<h2>Indices de Rejeicao</h2>";
-        echo "<table>";
+        echo "</table></div>";
+        echo "<div style='float: right; text-align: center; width: 50%;'><h2>Indices de Rejeição</h2>";
+        echo "<table id='table-estatisticas'>";
         echo "<tr>
-                <td style='text-align: center;'>
-                    <h4>Nome do OA</h4>
+                <td>
+                    Nome do OA
                 </td>
-                <td style='text-align: center;'>
-                    <h4>Índice</h4>
+                <td>
+                    Índice
                 </td>
             </tr>";
         foreach ($indices['indices_rejeicao'] as $key => $indice) {
             echo "<tr>";
             if($indice != -1) {
-                echo "<td style='padding: 5px 15px 5px 5px;'>".$key."</td><td>".$indice."</td>";
+                echo "<td>".$key."</td><td>".number_format($indice, 2, '.', '')."</td>";
             }
             else {
-                echo "<td style='padding: 5px 15px 5px 5px;'>".$key."</td><td>"."Não há informações"."</td>";
+                echo "<td>".$key."</td><td>"."Não há informações"."</td>";
             }
             echo "</tr>";
         }
-        echo "</table>";
+        echo "</table></div>";
         echo "<h2>Estatísticas de acessos</h2>";
-        echo "<table>";
+        echo "<table id='table-estatisticas'>";
         echo "<tr>
-                <td style='text-align: center;'>
-                    <h4>Nome do OA</h4>
+                <td>
+                    Nome do OA
                 </td>
-                <td style='text-align: center;'>
-                    <h4>Acessos válidos</h4>
+                <td>
+                    Acessos válidos
                 </td>
-                <td style='text-align: center;'>
-                    <h4>Acessos inválidos</h4>
+                <td>
+                    Acessos inválidos
                 </td>
-                <td style='text-align: center;'>
-                    <h4>Acessos totais</h4>
+                <td>
+                    Acessos totais
                 </td>
             </tr>";
         foreach ($indices['acessos_totais'] as $key => $indice) {
             echo "<tr>";
-                echo "<td style='padding: 5px 15px 5px 5px;'>".$key."</td>
+                echo "<td>".$key."</td>
                 <td>".$indices['acessos_validos'][$key]."</td>
                 <td>".$indices['acessos_invalidos'][$key]."</td>
                 <td>".$indices['acessos_totais'][$key]."</td>";
             echo "</tr>";
         }
         echo "</table>";
+        echo "<div id='fechar'><a href='#'>Fechar</a></div>"
     ?>
 </div>

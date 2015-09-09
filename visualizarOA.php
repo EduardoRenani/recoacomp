@@ -16,6 +16,8 @@
 
 		<!-- Notificações -->
 		<script type="text/javascript" src="js/jquery.noty.packaged.min.js"></script>
+		<!-- Pega Tempo de acesso -->
+		<script type="text/javascript" src="js/pegaTempo.js"></script>
 		<!-- Fim Home -->
 		</script>
 		<script type="text/javascript">
@@ -48,7 +50,7 @@
 			}
 		</script>
 	</head>
-	<body>
+	<body onload="document_OnLoad(<?= $_GET['idOA']; ?>, <?= $_GET['idUsuario']; ?>, <?= $_GET['idDisciplina']; ?>)">
 		<div style="width: 100%; height: 20%;">
 
 			<!--Se quiserem remover o módulo de avaliação qualitativa, basta enviar o form para outra página e excluir a div com ID "modulo_avaliacao_qualitativa" abaixo-->
@@ -77,7 +79,7 @@
 				<p><input type="radio" name="av_quali" value="5">Achei complexo demais, abordava temas que nunca ouvi falar.</input></p>
 
 			</div>
-			<input type="hidden" name="id" value="<?php echo $_GET['id']; ?>" />
+			<input type="hidden" name="id" value="<?php echo $_GET['idOA']; ?>" />
 			<button onclick="submitAvaliacoes();" style="width:100%;float:left;">Enviar Avaliações</button>
 		</div>
 		<iframe name="Stack" style="width: 100%; height: 80%" frameborder="0" id="iframe" src="<?php echo $_GET['url']; ?>"></iframe>
