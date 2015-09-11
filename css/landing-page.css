@@ -364,59 +364,6 @@ div.login input[type=submit] { /*botão login*/
     border-top-right-radius: 5px;
 }
 
-.modalDialog form {
-    margin-top:30px;
-}
-
-.modalDialog input[type=text],[type=password] { /*customiza input de texto e senha*/
-     position:relative;
-     border:none;
-
-     color:#BBBDC0;
-     font-weight:100;
-     margin-top:0px;
-     height:40px;
-     padding-left:10px;
-     text-align:left;     
-     width:80%;
-}
-
-.modalDialog input[type=checkbox] {
-    margin-bottom:2px;
-}
-
-.modalDialog input[type=submit] { /*customiza input de submit*/
-  border: 0;
-  width:50%;
-    background: -webkit-linear-gradient(left, #26B3E8, #75CCD6); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(right, #26B3E8, #75CCD6); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(right, #26B3E8, #75CCD6); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, #26B3E8, #75CCD6); /* Standard syntax (must be last) */
-  color: white;
-  padding: 8px 14px;
-  font-weight: 100;
-  font-size: 18px;
-  text-decoration: none;
-  display: inline-block; /* needed for anchors */
-  position: relative;
-    -webkit-box-shadow: 0px 4px 0px 0px rgba(50, 50, 50, 0.47);
-    -moz-box-shadow:    0px 4px 0px 0px rgba(50, 50, 50, 0.47);
-    box-shadow:         0px 4px 0px 0px rgba(50, 50, 50, 0.47);
-
-  }
-
-
-  .modalDialog input[type=submit]:active { /*customiza pra quando estiver ativo (click)*/
-    -moz-transform: translateY(4px);
-    -webkit-transform: translateY(4px);
-    -o-transform: translateY(4px);
-    -ms-transform: translateY(4px);
-    transform: translateY(4px);
-    
-    -webkit-box-shadow: 0px 1px 0px 0px rgba(50, 50, 50, 0.47);
-    -moz-box-shadow:    0px 1px 0px 0px rgba(50, 50, 50, 0.47);
-    box-shadow:         0px 1px 0px 0px rgba(50, 50, 50, 0.47);
-  }
 
 @media only screen and (max-width : 425px) {
     

@@ -16,7 +16,7 @@ $disciplina = new Disciplina();
 $competencia = new Competencia();
 //include("views/view_cadastro_disciplina.php");
 // ... ask if we are logged in here:
-if (($login->isUserLoggedIn() == true) && ($login->getUserAccess() == 2) || ($login->getUserAccess() == 3)){
+if (($login->isUserLoggedIn() == true) && ($login->getUserAccess() == 2) || ($login->getUserAccess() == 3) || ($login->getUserAccess() == 1)){
     // the user is logged in. you can do whatever you want here.
     // for demonstration purposes, we simply show the "you are logged in" view.
 

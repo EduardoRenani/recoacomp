@@ -70,7 +70,7 @@
 			</div>
 
 			<!--MODULO DE AVALIACAO QUALITATIVA-->
-			<div id="modulo_avaliacao_qualitativa" style="width:100%;float:left;">
+			<div id="modulo_avaliacao_qualitativa" style="width:50%;float:right;">
 				<h5>Dessas frases, marque a que melhor complementa sua classificação desse objeto:</h5>
 				<p><input type="radio" name="av_quali" value="4">Não gostei do formato desse formato.</input></p>
 				<p><input type="radio" name="av_quali" value="1">Achei super útil, complementa o conteúdo abordado em aula.</input></p>
@@ -79,8 +79,10 @@
 				<p><input type="radio" name="av_quali" value="5">Achei complexo demais, abordava temas que nunca ouvi falar.</input></p>
 
 			</div>
+			<div style='padding-left: 10px; width: 48%; float: left;'><textarea name="av_subj" placeholder='Deixe um comentário'></textarea></div>
 			<input type="hidden" name="id" value="<?php echo $_GET['idOA']; ?>" />
 			<button onclick="submitAvaliacoes();" style="width:100%;float:left;">Enviar Avaliações</button>
+			</form>
 		</div>
 		<iframe name="Stack" style="width: 100%; height: 80%" frameborder="0" id="iframe" src="<?php echo $_GET['url']; ?>"></iframe>
 	</body>

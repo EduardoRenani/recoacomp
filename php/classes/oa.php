@@ -51,47 +51,19 @@ class OA{
      * @var string $entidade lista de palavras com as entidades
      */
     private  $entidade                   = "";
-    /**
-     * @var string $contribuicao tipo de contribuição que objeto inspira
-     * autor
-     * editor
-     * desconhecido
-     * iniciador
-     * designer gráfico
-     * técnico
-     * provedor de conteúdo
-     * roteirista
-     * designer instrucional
-     * especialista em conteúdo
-     */
-    private  $contribuicao                  = "";
     // -----------------------------FIM CATEGORIA VIDA--------------------------------
     // Variáveis responsáveis pela categoria técnica no banco de dados
     // -----------------------------INICIO CATEGORIA TÉCNICA-----------------------------
     /**
-     * @var time $tempo_video tempo do video a ser cadastrado, se for video.
+     * @var string $tipoFormato formato do OA:
+     * Através de Browser
+     * Através de Download
      */
-    private   $tempo_video       = null;
-    /**
-     * @var string $tamanho tamanho do video a ser cadastrado, se for video.
-     */
-    private   $tamanho       = "";
-    /**
-     * @var string $tipoTecnologia tipo de tecnologia utilizada no OA:
-     * Navegador
-     * Sistema Operacional
-     */
-    private   $tipoTecnologia       = "";
+    private   $formaUtilizacao       = "";
     /**
      * @var string $tipoFormato formato do OA:
-     * Video
-     * Imagem
-     * Audio
-     * Texto
-     * Apresentação
-     * PDF
-     * Site
-     * Sistema Operacional
+     * Através de Browser
+     * Através de Download
      */
     private   $tipoFormato       = "";
     // -----------------------------FIM CATEGORIA TÉCNICA--------------------------------
@@ -278,14 +250,8 @@ class OA{
                 $this->criaOA(
                 //Categoria vida:
                 $_POST['date'],
-                $_POST['status'],
-                $_POST['versao'],
-                $_POST['entidade'],
-                $_POST['contribuicao'],
                 // Categoria Técnica
-                $_POST['tempo_video'],
-                $_POST['tamanho'],
-                $_POST['tipoTecnologia'],
+                $_POST['formaUtilizacao'],
                 $_POST['tipoFormato'],
                 // Categoria Educacional
                 $_POST['descricao_educacional'],
@@ -349,11 +315,7 @@ class OA{
         $date,
         $status,
         $versao,
-        $entidade, // Recebe uma lista de palavras separadas por virgula
-        $contribuicao, // Recebe uma lista das contribuições
         //Categoria Técnica
-        $tempo_video,
-        $tamanho,
         $tipoTecnologia,
         $tipoFormato,
         //Categoria Educacional
@@ -384,8 +346,6 @@ class OA{
         // -------------------------------------------/
         // Remover espaços em branco em excesso das strings
         // Categoria vida
-        $status = trim($status);
-        $versao = trim($versao);
         $entidade = trim($entidade);
         $contribuicao = trim($contribuicao);
 
@@ -419,10 +379,6 @@ class OA{
 
         // Categoria Vida
         $this->date = $date;
-        $this->status = $status;
-        $this->versao = $versao;
-        $this->entidade = $entidade;
-        $this->contribuicao= $contribuicao;
 
         // Categoria Técnica
         $this->tempo_video = $tempo_video;

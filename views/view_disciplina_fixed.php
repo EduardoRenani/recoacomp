@@ -24,7 +24,7 @@
 <!-- ============== DISCIPLINAS ============== -->
 
 <div class="disciplinas">
-<div class="top-disciplinas">Minhas Disciplinas</div>
+<div class="top-disciplinas">Disciplinas em que estou matriculado(a)</div>
         <div class="disciplinas-content">           
             <ul class="disciplinas-list">
 

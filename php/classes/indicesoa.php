@@ -7,18 +7,39 @@
  */
 
 class IndicesOA {
+	/**
+	 * @var string Nome do Objeto de Aprendizagem
+	 */
 	private $nomeOA;
 
+	/**
+	 * @var  int Id do Objeto de Aprendizagem
+	 */
 	private $idOA;
 
+	/**
+	 * @var  int Id da disciplina ao qual o Objeto de Aprendizagemn está associado
+	 */
 	private $idDisciplina;
 
+	/**
+	 * @var  float Valor do índice de rejeição do OA
+	 */
 	private $indiceRejeicao;
 
+	/**
+	 * @var  int Valor do índice de relevância do OA em relação à disciplina
+	 */
 	private $indiceRelevancia;
 
+	/**
+	 * @var  object Acessos do OA
+	 */
 	private $acessosOA;
 
+	/**
+	 * Quando instancia o objeto, seta as variáveis de instâncias 'acessosOA'
+	 */
 	function __construct($dados) {
 		$this->acessosOA = new AcessosOA($dados);
 		if(!is_null($dados)) {
@@ -26,6 +47,10 @@ class IndicesOA {
 		}
 	}
 
+	/**
+	 * Carrega os dados nos parâmetros do objeto
+	 * @param array dados['idOA', 'idDisciplina'];
+	 */
 	private function carregaDados($dados) {
 		$this->setIdOA($dados['idOA']);
 		$this->carregaNomeOA($this->getIdOA());
@@ -33,6 +58,10 @@ class IndicesOA {
 		$this->calculaIndiceRejeicao();
 	}
 
+	/**
+	 * Carrega o nome do OA no banco de dados com o id passado
+	 * @param int Id do Objeto de Aprendizagem
+	 */
 	private function carregaNomeOA($idOA) {
 		$database = new Database;
 		$sql = "SELECT nome FROM cesta WHERE idcesta = :idOA";
@@ -41,6 +70,11 @@ class IndicesOA {
     	$this->setNomeOA($database->single()["nome"]);
 	}
 
+	/**
+	 * Calcula o índice de Rejeição do OA
+	 * Cálculo do índice: AcessosInválidos/AcessosTotais
+	 * @throws InvalidArgumentException Caso existam argumentos inválidos
+	 */
 	public function calculaIndiceRejeicao() {
 		$dados = array( "idOA" => $this->getIdOA(),
 						"idDisciplina" => $this->getIdDisciplina()
@@ -56,6 +90,12 @@ class IndicesOA {
 		
 	}
 
+	/**
+	 * Calcula o índice de Relevancia
+	 * Cálculo do índice: (AcessosValidos/AcessosValidosDoOAMaisAcessado + tempoMedioAcesso/tempoMedioTodosOAS)*(1-indiceRejeição)
+	 * @param int Id do OA mais acessado da disciplina
+	 * @throws InvalidArgumentException Caso existam argumentos inválidos
+	 */
 	public function calculaIndiceRelevancia($idOAMaisAcessosValidos) {
 		$dados = array( "idOA" => $this->getIdOA(),
 						"idDisciplina" => $this->getIdDisciplina()
@@ -75,53 +115,86 @@ class IndicesOA {
 		}
 	}
 
+	/**
+	 * @return string Nome do OA
+	 */
 	public function getNomeOA() {
 		return $this->nomeOA;
 	}
-
+	
+	/**
+	 * @param string Nome do OA
+	 */
 	public function setNomeOA($nomeOA) {
 		$this->validaString($nomeOA);
 		$this->nomeOA = $nomeOA;
 	}
-
+	
+	/**
+	 * @return int id do OA
+	 */
 	public function getIdOA() {
 		return $this->idOA;
 	}
-
+	
+	/**
+	 * @param int id do OA
+	 */
 	public function setIdOA($idOA) {
 		$this->validaInteiro($idOA);
 		$this->idOA = $idOA;
 		$this->getAcessosOA()->setIdOA($idOA);
 	}
-
+	
+	/**
+	 * @return int id da disciplina do OA
+	 */
 	public function getIdDisciplina() {
 		return $this->idDisciplina;
 	}
-
+	
+	/**
+	 * @param int id da disciplina do OA
+	 */
 	public function setIdDisciplina($idDisciplina) {
 		$this->validaInteiro($idDisciplina);
 		$this->idDisciplina = $idDisciplina;
 		$this->getAcessosOA()->setIdDisciplina($idDisciplina);
 	}
-
+	
+	/**
+	 * @return float id índice de rejeição
+	 */
 	public function getIndiceRejeicao() {
 		return $this->indiceRejeicao;
 	}
 
+	/**
+	 * @param float id índice de rejeição
+	 */
 	public function setIndiceRejeicao($indice) {
 		$this->validaFloat($indice);
 		$this->indiceRejeicao = $indice;
 	}
 
+	/**
+	 * @return float id índice de relevancia
+	 */
 	public function getIndiceRelevancia() {
 		return $this->indiceRelevancia;
 	}
 
+	/**
+	 * @param float id índice de relevancia
+	 */
 	public function setIndiceRelevancia($indice) {
 		$this->validaFloat($indice);
 		$this->indiceRelevancia = $indice;
 	}
 
+	/**
+	 * @return object Acessos do OA
+	 */
 	public function getAcessosOA() {
 		return $this->acessosOA;
 	}

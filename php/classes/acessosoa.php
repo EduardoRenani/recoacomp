@@ -34,10 +34,20 @@ class AcessosOA {
 	 */
 	private $idOA;
 
+	/**
+	 * @var int acessos totais do OA
+	 */
 	private $acessosTotais;
 
+	/**
+	 * @var int acessos válidos do OA (ver constante TEMPO_MINIMO e TEMPO_MAXIMO)
+	 */
 	private $acessosValidos;
 
+
+	/**
+	 * @var int acessos inválidos do OA (ver constante TEMPO_MINIMO e TEMPO_MAXIMO)
+	 */
 	private $acessosInvalidos;
 
 	/**
@@ -47,7 +57,7 @@ class AcessosOA {
 	private $tempoAcessoOA;
 
 	/**
-	 * Quando instancia o objeto, seta as variáveis de instâncias 'tempoAcessoOA' e 'indicesOA'
+	 * Quando instancia o objeto, seta as variáveis de instâncias 'tempoAcessoOA'
 	 */
 	function __construct($dados = NULL) {
 		$this->tempoAcessoOA = new TempoAcessoOA($dados);
@@ -130,6 +140,26 @@ class AcessosOA {
 		}
 		if(is_null($this->getTempoAcessoOA())) {
 			throw new InvalidArgumentException("Erro! Objeto tempo de acesso nulo!");
+		}
+	}
+
+	public function carregaIdUsuarios() {
+		try {
+			$database = new Database;
+
+        	$sql = "SELECT * FROM acessos_oa WHERE id_oa = :idOA AND id_disciplina = :idDisciplina";
+        	$database->query($sql);
+        	$database->bind(":idOA", $dados['idOA']);
+        	$database->bind(":idDisciplina", $dados['idDisciplina']);
+        	$database->execute();
+
+        	$acessos = $database->resultSet();
+        	foreach ($acessos as $acesso) {
+        		$idUsuarios[] = $acesso['id_usuario'];
+        	}
+		}
+		catch(Exception $e) {
+			trigger_error("Erro ao pegar número de acessos do OA!".$e->getMessage(), $e->getCode());
 		}
 	}
 
@@ -265,6 +295,9 @@ class AcessosOA {
 		return $this->tempoAcessoOA;
 	}
 
+	/**
+	 * @return int id do OA com mais acessos válidos
+	 */
 	public function getMaisAcessosValidos($dados) {
 		try {
 			$database = new Database;
@@ -284,6 +317,10 @@ class AcessosOA {
 		}
 	}
 
+	/**
+	 * Caclula acessos inválidos do OA
+	 * @throws trigger_error Caso pegue números inválidos
+	 */
 	public function calculaAcessosInvalidos($dados) {
 		try {
 			$database = new Database;
@@ -303,6 +340,10 @@ class AcessosOA {
 		}
 	}
 
+	/**
+	 * Caclula acessos totais do OA
+	 * @throws trigger_error Caso pegue números inválidos
+	 */
 	public function calculaTotalAcessos($dados) {
 		try {
 			$database = new Database;
@@ -320,6 +361,10 @@ class AcessosOA {
 		}
 	}
 
+	/**
+	 * Caclula acessos válidos do OA
+	 * @throws trigger_error Caso pegue números inválidos
+	 */
 	public function calculaAcessosValidos($dados) {
 		try {
 			$database = new Database;

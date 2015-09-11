@@ -94,7 +94,7 @@ $(document).ready(function(){
         // option on the series option.  Here a series option object
         // is specified for each series.
         series:[
-            {label:'Acessos Validos'}
+            {label:'Acessos V&aacute;lidos'}
         ],
         // Show the legend and put it outside the grid, but inside the
         // plot container, shrinking the grid to accomodate the legend.
@@ -104,7 +104,7 @@ $(document).ready(function(){
             show: true,
             placement: 'outsideGrid'
         },
-        title:"Top 10 OA's mais acessados",
+        title:"Top 10 OAs mais acessados",
         axes: {
             // Use a category axis on the x axis and use our custom ticks.
             xaxis: {
@@ -151,11 +151,11 @@ $(document).ready(function(){
             placement: 'outsideGrid'
         },
         series:[
-            {label: "Acessos Validos"},
-            {label: "Acessos Invalidos"},
+            {label: "Acessos V&aacute;lidos"},
+            {label: "Acessos Inv&aacute;lidos"},
             {label: "Acessos Totais"}
         ],
-        title:"Estatisticas de Acessos",
+        title:"Est&aacute;tisticas de Acessos",
         axes: {
             // Use a category axis on the x axis and use our custom ticks.
             xaxis: {
@@ -201,9 +201,9 @@ $(document).ready(function(){
             placement: 'outsideGrid'
         },
         series:[
-            {label: "Indice (%)"}
+            {label: "&Iacute;ndice (%)"}
         ],
-        title:"Indices de Rejeicao",
+        title:"&Iacute;ndices de Rejeic&atilde;o",
         axes: {
             // Use a category axis on the x axis and use our custom ticks.
             xaxis: {
@@ -249,9 +249,9 @@ $(document).ready(function(){
             placement: 'outsideGrid'
         },
         series:[
-            {label: "Indice (unitario)"}
+            {label: "&Iacute;ndice (unitario)"}
         ],
-        title:"Indices de Relevancia",
+        title:"&Iacute;ndices de Relev&acirc;ncia",
         axes: {
             // Use a category axis on the x axis and use our custom ticks.
             xaxis: {

@@ -8,10 +8,19 @@
 
 class TempoAcessoOA {
 
+	/**
+	 * @var int tempo real de acesso do OA
+	 */
 	private $tempoReal;
 
+	/**
+	 * @var int tempo médio de acesso do OA
+	 */
 	private $tempoMedioOA;
 
+	/**
+	 * @var int tempo medio de acesso de todos os OA
+	 */
 	private $tempoMedioTodosOAS;
 
 	function __construct($dados) {
@@ -20,19 +29,32 @@ class TempoAcessoOA {
 		}
 	}
 
+	/**
+	 * @param array dados['idOA', 'idDisciplina']
+	 */
 	protected function carregaDados($dados) {
 		$this->calculaTempoMedioOA($dados);
 		$this->calculaTempoMedioTodosOAS($dados['idDisciplina']);
 	}
 
+	/**
+	 * @param int tempo real de acesso do OA
+	 */
 	public function setTempoReal($tempo) {
 		$this->tempoReal = $tempo;
 	}
 
+	/**
+	 * @return int tempo real de acesso do OA
+	 */
 	public function getTempoReal() {
 		return $this->tempoReal;
 	}
 
+	/**
+	 * Calcula o tempo Medio do OA
+	 * @param array dados['idOA', 'idDisciplina']
+	 */
 	public function calculaTempoMedioOA($dados) {
 		$tempoMedio = 0;
 		$database = new Database;
@@ -52,6 +74,10 @@ class TempoAcessoOA {
 		}
 	}
 
+	/**
+	 * Calcula o tempo Medio de todos os OAS da disciplinas
+	 * @param int id da Disciplina do OA
+	 */
 	public function calculaTempoMedioTodosOAS($idDisciplina) {
 		$tempoMedio = 0;
 		$database = new Database;
@@ -70,18 +96,30 @@ class TempoAcessoOA {
 		}
 	}
 
+	/**
+	 * @param float tempo medio de acesso do OA
+	 */
 	public function setTempoMedioOA($tempo) {
 		$this->tempoMedioOA = $tempo;
 	}
 
+	/**
+	 * @return float tempo medio de acesso do OA
+	 */
 	public function getTempoMedioOA() {
 		return $this->tempoMedioOA;
 	}
 
+	/**
+	 * @param float tempo medio de acesso de todos os OAS
+	 */
 	public function setTempoMedioTodosOAS($tempo) {
 		$this->tempoMedioTodosOAS = $tempo;
 	}
 
+	/**
+	 * @return float tempo medio de acesso de todos os OAS
+	 */
 	public function getTempoMedioTodosOAS() {
 		return $this->tempoMedioTodosOAS;
 	}

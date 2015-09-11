@@ -47,24 +47,6 @@
             },
             success: function(response){
                 location.reload();
-                //console.log(response);
-                /*var n = noty({
-                    text: 'Disciplina excluida com sucesso',
-                    layout: 'topCenter',
-                    theme: 'relax', // or 'relax'
-                    type: 'information',
-                    killer: true, // MATA OS OUTROS NOTYS MWHAHAHA
-                    animation: {
-                        open: {height: 'toggle'}, // jQuery animate function property object
-                        close: {height: 'toggle'}, // jQuery animate function property object
-                        easing: 'swing', // easing
-                        speed: 500 // opening & closing animation speed
-                    },
-                    timeout: 1000
-                    // Desaparecer
-                    
-                }); */
-            }
         });
         
     }
@@ -83,11 +65,8 @@
 
 <!-- ============== DISCIPLINAS DIPONIVEIS ============== -->
 
-
-
-
 <div class="disciplinas">
-    <div class="top-disciplinas"><?php echo WORDING_AVAILABLE_COURSES?></div>
+    <div class="top-disciplinas">Minhas Disciplinas</div>
         <div class="disciplinas-content">           
             <ul class="disciplinas-list">
                 
@@ -106,6 +85,7 @@
                 for($i=0; $i<$contador;$i++){
                     // Se a disciplina não estiver com a flag excluida ela será mostrada
                     if(!$disciplina->isExcluida($listaDisciplina[3][$i][0])){
+                        if(!(isset($_POST['codTipoUsuario']))){
                             echo
                                 "<li class='disciplinas-item'>".
                                     "<div class='disciplina-item-content'>".
@@ -143,12 +123,71 @@
                                 </div>
                                 <!-- /.top-cadastro -->
                         </div>
-
-
-
-                        <?php }// end if 
+<?php                   } else { //  Se tiver setado o _POST pra ver como aluno/professor
+                            $tipoUsuario = $_POST['codTipoUsuario'];
+                                if($tipoUsuario == 2){ // Se a visão estiver de aluno não mostrar ver disciplina
+                                echo
+                                    "<li class='disciplinas-item'>".
+                                        "<div class='disciplina-item-content'>".
+                                            "<div class='lista-disciplina'>".
+                                                "<h3>".$listaDisciplina[0][$i][0]."</h3>".
+                                                "<h4>".$listaDisciplina[1][$i][0]."</h4>".
+                                                "<p>".$listaDisciplina[2][$i][0].
+                                                "<br>".
+                                                "<br><a href='#openModalDeleteDisciplina' id=".$listaDisciplina[3][$i][0]." class='botao-med' onClick='getDisciplinaId(this.id)'>Excluir</a>". // 
+                                            "</div>".
+                                        "</div>".
+                                        "<div style='display: block;'>".
+                                            "<form method='post' action='editar_disciplina.php' name='senha_disciplina'>".
+                                                "<input type='hidden' id='idDisciplina' name='idDisciplina' value=".$listaDisciplina[3][$i][0]." />".
+                                                "<input type='submit' name='editar_disciplina.php' action='' value='Ver Disciplina' />".
+                                            "</form>".
+                                            "<div class='button'>".
+                                            "<form action='cadastro_disciplina_cha_teste.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
+                                               "<input type='hidden' name='disc' value='".$listaDisciplina[3][$i][0]."'>".
+                                                "<input type='submit' value='Testar Recomendação'></br></br>".
+                                                "</form>".
+                                            "</div>".
+                                        "</div>".
+                                    "</li>";
+                            
+                                    ?>
+                                    <!-- Modal -->
+                                    <div id="openModalDeleteDisciplina" class="modalDialog" id="excluirDisciplinaDialog">
+                                            <div>
+                                                <a href="#close" title="Close" class="close">X</a>
+                                                <div class="top-cadastro"><?php echo 'Excluir disciplina?'; ?></div>
+                                                    <a href="#close" class="botao-med" id="<?php echo $listaDisciplina[3][$i][0]?>" onClick="deletarDisciplina();" title="Deletar">Deletar</a>
+                                                    <a href="#close" class="botao-med" title="Cancelar">Cancelar</a>
+                                                <!--/div-->
+                                            </div>
+                                            <!-- /.top-cadastro -->
+                                    </div>
+<?php                           } elseif ($tipoUsuario == 1){
+                                    echo
+                                        "<li class='disciplinas-item'>".
+                                            "<div class='disciplina-item-content'>".
+                                                "<div class='lista-disciplina'>".
+                                                    "<h3>".$listaDisciplina[0][$i][0]."</h3>".
+                                                    "<h4>".$listaDisciplina[1][$i][0]."</h4>".
+                                                    "<p>".$listaDisciplina[2][$i][0].
+                                                    "<br>".
+                                                "</div>".
+                                            "</div>".
+                                            "<div style='display: block;'>".
+                                                "<div class='button'>".
+                                                "<form action='cadastro_disciplina_cha_teste.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
+                                                   "<input type='hidden' name='disc' value='".$listaDisciplina[3][$i][0]."'>".
+                                                    "<input type='submit' value='Solicitar Recomendação'></br></br>".
+                                                    "</form>".
+                                                "</div>".
+                                            "</div>".
+                                        "</li>";
+                                } // end elseif
+                            } // end if isset
+                         }// end if excluida
                         //<!-- /.modalDialog -->
-                     } // end fo ?>
+                     } // end for ?>
             </ul>
          </div>  
 

@@ -8,6 +8,7 @@
 require_once('base.php');
 $av_quanti = $_POST['rating'];
 $av_quali = $_POST['av_quali'];
+$av_subj = $_POST['av_subj'];
 $id_oa = $_POST['id'];
 $data = date("Y-m-d");
 $db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
@@ -29,8 +30,8 @@ if(!empty($av_quanti) && !empty($av_quali)){
         */
     }
         $sql2 = $db_connection->prepare("INSERT INTO avaliacoes_quali 
-                                                (usuario_id, competencia_id, oa_id, data, avaliacao) 
-                                                VALUES ('1', '1', '".$id_oa."', '".$data."', '".$av_quali."')");
+                                                (usuario_id, competencia_id, oa_id, data, avaliacao, comentario) 
+                                                VALUES ('1', '1', '".$id_oa."', '".$data."', '".$av_quali."', '".$av_subj."')");
         $sql2->execute();
         echo "<script>alert(\"Avaliação enviada com sucesso! Obrigado!\");</script><script>window.history.back();</script>";
 } else {

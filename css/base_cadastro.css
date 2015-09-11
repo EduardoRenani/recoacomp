@@ -434,11 +434,61 @@ input[type=submit]{ /*customiza input de submit*/
   text-align:left;
 }
 
+/*================================== CADASTERO ==================================*/
+
+.info-cadastro{
+  display: block;
+  width: 100%;
+  float: left;
+  text-align:left;
+  font-size:16px;
+  font-weight:300;
+}
+
+.titulo-cadastro{
+  display: block;
+  width: 100%;
+  font-size:16px;
+  font-weight:300;
+  height:35px;
+  background:white;
+}
+
+.cadastro-left-column{
+  display: inline-block;
+  width: 35%;
+  float:left;
+}
+
+.cadastro-right-column{
+  display: inline-block;
+  width: 35%;
+  float:right;
+}
+
+div.search-cadastro input[type=text]{
+  background:#E2E2E1;
+  border: 1px solid #B1AEAE;
+  border-radius:0;
+  margin-left:5px;
+  width:273px;
+  margin-top:5px;
+  margin-bottom:0px;
+}
+
+div.search-cadastro {
+  background:#E8E8E7;
+  margin-bottom:0px;
+  width:300px;
+  border-radius:0;
+}
+
 /*DRAGABLE-----------------------------------------------------------------------*/
 #tabela1, #tabela2{
+  background:#E8E8E7;
     border: 1px solid #eee;
-    width: 45%;
-    height: 250px;
+    width: 100%;
+    height: 255px;
 	  min-height: 250px;
     list-style-type: none;
     margin: 0;
@@ -454,6 +504,7 @@ input[type=submit]{ /*customiza input de submit*/
 
 #tabela2 {
   float: right;
+  height:300px;
 }
 
 
@@ -464,7 +515,7 @@ input[type=submit]{ /*customiza input de submit*/
     width: 97%;
     font-weight:100;
     cursor:pointer;
-    border: 1px solid #d3d3d3;
-    background: #e6e6e6 url("images/ui-bg_glass_75_e6e6e6_1x400.png") 50% 50% repeat-x;
+    border: 1px solid #D0D0D0;
+    background: #D8D8D7;
     color:#555555;
 }

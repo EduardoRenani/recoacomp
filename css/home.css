@@ -469,6 +469,7 @@ p.copyright {
 }
 
 .rating {
+    padding-left: 10px;
     float:left;
 }
 

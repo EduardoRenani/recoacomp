@@ -643,27 +643,33 @@ $(function(){
 
 
                         <!-- DIV COM DADOS DAS COMPETÊNCIAS A SEREM ASSOCIADAS A DISCIPLINA -->
-                        <div id="sub-conteudo1" style="background-image: url(img/seta_drag.png); background-repeat: no-repeat; background-position: 49.5% 40%; background-size: 50px;" class="tab">
-                            <input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" />
-                            <input type="hidden" id="listaConhecimentos" name="listaConhecimentos" value="" />
-                            <input type="hidden" id="listaHabilidades" name="listaHabilidades" value="" />
-                            <input type="hidden" id="listaAtitudes" name="listaAtitudes" value="" />
-                            <span style="display block; width: 100%; float: left; text-align:center;"><?php echo WORDING_ASSOCIATE_COMP; ?></span></br></br>
-                            <span style="display block; width: 40%; float: left; text-align:left;">Competencias Disponíveis</span><span style="display: block; width: 30%; float: right; text-align:right;">Competencias Selecionadas</span>
-                            <div style="width: 45%;">
-                            	<input type="text" id="busca-competencias" placeholder="Pesquise uma competência">
-                            </div>
-                            <ul id="tabela1">
-                            </ul>
+                        <div id="sub-conteudo1" style="background-image: url(img/seta_drag.png); background-repeat: no-repeat; background-position: 48.5% 50%; background-size: 30px;" class="tab">
+                                <input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" />
+                                <input type="hidden" id="listaConhecimentos" name="listaConhecimentos" value="" />
+                                <input type="hidden" id="listaHabilidades" name="listaHabilidades" value="" />
+                                <input type="hidden" id="listaAtitudes" name="listaAtitudes" value="" />
+                                <span class="info-cadastro"><?php echo WORDING_ASSOCIATE_COMP; ?></span></br></br>
+                                
+                                <div class="cadastro-left-column">
+                                    <span class="titulo-cadastro text-left">Competencias Disponíveis</span>
+                                    <div class="search-cadastro">
+                                    	<input type="text" class="search-cadastro" id="busca-competencias" placeholder="Pesquise uma competência">
+                                        <ul id="tabela1">
+                                        </ul>
+                                    </div>
+                                </div>
 
-                            
-                            <ul id="tabela2">
-                            <!--<li class="ui-state-highlight">Item 1 selecionado</li>-->
-                            </ul>
-                             
-                    
-                    <center><div onclick="modalCompetencia();" class='botao-cadastra' style='width: 240px'><?=WORDING_CREATE_NEW_COMPETENCIA?></div></center>
-                    <br>
+                                <div class=""></div>
+
+                                <div class="cadastro-right-column">
+                                    <span class="titulo-cadastro text-right">Competencias Selecionadas</span>
+                                    <ul id="tabela2">
+                                    <!--<li class="ui-state-highlight">Item 1 selecionado</li>-->
+                                    </ul>
+                                </div>
+                                 
+                                <!--<center><div onclick="modalCompetencia();" class='botao-cadastra' style='width: 240px'><?=WORDING_CREATE_NEW_COMPETENCIA?></div></center>-->
+                                <br>
                         </div>
                         
                         <!-- DIV COM COISA CHA -->

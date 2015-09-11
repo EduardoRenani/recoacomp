@@ -730,70 +730,15 @@ if (isset($OA)) {
                                 <input id="date" type="text" name="date" required />
                             </div>
                         </div>
-                        <div class="control-group">
-                            <label class="control-label" for="status"><div style="float: left"><?php echo WORDING_STATUS; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(5, '<?php echo HINT_STATUS ?>')" onmouseout="deleteTooltip(5)">?</div></div>
-                            <div class="controls">
-                                    <select id = "status" name="status" required="true">
-                                        <option value = "revisado"><?php echo WORDING_REVISED ?></option>
-                                        <option value = "rascunho"><?php echo WORDING_DRAFT ?></option>
-                                        <option value = "editado"><?php echo WORDING_EDITED ?></option>
-                                        <option value = "indisponível"><?php echo WORDING_UNAVAILABLE ?></option>
-                                        <option value = "final"><?php echo WORDING_FINAL ?></option>
-                                    </select>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="versao"><div style="float: left"><?php echo WORDING_VERSION; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(6, '<?php echo HINT_VERSION ?>')" onmouseout="deleteTooltip(6)">?</div></div>
-                            <div class="controls">
-                                    <input id="versao" type="number" name="versao" min="0" max="100" step="0.1" value="1" class="required">
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="entidade"><div style="float: left"><?php echo WORDING_ENTITY; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(7, '<?php echo HINT_ENTITY ?>')" onmouseout="deleteTooltip(7)">?</div></div>
-                            <div class="controls">
-                                    <input id="entidade" type="text" name="entidade" class="required" />
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="contribuicao"><?php echo WORDING_CONTRIBUTION; ?></label>
-                            <div class="controls">
-                                        <select id = "contribuicao" name="contribuicao" required="true">
-                                            <option value = "autor"><?php echo WORDING_AUTHOR ?></option>
-                                            <option value = "editor"><?php echo WORDING_EDITOR ?></option>
-                                            <option value = "deconhecido"><?php echo WORDING_UNKNOWN ?></option>
-                                            <option value = "iniciador"><?php echo WORDING_INICIATOR ?></option>
-                                            <option value = "designer gráfico"><?php echo WORDING_GRAPHIC_DESIGNER ?></option>
-                                            <option value = "técnico"><?php echo WORDING_TECHNICAL ?></option>
-                                            <option value = "provedor de conteúdo"><?php echo WORDING_CONTENT_PROVIDER ?></option>
-                                            <option value = "roteirista"><?php echo WORDING_ROTEIRIST ?></option>
-                                            <option value = "designer instrucional"><?php echo WORDING_INSTRUCTIONAL_DESIGNER ?></option>
-                                            <option value = "especialista em conteúdo"><?php echo WORDING_CONTENT_SPECIALIST ?></option>
-                                        </select>
-                            </div>
-                        </div>
                 </div>
                 <div id="sub-conteudo2" class="tab">
-                     <!-- TEMPO DO VIDEO -->
+                     <!-- FORMA DE UTILIZAÇÃO -->
                     <div class="control-group">
-                        <label class="control-label" for="tempo_video"><div style="float: left"><?php echo WORDING_VIDEO_TIME; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(8, '<?php echo HINT_DURATION ?>')" onmouseout="deleteTooltip(8)">?</div></div>
+                        <label class="control-label" for="formaUtilizacao"><?php echo WORDING_UTILITY_TYPE; ?></label>
                         <div class="controls">
-                            <input type="time" name="tempo_video">
-                        </div>
-                    </div>
-                     <!-- TAMANHO -->
-                    <div class="control-group">
-                        <label class="control-label" for="tamanho"><div style="float: left"><?php echo WORDING_SIZE; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(9, '<?php echo HINT_SIZE ?>')" onmouseout="deleteTooltip(9)">?</div></div>
-                        <div class="controls">
-                             <input id="tamanho" type="number" name="tamanho" min="0" max="100" step="0.1" value="1" class="required">
-                        </div>
-                    </div>
-                     <!-- TIPO TECNOLOGIA -->
-                    <div class="control-group">
-                        <label class="control-label" for="tipoTecnologia"><?php echo WORDING_TECHNOLOGY_TYPE; ?></label>
-                        <div class="controls">
-                            <select id = "tipoTecnologia" name="tipoTecnologia" required="true">
-                                <option value = "navegador"><?php echo WORDING_BROWSER ?></option>
-                                <option value = "sistema operacional"><?php echo WORDING_OPERATIONAL_SYSTEM ?></option>
+                            <select id = "formaUtilizacao" name="formaUtilizacao" required="true">
+                                <option value = "navegador"><?php echo WORDING_THROUGH_BROWSER ?></option>
+                                <option value = "download"><?php echo WORDING_THROUGH_DOWNLOAD ?></option>
                             </select>
                         </div>
                     </div>                 
