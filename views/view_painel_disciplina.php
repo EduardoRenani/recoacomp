@@ -21,7 +21,19 @@
     color: white;
 }
 
-
+#usuarios {
+    display: none;
+    position: fixed;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.4);
+    width: 15%;
+    height: 30%;
+    top: 50%;
+    left: 50%;
+    margin: -10% -7.5%;
+    z-index: 9999;
+}
 
 #mais-estatisticas {
     font-family: "Lato", "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
@@ -30,6 +42,17 @@
 }
 </style>
 <script language="javascript">
+<?php
+    foreach ($indices['usuarios_acessos'] as $oa => $usuariosAcessos) {
+        foreach ($usuariosAcessos as $usuario => $acessos) {
+            $divUsuariosAcessos[$oa][$usuario].="<p>".Usuario::getNome_byID($usuario)['user_name'].": ".$acessos."</p>";
+        }
+    }
+    echo "divOA = [];\n";
+    foreach ($divUsuariosAcessos as $oa => $usuario) {
+        echo "divOA['".$oa."'] = '".implode($usuario)."';\n";
+    }
+?>
 $(function () {
     $("#ver-mais").click(function(){
         $("#graficos").toggle(500);
@@ -40,13 +63,19 @@ $(function () {
         $("#graficos").toggle(500);
     });
 });
+    function escondeUsuarios(){
+        $("#usuarios").hide(500);
+    }
 <?php
+
     $indicesRejeicao = '';
     $nomesIndicesRejeicao = '';
     $indicesRelevancia = '';
     $nomesIndicesRelevancia = '';
     $chavesRejeicao = array_keys($indices['indices_rejeicao']);
     $chavesRelevancia = array_keys($indices['indices_relevancia']);
+    $divUsuariosAcessos = '';
+
     foreach($indices['indices_rejeicao'] as $index=>$indice) {
         if($indice != -1) {
             if ($index == end($chavesRejeicao)) { 
@@ -59,6 +88,7 @@ $(function () {
             }
         }
     }
+
     foreach($indices['indices_relevancia'] as $index=>$indice) {
         if($indice != -1) {
             if ($index == end($chavesRelevancia)) { 
@@ -119,6 +149,13 @@ $(document).ready(function(){
             }
         }
     });
+
+    $('#top10').bind('jqplotDataClick', 
+        function (ev, seriesIndex, pointIndex, data) {
+            $("#usuarios").show(500);
+            $('#usuarios').html(divOA[ticks[pointIndex]]+"<div onclick='escondeUsuarios()'>Sair</div>");
+        }
+    );
 
 
     var s1 = [<?php echo implode(", ", $indices["acessos_validos"]); ?>];
@@ -268,7 +305,9 @@ $(document).ready(function(){
     });
     }
 });
+
 </script>
+<div id="usuarios"></div>
 <div id="graficos" style="width: 100%; text-align: center;">
     <div id="top10" style="margin: 0 auto; width: 800px; margin-bottom: 20px;" class="jqplot-target">
     </div>

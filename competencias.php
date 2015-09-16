@@ -33,7 +33,7 @@ for($i=0;$i<$contador;$i++){
 		$descricaoCompetencia[$i]['descricao_nome'] = urlencode($descricaoCompetencia[$i]['descricao_nome']);
 		$descricaoCompetencia[$i]['descricao_nome'] = str_replace('%0D%0A', ' ', $descricaoCompetencia[$i]['descricao_nome']);
 		$descricaoCompetencia[$i]['descricao_nome'] = urldecode($descricaoCompetencia[$i]['descricao_nome']);
-		$arrayToReturn[] = '<li id="'.$idCompetencia[$i]["idcompetencia"].'" name="'.$nomeCompetencia[$i]["nome"].'" class="ui-state-default">'.$nomeCompetencia[$i]["nome"].'<div class="tooltipSort"><div onclick="toolTipSortable(\''.$idCompetencia[$i]["idcompetencia"].'\', \''.$descricaoCompetencia[$i]['descricao_nome'].'\')">?</div></div></li>';
+		$arrayToReturn[] = '<li id="'.$idCompetencia[$i]["idcompetencia"].'" name="'.$nomeCompetencia[$i]["nome"].'" class="ui-state-default">'.$nomeCompetencia[$i]["nome"].'<div class="tooltipSort"><div onclick="toolTipSortable(\''.$idCompetencia[$i]["idcompetencia"].'\', \''.$descricaoCompetencia[$i]['descricao_nome'].'\')">[ ? ]</div></div></li>';
 	}
 }
 //onmouseout="deleteTooltipComp(\''.$idCompetencia[$i]["idcompetencia"].'\')"

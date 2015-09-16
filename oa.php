@@ -35,7 +35,7 @@ for($i = 0;$i < $contador; $i++){
 		$urlTratadoOA = urlencode($urlOA[$i]['url']);
 		$urlTratadoOA = str_replace("%2F", "/", $urlTratadoOA);
 		$urlTratadoOA = str_replace("%3A", ":", $urlTratadoOA);
-		$arrayToReturn[] = '<li id="'.$idOA[$i]["idcesta"].'" name="'.$nomeOA[$i]["nome"].'" class="ui-state-default">'.$nomeOA[$i]["nome"].'<div class="tooltipSort"><div onclick="toolTipSortable(\''.$idOA[$i]["idcesta"].'\', \''.$descricaoOA[$i]['descricao'].'<br><a target=_blank href='.$urlTratadoOA.'>Url do OA</a>\')">?</div></div></li>';
+		$arrayToReturn[] = '<li id="'.$idOA[$i]["idcesta"].'" name="'.$nomeOA[$i]["nome"].'" class="ui-state-default">'.$nomeOA[$i]["nome"].'<div class="tooltipSort"><div onclick="toolTipSortable(\''.$idOA[$i]["idcesta"].'\', \''.$descricaoOA[$i]['descricao'].'<br><a target=_blank href='.$urlTratadoOA.'>Url do OA</a>\')">[ ? ]</div></div></li>';
 	}
 }
 echo json_encode($arrayToReturn);

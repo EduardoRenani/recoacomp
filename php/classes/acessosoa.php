@@ -78,6 +78,7 @@ class AcessosOA {
 			$this->calculaTotalAcessos($dados);
 			$this->calculaAcessosValidos($dados);
 			$this->calculaAcessosInvalidos($dados);
+			$this->carregaIdUsuarios($dados);
 		}
 		catch(Exception $e) {
 			trigger_error("Erro ao carregar dados do banco!".$e->getMessage(), $e->getCode());
@@ -143,23 +144,26 @@ class AcessosOA {
 		}
 	}
 
-	public function carregaIdUsuarios() {
+	public function carregaIdUsuarios($dados) {
 		try {
 			$database = new Database;
 
-        	$sql = "SELECT * FROM acessos_oa WHERE id_oa = :idOA AND id_disciplina = :idDisciplina";
+        	$sql = "SELECT * FROM acessos_oa WHERE id_oa = :idOA  AND id_disciplina = :idDisciplina AND tempo_acesso >= :tempoMinimo AND tempo_acesso <= :tempoMaximo";
         	$database->query($sql);
         	$database->bind(":idOA", $dados['idOA']);
         	$database->bind(":idDisciplina", $dados['idDisciplina']);
+        	$database->bind(":tempoMinimo", self::TEMPO_MINIMO);
+        	$database->bind(":tempoMaximo", self::TEMPO_MAXIMO);
         	$database->execute();
 
         	$acessos = $database->resultSet();
         	foreach ($acessos as $acesso) {
         		$idUsuarios[] = $acesso['id_usuario'];
         	}
+        	$this->setIdUsuarios($idUsuarios);
 		}
 		catch(Exception $e) {
-			trigger_error("Erro ao pegar número de acessos do OA!".$e->getMessage(), $e->getCode());
+			trigger_error("Erro ao pegar nusuários que acessaram o OA!".$e->getMessage(), $e->getCode());
 		}
 	}
 
@@ -167,7 +171,6 @@ class AcessosOA {
 	 * @param array idUsuarios
 	 */
 	public function setIdUsuarios($idUsuarios) {
-		$this->validaArray($idUsuarios);
 		$this->idUsuarios = $idUsuarios;
 	}
 

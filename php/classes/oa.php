@@ -34,38 +34,26 @@ class OA{
      * @var date $time data em que OA foi cadastrado
      */
     private  $date                   = null;
-    /**
-     * @var string $status tipos:
-     * Rascunho
-     * Revisado
-     * Editado
-     * Indisponível
-     * Final
-     */
-    private  $status                   = "";
-    /**
-     * @var string $versao versão do objeto cadastrado
-     */
-    private  $versao                   = "";
-    /**
-     * @var string $entidade lista de palavras com as entidades
-     */
-    private  $entidade                   = "";
     // -----------------------------FIM CATEGORIA VIDA--------------------------------
     // Variáveis responsáveis pela categoria técnica no banco de dados
     // -----------------------------INICIO CATEGORIA TÉCNICA-----------------------------
     /**
-     * @var string $tipoFormato formato do OA:
+     * @var string $formaUtilizacao forma de utilizacão do OA:
      * Através de Browser
      * Através de Download
      */
     private   $formaUtilizacao       = "";
     /**
-     * @var string $tipoFormato formato do OA:
-     * Através de Browser
-     * Através de Download
+     * @var string $tipoFormato formato do OA [checkbox]:
+     * Material multimídia
+     * Video
+     * Animação
+     * Livro Digital
+     * Jogo
+     * Documento (PDF, Texto, Planilha)
+     * Página da WEB
      */
-    private   $tipoFormato       = "";
+    private   $tipoOA       = ""; //$tipoFormato
     // -----------------------------FIM CATEGORIA TÉCNICA--------------------------------
     // Variáveis responsáveis pela categoria eduacional no banco de dados
     // -----------------------------INICIO CATEGORIA EDUACIONAL-----------------------------
@@ -73,28 +61,13 @@ class OA{
      * @var string $descricao_educacional breve descrição do OA
      */
     private   $descricao_educacional       = "";
-    /**
-     * @var string $nivelIteratividade nivel de iteratividade do OA:
-     * Muito Baixa
-     * Baixo
-     * Medio
-     * Alto
-     * Muito Alto
-     */
-    private   $nivelIteratividade       = "";
-    /**
-     * @var string $tipoIteratividade tipo de iteratividade do OA:
-     * Ativa
-     * Expositiva
-     * Mista
-     */
-    private   $tipoIteratividade       = "";
      /**
      * @var string $faixaEtaria faixa etaria recomendada do OA
-     * Criança
-     * Adulto
-     * Idoso
-     * Todas as idades
+     * Educação Infantil
+     * Ensino Fundamental
+     * Ensino Médio
+     * Ensino Profissionalizante
+     * Ensino Superior
      */
      private   $faixaEtaria       = "";
     /**
@@ -117,22 +90,6 @@ class OA{
      * Palestra
      */
     private   $recursoAprendizagem       = "";
-    /**
-     * @var string $usuarioFinal usuário final do OA
-     * Professor
-     * Autor
-     * Aluno
-     * Admin
-     */
-    private   $usuarioFinal       = "";
-    /**
-     * @var string $ambiente ambiente do OA
-     * Escola
-     * Faculdade
-     * Treinamento
-     * Outro
-     */
-    private   $ambiente       = "";
     // -----------------------------FIM CATEGORIA EDUACIONAL--------------------------------
     // Variáveis responsáveis pela categoria direito no banco de dados
     // -----------------------------INICIO CATEGORIA DIREITO-----------------------------
@@ -211,23 +168,13 @@ class OA{
             $this->criaOA(
                 //Categoria vida:
                 $_POST['date'],
-                $_POST['status'],
-                $_POST['versao'],
-                $_POST['entidade'],
-                $_POST['contribuicao'],
                 // Categoria Técnica
-                $_POST['tempo_video'],
-                $_POST['tamanho'],
-                $_POST['tipoTecnologia'],
-                $_POST['tipoFormato'],
+                $_POST['formaUtilizacao'],
+                $_POST['tipoOA'],
                 // Categoria Educacional
                 $_POST['descricao_educacional'],
-                $_POST['nivelIteratividade'],
-                $_POST['tipoIteratividade'],
                 $_POST['faixaEtaria'],
                 $_POST['recursoAprendizagem'],
-                $_POST['usuarioFinal'],
-                $_POST['ambiente'],
                 // Categoria Direito
                 $_POST['custo'],
                 $_POST['direitoAutoral'],
@@ -252,15 +199,11 @@ class OA{
                 $_POST['date'],
                 // Categoria Técnica
                 $_POST['formaUtilizacao'],
-                $_POST['tipoFormato'],
+                $_POST['tipoOA'],
                 // Categoria Educacional
                 $_POST['descricao_educacional'],
-                $_POST['nivelIteratividade'],
-                $_POST['tipoIteratividade'],
                 $_POST['faixaEtaria'],
                 $_POST['recursoAprendizagem'],
-                $_POST['usuarioFinal'],
-                $_POST['ambiente'],
                 // Categoria Direito
                 $_POST['custo'],
                 $_POST['direitoAutoral'],
@@ -308,24 +251,18 @@ class OA{
      * Administra tod@ o sistema de Criação de Objetos de Aprendizagem
      * Verifica todos os erros possíveis e cria o OA se ele não existe
      */
-    //TODO ESTOU FAZENDO ESSA PARTE
     public function criaOA(
         //O cadastro necessita ser nessa ordem!
+        // Alterações realizadas no cadastro de OA após reunião 04/09 - Delton Vaz
         //Categoria vida:
         $date,
-        $status,
-        $versao,
         //Categoria Técnica
-        $tipoTecnologia,
-        $tipoFormato,
+        $formaUtilizacao,
+        $tipoOA,
         //Categoria Educacional
         $descricao_eduacional,
-        $nivelIteratividade,
-        $tipoIteratividade,
         $faixaEtaria, // Pode ser mais de uma
         $recursoAprendizagem,
-        $usuarioFinal,
-        $ambiente,
         //Categoria Direito
         $custo,
         $direitoAutoral,
@@ -345,23 +282,13 @@ class OA{
 
         // -------------------------------------------/
         // Remover espaços em branco em excesso das strings
-        // Categoria vida
-        $entidade = trim($entidade);
-        $contribuicao = trim($contribuicao);
-
-        // Categoria Técnica
-        $tamanho = trim($tamanho);
-        $tipoTecnologia = trim($tipoTecnologia);
-        $tipoFormato = trim($tipoFormato);
+        $formaUtilizacao = trim($formaUtilizacao);
+        $tipoOA = trim($tipoOA);
 
         // Categoria Educacional
         $descricao_eduacional = trim($descricao_eduacional);
-        $nivelIteratividade =  trim($nivelIteratividade);
-        $tipoIteratividade = trim($tipoIteratividade);
         $faixaEtaria =  trim($faixaEtaria);
         $recursoAprendizagem = trim($recursoAprendizagem);
-        $usuarioFinal = trim ($usuarioFinal);
-        $ambiente = trim ($ambiente);
 
         // Categoria Direito
         $uso = trim($uso);
@@ -381,19 +308,13 @@ class OA{
         $this->date = $date;
 
         // Categoria Técnica
-        $this->tempo_video = $tempo_video;
-        $this->tamanho = $tamanho;
-        $this->tipoTecnologia = $tipoTecnologia;
-        $this->tipoFormato = $tipoFormato;
+        $this->formaUtilizacao = $formaUtilizacao;
+        $this->tipoOA = $tipoOA;
 
         //Categoria Educacional
         $this->descricao_educacional = $descricao_eduacional;
-        $this->nivelIteratividade = $nivelIteratividade;
-        $this->tipoIteratividade = $tipoIteratividade;
         $this->faixaEtaria= $faixaEtaria;
         $this->recursoAprendizagem= $recursoAprendizagem;
-        $this->usuarioFinal= $usuarioFinal;
-        $this->ambiente= $ambiente;
 
         // Categoria Direito
         $this->custo = $custo;
@@ -471,27 +392,15 @@ class OA{
                         INSERT INTO
                         categoria_eduacional(
                             descricao,
-                            nivelIteratividade,
-                            tipoIteratividade,
-                            ambiente,
                             faixaEtaria,
-                            recursoAprendizagem,
-                            usuarioFinal)
+                            recursoAprendizagem)
                         VALUES(
                             :descricao_educacional,
-                            :nivelIteratividade,
-                            :tipoIteratividade,
-                            :ambiente,
                             :faixaEtaria,
-                            :recursoAprendizagem,
-                            :usuarioFinal)");
+                            :recursoAprendizagem)");
                 $stmt->bindParam(':descricao_educacional',$descricao_eduacional, PDO::PARAM_STR);
-                $stmt->bindParam(':nivelIteratividade',$nivelIteratividade, PDO::PARAM_STR);
-                $stmt->bindParam(':tipoIteratividade',$tipoIteratividade, PDO::PARAM_STR);
-                $stmt->bindParam(':ambiente',$ambiente, PDO::PARAM_STR);
                 $stmt->bindParam(':faixaEtaria',$faixaEtaria, PDO::PARAM_STR);
                 $stmt->bindParam(':recursoAprendizagem',$recursoAprendizagem, PDO::PARAM_STR);
-                $stmt->bindParam(':usuarioFinal',$usuarioFinal, PDO::PARAM_STR);
                 $stmt->execute();
                 // Id categoria educacional pega o last insert
                 $this->idCategoriaEduacional = $this->db_connection->lastInsertId();
@@ -500,22 +409,19 @@ class OA{
                 $this->databaseConnection(); // Abre Nova conexão
 
                 // Insert na categoria técnica
+                // Delton Vaz - 14/09 - Alterações Reunião 04/09 
+                // 'formaUtilizacao' é a nova variável para 'tipoTecnologia'
+                // 'tipoOA' é a nova variável para 'formato'
                 $stmt = $this->db_connection->prepare("
                         INSERT INTO
                         categoria_tecnica(
-                            tempo_video,
-                            tamanho,
                             tipoTecnologia,
                             tipoFormato)
                         VALUES(
-                            :tempo_video,
-                            :tamanho,
-                            :tipoTecnologia,
-                            :tipoFormato)");
-                $stmt->bindParam(':tempo_video',$tempo_video, PDO::PARAM_STR);
-                $stmt->bindParam(':tamanho',$tamanho, PDO::PARAM_STR);
-                $stmt->bindParam(':tipoTecnologia',$tipoTecnologia, PDO::PARAM_STR);
-                $stmt->bindParam(':tipoFormato',$tipoFormato, PDO::PARAM_STR);
+                            :formaUtilizacao,
+                            :tipoOA)");
+                $stmt->bindParam(':formaUtilizacao',$formaUtilizacao, PDO::PARAM_STR);
+                $stmt->bindParam(':tipoOA',$tipoOA, PDO::PARAM_STR);
                 $stmt->execute();
                 // Id categoria técnica
                 $this->idCategoriaTecnica = $this->db_connection->lastInsertId();
@@ -525,22 +431,10 @@ class OA{
                 $stmt = $this->db_connection->prepare("
                         INSERT INTO
                         categoria_vida(
-                            data_2,
-                            status_2,
-                            versao,
-                            entidade,
-                            contribuicao)
+                            data_2)
                         VALUES(
-                            :date,
-                            :status_2,
-                            :versao,
-                            :entidade,
-                            :contribuicao)");
+                            :date)");
                 $stmt->bindParam(':date',$date, PDO::PARAM_STR);
-                $stmt->bindParam(':status_2',$status, PDO::PARAM_STR);
-                $stmt->bindParam(':versao',$versao, PDO::PARAM_STR);
-                $stmt->bindParam(':entidade',$entidade, PDO::PARAM_STR);
-                $stmt->bindParam(':contribuicao',$contribuicao, PDO::PARAM_STR);
                 $stmt->execute();
                 // Id categoria vida
                 $this->idCategoriaVida = $this->db_connection->lastInsertId();

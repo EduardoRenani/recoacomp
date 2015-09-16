@@ -1,7 +1,7 @@
 <?php
 require_once('base.php');
 $competencia = new Competencia();
-$listaExclusao = explode(',', $_POST['listaExclusao']);
+$listaExclusao = explode(',', $_GET['listaExclusao']);
 $string_result = NULL;
 for($i = 0; $i < sizeof($listaExclusao)-1; $i++) {
 	$string_result .= $competencia->getDescricaoConhecimentoById($listaExclusao[$i])['conhecimento_descricao']."¬";

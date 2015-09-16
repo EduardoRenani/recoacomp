@@ -72,7 +72,7 @@ class IndicesOA {
 
 	/**
 	 * Calcula o índice de Rejeição do OA
-	 * Cálculo do índice: AcessosInválidos/AcessosTotais
+	 * Cálculo do índice: (AcessosInválidos/AcessosTotais)*100
 	 * @throws InvalidArgumentException Caso existam argumentos inválidos
 	 */
 	public function calculaIndiceRejeicao() {
@@ -81,13 +81,11 @@ class IndicesOA {
 						);
 
 		if($this->getAcessosOA()->getAcessosTotais() != 0) {
-			$this->setIndiceRejeicao(floatval($this->getAcessosOA()->getAcessosInvalidos()/$this->getAcessosOA()->getAcessosTotais()));
+			$this->setIndiceRejeicao(floatval(($this->getAcessosOA()->getAcessosInvalidos()/$this->getAcessosOA()->getAcessosTotais()))*100);
 		}
 		else {
 			$this->setIndiceRejeicao(floatval(-1));
 		}
-		
-		
 	}
 
 	/**
@@ -107,7 +105,7 @@ class IndicesOA {
 		if($this->getAcessosOA()->getMaisAcessosValidos($dadosOAMaisAcessosValidos) != 0 && $this->getAcessosOA()->getTempoAcessoOA()->getTempoMedioTodosOAS() != 0 && $this->getIndiceRejeicao() != 0) {
 			$indiceRelevancia = $this->getAcessosOA()->getAcessosValidos()/$this->getAcessosOA()->getMaisAcessosValidos($dadosOAMaisAcessosValidos);
 			$indiceRelevancia += $this->getAcessosOA()->getTempoAcessoOA()->getTempoMedioOA()/$this->getAcessosOA()->getTempoAcessoOA()->getTempoMedioTodosOAS();
-			$indiceRelevancia *= (1-$this->getIndiceRejeicao());
+			$indiceRelevancia *= (1-($this->getIndiceRejeicao()/100));
 			$this->setIndiceRelevancia(floatval($indiceRelevancia));
 		}
 		else {

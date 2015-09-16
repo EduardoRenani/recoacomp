@@ -176,6 +176,7 @@ define("WORDING_FILL_DATE", "Preencha a data");
 
 // -- Categoria Técnica mensagens
 define("WORDING_TECHNICAL_CATEGORY", "Categoria Técnica");
+define("WORDING_OA_TYPE", "Tipo de Objeto de Aprendizagem");
 define("WORDING_VIDEO_TIME", "Tempo de video");
 define("WORDING_SIZE", "Tamanho (MB)");
 define("WORDING_UTILITY_TYPE", "Forma de Utilização");
@@ -190,6 +191,13 @@ define("WORDING_TEXT", "Texto");
 define("WORDING_APRESENTATION", "Apresentação");
 define("WORDING_PDF", "PDF");
 define("WORDING_SITE", "Site");
+define("WORDING_MULTIMIDIA_MATERIAL", "Material Multimídia");
+define("WORDING_ANIMATION", "Animação");
+define("WORDING_DIGITAL_BOOK", "Livro Digital");
+define("WORDING_GAME", "Jogo");
+define("WORDING_DOCUMENT", "Documento (PDF, Texto, Planilha)");
+define("WORDING_WEB_PAGE", "Página da WEB");
+
 
 // -- Categoria Educacional mensagens
 define("WORDING_EDUCATIONAL_CATEGORY", "Categoria Educacional");
@@ -234,6 +242,11 @@ define("WORDING_TRAINING", "Treinamento");
 define("WORDING_OTHER", "Outro");
 define("WORDING_AMBIENT", "Ambiente");
 define("WORDING_FILL_EDUCACIONAL_DESCRIPTION", "Preencha a descrição educacional");
+define("WORDING_CHILD_EDUCATION", "Educação Infantil");
+define("WORDING_BASIC_EDUCATION", "Ensino Fundamental");
+define("WORDING_HIGHSCOOL", "Ensino Médio");
+define("WORDING_PROFESSIONAL_EDUCATION", "Ensino Profissionalizante");
+define("WORDING_COLLEGE", "Ensino Superior");
 
 // -- Categoria Direito mensagens
 define("WORDING_RIGHT_CATEGORY", "Categoria Direito");

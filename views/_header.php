@@ -18,6 +18,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/growl.js"></script>
     <script src="jquery.bootstrap.wizard.js"></script>
+    <script type="text/javascript" src="js/jquery.tooltipster.min.js"></script>
     
     <script src="js/bootstrap-tagsinput.js"></script>
     
@@ -47,6 +48,8 @@
     <link href="css/estilo-base.css" rel="stylesheet">
     <link href="css/landing-page.css" rel="stylesheet">
 
+    <!-- Tooltipster-->
+    <link rel="stylesheet" type="text/css" href="css/tooltipster.css" />
 
     <link rel='stylesheet' media='screen and (min-width: 1100px)' href='css/landing-page-large.css' />
 

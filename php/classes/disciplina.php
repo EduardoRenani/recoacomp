@@ -968,6 +968,8 @@ class Disciplina {
         $acessosInvalidosOAS = $this->getAcessosInvalidosOAS($indicesOAS);
         $acessosInvalidosOAS = array_slice($acessosInvalidosOAS, 0, 10);
 
+        $usuariosAcessos = $this->getUsuariosAcessos($indicesOAS);
+
 
 
         $indices = array(   'indices_rejeicao'   => $indicesRejeicao, 
@@ -975,10 +977,36 @@ class Disciplina {
                             'top_10'             => $topDezOAS,
                             'acessos_totais'     => $acessosTotaisOAS,
                             'acessos_validos'    => $acessosValidosOAS,
-                            'acessos_invalidos'  => $acessosInvalidosOAS
+                            'acessos_invalidos'  => $acessosInvalidosOAS,
+                            'usuarios_acessos'   => $usuariosAcessos
                             );
 
         return $indices;
+    }
+
+    protected function getUsuariosAcessos($indicesOAS) {
+        foreach ($indicesOAS as $oas) {
+            $usuariosAcessos[$oas->getNomeOA()] = $oas->getAcessosOA()->getIdUsuarios();
+            asort($usuariosAcessos[$oas->getNomeOA()]);
+        }
+
+        $usuariosAcessos = $this->calculaAcessos($usuariosAcessos);
+
+        return $usuariosAcessos;
+    }
+
+    protected function calculaAcessos($usuariosAcessosOAS) {
+        foreach ($usuariosAcessosOAS as $nomeOA => $usuariosAcessosOA) {
+            foreach ($usuariosAcessosOA as $usuario) {
+                if($usuariosAcessos[$nomeOA][$usuario]) {
+                    $usuariosAcessos[$nomeOA][$usuario] += 1;
+                }
+                else {
+                    $usuariosAcessos[$nomeOA][$usuario] = 1;
+                }
+            }
+        }
+        return $usuariosAcessos;
     }
 
     protected function getAcessosTotaisOAS($indicesOAS) {

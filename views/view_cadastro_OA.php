@@ -363,9 +363,8 @@ $(function(){AjaxCompetenciaListas()});
                 }
             }
             else if(qualTab == 2) {
-                if(document.getElementsByName('date')[0].value.length > 0 && document.getElementsByName('entidade')[0].value.length > 0) {
+                if(document.getElementsByName('date')[0].value.length > 0) {
                     document.getElementsByName('date')[0].style.border = "0";
-                    document.getElementsByName('entidade')[0].style.border = "0";
                     divTab = document.getElementById('sub-conteudo1');
                     divTab.removeAttribute('class');
                     divTab.setAttribute('class', 'tab');
@@ -390,13 +389,6 @@ $(function(){AjaxCompetenciaListas()});
                     }
                     else {
                         document.getElementsByName('date')[0].style.border = "0";
-                    }
-                    if(document.getElementsByName('entidade')[0].value.length == 0) {
-                        document.getElementsByName('entidade')[0].style.border = "1px solid #dc8810";
-                        document.getElementsByName('entidade')[0].setAttribute("placeholder", "Este campo é necessário");
-                    }
-                    else {
-                        document.getElementsByName('entidade')[0].style.border = "0";
                     }
                 }
 
@@ -793,6 +785,7 @@ $(function(){AjaxCompetenciaListas()});
                     </div>          
                 </div>
                 <!-- Fim-->
+                <!-- Categoria Vida -->
                 <div id="sub-conteudo1" class="tab">
                         <div class="control-group">
                             <label class="control-label" for="date"><div style="float: left"><?php echo WORDING_DATE; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(4, '<?php echo HINT_DATA ?>')" onmouseout="deleteTooltip(4)">?</div></div>
@@ -800,86 +793,31 @@ $(function(){AjaxCompetenciaListas()});
                                 <input id="date" type="text" name="date" required />
                             </div>
                         </div>
-                        <div class="control-group">
-                            <label class="control-label" for="status"><div style="float: left"><?php echo WORDING_STATUS; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(5, '<?php echo HINT_STATUS ?>')" onmouseout="deleteTooltip(5)">?</div></div>
-                            <div class="controls">
-                                    <select id = "status" name="status" required="true">
-                                        <option value = "revisado"><?php echo WORDING_REVISED ?></option>
-                                        <option value = "rascunho"><?php echo WORDING_DRAFT ?></option>
-                                        <option value = "editado"><?php echo WORDING_EDITED ?></option>
-                                        <option value = "indisponível"><?php echo WORDING_UNAVAILABLE ?></option>
-                                        <option value = "final"><?php echo WORDING_FINAL ?></option>
-                                    </select>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="versao"><div style="float: left"><?php echo WORDING_VERSION; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(6, '<?php echo HINT_VERSION ?>')" onmouseout="deleteTooltip(6)">?</div></div>
-                            <div class="controls">
-                                    <input id="versao" type="number" name="versao" min="0" max="100" step="0.1" value="1" class="required">
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="entidade"><div style="float: left"><?php echo WORDING_ENTITY; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(7, '<?php echo HINT_ENTITY ?>')" onmouseout="deleteTooltip(7)">?</div></div>
-                            <div class="controls">
-                                    <input id="entidade" type="text" name="entidade" class="required" />
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="contribuicao"><?php echo WORDING_CONTRIBUTION; ?></label>
-                            <div class="controls">
-                                        <select id = "contribuicao" name="contribuicao" required="true">
-                                            <option value = "autor"><?php echo WORDING_AUTHOR ?></option>
-                                            <option value = "editor"><?php echo WORDING_EDITOR ?></option>
-                                            <option value = "deconhecido"><?php echo WORDING_UNKNOWN ?></option>
-                                            <option value = "iniciador"><?php echo WORDING_INICIATOR ?></option>
-                                            <option value = "designer gráfico"><?php echo WORDING_GRAPHIC_DESIGNER ?></option>
-                                            <option value = "técnico"><?php echo WORDING_TECHNICAL ?></option>
-                                            <option value = "provedor de conteúdo"><?php echo WORDING_CONTENT_PROVIDER ?></option>
-                                            <option value = "roteirista"><?php echo WORDING_ROTEIRIST ?></option>
-                                            <option value = "designer instrucional"><?php echo WORDING_INSTRUCTIONAL_DESIGNER ?></option>
-                                            <option value = "especialista em conteúdo"><?php echo WORDING_CONTENT_SPECIALIST ?></option>
-                                        </select>
-                            </div>
-                        </div>
                 </div>
+                <!-- Categoria Técnica -->
                 <div id="sub-conteudo2" class="tab">
-                     <!-- TEMPO DO VIDEO -->
+                     <!-- FORMA DE UTILIZAÇÃO -->
                     <div class="control-group">
-                        <label class="control-label" for="tempo_video"><div style="float: left"><?php echo WORDING_VIDEO_TIME; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(8, '<?php echo HINT_DURATION ?>')" onmouseout="deleteTooltip(8)">?</div></div>
+                        <label class="control-label" for="formaUtilizacao"><?php echo WORDING_UTILITY_TYPE; ?></label>
                         <div class="controls">
-                            <input type="time" name="tempo_video">
-                        </div>
-                    </div>
-                     <!-- TAMANHO -->
-                    <div class="control-group">
-                        <label class="control-label" for="tamanho"><div style="float: left"><?php echo WORDING_SIZE; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(9, '<?php echo HINT_SIZE ?>')" onmouseout="deleteTooltip(9)">?</div></div>
-                        <div class="controls">
-                             <input id="tamanho" type="number" name="tamanho" min="0" max="100" step="0.1" value="1" class="required">
-                        </div>
-                    </div>
-                     <!-- TIPO TECNOLOGIA -->
-                    <div class="control-group">
-                        <label class="control-label" for="tipoTecnologia"><?php echo WORDING_TECHNOLOGY_TYPE; ?></label>
-                        <div class="controls">
-                            <select id = "tipoTecnologia" name="tipoTecnologia" required="true">
-                                <option value = "navegador"><?php echo WORDING_BROWSER ?></option>
-                                <option value = "sistema operacional"><?php echo WORDING_OPERATIONAL_SYSTEM ?></option>
+                            <select id = "formaUtilizacao" name="formaUtilizacao" required="true">
+                                <option value = "navegador"><?php echo WORDING_THROUGH_BROWSER ?></option>
+                                <option value = "download"><?php echo WORDING_THROUGH_DOWNLOAD ?></option>
                             </select>
                         </div>
-                    </div>                 
+                    </div>
                     <!-- TIPO FORMATO -->
                     <div class="control-group">
-                        <label class="control-label" for="tipoFormato"><?php echo WORDING_FORMAT; ?></label>
+                        <label class="control-label" for="tipoOA"><?php echo WORDING_OA_TYPE; ?></label>
                         <div class="controls">
-                            <select id = "tipoFormato" name="tipoFormato" required="true">
-                                <option value = "video"><?php echo WORDING_VIDEO ?></option>
-                                <option value = "sistema operacional"><?php echo WORDING_OPERATIONAL_SYSTEM ?></option>
-                                <option value = "imagem"><?php echo WORDING_IMAGE ?></option>
-                                <option value = "audio"><?php echo WORDING_AUDIO ?></option>
-                                <option value = "texto"><?php echo WORDING_TEXT ?></option>
-                                <option value = "apresentação"><?php echo WORDING_APRESENTATION ?></option>
-                                <option value = "pdf"><?php echo WORDING_PDF ?></option>
-                                <option value = "site"><?php echo WORDING_SITE ?></option>
+                            <select id = "tipoOA" name="tipoOA" required="true" multiple>
+
+                                <option value = "material multimidia"><?php echo WORDING_MULTIMIDIA_MATERIAL ?></option>
+                                <option value = "animacao"><?php echo WORDING_ANIMATION ?></option>
+                                <option value = "livro digital"><?php echo WORDING_DIGITAL_BOOK ?></option>
+                                <option value = "jogo"><?php echo WORDING_GAME ?></option>
+                                <option value = "documento"><?php echo WORDING_DOCUMENT ?></option>
+                                <option value = "pagina web"><?php echo WORDING_WEB_PAGE ?></option>
                             </select>
                         </div>
                     </div>               
@@ -893,39 +831,16 @@ $(function(){AjaxCompetenciaListas()});
                             <textarea name="descricao_educacional" id="descricao_educacional" ROWS="5" COLS="40"></textarea>
                         </div>
                     </div>
-    				 <!-- NÍVEL ITERATIVIDADE -->
-    				<div class="control-group">
-                        <label class="control-label" for="nivelIteratividade"><div style="float: left"><?php echo WORDING_ITERABILITY_NIVEL; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(11, '<?php echo HINT_INTERACTIVITY_TYPE ?>')" onmouseout="deleteTooltip(11)">?</div></div>
-                        <div class="controls">
-                                <select id = "nivelIteratividade" name="nivelIteratividade" required="true">
-    								<option value = "muito baixa"><?php echo WORDING_VERY_LOW ?></option>
-    								<option value = "baixa"><?php echo WORDING_LOW ?></option>
-    								<option value = "médio"><?php echo WORDING_MIDDLE ?></option>
-    								<option value = "alto"><?php echo WORDING_HIGH ?></option>
-    								<option value = "muito alto"><?php echo WORDING_VERY_HIGH ?></option>
-    							</select>
-                        </div>
-                    </div>				 
-    				<!-- TIPO ITERATIVIDADE -->
-    				<div class="control-group">
-                        <label class="control-label" for="tipoIteratividade"><div style="float: left"><?php echo WORDING_ITERABILITY_TYPE; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(12, '<?php echo HINT_INTERACTIVITY_TYPE ?>')" onmouseout="deleteTooltip(12)">?</div></div>
-                        <div class="controls">
-    						<select id = "tipoIteratividade" name="tipoIteratividade" required="true">
-    							<option value = "ativa"><?php echo WORDING_ACTIVE ?></option>
-    							<option value = "expositiva"><?php echo WORDING_EXPOSITORY ?></option>
-    							<option value = "mista"><?php echo WORDING_MIXED ?></option>
-    						</select>
-                        </div>
-                    </div>				
     				<!-- FAIXA ETÁRIA -->
     				<div class="control-group">
                         <label class="control-label" for="faixaEtaria"><?php echo WORDING_AGE_GROUP; ?></label>
                         <div class="controls">
-    						<select id = "faixaEtaria" name="faixaEtaria" required="true">
-    							<option value = "criança"><?php echo WORDING_CHILD ?></option>
-    							<option value = "adulto"><?php echo WORDING_ADULT ?></option>
-    							<option value = "idoso"><?php echo WORDING_ELDERLY ?></option>
-    							<option value = "todas as idades"><?php echo WORDING_ALL_AGES ?></option>
+    						<select id = "faixaEtaria" name="faixaEtaria" required="true" multiple>
+    							<option value = "educacao infantil"><?php echo WORDING_CHILD_EDUCATION ?></option>
+    							<option value = "ensino fundamental"><?php echo WORDING_BASIC_EDUCATION ?></option>
+    							<option value = "ensino medio"><?php echo WORDING_HIGHSCOOL ?></option>
+                                <option value = "ensino profissionalizante"><?php echo WORDING_PROFESSIONAL_EDUCATION ?></option>
+    							<option value = "ensino superior"><?php echo WORDING_COLLEGE ?></option>
     						</select>
                         </div>
                     </div>
@@ -951,30 +866,6 @@ $(function(){AjaxCompetenciaListas()});
     							<option value = "auto avaliação"><?php echo WORDING_AUTO_AVALIATION ?></option>
     							<option value = "palestra"><?php echo WORDING_LECTURE ?></option>
     						</select>
-                        </div>
-                    </div>				
-    				<!-- USUÁRIO FINAL -->
-    				<div class="control-group">
-                        <label class="control-label" for="usuarioFinal"><?php echo WORDING_FINAL_USER ; ?></label>
-                        <div class="controls">
-    					<select id = "usuarioFinal" name="usuarioFinal" required="true">
-    						<option value = "professor"><?php echo WORDING_PROFESSOR ?></option>
-    						<option value = "autor"><?php echo WORDING_AUTHOR ?></option>
-    						<option value = "aluno"><?php echo WORDING_STUDENT ?></option>
-    						<option value = "admin"><?php echo WORDING_ADMIN ?></option>
-    					</select>
-                        </div>
-                    </div>				
-    				<!-- AMBIENTE -->
-    				<div class="control-group">
-                        <label class="control-label" for="ambiente"><?php echo WORDING_AMBIENT ; ?></label>
-                        <div class="controls">
-    					<select id = "ambiente" name="ambiente" required="true">
-    						<option value = "escola"><?php echo WORDING_SCHOOL ?></option>
-    						<option value = "faculdade"><?php echo WORDING_COLLEGE ?></option>
-    						<option value = "treinamento"><?php echo WORDING_TRAINING ?></option>
-    						<option value = "outro"><?php echo WORDING_OTHER ?></option>
-    					</select>
                         </div>
                     </div>				
                 </div>

@@ -290,7 +290,7 @@ border-radius: 5px;
      position:relative;
      border:none;
      background:#F1F1F2;
-     color:#BBBDC0;
+     color:#7B7B7B;;
      font-weight:100;
      width:100%;
      height:40px;
@@ -305,7 +305,7 @@ div.control-group textarea{
     position:relative;
      border:none;
      background:#F1F1F2;
-     color:#BBBDC0;
+     color:#7B7B7B;
      font-weight:100;
      width:100%;
      height:80px;
@@ -467,7 +467,8 @@ input[type=submit]{ /*customiza input de submit*/
 }
 
 div.search-cadastro input[type=text]{
-  background:#E2E2E1;
+  background:#E2E2E1 url(../img/btn-search.png) no-repeat scroll 9px 9px;
+  background-size:20px auto;
   border: 1px solid #B1AEAE;
   border-radius:0;
   margin-left:5px;
@@ -481,6 +482,10 @@ div.search-cadastro {
   margin-bottom:0px;
   width:300px;
   border-radius:0;
+}
+
+.search input { 
+  text-indent: 30px; 
 }
 
 /*DRAGABLE-----------------------------------------------------------------------*/
@@ -518,4 +523,11 @@ div.search-cadastro {
     border: 1px solid #D0D0D0;
     background: #D8D8D7;
     color:#555555;
+}
+
+.tooltipSort{
+  font-size:11px;
+  width:20px;
+  display:inline-block;
+  float:right;
 }

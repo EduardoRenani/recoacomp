@@ -741,7 +741,7 @@ if (isset($OA)) {
                                 <option value = "download"><?php echo WORDING_THROUGH_DOWNLOAD ?></option>
                             </select>
                         </div>
-                    </div>                 
+                    </div>
                     <!-- TIPO FORMATO -->
                     <div class="control-group">
                         <label class="control-label" for="tipoFormato"><?php echo WORDING_FORMAT; ?></label>

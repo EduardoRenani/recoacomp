@@ -616,25 +616,30 @@ $(function(){
                         <div id="conteudo" class="clearfix">
                             <div id="sub-conteudo" class="tab-active">
                             <div class="control-group">
-                                <label class="control-label" for="nomeCurso"><div style="float: left"><?php echo WORDING_COURSE_NAME; ?></div><div class="tooltiploco"><div onmouseover="toolTip(1, '<?php echo 'Ex. Curso Teste'?>')" onmouseout="deleteTooltip(1)">?</div></div></label> <!-- TODO colocar variaveis mensagem tooltip -->
+                                <label class="control-label" for="nomeCurso">
+                                    <div style="float: left"><?php echo WORDING_COURSE_NAME; ?></div>
+                                    <div class="tooltiploco"><div onmouseover="toolTip(1, '<?php echo 'Ex. Curso Teste'?>')" onmouseout="deleteTooltip(1)">[ ? ]</div></div></label> <!-- TODO colocar variaveis mensagem tooltip -->
                                 <div class="controls">
                                     <input type="text" id="nomeCurso" name="nomeCurso" class="required">       
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="nomeDisciplina"><div style="float: left"><?php echo WORDING_DISCIPLINA_NAME; ?></div><div class="tooltiploco"><div onmouseover="toolTip(2, 'Ex. Disciplina Teste')" onmouseout="deleteTooltip(2)">?</div></div></label>
+                                <label class="control-label" for="nomeDisciplina"><div style="float: left"><?php echo WORDING_DISCIPLINA_NAME; ?></div>
+                                    <div class="tooltiploco"><div onmouseover="toolTip(2, 'Ex. Disciplina Teste')" onmouseout="deleteTooltip(2)">[ ? ]</div></div></label>
                                 <div class="controls">
                                     <input type="text" id="nomeDisciplina" name="nomeDisciplina" class="required">       
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="senha"><div style="float: left"><?php echo WORDING_REGISTRATION_PASSWORD; ?></div><div class="tooltiploco"><div onmouseover="toolTip(3, 'Senha (mín. 6 dígitos) para os alunos cadastrarem-se na disciplina.')" onmouseout="deleteTooltip(3)">?</div></div></label>
+                                <label class="control-label" for="senha"><div style="float: left"><?php echo WORDING_REGISTRATION_PASSWORD; ?></div>
+                                    <div class="tooltiploco"><div onmouseover="toolTip(3, 'Senha (mín. 6 dígitos) para os alunos cadastrarem-se na disciplina.')" onmouseout="deleteTooltip(3)">[ ? ]</div></div></label>
                                 <div class="controls">
                                     <input type="text" id="senha" name="senha" class="required">       
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="descricao"><div style="float: left"><?php echo WORDING_DISCIPLINA_DESCRICAO; ?></div><div class="tooltiploco"><div onmouseover="toolTip(4, 'Exposição do tema abordado pela disciplina e seus objetivos.')" onmouseout="deleteTooltip(4)">?</div></div></label>
+                                <label class="control-label" for="descricao"><div style="float: left"><?php echo WORDING_DISCIPLINA_DESCRICAO; ?></div><div class="tooltiploco">
+                                    <div onmouseover="toolTip(4, 'Exposição do tema abordado pela disciplina e seus objetivos.')" onmouseout="deleteTooltip(4)">[ ? ]</div></div></label>
                                     <div class="controls">
                                         <textarea name="descricao" id="descricao" ROWS="5" COLS="40" class="required"></textarea>
                                     </div>
@@ -653,7 +658,9 @@ $(function(){
                                 <div class="cadastro-left-column">
                                     <span class="titulo-cadastro text-left">Competencias Disponíveis</span>
                                     <div class="search-cadastro">
-                                    	<input type="text" class="search-cadastro" id="busca-competencias" placeholder="Pesquise uma competência">
+                                        <div class="search">
+                                              <input type="text" class="search-cadastro" id="busca-competencias" placeholder="Pesquise uma competência">
+                                        </div>
                                         <ul id="tabela1">
                                         </ul>
                                     </div>
