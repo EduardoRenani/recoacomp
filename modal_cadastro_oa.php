@@ -373,9 +373,8 @@ if (isset($OA)) {
                 }
             }
             else if(qualTab == 2) {
-                if(document.getElementsByName('date')[0].value.length > 0 && document.getElementsByName('entidade')[0].value.length > 0) {
+                if(document.getElementsByName('date')[0].value.length > 0) {
                     document.getElementsByName('date')[0].style.border = "0";
-                    document.getElementsByName('entidade')[0].style.border = "0";
                     divTab = document.getElementById('sub-conteudo1');
                     divTab.removeAttribute('class');
                     divTab.setAttribute('class', 'tab');
@@ -400,13 +399,6 @@ if (isset($OA)) {
                     }
                     else {
                         document.getElementsByName('date')[0].style.border = "0";
-                    }
-                    if(document.getElementsByName('entidade')[0].value.length == 0) {
-                        document.getElementsByName('entidade')[0].style.border = "1px solid #dc8810";
-                        document.getElementsByName('entidade')[0].setAttribute("placeholder", "Este campo é necessário");
-                    }
-                    else {
-                        document.getElementsByName('entidade')[0].style.border = "0";
                     }
                 }
 
@@ -456,7 +448,7 @@ if (isset($OA)) {
                         document.getElementsByName('descricao_educacional')[0].setAttribute("placeholder", "Este campo é necessário");
                     }
                     else {
-                        document.getElementsByName('date')[0].style.border = "0";
+                        document.getElementsByName('descricao_educacional')[0].style.border = "0";
                     }
                 }
             }
@@ -650,7 +642,7 @@ if (isset($OA)) {
         $("#url").keyup(function () { //user types username on inputfiled
             console.log("funfou!");
             var url = $(this).val(); //get the string typed by user
-            $.post('classes/check_URL.php', {'url':url}, function(data) { //make ajax call to check_username.php
+            $.post('php/classes/check_URL.php', {'url':url}, function(data) { //make ajax call to check_username.php
             $("#status").html(data); //dump the data received from PHP page
         });
     });

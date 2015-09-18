@@ -22,17 +22,71 @@
 }
 
 #usuarios {
+    font-family: "Lato", "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
     display: none;
     position: fixed;
     background-color: rgba(255, 255, 255, 1);
     border-radius: 5px;
     box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.4);
-    width: 15%;
-    height: 30%;
-    top: 50%;
+    width: 200px;
+    height: 250px;
     left: 50%;
-    margin: -10% -7.5%;
+    margin-left: -100px;
     z-index: 9999;
+}
+
+#usuarios div:first-child {
+    height: 15%;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 35px;
+    text-align: center;
+    background: #108AC0;
+    color: white;
+}
+
+#usuarios div:nth-child(2) {
+    height: 75%;
+    overflow-y: auto;
+}
+
+#usuarios div:last-child {
+    height: 10%;
+    line-height: 25px;
+    text-align: center;
+    background: #108AC0;
+    color: white;
+    cursor: pointer;
+}
+
+#usuarios table {
+    width: 100%;
+    border: 0;
+    margin-bottom: 2px;
+    border-spacing: 0;
+}
+
+#usuarios table td {
+    width: 50%;
+    padding-left: 5px;
+    background: #cccccc url("images/ui-bg_highlight-soft_75_cccccc_1x100.png") 50% 50% repeat-x;
+}
+
+#usuarios table td:first-child {
+    border-right: 1px solid #fff;
+}
+
+#usuarios table td:last-child {
+    text-align: center;
+}
+
+#usuarios table:first-child td {
+    width: 50%;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    padding-left: 5px;
+    background: #bbb url("images/ui-bg_highlight-soft_75_cccccc_1x100.png") 50% 50% repeat-x;
 }
 
 #mais-estatisticas {
@@ -45,7 +99,7 @@
 <?php
     foreach ($indices['usuarios_acessos'] as $oa => $usuariosAcessos) {
         foreach ($usuariosAcessos as $usuario => $acessos) {
-            $divUsuariosAcessos[$oa][$usuario].="<p>".Usuario::getNome_byID($usuario)['user_name'].": ".$acessos."</p>";
+            $divUsuariosAcessos[$oa][$usuario].="<table><tr><td>".Usuario::getNome_byID($usuario)['user_name']."</td><td>".$acessos."</td></tr></table>";
         }
     }
     echo "divOA = [];\n";
@@ -144,7 +198,7 @@ $(document).ready(function(){
             // Pad the y axis just a little so bars can get close to, but
             // not touch, the grid boundaries.  1.2 is the default padding.
             yaxis: {
-                pad: 4,
+                pad: 1.2,
                 tickOptions: {formatString: '%d'}
             }
         }
@@ -153,7 +207,7 @@ $(document).ready(function(){
     $('#top10').bind('jqplotDataClick', 
         function (ev, seriesIndex, pointIndex, data) {
             $("#usuarios").show(500);
-            $('#usuarios').html(divOA[ticks[pointIndex]]+"<div onclick='escondeUsuarios()'>Sair</div>");
+            $('#usuarios').html("<div>"+ticks[pointIndex]+"</div><div><table><tr><td>Usuário</td><td>Acessos</td></tr></table>"+divOA[ticks[pointIndex]]+"</div><div onclick='escondeUsuarios()'>Sair</div>");
         }
     );
 
@@ -202,7 +256,7 @@ $(document).ready(function(){
             // Pad the y axis just a little so bars can get close to, but
             // not touch, the grid boundaries.  1.2 is the default padding.
             yaxis: {
-                pad: 1.5,
+                pad: 1.2,
                 tickOptions: {formatString: '%d'}
             }
         }
@@ -250,7 +304,7 @@ $(document).ready(function(){
             // Pad the y axis just a little so bars can get close to, but
             // not touch, the grid boundaries.  1.2 is the default padding.
             yaxis: {
-                pad: 2,
+                pad: 1.2,
                 tickOptions: {formatString: '%.2f%'}
             }
         }
@@ -298,7 +352,7 @@ $(document).ready(function(){
             // Pad the y axis just a little so bars can get close to, but
             // not touch, the grid boundaries.  1.2 is the default padding.
             yaxis: {
-                pad: 1.5,
+                pad: 1.2,
                 tickOptions: {formatString: '%.2f'}
             }
         }

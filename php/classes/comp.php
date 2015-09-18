@@ -195,24 +195,7 @@ class Comp{
 
 			                    		echo "<h6>".$v[$c]['descricao']."</h6><br/>";
 
-			                    		echo "<a'>Acessar Objeto de Aprendizagem</a>";
-
-			                    		echo "<div id='conteudo-expansivel'>";
-											
-											echo "<div class='rating'>";
-    											
-    											echo "<h5>Por favor, classifique:</h5>";
-											    echo "<input type='radio' id='classificacao". $v[$c]['ID'] ."5' name='rating". $v[$c]['ID'] ."' value='5' /><label for='classificacao". $v[$c]['ID'] ."5' title='Rocks!'></label>";
-											    echo "<input type='radio' id='classificacao". $v[$c]['ID'] ."4' name='rating". $v[$c]['ID'] ."' value='4' /><label for='classificacao". $v[$c]['ID'] ."4' title='Pretty good'></label>";
-											    echo "<input type='radio' id='classificacao". $v[$c]['ID'] ."3' name='rating". $v[$c]['ID'] ."' value='3' /><label for='classificacao". $v[$c]['ID'] ."3' title='Meh'></label>";
-												echo "<input type='radio' id='classificacao". $v[$c]['ID'] ."2' name='rating". $v[$c]['ID'] ."' value='2' /><label for='classificacao". $v[$c]['ID'] ."2' title='Kinda bad'></label>";
-												echo "<input type='radio' id='classificacao". $v[$c]['ID'] ."1' name='rating". $v[$c]['ID'] ."' value='1' /><label for='classificacao". $v[$c]['ID'] ."1' title='Sucks big time'></label>";
-											
-											echo "</div>";
-
-											echo "<iframe style='width: 100%; height: 400px;' src='".$v[$c]['url']."'></iframe>";
-			                    		
-			                    		echo "</div>";
+			                    		echo "<a href='visualizarOA.php?url=".$v[$c]['url']."&idOA=".$v[$c]['ID']."&idDisciplina=".$this->idDisciplina."&idUsuario=".$_SESSION['user_id']."'>Acessar Objeto de Aprendizagem</a>";
 
 		                		echo "</div>";
 

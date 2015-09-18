@@ -91,22 +91,6 @@ class OA{
      */
     private   $recursoAprendizagem       = "";
     // -----------------------------FIM CATEGORIA EDUACIONAL--------------------------------
-    // Variáveis responsáveis pela categoria direito no banco de dados
-    // -----------------------------INICIO CATEGORIA DIREITO-----------------------------
-    /**
-     * @var boolean $custo se o OA teve custo (sim ou não)
-     */
-    private   $custo            = null;
-    /**
-     * @var boolean $direitoAutoral se o OA possui direito autoral (Sim ou não)
-     */
-    private   $direitoAutoral   = null;
-    /**
-     * @var string $uso descrição do uso do OA
-     */
-    private   $uso              = "";
-
-    // -----------------------------FIM CATEGORIA DIREITO--------------------------------
     /**
      * @var int $idCategoriaVida ID da categoria vida
      */
@@ -175,10 +159,6 @@ class OA{
                 $_POST['descricao_educacional'],
                 $_POST['faixaEtaria'],
                 $_POST['recursoAprendizagem'],
-                // Categoria Direito
-                $_POST['custo'],
-                $_POST['direitoAutoral'],
-                $_POST['uso'],
                 // Dados Gerais
                 $_POST['idusuario'],
                 $_POST['descricao'],
@@ -204,10 +184,6 @@ class OA{
                 $_POST['descricao_educacional'],
                 $_POST['faixaEtaria'],
                 $_POST['recursoAprendizagem'],
-                // Categoria Direito
-                $_POST['custo'],
-                $_POST['direitoAutoral'],
-                $_POST['uso'],
                 // Dados Gerais
                 $_POST['idusuario'],
                 $_POST['descricao'],
@@ -263,10 +239,6 @@ class OA{
         $descricao_eduacional,
         $faixaEtaria, // Pode ser mais de uma
         $recursoAprendizagem,
-        //Categoria Direito
-        $custo,
-        $direitoAutoral,
-        $uso,
         //Dados gerais
         $idusuario,
         $descricao,
@@ -290,9 +262,6 @@ class OA{
         $faixaEtaria =  trim($faixaEtaria);
         $recursoAprendizagem = trim($recursoAprendizagem);
 
-        // Categoria Direito
-        $uso = trim($uso);
-
         // Categoria Geral
         $descricao= trim($descricao);
         $nome = trim($nome);
@@ -315,11 +284,6 @@ class OA{
         $this->descricao_educacional = $descricao_eduacional;
         $this->faixaEtaria= $faixaEtaria;
         $this->recursoAprendizagem= $recursoAprendizagem;
-
-        // Categoria Direito
-        $this->custo = $custo;
-        $this->direitoAutoral = $direitoAutoral;
-        $this->uso = $uso;
 
         // Dados Gerais
         $this->descricao = $descricao;
@@ -362,7 +326,7 @@ class OA{
 
             } else{
                 // Insert na categoria_direito
-                $stmt = $this->db_connection->prepare("
+                /**$stmt = $this->db_connection->prepare("
                         INSERT INTO
                         categoria_direito(
                             custo,
@@ -382,7 +346,7 @@ class OA{
                 //echo 'insert da categoria direito <br>';
                 // Id categoria direito pega o last insert
                 $this->idCategoriaDireito = $this->db_connection->lastInsertId();
-
+                **/
                 $this->db_connection = null; // Fechar a última conexão
                 $this->databaseConnection(); // Abre Nova conexão
 

@@ -307,7 +307,7 @@ if (isset($OA)) {
         $("#nome").keyup(function () { //user types username on inputfiled
             console.log("funfou!");
             var nome = $(this).val(); //get the string typed by user
-            $.post('classes/check_Competencia.php', {'nome':nome}, function(data) { //make ajax call to check_username.php
+            $.post('php/classes/check_Competencia.php', {'nome':nome}, function(data) { //make ajax call to check_username.php
             $("#status").html(data); //dump the data received from PHP page
         });
     });

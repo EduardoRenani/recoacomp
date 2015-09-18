@@ -47,7 +47,8 @@
             },
             success: function(response){
                 location.reload();
-        });
+        }
+    });
         
     }
 

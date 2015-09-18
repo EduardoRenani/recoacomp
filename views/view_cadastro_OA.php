@@ -166,7 +166,7 @@
         $("#url").keyup(function () { //user types username on inputfiled
             console.log("funfou!");
             var url = $(this).val(); //get the string typed by user
-            $.post('classes/check_URL.php', {'url':url}, function(data) { //make ajax call to check_username.php
+            $.post('php/classes/check_URL.php', {'url':url}, function(data) { //make ajax call to check_username.php
             $("#status").html(data); //dump the data received from PHP page
         });
     });
@@ -734,8 +734,8 @@ $(function(){AjaxCompetenciaListas()});
                 <div id="menudiv2"><?php echo WORDING_TECHNICAL_CATEGORY; ?></div>
                 <div id="seta2"></div>
                 <div id="menudiv3"><?php echo WORDING_EDUCATIONAL_CATEGORY; ?></div>
-                <div id="seta3"></div>
-                <div id="menudiv4"><?php echo WORDING_RIGHT_CATEGORY; ?></div>
+                <!--div id="seta3"></div-->
+                <!--div id="menudiv4"><?php echo WORDING_RIGHT_CATEGORY; ?></div-->
                 <div id="seta4"></div>
                 <div id="menudiv5"><?php echo WORDING_ASSOCIATE_COMPETENCE; ?></div>
                 <div id="seta5"></div>
@@ -870,33 +870,31 @@ $(function(){AjaxCompetenciaListas()});
                     </div>				
                 </div>
     			<!-- CATEGORIA DIREITO -->
-                <div id="sub-conteudo4" class="tab">
+                <!--div id="sub-conteudo4" class="tab"-->
     			    <!-- CUSTO -->
-    				<div class="control-group">
+    				<!--div class="control-group">
                         <label class="control-label" for="custo"><div style="float: left"><?php echo WORDING_COST ; ?></div><div style="float: left"><div class="tooltiploco"><div onmouseover="toolTip(13, '<?php echo HINT_COST ?>')" onmouseout="deleteTooltip(13)">?</div></div></div></label>
                         <div class="controls">
     						<input type="radio" name="custo" value="true" id="custo" checked><?php echo WORDING_YES?>
     						<input type="radio" name="custo" value="false" id="custo"><?php echo WORDING_NO ?>
                         </div>
-                    </div>				    
+                    </div-->				    
     				<!-- DIREITO AUTORAL -->
-    				<div class="control-group">
+    				<!--div class="control-group">
                         <label class="control-label" for="direitoAutoral"><div style="float: left"><?php echo WORDING_COPYRIGHT ; ?></div><div style="float: left"><div class="tooltiploco"></label><div onmouseover="toolTip(14, '<?php echo HINT_AUTHORAL_LEGAL ?>')" onmouseout="deleteTooltip(14)">?</div></div></div></label>
                         <div class="controls">
     						<input type="radio" name="direitoAutoral" id="direitoAutoral" value="1" checked><?php echo WORDING_YES?>
     						<input type="radio" name="direitoAutoral" id="direitoAutoral" value="0"><?php echo WORDING_NO ?>
                         </div>
-                    </div>					
+                    </div-->					
     				<!-- USO -->
-    				<div class="control-group">
+    				<!--div class="control-group">
                         <label class="control-label" for="uso"><div style="float: left"><?php echo WORDING_USE; ?></div><div style="float: left"><div class="tooltiploco"><div onmouseover="toolTip(15, '<?php echo HINT_USE ?>')" onmouseout="deleteTooltip(15)">?</div></div></div></label>
                         <div class="controls">
     						<textarea name="uso" id="uso" ROWS="5" COLS="40"></textarea>
                         </div>
                     </div>	
-
-    			
-                </div>
+                </div-->
 
                 <div id="sub-conteudo5" style="background-image: url(img/seta_drag.png); background-repeat: no-repeat; background-position: 49.5% 40%; background-size: 50px;" class="tab">
                     <input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" />
