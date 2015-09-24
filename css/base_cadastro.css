@@ -207,14 +207,13 @@ div.top-cadastrobase a{
 
 
 .botao-cadastra {
-      border: 0;
+  border: 0;
   width:150px;
-  height: 66px;
-  line-height: 50px;
+  height: 44px;
+  line-height: 44px;
   white-space: normal;
   text-align:center;
-
-
+  margin-bottom: 40px;
 
     background: -webkit-linear-gradient(left, #26B3E8, #75CCD6); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(right, #26B3E8, #75CCD6); /* For Opera 11.1 to 12.0 */
@@ -222,22 +221,22 @@ div.top-cadastrobase a{
     background: linear-gradient(to right, #26B3E8, #75CCD6); /* Standard syntax (must be last) */
 
   color: white;
-  padding: 8px 14px;
+  padding: 0px 14px;
   font-weight: 100;
-  font-size: 18px;
+  font-size: 17px;
   text-decoration: none;
   display: inline-block; /* needed for anchors */
 
-    -webkit-box-shadow: 0px 4px 0px 0px rgba(50, 50, 50, 0.47);
-    -moz-box-shadow:    0px 4px 0px 0px rgba(50, 50, 50, 0.47);
-    box-shadow:         0px 4px 0px 0px rgba(50, 50, 50, 0.47);
+    -webkit-box-shadow: 0px 4px 0px 0px rgba(50, 50, 50, 0.15);
+    -moz-box-shadow:    0px 4px 0px 0px rgba(50, 50, 50, 0.15);
+    box-shadow:         0px 4px 0px 0px rgba(50, 50, 50, 0.15);
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 5px;
 
--webkit-border-radius: 20px;
--moz-border-radius: 20px;
-border-radius: 5px;
     text-decoration: none;
-    color: #fff;
     font-style: normal;
+    cursor:pointer;
 }
 
 .botao-cadastra:hover {
@@ -262,9 +261,9 @@ border-radius: 5px;
     -ms-transform: translateY(4px);
     transform: translateY(4px);
 
-    -webkit-box-shadow: 0px 1px 0px 0px rgba(50, 50, 50, 0.47);
-    -moz-box-shadow:    0px 1px 0px 0px rgba(50, 50, 50, 0.47);
-    box-shadow:         0px 1px 0px 0px rgba(50, 50, 50, 0.47);
+    -webkit-box-shadow: 0px 1px 0px 0px;
+    -moz-box-shadow:    0px 1px 0px 0px;
+    box-shadow:         0px 1px 0px 0px;
     text-decoration: none;
     color: #fff;
     font-style: normal;
@@ -334,9 +333,9 @@ input[type=submit]{ /*customiza input de submit*/
   text-decoration: none;
   display: inline-block; /* needed for anchors */
   position: relative;
-    -webkit-box-shadow: 0px 4px 0px 0px rgba(50, 50, 50, 0.47);
-    -moz-box-shadow:    0px 4px 0px 0px rgba(50, 50, 50, 0.47);
-    box-shadow:         0px 4px 0px 0px rgba(50, 50, 50, 0.47);
+    -webkit-box-shadow: 0px 4px 0px 0px rgba(50, 50, 50, 0.1);
+    -moz-box-shadow:    0px 4px 0px 0px rgba(50, 50, 50, 0.1);
+    box-shadow:         0px 4px 0px 0px rgba(50, 50, 50, 0.1);
 
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
@@ -351,9 +350,9 @@ input[type=submit]{ /*customiza input de submit*/
     -ms-transform: translateY(4px);
     transform: translateY(4px);
 
-    -webkit-box-shadow: 0px 1px 0px 0px rgba(50, 50, 50, 0.47);
-    -moz-box-shadow:    0px 1px 0px 0px rgba(50, 50, 50, 0.47);
-    box-shadow:         0px 1px 0px 0px rgba(50, 50, 50, 0.47);
+    -webkit-box-shadow: 0px 1px 0px 0px rgba(50, 50, 50, 0.1);
+    -moz-box-shadow:    0px 1px 0px 0px rgba(50, 50, 50, 0.1);
+    box-shadow:         0px 1px 0px 0px rgba(50, 50, 50, 0.1);
   }
 
   .button-next {
@@ -368,16 +367,15 @@ input[type=submit]{ /*customiza input de submit*/
     background: -moz-linear-gradient(right, #26B3E8, #75CCD6); /* For Firefox 3.6 to 15 */
     background: linear-gradient(to right, #26B3E8, #75CCD6); /* Standard syntax (must be last) */
 
-      color: white;
       padding: 8px 14px;
       font-weight: 100;
-      font-size: 18px;
+      font-size: 15px;
       text-decoration: none;
       display: inline-block; /* needed for anchors */
 
-    -webkit-box-shadow: 0px 4px 0px 0px rgba(50, 50, 50, 0.47);
-    -moz-box-shadow:    0px 4px 0px 0px rgba(50, 50, 50, 0.47);
-    box-shadow:         0px 4px 0px 0px rgba(50, 50, 50, 0.47);
+    -webkit-box-shadow: 0px 4px 0px 0px rgba(50, 50, 50, 0.15);
+    -moz-box-shadow:    0px 4px 0px 0px rgba(50, 50, 50, 0.15);
+    box-shadow:         0px 4px 0px 0px rgba(50, 50, 50, 0.15);
 
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
@@ -385,18 +383,19 @@ input[type=submit]{ /*customiza input de submit*/
     text-decoration: none;
     color: #fff;
     font-style: normal;
+    float:none;
 }
+
+ .button-next a, .button-next a:hover,.button-next a:visited{
+    font-weight:100;
+    color:#fff;
+    text-decoration:none;
+  }
 
 .button-next:hover {
     background: -webkit-linear-gradient(left, #5bc6ee, #75CCD6); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(right, #5bc6ee, #75CCD6); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(right, #5bc6ee, #75CCD6); /* For Firefox 3.6 to 15 */
-    text-decoration: none;
-    color: #fff;
-    font-style: normal;
-}
-
-.button a:visited {
     text-decoration: none;
     color: #fff;
     font-style: normal;
@@ -409,36 +408,120 @@ input[type=submit]{ /*customiza input de submit*/
     -ms-transform: translateY(4px);
     transform: translateY(4px);
 
-    -webkit-box-shadow: 0px 1px 0px 0px rgba(50, 50, 50, 0.47);
-    -moz-box-shadow:    0px 1px 0px 0px rgba(50, 50, 50, 0.47);
-    box-shadow:         0px 1px 0px 0px rgba(50, 50, 50, 0.47);
+    -webkit-box-shadow: 0px 1px 0px 0px;
+    -moz-box-shadow:    0px 1px 0px 0px;
+    box-shadow:         0px 1px 0px 0px;
     text-decoration: none;
     color: #fff;
     font-style: normal;
 }
 
+  .button-voltar a, .button-voltar a:hover{
+    font-weight:100;
+    color:#58585B;
+    text-decoration:none;
+  }
+
+
+
+  .button-voltar {
+      border: 0;
+      width:110px;
+      height: auto;
+      white-space: normal;
+      text-align:center;
+
+      background: #DADADA;
+
+      color: #58585B;
+      padding: 8px 14px;
+      font-weight: 100;
+      font-size: 15px;
+      text-decoration: none;
+      display: inline-block; /* needed for anchors */
+
+    -webkit-box-shadow: 0px 4px 0px 0px rgba(50, 50, 50, 0.15);
+    -moz-box-shadow:    0px 4px 0px 0px rgba(50, 50, 50, 0.15);
+    box-shadow:         0px 4px 0px 0px rgba(50, 50, 50, 0.15);
+
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    font-style: normal;
+    cursor:pointer;
+
+    display:inline-block;
+    float:left;
+}
+
+.button-voltar:hover {
+    background: #BFBFBF;
+    text-decoration: none;
+    font-style: normal;
+}
+
+.button-voltar:active {
+    -moz-transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+    -o-transform: translateY(4px);
+    -ms-transform: translateY(4px);
+    transform: translateY(4px);
+
+    -webkit-box-shadow: 0px 1px 0px 0px ;
+    -moz-box-shadow:    0px 1px 0px 0px ;
+    box-shadow:         0px 1px 0px 0px ;
+    text-decoration: none;
+    font-style: normal;
+}
+
 /*CHA-----------------------------------------------------------------------*/
+
+.cha-escolha{
+  position: relative;
+  float: left;
+  width: 32%;
+  margin-right: 1%;
+}
 
 #nomesCompetencias h2{
   text-align:left;
-  font-size:24px;
+  font-size:14px;
   margin-bottom:0px;
+  font-weight:600px;
+  line-height:30px;
 }
 
 #nomesCompetencias h4{
   text-align:left;
+  font-size:14px;
+  font-weight:100;
+  display:inline-block;
+  width:auto;
 }
 
 #sub-conteudo2 input{
   margin-bottom:25px;
   text-align:left;
+  display: block;
+  background:#F1F1F2;
+}
+
+#sub-conteudo select{
+  background:#f1f1f2;
+}
+
+.competencia-dividor{
+  margin:20px 0px 10px 0px;
+  width:100%;
+  border-bottom:1px solid #D0D0D0;
 }
 
 /*================================== CADASTERO ==================================*/
 
 .info-cadastro{
   display: block;
-  width: 100%;
   float: left;
   text-align:left;
   font-size:16px;
@@ -454,6 +537,19 @@ input[type=submit]{ /*customiza input de submit*/
   background:white;
 }
 
+.cadastro-seta-associar{
+  background-image: url(../img/seta_drag.png);
+  background-repeat: no-repeat;
+  background-position: 50.5% 50%;
+  background-size: 30px;
+  height:500px;
+}
+
+.cadastro-conteudo {
+  width:85%;
+  margin:0 auto;
+}
+
 .cadastro-left-column{
   display: inline-block;
   width: 35%;
@@ -464,6 +560,10 @@ input[type=submit]{ /*customiza input de submit*/
   display: inline-block;
   width: 35%;
   float:right;
+}
+
+.cadastro-nome-competencia{
+
 }
 
 div.search-cadastro input[type=text]{
@@ -482,6 +582,9 @@ div.search-cadastro {
   margin-bottom:0px;
   width:300px;
   border-radius:0;
+  height:50px;
+  margin-top:35px;
+
 }
 
 .search input { 
@@ -498,9 +601,9 @@ div.search-cadastro {
     list-style-type: none;
     margin: 0;
     padding: 5px 0 0px 0;
-    margin-right: 10px;
     margin-bottom:30px;
     overflow: auto;
+    text-align:left;
 }
 
 #tabela1 {
@@ -509,7 +612,7 @@ div.search-cadastro {
 
 #tabela2 {
   float: right;
-  height:300px;
+  height: 300px;
 }
 
 
@@ -530,4 +633,8 @@ div.search-cadastro {
   width:20px;
   display:inline-block;
   float:right;
+}
+
+.hide {
+  display: none;
 }

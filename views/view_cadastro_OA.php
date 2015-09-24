@@ -404,8 +404,8 @@ $(function(){AjaxCompetenciaListas()});
                 document.getElementById('menudiv3').setAttribute('class', 'meu-active');
                 document.getElementById('seta2').removeAttribute('class');
                 document.getElementById('seta2').setAttribute('class', 'meu-active');
-                document.getElementById('seta3').removeAttribute('class');
-                document.getElementById('seta3').setAttribute('class', 'seta-active');
+                document.getElementById('seta4').removeAttribute('class');
+                document.getElementById('seta4').setAttribute('class', 'seta-active');
                 document.getElementById('buttonNext').removeAttribute('onclick');
                 document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(4)');
                 document.getElementById('buttonPrevious').removeAttribute('onclick');
@@ -418,19 +418,19 @@ $(function(){AjaxCompetenciaListas()});
                     divTab = document.getElementById('sub-conteudo3');
                     divTab.removeAttribute('class');
                     divTab.setAttribute('class', 'tab');
-                    divTab = document.getElementById('sub-conteudo4');
+                    divTab = document.getElementById('sub-conteudo5');
                     divTab.removeAttribute('class');
                     divTab.setAttribute('class', 'tab-active');
-                    document.getElementById('menudiv4').removeAttribute('class');
-                    document.getElementById('menudiv4').setAttribute('class', 'meu-active');
-                    document.getElementById('seta3').removeAttribute('class');
-                    document.getElementById('seta3').setAttribute('class', 'meu-active');
+                    document.getElementById('menudiv5').removeAttribute('class');
+                    document.getElementById('menudiv5').setAttribute('class', 'meu-active');
                     document.getElementById('seta4').removeAttribute('class');
-                    document.getElementById('seta4').setAttribute('class', 'seta-active');
+                    document.getElementById('seta4').setAttribute('class', 'meu-active');
+                    document.getElementById('seta5').removeAttribute('class');
+                    document.getElementById('seta5').setAttribute('class', 'seta-active');
                     document.getElementById('buttonNext').removeAttribute('onclick');
-                    document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(5)');
+                    document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(6)');
                     document.getElementById('buttonPrevious').removeAttribute('onclick');
-                    document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(10)');
+                    document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(11)');
                 }
                 else {
                     if(document.getElementsByName('descricao_educacional')[0].value.length == 0) {
@@ -441,24 +441,6 @@ $(function(){AjaxCompetenciaListas()});
                         document.getElementsByName('date')[0].style.border = "0";
                     }
                 }
-            }
-            else if(qualTab == 5) {
-                divTab = document.getElementById('sub-conteudo4');
-                divTab.removeAttribute('class');
-                divTab.setAttribute('class', 'tab');
-                divTab = document.getElementById('sub-conteudo5');
-                divTab.removeAttribute('class');
-                divTab.setAttribute('class', 'tab-active');
-                document.getElementById('menudiv5').removeAttribute('class');
-                document.getElementById('menudiv5').setAttribute('class', 'meu-active');
-                document.getElementById('seta4').removeAttribute('class');
-                document.getElementById('seta4').setAttribute('class', 'meu-active');
-                document.getElementById('seta5').removeAttribute('class');
-                document.getElementById('seta5').setAttribute('class', 'seta-active');
-                document.getElementById('buttonNext').removeAttribute('onclick');
-                document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(6)');
-                document.getElementById('buttonPrevious').removeAttribute('onclick');
-                document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(11)');
             }
             else if(qualTab == 6) {
                 if(document.getElementsByName('arrayCompetencias')[0].value.length > 0) {
@@ -527,7 +509,7 @@ $(function(){AjaxCompetenciaListas()});
                 divTab.removeAttribute('class');
                 divTab.setAttribute('class', 'tab-active');
                 document.getElementById('menudiv3').removeAttribute('class');
-                document.getElementById('seta3').removeAttribute('class');
+                document.getElementById('seta4').removeAttribute('class');
                 document.getElementById('seta2').removeAttribute('class');
                 document.getElementById('seta2').setAttribute('class', 'seta-active');
                 document.getElementById('buttonNext').removeAttribute('onclick');
@@ -535,27 +517,11 @@ $(function(){AjaxCompetenciaListas()});
                 document.getElementById('buttonPrevious').removeAttribute('onclick');
                 document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(8)');
             }
-            else if(qualTab == 10) {
-                divTab = document.getElementById('sub-conteudo4');
-                divTab.removeAttribute('class');
-                divTab.setAttribute('class', 'tab');
-                divTab = document.getElementById('sub-conteudo3');
-                divTab.removeAttribute('class');
-                divTab.setAttribute('class', 'tab-active');
-                document.getElementById('menudiv4').removeAttribute('class');
-                document.getElementById('seta4').removeAttribute('class');
-                document.getElementById('seta3').removeAttribute('class');
-                document.getElementById('seta3').setAttribute('class', 'seta-active');
-                document.getElementById('buttonNext').removeAttribute('onclick');
-                document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(4)');
-                document.getElementById('buttonPrevious').removeAttribute('onclick');
-                document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(9)');
-            }
             else if(qualTab == 11) {
                 divTab = document.getElementById('sub-conteudo5');
                 divTab.removeAttribute('class');
                 divTab.setAttribute('class', 'tab');
-                divTab = document.getElementById('sub-conteudo4');
+                divTab = document.getElementById('sub-conteudo3');
                 divTab.removeAttribute('class');
                 divTab.setAttribute('class', 'tab-active');
                 document.getElementById('menudiv5').removeAttribute('class');
@@ -563,9 +529,9 @@ $(function(){AjaxCompetenciaListas()});
                 document.getElementById('seta4').removeAttribute('class');
                 document.getElementById('seta4').setAttribute('class', 'seta-active');
                 document.getElementById('buttonNext').removeAttribute('onclick');
-                document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(5)');
+                document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(4)');
                 document.getElementById('buttonPrevious').removeAttribute('onclick');
-                document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(10)');
+                document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(9)');
                 document.getElementById('finisher').removeAttribute('style');
                 document.getElementById('finisher').setAttribute('style', 'float: none; display: none;');
                 document.getElementById('buttonNext').removeAttribute('style');
@@ -896,28 +862,30 @@ $(function(){AjaxCompetenciaListas()});
                     </div>	
                 </div-->
 
-                <div id="sub-conteudo5" style="background-image: url(img/seta_drag.png); background-repeat: no-repeat; background-position: 49.5% 40%; background-size: 50px;" class="tab">
+                <div id="sub-conteudo5" class="tab">
+                    <div class="cadastro-seta-associar">
                     <input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" />
                     <input type="hidden" id="listaConhecimentos" name="listaConhecimentos" value="" />
                     <input type="hidden" id="listaHabilidades" name="listaHabilidades" value="" />
                     <input type="hidden" id="listaAtitudes" name="listaAtitudes" value="" />
-                    <span style="display block; width: 100%; float: left; text-align:center;"><div style="float: center"><?php echo WORDING_ASSOCIATE_COMP_OA; ?>.<div class="tooltiploco"><div onmouseover="toolTip(16, '<?php echo HINT_COMPETENCY ?>')" onmouseout="deleteTooltip(16)">?</div></div></div></span>
-                    <span style="display block; width: 40%; float: left; text-align:left;">Competencias Disponíveis</span><span style="display: block; width: 30%; float: right; text-align:right;">Competencias Selecionadas</span>
-                    <div style="width: 45%;">
-                        <input type="text" id="busca-competencias" placeholder="Pesquise uma competência">
+
+                    <span class="info-cadastro"><?php echo WORDING_ASSOCIATE_COMP_OA; ?>.<div class="tooltiploco"><div onmouseover="toolTip(16, '<?php echo HINT_COMPETENCY ?>')" onmouseout="deleteTooltip(16)">[ ? ]</div></div></span><br><br>
+
+                    <div class="cadastro-left-column">
+                        <span class="titulo-cadastro text-left">Competencias Disponíveis</span>
+                            <div class="search-cadastro">
+                                <div class="search">
+                                    <input type="text" class="search-cadastro" id="busca-competencias" placeholder="Pesquise uma competência">
+                                </div>
+                                <ul id="tabela1"></ul>
+                            </div>
+                            <div onclick="modalCompetencia();"  class='botao-cadastra' style='width: 240px'><?=WORDING_CREATE_NEW_COMPETENCIA?></div>
                     </div>
-                    <ul id="tabela1">
-                    </ul>
 
-                    
-                    <ul id="tabela2">
-                    <!--<li class="ui-state-highlight">Item 1 selecionado</li>-->
-                    </ul>
-                     
-            
-
-                    <div onclick="modalCompetencia();"  class='botao-cadastra' style='width: 240px'><?=WORDING_CREATE_NEW_COMPETENCIA?></div>
-                
+                    <div class="cadastro-right-column">
+                        <span class="titulo-cadastro text-right">Competencias Selecionadas</span>
+                        <ul id="tabela2"></ul>
+                    </div>                
                 </div>
 
 
@@ -936,8 +904,8 @@ $(function(){AjaxCompetenciaListas()});
                 
                                 
                 <ul class="pager wizard">
-                        <li class="next" style="float:none"><div id="buttonNext" class='button' onclick="mudaTab(1)"><a href="javascript:;" class='button-next text-left'>Próximo</a></div></li>
-                        <li class="previous" style="float:none; display: none;" id="buttonPrevious" onclick="mudaTab(3)"><div class="text-right"><a href="javascript:;">Voltar</a></div></li>
+                        <li class="next" style="float:right"><div id="buttonNext" class='button-next text-left' onclick="mudaTab(1)"><a href="javascript:;">Próximo</a></div></li>
+                        <li class="previous" style="float:none; display: none;" id="buttonPrevious" onclick="mudaTab(3)"><div class="text-right button-voltar"><a href="javascript:;">Voltar</a></div></li>
                 </ul>     
             </div>  
         </div>

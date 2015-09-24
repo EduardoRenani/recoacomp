@@ -121,7 +121,7 @@ include('_header.php');
                 listaAtitudes = listaAtitudes.split("¬");
                 console.log(listaAtitudes);
                 console.log('oi');
-                document.getElementById('sub-conteudo2').innerHTML = '<div style="text-align: center; margin-bottom: 20px;"><div style="float: left"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div></div>';
+                document.getElementById('sub-conteudo2').innerHTML = '<div><div class="info-cadastro"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div></div>';
                 for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
                             listaConhecimentos[i] = listaConhecimentos[i].replace(/%0D%0A/g, ' ');
@@ -134,7 +134,7 @@ include('_header.php');
                             listaAtitudes[i] = decodeURI(listaAtitudes[i]);
                     var elementoAdd = document.createElement('div');
                     //elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'" >?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
-                                        elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div id="conhecimento'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'conhecimento'+idCompetencias[i]+'\', \''+listaConhecimentos[i]+'\')" onmouseout="deleteTooltipComp(\'conhecimento'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div id="habilidade'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'habilidade'+idCompetencias[i]+'\', \''+listaHabilidades[i]+'\')" onmouseout="deleteTooltipComp(\'habilidade'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div id="atitude'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'atitude'+idCompetencias[i]+'\', \''+listaAtitudes[i]+'\')" onmouseout="deleteTooltipComp(\'atitude'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
+                                        elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div class="cha-escolha"><h4>Conhecimento</h4><div id="conhecimento'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'conhecimento'+idCompetencias[i]+'\', \''+listaConhecimentos[i]+'\')" onmouseout="deleteTooltipComp(\'conhecimento'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div class="cha-escolha"><h4>Habilidade</h4><div id="habilidade'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'habilidade'+idCompetencias[i]+'\', \''+listaHabilidades[i]+'\')" onmouseout="deleteTooltipComp(\'habilidade'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div class="cha-escolha"><h4>Atitude</h4><div id="atitude'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'atitude'+idCompetencias[i]+'\', \''+listaAtitudes[i]+'\')" onmouseout="deleteTooltipComp(\'atitude'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
                                         document.getElementById('sub-conteudo2').appendChild(elementoAdd);
                 }
         //         $("#tabela2").html("<option value='text'>text</option>");
@@ -169,7 +169,7 @@ include('_header.php');
                 console.log(listaConhecimentos);
                 console.log(listaHabilidades);
                 console.log(listaAtitudes);
-                document.getElementById('sub-conteudo2').innerHTML = '<div style="text-align: center; margin-bottom: 20px;"><div style="float: left"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div></div>';
+                document.getElementById('sub-conteudo2').innerHTML = '<div><div class="info-cadastro"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div></div>';
                 for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
                             listaConhecimentos[i] = listaConhecimentos[i].replace(/%0D%0A/g, ' ');
@@ -182,7 +182,7 @@ include('_header.php');
                             listaAtitudes[i] = decodeURI(listaAtitudes[i]);
                     var elementoAdd = document.createElement('div');
                     //elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'" >?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
-                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div id="conhecimento'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'conhecimento'+idCompetencias[i]+'\', \''+listaConhecimentos[i]+'\')" onmouseout="deleteTooltipComp(\'conhecimento'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div id="habilidade'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'habilidade'+idCompetencias[i]+'\', \''+listaHabilidades[i]+'\')" onmouseout="deleteTooltipComp(\'habilidade'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div id="atitude'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'atitude'+idCompetencias[i]+'\', \''+listaAtitudes[i]+'\')" onmouseout="deleteTooltipComp(\'atitude'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div class="cha-escolha"><h4>Conhecimento</h4><div id="conhecimento'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'conhecimento'+idCompetencias[i]+'\', \''+listaConhecimentos[i]+'\')" onmouseout="deleteTooltipComp(\'conhecimento'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div class="cha-escolha"><h4>Habilidade</h4><div id="habilidade'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'habilidade'+idCompetencias[i]+'\', \''+listaHabilidades[i]+'\')" onmouseout="deleteTooltipComp(\'habilidade'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div class="cha-escolha"><h4>Atitude</h4><div id="atitude'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'atitude'+idCompetencias[i]+'\', \''+listaAtitudes[i]+'\')" onmouseout="deleteTooltipComp(\'atitude'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
                     document.getElementById('sub-conteudo2').appendChild(elementoAdd);
                 }
                 
@@ -307,7 +307,7 @@ function AjaxCompetenciaListas(){
                     listaAtitudes = listaAtitudes.split("¬");
                     console.log(listaAtitudes);
                     console.log('oi');
-                    document.getElementById('sub-conteudo2').innerHTML = '<div style="text-align: center; margin-bottom: 20px;"><div style="float: left"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div></div>';
+                    document.getElementById('sub-conteudo2').innerHTML = '<div><div class="info-cadastro"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">[ ? ]</div></div></div>';
                     for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
                             listaConhecimentos[i] = listaConhecimentos[i].replace(/%0D%0A/g, ' ');
@@ -320,7 +320,7 @@ function AjaxCompetenciaListas(){
                             listaAtitudes[i] = decodeURI(listaAtitudes[i]);
                         var elementoAdd = document.createElement('div');
                         //elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'" >?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
-                                            elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div id="conhecimento'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'conhecimento'+idCompetencias[i]+'\', \''+listaConhecimentos[i]+'\')" onmouseout="deleteTooltipComp(\'conhecimento'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div id="habilidade'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'habilidade'+idCompetencias[i]+'\', \''+listaHabilidades[i]+'\')" onmouseout="deleteTooltipComp(\'habilidade'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div id="atitude'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'atitude'+idCompetencias[i]+'\', \''+listaAtitudes[i]+'\')" onmouseout="deleteTooltipComp(\'atitude'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
+                                            elementoAdd.innerHTML = '<div id="nomesCompetencias"><hr class="competencia-dividor"><h2>'+nomesCompetencias[i]+'</h2><div class="cha-escolha"><h4>Conhecimento</h4><div id="conhecimento'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'conhecimento'+idCompetencias[i]+'\', \''+listaConhecimentos[i]+'\')" onmouseout="deleteTooltipComp(\'conhecimento'+idCompetencias[i]+'\')">[ ? ]</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div class="cha-escolha"><h4>Habilidade</h4><div id="habilidade'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'habilidade'+idCompetencias[i]+'\', \''+listaHabilidades[i]+'\')" onmouseout="deleteTooltipComp(\'habilidade'+idCompetencias[i]+'\')">[ ? ]</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div class="cha-escolha"><h4>Atitude</h4><div id="atitude'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'atitude'+idCompetencias[i]+'\', \''+listaAtitudes[i]+'\')" onmouseout="deleteTooltipComp(\'atitude'+idCompetencias[i]+'\')">[ ? ]</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
                                             document.getElementById('sub-conteudo2').appendChild(elementoAdd);
                     }
                     //Resposta não-vazia
@@ -367,8 +367,8 @@ $(function(){
                 document.getElementById('seta1').setAttribute('class', 'seta-active');
                 document.getElementById('buttonNext').removeAttribute('onclick');
                 document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(2)');
-                document.getElementById('buttonPrevious').removeAttribute('style');
-                document.getElementById('buttonPrevious').setAttribute('style', 'float: none; display: inline;');
+                document.getElementById('buttonPrevious').removeAttribute('class');
+                document.getElementById('buttonPrevious').setAttribute('class', 'previous');
             }
             else {
                 if(document.getElementsByName('senha')[0].value.length <= 5) {
@@ -418,10 +418,12 @@ $(function(){
                 document.getElementById('seta1').setAttribute('class', 'meu-active');
                 document.getElementById('buttonNext').removeAttribute('onclick');
                 document.getElementById('buttonPrevious').removeAttribute('onclick');
-                document.getElementById('finisher').removeAttribute('style');
+                //document.getElementById('finisher').removeAttribute('style');
                 document.getElementById('buttonNext').removeAttribute('style');
-                document.getElementById('buttonNext').setAttribute('style', 'float: none; display: none;');
+                //document.getElementById('buttonNext').setAttribute('style', 'float: none; display: none;');
                 document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(4)');
+                input = '<input id="finisher" class="info-cadastro" type="submit" name="registrar_nova_disciplina" value="<?php echo WORDING_CREATE_DISCIPLINA; ?>" />';
+                document.getElementById('buttonNext').innerHTML = input;
             }
             else {
                 document.getElementById("sub-conteudo1").getElementsByTagName('span')[1].innerHTML = "<span style='color: #dc8810'>Escolha uma competência";
@@ -443,8 +445,8 @@ $(function(){
             document.getElementById('seta').setAttribute('class', 'seta-active');
             document.getElementById('buttonNext').removeAttribute('onclick');
             document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(1)');
-            document.getElementById('buttonPrevious').removeAttribute('style');
-            document.getElementById('buttonPrevious').setAttribute('style', 'float: none; display: none;');
+            document.getElementById('buttonPrevious').removeAttribute('class');
+            document.getElementById('buttonPrevious').setAttribute('class', 'previous hide');
 
         }
         else if(qualTab == 4) {
@@ -462,7 +464,9 @@ $(function(){
             document.getElementById('buttonPrevious').removeAttribute('onclick');
             document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(3)');
             document.getElementById('buttonNext').removeAttribute('style');
-            document.getElementById('finisher').setAttribute('style', 'float: none; display: none;');
+            div = '<a href="javascript:;" class="button-next text-left">Próximo</a>';
+            document.getElementById('buttonNext').innerHTML = div;
+            //document.getElementById('finisher').setAttribute('style', 'float: none; display: none;');
 
         }
     }
@@ -573,7 +577,7 @@ $(function(){
                 listaAtitudes = listaAtitudes.split("¬");
                 console.log(listaAtitudes);
                 console.log('oi');
-                document.getElementById('sub-conteudo2').innerHTML = '<div style="text-align: center; margin-bottom: 20px;"><div style="float: left"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div></div>';
+                document.getElementById('sub-conteudo2').innerHTML = '<div><div class="info-cadastro"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div></div>';
                 for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
                             listaConhecimentos[i] = listaConhecimentos[i].replace(/%0D%0A/g, ' ');
@@ -586,7 +590,7 @@ $(function(){
                             listaAtitudes[i] = decodeURI(listaAtitudes[i]);
                     var elementoAdd = document.createElement('div');
                     //elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'" >?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
-                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div id="conhecimento'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'conhecimento'+idCompetencias[i]+'\', \''+listaConhecimentos[i]+'\')" onmouseout="deleteTooltipComp(\'conhecimento'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div id="habilidade'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'habilidade'+idCompetencias[i]+'\', \''+listaHabilidades[i]+'\')" onmouseout="deleteTooltipComp(\'habilidade'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div id="atitude'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'atitude'+idCompetencias[i]+'\', \''+listaAtitudes[i]+'\')" onmouseout="deleteTooltipComp(\'atitude'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div class="cha-escolha"><h4>Conhecimento</h4><div id="conhecimento'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'conhecimento'+idCompetencias[i]+'\', \''+listaConhecimentos[i]+'\')" onmouseout="deleteTooltipComp(\'conhecimento'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div class="cha-escolha"><h4>Habilidade</h4><div id="habilidade'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'habilidade'+idCompetencias[i]+'\', \''+listaHabilidades[i]+'\')" onmouseout="deleteTooltipComp(\'habilidade'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div class="cha-escolha"><h4>Atitude</h4><div id="atitude'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'atitude'+idCompetencias[i]+'\', \''+listaAtitudes[i]+'\')" onmouseout="deleteTooltipComp(\'atitude'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
                     document.getElementById('sub-conteudo2').appendChild(elementoAdd);
                 }
                 clearInterval(window.tAtualizaCompetencia);
@@ -644,39 +648,55 @@ $(function(){
                                         <textarea name="descricao" id="descricao" ROWS="5" COLS="40" class="required"></textarea>
                                     </div>
                             </div>
+                            <div class="control-group">
+                                <label class="control-label" for="descricao"><div style="float: left"><?php echo WORDING_AREA_CONHECIMENTO; ?></div><div class="tooltiploco">
+                                    <div onmouseover="toolTip(5, 'Área de conhecimento.')" onmouseout="deleteTooltip(5)">[ ? ]</div></div></label>
+                                    <div class="controls">
+                                        <select>
+                                            <option value="volvo">Volvo</option>
+                                            <option value="saab">Saab</option>
+                                            <option value="mercedes">Mercedes</option>
+                                            <option value="audi">Audi</option>
+                                        </select>
+                                    </div>
+                            </div>
                         </div>
 
 
                         <!-- DIV COM DADOS DAS COMPETÊNCIAS A SEREM ASSOCIADAS A DISCIPLINA -->
-                        <div id="sub-conteudo1" style="background-image: url(img/seta_drag.png); background-repeat: no-repeat; background-position: 48.5% 50%; background-size: 30px;" class="tab">
+                        <div id="sub-conteudo1" class="tab">
+                            <div class="cadastro-seta-associar">
                                 <input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" />
                                 <input type="hidden" id="listaConhecimentos" name="listaConhecimentos" value="" />
                                 <input type="hidden" id="listaHabilidades" name="listaHabilidades" value="" />
                                 <input type="hidden" id="listaAtitudes" name="listaAtitudes" value="" />
                                 <span class="info-cadastro"><?php echo WORDING_ASSOCIATE_COMP; ?></span></br></br>
-                                
-                                <div class="cadastro-left-column">
-                                    <span class="titulo-cadastro text-left">Competencias Disponíveis</span>
-                                    <div class="search-cadastro">
-                                        <div class="search">
-                                              <input type="text" class="search-cadastro" id="busca-competencias" placeholder="Pesquise uma competência">
+                                <div class="cadastro-conteudo">
+                                    <div class="cadastro-left-column">
+                                        <span class="titulo-cadastro text-left">Competencias Disponíveis</span>
+                                        <div class="search-cadastro">
+                                            <div class="search">
+                                                  <input type="text" class="search-cadastro" id="busca-competencias" placeholder="Pesquise uma competência">
+                                            </div>
+                                            <ul id="tabela1">
+                                            </ul>
                                         </div>
-                                        <ul id="tabela1">
+                                        <center><div onclick="modalCompetencia();" class='botao-cadastra' style='width: 250px'><?=WORDING_CREATE_NEW_COMPETENCIA?></div></center>
+                                    </div>
+
+                                    <div class=""></div>
+
+                                    <div class="cadastro-right-column">
+                                        <span class="titulo-cadastro text-right">Competencias Selecionadas</span>
+                                        <ul id="tabela2">
+                                        <!--<li class="ui-state-highlight">Item 1 selecionado</li>-->
                                         </ul>
                                     </div>
                                 </div>
-
-                                <div class=""></div>
-
-                                <div class="cadastro-right-column">
-                                    <span class="titulo-cadastro text-right">Competencias Selecionadas</span>
-                                    <ul id="tabela2">
-                                    <!--<li class="ui-state-highlight">Item 1 selecionado</li>-->
-                                    </ul>
-                                </div>
                                  
-                                <!--<center><div onclick="modalCompetencia();" class='botao-cadastra' style='width: 240px'><?=WORDING_CREATE_NEW_COMPETENCIA?></div></center>-->
+                                
                                 <br>
+                            </div>
                         </div>
                         
                         <!-- DIV COM COISA CHA -->
@@ -688,11 +708,11 @@ $(function(){
                                 </div>
                             </div>
                         </div>
-                        <input id="finisher" style="display: none;" type="submit" name="registrar_nova_disciplina" value="<?php echo WORDING_CREATE_DISCIPLINA; ?>" />
+                        
                             
                         <ul class="pager wizard">
                             <li class="next" style="float:none"><div id="buttonNext" class='button' onclick="mudaTab(1)"><a href="javascript:;" class='button-next text-left'>Próximo</a></div></li>
-                            <li class="previous" style="float:none; display: none;" id="buttonPrevious" onclick="mudaTab(3)"><div class="text-right"><a href="javascript:;">Voltar</a></div></li>
+                            <li class="previous hide" id="buttonPrevious" onclick="mudaTab(3)"><div class="text-right button-voltar"><a href="javascript:;">Voltar</a></div></li>
                         </ul>
 
 
