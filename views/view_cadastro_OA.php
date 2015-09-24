@@ -81,7 +81,7 @@
                     listaAtitudes = listaAtitudes.split("¬");
                     console.log(listaAtitudes);
                     console.log('oi');
-                    document.getElementById('sub-conteudo6').innerHTML = '<div style="text-align: center; margin-bottom: 20px;"><div style="float: left"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(17, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(17)">?</div></div></div>';
+                    document.getElementById('sub-conteudo6').innerHTML = '<div class="info-cadastro"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(17, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(17)">?</div></div></div>';
                     for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
                             listaConhecimentos[i] = listaConhecimentos[i].replace(/%0D%0A/g, ' ');
@@ -130,7 +130,7 @@
                     console.log(listaConhecimentos);
                     console.log(listaHabilidades);
                     console.log(listaAtitudes);
-                    document.getElementById('sub-conteudo6').innerHTML = '<div style="text-align: center; margin-bottom: 20px;"><div style="float: left"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(17, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(17)">?</div></div></div>';
+                    document.getElementById('sub-conteudo6').innerHTML = '<div class="info-cadastro"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(17, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(17)">?</div></div>';
                     console.log(nomesCompetencias.length);
                     for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
@@ -261,7 +261,7 @@ function AjaxCompetenciaListas(){
                     listaAtitudes = listaAtitudes.split("¬");
                     console.log(listaAtitudes);
                     console.log('oi');
-                    document.getElementById('sub-conteudo6').innerHTML = '<div style="text-align: center; margin-bottom: 20px;"><div style="float: left"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(17, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(17)">?</div></div></div>';
+                    document.getElementById('sub-conteudo6').innerHTML = '<div class="info-cadastro"><?php echo;?></div><div class="tooltiploco"><div onmouseover="toolTip(17, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(17)">?</div></div>';
                     for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
                             listaConhecimentos[i] = listaConhecimentos[i].replace(/%0D%0A/g, ' ');
@@ -664,7 +664,7 @@ $(function(){AjaxCompetenciaListas()});
                 listaAtitudes = listaAtitudes.split("¬");
                 console.log(listaAtitudes);
                 console.log('oi');
-                document.getElementById('sub-conteudo6').innerHTML = '<div style="text-align: center; padding-bottom: 20px;"><div style="float: left"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(17, \'<?php echo HINT_CHA_OA;?>\')" onmouseout="deleteTooltip(17)">?</div></div></div>';
+                document.getElementById('sub-conteudo6').innerHTML = '<div class="info-cadastro"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(17, \'<?php echo HINT_CHA_OA;?>\')" onmouseout="deleteTooltip(17)">?</div></div>';
                 for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
                             listaConhecimentos[i] = listaConhecimentos[i].replace(/%0D%0A/g, ' ');
@@ -872,7 +872,7 @@ $(function(){AjaxCompetenciaListas()});
                     <span class="info-cadastro"><?php echo WORDING_ASSOCIATE_COMP_OA; ?>.<div class="tooltiploco"><div onmouseover="toolTip(16, '<?php echo HINT_COMPETENCY ?>')" onmouseout="deleteTooltip(16)">[ ? ]</div></div></span><br><br>
 
                     <div class="cadastro-left-column">
-                        <span class="titulo-cadastro text-left">Competencias Disponíveis</span>
+                        <span class="titulo-cadastro">Competencias Disponíveis</span>
                             <div class="search-cadastro">
                                 <div class="search">
                                     <input type="text" class="search-cadastro" id="busca-competencias" placeholder="Pesquise uma competência">
@@ -885,29 +885,20 @@ $(function(){AjaxCompetenciaListas()});
                     <div class="cadastro-right-column">
                         <span class="titulo-cadastro text-right">Competencias Selecionadas</span>
                         <ul id="tabela2"></ul>
-                    </div>                
+                    </div>
                 </div>
-
 
                 <div id="sub-conteudo6" class="tab">
-                    <!--input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" /-->
-       
-                     
-            
-
-                          
+                    <!--TELA DE BOTAR NÚMERO NO CHA /-->
+                    <!--input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" /-->     
                 </div>
 
-
-
     			<input id="finisher" style="display: none;" type="submit" name="registrar_novo_OA" value="<?php echo WORDING_REGISTER_OA; ?>" />
-                
-                                
-                <ul class="pager wizard">
-                        <li class="next" style="float:right"><div id="buttonNext" class='button-next text-left' onclick="mudaTab(1)"><a href="javascript:;">Próximo</a></div></li>
-                        <li class="previous" style="float:none; display: none;" id="buttonPrevious" onclick="mudaTab(3)"><div class="text-right button-voltar"><a href="javascript:;">Voltar</a></div></li>
-                </ul>     
-            </div>  
+            </div> 
+            <ul class="pager wizard">
+                <li class="next" style="float:right"><div id="buttonNext" class='button-next text-left' onclick="mudaTab(1)"><a href="javascript:;">Próximo</a></div></li>
+                <li class="previous" id="buttonPrevious" onclick="mudaTab(3)"><div class="text-right button-voltar"><a href="javascript:;">Voltar</a></div></li>
+            </ul>   
         </div>
     </form>
     </div>

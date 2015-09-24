@@ -256,10 +256,10 @@ if (isset($OA)) {
                 var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
                 idCompetencias = idCompetencias.split(",");
                 nomesCompetencias = nomesCompetencias.split(",");
-                document.getElementById('sub-conteudo2').innerHTML = '<div style="text-align: center; margin-bottom: 20px;"><div style="float: left"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div></div>';
+                document.getElementById('sub-conteudo2').innerHTML = '<div class="info-cadastro"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div>';
                 for (i = 0; i < nomesCompetencias.length; i++) {
                     var elementoAdd = document.createElement('div');
-                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div id="conhecimento'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipCHA(\'conhecimento'+idCompetencias[i]+'\', \'conhecimento\')" onmouseout="deleteTooltipCHA(\'conhecimento'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div id="habilidade'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipCHA(\'habilidade'+idCompetencias[i]+'\', \'habilidade\')" onmouseout="deleteTooltipCHA(\'habilidade'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div id="atitude'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipCHA(\'atitude'+idCompetencias[i]+'\', \'atitude\')" onmouseout="deleteTooltipCHA(\'atitude'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    elementoAdd.innerHTML = '<hr class="competencia-dividor"><div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div id="conhecimento'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipCHA(\'conhecimento'+idCompetencias[i]+'\', \'conhecimento\')" onmouseout="deleteTooltipCHA(\'conhecimento'+idCompetencias[i]+'\')">[ ? ]</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div id="habilidade'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipCHA(\'habilidade'+idCompetencias[i]+'\', \'habilidade\')" onmouseout="deleteTooltipCHA(\'habilidade'+idCompetencias[i]+'\')">[ ? ]</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div id="atitude'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipCHA(\'atitude'+idCompetencias[i]+'\', \'atitude\')" onmouseout="deleteTooltipCHA(\'atitude'+idCompetencias[i]+'\')">[ ? ]</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
                     document.getElementById('sub-conteudo2').appendChild(elementoAdd);
                 }
         //         $("#tabela2").html("<option value='text'>text</option>");
@@ -284,7 +284,7 @@ if (isset($OA)) {
                 var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
                 idCompetencias = idCompetencias.split(",");
                 nomesCompetencias = nomesCompetencias.split(",");
-                document.getElementById('sub-conteudo2').innerHTML = '<div style="text-align: center; margin-bottom: 20px;"><div style="float: left"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div></div>';
+                document.getElementById('sub-conteudo2').innerHTML = '<div class="info-cadastro"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div>';
                 for (i = 0; i < nomesCompetencias.length; i++) {
                     var elementoAdd = document.createElement('div');
                     elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div id="conhecimento'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipCHA(\'conhecimento'+idCompetencias[i]+'\', \'conhecimento\')" onmouseout="deleteTooltipCHA(\'conhecimento'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div id="habilidade'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipCHA(\'habilidade'+idCompetencias[i]+'\', \'habilidade\')" onmouseout="deleteTooltipCHA(\'habilidade'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div id="atitude'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipCHA(\'atitude'+idCompetencias[i]+'\', \'atitude\')" onmouseout="deleteTooltipCHA(\'atitude'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
@@ -674,29 +674,37 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
 
                             </div>
                             <!-- DIV COM DADOS DAS COMPETÊNCIAS A SEREM ASSOCIADAS A DISCIPLINA -->
-                            <div id="sub-conteudo1" style="background-image: url(img/seta_drag.png); background-repeat: no-repeat; background-position: 49.5% 40%; background-size: 50px;" class="tab">
-                                <input type="hidden" id="arrayOAS" name="arrayOAS" value="" />
-                                <span style="display block; width: 100%; float: left; text-align:center;"><?php echo WORDING_ASSOCIATE_OA; ?>.</span>
-                                  <span style="display block; width: 40%; float: left; text-align:left;">Objetos OAS Disponíveis</span><span style="display: block; width: 30%; float: right; text-align:right;">Objetos OAS Selecionados</span>
-                            <div style="width: 45%;">
-                                <input type="text" id="busca-competencias" placeholder="Pesquise uma competência">
-                            </div>
-                            <ul id="tabela1">
-                            </ul>
-                            <ul id="tabela2">
-                                  <!-- Os objetos que serão associados estarão nessa tabela -->
-                            </ul>
-                                  <center><div onclick="modalCompetencia();" class='botao-cadastra' style='width: 240px'><?=WORDING_REGISTER_NOVO_OA?></div></center>
+                            <div id="sub-conteudo1" class="tab">
+                                <div class="cadastro-seta-associar">
+                                    <input type="hidden" id="arrayOAS" name="arrayOAS" value="" />
+                                    <span class="info-cadastro"><?php echo WORDING_ASSOCIATE_OA; ?>.</span><br><br>
 
+                                    <div class="cadastro-left-column">
+                                        <span class="titulo-cadastro text-left">Objetos OAS Disponíveis</span>
+                                            <div class="search-cadastro">
+                                                <div class="search">
+                                                    <input type="text" class="search-cadastro" id="busca-competencias" placeholder="Pesquise uma competência">
+                                                </div>
+                                                <ul id="tabela1"></ul>
+                                            </div>
+                                            <div onclick="modalCompetencia();"  class='botao-cadastra' style='width: 300px'><?=WORDING_REGISTER_NOVO_OA?></div>
+                                    </div>
+
+                                    <div class="cadastro-right-column">
+                                        <span class="titulo-cadastro text-right">Objetos OAS Selecionados</span>
+                                        <ul id="tabela2"></ul>
+                                    </div>
+                                </div>
                             </div>
+
                             <div id="sub-conteudo2" class="tab">
                                 <div class="control-group">
                                 </div>
                             </div>
                             <input id="finisher" style="display: none;" type="submit" name="registrar_nova_competencia" value="<?php echo WORDING_CREATE_COMPETENCA; ?>" />
                             <ul class="pager wizard">
-                                <li class="next" style="float:none"><div id="buttonNext" class='button' onclick="mudaTab(1)"><a href="javascript:;" class='button-next text-left'>Próximo</a></div></li>
-                                <li class="previous" style="float:none; display: none;" id="buttonPrevious" onclick="mudaTab(3)"><div class="text-right"><a href="javascript:;">Voltar</a></div></li>
+                                <li class="next" style="float:right"><div id="buttonNext" class='button-next text-left' onclick="mudaTab(1)"><a href="javascript:;">Próximo</a></div></li>
+                                <li class="previous" style="float:none; display: none;" id="buttonPrevious" onclick="mudaTab(3)"><div class="text-right button-voltar"><a href="javascript:;">Voltar</a></div></li>
                             </ul>
 
                         </div>  

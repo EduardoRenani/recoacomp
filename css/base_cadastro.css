@@ -583,12 +583,22 @@ div.search-cadastro {
   width:300px;
   border-radius:0;
   height:50px;
-  margin-top:35px;
-
 }
 
 .search input { 
   text-indent: 30px; 
+}
+
+.bootstrap-tagsinput{
+  background:#F1F1F2;
+}
+
+.bootstrap-tagsinput input[type=text]{
+  margin-bottom:0px;
+}
+
+select {
+  background:#F1F1F2;
 }
 
 /*DRAGABLE-----------------------------------------------------------------------*/

@@ -598,7 +598,7 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
 <!-- clean separation of HTML and PHP -->
 
 <!--<div class="cadastrobase clearfix" >-->
-    <div class="top-cadastrobase"><div class="text-left"><?php echo (WORDING_CREATE_COMPETENCA); ?></div></div>
+    <div class="top-cadastrobase"><span class="info-cadastro"><?php echo (WORDING_CREATE_COMPETENCA); ?></span></div>
         <div class="cadastrobase-content">
             <form method="post" action="" name="registrar_nova_competencia" id="registrar_nova_competencia">
                 <!-- ID do usuário passado via hidden POST -->
@@ -652,9 +652,10 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
                                 </div>
                             </div>
                             <input id="finisher" style="display: none;" type="submit" name="registrar_nova_competencia" value="<?php echo WORDING_CREATE_COMPETENCA; ?>" />
+
                             <ul class="pager wizard">
-                                <li class="next" style="float:none"><div id="buttonNext" class='button' onclick="mudaTab(1)"><a href="javascript:;" class='button-next text-left'>Próximo</a></div></li>
-                                <li class="previous" style="float:none; display: none;" id="buttonPrevious" onclick="mudaTab(2)"><div class="text-right"><a href="javascript:;">Voltar</a></div></li>
+                                <li class="next" style="float:right"><div id="buttonNext" class='text-left' onclick="mudaTab(1)"><a class="button-next" href="javascript:;">Próximo</a></div></li>
+                                <li class="previous" style="float:none; display: none;" id="buttonPrevious" onclick="mudaTab(3)"><div class="text-right button-voltar"><a href="javascript:;">Voltar</a></div></li>
                             </ul>
 
                         </div>  
