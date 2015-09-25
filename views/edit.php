@@ -39,6 +39,19 @@
 
             <input type="submit" name="user_edit_submit_password" value="<?php echo WORDING_CHANGE_PASSWORD; ?>" />
         </form>
+
+        <form action="upload.php" method="post" enctype="multipart/form-data">
+            Select image to upload:
+            <input type="file" name="<?php echo $_SESSION['user_name']; ?>" id="<?php echo $_SESSION['user_name']; ?>">
+            <input type="submit" value="Upload Image" name="submit">
+        </form>
+
+        <?php
+
+            echo '<img src="img/profile_images/'.$_SESSION['user_name'].'.png" alt=""/>'
+        ?>
+        
+
     </div>
 </div>
 

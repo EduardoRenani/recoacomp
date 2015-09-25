@@ -119,6 +119,7 @@ define("WORDING_DISCIPLINA", "Disciplina ");
 define("WORDING_CREATE_DISCIPLINA", "Criar Disciplina");
 define("WORDING_CLEAR_CREATE_DISCIPLINA", "Limpar");
 define("WORDING_DISCIPLINA_DESCRICAO", "Descrição");
+define("WORDING_AREA_CONHECIMENTO", "Área de conhecimento");
 define("WORDING_CREATE_NEW_COMPETENCIA", "Criar nova competência");
 define("WORDING_CANT_ASSOCIATE_COMPETENCIA","A competencia citada em sequência não pode ser associada a essa disciplina ou já foi associada previamente");
 define("WORDING_CREATED_SUCESSFULLY"," criada com sucesso!");
@@ -337,6 +338,6 @@ define("HINT_USE", "comentários sobre as condições de uso do objeto");
 define("HINT_COMPETENCY", "Este metadado define os tipos de competências que um objeto de aprendizagem tem potencial para desenvolver através do conteúdo e atividades propostas neste recurso. Parte-se da definição que competência é formada por conhecimentos, habilidades e atitudes (CHA) aplicada em um determinado contexto com o objetivo de resolver problemas ou lidar com novidades e imprevistos");
 
 //Textos de ajuda CHA
-define("TEXT_CHA", "Indicar um valor de o a 5");
+define("TEXT_CHA", "Indicar um valor de 1 a 5");
 define("HINT_CHA", "Representa o quanto esta disciplina irá abordar os conhecimentos, habilidades e atitudes de cada competência cadastrada.");
 define("HINT_CHA_OA", "Representa o quanto este objeto irá abordar os conhecimentos, habilidades e atitudes de cada competência cadastrada.");

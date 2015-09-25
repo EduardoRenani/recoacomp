@@ -248,3 +248,13 @@ textarea {
   box-shadow:         0px 1px 0px 0px rgba(50, 50, 50, 0.47);
   outline:none;
 }
+
+/*================================== Accordion ==================================*/
+
+.ui-accordion-header{
+  background:#D8D8D7;
+}
+
+.ui-accordion-header:hover{
+  background:#DEDEDE;
+}

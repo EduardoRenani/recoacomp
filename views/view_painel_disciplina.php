@@ -95,6 +95,24 @@
     display: none;
 }
 </style>
+
+<div id="usuarios"></div>
+<div id="graficos" style="width: 100%; text-align: center;">
+    <div id="top10" style="margin: 0 auto; width: 800px; margin-bottom: 20px;" class="jqplot-target">
+    </div>
+
+    <div id="acessos" style="margin: 0 auto; width: 800px; margin-bottom: 20px;" class="jqplot-target">
+    </div>
+
+    <div id="indicesRejeicao" style="margin: 0 auto; width: 800px; margin-bottom: 20px;" class="jqplot-target">
+    </div>
+
+    <div id="indicesRelevancia" style="margin: 0 auto; width: 800px; margin-bottom: 20px;" class="jqplot-target">
+    </div>
+    <div id="ver-mais">
+    <a href="#">Ver Mais</a>
+    </div>
+</div>
 <script language="javascript">
 <?php
     foreach ($indices['usuarios_acessos'] as $oa => $usuariosAcessos) {
@@ -165,7 +183,6 @@ $(document).ready(function(){
     var plot1 = $.jqplot('top10', [s1], {
         // The "seriesDefaults" option is an options object that will
         // be applied to all series in the chart.
-        animate: !$.jqplot.use_excanvas,
         seriesDefaults:{
             renderer:$.jqplot.BarRenderer,
             pointLabels: { show: true },
@@ -361,23 +378,18 @@ $(document).ready(function(){
 });
 
 </script>
-<div id="usuarios"></div>
-<div id="graficos" style="width: 100%; text-align: center;">
-    <div id="top10" style="margin: 0 auto; width: 800px; margin-bottom: 20px;" class="jqplot-target">
-    </div>
+<!-- Don't touch this! -->
 
-    <div id="acessos" style="margin: 0 auto; width: 800px; margin-bottom: 20px;" class="jqplot-target">
-    </div>
 
-    <div id="indicesRejeicao" style="margin: 0 auto; width: 800px; margin-bottom: 20px;" class="jqplot-target">
-    </div>
+    <script class="include" type="text/javascript" src="js/jplot/jquery.jqplot.js"></script>
+<!-- Additional plugins go here -->
 
-    <div id="indicesRelevancia" style="margin: 0 auto; width: 800px; margin-bottom: 20px;" class="jqplot-target">
-    </div>
-    <div id="ver-mais">
-    <a href="#">Ver Mais</a>
-    </div>
-</div>
+  <script class="include" type="text/javascript" src="js/jplot/plugins/jqplot.barRenderer.js"></script>
+  <script class="include" type="text/javascript" src="js/jplot/plugins/jqplot.pieRenderer.js"></script>
+  <script class="include" type="text/javascript" src="js/jplot/plugins/jqplot.categoryAxisRenderer.js"></script>
+  <script class="include" type="text/javascript" src="js/jplot/plugins/jqplot.pointLabels.js"></script>
+
+<!-- End additional plugins -->
 <div id="mais-estatisticas">
     <?php
         echo "<div style='float: left; text-align: center; width: 50%;'><h2>Indices de Relevância</h2>";

@@ -261,7 +261,7 @@ function AjaxCompetenciaListas(){
                     listaAtitudes = listaAtitudes.split("¬");
                     console.log(listaAtitudes);
                     console.log('oi');
-                    document.getElementById('sub-conteudo6').innerHTML = '<div class="info-cadastro"><?php echo;?></div><div class="tooltiploco"><div onmouseover="toolTip(17, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(17)">?</div></div>';
+                    document.getElementById('sub-conteudo6').innerHTML = '<div class="info-cadastro"></div><div class="tooltiploco"><div onmouseover="toolTip(17, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(17)">?</div></div>';
                     for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
                             listaConhecimentos[i] = listaConhecimentos[i].replace(/%0D%0A/g, ' ');

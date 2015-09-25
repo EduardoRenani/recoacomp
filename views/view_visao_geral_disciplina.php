@@ -7,7 +7,6 @@
  */
 include('_header.php');
 ?>
-<head>
     <!-- CSS -->
     <link rel="stylesheet" href="css/tooltip.css">
     <link href="css/editar_disciplina.css" rel="stylesheet">
@@ -287,10 +286,10 @@ include('_header.php');
                 icons: icons,
                 heightStyle: "content"
             });
-
+        var iframe = document.getElementById('graficos');    
+        $(window).mouseup(function(){iframe.src = iframe.src;});
         });
     </script>
-</head>
 
     <div class="fixedBackgroundGradient">
     </div>
@@ -500,14 +499,14 @@ include('_header.php');
 
                                                     </div>
                                                     <!-- Conhecimento -->
-                                                    <div class"content-valor-conhecimento">
+                                                    <div class="content-valor-conhecimento">
                                                         <label for="conhecimento" title="<?php echo "".$descricaoConhecimento['conhecimento_descricao']; ?>">Conhecimento: <span class="glyphicon glyphicon-question-sign"></span></label>
                                                         <br>
                                                         <input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="conhecimento" type="number" min="0" max="5" value="0" disabled></input>
                                                     </div>
                                                     <br>
                                                     <!-- Habilidade -->
-                                                    <div class"content-valor-habilidade">
+                                                    <div class="content-valor-habilidade">
                                                         <label for="habilidade" title="<?php echo "".$descricaoHabilidade['habilidade_descricao']; ?>">Habilidade: <span class="glyphicon glyphicon-question-sign"></span></label>
                                                         <br>
                                                         <input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="habilidade" type="number" min="0" max="5" value="0" disabled></input>
@@ -515,7 +514,7 @@ include('_header.php');
                                                     </div>
                                                     <br>
                                                     <!-- Atitude -->
-                                                    <div class"content-valor-atitude">
+                                                    <div class="content-valor-atitude">
                                                         <label for="atitude" title="<?php echo "".$descricaoAtitude['atitude_descricao']; ?>">Atitude: <span class="glyphicon glyphicon-question-sign"></span></label>
                                                         <br>
                                                         <input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="atitude" type="number" min="0" max="5" value="0" disabled></input>
@@ -557,14 +556,14 @@ include('_header.php');
                                                         <p><?php echo "".$competencias[$i]['descricao_nome']; ?></p>
                                                     </div>
                                                     <!-- Conhecimento -->
-                                                    <div class"content-valor-conhecimento">
+                                                    <div class="content-valor-conhecimento">
                                                         <label for="conhecimento" title="<?php echo "".$descricaoConhecimento['conhecimento_descricao']; ?>">Conhecimento: <span class="glyphicon glyphicon-question-sign"></span></label>
                                                         <br>
                                                         <input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="conhecimento" type="number" min="0" max="5" value="<?php echo "".$conhecimento[$i]['conhecimento']; ?>" ></input>
                                                     </div>
                                                     <br>
                                                     <!-- Habilidade -->
-                                                    <div class"content-valor-habilidade">
+                                                    <div class="content-valor-habilidade">
                                                         <label for="habilidade" title="<?php echo "".$descricaoHabilidade['habilidade_descricao']; ?>">Habilidade: <span class="glyphicon glyphicon-question-sign"></span></label>
                                                         <br>
                                                         <input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="habilidade" type="number" min="0" max="5" value="<?php echo "".$habilidade[$i]['habilidade']; ?>" ></input>
@@ -572,7 +571,7 @@ include('_header.php');
                                                     </div>
                                                     <br>
                                                     <!-- Atitude -->
-                                                    <div class"content-valor-atitude">
+                                                    <div class="content-valor-atitude">
                                                         <label for="atitude" title="<?php echo "".$descricaoAtitude['atitude_descricao']; ?>">Atitude: <span class="glyphicon glyphicon-question-sign"></span></label>
                                                         <br>
                                                         <input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="atitude" type="number" min="0" max="5" value="<?php echo "".$atitude[$i]['atitude']; ?>" ></input>
@@ -588,7 +587,7 @@ include('_header.php');
                     </div> <!-- END Dados da competencia-->
                     <div id="tabs-5">
                         <?php
-                            echo "<iframe style='width: 100%; height: 1350px;' frameborder='0' scrolling='no' src='painel_disciplina.php?idDisciplina=".$_POST['idDisciplina']."'>";
+                            echo "<iframe id='graficos' charset='utf-8' style='width: 100%; height: 1350px;' frameborder='0' scrolling='no' src='painel_disciplina.php?idDisciplina=".$_POST['idDisciplina']."'>";
                             echo "</iframe>";
                         ?>
 

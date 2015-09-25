@@ -48,20 +48,32 @@ include('_header.php');
                     $descricaoConhecimento = $competencia->getDescricaoConhecimentoById($competenciaId[0]);
                     $descricaoHabilidade = $competencia->getDescricaoHabilidadeById($competenciaId[0]);
                     $descricaoAtitude = $competencia->getDescricaoAtitudeById($competenciaId[0]);
-                    echo "<label for='nomeCompetencia' title='".$descricaoCompetencias['descricao_nome']."'><h2>Competência: " . $nomeCompetencia[0][0]."  <span class='glyphicon glyphicon-info-sign' style='color: black'></span></h2></label>
-                    <br>
-                    <label for='nomeCompetencia' title='".$descricaoConhecimento['conhecimento_descricao']."'><h4>Conhecimento  <span class='glyphicon glyphicon-info-sign' style='color: black'></span></h4></label>
-                    <br>
-                    <input type='number' name='conhecimento[".$competenciaId[0]."]' min='0' max='5' value='0' oninput='this.form.conhecimento".$competenciaId[0].".value=this.value' />
-                    <br>
-                    <label for='nomeCompetencia' title='".$descricaoHabilidade['habilidade_descricao']."'><h4>Habilidade  <span class='glyphicon glyphicon-info-sign' style='color: black'></span></h4></label>
-                    <br>
-                    <input type='number' name='habilidade[".$competenciaId[0]."]' min='0' max='5' value='0' oninput='this.form.conhecimento".$competenciaId[0].".value=this.value' />
-                    <br>
-                    <label for='nomeCompetencia' title='".$descricaoAtitude['atitude_descricao']."'><h4>Atitude  <span class='glyphicon glyphicon-info-sign' style='color: black'></span></h4></label>
-                    <br>
-                    <input type='number' name='atitude[".$competenciaId[0]."]' min='0' max='5' value='0' oninput='this.form.conhecimento".$competenciaId[0].".value=this.value' />
-                    <br>";
+                    echo "<label for='nomeCompetencia' title='".$descricaoCompetencias['descricao_nome']."'>
+
+                    
+                        <h2>Competência: " . $nomeCompetencia[0][0]."  <span class='tooltiploco'>[ ? ]</span></h2></label>
+                        
+                        <div class='cha-escolha'>
+                            <label for='nomeCompetencia' title='".$descricaoConhecimento['conhecimento_descricao']."'><h4>Conhecimento  <span class='tooltiploco' style='color: black'>[ ? ]</span></h4></label>
+                            <br>
+                            <input type='number' name='conhecimento[".$competenciaId[0]."]' min='0' max='5' value='0' oninput='this.form.conhecimento".$competenciaId[0].".value=this.value' />
+                        </div>
+                        
+                        <div class='cha-escolha'>
+                            <label for='nomeCompetencia' title='".$descricaoHabilidade['habilidade_descricao']."'><h4>Habilidade  <span class='tooltiploco' style='color: black'>[ ? ]</span></h4></label>
+                        
+                            <br>
+                            <input type='number' name='habilidade[".$competenciaId[0]."]' min='0' max='5' value='0' oninput='this.form.conhecimento".$competenciaId[0].".value=this.value' />
+                        </div>
+
+                        
+                        <div class='cha-escolha'>
+                            <label for='nomeCompetencia' title='".$descricaoAtitude['atitude_descricao']."'><h4>Atitude  <span class='tooltiploco'>[ ? ]</span></h4></label>
+                            <br>
+                            <input type='number' name='atitude[".$competenciaId[0]."]' min='0' max='5' value='0' oninput='this.form.conhecimento".$competenciaId[0].".value=this.value' />
+                        </div>
+                      
+                    ";
                 }
                                  
             ?>

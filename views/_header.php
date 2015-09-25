@@ -58,15 +58,15 @@
 	
 	<!-- Fim Login -->
 	
-</head>
 
-<script>
+    <script>
 $(document).ready(function(){
     $('#menu-button' ).on( 'click', function () {
          $('#menu-nav').toggle();   
     });
 });
 </script>
+</head>
 
 <body>
     <!-- ============== HEADER ============== -->
