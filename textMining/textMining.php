@@ -74,14 +74,43 @@ foreach ($artigos as $key=>$artigo) {
 				foreach ($palavras[$key3] as $key4 => $palavra) {
 					$palavra = removeAcentos(utf8_decode($palavra));
 					$palavras[$key3][$key4] = utf8_encode($palavra);
+          $palavras[$key3][$key4] = str_replace("?", "", $palavras[$key3][$key4]);
+          $palavrasAchadas[$key][] = $palavras[$key3][$key4];
 				}
 				$novosParagrafos[$key1]["frases"][$key2]["virgulas"][$key3]["palavras"] = $palavras[$key3];
 			}
 		}
 	}
 	$analise[$key]['paragrafos'] = $novosParagrafos;
-	echo "<pre>";
-	var_dump($analise[$key]);
-	echo "</pre><br><br><br>";
+	//echo "<pre>";
+	//var_dump($analise[$key]);
+	//echo "</pre><br><br><br>";
 }
+//echo "<pre>";
+//var_dump($palavrasAchadas[1]);
+//echo "</pre>";
+
+$reps = "a à agora ainda alguém algum alguma algumas alguns ampla amplas amplo amplos ante antes ao aos após aquela aquelas aquele aqueles aquilo as até através cada coisa coisas com como contra contudo da daquele daqueles das de dela delas dele deles depois dessa dessas desse desses desta destas deste deste destes deve devem devendo dever deverá deverão deveria deveriam devia deviam disse disso disto dito diz dizem do dos e é e' ela elas ele eles em enquanto entre era essa essas esse esses esta está estamos estão estas estava estavam estávamos este estes estou eu fazendo fazer feita feitas feito feitos foi for foram fosse fossem grande grandes há isso isto já la la lá lhe lhes lo mas me mesma mesmas mesmo mesmos meu meus minha minhas muita muitas muito muitos na não nas nem nenhum nessa nessas nesta nestas ninguém no nos nós nossa nossas nosso nossos num numa nunca o os ou outra outras outro outros para pela pelas pelo pelos pequena pequenas pequeno pequenos per perante pode pôde podendo poder poderia poderiam podia podiam pois por porém porque posso pouca poucas pouco poucos primeiro primeiros própria próprias próprio próprios quais qual quando quanto quantos que quem são se seja sejam sem sempre sendo será serão seu seus si sido só sob sobre sua suas talvez também tampouco te tem tendo tenha ter teu teus ti tido tinha tinham toda todas todavia todo todos tu tua tuas tudo última últimas último últimos um uma umas uns vendo ver vez vindo vir vos vós estou está estamos estão estive esteve estivemos estiveram estava estávamos estavam estivera estivéramos esteja estejamos estejam estivesse estivéssemos estivessem estiver estivermos estiverem hei há havemos hão houve houvemos houveram houvera houvéramos haja hajamos hajam houvesse houvéssemos houvessem houver houvermos houverem houverei houverá houveremos houverão houveria houveríamos houveriam sou somos são era éramos eram fui foi fomos foram fora fôramos seja sejamos sejam fosse fôssemos fossem for formos forem serei será seremos serão seria seríamos seriam tenho tem temos tém tinha tínhamos tinham tive teve tivemos tiveram tivera tivéramos tenha tenhamos tenham tivesse tivéssemos tivessem tiver tivermos tiverem terei terá teremos terão teria teríamos teriam último é acerca agora algmas alguns ali ambos antes apontar aquela aquelas aquele aqueles aqui atrás bem bom cada caminho cima com como comprido conhecido corrente das debaixo dentro desde desligado deve devem deverá direita diz dizer dois dos e ela ele eles em enquanto então está estão estado estar estará este estes esteve estive estivemos estiveram eu fará faz fazer fazia fez fim foi fora horas iniciar inicio ir irá ista iste isto ligado maioria maiorias mais mas mesmo meu muito muitos nós não nome nosso novo o onde os ou outro para parte pegar pelo pessoas pode poderá podia por porque povo promeiro quê qual qualquer quando quem quieto são saber sem ser seu somente têm tal também tem tempo tenho tentar tentaram tente tentei teu teve tipo tive todos trabalhar trabalho tu um uma umas uns usa usar valor veja ver verdade verdadeiro você brasil";
+$reps = explode(" ", $reps);
+function testaPalavra($palavra, $reps) {
+  foreach ($reps as $repa) {
+    $repa = removeAcentos(utf8_decode($repa));
+    $repa = utf8_encode($repa);
+    if($palavra == $repa || $palavra == "" || $palavra == "\n") {
+      return false;
+    }
+  }
+  return true;
+}
+foreach ($palavrasAchadas[1] as $palavra) {
+    if(testaPalavra($palavra, $reps)) {
+      if(!isset($quantidade[$palavra])) {
+        $quantidade[$palavra] = 0;
+      }
+      $quantidade[$palavra]++;
+    }
+}
+echo "<pre>";
+var_dump($quantidade);
+echo "</pre>";
 ?>

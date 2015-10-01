@@ -238,7 +238,6 @@ define("WORDING_PROFESSOR", "Professor");
 define("WORDING_STUDENT", "Aluno");
 define("WORDING_ADMIN", "Admin");
 define("WORDING_SCHOOL", "Escola");
-define("WORDING_COLLEGE", "Faculdade");
 define("WORDING_TRAINING", "Treinamento");
 define("WORDING_OTHER", "Outro");
 define("WORDING_AMBIENT", "Ambiente");

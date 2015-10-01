@@ -60,14 +60,15 @@ function getDisciplinaId(id){
                                 "<div class='lista-disciplina'>".
                                     "<h3>".$listaDisciplina[0][$i][0]."</h3>".
                                     "<h4>".$listaDisciplina[1][$i][0]."</h4>".
-                                    "<p>".$listaDisciplina[2][$i][0].
+                                    "<p>".$listaDisciplina[2][$i][0]."</p>"
+                                    "<p><a href='#openModal' id=".$listaDisciplina[3][$i][0]." class='botao-cadastra' onClick='getDisciplinaId(this.id)'>Ver Disciplina</a></p>"
                                     "<br>".
                                     "<br><a href='#openModal' id=".$listaDisciplina[3][$i][0]." onClick='getDisciplinaId(this.id)'>Excluir</a>".
                                 "</div>".
                             "</div>".
-                                                            "<div class='button'>".
+                                "<!--<div class='button'>".
                                     "<br><a href='#openModal' id=".$listaDisciplina[3][$i][0]." class='botao-cadastra' onClick='getDisciplinaId(this.id)'>Ver Disciplina</a>".
-                                "</div>".
+                                "</div>-->".
 
                         "</li>";
                 

@@ -30,5 +30,5 @@ function getDisciplinaId(id){
 <!-- ============== SIDEBAR =============== -->
 
 <!-- ============== DISCIPLINAS DIPONIVEIS ============== -->
-
+<?php echo 'view disicplinas'?>
 <?php include_once("view_disciplinas.php"); ?>

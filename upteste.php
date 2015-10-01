@@ -1,12 +1,19 @@
-<!DOCTYPE html>
-<html>
-<body>
+<?php
+$string = file_get_contents("http://www.angelfire.com/ri2/DMX/data.txt", "r");
+$myFile = "myFile.txt";
+$fh = fopen($myFile, 'w') or die("Could not open: " . mysql_error());
+fwrite($fh, $string);
+fclose($fh);
 
-<form action="upload.php" method="post" enctype="multipart/form-data">
-    Select image to upload:
-    <input type="file" name="fileToUpload" id="fileToUpload">
-    <input type="submit" value="Upload Image" name="submit">
-</form>
-
-</body>
-</html>
+$sql = mysql_connect("localhost", "root", "root");
+if (!$sql) {
+    die("Could not connect: " . mysql_error());
+}
+mysql_select_db("recomendador-test");
+$result = mysql_query("LOAD DATA INFILE '$myFile'" .
+                      " INTO TABLE areas_conhecimento FIELDS TERMINATED BY '|'");
+if (!$result) {
+    die("Could not load. " . mysql_error());
+}
+ 
+?>

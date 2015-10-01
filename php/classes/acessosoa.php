@@ -94,15 +94,15 @@ class AcessosOA {
 			$this->validaDados();
 			$dados = $this->getDados();
 			$database = new Database();
-    		$sql = "INSERT INTO acessos_oa (id, id_usuario, id_disciplina, id_oa, tempo_acesso) 
-    		VALUES (:id, :idUsuario, :idDisciplina, :idOA, :tempoReal)";
-	        $database->query($sql);
-	        $database->bind(":id", NULL);
-	        $database->bind(":idUsuario", $dados['idUsuario']);
-	        $database->bind(":idDisciplina", $dados['idDisciplina']);
-	        $database->bind(":idOA", $dados['idOA']);
-	        $database->bind(":tempoReal", $dados['tempoReal']);
-	        var_dump($database->execute());
+	    		$sql = "INSERT INTO acessos_oa (id, id_usuario, id_disciplina, id_oa, tempo_acesso) 
+	    		VALUES (:id, :idUsuario, :idDisciplina, :idOA, :tempoReal)";
+			$database->query($sql);
+			$database->bind(":id", NULL);
+			$database->bind(":idUsuario", $dados['idUsuario']);
+			$database->bind(":idDisciplina", $dados['idDisciplina']);
+			$database->bind(":idOA", $dados['idOA']);
+			$database->bind(":tempoReal", $dados['tempoReal']);
+			$database->execute();
 		}
 		catch(Exception $e) {
 			trigger_error("Erro ao cadastrar no banco de dados!".$e->getMessage(), $e->getCode());

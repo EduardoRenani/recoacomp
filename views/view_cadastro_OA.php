@@ -261,7 +261,7 @@ function AjaxCompetenciaListas(){
                     listaAtitudes = listaAtitudes.split("¬");
                     console.log(listaAtitudes);
                     console.log('oi');
-                    document.getElementById('sub-conteudo6').innerHTML = '<div class="info-cadastro"></div><div class="tooltiploco"><div onmouseover="toolTip(17, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(17)">?</div></div>';
+                    document.getElementById('sub-conteudo6').innerHTML = '<div class="info-cadastro"></div><div class="tooltiploco"><div onmouseover="toolTip(7, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(7)">?</div></div>';
                     for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
                             listaConhecimentos[i] = listaConhecimentos[i].replace(/%0D%0A/g, ' ');
@@ -664,7 +664,7 @@ $(function(){AjaxCompetenciaListas()});
                 listaAtitudes = listaAtitudes.split("¬");
                 console.log(listaAtitudes);
                 console.log('oi');
-                document.getElementById('sub-conteudo6').innerHTML = '<div class="info-cadastro"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(17, \'<?php echo HINT_CHA_OA;?>\')" onmouseout="deleteTooltip(17)">?</div></div>';
+                document.getElementById('sub-conteudo6').innerHTML = '<div class="info-cadastro"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(7, \'<?php echo HINT_CHA_OA;?>\')" onmouseout="deleteTooltip(7)">?</div></div>';
                 for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
                             listaConhecimentos[i] = listaConhecimentos[i].replace(/%0D%0A/g, ' ');
@@ -792,7 +792,7 @@ $(function(){AjaxCompetenciaListas()});
                 <div id="sub-conteudo3" class="tab">
                     <!-- DESCRIÇÃO EDUCACIONAL -->
                     <div class="control-group">
-                        <label class="control-label" for="descricao_educacional"><div style="float: left"><?php echo WORDING_EDUCATIONAL_DESCRIPTION; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(10, '<?php echo HINT_EDUCACIONAL_DESCRIPTION ?>')" onmouseout="deleteTooltip(10)">?</div></div>
+                        <label class="control-label" for="descricao_educacional"><div style="float: left"><?php echo WORDING_EDUCATIONAL_DESCRIPTION; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(5, '<?php echo HINT_EDUCACIONAL_DESCRIPTION ?>')" onmouseout="deleteTooltip(5)">?</div></div>
                         <div class="controls">
                             <textarea name="descricao_educacional" id="descricao_educacional" ROWS="5" COLS="40"></textarea>
                         </div>
@@ -869,7 +869,7 @@ $(function(){AjaxCompetenciaListas()});
                     <input type="hidden" id="listaHabilidades" name="listaHabilidades" value="" />
                     <input type="hidden" id="listaAtitudes" name="listaAtitudes" value="" />
 
-                    <span class="info-cadastro"><?php echo WORDING_ASSOCIATE_COMP_OA; ?>.<div class="tooltiploco"><div onmouseover="toolTip(16, '<?php echo HINT_COMPETENCY ?>')" onmouseout="deleteTooltip(16)">[ ? ]</div></div></span><br><br>
+                    <span class="info-cadastro"><?php echo WORDING_ASSOCIATE_COMP_OA; ?>.<div class="tooltiploco"><div onmouseover="toolTip(6, '<?php echo HINT_COMPETENCY ?>')" onmouseout="deleteTooltip(6)">[ ? ]</div></div></span><br><br>
 
                     <div class="cadastro-left-column">
                         <span class="titulo-cadastro">Competencias Disponíveis</span>
@@ -886,6 +886,7 @@ $(function(){AjaxCompetenciaListas()});
                         <span class="titulo-cadastro text-right">Competencias Selecionadas</span>
                         <ul id="tabela2"></ul>
                     </div>
+                </div>
                 </div>
 
                 <div id="sub-conteudo6" class="tab">

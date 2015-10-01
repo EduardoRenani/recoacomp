@@ -449,6 +449,34 @@ class Competencia{
         }
     }
 
+    // Retorna array com descrições de conhecimento de todas as competências
+    public function getDescricaoConhecimento(){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT conhecimento_descricao FROM competencia");
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+    }
+
+    // Retorna array com descrições de habilidade de todas as competências
+    public function getDescricaoHabilidade(){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT habilidade_descricao FROM competencia");
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+    }
+
+    // Retorna array com descrições de atitude de todas as competências
+        public function getDescricaoAtitude(){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT atitude_descricao FROM competencia");
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+    }
+
+
 
     public function associaOA($idOA){
 

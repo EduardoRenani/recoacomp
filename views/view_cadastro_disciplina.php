@@ -99,6 +99,8 @@ include('_header.php');
 
     });
 
+
+    //Função que adiciona as competências de forma dinâmica na parte de preencher o CHA
     $(function() {
         $('#tabela2').sortable({
             connectWith: "#tabela1, #tabela1",
@@ -305,7 +307,10 @@ function AjaxCompetenciaListas(){
                     console.log('oioi');
                     listaAtitudes = document.getElementById('listaAtitudes').value;
                     listaAtitudes = listaAtitudes.split("¬");
+                    // Delton - Teste para verificar se a lista de atitude está sendo preenchida
+                    console.log('Lista Atitudes [');
                     console.log(listaAtitudes);
+                    console.log(']');
                     console.log('oi');
                     document.getElementById('sub-conteudo2').innerHTML = '<div><div class="info-cadastro"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">[ ? ]</div></div></div>';
                     for (i = 0; i < nomesCompetencias.length; i++) {
@@ -590,7 +595,7 @@ $(function(){
                             listaAtitudes[i] = decodeURI(listaAtitudes[i]);
                     var elementoAdd = document.createElement('div');
                     //elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'" >?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
-                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div class="cha-escolha"><h4>Conhecimento</h4><div id="conhecimento'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'conhecimento'+idCompetencias[i]+'\', \''+listaConhecimentos[i]+'\')" onmouseout="deleteTooltipComp(\'conhecimento'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div class="cha-escolha"><h4>Habilidade</h4><div id="habilidade'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'habilidade'+idCompetencias[i]+'\', \''+listaHabilidades[i]+'\')" onmouseout="deleteTooltipComp(\'habilidade'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div class="cha-escolha"><h4>Atitude</h4><div id="atitude'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'atitude'+idCompetencias[i]+'\', \''+listaAtitudes[i]+'\')" onmouseout="deleteTooltipComp(\'atitude'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'!!</h2><div class="cha-escolha"><h4>Conhecimento</h4><div id="conhecimento'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'conhecimento'+idCompetencias[i]+'\', \''+listaConhecimentos[i]+'\')" onmouseout="deleteTooltipComp(\'conhecimento'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div class="cha-escolha"><h4>Habilidade</h4><div id="habilidade'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'habilidade'+idCompetencias[i]+'\', \''+listaHabilidades[i]+'\')" onmouseout="deleteTooltipComp(\'habilidade'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div class="cha-escolha"><h4>Atitude</h4><div id="atitude'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'atitude'+idCompetencias[i]+'\', \''+listaAtitudes[i]+'\')" onmouseout="deleteTooltipComp(\'atitude'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
                     document.getElementById('sub-conteudo2').appendChild(elementoAdd);
                 }
                 clearInterval(window.tAtualizaCompetencia);
@@ -648,7 +653,7 @@ $(function(){
                                         <textarea name="descricao" id="descricao" ROWS="5" COLS="40" class="required"></textarea>
                                     </div>
                             </div>
-                            <div class="control-group">
+                            <!--div class="control-group">
                                 <label class="control-label" for="descricao"><div style="float: left"><?php echo WORDING_AREA_CONHECIMENTO; ?></div><div class="tooltiploco">
                                     <div onmouseover="toolTip(5, 'Área de conhecimento.')" onmouseout="deleteTooltip(5)">[ ? ]</div></div></label>
                                     <div class="controls">
@@ -659,13 +664,21 @@ $(function(){
                                             <option value="audi">Audi</option>
                                         </select>
                                     </div>
-                            </div>
+                            </div-->
                         </div>
 
 
                         <!-- DIV COM DADOS DAS COMPETÊNCIAS A SEREM ASSOCIADAS A DISCIPLINA -->
                         <div id="sub-conteudo1" class="tab">
                             <div class="cadastro-seta-associar">
+                                <?php 
+                                // Teste para preencher o CHA
+                                $competencia = new Competencia();
+                                $descricaoConhecimento = $competencia-> getDescricaoConhecimento();
+                                $descricaoHabilidade = $competencia-> getDescricaoHabilidade();
+                                $descricaoAtitude = $competencia-> getDescricaoAtitude();
+                                //print_r($descricaoConhecimento); 
+                                ?>
                                 <input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" />
                                 <input type="hidden" id="listaConhecimentos" name="listaConhecimentos" value="" />
                                 <input type="hidden" id="listaHabilidades" name="listaHabilidades" value="" />

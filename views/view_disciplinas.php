@@ -59,7 +59,7 @@
 </script>
 
 </head>
-
+<?php echo 'AAAAAAAAAAAAAAAAAQUI' ?>
 <div class="fixedBackgroundGradient"></div>
 <!-- ============== SIDEBAR =============== -->
 <?php require_once("views/sidebar-disciplina.php"); ?>
@@ -133,7 +133,8 @@
                                             "<div class='lista-disciplina'>".
                                                 "<h3>".$listaDisciplina[0][$i][0]."</h3>".
                                                 "<h4>".$listaDisciplina[1][$i][0]."</h4>".
-                                                "<p>".$listaDisciplina[2][$i][0].
+                                                "<p>".$listaDisciplina[2][$i][0]."</p>".
+                                                "<p></p>".
                                                 "<br>".
                                                 "<br><a href='#openModalDeleteDisciplina' id=".$listaDisciplina[3][$i][0]." class='botao-med' onClick='getDisciplinaId(this.id)'>Excluir</a>". // 
                                             "</div>".
@@ -151,7 +152,6 @@
                                             "</div>".
                                         "</div>".
                                     "</li>";
-                            
                                     ?>
                                     <!-- Modal -->
                                     <div id="openModalDeleteDisciplina" class="modalDialog" id="excluirDisciplinaDialog">
