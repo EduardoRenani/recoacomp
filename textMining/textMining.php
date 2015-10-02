@@ -82,9 +82,9 @@ foreach ($artigos as $key=>$artigo) {
 		}
 	}
 	$analise[$key]['paragrafos'] = $novosParagrafos;
-	//echo "<pre>";
-	//var_dump($analise[$key]);
-	//echo "</pre><br><br><br>";
+	echo "<pre>";
+	var_dump($analise[$key]);
+	echo "</pre><br><br><br>";
 }
 //echo "<pre>";
 //var_dump($palavrasAchadas[1]);
@@ -110,7 +110,7 @@ foreach ($palavrasAchadas[1] as $palavra) {
       $quantidade[$palavra]++;
     }
 }
-echo "<pre>";
-var_dump($quantidade);
-echo "</pre>";
+//echo "<pre>";
+//var_dump($quantidade);
+//echo "</pre>";
 ?>

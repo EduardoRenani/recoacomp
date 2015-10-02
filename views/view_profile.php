@@ -36,7 +36,7 @@
 <!-- ============== DADOS DO USUÁRIO ============== -->
 <div class="disciplinas">
     <div class="top-disciplinas">Meu Perfil</div>
-        <div class="disciplinas-content">  </br> 
+        <div class="meu-perfil-content">  </br> 
                 <?php
                     $gravatar = new Gravatar();
                     $gravatar->setDefaultImage('mm')->setAvatarSize(75);
