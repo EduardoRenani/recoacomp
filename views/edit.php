@@ -1,5 +1,52 @@
 <head>
     <link href="css/base_cadastro.css" rel="stylesheet">
+    
+    <script type="text/javascript">
+            $('#userpic').fileapi({
+               url: 'http://rubaxa.org/FileAPI/server/ctrl.php',
+               accept: 'image/*',
+               imageSize: { minWidth: 200, minHeight: 200 },
+               elements: {
+                  active: { show: '.js-upload', hide: '.js-browse' },
+                  preview: {
+                     el: '.js-preview',
+                     width: 200,
+                     height: 200
+                  },
+                  progress: '.js-progress'
+               },
+               onSelect: function (evt, ui){
+                  var file = ui.files[0];
+                  if( !FileAPI.support.transform ) {
+                     alert('Your browser does not support Flash :(');
+                  }
+                  else if( file ){
+                     $('#popup').modal({
+                        closeOnEsc: true,
+                        closeOnOverlayClick: false,
+                        onOpen: function (overlay){
+                           $(overlay).on('click', '.js-upload', function (){
+                              $.modal().close();
+                              $('#userpic').fileapi('upload');
+                           });
+                           $('.js-img', overlay).cropper({
+                              file: file,
+                              bgColor: '#fff',
+                              maxSize: [$(window).width()-100, $(window).height()-100],
+                              minSize: [200, 200],
+                              selection: '90%',
+                              onSelect: function (coords){
+                                 $('#userpic').fileapi('crop', file, coords);
+                              }
+                           });
+                        }
+                     }).open();
+                  }
+               }
+            });
+     
+
+    </script>
 </head>
 <?php include('_header.php'); ?>
 
@@ -40,15 +87,31 @@
             <input type="submit" name="user_edit_submit_password" value="<?php echo WORDING_CHANGE_PASSWORD; ?>" />
         </form>
 
-        <form action="upload.php" method="post" enctype="multipart/form-data">
+<!-- cropper -->
+<div id="userpic" class="userpic">
+   <div class="js-preview userpic__preview"></div>
+   <div class="btn btn-success js-fileapi-wrapper">
+      <div class="js-browse">
+         <span class="btn-txt">Choose</span>
+         <input type="file" name="filedata">
+      </div>
+      <div class="js-upload" style="display: none;">
+         <div class="progress progress-success"><div class="js-progress bar"></div></div>
+         <span class="btn-txt">Uploading</span>
+      </div>
+   </div>
+</div>
+<!-- Cropper -->
+
+        <!--form action="upload.php" method="post" enctype="multipart/form-data">
             Select image to upload:
             <input type="file" name="<?php echo $_SESSION['user_name']; ?>" id="<?php echo $_SESSION['user_name']; ?>">
             <input type="submit" value="Upload Image" name="submit">
-        </form>
+        </form-->
 
         <?php
 
-            echo '<img src="img/profile_images/'.$_SESSION['user_name'].'.png" alt=""/>'
+            //echo '<img src="img/profile_images/'.$_SESSION['user_name'].'.png" alt=""/>'
         ?>
         
 

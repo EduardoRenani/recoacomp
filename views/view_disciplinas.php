@@ -59,7 +59,6 @@
 </script>
 
 </head>
-<?php echo 'AAAAAAAAAAAAAAAAAQUI' ?>
 <div class="fixedBackgroundGradient"></div>
 <!-- ============== SIDEBAR =============== -->
 <?php require_once("views/sidebar-disciplina.php"); ?>
