@@ -1,54 +1,23 @@
+<?php include('_header.php'); ?>
+
 <head>
     <link href="css/base_cadastro.css" rel="stylesheet">
-    
-    <script type="text/javascript">
-            $('#userpic').fileapi({
-               url: 'http://rubaxa.org/FileAPI/server/ctrl.php',
-               accept: 'image/*',
-               imageSize: { minWidth: 200, minHeight: 200 },
-               elements: {
-                  active: { show: '.js-upload', hide: '.js-browse' },
-                  preview: {
-                     el: '.js-preview',
-                     width: 200,
-                     height: 200
-                  },
-                  progress: '.js-progress'
-               },
-               onSelect: function (evt, ui){
-                  var file = ui.files[0];
-                  if( !FileAPI.support.transform ) {
-                     alert('Your browser does not support Flash :(');
-                  }
-                  else if( file ){
-                     $('#popup').modal({
-                        closeOnEsc: true,
-                        closeOnOverlayClick: false,
-                        onOpen: function (overlay){
-                           $(overlay).on('click', '.js-upload', function (){
-                              $.modal().close();
-                              $('#userpic').fileapi('upload');
-                           });
-                           $('.js-img', overlay).cropper({
-                              file: file,
-                              bgColor: '#fff',
-                              maxSize: [$(window).width()-100, $(window).height()-100],
-                              minSize: [200, 200],
-                              selection: '90%',
-                              onSelect: function (coords){
-                                 $('#userpic').fileapi('crop', file, coords);
-                              }
-                           });
-                        }
-                     }).open();
-                  }
-               }
-            });
-     
 
-    </script>
+    <link rel="stylesheet" href="css/cropper.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/cropper.css">
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrapCrop.min.js"></script>
+    <script src="js/cropper.min.js"></script>
+
+    <!--script src="js/jquery.js"></script--><!-- jQuery is required -->
+    <!--script src="js/cropper.js"></script-->
+    
+    <script src="js/main.js"></script>
+   
 </head>
-<?php include('_header.php'); ?>
 
 <!-- clean separation of HTML and PHP 
 <h2><?php echo $_SESSION['user_name']; ?> <?php echo WORDING_EDIT_YOUR_CREDENTIALS; ?></h2>
@@ -88,19 +57,69 @@
         </form>
 
 <!-- cropper -->
-<div id="userpic" class="userpic">
-   <div class="js-preview userpic__preview"></div>
-   <div class="btn btn-success js-fileapi-wrapper">
-      <div class="js-browse">
-         <span class="btn-txt">Choose</span>
-         <input type="file" name="filedata">
+<!--div class="container">
+  <img src="picture.jpg">
+</div-->
+
+<div class="container" id="crop-avatar">
+
+    <!-- Current avatar -->
+    <div class="avatar-view" title="Change the avatar">
+      <img src="picture.jpg" alt="Avatar">
+    </div>
+
+    <!-- Cropping modal -->
+    <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1" >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <form class="avatar-form" action="crop.php" enctype="multipart/form-data" method="post">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title" id="avatar-modal-label">Change Avatar</h4>
+            </div>
+            <div class="modal-body">
+              <div class="avatar-body">
+
+                <!-- Upload image and data -->
+                <div class="avatar-upload">
+                  <input type="hidden" class="avatar-src" name="avatar_src">
+                  <input type="hidden" class="avatar-data" name="avatar_data">
+                  <label for="avatarInput">Local upload</label>
+                  <input type="file" class="avatar-input" id="avatarInput" name="avatar_file">
+                </div>
+
+                <!-- Crop and preview -->
+                <div class="row">
+                  <div class="col-md-9">
+                    <div class="avatar-wrapper"></div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="avatar-preview preview-md"></div>
+                  </div>
+                </div>
+
+                <div class="row avatar-btns">
+                  <div class="col-md-9">
+
+                  </div>
+                  <div class="col-md-3">
+                    <button type="submit" class="btn btn-primary btn-block avatar-save">Done</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div> -->
+          </form>
+        </div>
       </div>
-      <div class="js-upload" style="display: none;">
-         <div class="progress progress-success"><div class="js-progress bar"></div></div>
-         <span class="btn-txt">Uploading</span>
-      </div>
-   </div>
-</div>
+    </div><!-- /.modal -->
+
+    <!-- Loading state -->
+    <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
+  </div>
+
 <!-- Cropper -->
 
         <!--form action="upload.php" method="post" enctype="multipart/form-data">

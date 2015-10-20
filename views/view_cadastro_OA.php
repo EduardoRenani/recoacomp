@@ -764,7 +764,7 @@ $(function(){AjaxCompetenciaListas()});
                 <div id="sub-conteudo2" class="tab">
                      <!-- FORMA DE UTILIZAÇÃO -->
                     <div class="control-group">
-                        <label class="control-label" for="formaUtilizacao"><?php echo WORDING_UTILITY_TYPE; ?></label>
+                        <label class="control-label" for="formaUtilizacao"><?php echo WORDING_UTILITY_TYPE; ?> </label>
                         <div class="controls">
                             <select id = "formaUtilizacao" name="formaUtilizacao" required="true">
                                 <option value = "navegador"><?php echo WORDING_THROUGH_BROWSER ?></option>
@@ -774,10 +774,9 @@ $(function(){AjaxCompetenciaListas()});
                     </div>
                     <!-- TIPO FORMATO -->
                     <div class="control-group">
-                        <label class="control-label" for="tipoOA"><?php echo WORDING_OA_TYPE; ?></label>
+                        <label class="control-label" for="tipoOA"><?php echo WORDING_OA_TYPE; ?> (Utilize o CTRL para selecionar mais de um)</label>
                         <div class="controls">
                             <select id = "tipoOA" name="tipoOA" required="true" multiple>
-
                                 <option value = "material multimidia"><?php echo WORDING_MULTIMIDIA_MATERIAL ?></option>
                                 <option value = "animacao"><?php echo WORDING_ANIMATION ?></option>
                                 <option value = "livro digital"><?php echo WORDING_DIGITAL_BOOK ?></option>
@@ -799,7 +798,7 @@ $(function(){AjaxCompetenciaListas()});
                     </div>
     				<!-- FAIXA ETÁRIA -->
     				<div class="control-group">
-                        <label class="control-label" for="faixaEtaria"><?php echo WORDING_AGE_GROUP; ?></label>
+                        <label class="control-label" for="faixaEtaria"><?php echo WORDING_AGE_GROUP; ?> (Utilize o CTRL para selecionar mais de um)</label>
                         <div class="controls">
     						<select id = "faixaEtaria" name="faixaEtaria" required="true" multiple>
     							<option value = "educacao infantil"><?php echo WORDING_CHILD_EDUCATION ?></option>

@@ -15,6 +15,8 @@
 
 		private $palavras;
 
+		private $sentidos;
+
 		function __construct($id) {
 			if(!is_null($id)) {
 				$this->validaInteiro($id);
@@ -43,6 +45,7 @@
 			foreach ($this->getTextos() as $key => $texto) {
 				$this->interpretaTexto($key);
 			}
+			var_dump($this->getSentidos());
 		}
 
 		private function trataTexto() {
@@ -89,27 +92,38 @@
 
 		private function interpretaTexto($key) {
 			echo "<pre>";
+			$sentido[$key] = 0;
 			foreach ($this->getTextosTratados()[$key] as $textoTratado) {
 				foreach ($textoTratado as $paragrafos) {
 					foreach ($paragrafos as $frases) {
 						foreach ($frases as $frase) {
 							foreach ($frase as $virgulas) {
-								foreach ($virgulas as $virgula) {
+								foreach ($virgulas as $key1 => $virgula) {
+									$sentidoVirgula[$key1] = NULL;
 									foreach ($virgula as $palavras) {
 										foreach ($palavras as $palavra) {
 											var_dump($palavra);
-											$sentido = NULL;
-											$sentido = $this->verNoBanco($palavra);
-											if(is_null($sentido)) $sentido = $this->pesquisarInternet($palavra);
-											//if(is_null($sentido)) $sentido = $this->pergunta($palavra);
+											if(is_null($sentidoVirgula[$key1])) {
+												$sentidoVirgula[$key1] = $this->verNoBanco($palavra);
+												if(is_null($sentidoVirgula[$key1])) $sentidoVirgula[$key1] = $this->pesquisarInternet($palavra);
+												//if(is_null($sentidoVirgula[$key])) $sentidoVirgula[$key] = $this->pergunta($palavra);
+											}
+											else {
+												$sentidoAux = $this->verNoBanco($palavra);
+												if(is_null($sentidoAux)) $sentidoAux = $this->pesquisarInternet($palavra);
+												//if(is_null($sentidoAux)) $sentidoAux = $this->pergunta($palavra);
+												if(!is_null($sentidoAux)) $sentidoVirgula[$key1] = $sentidoVirgula[$key1]*$sentidoAux;
+											}
 										}
 									}
+									$sentido[$key]+=$sentidoVirgula[$key1];
 								}
 							}
 						}
 					}
 				}
 			}
+			$this->setSentidos($sentido);
 		}
 
 		private function verNoBanco($palavra) {
@@ -122,7 +136,7 @@
 	        	$database->execute();
 
 	        	if($database->rowCount() != 0) {
-	 	  	     	return $database->single();
+	 	  	     	return $database->single()["sentido"];
 	 	  	     }
 	 	  	     else {
 	 	  	     	return NULL;
@@ -134,11 +148,16 @@
 		}
 
 		private function pesquisarInternet($palavra) {
+			$sentido = NULL;
 			$pesquisa = new Pesquisa($palavra);
 			$sinonimos = $pesquisa->getResultado();
-			foreach ($sinonimos as $sinonimo) {
-				$this->verNoBanco($sinonimo);
+			if(!is_null($sinonimos)) {
+				foreach ($sinonimos as $sinonimo) {
+					$sentido = $this->verNoBanco($sinonimo);
+					if(!is_null($sentido)) return $sentido;
+				}
 			}
+			return $sentido;
 		}
 
 		public function multiexplode($delimiters,$string) {
@@ -203,6 +222,15 @@
 		public function setPalavras($palavras) {
 			$this->validaArray($palavras);
 			$this->palavras = $palavras;
+		}
+
+		public function getSentidos() {
+			return $this->sentidos;
+		}
+
+		public function setSentidos($sentidos) {
+			$this->validaArray($sentidos);
+			$this->sentidos = $sentidos;
 		}
 
 		protected function validaInteiro($valor) {
