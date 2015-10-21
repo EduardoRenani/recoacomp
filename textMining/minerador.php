@@ -8,7 +8,8 @@
 	 */
 
 	class Minerador {
-		
+		const PESQUISADO = 1;
+
 		private $textos;
 
 		private $textosTratados;
@@ -105,12 +106,12 @@
 											var_dump($palavra);
 											if(is_null($sentidoVirgula[$key1])) {
 												$sentidoVirgula[$key1] = $this->verNoBanco($palavra);
-												if(is_null($sentidoVirgula[$key1])) $sentidoVirgula[$key1] = $this->pesquisarInternet($palavra);
+												if(is_null($sentidoVirgula[$key1])) $sentidoVirgula[$key1] = $this->pesquisarInternetSentido($palavra);
 												//if(is_null($sentidoVirgula[$key])) $sentidoVirgula[$key] = $this->pergunta($palavra);
 											}
 											else {
 												$sentidoAux = $this->verNoBanco($palavra);
-												if(is_null($sentidoAux)) $sentidoAux = $this->pesquisarInternet($palavra);
+												if(is_null($sentidoAux)) $sentidoAux = $this->pesquisarInternetSentido($palavra);
 												//if(is_null($sentidoAux)) $sentidoAux = $this->pergunta($palavra);
 												if(!is_null($sentidoAux)) $sentidoVirgula[$key1] = $sentidoVirgula[$key1]*$sentidoAux;
 											}
@@ -143,21 +144,95 @@
 	 	  	     }
 			}
 			catch(Exception $e) {
-				trigger_error("Erro ao pegar número de acessos do OA!".$e->getMessage(), $e->getCode());
+				trigger_error("Erro ao pegar sentido de palavra no banco!".$e->getMessage(), $e->getCode());
 			}
 		}
 
-		private function pesquisarInternet($palavra) {
+		private function pesquisarInternetSentido($palavra) {
 			$sentido = NULL;
 			$pesquisa = new Pesquisa($palavra);
 			$sinonimos = $pesquisa->getResultado();
-			if(!is_null($sinonimos)) {
-				foreach ($sinonimos as $sinonimo) {
-					$sentido = $this->verNoBanco($sinonimo);
-					if(!is_null($sentido)) return $sentido;
+			foreach($sinonimos as $sinonimos1) {
+				if(!is_null($sinonimos1)) {
+					foreach ($sinonimos1 as $sinonimo) {
+						$sinonimo = $this->removeAcentos($sinonimo);
+						$sentido = $this->verNoBanco($sinonimo);
+						if(!is_null($sentido)) return $sentido;
+					}
 				}
 			}
 			return $sentido;
+		}
+
+		public function aprenderPalavras() {
+			try {
+				$database = new Database;
+
+	        	$sql = "SELECT * FROM palavras_minerador WHERE sinonimo_pesquisado != :pesquisado LIMIT 5";
+	        	$database->query($sql);
+	        	$database->bind(":pesquisado", self::PESQUISADO);
+	        	$database->execute();
+
+	        	if($database->rowCount() != 0) {
+	        		$palavras = $database->resultSet();
+	        		//echo "<pre>";
+	        		//var_dump($palavras);
+	        		foreach ($palavras as $palavra) {
+	        			$this->pesquisarInternetSinonimos($palavra);
+						$database = new Database;
+		        		$sql = "UPDATE palavras_minerador SET sinonimo_pesquisado = :pesquisado WHERE palavra = :palavra";
+		        		$database->query($sql);
+			        	$database->bind(":pesquisado", self::PESQUISADO);
+			        	$database->bind(":palavra", $palavra['palavra']);
+			        	$database->execute();
+	        		}
+	        	}
+	        }
+			catch(Exception $e) {
+				trigger_error("Erro ao pegar palavras no banco!".$e->getMessage(), $e->getCode());
+			}
+		}
+
+		private function pesquisarInternetSinonimos($dados) {
+			$pesquisa = new Pesquisa($dados['palavra']);
+			$sinonimos = $pesquisa->getResultado();
+			//var_dump($sinonimos);
+			foreach ($sinonimos as $sinonimos1) {
+				if(!is_null($sinonimos1)) {
+					foreach ($sinonimos1 as $sinonimo) {
+						$sinonimo = $this->removeAcentos($sinonimo);
+						var_dump($sinonimo);
+						$dados['sinonimo'] = $sinonimo;
+						$this->registrarPalavra($dados);
+					}
+				}
+			}
+		}
+
+		private function registrarPalavra($dados) {
+			try {
+				$database = new Database;
+
+	        	$sql = "INSERT INTO palavras_minerador VALUES (NULL, :sinonimo, :sentido, 0)";
+	        	$database->query($sql);
+	        	$database->bind(":sinonimo", $dados['sinonimo']);
+	        	$database->bind(":sentido", $dados['sentido']);
+	        	$database->execute();
+
+	        	$id = $database->lastInsertId();
+				//echo "hahaha";
+				//var_dump($id);
+	        	
+				$database = new Database;
+	        	$sql = "INSERT INTO sinonimos_minerador VALUES (NULL, :palavra, :sinonimo)";
+	           	$database->query($sql);
+	        	$database->bind(":palavra", $dados['id']);
+	        	$database->bind(":sinonimo", $id);
+	        	$database->execute();
+			}
+			catch(Exception $e) {
+				trigger_error("Erro ao registrar palavra no banco!".$e->getMessage(), $e->getCode());
+			}
 		}
 
 		public function multiexplode($delimiters,$string) {
@@ -257,4 +332,11 @@
 	echo "<pre>";
 	var_dump($minerador->getPalavras());
 	echo "</pre>";
+	if($minerador->getSentidos()[1] == 1) {
+		echo "O dorneles gostou!";
+	}
+	else {
+		echo "O dorneles não gostou";
+	}
+//	$minerador->aprenderPalavras();
 ?>

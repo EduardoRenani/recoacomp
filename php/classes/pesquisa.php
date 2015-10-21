@@ -29,6 +29,13 @@
 			curl_close($cURL);
 			if($tipo == self::SINONIMOS) {
 				$this->trataSinonimos($resultado);
+				if(is_null($this->getResultado())) {
+					$cURL = curl_init('http://www.dicio.com.br/'.$this->getPesquisa().'/');
+					curl_setopt($cURL, CURLOPT_RETURNTRANSFER, true);
+					$resultado = curl_exec($cURL);
+					curl_close($cURL);
+					$this->trataSinonimosDicio($resultado);
+				}
 			}
 			else if($tipo == self::DEFINICAO) {
 				//$this->trataDefinicao($resultado);
@@ -50,6 +57,19 @@
 			}
 		}
 
+		private function trataSinonimosDicio($string) {
+			preg_match_all('/class="adicional cols">(.*?)<\/p>/s', $string, $string, PREG_PATTERN_ORDER);
+			preg_match_all('/[^>]href=(.*?)<\/a>/s', $string[1][0], $sinonimos, PREG_PATTERN_ORDER);
+			foreach ($sinonimos[1] as $key=>$sinonimo) {
+				$sinonimo = explode(">", $sinonimo);
+				$sinonimos[1][$key] = $sinonimo[1];
+			}
+			//var_dump($sinonimos[1]);
+			if($sinonimos[1]) {
+				$this->setResultado($sinonimos[1]);
+			}
+		}
+
 		public function setPesquisa($pesquisa) {
 			$this->validaString($pesquisa);
 			$this->pesquisa = $pesquisa;
@@ -61,7 +81,7 @@
 
 		public function setResultado($resultado) {
 			$this->validaArray($resultado);
-			$this->resultado = $resultado;
+			$this->resultado[] = $resultado;
 		}
 
 		public function getResultado() {
