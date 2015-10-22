@@ -74,49 +74,60 @@
 				} // end if
 		} else { // Se nao tiver setado o tipo de visão ?>
 			<!-- Minhas Disciplinas (que cadastrei) -->
-			<a href="disciplinas.php">
+				
 				<li>
-					Minhas Disciplinas
+					<a href="disciplinas.php">Minhas Disciplinas</a>
 				</li>
-			</a>
-			<!-- Disciplina Disponíveis -->
-			<a href="disciplinas_disponiveis.php">
+				<!-- Disciplina Disponíveis -->
 				<li>
-					Disciplinas Disponíveis
+					<a href="disciplinas_disponiveis.php">Disciplinas Disponíveis</a>
 				</li>
-			</a>
-			<!-- Disciplinas em que estou matriculado (que cadastrei) -->
-			<a href="disciplinas_fixed.php">
+				
+				<!-- Disciplinas em que estou matriculado (que cadastrei) -->
 				<li>
-					Disciplinas em que estou matriculado(a)
+					<a href="disciplinas_fixed.php">Disciplinas em que estou matriculado(a)</a>
 				</li>
-			</a>
-			<!-- Meu Perfil -->
-			<a href="profile_show.php">
+				<!-- Meu Perfil -->
 				<li>
-					Meu Perfil
+					<a href="profile_show.php">Meu Perfil</a>
 				</li>
-			</a>
-			<a href="cadastro_OA.php">
+
+				<!-- Cadastrar OA -->				
 				<li>
-					<?= WORDING_REGISTER_NOVO_OA; ?>
+					<a href="cadastro_OA.php"><?= WORDING_REGISTER_NOVO_OA; ?></a>
 				</li>
-			</a>
-			<a href="cadastro_disciplina.php">
+				
+				<!-- Cadastrar novo...-->
+				<li> Cadastrar
+				<ul>	
+					<li>
+						<a href="cadastro_disciplina.php">-> <?= WORDING_REGISTER_NOVA_DISCIPLINA; ?></a>
+					</li>
+					<li>
+						<a href="cadastro_disciplina.php">-> Novo Projeto</a>
+					</li>
+					<li>
+						<a href="cadastro_disciplina.php">-> </a>
+					</li>
+				</ul>	
+
+				<!-- Ver como -->
+				</li>
 				<li>
-					<?= WORDING_REGISTER_NOVA_DISCIPLINA; ?>
+					Ver como:
+					<br><br>
+					<form method="post" action="#" id="tipoUsuario" name="tipoUsuario">
+						<select name="codTipoUsuario" onchange ="this.form.submit()" onfocus="this.selectedIndex = -1;"> <!-- -->
+							<option value="1">Aluno</option>
+							<option value="2" selected>Professor</option>
+						</select>
+					</form>
 				</li>
-			</a>
-			<li>
-				Ver como:
-				<br><br>
-				<form method="post" action="#" id="tipoUsuario" name="tipoUsuario">
-					<select name="codTipoUsuario" onchange ="this.form.submit()" onfocus="this.selectedIndex = -1;"> <!-- -->
-						<option value="1">Aluno</option>
-						<option value="2" selected>Professor</option>
-					</select>
-				</form>
-			</li>
+			
 	<?php
 		}
 	?>
+
+
+
+

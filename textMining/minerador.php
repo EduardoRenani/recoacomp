@@ -100,21 +100,22 @@
 						foreach ($frases as $frase) {
 							foreach ($frase as $virgulas) {
 								foreach ($virgulas as $key1 => $virgula) {
-									$sentidoVirgula[$key1] = NULL;
 									foreach ($virgula as $palavras) {
+										$sentidoVirgula[$key1] = NULL;
 										foreach ($palavras as $palavra) {
 											var_dump($palavra);
 											if(is_null($sentidoVirgula[$key1])) {
-												$sentidoVirgula[$key1] = $this->verNoBanco($palavra);
-												if(is_null($sentidoVirgula[$key1])) $sentidoVirgula[$key1] = $this->pesquisarInternetSentido($palavra);
+												$sentidoVirgula[$key1] = (int) $this->verNoBanco($palavra);
+												if(is_null($sentidoVirgula[$key1])) $sentidoVirgula[$key1] = (int) $this->pesquisarInternetSentido($palavra);
 												//if(is_null($sentidoVirgula[$key])) $sentidoVirgula[$key] = $this->pergunta($palavra);
 											}
 											else {
 												$sentidoAux = $this->verNoBanco($palavra);
-												if(is_null($sentidoAux)) $sentidoAux = $this->pesquisarInternetSentido($palavra);
+												if(is_null($sentidoAux)) $sentidoAux = (int) $this->pesquisarInternetSentido($palavra);
 												//if(is_null($sentidoAux)) $sentidoAux = $this->pergunta($palavra);
-												if(!is_null($sentidoAux)) $sentidoVirgula[$key1] = $sentidoVirgula[$key1]*$sentidoAux;
+												if(!is_null($sentidoAux)) $sentidoVirgula[$key1] = (int) $sentidoVirgula[$key1]*$sentidoAux;
 											}
+											var_dump($sentidoVirgula);
 										}
 									}
 									$sentido[$key]+=$sentidoVirgula[$key1];
@@ -152,12 +153,14 @@
 			$sentido = NULL;
 			$pesquisa = new Pesquisa($palavra);
 			$sinonimos = $pesquisa->getResultado();
-			foreach($sinonimos as $sinonimos1) {
-				if(!is_null($sinonimos1)) {
-					foreach ($sinonimos1 as $sinonimo) {
-						$sinonimo = $this->removeAcentos($sinonimo);
-						$sentido = $this->verNoBanco($sinonimo);
-						if(!is_null($sentido)) return $sentido;
+			if(!is_null($sinonimos)) {
+				foreach($sinonimos as $sinonimos1) {
+					if(!is_null($sinonimos1)) {
+						foreach ($sinonimos1 as $sinonimo) {
+							$sinonimo = $this->removeAcentos($sinonimo);
+							$sentido = $this->verNoBanco($sinonimo);
+							if(!is_null($sentido)) return $sentido;
+						}
 					}
 				}
 			}
