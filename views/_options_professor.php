@@ -74,45 +74,46 @@
 				} // end if
 		} else { // Se nao tiver setado o tipo de visão ?>
 			<!-- Minhas Disciplinas (que cadastrei) -->
-				
-				<li>
-					<a href="disciplinas.php">Minhas Disciplinas</a>
-				</li>
+				<a href="disciplinas.php">
+					<li>
+						Minhas Disciplinas
+					</li>
+				</a>
 				<!-- Disciplina Disponíveis -->
-				<li>
-					<a href="disciplinas_disponiveis.php">Disciplinas Disponíveis</a>
-				</li>
+				<a href="disciplinas_disponiveis.php">
+					<li>
+						Disciplinas Disponíveis
+					</li>
+				</a>
 				
 				<!-- Disciplinas em que estou matriculado (que cadastrei) -->
-				<li>
-					<a href="disciplinas_fixed.php">Disciplinas em que estou matriculado(a)</a>
-				</li>
+				<a href="disciplinas_fixed.php">
+					<li>
+						Disciplinas em que estou matriculado(a)
+					</li>
+				</a>
 				<!-- Meu Perfil -->
-				<li>
-					<a href="profile_show.php">Meu Perfil</a>
-				</li>
+				<a href="profile_show.php">
+					<li>
+						Meu Perfil
+					</li>
+				</a>
 
-				<!-- Cadastrar OA -->				
-				<li>
-					<a href="cadastro_OA.php"><?= WORDING_REGISTER_NOVO_OA; ?></a>
-				</li>
+				<!-- Cadastrar OA -->
+				<a href="cadastro_OA.php">
+					<li>
+						<?= WORDING_REGISTER_NOVO_OA; ?>
+					</li>
+				</a>
 				
 				<!-- Cadastrar novo...-->
-				<li> Cadastrar
-				<ul>	
+				<a href="cadastro_disciplina.php">
 					<li>
-						<a href="cadastro_disciplina.php">-> <?= WORDING_REGISTER_NOVA_DISCIPLINA; ?></a>
+						<?= WORDING_REGISTER_NOVA_DISCIPLINA; ?>
 					</li>
-					<li>
-						<a href="cadastro_disciplina.php">-> Novo Projeto</a>
-					</li>
-					<li>
-						<a href="cadastro_disciplina.php">-> </a>
-					</li>
-				</ul>	
-
+				</a>
 				<!-- Ver como -->
-				</li>
+				
 				<li>
 					Ver como:
 					<br><br>

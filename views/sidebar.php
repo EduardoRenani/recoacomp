@@ -42,8 +42,7 @@
 <div class="sidebar"> 
 	<div class="top-sidebar">Bem Vindo, <?php echo $_SESSION['user_name']?></div>
         <div class="sidebar-content">          
-                <ul id="menu"> 
-                <!--ul class="sidebar-menu"-->
+                <ul class="sidebar-menu">
                     <?php 
                         if ($_SESSION['acesso'] == 1){
                             include('_options_aluno.php');

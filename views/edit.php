@@ -3,20 +3,41 @@
 <head>
     <link href="css/base_cadastro.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/cropper.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/cropper.css">
-
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrapCrop.min.js"></script>
-    <script src="js/cropper.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/imgareaselect-animated.css" />
+    <!-- scripts -->
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.imgareaselect.pack.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
 
     <!--script src="js/jquery.js"></script--><!-- jQuery is required -->
     <!--script src="js/cropper.js"></script-->
     
     <script src="js/main.js"></script>
    
+  <style>
+  .wrap{
+    width: 700px;
+    margin: 10px auto;
+    padding: 10px 15px;
+    background: white;
+    border: 2px solid #DBDBDB;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    text-align: center;
+    overflow: hidden;
+  }
+  img#uploadPreview{
+    border: 0;
+    border-radius: 3px;
+    -webkit-box-shadow: 0px 2px 7px 0px rgba(0, 0, 0, .27);
+    box-shadow: 0px 2px 7px 0px rgba(0, 0, 0, .27);
+    margin-bottom: 30px;
+    overflow: hidden;
+  }
+  </style>
+
+
 </head>
 
 <!-- clean separation of HTML and PHP 
@@ -61,64 +82,22 @@
   <img src="picture.jpg">
 </div-->
 
-<div class="container" id="crop-avatar">
+<div class="wrap">
+  <!-- image preview area-->
+  <img id="uploadPreview" style="display:none;"/>
+  
+  <!-- image uploading form -->
+  <form action="upload.php" method="post" enctype="multipart/form-data">
+    <input id="uploadImage" type="file" accept="image/jpeg" name="image" />
+    <input type="submit" value="Upload">
 
-    <!-- Current avatar -->
-    <div class="avatar-view" title="Change the avatar">
-      <img src="picture.jpg" alt="Avatar">
-    </div>
-
-    <!-- Cropping modal -->
-    <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1" >
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <form class="avatar-form" action="crop.php" enctype="multipart/form-data" method="post">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title" id="avatar-modal-label">Change Avatar</h4>
-            </div>
-            <div class="modal-body">
-              <div class="avatar-body">
-
-                <!-- Upload image and data -->
-                <div class="avatar-upload">
-                  <input type="hidden" class="avatar-src" name="avatar_src">
-                  <input type="hidden" class="avatar-data" name="avatar_data">
-                  <label for="avatarInput">Local upload</label>
-                  <input type="file" class="avatar-input" id="avatarInput" name="avatar_file">
-                </div>
-
-                <!-- Crop and preview -->
-                <div class="row">
-                  <div class="col-md-9">
-                    <div class="avatar-wrapper"></div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="avatar-preview preview-md"></div>
-                  </div>
-                </div>
-
-                <div class="row avatar-btns">
-                  <div class="col-md-9">
-
-                  </div>
-                  <div class="col-md-3">
-                    <button type="submit" class="btn btn-primary btn-block avatar-save">Done</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div> -->
-          </form>
-        </div>
-      </div>
-    </div><!-- /.modal -->
-
-    <!-- Loading state -->
-    <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
-  </div>
+    <!-- hidden inputs -->
+    <input type="hidden" id="x" name="x" />
+    <input type="hidden" id="y" name="y" />
+    <input type="hidden" id="w" name="w" />
+    <input type="hidden" id="h" name="h" />
+  </form>
+</div><!--wrap-->
 
 <!-- Cropper -->
 
