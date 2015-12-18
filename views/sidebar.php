@@ -40,20 +40,25 @@
 
 ?>
 <div class="sidebar"> 
-	<div class="top-sidebar">Bem Vindo, <?php echo $_SESSION['user_name']?></div>
-        <div class="sidebar-content">          
+    <div class="top-sidebar">Bem Vindo, <?php echo $_SESSION['user_name']?></div>
+        <div class="sidebar-content">
                 <ul class="sidebar-menu">
                     <?php 
-                        if ($_SESSION['acesso'] == 1){
+                        $usuario = new User($_SESSION['user_id']);
+                        //print_r($usuario);
+                        if ($usuario->getTipoVisao() == 1 && $_SESSION['acesso'] == 1) {// Se estiver com visão de aluno e visão de aluno
                             include('_options_aluno.php');
                         }
-                        elseif($_SESSION['acesso'] == 2){
+                        //elseif($_SESSION['acesso'] == 2 || $usuario->getTipoVisao() == 1){
+                        //    include('_options_visao_aluno.php');
+                        //}
+                        elseif($_SESSION['acesso'] == 2 || $usuario->getTipoVisao() == 2){
                             include('_options_professor.php');
                         }
-                        else if($_SESSION['acesso'] == 3){
+                        else if($_SESSION['tipo_visao'] == 3){
                             echo WORDING_USER_ADMIN . "<br/>";
                         }
                     ?>
                 </ul>
-    	</div>  
-</div>
+        </div>
+ </div>

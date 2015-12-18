@@ -113,6 +113,10 @@
     <a href="#">Ver Mais</a>
     </div>
 </div>
+<?php
+    //echo "<pre>";
+    //var_dump($indices['usuarios_acessos']);
+    ?>
 <script language="javascript">
 <?php
     foreach ($indices['usuarios_acessos'] as $oa => $usuariosAcessos) {
@@ -220,10 +224,12 @@ $(document).ready(function(){
             }
         }
     });
-
+    console.log(ticks);
     $('#top10').bind('jqplotDataClick', 
         function (ev, seriesIndex, pointIndex, data) {
             $("#usuarios").show(500);
+            console.log(pointIndex);
+            console.log(ticks);
             $('#usuarios').html("<div>"+ticks[pointIndex]+"</div><div><table><tr><td>Usuário</td><td>Acessos</td></tr></table>"+divOA[ticks[pointIndex]]+"</div><div onclick='escondeUsuarios()'>Sair</div>");
         }
     );
@@ -234,7 +240,7 @@ $(document).ready(function(){
     var s3 = [<?php echo implode(", ", $indices["acessos_totais"]); ?>];
     // Can specify a custom tick Array.
     // Ticks should match up one for each y value (category) in the series.
-    var ticks = [<?php foreach($indices["acessos_validos"] as $index3=>$acessosTotais) { $nomes3[$index3] = $index3; } echo '"'.implode('", "', $nomes3).'"'; ?>];
+    var ticks1 = [<?php foreach($indices["acessos_validos"] as $index3=>$acessosTotais) { $nomes3[$index3] = $index3; } echo '"'.implode('", "', $nomes3).'"'; ?>];
      
     var plot1 = $.jqplot('acessos', [s1, s2, s3], {
         // The "seriesDefaults" option is an options object that will
@@ -268,7 +274,7 @@ $(document).ready(function(){
             // Use a category axis on the x axis and use our custom ticks.
             xaxis: {
                 renderer: $.jqplot.CategoryAxisRenderer,
-                ticks: ticks
+                ticks: ticks1
             },
             // Pad the y axis just a little so bars can get close to, but
             // not touch, the grid boundaries.  1.2 is the default padding.
@@ -283,7 +289,7 @@ $(document).ready(function(){
     var s1 = [<?php echo $indicesRejeicao; ?>];
     // Can specify a custom tick Array.
     // Ticks should match up one for each y value (category) in the series.
-    var ticks = [<?php echo $nomesIndicesRejeicao; ?>];
+    var ticks2 = [<?php echo $nomesIndicesRejeicao; ?>];
      
     if(ticks.length != 0) {
         var plot1 = $.jqplot('indicesRejeicao', [s1], {
@@ -316,7 +322,7 @@ $(document).ready(function(){
             // Use a category axis on the x axis and use our custom ticks.
             xaxis: {
                 renderer: $.jqplot.CategoryAxisRenderer,
-                ticks: ticks
+                ticks: ticks2
             },
             // Pad the y axis just a little so bars can get close to, but
             // not touch, the grid boundaries.  1.2 is the default padding.
@@ -331,7 +337,7 @@ $(document).ready(function(){
     var s1 = [<?php echo $indicesRelevancia; ?>];
     // Can specify a custom tick Array.
     // Ticks should match up one for each y value (category) in the series.
-    var ticks = [<?php echo $nomesIndicesRelevancia; ?>];
+    var ticks3 = [<?php echo $nomesIndicesRelevancia; ?>];
      
     if(ticks.length != 0) {
         var plot1 = $.jqplot('indicesRelevancia', [s1], {
@@ -364,7 +370,7 @@ $(document).ready(function(){
             // Use a category axis on the x axis and use our custom ticks.
             xaxis: {
                 renderer: $.jqplot.CategoryAxisRenderer,
-                ticks: ticks
+                ticks: ticks3
             },
             // Pad the y axis just a little so bars can get close to, but
             // not touch, the grid boundaries.  1.2 is the default padding.

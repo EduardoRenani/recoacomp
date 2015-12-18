@@ -1,41 +1,69 @@
-/**
- *
- * Crop Image While Uploading With jQuery
- * 
- * Copyright 2013, Resalat Haque
- * http://www.w3bees.com/
- *
- */
+(function() {
+	$('form').ajaxForm({
+		beforeSubmit: function() {	
+			count = 0;
+			val = $.trim( $('#images').val() );
+			
+			if( val == '' ){
+				count= 1;
+				$( "#images" ).next('span').html( "Please select your images" );
+			}
+			
+			if(count == 0){
+				for (var i = 0; i < $('#images').get(0).files.length; ++i) {
+			    	img = $('#images').get(0).files[i].name;
+			    	var extension = img.split('.').pop().toUpperCase();
+			    	if(extension!="PNG" && extension!="JPG" && extension!="GIF" && extension!="JPEG"){
+			    		count= count+ 1
+			    	}
+			    }
+				if( count> 0) $( "#images" ).next('span').html( "Please select valid images" );
+			}
+		    
+		    
+		    if( count> 0){
+		    	return false;
+		    } else {
+		    	$( "#images" ).next('span').html( "" );
+		    }
+			
+			
+			 
+	    },
+		
+		beforeSend:function(){
+		   $('#loader').show();
+		   $('#image_upload').hide();
+		},
+	    success: function(msg) {
+	    },
+		complete: function(xhr) {
+			$('#loader').hide();
+			$('#image_upload').show();
+			
+			$('#images').val('');
+			$('#error_div').html('');
+			result = xhr.responseText;
+			result = $.parseJSON(result);
+			base_path = $('#base_path').val();
+			
+			if( result.success ){
+				name = base_path+'images/'+result.success;
+				html = '';
+				html+= '<image src="'+name+'">';
+				$('#uploaded_images #success_div').append( html );
+			} else if( result.error ){
+				error = result.error
+				html = '';
+				html+='<p>'+error+'</p>';
+				$('#uploaded_images #error_div').append( html );
+			}
+				
+			
+			$('#error_div').delay(5000).fadeOut('slow');
 
-// set info for cropping image using hidden fields
-function setInfo(i, e) {
-	$('#x').val(e.x1);
-	$('#y').val(e.y1);
-	$('#w').val(e.width);
-	$('#h').val(e.height);
-}
 
-$(document).ready(function() {
-	var p = $("#uploadPreview");
-
-	// prepare instant preview
-	$("#uploadImage").change(function(){
-		// fadeOut or hide preview
-		p.fadeOut();
-
-		// prepare HTML5 FileReader
-		var oFReader = new FileReader();
-		oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
-
-		oFReader.onload = function (oFREvent) {
-	   		p.attr('src', oFREvent.target.result).fadeIn();
-		};
-	});
-
-	// implement imgAreaSelect plug in (http://odyniec.net/projects/imgareaselect/)
-	$('img#uploadPreview').imgAreaSelect({
-		// set crop ratio (optional)
-		aspectRatio: '1:1',
-		onSelectEnd: setInfo
-	});
-});
+		}
+	}); 
+	
+})();  

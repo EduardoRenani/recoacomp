@@ -251,12 +251,13 @@ if (isset($OA)) {
         $('#tabela2').sortable({
             connectWith: "#tabela1, #tabela1",
             receive : function (event, ui) {
+                $('.mensagemTooltipSortable').remove();
                 $("#tabela1").sortable('refreshPositions');
                 var idCompetencias = $("#tabela2").sortable('toArray').toString();
                 var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
                 idCompetencias = idCompetencias.split(",");
                 nomesCompetencias = nomesCompetencias.split(",");
-                document.getElementById('sub-conteudo2').innerHTML = '<div class="info-cadastro"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div>';
+                document.getElementById('sub-conteudo2').innerHTML = '<div class="info-cadastro"><?php echo TEXT_CHA;?> <?php echo HINT_CHA;?></div>';
                 for (i = 0; i < nomesCompetencias.length; i++) {
                     var elementoAdd = document.createElement('div');
                     elementoAdd.innerHTML = '<hr class="competencia-dividor"><div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div id="conhecimento'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipCHA(\'conhecimento'+idCompetencias[i]+'\', \'conhecimento\')" onmouseout="deleteTooltipCHA(\'conhecimento'+idCompetencias[i]+'\')">[ ? ]</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div id="habilidade'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipCHA(\'habilidade'+idCompetencias[i]+'\', \'habilidade\')" onmouseout="deleteTooltipCHA(\'habilidade'+idCompetencias[i]+'\')">[ ? ]</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div id="atitude'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipCHA(\'atitude'+idCompetencias[i]+'\', \'atitude\')" onmouseout="deleteTooltipCHA(\'atitude'+idCompetencias[i]+'\')">[ ? ]</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
@@ -265,6 +266,7 @@ if (isset($OA)) {
         //         $("#tabela2").html("<option value='text'>text</option>");
            },
             update: function(event, ui) {
+                $('.mensagemTooltipSortable').remove();
                 var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
                 //window.alert(nomesCompetencias);
 
@@ -279,12 +281,13 @@ if (isset($OA)) {
             receive : function (event, ui)
             {
                 
+                $('.mensagemTooltipSortable').remove();
                 $("#tabela1").sortable('refreshPositions');
                 var idCompetencias = $("#tabela2").sortable('toArray').toString();
                 var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
                 idCompetencias = idCompetencias.split(",");
                 nomesCompetencias = nomesCompetencias.split(",");
-                document.getElementById('sub-conteudo2').innerHTML = '<div class="info-cadastro"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div>';
+                document.getElementById('sub-conteudo2').innerHTML = '<div class="info-cadastro"><?php echo TEXT_CHA;?> <?php echo HINT_CHA;?></div>';
                 for (i = 0; i < nomesCompetencias.length; i++) {
                     var elementoAdd = document.createElement('div');
                     elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div id="conhecimento'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipCHA(\'conhecimento'+idCompetencias[i]+'\', \'conhecimento\')" onmouseout="deleteTooltipCHA(\'conhecimento'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div id="habilidade'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipCHA(\'habilidade'+idCompetencias[i]+'\', \'habilidade\')" onmouseout="deleteTooltipCHA(\'habilidade'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div id="atitude'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipCHA(\'atitude'+idCompetencias[i]+'\', \'atitude\')" onmouseout="deleteTooltipCHA(\'atitude'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
@@ -294,6 +297,7 @@ if (isset($OA)) {
         //         $("#tabela2").html("<option value='text'>text</option>");
            },
             update: function(event, ui) {
+                $('.mensagemTooltipSortable').remove();
                 var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
                 //window.alert(nomesCompetencias);
 
@@ -382,7 +386,7 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
 <script language="javascript">
     function mudaTab(qualTab) {
         if(qualTab == 1) {
-            if(document.getElementById('status').innerHTML == "OK" && document.getElementsByName('nome')[0].value.length > 2 && document.getElementsByName('descricaoNome')[0].value.length > 0) {
+            if(document.getElementById('status').innerHTML == "OK" && document.getElementsByName('nome')[0].value.length > 2 && document.getElementsByName('descricaoNome')[0].value.length > 0 && document.getElementsByName('conhecimentoDescricao')[0].value.length > 0 && document.getElementsByName('habilidadeDescricao')[0].value.length > 0 && document.getElementsByName('atitudeDescricao')[0].value.length > 0) {
                 document.getElementsByName('nome')[0].style.border = "0";
                 document.getElementsByName('descricaoNome')[0].style.border = "0";
                 document.getElementsByName('conhecimentoDescricao')[0].style.border = "0";
@@ -426,21 +430,21 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
                     document.getElementsByName('descricaoNome')[0].style.border = "0";
                 }
                 if(document.getElementsByName('conhecimentoDescricao')[0].value.length == 0) {
-                    document.getElementsByName('conhecimentoDescricao')[0].style.border = "1px solid #dc8810";
-                    document.getElementsByName('conhecimentoDescricao')[0].setAttribute("placeholder", "Este campo é necessário");
+                    document.getElementsByName('conhecimentoDescricao')[0].parentNode.style.border = "1px solid #dc8810";
+                    //document.getElementsByName('conhecimentoDescricao')[0].setAttribute("placeholder", "Este campo é necessário");
                 }
                 else {
                     document.getElementsByName('conhecimentoDescricao')[0].style.border = "0";
                 }
                 if(document.getElementsByName('habilidadeDescricao')[0].value.length == 0) {
-                    document.getElementsByName('habilidadeDescricao')[0].style.border = "1px solid #dc8810";
+                    document.getElementsByName('habilidadeDescricao')[0].parentNode.style.border = "1px solid #dc8810";
                     document.getElementsByName('habilidadeDescricao')[0].setAttribute("placeholder", "Este campo é necessário");
                 }
                 else {
                     document.getElementsByName('habilidadeDescricao')[0].style.border = "0";
                 }
                 if(document.getElementsByName('atitudeDescricao')[0].value.length == 0) {
-                    document.getElementsByName('atitudeDescricao')[0].style.border = "1px solid #dc8810";
+                    document.getElementsByName('atitudeDescricao')[0].parentNode.style.border = "1px solid #dc8810";
                     document.getElementsByName('atitudeDescricao')[0].setAttribute("placeholder", "Este campo é necessário");
                 }
                 else {
@@ -683,7 +687,7 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
                                         <span class="titulo-cadastro text-left">Objetos OAS Disponíveis</span>
                                             <div class="search-cadastro">
                                                 <div class="search">
-                                                    <input type="text" class="search-cadastro" id="busca-competencias" placeholder="Pesquise uma competência">
+                                                    <input type="text" class="search-cadastro" id="busca-competencias" placeholder="Pesquise um OA">
                                                 </div>
                                                 <ul id="tabela1"></ul>
                                             </div>

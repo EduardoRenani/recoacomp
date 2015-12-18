@@ -6,6 +6,8 @@
 <!-- Home -->
 
 <!-- Custom CSS -->
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <link href="css/home.css" rel="stylesheet">
 <link rel='stylesheet' media='screen and (min-width: 0px) and (max-width: 425px)' href='css/home-xs.css' />
 <link rel='stylesheet' media='screen and (min-width: 425px) and (max-width: 1100px)' href='css/home-small.css' />
@@ -133,9 +135,9 @@
                     echo
                         "<li class='disciplinas-item'>".
                             "<div class='disciplina-item-content'>".
-                                "<h3>".$disc['nomeDisc']."</h3>".
-                                "<h4>".$disc['nomeCurso']." - ".$disc['professor_name']."</h4>".
-                                "<p>".$disc['descricao']."</p>".
+                                "<h3>".utf8_encode($disc['nomeDisc'])."</h3>".
+                                "<h4>".utf8_encode($disc['nomeCurso'])." - ".utf8_encode($disc['professor_name'])."</h4>".
+                                "<p>".utf8_encode($disc['descricao'])."</p>".
                             "</div>".
                             "<div class='button'><form action='recomendacao.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
                                 "<input type='hidden' name='disc' value='".$listaDisc[ $i ]."'>".

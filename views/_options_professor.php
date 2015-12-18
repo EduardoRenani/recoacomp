@@ -1,8 +1,16 @@
 	<?php 
+		$usuario = new User($_SESSION['user_id']);
 		if(isset($_POST['codTipoUsuario'])){
-				 $tipoUsuario = $_POST['codTipoUsuario'];
-				 // Se está vendo como aluno
-				 if ($tipoUsuario  == 1){ ?>
+				// Update no banco de dados para o tipo de visão
+				//print_r($usuario);
+                //$usuario->updateTipoVisao(1);
+				//print_r($usuario->updateTipoVisao(1));
+				// Se está vendo como aluno
+				$tipoUsuario = $_POST['codTipoUsuario'];
+				if ($tipoUsuario  == 1){ 
+						$usuario->updateTipoVisao(1);
+						//print_r($usuario);
+						?>
 						<!-- Disciplina Disponíveis -->
 						<a href="disciplinas_disponiveis.php">
 							<li>
@@ -15,12 +23,14 @@
 								Meu Perfil
 							</li>
 						</a>
+						<li class="visao">
 						<form method="post" action="#" id="tipoUsuario" name="tipoUsuario">
 							<select name="codTipoUsuario" onchange ="this.form.submit()" onfocus="this.selectedIndex = -1;"> <!-- -->
-								<option value="1" selected >Aluno</option>
-								<option value="2">Professor</option>
+								<option value="<?php echo VISAO_ALUNO ?>" selected >Visão de Aluno</option>
+								<option value="<?php echo VISAO_PROFESSOR?>">Visão de Professor</option>
 							</select>
 						</form>
+						</li>
 						<br>
 				<?php
 				}else{ // Se está vendo como professor ?>
@@ -59,20 +69,22 @@
 							<?= WORDING_REGISTER_NOVA_DISCIPLINA; ?>
 						</li>
 					</a>
-					<li>
-						Ver como:
+					<li class="visao">
 						<br><br>
 						<form method="post" action="#" id="tipoUsuario" name="tipoUsuario">
 							<select name="codTipoUsuario" onchange ="this.form.submit()" onfocus="this.selectedIndex = -1;"> <!-- -->
-								<option value="1">Aluno</option>
-								<option value="2" selected>Professor</option>
+								<option value="<?php echo VISAO_ALUNO ?>">Visão de Aluno</option>
+								<option value="<?php echo VISAO_PROFESSOR?>" selected>Visão de Professor</option>
 							</select>
 						</form>
 					</li>
 
 			<?php
 				} // end if
-		} else { // Se nao tiver setado o tipo de visão ?>
+		} else { // Se nao tiver setado o tipo de visão 
+			$usuario->updateTipoVisao(2);
+			//print_r($usuario);
+			?>
 			<!-- Minhas Disciplinas (que cadastrei) -->
 				<a href="disciplinas.php">
 					<li>
@@ -114,13 +126,11 @@
 				</a>
 				<!-- Ver como -->
 				
-				<li>
-					Ver como:
-					<br><br>
+				<li class="visao">
 					<form method="post" action="#" id="tipoUsuario" name="tipoUsuario">
 						<select name="codTipoUsuario" onchange ="this.form.submit()" onfocus="this.selectedIndex = -1;"> <!-- -->
-							<option value="1">Aluno</option>
-							<option value="2" selected>Professor</option>
+							<option value="<?php echo VISAO_ALUNO ?>">Visão de Aluno</option>
+							<option value="<?php echo VISAO_PROFESSOR?>" selected>Visão de Professor</option>
 						</select>
 					</form>
 				</li>

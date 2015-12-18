@@ -100,8 +100,6 @@ $(document).ready(function(){
 
 </header>
 
-
-
 <?php
 // show potential errors / feedback (from login object)
 if (isset($login)) {

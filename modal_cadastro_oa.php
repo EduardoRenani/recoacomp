@@ -157,8 +157,6 @@ if (isset($OA)) {
     <title>Recoacomp</title>
 
 
-
-
     <!-- Importação do Jquery -->
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
@@ -215,6 +213,9 @@ if (isset($OA)) {
     <link href="css/base_cadastro.css" rel="stylesheet">
 
 
+        <script src="js/jquery-customselect.js"></script>
+
+        <link href="css/jquery-customselect.css" rel="stylesheet" />
     <style>
 
         body { font-size: 62.5%; }
@@ -232,62 +233,14 @@ if (isset($OA)) {
 <!-- Script de configuração -->
 
 
+    <!-- clean separation of HTML and PHP -->
+    <script>
+        $(function() {
+          $("#area_conhecimento").customselect();
+        });
+    </script>
 
 <script type="text/javascript">
-    $(function() {
-        $('#tabela2').sortable({
-            connectWith: "#tabela1, #tabela1",
-            receive : function (event, ui) {
-                $("#tabela1").sortable('refreshPositions');
-                var idCompetencias = $("#tabela2").sortable('toArray').toString();
-                var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
-                idCompetencias = idCompetencias.split(",");
-                nomesCompetencias = nomesCompetencias.split(",");
-                document.getElementById('sub-conteudo2').innerHTML = '<div style="text-align: center; margin-bottom: 20px;"><div style="float: left"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div></div>';
-                for (i = 0; i < nomesCompetencias.length; i++) {
-                    var elementoAdd = document.createElement('div');
-                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
-                    document.getElementById('sub-conteudo2').appendChild(elementoAdd);
-                }
-        //         $("#tabela2").html("<option value='text'>text</option>");
-           },
-            update: function(event, ui) {
-                var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
-                //window.alert(nomesCompetencias);
-
-                document.getElementById('arrayOAS').value = arrayCompetencias;
-            }
-        });
-    });
-
-    $(function() {
-        $('#tabela1').sortable({
-            connectWith: "#tabela1, #tabela2",
-            receive : function (event, ui)
-            {
-                
-                $("#tabela1").sortable('refreshPositions');
-                var idCompetencias = $("#tabela2").sortable('toArray').toString();
-                var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
-                idCompetencias = idCompetencias.split(",");
-                nomesCompetencias = nomesCompetencias.split(",");
-                document.getElementById('sub-conteudo2').innerHTML = '<div style="text-align: center; margin-bottom: 20px;"><div style="float: left"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div></div>';
-                for (i = 0; i < nomesCompetencias.length; i++) {
-                    var elementoAdd = document.createElement('div');
-                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
-                    document.getElementById('sub-conteudo2').appendChild(elementoAdd);
-                }
-                
-        //         $("#tabela2").html("<option value='text'>text</option>");
-           },
-            update: function(event, ui) {
-                var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
-                //window.alert(nomesCompetencias);
-
-                document.getElementById('arrayOAS').value = arrayCompetencias;
-            }
-        });
-    });
     $(function(){
         $('.single-slider').jRange({
             from: 0,
@@ -308,7 +261,7 @@ if (isset($OA)) {
 <script language="javascript">
         function mudaTab(qualTab) {
             if(qualTab == 1) {
-                if(document.getElementsByName('nome')[0].value.length > 0 && document.getElementsByName('url')[0].value.length > 0 && document.getElementsByName('palavrachave')[0].value.length > 0 && document.getElementsByName('idioma')[0].value.length > 0 && document.getElementsByName('descricao')[0].value.length > 0) {
+                if(document.getElementsByName('nome')[0].value.length > 0 && document.getElementsByName('palavrachave')[0].value.length > 0 && document.getElementsByName('idioma')[0].value.length > 0 && document.getElementsByName('descricao')[0].value.length > 0 && (document.getElementsByName('url')[0].value != "http://" && document.getElementsByName('url')[0].value != "")) {
                     document.getElementsByName('nome')[0].style.border = "0";
                     document.getElementsByName('url')[0].style.border = "0";
                     document.getElementsByName('palavrachave')[0].style.border = "0";
@@ -342,9 +295,8 @@ if (isset($OA)) {
                     else {
                         document.getElementsByName('nome')[0].style.border = "0";
                     }
-                    if(document.getElementsByName('url')[0].value.length == 0) {
+                    if(document.getElementsByName('url')[0].value.length == "" || document.getElementsByName('url')[0].value.length == "http://") {
                         document.getElementsByName('url')[0].style.border = "1px solid #dc8810";
-                        document.getElementsByName('url')[0].setAttribute("placeholder", "Este campo é necessário");
                     }
                     else {
                         document.getElementsByName('url')[0].style.border = "0";
@@ -404,6 +356,7 @@ if (isset($OA)) {
 
             }
             else if(qualTab == 3) {
+                console.log("oi");
                 divTab = document.getElementById('sub-conteudo2');
                 divTab.removeAttribute('class');
                 divTab.setAttribute('class', 'tab');
@@ -414,8 +367,8 @@ if (isset($OA)) {
                 document.getElementById('menudiv3').setAttribute('class', 'meu-active');
                 document.getElementById('seta2').removeAttribute('class');
                 document.getElementById('seta2').setAttribute('class', 'meu-active');
-                document.getElementById('seta3').removeAttribute('class');
-                document.getElementById('seta3').setAttribute('class', 'seta-active');
+                document.getElementById('seta5').removeAttribute('class');
+                document.getElementById('seta5').setAttribute('class', 'seta-active');
                 document.getElementById('buttonNext').removeAttribute('onclick');
                 document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(4)');
                 document.getElementById('buttonPrevious').removeAttribute('onclick');
@@ -423,53 +376,26 @@ if (isset($OA)) {
 
             }
             else if(qualTab == 4) {
-                if(document.getElementsByName('descricao_educacional')[0].value.length > 0) {
-                    document.getElementsByName('descricao_educacional')[0].style.border = "0";
+                        console.log("oi");
                     divTab = document.getElementById('sub-conteudo3');
                     divTab.removeAttribute('class');
                     divTab.setAttribute('class', 'tab');
-                    divTab = document.getElementById('sub-conteudo4');
+                    divTab = document.getElementById('sub-conteudo6');
                     divTab.removeAttribute('class');
                     divTab.setAttribute('class', 'tab-active');
-                    document.getElementById('menudiv4').removeAttribute('class');
-                    document.getElementById('menudiv4').setAttribute('class', 'meu-active');
-                    document.getElementById('seta3').removeAttribute('class');
-                    document.getElementById('seta3').setAttribute('class', 'meu-active');
-                    document.getElementById('seta4').removeAttribute('class');
-                    document.getElementById('seta4').setAttribute('class', 'seta-active');
-                    document.getElementById('buttonNext').removeAttribute('onclick');
-                    document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(5)');
+                    document.getElementById('menudiv6').removeAttribute('class');
+                    document.getElementById('menudiv6').setAttribute('class', 'meu-active');
+                    document.getElementById('seta5').removeAttribute('class');
+                    document.getElementById('seta5').setAttribute('class', 'meu-active');
+                    document.getElementById('seta2').removeAttribute('class');
+                    document.getElementById('seta2').setAttribute('class', 'meu-active');
                     document.getElementById('buttonPrevious').removeAttribute('onclick');
-                    document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(10)');
-                }
-                else {
-                    if(document.getElementsByName('descricao_educacional')[0].value.length == 0) {
-                        document.getElementsByName('descricao_educacional')[0].style.border = "1px solid #dc8810";
-                        document.getElementsByName('descricao_educacional')[0].setAttribute("placeholder", "Este campo é necessário");
-                    }
-                    else {
-                        document.getElementsByName('descricao_educacional')[0].style.border = "0";
-                    }
-                }
+                    document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(11)');
+                    document.getElementById('buttonNext').removeAttribute('style');
+                    document.getElementById('buttonNext').setAttribute('style', 'float: none; display: none;');
+                    document.getElementById('finisher').removeAttribute('style');
             }
-            else if(qualTab == 5) {
-                divTab = document.getElementById('sub-conteudo4');
-                divTab.removeAttribute('class');
-                divTab.setAttribute('class', 'tab');
-                divTab = document.getElementById('sub-conteudo5');
-                divTab.removeAttribute('class');
-                divTab.setAttribute('class', 'tab-active');
-                document.getElementById('menudiv5').removeAttribute('class');
-                document.getElementById('menudiv5').setAttribute('class', 'meu-active');
-                document.getElementById('seta4').removeAttribute('class');
-                document.getElementById('seta4').setAttribute('class', 'meu-active');
-                document.getElementById('buttonPrevious').removeAttribute('onclick');
-                document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(10)');
-                document.getElementById('buttonNext').removeAttribute('style');
-                document.getElementById('buttonNext').setAttribute('style', 'float: none; display: none;');
-                document.getElementById('finisher').removeAttribute('style');
-            }
-            else if(qualTab == 6) {
+            else if(qualTab == 7) {
                 divTab = document.getElementById('sub-conteudo1');
                 divTab.removeAttribute('class');
                 divTab.setAttribute('class', 'tab');
@@ -485,7 +411,7 @@ if (isset($OA)) {
                 document.getElementById('buttonPrevious').removeAttribute('style');
                 document.getElementById('buttonPrevious').setAttribute('style', 'float: none; display: none;');
             }
-            else if(qualTab == 7) {
+            else if(qualTab == 8) {
                 divTab = document.getElementById('sub-conteudo2');
                 divTab.removeAttribute('class');
                 divTab.setAttribute('class', 'tab');
@@ -501,7 +427,7 @@ if (isset($OA)) {
                 document.getElementById('buttonPrevious').removeAttribute('onclick');
                 document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(7)');
             }
-            else if(qualTab == 8) {
+            else if(qualTab == 9) {
                 divTab = document.getElementById('sub-conteudo3');
                 divTab.removeAttribute('class');
                 divTab.setAttribute('class', 'tab');
@@ -509,7 +435,7 @@ if (isset($OA)) {
                 divTab.removeAttribute('class');
                 divTab.setAttribute('class', 'tab-active');
                 document.getElementById('menudiv3').removeAttribute('class');
-                document.getElementById('seta3').removeAttribute('class');
+                document.getElementById('seta5').removeAttribute('class');
                 document.getElementById('seta2').removeAttribute('class');
                 document.getElementById('seta2').setAttribute('class', 'seta-active');
                 document.getElementById('buttonNext').removeAttribute('onclick');
@@ -517,41 +443,27 @@ if (isset($OA)) {
                 document.getElementById('buttonPrevious').removeAttribute('onclick');
                 document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(8)');
             }
-            else if(qualTab == 9) {
-                divTab = document.getElementById('sub-conteudo4');
+            else if(qualTab == 11) {
+                divTab = document.getElementById('sub-conteudo6');
                 divTab.removeAttribute('class');
                 divTab.setAttribute('class', 'tab');
                 divTab = document.getElementById('sub-conteudo3');
                 divTab.removeAttribute('class');
                 divTab.setAttribute('class', 'tab-active');
-                document.getElementById('menudiv4').removeAttribute('class');
-                document.getElementById('seta4').removeAttribute('class');
-                document.getElementById('seta3').removeAttribute('class');
-                document.getElementById('seta3').setAttribute('class', 'seta-active');
+                document.getElementById('menudiv5').removeAttribute('class');
+                document.getElementById('seta5').removeAttribute('class');
+                document.getElementById('seta2').removeAttribute('class');
+                document.getElementById('seta2').setAttribute('class', 'seta-active');
                 document.getElementById('buttonNext').removeAttribute('onclick');
                 document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(4)');
                 document.getElementById('buttonPrevious').removeAttribute('onclick');
                 document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(9)');
-            }
-            else if(qualTab == 10) {
-                divTab = document.getElementById('sub-conteudo5');
-                divTab.removeAttribute('class');
-                divTab.setAttribute('class', 'tab');
-                divTab = document.getElementById('sub-conteudo4');
-                divTab.removeAttribute('class');
-                divTab.setAttribute('class', 'tab-active');
-                document.getElementById('menudiv5').removeAttribute('class');
-                document.getElementById('seta4').removeAttribute('class');
-                document.getElementById('seta4').setAttribute('class', 'seta-active');
-                document.getElementById('buttonNext').removeAttribute('onclick');
-                document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(5)');
-                document.getElementById('buttonPrevious').removeAttribute('onclick');
-                document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(10)');
                 document.getElementById('finisher').removeAttribute('style');
                 document.getElementById('finisher').setAttribute('style', 'float: none; display: none;');
                 document.getElementById('buttonNext').removeAttribute('style');
             }
         }
+
     opacityTip = 0;
     function toolTip(id, texto) {
         div = document.getElementsByClassName('tooltiploco')[id-1];
@@ -591,51 +503,6 @@ if (isset($OA)) {
     }
 </script>
 
-    <script>
-    //Declara uma nova requisição ajax
-    function fazAjax(){
-        console.log('chamou o faz');
-        var meu_ajax = new XMLHttpRequest();
-
-        //Declara um "conteiner" de dados para serem enviados por POST
-        var formData = new FormData();
-        var listaExclusao = $("#tabela2").sortable('toArray').toString();
-        //Adiciona uma variável ao "contêiner", no caso, a variável 'variavel' que contém o dado 'dado'
-        formData.append( 'listaExclusao', listaExclusao ); //$_POST['variavel'] === 'dado
-        //Configuração do ajax: qual o "tipo" (no caso, POST) e qual a página que será acessada (no caso, ajax_page.php)
-        //( o último parâmetro, um booleano, é para especificar se é assíncrono (true) ou síncrono (false) )
-        meu_ajax.open( 'POST', './competencias.php', true );
-
-        //Configurar a função que será chamada quando a requisição mudar de estado
-
-        meu_ajax.onreadystatechange = function () {
-            if ( meu_ajax.readyState === 4 ) { //readyState === 4: terminou/completou a requisição
-                if ( meu_ajax.status === 200 ) { //status === 200: sucesso
-                    if ( meu_ajax.responseText.length > 0 ) {
-                        var array = JSON.parse(meu_ajax.responseText);
-                        var element_tabela1 = document.getElementById('tabela1');
-                        for(var i = 0; i < array.length; i++) {
-                            if ( element_tabela1.innerHTML.indexOf(array[i]) === -1) {
-                                element_tabela1.innerHTML += array[i];
-                            }
-                        }
-                        //Resposta não-vazia
-                    } else {
-                        //Resposta vazia
-                    }
-                } else if ( meu_ajax.status !== 0 ) { //status !== 200: erro ( meu_ajax.status === 0: ajax não enviado )
-                    console.log( 'DEU ERRO NO AJAX: '+meu_ajax.responseText );
-                }
-            }
-        };
-        meu_ajax.send( formData );
-    }
-    $(function(){fazAjax()});
-    $(window).blur(function(){fazAjax();});
-    $(window).focus(function(){fazAjax();});
-    $(window).mouseup(function(){fazAjax();});
-    </script>
-
     <script type="text/javascript">
     $(document).ready(function(){
         console.log("funfou!");
@@ -649,13 +516,10 @@ if (isset($OA)) {
     });
     </script>
 
-<!--<div class="fixedBackgroundGradient"></div>-->
-<!-- clean separation of HTML and PHP -->
- <!--   <div class="cadastrobase"> -->
 
     <div class="top-cadastrobase"><div class="text-left"><?php echo (WORDING_REGISTER_NOVO_OA); ?></div><div class="text-right" ><!--<a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a> --></div></div>
     <div class="cadastrobase-content">
-    <form id="registrar_novo_OA_modal" method="post" action="" name="registrar_novo_OA_modal" class="form-horizontal" style="width: 100%;">
+    <form id="registrar_novo_OA" method="post" action="" name="registrar_novo_OA" class="form-horizontal" style="width: 100%;">
         <input type="hidden" id="idusuario" name="idusuario" value="<?php echo $_SESSION['user_id']; ?>" />
         <div id="rootwizard">
             <div id="menu">
@@ -666,10 +530,8 @@ if (isset($OA)) {
                 <div id="menudiv2"><?php echo WORDING_TECHNICAL_CATEGORY; ?></div>
                 <div id="seta2"></div>
                 <div id="menudiv3"><?php echo WORDING_EDUCATIONAL_CATEGORY; ?></div>
-                <div id="seta3"></div>
-                <div id="menudiv4"><?php echo WORDING_RIGHT_CATEGORY; ?></div>
-                <div id="seta4"></div>
-                <div id="menudiv5"><?php echo WORDING_REGISTER_NOVO_OA; ?></div>
+                <div id="seta5"></div>
+                <div id="menudiv6"><?php echo WORDING_REGISTER_CHA; ?></div>
             </div>
             <div id="conteudo" class="clearfix">
             <!-- Inicio-->
@@ -706,27 +568,48 @@ if (isset($OA)) {
                             </select>
                         </div>
                     </div>
+                    <!-- Área de conhecimento-->
+                    <?php 
+                    $OA = new OA();
+                    $OA = $OA->getAreasConhecimento();
+                    ?>
+
+                    <div class="control-group">
+                        <label class="control-label" for="descricao"><div style="float: left"><?php echo WORDING_KNOWLEDGE_AREA; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(3, '<?php echo HINT_KNOWLEDGE_AREA ?>')" onmouseout="deleteTooltip(3)">?</div></div>
+                        <div class="controls">
+                            <select id="area_conhecimento" name="area_conhecimento" class="custom-select">
+                            <option value=''>Selecione..</option>
+                            <?php 
+                            foreach ($OA as $OBJETO) {
+                                echo '<option value="'.$OBJETO['area_conhecimento_id'].'">'.$OBJETO['nome_area_conhecimento'].'';
+                            }
+                            ?>
+                            </select>
+                        </div>
+                    </div>
                     <!-- Descrição -->
                     <div class="control-group">
-                        <label class="control-label" for="descricao"><div style="float: left"><?php echo WORDING_DESCRIPTION; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(3, '<?php echo HINT_DESCRIPTION ?>')" onmouseout="deleteTooltip(3)">?</div></div>
+                        <label class="control-label" for="descricao"><div style="float: left"><?php echo WORDING_DESCRIPTION; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(4, '<?php echo HINT_DESCRIPTION ?>')" onmouseout="deleteTooltip(4)">?</div></div>
                         <div class="controls">
                             <textarea name="descricao" id="descricao" ROWS="5" COLS="40"></textarea>
                         </div>
-                    </div>          
+                    </div>
                 </div>
                 <!-- Fim-->
+                <!-- Categoria Vida -->
                 <div id="sub-conteudo1" class="tab">
                         <div class="control-group">
-                            <label class="control-label" for="date"><div style="float: left"><?php echo WORDING_DATE; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(4, '<?php echo HINT_DATA ?>')" onmouseout="deleteTooltip(4)">?</div></div>
+                            <label class="control-label" for="date"><div style="float: left"><?php echo WORDING_DATE; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(5, '<?php echo HINT_DATA ?>')" onmouseout="deleteTooltip(5)">?</div></div>
                             <div class="controls">
                                 <input id="date" type="text" name="date" required />
                             </div>
                         </div>
                 </div>
+                <!-- Categoria Técnica -->
                 <div id="sub-conteudo2" class="tab">
                      <!-- FORMA DE UTILIZAÇÃO -->
                     <div class="control-group">
-                        <label class="control-label" for="formaUtilizacao"><?php echo WORDING_UTILITY_TYPE; ?></label>
+                        <label class="control-label" for="formaUtilizacao"><?php echo WORDING_UTILITY_TYPE; ?> </label>
                         <div class="controls">
                             <select id = "formaUtilizacao" name="formaUtilizacao" required="true">
                                 <option value = "navegador"><?php echo WORDING_THROUGH_BROWSER ?></option>
@@ -736,17 +619,15 @@ if (isset($OA)) {
                     </div>
                     <!-- TIPO FORMATO -->
                     <div class="control-group">
-                        <label class="control-label" for="tipoFormato"><?php echo WORDING_FORMAT; ?></label>
+                        <label class="control-label" for="tipoOA"><?php echo WORDING_OA_TYPE; ?> (Utilize o CTRL para selecionar mais de um)</label>
                         <div class="controls">
-                            <select id = "tipoFormato" name="tipoFormato" required="true">
-                                <option value = "video"><?php echo WORDING_VIDEO ?></option>
-                                <option value = "sistema operacional"><?php echo WORDING_OPERATIONAL_SYSTEM ?></option>
-                                <option value = "imagem"><?php echo WORDING_IMAGE ?></option>
-                                <option value = "audio"><?php echo WORDING_AUDIO ?></option>
-                                <option value = "texto"><?php echo WORDING_TEXT ?></option>
-                                <option value = "apresentação"><?php echo WORDING_APRESENTATION ?></option>
-                                <option value = "pdf"><?php echo WORDING_PDF ?></option>
-                                <option value = "site"><?php echo WORDING_SITE ?></option>
+                            <select id = "tipoOA[]" name="tipoOA[]" required="true" multiple>
+                                <option value = "material multimidia"><?php echo WORDING_MULTIMIDIA_MATERIAL ?></option>
+                                <option value = "animacao"><?php echo WORDING_ANIMATION ?></option>
+                                <option value = "livro digital"><?php echo WORDING_DIGITAL_BOOK ?></option>
+                                <option value = "jogo"><?php echo WORDING_GAME ?></option>
+                                <option value = "documento"><?php echo WORDING_DOCUMENT ?></option>
+                                <option value = "pagina web"><?php echo WORDING_WEB_PAGE ?></option>
                             </select>
                         </div>
                     </div>               
@@ -755,44 +636,21 @@ if (isset($OA)) {
                 <div id="sub-conteudo3" class="tab">
                     <!-- DESCRIÇÃO EDUCACIONAL -->
                     <div class="control-group">
-                        <label class="control-label" for="descricao_educacional"><div style="float: left"><?php echo WORDING_EDUCATIONAL_DESCRIPTION; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(10, '<?php echo HINT_EDUCACIONAL_DESCRIPTION ?>')" onmouseout="deleteTooltip(10)">?</div></div>
+                        <label class="control-label" for="descricao_educacional"><div style="float: left"><?php echo WORDING_EDUCATIONAL_DESCRIPTION; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(6, '<?php echo HINT_EDUCACIONAL_DESCRIPTION ?>')" onmouseout="deleteTooltip(6)">?</div></div>
                         <div class="controls">
                             <textarea name="descricao_educacional" id="descricao_educacional" ROWS="5" COLS="40"></textarea>
                         </div>
                     </div>
-                     <!-- NÍVEL ITERATIVIDADE -->
-                    <div class="control-group">
-                        <label class="control-label" for="nivelIteratividade"><div style="float: left"><?php echo WORDING_ITERABILITY_NIVEL; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(11, '<?php echo HINT_INTERACTIVITY_TYPE ?>')" onmouseout="deleteTooltip(11)">?</div></div>
-                        <div class="controls">
-                                <select id = "nivelIteratividade" name="nivelIteratividade" required="true">
-                                    <option value = "muito baixa"><?php echo WORDING_VERY_LOW ?></option>
-                                    <option value = "baixa"><?php echo WORDING_LOW ?></option>
-                                    <option value = "médio"><?php echo WORDING_MIDDLE ?></option>
-                                    <option value = "alto"><?php echo WORDING_HIGH ?></option>
-                                    <option value = "muito alto"><?php echo WORDING_VERY_HIGH ?></option>
-                                </select>
-                        </div>
-                    </div>               
-                    <!-- TIPO ITERATIVIDADE -->
-                    <div class="control-group">
-                        <label class="control-label" for="tipoIteratividade"><div style="float: left"><?php echo WORDING_ITERABILITY_TYPE; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(12, '<?php echo HINT_INTERACTIVITY_TYPE ?>')" onmouseout="deleteTooltip(12)">?</div></div>
-                        <div class="controls">
-                            <select id = "tipoIteratividade" name="tipoIteratividade" required="true">
-                                <option value = "ativa"><?php echo WORDING_ACTIVE ?></option>
-                                <option value = "expositiva"><?php echo WORDING_EXPOSITORY ?></option>
-                                <option value = "mista"><?php echo WORDING_MIXED ?></option>
-                            </select>
-                        </div>
-                    </div>              
                     <!-- FAIXA ETÁRIA -->
                     <div class="control-group">
-                        <label class="control-label" for="faixaEtaria"><?php echo WORDING_AGE_GROUP; ?></label>
+                        <label class="control-label" for="faixaEtaria"><?php echo WORDING_AGE_GROUP; ?> (Utilize o CTRL para selecionar mais de um)</label>
                         <div class="controls">
-                            <select id = "faixaEtaria" name="faixaEtaria" required="true">
-                                <option value = "criança"><?php echo WORDING_CHILD ?></option>
-                                <option value = "adulto"><?php echo WORDING_ADULT ?></option>
-                                <option value = "idoso"><?php echo WORDING_ELDERLY ?></option>
-                                <option value = "todas as idades"><?php echo WORDING_ALL_AGES ?></option>
+                            <select id = "faixaEtaria[]" name="faixaEtaria[]" required="true" multiple>
+                                <option value = "educacao infantil"><?php echo WORDING_CHILD_EDUCATION ?></option>
+                                <option value = "ensino fundamental"><?php echo WORDING_BASIC_EDUCATION ?></option>
+                                <option value = "ensino medio"><?php echo WORDING_HIGHSCOOL ?></option>
+                                <option value = "ensino profissionalizante"><?php echo WORDING_PROFESSIONAL_EDUCATION ?></option>
+                                <option value = "ensino superior"><?php echo WORDING_COLLEGE ?></option>
                             </select>
                         </div>
                     </div>
@@ -817,85 +675,51 @@ if (isset($OA)) {
                                 <option value = "problema"><?php echo WORDING_PROBLEM ?></option>
                                 <option value = "auto avaliação"><?php echo WORDING_AUTO_AVALIATION ?></option>
                                 <option value = "palestra"><?php echo WORDING_LECTURE ?></option>
+                                <option value = "palestra"><?php echo WORDING_MULTIMIDIA_MATERIAL?></option>
                             </select>
-                        </div>
-                    </div>              
-                    <!-- USUÁRIO FINAL -->
-                    <div class="control-group">
-                        <label class="control-label" for="usuarioFinal"><?php echo WORDING_FINAL_USER ; ?></label>
-                        <div class="controls">
-                        <select id = "usuarioFinal" name="usuarioFinal" required="true">
-                            <option value = "professor"><?php echo WORDING_PROFESSOR ?></option>
-                            <option value = "autor"><?php echo WORDING_AUTHOR ?></option>
-                            <option value = "aluno"><?php echo WORDING_STUDENT ?></option>
-                            <option value = "admin"><?php echo WORDING_ADMIN ?></option>
-                        </select>
-                        </div>
-                    </div>              
-                    <!-- AMBIENTE -->
-                    <div class="control-group">
-                        <label class="control-label" for="ambiente"><?php echo WORDING_AMBIENT ; ?></label>
-                        <div class="controls">
-                        <select id = "ambiente" name="ambiente" required="true">
-                            <option value = "escola"><?php echo WORDING_SCHOOL ?></option>
-                            <option value = "faculdade"><?php echo WORDING_COLLEGE ?></option>
-                            <option value = "treinamento"><?php echo WORDING_TRAINING ?></option>
-                            <option value = "outro"><?php echo WORDING_OTHER ?></option>
-                        </select>
                         </div>
                     </div>              
                 </div>
                 <!-- CATEGORIA DIREITO -->
-                <div id="sub-conteudo4" class="tab">
+                <!--div id="sub-conteudo4" class="tab"-->
                     <!-- CUSTO -->
-                    <div class="control-group">
+                    <!--div class="control-group">
                         <label class="control-label" for="custo"><div style="float: left"><?php echo WORDING_COST ; ?></div><div style="float: left"><div class="tooltiploco"><div onmouseover="toolTip(13, '<?php echo HINT_COST ?>')" onmouseout="deleteTooltip(13)">?</div></div></div></label>
                         <div class="controls">
                             <input type="radio" name="custo" value="true" id="custo" checked><?php echo WORDING_YES?>
                             <input type="radio" name="custo" value="false" id="custo"><?php echo WORDING_NO ?>
                         </div>
-                    </div>                  
+                    </div-->                    
                     <!-- DIREITO AUTORAL -->
-                    <div class="control-group">
+                    <!--div class="control-group">
                         <label class="control-label" for="direitoAutoral"><div style="float: left"><?php echo WORDING_COPYRIGHT ; ?></div><div style="float: left"><div class="tooltiploco"></label><div onmouseover="toolTip(14, '<?php echo HINT_AUTHORAL_LEGAL ?>')" onmouseout="deleteTooltip(14)">?</div></div></div></label>
                         <div class="controls">
                             <input type="radio" name="direitoAutoral" id="direitoAutoral" value="1" checked><?php echo WORDING_YES?>
                             <input type="radio" name="direitoAutoral" id="direitoAutoral" value="0"><?php echo WORDING_NO ?>
                         </div>
-                    </div>                  
+                    </div-->                    
                     <!-- USO -->
-                    <div class="control-group">
+                    <!--div class="control-group">
                         <label class="control-label" for="uso"><div style="float: left"><?php echo WORDING_USE; ?></div><div style="float: left"><div class="tooltiploco"><div onmouseover="toolTip(15, '<?php echo HINT_USE ?>')" onmouseout="deleteTooltip(15)">?</div></div></div></label>
                         <div class="controls">
                             <textarea name="uso" id="uso" ROWS="5" COLS="40"></textarea>
                         </div>
                     </div>  
+                </div-->
 
-                
-                </div>
-                <div id="sub-conteudo5" class="tab">
-                    <!--input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" /-->
-       
-                     
-            
-
-                          
+                <div id="sub-conteudo6" class="tab">
+                    <!--TELA DE BOTAR NÚMERO NO CHA /-->
+                    <!--input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" /-->     
                 </div>
 
-
-
-                <input id="finisher" style="display: none;" type="submit" name="registrar_novo_OA_modal" value="<?php echo WORDING_REGISTER_OA; ?>" />
-                
-                                
-                <ul class="pager wizard">
-                        <li class="next" style="float:right"><div id="buttonNext" class='button-next text-left' onclick="mudaTab(1)"><a href="javascript:;">Próximo</a></div></li>
-                        <li class="previous" id="buttonPrevious" onclick="mudaTab(3)"><div class="text-right button-voltar"><a href="javascript:;">Voltar</a></div></li>
-                </ul>     
-            </div>  
+                <input id="finisher" style="display: none;" type="submit" name="registrar_novo_OA" value="<?php echo WORDING_REGISTER_OA; ?>" />
+            </div> 
+            <ul class="pager wizard">
+                <li class="next" style="float:right"><div id="buttonNext" class='button-next text-left' onclick="mudaTab(1)"><a href="javascript:;">Próximo</a></div></li>
+                <li class="previous" id="buttonPrevious" onclick="mudaTab(3)"><div class="text-right button-voltar"><a href="javascript:;">Voltar</a></div></li>
+            </ul>   
         </div>
     </form>
     </div>
-        <!--</div>-->
-
-<!--<a href="index.php"><?php echo WORDING_BACK_TO_LOGIN; ?></a>-->
+    <div class="fundoPreto"></div>
 <?php// include('_footer.php'); ?>

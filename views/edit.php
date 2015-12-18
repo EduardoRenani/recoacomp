@@ -3,40 +3,27 @@
 <head>
     <link href="css/base_cadastro.css" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="css/imgareaselect-animated.css" />
     <!-- scripts -->
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery.imgareaselect.pack.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
-
-    <!--script src="js/jquery.js"></script--><!-- jQuery is required -->
-    <!--script src="js/cropper.js"></script-->
+    <!--script type="text/javascript" src="js/jquery.form.min.js"></script-->
+    <script src="http://malsup.github.com/jquery.form.js"></script> 
     
-    <script src="js/main.js"></script>
-   
-  <style>
-  .wrap{
-    width: 700px;
-    margin: 10px auto;
-    padding: 10px 15px;
-    background: white;
-    border: 2px solid #DBDBDB;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    text-align: center;
-    overflow: hidden;
-  }
-  img#uploadPreview{
-    border: 0;
-    border-radius: 3px;
-    -webkit-box-shadow: 0px 2px 7px 0px rgba(0, 0, 0, .27);
-    box-shadow: 0px 2px 7px 0px rgba(0, 0, 0, .27);
-    margin-bottom: 30px;
-    overflow: hidden;
-  }
-  </style>
 
+<script>
+    $(document).ready(function(){
+     function onsuccess(response,status){
+      $("#onsuccessmsg").html("Upload: <b>"+status+'</b><br><br>Imagem: <div id="msg" style="border:5px solid #CCC;padding:15px;">'+response+'</div>');
+     }
+     $("#uploadform").on('submit',function(){
+      var options={
+       url     : $(this).attr("action"),
+       success : onsuccess
+      };
+      $(this).ajaxSubmit(options);
+     return false;
+     });
+    });
+</script>
 
 </head>
 
@@ -49,6 +36,7 @@
 <div class="cadastrobase" >
     <div class="top-cadastrobase"><div class="text-left"><?php echo (WORDING_EDIT_YOUR_CREDENTIALS); ?></div><div class="text-right" ><a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a></div></div>
     <div class="cadastrobase-content">
+
         <!-- edit form for username / this form uses HTML5 attributes, like "required" and type="email" -->
         <form method="post" action="edit.php" name="user_edit_form_name">
             <label for="user_name"><?php echo WORDING_NEW_USERNAME; ?></label>
@@ -82,35 +70,17 @@
   <img src="picture.jpg">
 </div-->
 
-<div class="wrap">
-  <!-- image preview area-->
-  <img id="uploadPreview" style="display:none;"/>
-  
-  <!-- image uploading form -->
-  <form action="upload.php" method="post" enctype="multipart/form-data">
-    <input id="uploadImage" type="file" accept="image/jpeg" name="image" />
-    <input type="submit" value="Upload">
+    <form action="upload.php" method="POST" id="uploadform">
+        <input type="hidden" id="idUsuario" name="idUsuario" value="<?php echo $_SESSION['user_id']; ?>" />
+        <input type="file" name="file"/>
+        <br>A imagem deve ser no formato JPG com tamanho máximo de 5MB</br>
+        <input type="submit" value="Upload"/><br/><br/>
 
-    <!-- hidden inputs -->
-    <input type="hidden" id="x" name="x" />
-    <input type="hidden" id="y" name="y" />
-    <input type="hidden" id="w" name="w" />
-    <input type="hidden" id="h" name="h" />
-  </form>
-</div><!--wrap-->
+        <br>Nova:<br>
+        <div id="onsuccessmsg" style="border:5px solid #CCC;padding:15px;">
+        </div>
+    </form>
 
-<!-- Cropper -->
-
-        <!--form action="upload.php" method="post" enctype="multipart/form-data">
-            Select image to upload:
-            <input type="file" name="<?php echo $_SESSION['user_name']; ?>" id="<?php echo $_SESSION['user_name']; ?>">
-            <input type="submit" value="Upload Image" name="submit">
-        </form-->
-
-        <?php
-
-            //echo '<img src="img/profile_images/'.$_SESSION['user_name'].'.png" alt=""/>'
-        ?>
         
 
     </div>

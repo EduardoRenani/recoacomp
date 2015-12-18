@@ -15,6 +15,8 @@ include('_header.php');
     <link href="css/base_cadastro.css" rel="stylesheet">
     <link href="css/jquery.nouislider.min.css" rel="stylesheet">
     <link href="css/landing-page.css" rel="stylesheet">
+    <script src="js/jquery-customselect.js"></script>
+    <link href="css/jquery-customselect.css" rel="stylesheet" />
 
     <style>
     .tooltip {
@@ -51,11 +53,17 @@ include('_header.php');
     <script src="http://thecodeplayer.com/uploads/js/prefixfree-1.0.7.js" type="text/javascript" type="text/javascript"></script>
     <script src="js/jquery.nouislider.all.min.js" type="text/javascript"></script>
     <script src="js/tooltip.js" type="text/javascript"></script>
+    <script src="js/jquery.select-hierarchy.js" type="text/javascript"></script>
+   
 
     <!-- FUNÇÃO QUE FAZ O SORTABLE E ENVIA OS ID'S DAS COMPETÊNCIAS-->
     <script>
 
 
+    $(document).ready(function (){
+        $('select.drilldown').selectHierarchy({ hideOriginal: true });
+        $("#area_conhecimento").customselect();
+    });
 
     $(function(){
         $("#busca-competencias").keyup(function(e) {
@@ -74,14 +82,6 @@ include('_header.php');
         }
         });
 
-        $("#exemplo").noUiSlider({
-            start: 1,
-            step: 1,
-            range: {
-                min: 1,
-                max: 5
-            }
-        });
         function setText( value, handleElement, slider ){
             $("#exemplo").text( value );
         }
@@ -105,6 +105,8 @@ include('_header.php');
         $('#tabela2').sortable({
             connectWith: "#tabela1, #tabela1",
             receive : function (event, ui) {
+
+                $(".mensagemTooltipSortable").remove();
                 AjaxCompetenciaListas();
                 $("#tabela1").sortable('refreshPositions');
                 var idCompetencias = $("#tabela2").sortable('toArray').toString();
@@ -123,7 +125,7 @@ include('_header.php');
                 listaAtitudes = listaAtitudes.split("¬");
                 console.log(listaAtitudes);
                 console.log('oi');
-                document.getElementById('sub-conteudo2').innerHTML = '<div><div class="info-cadastro"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div></div>';
+                document.getElementById('sub-conteudo2').innerHTML = '<div class="info-cadastro"><?php echo HINT_CHA;?></div>';
                 for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
                             listaConhecimentos[i] = listaConhecimentos[i].replace(/%0D%0A/g, ' ');
@@ -142,6 +144,7 @@ include('_header.php');
         //         $("#tabela2").html("<option value='text'>text</option>");
            },
             update: function(event, ui) {
+                $(".mensagemTooltipSortable").remove();
                 var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
                 //window.alert(nomesCompetencias);
 
@@ -155,6 +158,8 @@ include('_header.php');
             connectWith: "#tabela1, #tabela2",
             receive : function (event, ui)
             {
+
+                $(".mensagemTooltipSortable").remove();
                 AjaxCompetenciaListas();
                 
                 $("#tabela1").sortable('refreshPositions');
@@ -171,7 +176,7 @@ include('_header.php');
                 console.log(listaConhecimentos);
                 console.log(listaHabilidades);
                 console.log(listaAtitudes);
-                document.getElementById('sub-conteudo2').innerHTML = '<div><div class="info-cadastro"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div></div>';
+                document.getElementById('sub-conteudo2').innerHTML = '<div class="info-cadastro"><?php echo HINT_CHA;?></div>';
                 for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
                             listaConhecimentos[i] = listaConhecimentos[i].replace(/%0D%0A/g, ' ');
@@ -191,27 +196,17 @@ include('_header.php');
         //         $("#tabela2").html("<option value='text'>text</option>");
            },
             update: function(event, ui) {
+                $(".mensagemTooltipSortable").remove();
                 var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
                 //window.alert(nomesCompetencias);
 
-                document.getElementById('arrayCompetencias').value = arrayCompetencias+",";
+                document.getElementById('arrayCompetencias').value = arrayCompetencias;
             }
         });
     });
 
 
-    // Bootstrap wizard, mais info em http://vadimg.com/twitter-bootstrap-wizard-example/
-    $(function() {
-       var $validator = $("#registrar_nova_disciplina").validate({
-            rules: {
-                url: {
-                    required: true,
-                    minlength: 3,
-                    url: true
-                }
-            }
-        }); 
-});
+
 </script>
 </head>
 
@@ -312,7 +307,7 @@ function AjaxCompetenciaListas(){
                     console.log(listaAtitudes);
                     console.log(']');
                     console.log('oi');
-                    document.getElementById('sub-conteudo2').innerHTML = '<div><div class="info-cadastro"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">[ ? ]</div></div></div>';
+                    document.getElementById('sub-conteudo2').innerHTML = '<div class="info-cadastro"><?php echo HINT_CHA;?></div>';
                     for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
                             listaConhecimentos[i] = listaConhecimentos[i].replace(/%0D%0A/g, ' ');
@@ -582,7 +577,7 @@ $(function(){
                 listaAtitudes = listaAtitudes.split("¬");
                 console.log(listaAtitudes);
                 console.log('oi');
-                document.getElementById('sub-conteudo2').innerHTML = '<div><div class="info-cadastro"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(5, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(5)">?</div></div></div>';
+                document.getElementById('sub-conteudo2').innerHTML = '<div><div class="info-cadastro"><?php echo TEXT_CHA;?> <?php echo HINT_CHA;?></div></div>';
                 for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
                             listaConhecimentos[i] = listaConhecimentos[i].replace(/%0D%0A/g, ' ');
@@ -603,6 +598,7 @@ $(function(){
         }
     }
 </script>
+
 
 <div class="fixedBackgroundGradient"></div>
 
@@ -646,25 +642,34 @@ $(function(){
                                     <input type="text" id="senha" name="senha" class="required">       
                                 </div>
                             </div>
+                            <!-- Área de conhecimento-->
+                            <?php 
+                            $OA = new OA();
+                            $OA = $OA->getAreasConhecimento();
+                            ?>
+
+                            <div class="control-group">
+                                <label class="control-label" for="descricao"><div style="float: left"><?php echo WORDING_KNOWLEDGE_AREA; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(4, '<?php echo HINT_KNOWLEDGE_AREA ?>')" onmouseout="deleteTooltip(4)">?</div></div>
+                                <div class="controls">
+                                    <select id="area_conhecimento" name="area_conhecimento" class="custom-select">
+                                    <option value=''>Selecione..</option>
+                                    <?php 
+                                    foreach ($OA as $OBJETO) {
+                                        echo '<option value="'.$OBJETO['area_conhecimento_id'].'">'.$OBJETO['nome_area_conhecimento'].'';
+                                    }
+                                    ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Descrição-->
                             <div class="control-group">
                                 <label class="control-label" for="descricao"><div style="float: left"><?php echo WORDING_DISCIPLINA_DESCRICAO; ?></div><div class="tooltiploco">
-                                    <div onmouseover="toolTip(4, 'Exposição do tema abordado pela disciplina e seus objetivos.')" onmouseout="deleteTooltip(4)">[ ? ]</div></div></label>
+                                    <div onmouseover="toolTip(5, 'Exposição do tema abordado pelo objeto e seus objetivo.')" onmouseout="deleteTooltip(5)">[ ? ]</div></div></label>
                                     <div class="controls">
                                         <textarea name="descricao" id="descricao" ROWS="5" COLS="40" class="required"></textarea>
                                     </div>
                             </div>
-                            <!--div class="control-group">
-                                <label class="control-label" for="descricao"><div style="float: left"><?php echo WORDING_AREA_CONHECIMENTO; ?></div><div class="tooltiploco">
-                                    <div onmouseover="toolTip(5, 'Área de conhecimento.')" onmouseout="deleteTooltip(5)">[ ? ]</div></div></label>
-                                    <div class="controls">
-                                        <select>
-                                            <option value="volvo">Volvo</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="mercedes">Mercedes</option>
-                                            <option value="audi">Audi</option>
-                                        </select>
-                                    </div>
-                            </div-->
                         </div>
 
 

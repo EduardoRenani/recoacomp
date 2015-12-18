@@ -102,14 +102,30 @@ class IndicesOA {
 		$dadosOAMaisAcessosValidos = array( "idOA" => $idOAMaisAcessosValidos,
 											"idDisciplina" => $this->getIdDisciplina()
 											);
-		if($this->getAcessosOA()->getMaisAcessosValidos($dadosOAMaisAcessosValidos) != 0 && $this->getAcessosOA()->getTempoAcessoOA()->getTempoMedioTodosOAS() != 0 && $this->getIndiceRejeicao() != 0) {
+		if($this->verificaDadosCalculo()) {
 			$indiceRelevancia = $this->getAcessosOA()->getAcessosValidos()/$this->getAcessosOA()->getMaisAcessosValidos($dadosOAMaisAcessosValidos);
 			$indiceRelevancia += $this->getAcessosOA()->getTempoAcessoOA()->getTempoMedioOA()/$this->getAcessosOA()->getTempoAcessoOA()->getTempoMedioTodosOAS();
-			$indiceRelevancia *= (1-($this->getIndiceRejeicao()/100));
+			$indiceRelevancia *= ($this->getIndiceAceitacao/100);
 			$this->setIndiceRelevancia(floatval($indiceRelevancia));
 		}
 		else {
 			$this->setIndiceRelevancia(floatval(-1));
+		}
+	}
+
+
+	private function verificaDadosCalculo() {
+		if($this->getAcessosOA()->getMaisAcessosValidos($dadosOAMaisAcessosValidos) != 0) {
+			return false;
+		}
+		else if($this->getAcessosOA()->getTempoAcessoOA()->getTempoMedioTodosOAS() != 0) {
+			return false;
+		}
+		else if($this->getIndiceRejeicao() != 0) {
+			return false;
+		}
+		else {
+			return true;
 		}
 	}
 
@@ -173,6 +189,13 @@ class IndicesOA {
 	public function setIndiceRejeicao($indice) {
 		$this->validaFloat($indice);
 		$this->indiceRejeicao = $indice;
+	}
+
+	/**
+	 * @return float id índice de aceitação
+	 */
+	public function getIndiceAceitacao() {
+		return (1-$this->getIndiceRejeicao());
 	}
 
 	/**

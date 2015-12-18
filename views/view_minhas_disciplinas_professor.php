@@ -137,7 +137,7 @@
                                 <div>
                                     <a href="#close" title="Close" class="close">X</a>
                                     <div class="top-cadastro"><?php echo 'Excluir disciplina?'; ?></div>
-                                        <a href="#close" class="botao-med" id="<?php echo $listaDisciplina[3][$i][0]?>" onClick="deletarDisciplina();" title="Deletar">Deletar</a>
+                                        <a href="#close" class="botao-med" id="<?php echo $listaDisciplina[3][$i][0]?>" onClick="deletarDisciplina();" title="Deletar">Excluir</a>
                                         <a href="#close" class="botao-med" title="Cancelar">Cancelar</a>
                                     <!--/div-->
                                 </div>

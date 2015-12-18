@@ -67,57 +67,56 @@
 
 <div class="disciplinas">
     <div class="top-disciplinas">Minhas Disciplinas</div>
-        <div class="disciplinas-content">           
+        <div class="disciplinas-content">
             <ul class="disciplinas-list">
-                
-
             <?php
                 // Exibir todas as disciplinas disponiveis e permitir cadastros nas mesmas
                 $listaDisciplina = array();
-                                
+
+                $disciplinasOrdemAlfabetica = $disciplina->getUserDisciplinasByASC($_SESSION['user_id']);
+
                 $listaDisciplina[0] = $disciplina->getUserDisciplinas($_SESSION['user_id'], 'nomeDisciplina');
                 $listaDisciplina[1] = $disciplina->getUserDisciplinas($_SESSION['user_id'], 'nomeCurso');
                 $listaDisciplina[2] = $disciplina->getUserDisciplinas($_SESSION['user_id'], 'descricao');
                 $listaDisciplina[3] = $disciplina->getUserDisciplinas($_SESSION['user_id'], 'id');
-                $contador = count($listaDisciplina[0]);
-                //Imprime o nome de cada disciplina
-                //print_r($listaDisciplina[0]);
-                for($i=0; $i<$contador;$i++){
+
+
+
+                foreach ($disciplinasOrdemAlfabetica as $ordemAlfabetica => $disciplina) {
                     // Se a disciplina não estiver com a flag excluida ela será mostrada
-                    if(!$disciplina->isExcluida($listaDisciplina[3][$i][0])){
+                    if($disciplina['excluida'] === '0'){
                         if(!(isset($_POST['codTipoUsuario']))){
                             echo
                                 "<li class='disciplinas-item'>".
                                     "<div class='disciplina-item-content'>".
                                         "<div class='lista-disciplina'>".
-                                            "<h3>".$listaDisciplina[0][$i][0]."</h3>".
-                                            "<h4>".$listaDisciplina[1][$i][0]."</h4>".
-                                            "<p>".$listaDisciplina[2][$i][0].
+                                            "<h3>".$disciplina['nomeDisciplina']."</h3>".
+                                            "<h4>".$disciplina['nomeCurso']."</h4>".
+                                            "<p>".$disciplina['descricao'].
                                             "<br>".
-                                            "<br><a href='#openModalDeleteDisciplina' id=".$listaDisciplina[3][$i][0]." class='botao-med' onClick='getDisciplinaId(this.id)'>Excluir</a>". // 
+                                            "<br><a href='#openModalDeleteDisciplina' id=".$disciplina['iddisciplina']." class='botao-med' onClick='getDisciplinaId(this.id)'>Excluir</a>". // 
                                         "</div>".
                                     "</div>".
                                     "<div style='display: block;'>".
                                         "<form method='post' action='editar_disciplina.php' name='senha_disciplina'>".
-                                            "<input type='hidden' id='idDisciplina' name='idDisciplina' value=".$listaDisciplina[3][$i][0]." />".
-                                            "<input type='submit' name='editar_disciplina.php' action='' value='Ver Disciplina' />".
+                                            "<input type='hidden' id='idDisciplina' name='idDisciplina' value=".$disciplina['iddisciplina']." />".
+                                            "<input type='submit' name='editar_disciplina.php' action='' value='Informações da Disciplina' />".
                                         "</form>".
                                         "<div class='button'>".
                                         "<form action='cadastro_disciplina_cha_teste.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
-                                           "<input type='hidden' name='disc' value='".$listaDisciplina[3][$i][0]."'>".
+                                           "<input type='hidden' name='disc' value='".$disciplina['iddisciplina']."'>".
                                             "<input type='submit' value='Testar Recomendação'></br></br>".
                                             "</form>".
                                         "</div>".
                                     "</div>".
                                 "</li>";
-                        
                         ?>
                         <!-- Modal -->
                         <div id="openModalDeleteDisciplina" class="modalDialog" id="excluirDisciplinaDialog">
                                 <div>
                                     <a href="#close" title="Close" class="close">X</a>
                                     <div class="top-cadastro"><?php echo 'Excluir disciplina?'; ?></div>
-                                        <a href="#close" class="botao-med" id="<?php echo $listaDisciplina[3][$i][0]?>" onClick="deletarDisciplina();" title="Deletar">Deletar</a>
+                                        <a href="#close" class="botao-med" id="<?php echo $disciplina['iddisciplina']?>" onClick="deletarDisciplina();" title="Deletar">Excluir</a>
                                         <a href="#close" class="botao-med" title="Cancelar">Cancelar</a>
                                     <!--/div-->
                                 </div>
@@ -125,27 +124,27 @@
                         </div>
 <?php                   } else { //  Se tiver setado o _POST pra ver como aluno/professor
                             $tipoUsuario = $_POST['codTipoUsuario'];
-                                if($tipoUsuario == 2){ // Se a visão estiver de aluno não mostrar ver disciplina
+                                if($tipoUsuario == 2){ // Se a visão estiver de aluno não mostrar ver disciplina mas sim disciplinas em que estou matriculado
                                 echo
                                     "<li class='disciplinas-item'>".
                                         "<div class='disciplina-item-content'>".
                                             "<div class='lista-disciplina'>".
-                                                "<h3>".$listaDisciplina[0][$i][0]."</h3>".
-                                                "<h4>".$listaDisciplina[1][$i][0]."</h4>".
-                                                "<p>".$listaDisciplina[2][$i][0]."</p>".
+                                                "<h3>".$disciplina['nomeDisciplina']."</h3>".
+                                                "<h4>".$disciplina['nomeCurso']."</h4>".
+                                                "<p>".$disciplina['descricao']."</p>".
                                                 "<p></p>".
                                                 "<br>".
-                                                "<br><a href='#openModalDeleteDisciplina' id=".$listaDisciplina[3][$i][0]." class='botao-med' onClick='getDisciplinaId(this.id)'>Excluir</a>". // 
+                                                "<br><a href='#openModalDeleteDisciplina' id=".$disciplina['iddisciplina']." class='botao-med' onClick='getDisciplinaId(this.id)'>Excluir</a>". // 
                                             "</div>".
                                         "</div>".
                                         "<div style='display: block;'>".
                                             "<form method='post' action='editar_disciplina.php' name='senha_disciplina'>".
-                                                "<input type='hidden' id='idDisciplina' name='idDisciplina' value=".$listaDisciplina[3][$i][0]." />".
+                                                "<input type='hidden' id='idDisciplina' name='idDisciplina' value=".$disciplina['iddisciplina']." />".
                                                 "<input type='submit' name='editar_disciplina.php' action='' value='Ver Disciplina' />".
                                             "</form>".
                                             "<div class='button'>".
                                             "<form action='cadastro_disciplina_cha_teste.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
-                                               "<input type='hidden' name='disc' value='".$listaDisciplina[3][$i][0]."'>".
+                                               "<input type='hidden' name='disc' value='".$disciplina['iddisciplina']."'>".
                                                 "<input type='submit' value='Testar Recomendação'></br></br>".
                                                 "</form>".
                                             "</div>".
@@ -157,7 +156,7 @@
                                             <div>
                                                 <a href="#close" title="Close" class="close">X</a>
                                                 <div class="top-cadastro"><?php echo 'Excluir disciplina?'; ?></div>
-                                                    <a href="#close" class="botao-med" id="<?php echo $listaDisciplina[3][$i][0]?>" onClick="deletarDisciplina();" title="Deletar">Deletar</a>
+                                                    <a href="#close" class="botao-med" id="<?php echo $disciplina['iddisciplina']?>" onClick="deletarDisciplina();" title="Deletar">Excluir</a>
                                                     <a href="#close" class="botao-med" title="Cancelar">Cancelar</a>
                                                 <!--/div-->
                                             </div>
@@ -168,16 +167,16 @@
                                         "<li class='disciplinas-item'>".
                                             "<div class='disciplina-item-content'>".
                                                 "<div class='lista-disciplina'>".
-                                                    "<h3>".$listaDisciplina[0][$i][0]."</h3>".
-                                                    "<h4>".$listaDisciplina[1][$i][0]."</h4>".
-                                                    "<p>".$listaDisciplina[2][$i][0].
+                                                    "<h3>".$disciplina['nomeDisciplina']."</h3>".
+                                                    "<h4>".$disciplina['nomeCurso']."</h4>".
+                                                    "<p>".$disciplina['descricao'].
                                                     "<br>".
                                                 "</div>".
                                             "</div>".
                                             "<div style='display: block;'>".
                                                 "<div class='button'>".
                                                 "<form action='cadastro_disciplina_cha_teste.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
-                                                   "<input type='hidden' name='disc' value='".$listaDisciplina[3][$i][0]."'>".
+                                                   "<input type='hidden' name='disc' value='".$disciplina['iddisciplina']."'>".
                                                     "<input type='submit' value='Solicitar Recomendação'></br></br>".
                                                     "</form>".
                                                 "</div>".
@@ -187,7 +186,20 @@
                             } // end if isset
                          }// end if excluida
                         //<!-- /.modalDialog -->
-                     } // end for ?>
+                     } // end for
+                    
+
+/*
+                $listaDisciplina[0] = $disciplina->getUserDisciplinas($_SESSION['user_id'], 'nomeDisciplina');
+                $listaDisciplina[1] = $disciplina->getUserDisciplinas($_SESSION['user_id'], 'nomeCurso');
+                $listaDisciplina[2] = $disciplina->getUserDisciplinas($_SESSION['user_id'], 'descricao');
+                $listaDisciplina[3] = $disciplina->getUserDisciplinas($_SESSION['user_id'], 'id');
+
+                $contador = count($listaDisciplina[0]);
+                //Imprime o nome de cada disciplina
+                //print_r($listaDisciplina[0]);
+*/
+                ?>
             </ul>
          </div>  
 

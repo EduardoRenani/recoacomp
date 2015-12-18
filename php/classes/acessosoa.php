@@ -7,7 +7,7 @@
  */
 
 class AcessosOA {
-	const TEMPO_MINIMO = 120;
+	const TEMPO_MINIMO = 2;
 
 	const TEMPO_MAXIMO = 4800;
 

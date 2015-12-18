@@ -234,6 +234,7 @@ if (isset($OA)) {
         $('#tabela2').sortable({
             connectWith: "#tabela1, #tabela1",
             receive : function (event, ui) {
+                $('.mensagemTooltipSortable').remove();
                 $("#tabela1").sortable('refreshPositions');
                 var idCompetencias = $("#tabela2").sortable('toArray').toString();
                 var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
@@ -248,6 +249,7 @@ if (isset($OA)) {
         //         $("#tabela2").html("<option value='text'>text</option>");
            },
             update: function(event, ui) {
+                $('.mensagemTooltipSortable').remove();
                 var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
                 //window.alert(nomesCompetencias);
 
@@ -261,6 +263,7 @@ if (isset($OA)) {
             connectWith: "#tabela1, #tabela2",
             receive : function (event, ui)
             {
+                $('.mensagemTooltipSortable').remove();
                 
                 $("#tabela1").sortable('refreshPositions');
                 var idCompetencias = $("#tabela2").sortable('toArray').toString();
@@ -277,6 +280,7 @@ if (isset($OA)) {
         //         $("#tabela2").html("<option value='text'>text</option>");
            },
             update: function(event, ui) {
+                $('.mensagemTooltipSortable').remove();
                 var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
                 //window.alert(nomesCompetencias);
 
@@ -364,7 +368,7 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
 <script language="javascript">
     function mudaTab(qualTab) {
         if(qualTab == 1) {
-            if(document.getElementById('status').innerHTML == "OK" && document.getElementsByName('nome')[0].value.length > 0 && document.getElementsByName('descricaoNome')[0].value.length > 0) {
+            if(document.getElementById('status').innerHTML == "OK" && document.getElementsByName('nome')[0].value.length > 0 && document.getElementsByName('descricaoNome')[0].value.length > 0 && document.getElementsByName('conhecimentoDescricao')[0].value.length > 0 && document.getElementsByName('habilidadeDescricao')[0].value.length > 0 && document.getElementsByName('atitudeDescricao')[0].value.length > 0) {
                 document.getElementsByName('descricaoNome')[0].style.border = "0";
                 document.getElementsByName('conhecimentoDescricao')[0].style.border = "0";
                 document.getElementsByName('habilidadeDescricao')[0].style.border = "0";
@@ -403,22 +407,22 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
                     document.getElementsByName('descricaoNome')[0].style.border = "0";
                 }
                 if(document.getElementsByName('conhecimentoDescricao')[0].value.length == 0) {
-                    document.getElementsByName('conhecimentoDescricao')[0].style.border = "1px solid #dc8810";
-                    document.getElementsByName('conhecimentoDescricao')[0].setAttribute("placeholder", "Este campo é necessário");
+                    document.getElementsByName('conhecimentoDescricao')[0].parentNode.style.border = "1px solid #dc8810";
+                    //document.getElementsByName('conhecimentoDescricao')[0].setAttribute("placeholder", "Este campo é necessário");
                 }
                 else {
                     document.getElementsByName('conhecimentoDescricao')[0].style.border = "0";
                 }
                 if(document.getElementsByName('habilidadeDescricao')[0].value.length == 0) {
-                    document.getElementsByName('habilidadeDescricao')[0].style.border = "1px solid #dc8810";
-                    document.getElementsByName('habilidadeDescricao')[0].setAttribute("placeholder", "Este campo é necessário");
+                    document.getElementsByName('habilidadeDescricao')[0].parentNode.style.border = "1px solid #dc8810";
+                    //document.getElementsByName('habilidadeDescricao')[0].setAttribute("placeholder", "Este campo é necessário");
                 }
                 else {
                     document.getElementsByName('habilidadeDescricao')[0].style.border = "0";
                 }
                 if(document.getElementsByName('atitudeDescricao')[0].value.length == 0) {
-                    document.getElementsByName('atitudeDescricao')[0].style.border = "1px solid #dc8810";
-                    document.getElementsByName('atitudeDescricao')[0].setAttribute("placeholder", "Este campo é necessário");
+                    document.getElementsByName('atitudeDescricao')[0].parentNode.style.border = "1px solid #dc8810";
+                    //document.getElementsByName('atitudeDescricao')[0].setAttribute("placeholder", "Este campo é necessário");
                 }
                 else {
                     document.getElementsByName('atitudeDescricao')[0].style.border = "0";
@@ -607,7 +611,7 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
                         <div id="menu">
                             <div id="menudiv" class="meu-active"><?php echo WORDING_GENERAL_INFORMATION; ?></div>
                             <div id="seta" class="seta-active"></div>
-                            <div id="menudiv1"><?php echo WORDING_REGISTER_NOVO_OA; ?></div>
+                            <div id="menudiv1">Finalizar</div>
                     </div>
                         <div id="conteudo" class="clearfix">
                             <div id="sub-conteudo" class="tab-active">
@@ -655,7 +659,7 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
 
                             <ul class="pager wizard">
                                 <li class="next" style="float:right"><div id="buttonNext" class='text-left' onclick="mudaTab(1)"><a class="button-next" href="javascript:;">Próximo</a></div></li>
-                                <li class="previous" style="float:none; display: none;" id="buttonPrevious" onclick="mudaTab(3)"><div class="text-right button-voltar"><a href="javascript:;">Voltar</a></div></li>
+                                <li class="previous" style="float:none; display: none;" id="buttonPrevious" onclick="mudaTab(2)"><div class="text-right button-voltar"><a href="javascript:;">Voltar</a></div></li>
                             </ul>
 
                         </div>  

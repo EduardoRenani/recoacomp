@@ -3,10 +3,8 @@
 
 /**
  * handles the user login/logout/session
- * @author Panique
- * @link http://www.php-login.net
- * @link https://github.com/panique/php-login-advanced/
- * @license http://opensource.org/licenses/MIT MIT License
+ * Based on Panique system (https://github.com/panique/php-login-advanced/)
+ * Open Source
  */
 class Login
 {
@@ -30,6 +28,10 @@ class Login
      * @var int $acesso User type access 
     */
     private $acesso = null;
+    /**
+     * @var int $tipo_visao Como o usuário está vendo o sistema 
+    */
+    private $tipo_visao = null;
     /**
      * @var boolean $user_is_logged_in The user's login status
      */
@@ -190,6 +192,7 @@ class Login
         $this->user_name = $_SESSION['user_name'];
         $this->user_email = $_SESSION['user_email'];
         $this->acesso = $_SESSION['acesso'];
+        $this->tipo_visao = $_SESSION['tipo_visao'];
 
         // set logged in status to true, because we just checked for this:
         // !empty($_SESSION['user_name']) && ($_SESSION['user_logged_in'] == 1)
@@ -225,6 +228,7 @@ class Login
                         $_SESSION['user_name'] = ucfirst($result_row->user_name);
                         $_SESSION['user_email'] = $result_row->user_email;
                         $_SESSION['acesso'] = $result_row->acesso;
+                        $_SESSION['tipo_visao'] = $result_row->tipo_visao;
                         $_SESSION['user_logged_in'] = 1;
 
                         // declare user id, set the login status to true
@@ -232,6 +236,7 @@ class Login
                         $this->user_name = $result_row->user_name;
                         $this->user_email = $result_row->user_email;
                         $this->acesso = $result_row->acesso;
+                        $this->tipo_visao = $result_row->tipo_visao;
                         $this->user_is_logged_in = true;
 
                         // Cookie token usable only once
@@ -304,6 +309,7 @@ class Login
                 $_SESSION['user_name'] = ucfirst($result_row->user_name);
                 $_SESSION['user_email'] = $result_row->user_email;
                 $_SESSION['acesso'] = $result_row->acesso;
+                $_SESSION['tipo_visao'] = $result_row->tipo_visao;
                 $_SESSION['user_logged_in'] = 1;
 
                 // declare user id, set the login status to true
@@ -311,6 +317,7 @@ class Login
                 $this->user_name = $result_row->user_name;
                 $this->user_email = $result_row->user_email;
                 $this->acesso = $result_row->acesso;
+                $this->tipo_visao = $result_row->tipo_visao;
                 $this->user_is_logged_in = true;
 
                 // reset the failed login counter for that user

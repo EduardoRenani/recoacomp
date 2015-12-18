@@ -176,7 +176,7 @@ class CompTeste{
 
 			echo "<ul class='disciplinas-list'>";
 			if ($cont != 0){
-			echo "<div id='conteudo' class='conteudo clearfix' style='width: auto; height: auto; min-height: auto;'><li class='recomendacao-item' style='margin-bottom: 0;width: auto;height: auto;'>
+			echo "<div id='conteudo' class='conteudo clearfix' style='width: auto; height: auto; min-height: auto;'><li class='recomendacao-item' style='margin-bottom: 0;'>
 						<div class='recomendacao-item-content'> 
 							<h3>Competência: ".$this->nomeComp."</h3>
 							<p>".$this->descricaoComp."</p>".

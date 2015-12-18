@@ -65,7 +65,7 @@ define("WORDING_LOGOUT", "Log out");
 define("WORDING_NEW_EMAIL", "Novo email");
 define("WORDING_NEW_PASSWORD", "Nova senha");
 define("WORDING_NEW_PASSWORD_REPEAT", "Repita nova senha");
-define("WORDING_NEW_USERNAME", "Novo nome de usuário (nome de usuário não pode ser vazio e deve ter azAZ09 e 2-64 caracteres)");
+define("WORDING_NEW_USERNAME", "Novo nome de usuário");
 define("WORDING_OLD_PASSWORD", "Sua ANTIGA senha");
 define("WORDING_PASSWORD", "Senha");
 define("WORDING_PROFILE_PICTURE", "Foto do perfil (from gravatar):");
@@ -96,6 +96,8 @@ define("WORDING_REGISTER_SUCESSFULLY", "Cadastro efetuado com sucesso!");
 define("WORDING_EDIT_SUCESSFULLY", "Edição efetuada com sucesso!");
 define("WORDING_TEAM", "Equipe");
 define("ADMIN_ACCESS", "2");
+define("VISAO_ALUNO", "1");
+define("VISAO_PROFESSOR", "2");
 
 // Página editar disciplina
 define("WORDING_EDIT_DESCRIPTION", "Alterar descrição");
@@ -131,7 +133,7 @@ define("WORDING_FILL_YOUR_CHA","Preencha seu CHA");
 define("WORDING_FILL_TEST_CHA","Preencha o CHA de teste");
 define("WORDING_FINALIZE","Finalizar");
 define("WORDING_TEST_REC","Testar recomendação");
-define("WORDING_REGISTER_CHA","Cadastrar CHA");
+define("WORDING_REGISTER_CHA","Cadastrar Perfil");
 define("WORDING_NULL_COMPETENCE","Nenhuma competência foi selecionada");
 define("WORDING_NEW_DISCIPLINA_NAME","Novo nome para disciplina");
 define("WORDING_NEW_COURSE_NAME","Novo nome para curso");
@@ -232,6 +234,7 @@ define("WORDING_EXPERIENCE", "Experiência");
 define("WORDING_PROBLEM", "Problema");
 define("WORDING_AUTO_AVALIATION", "Auto Avaliação");
 define("WORDING_LECTURE", "Palestra");
+define("WORDING_MULTIM", "Materiais multimídias");
 define("WORDING_LEARNING_RESOURCE", "Recurso Aprendizagem");
 define("WORDING_FINAL_USER", "Usuário Final");
 define("WORDING_PROFESSOR", "Professor");
@@ -259,6 +262,7 @@ define("WORDING_USE", "Uso");
 // -- Categoria Geral mensagens
 define("WORDING_GENERAL_INFORMATION","Dados Gerais");
 define("WORDING_DESCRIPTION","Descrição");
+define("WORDING_KNOWLEDGE_AREA","Área de conhecimento");
 define("WORDING_FILL_DESCRIPTION","Preencha a descrição");
 define("WORDING_FILL_NAME","Preencha o nome");
 define("WORDING_FILL_URL","URL inválido");
@@ -275,8 +279,9 @@ define("WORDING_COMPETENCIA", "Competência ");
 define("WORDING_CHA", "CHA ");
 define("WORDING_CREATE_COMPETENCA", "Criar Nova Competência");
 define("WORDING_ASSOCIATE_OA", "Associar OA's para nova competência");
-define("WORDING_ASSOCIATE_COMP", "Associar uma ou mais competências para nova disciplina");
-define("WORDING_ASSOCIATE_COMP_OA", "Associar uma ou mais competências para novo objeto");
+define("WORDING_ASSOCIATE_COMP", "Associar à disciplina as competências que serão abordadas por ela.");
+define("WORDING_ASSOCIATE_COMP_OA", "Associar uma ou mais competências abordadas por este objeto de aprendizagem.");
+define("WORDING_ASSOCIATE_OA_COMP", "Associar um ou mais objetos de aprendizagem que apóiem o desenvolvimento desta nova competência.");
 define("WORDING_ASSOCIATE_COMP_EDIT", "Editar competências");
 define("MESSAGE_NAME_EMPTY", "Nome vazio");
 define("MESSAGE_DESCRICAO_EMPTY", "Descrição vazia");
@@ -305,6 +310,7 @@ define("WORDING_MY_PROFILE", "Meu perfil");
 define("HINT_NAME", "Nome do objeto"); 
 define("HINT_IDIOMA", "Idioma do objeto"); 
 define("HINT_DESCRIPTION", "Descrição textual do conteúdo do objeto"); 
+define("HINT_KNOWLEDGE_AREA", "Área de conhecimento em que o Objeto de Aprendizagem se enquadra"); 
 define("HINT_KEYWORD", "Palavras principais ou termos que remetem ao conteúdo abordado pelo OA."); 
 
 //Categoria ciclo de vida
@@ -337,6 +343,6 @@ define("HINT_USE", "comentários sobre as condições de uso do objeto");
 define("HINT_COMPETENCY", "Este metadado define os tipos de competências que um objeto de aprendizagem tem potencial para desenvolver através do conteúdo e atividades propostas neste recurso. Parte-se da definição que competência é formada por conhecimentos, habilidades e atitudes (CHA) aplicada em um determinado contexto com o objetivo de resolver problemas ou lidar com novidades e imprevistos");
 
 //Textos de ajuda CHA
-define("TEXT_CHA", "Indicar um valor de 1 a 5");
-define("HINT_CHA", "Representa o quanto esta disciplina irá abordar os conhecimentos, habilidades e atitudes de cada competência cadastrada.");
+define("TEXT_CHA", "Indicar um valor de 0 a 5");
+define("HINT_CHA", "Indicar um valor de 0 a 5, que represente o quanto esta disciplina irá abordar os conhecimentos, habilidades e atitudes de cada competência cadastrada.");
 define("HINT_CHA_OA", "Representa o quanto este objeto irá abordar os conhecimentos, habilidades e atitudes de cada competência cadastrada.");

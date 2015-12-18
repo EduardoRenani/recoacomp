@@ -62,7 +62,7 @@ class OA{
      */
     private   $descricao_educacional       = "";
      /**
-     * @var string $faixaEtaria faixa etaria recomendada do OA
+     * @var array $faixaEtaria faixa etaria recomendada do OA
      * Educação Infantil
      * Ensino Fundamental
      * Ensino Médio
@@ -132,6 +132,10 @@ class OA{
      */
     private $idioma                     = "";
     /**
+     * @var string $area_conhecimento area de conhecimento do OA
+     */
+    private $area_conhecimento                     = "";
+    /**
      * @var boolean $user_is_logged_in Status para verificar se o usuário está logado
      */
     private $user_is_logged_in = false;
@@ -147,8 +151,6 @@ class OA{
     {
         if (isset($_POST["registrar_novo_OA"])) {
             // Função para cadastro de novo Objeto de Aprendizagem
-            //print_r($_POST);
-            //echo "</pre>";
             $this->criaOA(
                 //Categoria vida:
                 $_POST['date'],
@@ -170,10 +172,12 @@ class OA{
                 $_POST['arrayCompetencias'],
                 $_POST['conhecimento'],
                 $_POST['habilidade'],
-                $_POST['atitude']
+                $_POST['atitude'],
+                $_POST['area_conhecimento']
                 );
 
         } elseif (isset($_POST["registrar_novo_OA_modal"])) {
+                echo 'should not be here';
                 $this->criaOA(
                 //Categoria vida:
                 $_POST['date'],
@@ -250,16 +254,28 @@ class OA{
         $arrayCompetencias,
         $conhecimento,
         $habilidade,
-        $atitude){
+        $atitude,
+        $area_conhecimento){
 
         // -------------------------------------------/
         // Remover espaços em branco em excesso das strings
         $formaUtilizacao = trim($formaUtilizacao);
-        $tipoOA = trim($tipoOA);
 
+        foreach($tipoOA as $tOA) {
+            $this->tipoOA = $this->tipoOA.",".$tOA;
+        }
+
+        print_r($this->tipoOA);
         // Categoria Educacional
         $descricao_eduacional = trim($descricao_eduacional);
-        $faixaEtaria =  trim($faixaEtaria);
+
+
+        foreach($faixaEtaria as $fEtaria) {
+            $this->faixaEtaria = $this->faixaEtaria.",".$fEtaria;
+        }
+        print_r($this->faixaEtaria);
+        
+
         $recursoAprendizagem = trim($recursoAprendizagem);
 
         // Categoria Geral
@@ -278,11 +294,9 @@ class OA{
 
         // Categoria Técnica
         $this->formaUtilizacao = $formaUtilizacao;
-        $this->tipoOA = $tipoOA;
 
         //Categoria Educacional
         $this->descricao_educacional = $descricao_eduacional;
-        $this->faixaEtaria= $faixaEtaria;
         $this->recursoAprendizagem= $recursoAprendizagem;
 
         // Dados Gerais
@@ -291,6 +305,7 @@ class OA{
         $this->url = $url;
         $this->palavraChave= $palavrachave;
         $this->idioma= $idioma;
+        $this->area_conhecimento = $area_conhecimento;
 
         //echo 'chegou na validação de dados <br>';
         //TODO Validação de dados
@@ -325,28 +340,6 @@ class OA{
                 }
 
             } else{
-                // Insert na categoria_direito
-                /**$stmt = $this->db_connection->prepare("
-                        INSERT INTO
-                        categoria_direito(
-                            custo,
-                            direitoAutoral,
-                            uso)
-                        VALUES(
-                            :custo,
-                            :direitoAutoral,
-                            :uso)");
-                $stmt->bindParam(':custo',$custo, PDO::PARAM_INT);
-                $stmt->bindParam(':direitoAutoral',$direitoAutoral, PDO::PARAM_INT);
-                $stmt->bindParam(':uso',$uso, PDO::PARAM_STR);
-                $stmt->execute();
-                $rss = $stmt->fetchAll();
-                $ultimoID = count($rss);
-                //echo $ultimoID;
-                //echo 'insert da categoria direito <br>';
-                // Id categoria direito pega o last insert
-                $this->idCategoriaDireito = $this->db_connection->lastInsertId();
-                **/
                 $this->db_connection = null; // Fechar a última conexão
                 $this->databaseConnection(); // Abre Nova conexão
 
@@ -363,14 +356,15 @@ class OA{
                             :faixaEtaria,
                             :recursoAprendizagem)");
                 $stmt->bindParam(':descricao_educacional',$descricao_eduacional, PDO::PARAM_STR);
-                $stmt->bindParam(':faixaEtaria',$faixaEtaria, PDO::PARAM_STR);
+                $stmt->bindParam(':faixaEtaria',$this->faixaEtaria, PDO::PARAM_STR);
                 $stmt->bindParam(':recursoAprendizagem',$recursoAprendizagem, PDO::PARAM_STR);
                 $stmt->execute();
                 // Id categoria educacional pega o last insert
                 $this->idCategoriaEduacional = $this->db_connection->lastInsertId();
-                //echo 'id categoria educacional: '. $this->db_connection->lastInsertId() . '<br>';
                 $this->db_connection = null; // Fechar a última conexão
                 $this->databaseConnection(); // Abre Nova conexão
+
+
 
                 // Insert na categoria técnica
                 // Delton Vaz - 14/09 - Alterações Reunião 04/09 
@@ -385,12 +379,14 @@ class OA{
                             :formaUtilizacao,
                             :tipoOA)");
                 $stmt->bindParam(':formaUtilizacao',$formaUtilizacao, PDO::PARAM_STR);
-                $stmt->bindParam(':tipoOA',$tipoOA, PDO::PARAM_STR);
+                $stmt->bindParam(':tipoOA',$this->tipoOA, PDO::PARAM_STR);
                 $stmt->execute();
                 // Id categoria técnica
                 $this->idCategoriaTecnica = $this->db_connection->lastInsertId();
                 $this->db_connection = null; // Fechar a última conexão
                 $this->databaseConnection(); // Abre Nova conexão
+
+
                 // Insert na categoria vida
                 $stmt = $this->db_connection->prepare("
                         INSERT INTO
@@ -405,6 +401,7 @@ class OA{
                 $this->db_connection = null; // Fechar a última conexão
                 $this->databaseConnection(); // Abre Nova conexão
                 // Insert na CESTA
+                echo 'Chegou aee';
                 $stmt = $this->db_connection->prepare("
                         INSERT INTO
                         cesta(
@@ -412,33 +409,33 @@ class OA{
                             idcategoria_tecnica,
                             idcategoria_eduacional,
                             idusuario,
-                            idcategoria_direito,
                             descricao,
                             nome,
                             url,
                             palavraChave,
-                            idioma)
+                            idioma,
+                            area_conhecimento)
                         VALUES(
                             :idcategoria_vida,
                             :idcategoria_tecnica,
                             :idcategoria_educacional,
                             :idusuario,
-                            :idcategoria_direito,
                             :descricao,
                             :nome,
                             :url,
                             :palavraChave,
-                            :idioma)");
+                            :idioma,
+                            :area_conhecimento)");
                 $stmt->bindParam(':idcategoria_vida',$this->idCategoriaVida, PDO::PARAM_INT);
                 $stmt->bindParam(':idcategoria_tecnica',$this->idCategoriaTecnica, PDO::PARAM_INT);
                 $stmt->bindParam(':idcategoria_educacional',$this->idCategoriaEduacional, PDO::PARAM_INT);
                 $stmt->bindParam(':idusuario',$idusuario, PDO::PARAM_INT);
-                $stmt->bindParam(':idcategoria_direito',$this->idCategoriaDireito, PDO::PARAM_INT);
                 $stmt->bindParam(':descricao',$descricao, PDO::PARAM_STR);
                 $stmt->bindParam(':nome',$nome, PDO::PARAM_STR);
                 $stmt->bindParam(':url',$url, PDO::PARAM_STR);
                 $stmt->bindParam(':palavraChave',$palavrachave, PDO::PARAM_STR);
                 $stmt->bindParam(':idioma',$idioma, PDO::PARAM_STR);
+                $stmt->bindParam(':area_conhecimento',$area_conhecimento, PDO::PARAM_INT);
                 $stmt->execute();
 
                 $lastID = $this->db_connection->lastInsertId();
@@ -457,9 +454,6 @@ class OA{
                     $stmt->bindParam(':atitude',$a, PDO::PARAM_INT);
                     $stmt->execute();
                 }
-
-
-                //echo 'aqui2';
                 $this->messages[] = WORDING_OA. ' ' .$nome.WORDING_CREATE_SUCESSFULLY;
                 $host  = $_SERVER['HTTP_HOST'];
                 $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
@@ -599,6 +593,18 @@ class OA{
         $database->bind(":idCategoriaVida", $idCategoriaVida);
         return $database->resultSet();
     }
+
+    /**
+     * Função que retorna dados da categoria vida de um OA
+     * @param $idCategoriaVida
+     */
+    public function getAreasConhecimento(){
+        $database = new Database();
+        $sql = "SELECT * FROM areas_conhecimento ORDER BY nome_area_conhecimento ASC" ;
+        $database->query($sql);
+        //$database->bind(":idCategoriaVida", $idCategoriaVida);
+        return $database->resultSet();
+    }
     
 } // Fecha CLass
 
@@ -625,6 +631,7 @@ $OA->criaOA(time(), 'status', 'versao', 'entidade', 'contribuicao', 'tempo_video
     'nomedfgdfghfhfg234',
     'url3dfgdffghfghfgg45435',
     'palavrachave',
-    'idioma');
+    'idioma',
+    321312312);
 ?>
 */

@@ -13,6 +13,11 @@
         <link href="css/tooltip.css" rel="stylesheet">
         <link href="css/base_cadastro.css" rel="stylesheet">
         <link href="css/progress_cadastro_OA_breadcrumb.css" rel="stylesheet">
+
+
+        <script src="js/jquery-customselect.js"></script>
+
+        <link href="css/jquery-customselect.css" rel="stylesheet" />
         <!-- Estava no Header-->
         
         
@@ -41,6 +46,13 @@
 
     <!-- clean separation of HTML and PHP -->
     <script>
+        $(function() {
+          $("#area_conhecimento").customselect();
+        });
+    </script>
+
+
+    <script>
 
         $(function() {
         $("#busca-competencias").keyup(function(e) {
@@ -63,6 +75,7 @@
             $('#tabela2').sortable({
                 connectWith: "#tabela1, #tabela1",
                 receive : function (event, ui) {
+                    $( ".mensagemTooltiploco" ).remove();
                     AjaxCompetenciaListas();
                     $("#tabela1").sortable('refreshPositions');
                     var idCompetencias = $("#tabela2").sortable('toArray').toString();
@@ -81,7 +94,7 @@
                     listaAtitudes = listaAtitudes.split("¬");
                     console.log(listaAtitudes);
                     console.log('oi');
-                    document.getElementById('sub-conteudo6').innerHTML = '<div class="info-cadastro"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(17, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(17)">?</div></div></div>';
+                    document.getElementById('sub-conteudo6').innerHTML = '<div class="info-cadastro"><?php echo TEXT_CHA;?> <?php echo HINT_CHA;?></div>';
                     for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
                             listaConhecimentos[i] = listaConhecimentos[i].replace(/%0D%0A/g, ' ');
@@ -115,6 +128,7 @@
                 connectWith: "#tabela1, #tabela2",
                 receive : function (event, ui)
                 {
+                    $( ".mensagemTooltipSortable" ).remove();
                     AjaxCompetenciaListas();
                     $("#tabela1").sortable('refreshPositions');
                     var idCompetencias = $("#tabela2").sortable('toArray').toString();
@@ -130,7 +144,7 @@
                     console.log(listaConhecimentos);
                     console.log(listaHabilidades);
                     console.log(listaAtitudes);
-                    document.getElementById('sub-conteudo6').innerHTML = '<div class="info-cadastro"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(17, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(17)">?</div></div>';
+                    document.getElementById('sub-conteudo6').innerHTML = '<div class="info-cadastro"><?php echo TEXT_CHA;?> <?php echo HINT_CHA;?></div>';
                     console.log(nomesCompetencias.length);
                     for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
@@ -151,10 +165,11 @@
             //         $("#tabela2").html("<option value='text'>text</option>");
                },
                 update: function(event, ui) {
+                    $( ".mensagemTooltipSortable" ).remove();
                     var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
                     //window.alert(nomesCompetencias);
 
-                    document.getElementById('arrayCompetencias').value = arrayCompetencias+",";
+                    document.getElementById('arrayCompetencias').value = arrayCompetencias+"";
                 }
             });
         });
@@ -261,7 +276,7 @@ function AjaxCompetenciaListas(){
                     listaAtitudes = listaAtitudes.split("¬");
                     console.log(listaAtitudes);
                     console.log('oi');
-                    document.getElementById('sub-conteudo6').innerHTML = '<div class="info-cadastro"></div><div class="tooltiploco"><div onmouseover="toolTip(7, \'<?php echo HINT_CHA;?>\')" onmouseout="deleteTooltip(7)">?</div></div>';
+                    document.getElementById('sub-conteudo6').innerHTML = '<div class="info-cadastro"><?php echo TEXT_CHA;?> <?php echo HINT_CHA;?></div>';
                     for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
                             listaConhecimentos[i] = listaConhecimentos[i].replace(/%0D%0A/g, ' ');
@@ -298,7 +313,7 @@ $(function(){AjaxCompetenciaListas()});
     <script language="javascript">
         function mudaTab(qualTab) {
             if(qualTab == 1) {
-                if(document.getElementsByName('nome')[0].value.length > 0 && document.getElementsByName('url')[0].value.length > 0 && document.getElementsByName('palavrachave')[0].value.length > 0 && document.getElementsByName('idioma')[0].value.length > 0 && document.getElementsByName('descricao')[0].value.length > 0) {
+                if(document.getElementsByName('nome')[0].value.length > 0 && document.getElementsByName('palavrachave')[0].value.length > 0 && document.getElementsByName('idioma')[0].value.length > 0 && document.getElementsByName('descricao')[0].value.length > 0 && (document.getElementsByName('url')[0].value != "http://" && document.getElementsByName('url')[0].value != "")) {
                     document.getElementsByName('nome')[0].style.border = "0";
                     document.getElementsByName('url')[0].style.border = "0";
                     document.getElementsByName('palavrachave')[0].style.border = "0";
@@ -332,9 +347,8 @@ $(function(){AjaxCompetenciaListas()});
                     else {
                         document.getElementsByName('nome')[0].style.border = "0";
                     }
-                    if(document.getElementsByName('url')[0].value.length == 0) {
+                    if(document.getElementsByName('url')[0].value.length == "" || document.getElementsByName('url')[0].value.length == "http://") {
                         document.getElementsByName('url')[0].style.border = "1px solid #dc8810";
-                        document.getElementsByName('url')[0].setAttribute("placeholder", "Este campo é necessário");
                     }
                     else {
                         document.getElementsByName('url')[0].style.border = "0";
@@ -655,16 +669,16 @@ $(function(){AjaxCompetenciaListas()});
                 listaConhecimentos = document.getElementById('listaConhecimentos').value;
                 listaConhecimentos = listaConhecimentos.split("¬");
                 console.log(listaConhecimentos);
-                console.log('oioioi');
+                //console.log('oioioi');
                 listaHabilidades = document.getElementById('listaHabilidades').value;
                 listaHabilidades = listaHabilidades.split("¬");
                 console.log(listaHabilidades);
-                console.log('oioi');
+                //console.log('oioi');
                 listaAtitudes = document.getElementById('listaAtitudes').value;
                 listaAtitudes = listaAtitudes.split("¬");
                 console.log(listaAtitudes);
-                console.log('oi');
-                document.getElementById('sub-conteudo6').innerHTML = '<div class="info-cadastro"><?php echo TEXT_CHA;?></div><div class="tooltiploco"><div onmouseover="toolTip(7, \'<?php echo HINT_CHA_OA;?>\')" onmouseout="deleteTooltip(7)">?</div></div>';
+                //console.log('oi');
+                document.getElementById('sub-conteudo6').innerHTML = '<div class="info-cadastro"><?php echo TEXT_CHA;?> <?php echo HINT_CHA;?></div>';
                 for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
                             listaConhecimentos[i] = listaConhecimentos[i].replace(/%0D%0A/g, ' ');
@@ -742,19 +756,38 @@ $(function(){AjaxCompetenciaListas()});
                             </select>
                         </div>
                     </div>
+                    <!-- Área de conhecimento-->
+                    <?php 
+                    $OA = new OA();
+                    $OA = $OA->getAreasConhecimento();
+                    ?>
+
+                    <div class="control-group">
+                        <label class="control-label" for="descricao"><div style="float: left"><?php echo WORDING_KNOWLEDGE_AREA; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(3, '<?php echo HINT_KNOWLEDGE_AREA ?>')" onmouseout="deleteTooltip(3)">?</div></div>
+                        <div class="controls">
+                            <select id="area_conhecimento" name="area_conhecimento" class="custom-select">
+                            <option value=''>Selecione..</option>
+                            <?php 
+                            foreach ($OA as $OBJETO) {
+                                echo '<option value="'.$OBJETO['area_conhecimento_id'].'">'.$OBJETO['nome_area_conhecimento'].'';
+                            }
+                            ?>
+                            </select>
+                        </div>
+                    </div>
                     <!-- Descrição -->
                     <div class="control-group">
-                        <label class="control-label" for="descricao"><div style="float: left"><?php echo WORDING_DESCRIPTION; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(3, '<?php echo HINT_DESCRIPTION ?>')" onmouseout="deleteTooltip(3)">?</div></div>
+                        <label class="control-label" for="descricao"><div style="float: left"><?php echo WORDING_DESCRIPTION; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(4, '<?php echo HINT_DESCRIPTION ?>')" onmouseout="deleteTooltip(4)">?</div></div>
                         <div class="controls">
                             <textarea name="descricao" id="descricao" ROWS="5" COLS="40"></textarea>
                         </div>
-                    </div>          
+                    </div>
                 </div>
                 <!-- Fim-->
                 <!-- Categoria Vida -->
                 <div id="sub-conteudo1" class="tab">
                         <div class="control-group">
-                            <label class="control-label" for="date"><div style="float: left"><?php echo WORDING_DATE; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(4, '<?php echo HINT_DATA ?>')" onmouseout="deleteTooltip(4)">?</div></div>
+                            <label class="control-label" for="date"><div style="float: left"><?php echo WORDING_DATE; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(5, '<?php echo HINT_DATA ?>')" onmouseout="deleteTooltip(5)">?</div></div>
                             <div class="controls">
                                 <input id="date" type="text" name="date" required />
                             </div>
@@ -776,7 +809,7 @@ $(function(){AjaxCompetenciaListas()});
                     <div class="control-group">
                         <label class="control-label" for="tipoOA"><?php echo WORDING_OA_TYPE; ?> (Utilize o CTRL para selecionar mais de um)</label>
                         <div class="controls">
-                            <select id = "tipoOA" name="tipoOA" required="true" multiple>
+                            <select id = "tipoOA[]" name="tipoOA[]" required="true" multiple>
                                 <option value = "material multimidia"><?php echo WORDING_MULTIMIDIA_MATERIAL ?></option>
                                 <option value = "animacao"><?php echo WORDING_ANIMATION ?></option>
                                 <option value = "livro digital"><?php echo WORDING_DIGITAL_BOOK ?></option>
@@ -791,7 +824,7 @@ $(function(){AjaxCompetenciaListas()});
                 <div id="sub-conteudo3" class="tab">
                     <!-- DESCRIÇÃO EDUCACIONAL -->
                     <div class="control-group">
-                        <label class="control-label" for="descricao_educacional"><div style="float: left"><?php echo WORDING_EDUCATIONAL_DESCRIPTION; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(5, '<?php echo HINT_EDUCACIONAL_DESCRIPTION ?>')" onmouseout="deleteTooltip(5)">?</div></div>
+                        <label class="control-label" for="descricao_educacional"><div style="float: left"><?php echo WORDING_EDUCATIONAL_DESCRIPTION; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(6, '<?php echo HINT_EDUCACIONAL_DESCRIPTION ?>')" onmouseout="deleteTooltip(6)">?</div></div>
                         <div class="controls">
                             <textarea name="descricao_educacional" id="descricao_educacional" ROWS="5" COLS="40"></textarea>
                         </div>
@@ -800,7 +833,7 @@ $(function(){AjaxCompetenciaListas()});
     				<div class="control-group">
                         <label class="control-label" for="faixaEtaria"><?php echo WORDING_AGE_GROUP; ?> (Utilize o CTRL para selecionar mais de um)</label>
                         <div class="controls">
-    						<select id = "faixaEtaria" name="faixaEtaria" required="true" multiple>
+    						<select id = "faixaEtaria[]" name="faixaEtaria[]" required="true" multiple>
     							<option value = "educacao infantil"><?php echo WORDING_CHILD_EDUCATION ?></option>
     							<option value = "ensino fundamental"><?php echo WORDING_BASIC_EDUCATION ?></option>
     							<option value = "ensino medio"><?php echo WORDING_HIGHSCOOL ?></option>
@@ -830,6 +863,7 @@ $(function(){AjaxCompetenciaListas()});
     							<option value = "problema"><?php echo WORDING_PROBLEM ?></option>
     							<option value = "auto avaliação"><?php echo WORDING_AUTO_AVALIATION ?></option>
     							<option value = "palestra"><?php echo WORDING_LECTURE ?></option>
+                                <option value = "palestra"><?php echo WORDING_MULTIMIDIA_MATERIAL?></option>
     						</select>
                         </div>
                     </div>				
@@ -868,7 +902,7 @@ $(function(){AjaxCompetenciaListas()});
                     <input type="hidden" id="listaHabilidades" name="listaHabilidades" value="" />
                     <input type="hidden" id="listaAtitudes" name="listaAtitudes" value="" />
 
-                    <span class="info-cadastro"><?php echo WORDING_ASSOCIATE_COMP_OA; ?>.<div class="tooltiploco"><div onmouseover="toolTip(6, '<?php echo HINT_COMPETENCY ?>')" onmouseout="deleteTooltip(6)">[ ? ]</div></div></span><br><br>
+                    <span class="info-cadastro"><?php echo WORDING_ASSOCIATE_COMP_OA; ?>.<div class="tooltiploco"><div onmouseover="toolTip(7, '<?php echo HINT_COMPETENCY ?>')" onmouseout="deleteTooltip(7)">[ ? ]</div></div></span><br><br>
 
                     <div class="cadastro-left-column">
                         <span class="titulo-cadastro">Competencias Disponíveis</span>

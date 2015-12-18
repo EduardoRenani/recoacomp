@@ -25,10 +25,13 @@ function getDisciplinaId(id){
 </script>
 
 </head>
-
+<?php 
+$usuario = new User($_SESSION['user_id']); // Pega as informações do usuário
+//$usuario->updateTipoVisao(2);
+//print_r($usuario);
+?>
 <div class="fixedBackgroundGradient"></div>
 <!-- ============== SIDEBAR =============== -->
 
 <!-- ============== DISCIPLINAS DIPONIVEIS ============== -->
-<?php echo 'view disicplinas'?>
 <?php include_once("view_disciplinas.php"); ?>

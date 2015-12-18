@@ -1,40 +1,35 @@
 <?php
-$valid_exts = array('jpeg', 'jpg', 'png', 'gif');
-$max_file_size = 200 * 1024; #200kb
-$nw = $nh = 200; # image with # height
+function getExtension($str) {$i=strrpos($str,".");if(!$i){return"";}$l=strlen($str)-$i;$ext=substr($str,$i+1,$l);return $ext;}
+$formats = array("jpg");///"png", "gif", "bmp", "jpeg", "PNG", "JPG", "JPEG", "GIF", "BMP");
+if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST"){
+	//echo $_SESSION['user_name'];
+ $name = $_FILES['file']['name'];
+ $size = $_FILES['file']['size'];
+ $tmp  = $_FILES['file']['tmp_name'];
+ if(strlen($name)){
+  $ext = getExtension($name);
+  if(in_array($ext,$formats)){
+   if($size<(5024*5024)){
+    $imgn = $_POST['idUsuario'].".".$ext;
+    if(move_uploaded_file($tmp, "./img/profile_images/".$imgn)){
+     //echo "File Name : ".$_FILES['file']['name'];
+     //echo "<br/>File Temporary Location : ".$_FILES['file']['tmp_name'];
+     //echo "<br/>File Size : ".$_FILES['file']['size'];
+     //echo "<br/>File Type : ".$_FILES['file']['type'];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	if ( isset($_FILES['image']) ) {
-		if (! $_FILES['image']['error'] && $_FILES['image']['size'] < $max_file_size) {
-			$ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
-			if (in_array($ext, $valid_exts)) {
-					$path = 'img/profile_images/' . uniqid() . '.' . $ext;
-					$size = getimagesize($_FILES['image']['tmp_name']);
-
-					$x = (int) $_POST['x'];
-					$y = (int) $_POST['y'];
-					$w = (int) $_POST['w'] ? $_POST['w'] : $size[0];
-					$h = (int) $_POST['h'] ? $_POST['h'] : $size[1];
-
-					$data = file_get_contents($_FILES['image']['tmp_name']);
-					$vImg = imagecreatefromstring($data);
-					$dstImg = imagecreatetruecolor($nw, $nh);
-					imagecopyresampled($dstImg, $vImg, 0, 0, $x, $y, $nw, $nh, $w, $h);
-					imagejpeg($dstImg, $path);
-					imagedestroy($dstImg);
-					echo "<img src='$path' />";
-					
-				} else {
-					echo 'unknown problem!';
-				} 
-		} else {
-			echo 'file is too small or large';
-		}
-	} else {
-		echo 'file not set';
-	}
-} else {
-	echo 'bad request!';
+     echo "<br/><img width='300px' style='margin-left:10px;' src='img/profile_images/".$imgn."'>";
+    }else{
+     echo "Erro no upload";
+    }
+   }else{
+    echo "Tamanho máximo de imagem 5MB";
+   }
+  }else{
+   echo "O formato da imagem deve ser jpg";
+  }
+ }else{
+  echo "Por favor selecione uma imagem.";
+  exit;
+ }
 }
-
 ?>

@@ -54,6 +54,10 @@ class Disciplina {
      */
     private $senha = null;
     /**
+     * @var int $area_conhecimento area de conhecimento da disciplina
+     */
+    private $area_conhecimento = null;
+    /**
      * @var Array $arrayCompetencias Array com competências
      */
     private $arrayCompetencias = "";
@@ -83,7 +87,8 @@ class Disciplina {
             $_POST['arrayCompetencias'],
             $_POST['conhecimento'],
             $_POST['habilidade'],
-            $_POST['atitude']);
+            $_POST['atitude'],
+            $_POST['area_conhecimento']);
             // Professor cria disciplina e entra nela
         }elseif(isset($_POST["verifica_senha"])){
             if (($this->checkPassword($_POST['senha'], $_POST['idDisciplina']))){
@@ -154,7 +159,7 @@ class Disciplina {
      * Administra toda o sistema de Criação de disciplina
      * Verifica todos os erros possíveis e cria a disciplina se ela não existe
      */
-    public function criaDisc($nomeCurso, $nomeDisciplina, $descricao, $usuarioProfessorID, $senha, $arrayCompetencias, $conhecimento, $habilidade, $atitude){
+    public function criaDisc($nomeCurso, $nomeDisciplina, $descricao, $usuarioProfessorID, $senha, $arrayCompetencias, $conhecimento, $habilidade, $atitude, $area_conhecimento){
        // Remove espaços em branco em excesso das strings
         $nomeCurso  = trim($nomeCurso);
         $nomeDisciplina = trim($nomeDisciplina);
@@ -167,6 +172,7 @@ class Disciplina {
         $this->nomeDisciplina = $nomeDisciplina;
         $this->descricao = $descricao;
         $this->senha = $senha;
+        $this->area_conhecimento = $area_conhecimento;
         $this->arrayCompetencias = $arrayCompetencias;
 
         //Validação de dados
@@ -209,12 +215,13 @@ class Disciplina {
                     }
                 } else{
                     // Cadastro na tabela Disciplina
-                    $stmt = $this->db_connection->prepare("INSERT INTO disciplina(nomeCurso, nomeDisciplina, descricao, usuarioProfessorID, senha)  VALUES(:nomeCurso, :nomeDisciplina, :descricao, :usuarioProfessorID, :senha)");
+                    $stmt = $this->db_connection->prepare("INSERT INTO disciplina(nomeCurso, nomeDisciplina, descricao, usuarioProfessorID, senha, area_conhecimento)  VALUES(:nomeCurso, :nomeDisciplina, :descricao, :usuarioProfessorID, :senha, :area_conhecimento)");
                     $stmt->bindParam(':nomeCurso',$nomeCurso, PDO::PARAM_STR);
                     $stmt->bindParam(':nomeDisciplina',$nomeDisciplina, PDO::PARAM_STR);
                     $stmt->bindParam(':descricao',$descricao, PDO::PARAM_STR);
                     $stmt->bindParam(':usuarioProfessorID',$usuarioProfessorID, PDO::PARAM_INT);
                     $stmt->bindParam(':senha',$senha, PDO::PARAM_STR);
+                    $stmt->bindParam(':area_conhecimento',$area_conhecimento, PDO::PARAM_INT);
                     $stmt->execute();
                     $ultimo_ID = $this->db_connection->lastInsertId();
                     $this->$ultimo_ID = $ultimo_ID;
@@ -791,6 +798,23 @@ class Disciplina {
         }
     }
 
+    /*
+        $param pode ser do tipo:
+            - id (retorna o id da disciplina)
+            - nomeDisciplina (retorna o nome da Disciplina)
+            - nomeCurso (retorna o nome do Curso)
+            - descricao (retorna a descricao da disciplina)
+        Retorna as disciplinas em ordem alfabética
+    */
+    public function getUserDisciplinasByASC($userId){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT * FROM disciplina WHERE usuarioProfessorID=:userId ORDER BY nomeDisciplina ASC");
+            $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+    }
+
     /**
      * @param $id
      * @return competências da disciplina selecionada
@@ -818,13 +842,10 @@ class Disciplina {
         //print_r($database->resultSet());
         if ($temp[0]['excluida'] == 1){
             return true;
-            
         }
         else{
             return false;
         }
-
-            
     }
 
 
@@ -944,21 +965,24 @@ class Disciplina {
 
     public function getIndices() {
         $oas = $this->listaObjetosDisciplina($this->idDisciplina);
+        //echo "<pre>";
+        //var_dump($oas);
         $dados = array( 'idOA' => NULL,
                         'idDisciplina' => $this->getIdDisciplina());
 
         $indicesOAS = $this->getIndicesOAS($oas, $dados);
-
+        //var_dump($indicesOAS);
         $indicesRejeicao = $this->getIndicesRejeicao($indicesOAS);
 
+        //var_dump($indicesRejeicao);
         $idOAMaisAcessosValidos = array_search($this->getOAMaisAcessosValidos($indicesRejeicao), $indicesOAS);
 
         $idOAMaisAcessosValidos = $indicesOAS[$idOAMaisAcessosValidos]->getIdOA();
-
+        //var_dump($idOAMaisAcessosValidos);
         $indicesRelevancia = $this->getIndicesRelevancia($indicesOAS, $idOAMaisAcessosValidos);
-
+        //var_dump($indicesRelevancia);
         $topDezOAS = $this->topDezOASMaisAcessados($indicesOAS);
-
+        //var_dump($topDezOAS);
         $acessosTotaisOAS = $this->getAcessosTotaisOAS($indicesOAS);
         $acessosTotaisOAS = array_slice($acessosTotaisOAS, 0, 10);
 
@@ -969,7 +993,6 @@ class Disciplina {
         $acessosInvalidosOAS = array_slice($acessosInvalidosOAS, 0, 10);
 
         $usuariosAcessos = $this->getUsuariosAcessos($indicesOAS);
-
 
 
         $indices = array(   'indices_rejeicao'   => $indicesRejeicao, 
@@ -989,7 +1012,7 @@ class Disciplina {
             $usuariosAcessos[$oas->getNomeOA()] = $oas->getAcessosOA()->getIdUsuarios();
             asort($usuariosAcessos[$oas->getNomeOA()]);
         }
-
+            //var_dump($usuariosAcessos);
         $usuariosAcessos = $this->calculaAcessos($usuariosAcessos);
 
         return $usuariosAcessos;
@@ -997,12 +1020,14 @@ class Disciplina {
 
     protected function calculaAcessos($usuariosAcessosOAS) {
         foreach ($usuariosAcessosOAS as $nomeOA => $usuariosAcessosOA) {
-            foreach ($usuariosAcessosOA as $usuario) {
-                if($usuariosAcessos[$nomeOA][$usuario]) {
-                    $usuariosAcessos[$nomeOA][$usuario] += 1;
+            //var_dump($usuariosAcessosOA);
+            foreach ($usuariosAcessosOA as $usuarios) {
+                //var_dump($usuarios);
+                if($usuariosAcessos[$nomeOA][$usuarios]) {
+                    $usuariosAcessos[$nomeOA][$usuarios] += 1;
                 }
                 else {
-                    $usuariosAcessos[$nomeOA][$usuario] = 1;
+                    $usuariosAcessos[$nomeOA][$usuarios] = 1;
                 }
             }
         }

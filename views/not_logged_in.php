@@ -39,7 +39,7 @@ $registration = new Registration();
 						<input type="submit" name="login" value="<?= WORDING_LOGIN; ?>">
 					
 						<!-- TODO Fazer tradução dessa parte -->
-						<span>Não tem uma conta? &nbsp <a href="#openModal" class="text-right">Cadastre-se</a></span><br />
+						<span>Não tem uma conta?<a href="#openModal" class="text-right">Cadastre-se</a></span><br />
                         <span class="light"><a href="password_reset.php"><?php echo WORDING_FORGOT_MY_PASSWORD; ?></a></span>
                     </form>	
 

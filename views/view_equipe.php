@@ -97,12 +97,12 @@
                 </div>
 
                 <div class="team-member">
-                    <div class="team-member-avatar" style="background-image:url('img/foto_otto.jpg');"></div>
+                    <div class="team-member-avatar" style="background-image:url('img/foto_fran.jpg');"></div>
                     <header>
-                        <h3>Cristina Otto</h3>
-                        <h4>Mestranda em Educação – PPGEDU/UFRGS</h4>
-                        <h4>trise_cris<span class="arroba"></span>yahoo.com.br</h4>
-                        <h4><a href="http://lattes.cnpq.br/7154658497490867" target="_blank">Curriculo Lates</a></h4>
+                        <h3>Francine Aires</h3>
+                        <h4>Designer – Graduanda em Design de Produto</h4>
+                        <h4>fran_a.m.a<span class="arroba"></span>hotmail.com</h4>
+                        <h4><a href="http://lattes.cnpq.br/0584801538800509" target="_blank">Curriculo Lates</a></h4>
                     </header>
                 </div>
 

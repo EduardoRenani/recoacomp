@@ -61,14 +61,6 @@ include('_header.php');
     $(function(){
 
 
-        $("#input_range").noUiSlider({
-            start: 1,
-            step: 1,
-            range: {
-                min: 1,
-                max: 5
-            }
-        });
         function setText( value, handleElement, slider ){
             $("#exemplo").text( value );
         }
@@ -99,6 +91,11 @@ include('_header.php');
             <input type="hidden" name="idDisciplina" value="<?php echo $_POST['idDisciplina']; ?>" />
             <input type="hidden" name="okay" value="okay" />
             <input type="hidden" name="senha" value="<?php echo $_POST['senha']; ?>" />
+
+            <label>
+            <h3>Importante: os dados aqui informados serão utilizados para a recomendação</h3>
+            </label>
+
 
             <?php 
                 //echo $_POST["idDisciplina"];

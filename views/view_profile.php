@@ -37,17 +37,19 @@
 <div class="disciplinas">
     <div class="top-disciplinas">Meu Perfil</div>
         <div class="meu-perfil-content">  </br> 
-                <?php
-                    $gravatar = new Gravatar();
-                    $gravatar->setDefaultImage('mm')->setAvatarSize(75);
-                    // example: setting maximum allowed avatar rating
-                    $gravatar->setMaxRating('pg');
-                    $avatar = $gravatar->buildGravatarURL($_SESSION['user_email']);
-                ?>
-            <a href="http://www.gravatar.com" target="_blank">
-            <img src="<?php echo $avatar; ?>" alt=""/>
-            </a>
-            
+
+        <?php
+        $fileName = $_SESSION['user_id'].'.jpg';
+        $file = './img/profile_images/'.$fileName; // 'images/'.$file (physical path)
+
+        if (file_exists($file)) {
+            echo "<img width='200x' style='margin-left:75%;' src='img/profile_images/".$fileName."'>";
+
+        } else {
+             echo "<img width='200x' style='margin-left:75%;' src='img/profile_images/head.png'>";
+        }
+        ?>
+
             <br>
             <p class="subtitle">Nome:</p><p class="content-perfil"> <?php echo $_SESSION['user_name']; ?></p></br>
             <p class="subtitle">E-mail:</p><p class="content-perfil"> <?php echo $_SESSION['user_email']; ?></p>

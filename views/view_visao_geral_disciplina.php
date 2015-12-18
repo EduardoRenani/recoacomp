@@ -311,7 +311,7 @@ include('_header.php');
                     <ul>
                         <li><a href="#tabs-1">Alterar dados gerais</a></li>
                         <li><a href="#tabs-2">Alunos Matriculados</a></li>
-                        <li><a href="#tabs-3">OAS Vinculados</a></li>
+                        <li><a href="#tabs-3">OAs Vinculados</a></li>
                         <li><a href="#tabs-4">Alterar competências</a></li>
                         <li><a href="#tabs-5">Relatório</a></li>
                     </ul>
@@ -341,9 +341,8 @@ include('_header.php');
                          <!-- Alterar a descrição da disciplina -->
                         <form method="post" action="editar_disciplina.php" name="editar_descricao">
                             <label for="descricao"><?php echo WORDING_NEW_DESCRIPTION; ?></label>
-                            <?php echo WORDING_CURRENTLY; ?>:<br/>
-                            <?php echo $descricao; ?>
-                            <br/>
+                            <br>(<?php echo WORDING_CURRENTLY; ?>:
+                            <?php echo $descricao; ?>)<br/>
                             <textarea name="descricao" id="descricao" rows="5" cols="40" class="required" aria-required="true" style="width: 100%; height: 150px;"></textarea>
                             <input type="hidden" name="idDisciplina" value="<?php echo $idDisciplina ?>" />
                             <input type="submit" name="editar_descricao" value="<?php echo WORDING_EDIT_DESCRIPTION; ?>" />

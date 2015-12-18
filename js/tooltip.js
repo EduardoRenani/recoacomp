@@ -38,6 +38,7 @@
 
 //tooltip para competencias
     function toolTipComp(id, texto) {
+		$( ".mensagemTooltiploco" ).remove();
         div = document.getElementById(id);
         tooltip = document.createElement('div');
         tooltip.setAttribute('class', 'mensagemTooltiploco');
@@ -76,6 +77,7 @@
 
     //tooltip para sortable
     function toolTipSortable(id, texto) {
+		$( ".mensagemTooltipSortable" ).remove();
         div = document.getElementById("tabela1");
         tooltip = document.createElement('div');
         tooltip.setAttribute('class', 'mensagemTooltipSortable');

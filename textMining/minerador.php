@@ -101,24 +101,27 @@
 							foreach ($frase as $virgulas) {
 								foreach ($virgulas as $key1 => $virgula) {
 									foreach ($virgula as $palavras) {
-										$sentidoVirgula[$key1] = NULL;
+									$sentidoVirgula[$key1] = NULL;
 										foreach ($palavras as $palavra) {
 											var_dump($palavra);
-											if(is_null($sentidoVirgula[$key1])) {
-												$sentidoVirgula[$key1] = (int) $this->verNoBanco($palavra);
-												if(is_null($sentidoVirgula[$key1])) $sentidoVirgula[$key1] = (int) $this->pesquisarInternetSentido($palavra);
-												//if(is_null($sentidoVirgula[$key])) $sentidoVirgula[$key] = $this->pergunta($palavra);
+											if(!$this->isStopWord($palavra) && !$this->isAdverbio($palavra) && !$this->isInterjeicao($palavra)) {
+												if(is_null($sentidoVirgula[$key1])) {
+													$sentidoVirgula[$key1] = $this->verNoBanco($palavra);
+													if(is_null($sentidoVirgula[$key1])) $sentidoVirgula[$key1] = $this->pesquisarInternetSentido($palavra);
+													//if(is_null($sentidoVirgula[$key])) $sentidoVirgula[$key] = $this->pergunta($palavra);
+												}
+												else {
+													$sentidoAux = $this->verNoBanco($palavra);
+													if(is_null($sentidoAux)) $sentidoAux = $this->pesquisarInternetSentido($palavra);
+													//if(is_null($sentidoAux)) $sentidoAux = $this->pergunta($palavra);
+													if(!is_null($sentidoAux)) $sentidoVirgula[$key1] = $sentidoVirgula[$key1]*$sentidoAux;
+												}
 											}
-											else {
-												$sentidoAux = $this->verNoBanco($palavra);
-												if(is_null($sentidoAux)) $sentidoAux = (int) $this->pesquisarInternetSentido($palavra);
-												//if(is_null($sentidoAux)) $sentidoAux = $this->pergunta($palavra);
-												if(!is_null($sentidoAux)) $sentidoVirgula[$key1] = (int) $sentidoVirgula[$key1]*$sentidoAux;
-											}
-											var_dump($sentidoVirgula);
+											//var_dump($sentidoVirgula);
 										}
 									}
 									$sentido[$key]+=$sentidoVirgula[$key1];
+									var_dump($sentido);
 								}
 							}
 						}
@@ -126,6 +129,69 @@
 				}
 			}
 			$this->setSentidos($sentido);
+		}
+
+		private function isStopWord($palavra) {
+			try {
+				$database = new Database;
+
+	        	$sql = "SELECT * FROM raf_stopwords WHERE stopword = :palavra";
+	        	$database->query($sql);
+	        	$database->bind(":palavra", $palavra);
+	        	$database->execute();
+
+	        	if($database->rowCount() != 0) {
+	 	  	     	return true;
+	 	  	     }
+	 	  	     else {
+	 	  	     	return false;
+	 	  	     }
+			}
+			catch(Exception $e) {
+				trigger_error("Erro ao pegar stopword no banco!".$e->getMessage(), $e->getCode());
+			}
+		}
+
+		private function isAdverbio($palavra) {
+			try {
+				$database = new Database;
+
+	        	$sql = "SELECT * FROM raf_adverbios WHERE adverbio = :palavra";
+	        	$database->query($sql);
+	        	$database->bind(":palavra", $palavra);
+	        	$database->execute();
+
+	        	if($database->rowCount() != 0) {
+	 	  	     	return true;
+	 	  	     }
+	 	  	     else {
+	 	  	     	return false;
+	 	  	     }
+			}
+			catch(Exception $e) {
+				trigger_error("Erro ao pegar adverbio no banco!".$e->getMessage(), $e->getCode());
+			}
+		}
+
+		private function isInterjeicao($palavra) {
+			try {
+				$database = new Database;
+
+	        	$sql = "SELECT * FROM raf_interjeicoes WHERE interj = :palavra";
+	        	$database->query($sql);
+	        	$database->bind(":palavra", $palavra);
+	        	$database->execute();
+
+	        	if($database->rowCount() != 0) {
+	 	  	     	return true;
+	 	  	     }
+	 	  	     else {
+	 	  	     	return false;
+	 	  	     }
+			}
+			catch(Exception $e) {
+				trigger_error("Erro ao pegar interjeicao no banco!".$e->getMessage(), $e->getCode());
+			}
 		}
 
 		private function verNoBanco($palavra) {
@@ -138,7 +204,7 @@
 	        	$database->execute();
 
 	        	if($database->rowCount() != 0) {
-	 	  	     	return $database->single()["sentido"];
+	 	  	     	return (int) $database->single()["sentido"];
 	 	  	     }
 	 	  	     else {
 	 	  	     	return NULL;
@@ -171,7 +237,7 @@
 			try {
 				$database = new Database;
 
-	        	$sql = "SELECT * FROM palavras_minerador WHERE sinonimo_pesquisado != :pesquisado LIMIT 5";
+	        	$sql = "SELECT * FROM palavras_minerador WHERE sinonimo_pesquisado != :pesquisado LIMIT 500";
 	        	$database->query($sql);
 	        	$database->bind(":pesquisado", self::PESQUISADO);
 	        	$database->execute();
@@ -196,6 +262,64 @@
 			}
 		}
 
+		public function aprenderStopWords() {
+			try {
+				$database = new Database;
+
+	        	$sql = "SELECT * FROM raf_stopwords WHERE sinonimo_pesquisado != :pesquisado LIMIT 500";
+	        	$database->query($sql);
+	        	$database->bind(":pesquisado", self::PESQUISADO);
+	        	$database->execute();
+
+	        	if($database->rowCount() != 0) {
+	        		$palavras = $database->resultSet();
+	        		//echo "<pre>";
+	        		//var_dump($palavras);
+	        		foreach ($palavras as $palavra) {
+	        			$this->pesquisarInternetSinonimosStopWords($palavra);
+						$database = new Database;
+		        		$sql = "UPDATE raf_stopwords SET sinonimo_pesquisado = :pesquisado WHERE stopword = :palavra";
+		        		$database->query($sql);
+			        	$database->bind(":pesquisado", self::PESQUISADO);
+			        	$database->bind(":palavra", $palavra['stopword']);
+			        	$database->execute();
+	        		}
+	        	}
+	        }
+			catch(Exception $e) {
+				trigger_error("Erro ao pegar palavras no banco!".$e->getMessage(), $e->getCode());
+			}
+		}
+
+		public function aprenderAdverbios() {
+			try {
+				$database = new Database;
+
+	        	$sql = "SELECT * FROM raf_adverbios WHERE sinonimo_pesquisado != :pesquisado LIMIT 500";
+	        	$database->query($sql);
+	        	$database->bind(":pesquisado", self::PESQUISADO);
+	        	$database->execute();
+
+	        	if($database->rowCount() != 0) {
+	        		$palavras = $database->resultSet();
+	        		//echo "<pre>";
+	        		//var_dump($palavras);
+	        		foreach ($palavras as $palavra) {
+	        			$this->pesquisarInternetSinonimosAdverbio($palavra);
+						$database = new Database;
+		        		$sql = "UPDATE raf_adverbios SET sinonimo_pesquisado = :pesquisado WHERE adverbio = :palavra";
+		        		$database->query($sql);
+			        	$database->bind(":pesquisado", self::PESQUISADO);
+			        	$database->bind(":palavra", $palavra['adverbio']);
+			        	$database->execute();
+	        		}
+	        	}
+	        }
+			catch(Exception $e) {
+				trigger_error("Erro ao pegar palavras no banco!".$e->getMessage(), $e->getCode());
+			}
+		}
+
 		private function pesquisarInternetSinonimos($dados) {
 			$pesquisa = new Pesquisa($dados['palavra']);
 			$sinonimos = $pesquisa->getResultado();
@@ -209,6 +333,68 @@
 						$this->registrarPalavra($dados);
 					}
 				}
+			}
+		}
+
+		private function pesquisarInternetSinonimosStopWords($dados) {
+			$pesquisa = new Pesquisa($dados['stopword']);
+			$sinonimos = $pesquisa->getResultado();
+			//var_dump($sinonimos);
+			foreach ($sinonimos as $sinonimos1) {
+				if(!is_null($sinonimos1)) {
+					foreach ($sinonimos1 as $sinonimo) {
+						$sinonimo = $this->removeAcentos($sinonimo);
+						var_dump($sinonimo);
+						$dados['sinonimo'] = $sinonimo;
+						$this->registrarStopWord($dados);
+					}
+				}
+			}
+		}
+
+		private function registrarStopWord($dados) {
+			try {
+				$database = new Database;
+
+	        	$sql = "INSERT INTO raf_stopwords VALUES (NULL, :sinonimo, 0)";
+	        	$database->query($sql);
+	        	$database->bind(":sinonimo", $dados['sinonimo']);
+	        	$database->execute();
+			}
+			catch(Exception $e) {
+				trigger_error("Erro ao registrar palavra no banco!".$e->getMessage(), $e->getCode());
+			}
+		}
+
+		private function pesquisarInternetSinonimosAdverbio($dados) {
+			$pesquisa = new Pesquisa($dados['adverbio']);
+			$sinonimos = $pesquisa->getResultado();
+			//var_dump($sinonimos);
+			foreach ($sinonimos as $sinonimos1) {
+				if(!is_null($sinonimos1)) {
+					foreach ($sinonimos1 as $sinonimo) {
+						$sinonimo = $this->removeAcentos($sinonimo);
+						var_dump($sinonimo);
+						$dados['sinonimo'] = $sinonimo;
+						$this->registrarAdverbio($dados);
+					}
+				}
+			}
+		}
+
+		private function registrarAdverbio($dados) {
+			try {
+				$database = new Database;
+
+	        	$sql = "INSERT INTO raf_adverbios VALUES (NULL, :sinonimo, :tipo, :opera, 0)";
+	        	$database->query($sql);
+	        	$database->bind(":sinonimo", $dados['sinonimo']);
+	        	$database->bind(":tipo", $dados['tipo']);
+	        	$database->bind(":opera", $dados['opera']);
+	        	$database->execute();
+			}
+			catch(Exception $e) {
+				trigger_error("Erro ao registrar palavra no banco!".$e->getMessage(), $e->getCode());
 			}
 		}
 
@@ -335,11 +521,16 @@
 	echo "<pre>";
 	var_dump($minerador->getPalavras());
 	echo "</pre>";
-	if($minerador->getSentidos()[1] == 1) {
+	if($minerador->getSentidos()[1] > 0) {
 		echo "O dorneles gostou!";
 	}
-	else {
-		echo "O dorneles não gostou";
+	else if($minerador->getSentidos()[1] == 0) {
+		echo "O dorneles achou meio termo!";
 	}
-//	$minerador->aprenderPalavras();
+	else {
+		echo "O dorneles não gostou!";
+	}
+	//$minerador->aprenderPalavras();
+	//$minerador->aprenderStopWords();
+	//$minerador->aprenderAdverbios();
 ?>
