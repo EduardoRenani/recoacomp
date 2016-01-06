@@ -136,13 +136,13 @@ select{width:100%;}
   float:right;
  }
 
-.top-disciplinas-titulo{
+.top-objetos-titulo{
   float:left;
   width:500px;
 
 }
 
-div.top-disciplinas a{
+div.top-objetos a{
   text-decoration: none;
   color:white;
   font-size:16px;
@@ -164,12 +164,12 @@ div.top-cadastrobase a{
     padding-left:0%;
     padding-right:0%;
 
-    top:20px;
+    /*top:20px;*/
 
     margin:0 auto;
 }
 
-.disciplinas-item{
+.objetos-item{
     margin-left: -15px;
     position:relative;
     background-color:white;
@@ -258,7 +258,7 @@ border-radius: 5px;
     font-style: normal;
 }
 
-.lista-disciplina {
+.lista-objetos {
     position: relative;
     float: left;
     width: 70%;
@@ -269,8 +269,8 @@ border-radius: 5px;
     width: auto;
 }
 
-.disciplina-item-content{width:70%;float:left;}
-.disciplinas-item h3{margin-top:0px;}
+.objetos-item-content{width:70%;float:left;}
+.objetos-item h3{margin-top:0px;}
 
 /*FORM-----------------------------------------------------------------------*/
 

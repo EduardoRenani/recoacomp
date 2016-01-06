@@ -470,117 +470,121 @@ include('_header.php');
                         <!-- Lista de competências -->
                         <form method="post" action="editar_disciplina.php" name="editar_competencia" class="editarCompetencia">
                                 <input type="hidden" id="nomeCompetencia" value="" />
-                                <h3>Editar Competências</h3>
+                                <h3>Alterar Competências</h3>
                                     <!-- DIV com as competências do sistema -->
+                                    <div id="competenciasDisponiveisOutter">
+                                        <h5>Competências Disponíveis</h5>
+                                        <div id="competenciasDisponiveis">
+                                            <?php
+                                            $comp = new Competencia();
+                                            $competencias = $comp->getListaCompetenciaDisciplina($_POST['idDisciplina'],false);
+                                            $numComp = $comp->getListaCompetencia();
+                                            $numComp = count($numComp);
+                                            $_SESSION["numComp"] = $numComp;
+                                            $contador = count($competencias);
+                                            for($i=0;$i<$contador;$i++){
+                                                $idCompetencia = $competencias[$i]['idcompetencia'];
+                                                $descricaoConhecimento = $comp->getDescricaoConhecimentoById($idCompetencia);
+                                                $descricaoHabilidade = $comp->getDescricaoHabilidadeById($idCompetencia);
+                                                $descricaoAtitude = $comp->getDescricaoAtitudeById($idCompetencia);
+                                                ?>
+                                                <div class="group" id="<?php echo "".$competencias[$i]['idcompetencia']; ?>">
+                                                    <h3 >
+                                                    <?php echo "".$competencias[$i]['nome']; ?>
+                                                    </h3>
+                                                    <div> <!-- div com as competencias -->
+                                                        Descrição:
+                                                        <div class="alert alert-info" role="alert">
+                                                            <p><?php echo "".$competencias[$i]['descricao_nome']; ?></p>
 
-                                    <div id="competenciasDisponiveis">
-                                        <?php
-                                        $comp = new Competencia();
-                                        $competencias = $comp->getListaCompetenciaDisciplina($_POST['idDisciplina'],false);
-                                        $numComp = $comp->getListaCompetencia();
-                                        $numComp = count($numComp);
-                                        $_SESSION["numComp"] = $numComp;
-                                        $contador = count($competencias);
-                                        for($i=0;$i<$contador;$i++){
-                                            $idCompetencia = $competencias[$i]['idcompetencia'];
-                                            $descricaoConhecimento = $comp->getDescricaoConhecimentoById($idCompetencia);
-                                            $descricaoHabilidade = $comp->getDescricaoHabilidadeById($idCompetencia);
-                                            $descricaoAtitude = $comp->getDescricaoAtitudeById($idCompetencia);
-                                            ?>
-                                            <div class="group" id="<?php echo "".$competencias[$i]['idcompetencia']; ?>">
-                                                <h3 >
-                                                <?php echo "".$competencias[$i]['nome']; ?>
-                                                </h3>
-                                                <div> <!-- div com as competencias -->
-                                                    Descrição:
-                                                    <div class="alert alert-info" role="alert">
-                                                        <p><?php echo "".$competencias[$i]['descricao_nome']; ?></p>
-
-                                                    </div>
-                                                    <!-- Conhecimento -->
-                                                    <div class="content-valor-conhecimento">
-                                                        <label for="conhecimento" title="<?php echo "".$descricaoConhecimento['conhecimento_descricao']; ?>">Conhecimento: <span class="glyphicon glyphicon-question-sign"></span></label>
+                                                        </div>
+                                                        <!-- Conhecimento -->
+                                                        <div class="content-valor-conhecimento">
+                                                            <label for="conhecimento" title="<?php echo "".$descricaoConhecimento['conhecimento_descricao']; ?>">Conhecimento: <span class="glyphicon glyphicon-question-sign"></span></label>
+                                                            <br>
+                                                            <input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="conhecimento" type="number" min="0" max="5" value="0" disabled></input>
+                                                        </div>
                                                         <br>
-                                                        <input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="conhecimento" type="number" min="0" max="5" value="0" disabled></input>
-                                                    </div>
-                                                    <br>
-                                                    <!-- Habilidade -->
-                                                    <div class="content-valor-habilidade">
-                                                        <label for="habilidade" title="<?php echo "".$descricaoHabilidade['habilidade_descricao']; ?>">Habilidade: <span class="glyphicon glyphicon-question-sign"></span></label>
+                                                        <!-- Habilidade -->
+                                                        <div class="content-valor-habilidade">
+                                                            <label for="habilidade" title="<?php echo "".$descricaoHabilidade['habilidade_descricao']; ?>">Habilidade: <span class="glyphicon glyphicon-question-sign"></span></label>
+                                                            <br>
+                                                            <input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="habilidade" type="number" min="0" max="5" value="0" disabled></input>
+
+                                                        </div>
                                                         <br>
-                                                        <input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="habilidade" type="number" min="0" max="5" value="0" disabled></input>
+                                                        <!-- Atitude -->
+                                                        <div class="content-valor-atitude">
+                                                            <label for="atitude" title="<?php echo "".$descricaoAtitude['atitude_descricao']; ?>">Atitude: <span class="glyphicon glyphicon-question-sign"></span></label>
+                                                            <br>
+                                                            <input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="atitude" type="number" min="0" max="5" value="0" disabled></input>
+                                                        </div>
+
 
                                                     </div>
-                                                    <br>
-                                                    <!-- Atitude -->
-                                                    <div class="content-valor-atitude">
-                                                        <label for="atitude" title="<?php echo "".$descricaoAtitude['atitude_descricao']; ?>">Atitude: <span class="glyphicon glyphicon-question-sign"></span></label>
-                                                        <br>
-                                                        <input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="atitude" type="number" min="0" max="5" value="0" disabled></input>
-                                                    </div>
-
 
                                                 </div>
-
-                                            </div>
-                                    <?php
-                                        } //end for
-                                    ?>
+                                        <?php
+                                            } //end for
+                                        ?>
+                                        </div>
                                     </div>
-
                                     <!-- DIV com competências da disciplina a ser editada -->
-                                    <div id="competenciasDisciplina">
-                                        <?php
-                                        $comp = new Competencia();
-                                        $competencias = $comp->getListaCompetenciaDisciplina($_POST['idDisciplina'],true);
-                                        // Pega os dados das competências para essa disciplina
-                                        $conhecimento = $disciplina->getCompetenciasDisciplina($_POST['idDisciplina'], 'conhecimento');
-                                        $habilidade = $disciplina->getCompetenciasDisciplina($_POST['idDisciplina'], 'habilidade');
-                                        $atitude = $disciplina->getCompetenciasDisciplina($_POST['idDisciplina'], 'atitude');
-                                        $contador = count($competencias);
-                                        // Preenche a tabela
-                                        for($i=0;$i<$contador;$i++){
-                                            $idCompetencia = $competencias[$i]['idcompetencia'];
-                                            $descricaoConhecimento = $comp->getDescricaoConhecimentoById($idCompetencia);
-                                            $descricaoHabilidade = $comp->getDescricaoHabilidadeById($idCompetencia);
-                                            $descricaoAtitude = $comp->getDescricaoAtitudeById($idCompetencia);
-                                            ?>
-                                            <div class="group" id="<?php echo "".$idCompetencia; ?>">
-                                                <h3 >
-                                                <?php echo "".$competencias[$i]['nome']; ?>
-                                                </h3>
-                                                <div>
-                                                    Descrição:
-                                                    <div class="alert alert-info" role="alert">
-                                                        <p><?php echo "".$competencias[$i]['descricao_nome']; ?></p>
-                                                    </div>
-                                                    <!-- Conhecimento -->
-                                                    <div class="content-valor-conhecimento">
-                                                        <label for="conhecimento" title="<?php echo "".$descricaoConhecimento['conhecimento_descricao']; ?>">Conhecimento: <span class="glyphicon glyphicon-question-sign"></span></label>
+                                    <div id="competenciasDisciplinaOutter">
+                                        <h5>Competências da disciplina</h5>
+                                        <div id="competenciasDisciplina">
+                                            <?php
+                                            $comp = new Competencia();
+                                            $competencias = $comp->getListaCompetenciaDisciplina($_POST['idDisciplina'],true);
+                                            // Pega os dados das competências para essa disciplina
+                                            $conhecimento = $disciplina->getCompetenciasDisciplina($_POST['idDisciplina'], 'conhecimento');
+                                            $habilidade = $disciplina->getCompetenciasDisciplina($_POST['idDisciplina'], 'habilidade');
+                                            $atitude = $disciplina->getCompetenciasDisciplina($_POST['idDisciplina'], 'atitude');
+                                            $contador = count($competencias);
+                                            // Preenche a tabela
+                                            for($i=0;$i<$contador;$i++){
+                                                $idCompetencia = $competencias[$i]['idcompetencia'];
+                                                $descricaoConhecimento = $comp->getDescricaoConhecimentoById($idCompetencia);
+                                                $descricaoHabilidade = $comp->getDescricaoHabilidadeById($idCompetencia);
+                                                $descricaoAtitude = $comp->getDescricaoAtitudeById($idCompetencia);
+                                                ?>
+                                                <div class="group" id="<?php echo "".$idCompetencia; ?>">
+                                                    <h3 >
+                                                    <?php echo "".$competencias[$i]['nome']; ?>
+                                                    </h3>
+                                                    <div>
+                                                        Descrição:
+                                                        <div class="alert alert-info" role="alert">
+                                                            <p><?php echo "".$competencias[$i]['descricao_nome']; ?></p>
+                                                        </div>
+                                                        <!-- Conhecimento -->
+                                                        <div class="content-valor-conhecimento">
+                                                            <label for="conhecimento" title="<?php echo "".$descricaoConhecimento['conhecimento_descricao']; ?>">Conhecimento: <span class="glyphicon glyphicon-question-sign"></span></label>
+                                                            <br>
+                                                            <input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="conhecimento" type="number" min="0" max="5" value="<?php echo "".$conhecimento[$i]['conhecimento']; ?>" ></input>
+                                                        </div>
                                                         <br>
-                                                        <input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="conhecimento" type="number" min="0" max="5" value="<?php echo "".$conhecimento[$i]['conhecimento']; ?>" ></input>
-                                                    </div>
-                                                    <br>
-                                                    <!-- Habilidade -->
-                                                    <div class="content-valor-habilidade">
-                                                        <label for="habilidade" title="<?php echo "".$descricaoHabilidade['habilidade_descricao']; ?>">Habilidade: <span class="glyphicon glyphicon-question-sign"></span></label>
-                                                        <br>
-                                                        <input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="habilidade" type="number" min="0" max="5" value="<?php echo "".$habilidade[$i]['habilidade']; ?>" ></input>
+                                                        <!-- Habilidade -->
+                                                        <div class="content-valor-habilidade">
+                                                            <label for="habilidade" title="<?php echo "".$descricaoHabilidade['habilidade_descricao']; ?>">Habilidade: <span class="glyphicon glyphicon-question-sign"></span></label>
+                                                            <br>
+                                                            <input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="habilidade" type="number" min="0" max="5" value="<?php echo "".$habilidade[$i]['habilidade']; ?>" ></input>
 
-                                                    </div>
-                                                    <br>
-                                                    <!-- Atitude -->
-                                                    <div class="content-valor-atitude">
-                                                        <label for="atitude" title="<?php echo "".$descricaoAtitude['atitude_descricao']; ?>">Atitude: <span class="glyphicon glyphicon-question-sign"></span></label>
+                                                        </div>
                                                         <br>
-                                                        <input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="atitude" type="number" min="0" max="5" value="<?php echo "".$atitude[$i]['atitude']; ?>" ></input>
+                                                        <!-- Atitude -->
+                                                        <div class="content-valor-atitude">
+                                                            <label for="atitude" title="<?php echo "".$descricaoAtitude['atitude_descricao']; ?>">Atitude: <span class="glyphicon glyphicon-question-sign"></span></label>
+                                                            <br>
+                                                            <input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="atitude" type="number" min="0" max="5" value="<?php echo "".$atitude[$i]['atitude']; ?>" ></input>
+                                                        </div>
                                                     </div>
+
                                                 </div>
-
-                                            </div>
-                                    <?php
-                                        } //end for
-                                    ?>
+                                        <?php
+                                            } //end for
+                                        ?>
+                                        </div>
                                     </div>
                         </form>
                     </div> <!-- END Dados da competencia-->

@@ -200,7 +200,7 @@ include('_header.php');
                 var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
                 //window.alert(nomesCompetencias);
 
-                document.getElementById('arrayCompetencias').value = arrayCompetencias;
+                document.getElementById('arrayCompetencias').value = arrayCompetencias+",";
             }
         });
     });
@@ -347,7 +347,7 @@ $(function(){
 <script language="javascript">
     function mudaTab(qualTab) {
         if(qualTab == 1) {
-            if(document.getElementsByName('senha')[0].value.length > 5 && document.getElementsByName('nomeCurso')[0].value.length > 0 && document.getElementsByName('nomeDisciplina')[0].value.length > 0 && document.getElementsByName('descricao')[0].value.length > 0) {
+            if(document.getElementsByName('senha')[0].value.length > 5 && document.getElementsByName('nomeCurso')[0].value.length > 0 && document.getElementsByName('nomeDisciplina')[0].value.length > 0 && document.getElementsByName('descricao')[0].value.length > 0 && document.getElementById('area_conhecimento').value.length > 0) {
                 document.getElementsByName('senha')[0].style.border = "0";
                 document.getElementsByName('nomeCurso')[0].style.border = "0";
                 document.getElementsByName('nomeDisciplina')[0].style.border = "0";
@@ -371,6 +371,14 @@ $(function(){
                 document.getElementById('buttonPrevious').setAttribute('class', 'previous');
             }
             else {
+                if(document.getElementById('area_conhecimento').value.length <= 0) {
+                    document.getElementById('area_conhecimento').style.border = "1px solid #dc8810";
+                    document.getElementById('area_conhecimento').value = "";
+                    document.getElementById('area_conhecimento').setAttribute("placeholder", "Min. 6 digitos");
+                }
+                else {
+                    document.getElementById('area_conhecimento').style.border = "0";
+                }
                 if(document.getElementsByName('senha')[0].value.length <= 5) {
                     document.getElementsByName('senha')[0].style.border = "1px solid #dc8810";
                     document.getElementsByName('senha')[0].value = "";
@@ -403,7 +411,7 @@ $(function(){
             }
         }
         else if(qualTab == 2) {
-            if(document.getElementsByName('arrayCompetencias')[0].value.length > 0) {
+            if(document.getElementsByName('arrayCompetencias')[0].value.length > 1) {
                 document.getElementById('tabela1').style.border = "0";
                 document.getElementById('tabela2').style.border = "0";
                 divTab = document.getElementById('sub-conteudo1');

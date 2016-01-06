@@ -291,6 +291,125 @@ outline:none;
     outline:none;
   }
 
+
+/*OBJETOS-----------------------------------------------------------------------*/
+
+.objetos{
+    background-color:white;
+
+    height:70%;
+    min-height: 500px;
+    max-height: 800px;
+    width:55%;
+    left:15%;
+    top:50px;
+
+    margin-right:10%;
+    position:relative;
+
+    float:left;
+
+    -webkit-box-shadow: 5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+    -moz-box-shadow:    5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+    box-shadow:         5px 5px 0px 0px rgba(50, 50, 50, 0.2);
+}
+
+.top-objetos{
+    position:relative;
+    top:0px;
+    width:100%;
+    height:50px;
+    text-align:left;
+    padding-left:2%;
+    padding-top: 1.5%;
+    background-color:#108AC0;
+    color:white;
+    font-size:30px;
+    font-weight:300;
+}
+
+.objetos-content{
+    
+    width:95%;
+    height:83%;
+    margin:0 auto;
+}
+
+.objetos-item{
+    margin-left:-15px;
+    position:relative;
+    background-color:white;
+    display:block;
+    height:auto;
+    
+    top:10px;
+    width:100%;
+    margin-bottom:15px;
+}
+
+.objetos-list ul{padding:0px;margin:0px; width:100%;}
+.objetos-item li{padding:0px;}
+
+  
+input[type=submit]{ /*customiza input de submit*/ 
+  /*height: 50px; TODO ARRUMAR ESSES BOTÕES*/
+  border: 0;
+  width:180px;
+  white-space: normal;
+  text-align:center;
+  height: 50px;
+  
+
+
+    background: -webkit-linear-gradient(left, #26B3E8, #75CCD6); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #26B3E8, #75CCD6); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #26B3E8, #75CCD6); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #26B3E8, #75CCD6); /* Standard syntax (must be last) */
+ 
+  color: white;
+  padding: 8px 14px;
+  font-weight: 100;
+  font-size: 18px;
+  text-decoration: none;
+  display: inline-block; /* needed for anchors */
+ 
+    -webkit-box-shadow: 0px 4px 0px 0px rgba(50, 50, 50, 0.47);
+    -moz-box-shadow:    0px 4px 0px 0px rgba(50, 50, 50, 0.47);
+    box-shadow:         0px 4px 0px 0px rgba(50, 50, 50, 0.47);
+
+-webkit-border-radius: 20px;
+-moz-border-radius: 20px;
+border-radius: 5px;
+outline:none;
+  }
+
+ input[type=submit]:hover{
+    background: -webkit-linear-gradient(left, #5bc6ee, #75CCD6); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #5bc6ee, #75CCD6); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #5bc6ee, #75CCD6); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #5bc6ee, #75CCD6); /* Standard syntax (must be last) */
+    outline:none;
+ }
+
+  input[type=submit]:active{ /*customiza pra quando estiver ativo (click)*/
+    -moz-transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+    -o-transform: translateY(4px);
+    -ms-transform: translateY(4px);
+    transform: translateY(4px);
+    
+    -webkit-box-shadow: 0px 1px 0px 0px rgba(50, 50, 50, 0.47);
+    -moz-box-shadow:    0px 1px 0px 0px rgba(50, 50, 50, 0.47);
+    box-shadow:         0px 1px 0px 0px rgba(50, 50, 50, 0.47);
+    outline:none;
+  }
+
+  input[type=submit]:hover{ 
+    outline:none;
+  }
+
+
+
 /*FOOTER-----------------------------------------------------------------------*/
 
 .row-footer{

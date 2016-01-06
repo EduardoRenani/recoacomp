@@ -169,7 +169,7 @@
                     var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
                     //window.alert(nomesCompetencias);
 
-                    document.getElementById('arrayCompetencias').value = arrayCompetencias+"";
+                    document.getElementById('arrayCompetencias').value = arrayCompetencias+",";
                 }
             });
         });
@@ -313,7 +313,7 @@ $(function(){AjaxCompetenciaListas()});
     <script language="javascript">
         function mudaTab(qualTab) {
             if(qualTab == 1) {
-                if(document.getElementsByName('nome')[0].value.length > 0 && document.getElementsByName('palavrachave')[0].value.length > 0 && document.getElementsByName('idioma')[0].value.length > 0 && document.getElementsByName('descricao')[0].value.length > 0 && (document.getElementsByName('url')[0].value != "http://" && document.getElementsByName('url')[0].value != "")) {
+                if(document.getElementsByName('nome')[0].value.length > 0 && document.getElementsByName('palavrachave')[0].value.length > 0 && document.getElementsByName('idioma')[0].value.length > 0 && document.getElementsByName('descricao')[0].value.length > 0 && (document.getElementsByName('url')[0].value != "http://" && document.getElementsByName('url')[0].value != "") && document.getElementById('area_conhecimento').value.length > 0) {
                     document.getElementsByName('nome')[0].style.border = "0";
                     document.getElementsByName('url')[0].style.border = "0";
                     document.getElementsByName('palavrachave')[0].style.border = "0";
@@ -340,6 +340,14 @@ $(function(){AjaxCompetenciaListas()});
                     document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(7)');
                 }
                 else {
+                    if(document.getElementById('area_conhecimento').value.length <= 0) {
+                        document.getElementById('area_conhecimento').style.border = "1px solid #dc8810";
+                        document.getElementById('area_conhecimento').value = "";
+                        document.getElementById('area_conhecimento').setAttribute("placeholder", "Min. 6 digitos");
+                    }
+                    else {
+                        document.getElementById('area_conhecimento').style.border = "0";
+                    }
                     if(document.getElementsByName('nome')[0].value.length == 0) {
                         document.getElementsByName('nome')[0].style.border = "1px solid #dc8810";
                         document.getElementsByName('nome')[0].setAttribute("placeholder", "Este campo é necessário");
@@ -408,26 +416,28 @@ $(function(){AjaxCompetenciaListas()});
 
             }
             else if(qualTab == 3) {
-                divTab = document.getElementById('sub-conteudo2');
-                divTab.removeAttribute('class');
-                divTab.setAttribute('class', 'tab');
-                divTab = document.getElementById('sub-conteudo3');
-                divTab.removeAttribute('class');
-                divTab.setAttribute('class', 'tab-active');
-                document.getElementById('menudiv3').removeAttribute('class');
-                document.getElementById('menudiv3').setAttribute('class', 'meu-active');
-                document.getElementById('seta2').removeAttribute('class');
-                document.getElementById('seta2').setAttribute('class', 'meu-active');
-                document.getElementById('seta4').removeAttribute('class');
-                document.getElementById('seta4').setAttribute('class', 'seta-active');
-                document.getElementById('buttonNext').removeAttribute('onclick');
-                document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(4)');
-                document.getElementById('buttonPrevious').removeAttribute('onclick');
-                document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(9)');
+                if(document.getElementById('tipoOA[]').value.length > 0) {
+                    divTab = document.getElementById('sub-conteudo2');
+                    divTab.removeAttribute('class');
+                    divTab.setAttribute('class', 'tab');
+                    divTab = document.getElementById('sub-conteudo3');
+                    divTab.removeAttribute('class');
+                    divTab.setAttribute('class', 'tab-active');
+                    document.getElementById('menudiv3').removeAttribute('class');
+                    document.getElementById('menudiv3').setAttribute('class', 'meu-active');
+                    document.getElementById('seta2').removeAttribute('class');
+                    document.getElementById('seta2').setAttribute('class', 'meu-active');
+                    document.getElementById('seta4').removeAttribute('class');
+                    document.getElementById('seta4').setAttribute('class', 'seta-active');
+                    document.getElementById('buttonNext').removeAttribute('onclick');
+                    document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(4)');
+                    document.getElementById('buttonPrevious').removeAttribute('onclick');
+                    document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(9)');
+                }
 
             }
             else if(qualTab == 4) {
-                if(document.getElementsByName('descricao_educacional')[0].value.length > 0) {
+                if(document.getElementsByName('descricao_educacional')[0].value.length > 0 && document.getElementById('faixaEtaria[]').value.length > 0) {
                     document.getElementsByName('descricao_educacional')[0].style.border = "0";
                     divTab = document.getElementById('sub-conteudo3');
                     divTab.removeAttribute('class');
@@ -457,7 +467,7 @@ $(function(){AjaxCompetenciaListas()});
                 }
             }
             else if(qualTab == 6) {
-                if(document.getElementsByName('arrayCompetencias')[0].value.length > 0) {
+                if(document.getElementsByName('arrayCompetencias')[0].value.length > 1) {
                     document.getElementById('tabela1').style.border = "0";
                     document.getElementById('tabela2').style.border = "0";
                     divTab = document.getElementById('sub-conteudo5');

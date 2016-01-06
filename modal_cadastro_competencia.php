@@ -453,7 +453,7 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
             }
         }
         else if(qualTab == 2) {
-            if(document.getElementsByName('arrayOAS')[0].value.length > 0) {
+            if(document.getElementsByName('arrayOAS')[0].value.length > 1) {
                 document.getElementById('tabela1').style.border = "0";
                 document.getElementById('tabela2').style.border = "0";
                 divTab = document.getElementById('sub-conteudo1');
@@ -556,9 +556,11 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
     }
 
     function deleteModal() {
-        if(document.getElementById('modal-oa').contentDocument.getElementsByClassName('disciplinas-list').length != 0) {
-            fadeOutModal();
-            clearInterval(window.tDeleteModal);
+        if(document.getElementById('modal-oa').contentDocument) {
+            if(document.getElementById('modal-oa').contentDocument.getElementsByClassName('disciplinas-list').length != 0) {
+                fadeOutModal();
+                clearInterval(window.tDeleteModal);
+            }
         }
     }
 
@@ -586,6 +588,7 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
         console.log(document.getElementById('modal-oa').contentDocument);
         if(document.getElementById('modal-oa').contentDocument.getElementById('oacadastrado')) {
             idOA = document.getElementById('modal-oa').contentDocument.getElementById('oacadastrado').value;
+            console.log("oi hahaha chegou");
             document.getElementById('arrayOAS').value += idOA+',';
             clearInterval(window.tPegaOA);
         }
@@ -595,25 +598,24 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
         novoOA = document.getElementById('arrayOAS').value;
         novoOA = novoOA.split(',');
         sizeOA = novoOA.length-2;
-        console.log(novoOA);
-        console.log(sizeOA);
-        console.log(novoOA[sizeOA]);
-        if(cloneOA = document.getElementById(novoOA[novoOA.length-2]).cloneNode(true)) {
-            document.getElementById(novoOA[novoOA.length-2]).parentNode.removeChild(document.getElementById(novoOA[novoOA.length-2]).parentNode.lastChild)
-            console.log(document.getElementById(novoOA[novoOA.length-2]));
-            console.log(cloneOA);
-            document.getElementById('tabela2').appendChild(cloneOA);
-            var idCompetencias = $("#tabela2").sortable('toArray').toString();
-            var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
-            idCompetencias = idCompetencias.split(",");
-            nomesCompetencias = nomesCompetencias.split(",");
-            document.getElementById('sub-conteudo2').innerHTML = "";
-            for (i = 0; i < nomesCompetencias.length; i++) {
-                var elementoAdd = document.createElement('div');
-                elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div id="conhecimento'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipCHA(\'conhecimento'+idCompetencias[i]+'\', \'conhecimento\')" onmouseout="deleteTooltipCHA(\'conhecimento'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div id="habilidade'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipCHA(\'habilidade'+idCompetencias[i]+'\', \'habilidade\')" onmouseout="deleteTooltipCHA(\'habilidade'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div id="atitude'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipCHA(\'atitude'+idCompetencias[i]+'\', \'atitude\')" onmouseout="deleteTooltipCHA(\'atitude'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
-                document.getElementById('sub-conteudo2').appendChild(elementoAdd);
+        if(document.getElementById(novoOA[novoOA.length-2])) {
+            if(cloneOA = document.getElementById(novoOA[novoOA.length-2]).cloneNode(true)) {
+                document.getElementById(novoOA[novoOA.length-2]).parentNode.removeChild(document.getElementById(novoOA[novoOA.length-2]).parentNode.lastChild)
+                console.log(document.getElementById(novoOA[novoOA.length-2]));
+                console.log(cloneOA);
+                document.getElementById('tabela2').appendChild(cloneOA);
+                var idCompetencias = $("#tabela2").sortable('toArray').toString();
+                var nomesCompetencias = $("#tabela2").sortable('toArray',{ attribute: "name" } ).toString();
+                idCompetencias = idCompetencias.split(",");
+                nomesCompetencias = nomesCompetencias.split(",");
+                document.getElementById('sub-conteudo2').innerHTML = "";
+                for (i = 0; i < nomesCompetencias.length; i++) {
+                    var elementoAdd = document.createElement('div');
+                    elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div id="conhecimento'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipCHA(\'conhecimento'+idCompetencias[i]+'\', \'conhecimento\')" onmouseout="deleteTooltipCHA(\'conhecimento'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div id="habilidade'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipCHA(\'habilidade'+idCompetencias[i]+'\', \'habilidade\')" onmouseout="deleteTooltipCHA(\'habilidade'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div id="atitude'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipCHA(\'atitude'+idCompetencias[i]+'\', \'atitude\')" onmouseout="deleteTooltipCHA(\'atitude'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="5" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
+                    document.getElementById('sub-conteudo2').appendChild(elementoAdd);
+                }
+                clearInterval(window.tAtualizaOA);
             }
-            clearInterval(window.tAtualizaOA);
         }
     }
 </script>

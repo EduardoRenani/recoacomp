@@ -535,21 +535,29 @@ class OA{
     }
 
     public function getArrayOfId_OA(){
-        if($this->databaseConnection()){
+        /*(if($this->databaseConnection()){
             $stmt = $this->db_connection->prepare("SELECT idcesta FROM cesta");
             $stmt->execute();
             $retorno = $stmt->fetchAll();
             return ($retorno);
-        }
+        }*/
+            $database = new Database;
+            $sql = "SELECT idcesta FROM cesta ORDER BY idcesta ASC";
+            $database->query($sql);
+            return $database->resultSet();
     }
 
     public function getArrayOfName_OA(){
-        if($this->databaseConnection()){
-            $stmt = $this->db_connection->prepare("SELECT nome FROM cesta");
+        //if($this->databaseConnection()){
+            /*$stmt = $this->db_connection->prepare("SELECT nome FROM cesta");
             $stmt->execute();
             $retorno = $stmt->fetchAll();
-            return ($retorno);
-        }
+            return ($retorno);*/
+            $database = new Database;
+            $sql = "SELECT nome FROM cesta ORDER BY idcesta ASC";
+            $database->query($sql);
+            return $database->resultSet();
+        //}
     }
 
     public function getArrayOfDescricao_OA(){
@@ -605,6 +613,16 @@ class OA{
         //$database->bind(":idCategoriaVida", $idCategoriaVida);
         return $database->resultSet();
     }
+
+    public function getListaOAbyUser($idUsuario){
+        $database = new Database();
+        $sql = "SELECT * FROM cesta WHERE idusuario = :idUsuario";
+        $database->query($sql);
+        $database->bind(":idUsuario", $idUsuario);   
+        return $database->resultSet();
+        //$database->resultSet()[0]['nome'];
+    }
+
     
 } // Fecha CLass
 

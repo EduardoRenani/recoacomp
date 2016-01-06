@@ -107,12 +107,12 @@
 											if(!$this->isStopWord($palavra) && !$this->isAdverbio($palavra) && !$this->isInterjeicao($palavra)) {
 												if(is_null($sentidoVirgula[$key1])) {
 													$sentidoVirgula[$key1] = $this->verNoBanco($palavra);
-													if(is_null($sentidoVirgula[$key1])) $sentidoVirgula[$key1] = $this->pesquisarInternetSentido($palavra);
+													//if(is_null($sentidoVirgula[$key1])) $sentidoVirgula[$key1] = $this->pesquisarInternetSentido($palavra);
 													//if(is_null($sentidoVirgula[$key])) $sentidoVirgula[$key] = $this->pergunta($palavra);
 												}
 												else {
 													$sentidoAux = $this->verNoBanco($palavra);
-													if(is_null($sentidoAux)) $sentidoAux = $this->pesquisarInternetSentido($palavra);
+													//if(is_null($sentidoAux)) $sentidoAux = $this->pesquisarInternetSentido($palavra);
 													//if(is_null($sentidoAux)) $sentidoAux = $this->pergunta($palavra);
 													if(!is_null($sentidoAux)) $sentidoVirgula[$key1] = $sentidoVirgula[$key1]*$sentidoAux;
 												}
