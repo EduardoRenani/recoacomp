@@ -227,6 +227,8 @@ textarea {
   -moz-border-radius: 20px;
   border-radius: 5px;
   outline:none;
+  text-decoration: none;
+  color: white;
 }
 
 .botao-med:hover{
@@ -235,6 +237,8 @@ textarea {
   background: -moz-linear-gradient(right, #5bc6ee, #75CCD6); /* For Firefox 3.6 to 15 */
   background: linear-gradient(to right, #5bc6ee, #75CCD6); /* Standard syntax (must be last) */
   outline:none;
+  text-decoration: none;
+  color: white;
 }
 
 .botao-med:active{
@@ -247,6 +251,8 @@ textarea {
   -moz-box-shadow:    0px 1px 0px 0px rgba(50, 50, 50, 0.47);
   box-shadow:         0px 1px 0px 0px rgba(50, 50, 50, 0.47);
   outline:none;
+  text-decoration: none;
+  color: white;
 }
 
 /*================================== Accordion ==================================*/

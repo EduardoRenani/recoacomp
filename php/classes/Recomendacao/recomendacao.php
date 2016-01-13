@@ -5,9 +5,10 @@
  * Date: 21/01/2015
  * Time: 15:55
  */
-require_once("config/config.cfg");
-require_once("classes/lista.php");
-require_once("classes/Recomendacao/comp.php");
+require_once("../../../config/config.cfg");
+//require_once("../classes/lista.php");
+require_once("../../../php/classes/lista.php");
+require_once("../../../php/classes/Recomendacao/comp.php");
 
 class Recomendacao {
 
@@ -123,10 +124,13 @@ class Recomendacao {
                 $this->competencia[$pos]->addOA( (int)$objetosDaCompetencia[ $idOA ] );
             }
 
+            // Aqui ocorre o ordenamento dos OAS de acordo com os calculos pré estabelecidos
             $this->competencia[$pos]->ordenaOAs();
 
+            // 
             $this->competencia[$pos]->nomearOAs();
 
+            //Aqui é onde são mostrados os OAs no sistema com HTML
             $this->competencia[$pos]->writeOAs();
             //$this->db_connection = null;
 
@@ -160,4 +164,12 @@ class Recomendacao {
 
 
 }
+
+$id = 86;//$_POST['disc'];
+$vet = null;
+
+$recomendacao = new Recomendacao($id, $vet);
+
+
+
 ?>

@@ -4,9 +4,11 @@
  * User: Cláuser
  */
 
-require_once('config/config.cfg');
-require_once('translations/pt_br.php');
-require_once('classes/Competencia.php');
+//require_once('config/config.cfg');
+require_once("../../../config/config.cfg");
+require_once('../../../translations/pt_br.php');
+require_once('../../classes/competencia.php');
+//require_once("php/classes/competencia.php");
 
 
 class Comp{
@@ -183,7 +185,7 @@ class Comp{
 						
 					</li></div><div id='conteudo-expansivel'>";
 
-			if ($cont <= 0)   
+			if ($cont <= 0)
 	    		echo '<h4><br>Essa competência não possui objetos a serem recomendados no momento.</h4>';
 	    	else{
 				for($c=0;$c<$cont;$c++){
@@ -252,6 +254,8 @@ class Comp{
 
 	}
 
+
+	// ~Função que faz a soma do CHA do usuário
 	private function getCHAuser($user){
 			$sql_PDO = $this->db_connection->prepare('SELECT conhecimento, habilidade, atitude FROM usuario_competencias WHERE usuario_idusuario=:user AND competencia_idcompetencia=:idComp');
 			$sql_PDO->bindValue(':user', $user, PDO::PARAM_INT);
@@ -272,6 +276,7 @@ class Comp{
 
 	}
 
+	// Soma o CHA da disciplina
 	private function getCHAdisc($disc){
 
 		$sql_PDO = $this->db_connection->prepare('SELECT conhecimento, habilidade, atitude FROM disciplina_competencia WHERE disciplina_iddisciplina=:disc AND competencia_idcompetencia=:idComp');

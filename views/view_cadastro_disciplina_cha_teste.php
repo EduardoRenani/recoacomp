@@ -35,7 +35,7 @@ include('_header.php');
             <input type="hidden" id="idUsuario" name="idUsuario" value="<?php echo $_SESSION['user_id']; ?>" />
             <input type="hidden" name="disc" value="<?php echo $_POST['disc']; ?>" />
             <input type="hidden" name="okay" value="okay" />
-
+            <div class="info-cadastro"><?php echo TEXT_CHA;?> <?php echo HINT_CHA;?></div>
             <?php 
                 //echo $_POST["idDisciplina"];
                 $arrayIdCompetencias = $disciplina->getCompetenciaFromDisciplinaById($_POST["disc"]);

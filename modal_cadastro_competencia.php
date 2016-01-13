@@ -651,7 +651,7 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label" for="descricaoNome"><?php echo WORDING_COMPETENCIA_DESCRICAO; ?></label>
+                                    <label class="control-label" for="descricaoNome"><?php echo WORDING_COMPETENCIA_DESCRICAO; ?></label><div class="tooltiploco"></label><div onmouseover="toolTip(1, 'Descrição textual do conteúdo da competência')" onmouseout="deleteTooltip(1)">[?]</div></div>
                                     <div class="controls">
                                         <textarea name="descricaoNome" Rows="5" COLS="40"></textarea>
                                     </div>

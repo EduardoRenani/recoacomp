@@ -23,22 +23,22 @@
     <script type="text/javascript" src="js/jquery.noty.packaged.min.js"></script>
     <!-- Fim Home -->
     <script type="text/javascript">
-    // Variável global pq sim
-    var idDisciplina;
 
-    function getDisciplinaId(id){
-        var disciplinaId = id;
-        document.getElementById('idDisciplina').value = id;
-        idDisciplina = id;
+    var idOA;
+
+    function getOAId(id){
+        var idOA = id;
+        document.getElementById('idOA').value = id;
+        idOA = id;
     }
 
     function deletarDisciplina() {
         //console.log(idDisciplina);
         jQuery.ajax({
             type: "GET",
-            url: "ajax/exclui_disciplina.php",
+            url: "ajax/exclui_oa.php",
             data: { 
-                idDisciplina : idDisciplina,
+                idOA : idOA,
             },
             cache: false,
             // importantinho.
@@ -52,14 +52,17 @@
         
     }
 
-
-
-
+    $(function() {
+        $( "#tabs" ).tabs();
+    });
 
 </script>
 
 </head>
 <div class="fixedBackgroundGradient"></div>
+
+<?php if(!isset($_POST['editar_OA'])){    ?>
+
 <!-- ============== SIDEBAR =============== -->
 <?php require_once("views/sidebar.php"); ?>
 
@@ -70,138 +73,72 @@
         <div class="objetos-content">
             <ul class="objetos-list">
             <?php
-                // Exibir todas as disciplinas disponiveis e permitir cadastros nas mesmas
-                $listaDisciplina = array();
-
-                $disciplinasOrdemAlfabetica = $disciplina->getUserDisciplinasByASC($_SESSION['user_id']);
-
-                $listaDisciplina[0] = $disciplina->getUserDisciplinas($_SESSION['user_id'], 'nomeDisciplina');
-                $listaDisciplina[1] = $disciplina->getUserDisciplinas($_SESSION['user_id'], 'nomeCurso');
-                $listaDisciplina[2] = $disciplina->getUserDisciplinas($_SESSION['user_id'], 'descricao');
-                $listaDisciplina[3] = $disciplina->getUserDisciplinas($_SESSION['user_id'], 'id');
-
-
-
-                foreach ($disciplinasOrdemAlfabetica as $ordemAlfabetica => $disciplina) {
-                    // Se a disciplina não estiver com a flag excluida ela será mostrada
-                    if($disciplina['excluida'] === '0'){
-                        if(!(isset($_POST['codTipoUsuario']))){
-                            echo
-                                "<li class='objetos-item'>".
-                                    "<div class='objetos-item-content'>".
-                                        "<div class='lista-objeto'>".
-                                            "<h3>".$disciplina['nomeDisciplina']."</h3>".
-                                            "<h4>".$disciplina['nomeCurso']."</h4>".
-                                            "<p>".$disciplina['descricao'].
-                                            "<br>".
-                                            "<br><a href='#openModalDeleteDisciplina' id=".$disciplina['iddisciplina']." class='botao-med' onClick='getDisciplinaId(this.id)'>Excluir</a>". // 
-                                        "</div>".
+                    // Exibir todos os objetos que foi cadastrado pelo usuário no sistema               
+    				//print_r($oa->getListaOAbyUser($_SESSION['user_id']));
+    				$objetos = $oa->getListaOAbyUser($_SESSION['user_id']);
+    				foreach($objetos as $objetosSistema => $oa){
+    					//echo $oa['nome'].'<br>';
+    					echo "<li class='objetos-item'>".
+    							"<div class='objetos-item-content'>".
+    								"<div class='lista-objeto'>".
+    									"<h3>".$oa['nome']."</h3>".
+                                        "<p>".$oa['descricao'].
+                                        "<br>".
+                                        "<form method='post' action='#' name='editar_OA'>".
+                                            "<input type='hidden' id='idOA' name='idOA' value=".$oa['idcesta']." />".
+                                            "<input type='submit' class='botao-excluir' name='editar_OA' action='' value='Informações do Objeto' />".
+                                        "</form>                               
+                                        <a href='#openModalDeleteDisciplina' id=".$oa['idcesta']." class='botao-excluir' onClick='getOAId(this.id)'>Excluir</a>". // 
                                     "</div>".
-                                    "<div style='display: block;'>".
-                                        "<form method='post' action='editar_disciplina.php' name='senha_disciplina'>".
-                                            "<input type='hidden' id='idDisciplina' name='idDisciplina' value=".$disciplina['iddisciplina']." />".
-                                            "<input type='submit' name='editar_disciplina.php' action='' value='Informações da Disciplina' />".
-                                        "</form>".
-                                        "<div class='button'>".
-                                        "<form action='cadastro_disciplina_cha_teste.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
-                                           "<input type='hidden' name='disc' value='".$disciplina['iddisciplina']."'>".
-                                            "<input type='submit' value='Testar Recomendação'></br></br>".
-                                            "</form>".
-                                        "</div>".
-                                    "</div>".
-                                "</li>";
-                        ?>
-                        <!-- Modal -->
-                        <div id="openModalDeleteDisciplina" class="modalDialog" id="excluirDisciplinaDialog">
-                                <div>
-                                    <a href="#close" title="Close" class="close">X</a>
-                                    <div class="top-cadastro"><?php echo 'Excluir disciplina?'; ?></div>
-                                        <a href="#close" class="botao-med" id="<?php echo $disciplina['iddisciplina']?>" onClick="deletarDisciplina();" title="Deletar">Excluir</a>
-                                        <a href="#close" class="botao-med" title="Cancelar">Cancelar</a>
-                                    <!--/div-->
-                                </div>
-                                <!-- /.top-cadastro -->
-                        </div>
-<?php                   } else { //  Se tiver setado o _POST pra ver como aluno/professor
-                            $tipoUsuario = $_POST['codTipoUsuario'];
-                                if($tipoUsuario == 2){ // Se a visão estiver de aluno não mostrar ver disciplina mas sim disciplinas em que estou matriculado
-                                echo
-                                    "<li class='objetos-item'>".
-                                        "<div class='objetos-item-content'>".
-                                            "<div class='lista-objeto'>".
-                                                "<h3>".$disciplina['nomeDisciplina']."</h3>".
-                                                "<h4>".$disciplina['nomeCurso']."</h4>".
-                                                "<p>".$disciplina['descricao']."</p>".
-                                                "<p></p>".
-                                                "<br>".
-                                                "<br><a href='#openModalDeleteDisciplina' id=".$disciplina['iddisciplina']." class='botao-med' onClick='getDisciplinaId(this.id)'>Excluir</a>". // 
-                                            "</div>".
-                                        "</div>".
-                                        "<div style='display: block;'>".
-                                            "<form method='post' action='editar_disciplina.php' name='senha_disciplina'>".
-                                                "<input type='hidden' id='idDisciplina' name='idDisciplina' value=".$disciplina['iddisciplina']." />".
-                                                "<input type='submit' name='editar_disciplina.php' action='' value='Ver Disciplina' />".
-                                            "</form>".
-                                            "<div class='button'>".
-                                            "<form action='cadastro_disciplina_cha_teste.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
-                                               "<input type='hidden' name='disc' value='".$disciplina['iddisciplina']."'>".
-                                                "<input type='submit' value='Testar Recomendação'></br></br>".
-                                                "</form>".
-                                            "</div>".
-                                        "</div>".
-                                    "</li>";
-                                    ?>
-                                    <!-- Modal -->
-                                    <div id="openModalDeleteDisciplina" class="modalDialog" id="excluirDisciplinaDialog">
-                                            <div>
-                                                <a href="#close" title="Close" class="close">X</a>
-                                                <div class="top-cadastro"><?php echo 'Excluir disciplina?'; ?></div>
-                                                    <a href="#close" class="botao-med" id="<?php echo $disciplina['iddisciplina']?>" onClick="deletarDisciplina();" title="Deletar">Excluir</a>
-                                                    <a href="#close" class="botao-med" title="Cancelar">Cancelar</a>
-                                                <!--/div-->
-                                            </div>
-                                            <!-- /.top-cadastro -->
-                                    </div>
-<?php                           } elseif ($tipoUsuario == 1){
-                                    echo
-                                        "<li class='objetos-item'>".
-                                            "<div class='objetos-item-content'>".
-                                                "<div class='lista-objeto'>".
-                                                    "<h3>".$disciplina['nomeDisciplina']."</h3>".
-                                                    "<h4>".$disciplina['nomeCurso']."</h4>".
-                                                    "<p>".$disciplina['descricao'].
-                                                    "<br>".
-                                                "</div>".
-                                            "</div>".
-                                            "<div style='display: block;'>".
-                                                "<div class='button'>".
-                                                "<form action='cadastro_disciplina_cha_teste.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
-                                                   "<input type='hidden' name='disc' value='".$disciplina['iddisciplina']."'>".
-                                                    "<input type='submit' value='Solicitar Recomendação'></br></br>".
-                                                    "</form>".
-                                                "</div>".
-                                            "</div>".
-                                        "</li>";
-                                } // end elseif
-                            } // end if isset
-                         }// end if excluida
-                        //<!-- /.modalDialog -->
-                     } // end for
-                    
-
-/*
-                $listaDisciplina[0] = $disciplina->getUserDisciplinas($_SESSION['user_id'], 'nomeDisciplina');
-                $listaDisciplina[1] = $disciplina->getUserDisciplinas($_SESSION['user_id'], 'nomeCurso');
-                $listaDisciplina[2] = $disciplina->getUserDisciplinas($_SESSION['user_id'], 'descricao');
-                $listaDisciplina[3] = $disciplina->getUserDisciplinas($_SESSION['user_id'], 'id');
-
-                $contador = count($listaDisciplina[0]);
-                //Imprime o nome de cada disciplina
-                //print_r($listaDisciplina[0]);
-*/
-                ?>
+                                "</div>".
+                            "</li>";				
+    				} // end for each
+			?>
+                    <!-- Modal -->
+                    <div id="openModalDeleteDisciplina" class="modalDialog" id="excluirDisciplinaDialog">
+                            <div>
+                                <a href="#close" title="Close" class="close">X</a>
+                                <div class="top-cadastro"><?php echo 'Excluir OA?'; ?></div>
+                                    <a href="#close" class="botao-med" id="<?php echo $oa['idcesta']?>" onClick="deletarDisciplina();" title="Deletar">Excluir</a>
+                                    <br><br>
+                                    <a href="#close" class="botao-med" title="Cancelar">Cancelar</a>
+                                <!--/div-->
+                            </div>
+                            <!-- /.top-cadastro -->
+                    </div> <!-- div modal -->
             </ul>
          </div>  
 
 </div>
+
+
+<?php  
+}else{ // aqui vem o código lindo da parte de edição de objetos TODO 
+        $objeto = $oa->getDadosOA($_POST['idOA']);
+    ?>
+    <div class='cadastrobase'>
+        <div class="top-cadastrobase">
+            <div class="text-left"><?php echo (WORDING_GLOBAL_COURSE).': '.$objeto[0]['nome'];; ?></div>
+            <div class="text-right" ><!-- <a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a>--></div>
+        </div>
+    </div>
+    <div class="cadastrobase-content">
+       AAAAAAAAAAA
+       a
+       a
+       a
+       a
+
+       aa
+       a
+
+       <br>
+    </div>
+
+
+
+
+    
+<?php } // end set if isset post ?>
+<?php include('_footer.php'); ?>
 
