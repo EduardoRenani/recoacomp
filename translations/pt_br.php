@@ -344,5 +344,10 @@ define("HINT_COMPETENCY", "Este metadado define os tipos de competências que um
 
 //Textos de ajuda CHA
 define("TEXT_CHA", "Indicar um valor de 0 a 5");
-define("HINT_CHA", "Indicar um valor de 0 a 5, que represente o quanto esta disciplina irá abordar os conhecimentos, habilidades e atitudes de cada competência cadastrada.");
+define("HINT_CHA", "Indicar um valor de 0 a 4, que represente o quanto esta disciplina irá abordar os conhecimentos, habilidades e atitudes de cada competência cadastrada:");
+define("HINT_CHA_0", "0. Não desenvolvi");
+define("HINT_CHA_1", "1. Desenvolvi em nível inicial");
+define("HINT_CHA_2", "2. Desenvolvi em nível básico");
+define("HINT_CHA_3", "3. Desenvolvi em nível intermediário");
+define("HINT_CHA_4", "4. Desenvolvi em nível avançado");
 define("HINT_CHA_OA", "Representa o quanto este objeto irá abordar os conhecimentos, habilidades e atitudes de cada competência cadastrada.");

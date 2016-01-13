@@ -93,7 +93,15 @@ include('_header.php');
             <input type="hidden" name="senha" value="<?php echo $_POST['senha']; ?>" />
 
             <label>
-            <h3>Importante: os dados aqui informados serão utilizados para a recomendação</h3>
+            <h2>Importante: os dados aqui informados serão utilizados para a recomendação</h2><br>
+            <h4>
+            Indicar um valor de 0 a 4, que represente o quanto esta disciplina irá abordar os conhecimentos, habilidades e atitudes de cada competência cadastrada:<br>
+            0. Não desenvolvi<br>
+            1. Desenvolvi em nível inicial<br>
+            2. Desenvolvi em nível básico<br>
+            3. Desenvolvi em nível intermediário<br>
+            4. Desenvolvi em nível avançado<br>
+            </h4>
             </label>
 
 
@@ -110,13 +118,13 @@ include('_header.php');
                     echo "<h2>Competência: " . $nomeCompetencia[0][0]."</h2>
                     <br>
                     <h4>Conhecimento</h4>
-                    <input type='number' name='conhecimento[".$competenciaId[0]."]' min='0' max='5' value='0' oninput='this.form.conhecimento".$competenciaId[0].".value=this.value' />
+                    <input type='number' name='conhecimento[".$competenciaId[0]."]' min='0' max='4' value='0' oninput='this.form.conhecimento".$competenciaId[0].".value=this.value' />
                     <br>
                     <h4>Habilidade</h4>
-                    <input type='number' name='habilidade[".$competenciaId[0]."]' min='0' max='5' value='0' oninput='this.form.conhecimento".$competenciaId[0].".value=this.value' />
+                    <input type='number' name='habilidade[".$competenciaId[0]."]' min='0' max='4' value='0' oninput='this.form.conhecimento".$competenciaId[0].".value=this.value' />
                     <br>
                     <h4>Atitude</h4>
-                    <input type='number' name='atitude[".$competenciaId[0]."]' min='0' max='5' value='0' oninput='this.form.conhecimento".$competenciaId[0].".value=this.value' />
+                    <input type='number' name='atitude[".$competenciaId[0]."]' min='0' max='4' value='0' oninput='this.form.conhecimento".$competenciaId[0].".value=this.value' />
                     <br>";
                 }
                                  

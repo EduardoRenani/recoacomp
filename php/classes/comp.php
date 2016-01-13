@@ -15,6 +15,8 @@ class Comp{
 
 	private $oa;
 
+	private $idDisciplina;
+
 	private $mysqli;
 
 	private $idComp;
@@ -54,6 +56,7 @@ class Comp{
     }
 
 	function __construct($idComp,$user,$disc){
+		$this->idDisciplina =  $disc;
 		$this->oa = new lista();
 		$this->databaseConnection();
 		//$this->mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);

@@ -35,7 +35,7 @@ include('_header.php');
             <input type="hidden" id="idUsuario" name="idUsuario" value="<?php echo $_SESSION['user_id']; ?>" />
             <input type="hidden" name="disc" value="<?php echo $_POST['disc']; ?>" />
             <input type="hidden" name="okay" value="okay" />
-            <div class="info-cadastro"><?php echo TEXT_CHA;?> <?php echo HINT_CHA;?></div>
+            <div class="info-cadastro"><?php echo HINT_CHA."<br>".HINT_CHA_0."<br>".HINT_CHA_1."<br>".HINT_CHA_2."<br>".HINT_CHA_3."<br>".HINT_CHA_4;?></div>
             <?php 
                 //echo $_POST["idDisciplina"];
                 $arrayIdCompetencias = $disciplina->getCompetenciaFromDisciplinaById($_POST["disc"]);
@@ -56,21 +56,21 @@ include('_header.php');
                         <div class='cha-escolha'>
                             <label for='nomeCompetencia' title='".$descricaoConhecimento['conhecimento_descricao']."'><h4>Conhecimento  <span class='tooltiploco' style='color: black'>[ ? ]</span></h4></label>
                             <br>
-                            <input type='number' name='conhecimento[".$competenciaId[0]."]' min='0' max='5' value='0' oninput='this.form.conhecimento".$competenciaId[0].".value=this.value' />
+                            <input type='number' name='conhecimento[".$competenciaId[0]."]' min='0' max='4' value='0' oninput='this.form.conhecimento".$competenciaId[0].".value=this.value' />
                         </div>
                         
                         <div class='cha-escolha'>
                             <label for='nomeCompetencia' title='".$descricaoHabilidade['habilidade_descricao']."'><h4>Habilidade  <span class='tooltiploco' style='color: black'>[ ? ]</span></h4></label>
                         
                             <br>
-                            <input type='number' name='habilidade[".$competenciaId[0]."]' min='0' max='5' value='0' oninput='this.form.conhecimento".$competenciaId[0].".value=this.value' />
+                            <input type='number' name='habilidade[".$competenciaId[0]."]' min='0' max='4' value='0' oninput='this.form.conhecimento".$competenciaId[0].".value=this.value' />
                         </div>
 
                         
                         <div class='cha-escolha'>
                             <label for='nomeCompetencia' title='".$descricaoAtitude['atitude_descricao']."'><h4>Atitude  <span class='tooltiploco'>[ ? ]</span></h4></label>
                             <br>
-                            <input type='number' name='atitude[".$competenciaId[0]."]' min='0' max='5' value='0' oninput='this.form.conhecimento".$competenciaId[0].".value=this.value' />
+                            <input type='number' name='atitude[".$competenciaId[0]."]' min='0' max='4' value='0' oninput='this.form.conhecimento".$competenciaId[0].".value=this.value' />
                         </div>
                       
                     ";
