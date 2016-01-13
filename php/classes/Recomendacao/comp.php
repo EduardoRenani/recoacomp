@@ -4,11 +4,12 @@
  * User: Cláuser
  */
 
-//require_once('config/config.cfg');
-require_once("../../../config/config.cfg");
-require_once('../../../translations/pt_br.php');
-require_once('../../classes/competencia.php');
-//require_once("php/classes/competencia.php");
+require_once('config/config.cfg');
+//require_once("../../../config/config.cfg");
+//require_once('../../../translations/pt_br.php');
+require_once('translations/pt_br.php');
+//require_once('../../classes/competencia.php');
+require_once("php/classes/competencia.php");
 
 
 class Comp{
@@ -190,7 +191,7 @@ class Comp{
 	    	else{
 				for($c=0;$c<$cont;$c++){
 					
-					//var_dump($v);
+					print_r($v);
 
 						echo"<li class='disciplinas-item'  style='border-bottom: 1px solid #ddd; margin-bottom: 0; width: 95%; margin: auto;'>";
 			                    echo "<div class='recomendacao-item-content'>";

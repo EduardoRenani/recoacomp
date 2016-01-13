@@ -5,10 +5,12 @@
  * Date: 21/01/2015
  * Time: 15:55
  */
-require_once("../../../config/config.cfg");
+//require_once("../../../config/config.cfg");
+require_once("config/config.cfg");
 //require_once("../classes/lista.php");
-require_once("../../../php/classes/lista.php");
-require_once("../../../php/classes/Recomendacao/comp.php");
+require_once("classes/lista.php");
+//require_once("../../../php/classes/lista.php");
+require_once("php/classes/Recomendacao/comp.php");
 
 class Recomendacao {
 
@@ -165,10 +167,10 @@ class Recomendacao {
 
 }
 
-$id = 86;//$_POST['disc'];
-$vet = null;
+//$id = 86;//$_POST['disc'];
+//$vet = null;
 
-$recomendacao = new Recomendacao($id, $vet);
+//$recomendacao = new Recomendacao($id, $vet);
 
 
 
