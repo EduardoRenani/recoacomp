@@ -9,21 +9,7 @@
     <script src="http://malsup.github.com/jquery.form.js"></script> 
     
 
-<script>
-    $(document).ready(function(){
-     function onsuccess(response,status){
-      $("#onsuccessmsg").html("Upload: <b>"+status+'</b><br><br>Imagem: <div id="msg" style="border:5px solid #CCC;padding:15px;">'+response+'</div>');
-     }
-     $("#uploadform").on('submit',function(){
-      var options={
-       url     : $(this).attr("action"),
-       success : onsuccess
-      };
-      $(this).ajaxSubmit(options);
-     return false;
-     });
-    });
-</script>
+
 
 </head>
 
@@ -70,15 +56,20 @@
   <img src="picture.jpg">
 </div-->
 
-    <form action="upload.php" method="POST" id="uploadform">
-        <input type="hidden" id="idUsuario" name="idUsuario" value="<?php echo $_SESSION['user_id']; ?>" />
-        <input type="file" name="file"/>
+    <form enctype="multipart/form-data" action="upload.php" method="POST">
+        <?php 
+        $foto = new Foto((int) $_SESSION['user_id']);
+        if(!is_null($foto->getCaminho())) {
+            echo "<img style='width: 250px; height: auto;' src='img/profile_images/".$foto->getNome()."'>";
+            echo "<input type='hidden' name='id_foto' value='".$foto->getId()."'>";
+        }
+        else {
+            echo "<img style='width: 250px; height: auto;' src='img/profile_images/head.png'>";
+        }
+        ?>
+        <input type="file" name="arquivo">
         <br>A imagem deve ser no formato JPG com tamanho máximo de 5MB</br>
-        <input type="submit" value="Upload"/><br/><br/>
-
-        <br>Nova:<br>
-        <div id="onsuccessmsg" style="border:5px solid #CCC;padding:15px;">
-        </div>
+        <input type="submit"><br/><br/>
     </form>
 
         

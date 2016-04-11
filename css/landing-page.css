@@ -254,7 +254,7 @@ div.login input[type=submit] { /*botão login*/
     width: 380px;
     min-width:30%;
     min-height:340px;
-    max-height:370px;
+    max-height:405px;
     
     -webkit-box-shadow: 5px 5px 0px 0px rgba(50, 50, 50, 0.2);
     -moz-box-shadow:    5px 5px 0px 0px rgba(50, 50, 50, 0.2);

@@ -398,7 +398,7 @@ $(document).ready(function(){
 <!-- End additional plugins -->
 <div id="mais-estatisticas">
     <?php
-        echo "<div style='float: left; text-align: center; width: 50%;'><h2>Indices de Relevância</h2>";
+        echo "<div style='float: left; text-align: center; width: 50%;'><h2>Índices de Relevância</h2>";
         echo "<table id='table-estatisticas'>";
         echo "<tr>
                 <td>
@@ -419,7 +419,7 @@ $(document).ready(function(){
             echo "</tr>";
         }
         echo "</table></div>";
-        echo "<div style='float: right; text-align: center; width: 50%;'><h2>Indices de Rejeição</h2>";
+        echo "<div style='float: right; text-align: center; width: 50%;'><h2>Índices de Rejeição</h2>";
         echo "<table id='table-estatisticas'>";
         echo "<tr>
                 <td>

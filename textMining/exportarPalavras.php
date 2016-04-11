@@ -1,5 +1,5 @@
 <?php
-	include("base.php");
+	include("../config/base.php");
 
 	function removeAcentos($string, $slug = false) {
 	  $string = strtolower($string);

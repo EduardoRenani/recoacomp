@@ -1,5 +1,5 @@
 <?php
-require_once('base.php');
+require_once('config/base.php');
 $competencia = new Competencia();
 $listaExclusao = explode(',', $_POST['listaExclusao']);
 $string_result = NULL;

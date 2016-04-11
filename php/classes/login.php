@@ -272,7 +272,6 @@ class Login
             if (!filter_var($user_name, FILTER_VALIDATE_EMAIL)) {
                 // database query, getting all the info of the selected user
                 $result_row = $this->getUserData(trim($user_name));
-
             // if user has typed a valid email address, we try to identify him with his user_email
             } else if ($this->databaseConnection()) {
                 // database query, getting all the info of the selected user
@@ -432,7 +431,6 @@ class Login
     {
         // prevent database flooding
         $user_name = substr(trim($user_name), 0, 64);
-
         if (!empty($user_name) && $user_name == $_SESSION['user_name']) {
             $this->errors[] = MESSAGE_USERNAME_SAME_LIKE_OLD_ONE;
 
@@ -454,9 +452,10 @@ class Login
                 $query_edit_user_name->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
                 $query_edit_user_name->execute();
 
-                if ($query_edit_user_name->rowCount()) {
+                if ($query_edit_user_name->rowCount() == 1) {
                     $_SESSION['user_name'] = $user_name;
                     $this->messages[] = MESSAGE_USERNAME_CHANGED_SUCCESSFULLY . $user_name;
+
                 } else {
                     $this->errors[] = MESSAGE_USERNAME_CHANGE_FAILED;
                 }

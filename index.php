@@ -9,6 +9,7 @@
  * @link https://github.com/panique/php-login-advanced/
  * @license http://opensource.org/licenses/MIT MIT License
  */
+
 //require_once('classes/OA.php');
 // check for minimum PHP version
 if (version_compare(PHP_VERSION, '5.3.7', '<')) {
@@ -18,11 +19,10 @@ if (version_compare(PHP_VERSION, '5.3.7', '<')) {
     // (this library adds the PHP 5.5 password hashing functions to older versions of PHP)
     require_once('libraries/password_compatibility_library.php');
 }
-require_once('base.php');
+require_once('config/base.php');
 
 // create a login object. when this object is created, it will do all login/logout stuff automatically
 // so this single line handles the entire login process.
-$login = new Login();
 $disciplina = new Disciplina();
 
 // ... ask if we are logged in here:
@@ -39,3 +39,4 @@ if ($login->isUserLoggedIn() == true) {
     // for demonstration purposes, we simply show the "you are not logged in" view.
     include("views/not_logged_in.php");
 }
+?>

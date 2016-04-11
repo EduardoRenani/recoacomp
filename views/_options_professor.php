@@ -34,16 +34,16 @@
 						<br>
 				<?php
 				}else{ // Se está vendo como professor ?>
+					<!-- Meu Perfil -->
+					<a href="profile_show.php">
+						<li>
+							Meu Perfil
+						</li>
+					</a>
 					<!-- Minhas Disciplinas (que cadastrei) -->
 					<a href="disciplinas.php">
 						<li class="active">
 							Minhas Disciplinas
-						</li>
-					</a>
-					<!-- Disciplina Disponíveis -->
-					<a href="disciplinas_disponiveis.php">
-						<li>
-							Disciplinas Disponíveis
 						</li>
 					</a>
 					<!-- Disciplinas em que estou matriculado (que cadastrei) -->
@@ -52,10 +52,10 @@
 							Disciplinas em que estou matriculado(a)
 						</li>
 					</a>
-					<!-- Meu Perfil -->
-					<a href="profile_show.php">
+					<!-- Disciplina Disponíveis -->
+					<a href="disciplinas_disponiveis.php">
 						<li>
-							Meu Perfil
+							Disciplinas Disponíveis
 						</li>
 					</a>
 					<!-- Cadastrar novo OA -->
@@ -85,16 +85,16 @@
 			$usuario->updateTipoVisao(2);
 			//print_r($usuario);
 			?>
+				<!-- Meu Perfil -->
+				<a href="profile_show.php">
+					<li>
+						Meu Perfil
+					</li>
+				</a>
 			<!-- Minhas Disciplinas (que cadastrei) -->
 				<a href="disciplinas.php">
 					<li>
 						Minhas Disciplinas
-					</li>
-				</a>
-				<!-- Disciplina Disponíveis -->
-				<a href="disciplinas_disponiveis.php">
-					<li>
-						Disciplinas Disponíveis
 					</li>
 				</a>
 				
@@ -104,10 +104,10 @@
 						Disciplinas em que estou matriculado(a)
 					</li>
 				</a>
-				<!-- Meu Perfil -->
-				<a href="profile_show.php">
+				<!-- Disciplina Disponíveis -->
+				<a href="disciplinas_disponiveis.php">
 					<li>
-						Meu Perfil
+						Disciplinas Disponíveis
 					</li>
 				</a>
 
@@ -119,11 +119,19 @@
 				</a>
 				
 				<!-- Cadastrar novo...-->
-				<a href="cadastro_disciplina.php">
+				<!--<a href="cadastro_disciplina.php">
 					<li>
 						<?= WORDING_REGISTER_NOVA_DISCIPLINA; ?>
 					</li>
-				</a>
+				</a>-->
+				<li id="cadastro">
+					Cadastrar...
+				</li>
+				<div id="selectcadastro" style="display: none;">
+					<a href="cadastro_disciplina.php?tipo=disciplina"><li>Disciplina</li></a>
+					<a href="cadastro_disciplina.php?tipo=curso"><li>Curso</li></a>
+				</div>
+
 				<!-- Ver como -->
 				
 				<li class="visao">

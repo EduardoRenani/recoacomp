@@ -48,10 +48,12 @@ function getDisciplinaId(id){
                 $listaDisciplina[1] = $disciplina->getNomeCursosNaoMatriculados($_SESSION['user_id']);
                 $listaDisciplina[2] = $disciplina->getDescricaoDisciplinasNaoMatriculadas($_SESSION['user_id']);
                 $listaDisciplina[3] = $disciplina->getIdDisciplinasNaoMatriculadas($_SESSION['user_id']);
+                $listaDisciplina[4] = $disciplina->getExcluidaDisciplinasNaoMatriculadas($_SESSION['user_id']);
                 $contador = count($listaDisciplina[0]);
                 //Imprime o nome de cada disciplina
                 for($i=0; $i<$contador;$i++){
-
+                    //var_dump($listaDisciplina[0][$i][3]);
+                    if(!$listaDisciplina[4][$i][0]) {
                     echo
                         "<li class='disciplinas-item'>".
                             "<div class='disciplina-item-content'>".
@@ -85,7 +87,10 @@ function getDisciplinaId(id){
                         </div>
                         <!-- /.top-cadastro -->
                 </div>
-                <?php } ?>
+                <?php 
+                        }
+                    } 
+                ?>
                 <!-- /.modalDialog -->
             </ul>
          </div>  

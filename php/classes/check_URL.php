@@ -1,16 +1,16 @@
 <?php
-require_once("base.php");
+require_once("../../config/base.php");
 
 $url = $_POST['url'];
 $url = str_replace(" ", "%20", $url);
 
 try {
     $conn = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);   
-      
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
     $stmt = $conn->prepare('SELECT url FROM cesta WHERE url=:url');
     $stmt->execute(array('url' => $url));
-  
+
     $row = $stmt->fetchAll();
         if(count($row)>0) {
             echo '<font color="red"><strong>'.WORDING_OA_ALREADY_EXISTS.'</strong></font>';

@@ -6,9 +6,8 @@ if (version_compare(PHP_VERSION, '5.3.7', '<')) {
     // (this library adds the PHP 5.5 password hashing functions to older versions of PHP)
     require_once('libraries/password_compatibility_library.php');
 }
-require_once('base.php');
+require_once('config/base.php');
 
-$login = new Login();
 $competencia = new Competencia();
 // ... ask if we are logged in here:
 if (($login->isUserLoggedIn() == true) && ($login->getUserAccess() == 2) || ($login->getUserAccess() == 3)){

@@ -111,6 +111,8 @@ define("MESSAGE_DISCIPLINA_DOESNT_EXIST","Disciplina não existe");
 define("MESSAGE_COMPETENCIA_DOESNT_EXIST","Competência associada é inválida");
 define("MESSAGE_DISCIPLINA_COMPETENCIA_ALREADY_RELATED","Competência já associada a essa disciplina");
 define("WORDING_REGISTER_NOVA_DISCIPLINA", "Cadastrar Disciplina");
+define("WORDING_REGISTER_NOVO_CURSO", "Cadastrar Curso");
+
 define("WORDING_EDIT_COURSE", "Editar Disciplina");
 define("WORDING_GLOBAL_COURSE", "Visão geral");
 define("WORDING_EDIT_COURSE_FINAL", "Finalizar edição da disciplina");
@@ -142,7 +144,11 @@ define("WORDING_CHANGE_COURSE_NAME","Alterar nome do curso");
 define("MESSAGE_DISCIPLINA_NAME_INVALID", "Nome da disciplina inválido.");
 define("MESSAGE_COURSE_NAME_INVALID", "Nome do curso inválido.");
 
+
 //Cadastro de OA mensagens
+define("MESSAGE_OA_NAME_INVALID", "Nome do Objeto de Aprendizagem inválido");
+define("MESSAGE_OA_DESCRIPTION_INVALID", "Descrição do Objeto de Aprendizagem inválido");
+define("MESSAGE_OA_UTILITY_TYPE_INVALID", "Forma de utilização do Objeto de Aprendizagem inválida");
 define("WORDING_PORTUGUES", "Português");
 define("WORDING_ENGLISH", "Inglês");
 define("WORDING_SPANISH", "Espanhol");
@@ -150,12 +156,35 @@ define("WORDING_REGISTER_NOVO_OA", "Cadastrar Objeto de Aprendizagem");
 define("MESSAGE_OA_WITH_NAME_ALREADY_EXISTS", "Objeto de Aprendizagem com nome e/ou URL já existente!");
 define("WORDING_ASSOCIATE_COMPETENCE", "Associar Competências");
 define("WORDING_OA", "Objeto de Aprendizagem");
+define("WORDING_NEW_OA_NAME","Novo nome para Objeto de Aprendizagem");
+define("WORDING_NEW_OA_DATE","Nova data para Objeto de Aprendizagem");
+define("WORDING_NEW_OA_UTILITY_TYPE","Nova forma de utilização para Objeto de Aprendizagem");
+define("WORDING_NEW_OA_TYPE","Novo tipo para Objeto de Aprendizagem");
+define("WORDING_NEW_OA_AGE_GROUP","Nova faixa etária para Objeto de Aprendizagem");
+define("WORDING_NEW_OA_LEARNING_RESOURCE","Novo recurso de aprendizagem para Objeto de Aprendizagem");
+define("WORDING_NEW_OA_DESCRIPTION","Nova descrição para Objeto de Aprendizagem");
+define("WORDING_NEW_OA_KEYWORD","Nova(s) palavra(s) chave para Objeto de Aprendizagem");
+define("WORDING_NEW_OA_LANGUAGE","Novo idioma para Objeto de Aprendizagem");
+define("WORDING_NEW_OA_URL","Novo URL para Objeto de Aprendizagem");
+define("WORDING_NEW_OA_KNOWLEDGE_AREA","Nova área de conhecimento para Objeto de Aprendizagem");
+define("WORDING_CHANGE_OA_DESCRIPTION","Alterar descrição Objeto de Aprendizagem");
+define("WORDING_CHANGE_OA_NAME","Alterar nome Objeto de Aprendizagem");
+define("WORDING_CHANGE_OA_KEYWORD","Alterar palavra chave Objeto de Aprendizagem");
+define("WORDING_CHANGE_OA_LANGUAGE","Alterar idioma Objeto de Aprendizagem");
+define("WORDING_CHANGE_OA_URL","Alterar URL Objeto de Aprendizagem");
+define("WORDING_CHANGE_OA_KNOWLEDGE_AREA","Alterar área de conhecimento Objeto de Aprendizagem");
+define("WORDING_CHANGE_OA_DATE","Alterar data Objeto de Aprendizagem");
+define("WORDING_CHANGE_OA_UTILITY_TYPE","Alterar forma de utilização Objeto de Aprendizagem");
+define("WORDING_CHANGE_OA_TYPE","Alterar tipo de Objeto de Aprendizagem");
+define("WORDING_CHANGE_OA_AGE_GROUP","Alterar faixa etária do Objeto de Aprendizagem");
+define("WORDING_CHANGE_OA_LEARNING_RESOURCE","Alterar recurso aprendizagem do Objeto de Aprendizagem");
+
 
 
 
 // -- Categoria Vida mensagens
 define("WORDING_LIFE_CATEGORY", "Categoria Vida");
-define("WORDING_DATE", "Data (Ano)");
+define("WORDING_DATE", "Ano de elaboração");
 define("WORDING_STATUS", "Status");
 define("WORDING_REVISED", "Revisado");
 define("WORDING_DRAFT", "Rascunho");
@@ -175,6 +204,7 @@ define("WORDING_CONTENT_PROVIDER", "Provedor de Conteúdo");
 define("WORDING_ROTEIRIST", "Roteirista");
 define("WORDING_INSTRUCTIONAL_DESIGNER", "Designer Instrucional");
 define("WORDING_CONTENT_SPECIALIST", "Especialista em Conteúdo");
+define("WORDING_CONTENT_THEORY", "Conteúdo Teórico e Atividades");
 define("WORDING_FILL_DATE", "Preencha a data");
 
 // -- Categoria Técnica mensagens
@@ -318,7 +348,7 @@ define("HINT_VERSION", "A versão/edição do objeto");
 define("HINT_STATUS", "Estado atual do objeto");
 define("HINT_CONTRIBUTION", "");
 define("HINT_ENTITY", "Pessoas e/ou organizações que contribuiram na evolução do objeto");
-define("HINT_DATA", "Ano de elaboração ou de acesso ao OA.");
+define("HINT_DATA", "No caso de não haver informação sobre  o ano de elaboração do objeto de aprendizagem pode ser informado  o ano de acesso.");
 
 //Categoria Técnica
 define("HINT_FORMAT", "Formato de todos os componentes do objeto (MIME types), este atributo pode ser usado para identificar o programa necessário para acessar o objeto");
@@ -344,7 +374,7 @@ define("HINT_COMPETENCY", "Este metadado define os tipos de competências que um
 
 //Textos de ajuda CHA
 define("TEXT_CHA", "Indicar um valor de 0 a 5");
-define("HINT_CHA", "Indicar um valor de 0 a 4, que represente o quanto esta disciplina irá abordar os conhecimentos, habilidades e atitudes de cada competência cadastrada:");
+define("HINT_CHA", "Indicar um valor de 0 a 4, que expresse o quanto você considera possuir desenvolvido os conhecimentos, habilidades e atitudes de cada competência abordada por esta disciplina:");
 define("HINT_CHA_0", "0. Não desenvolvi");
 define("HINT_CHA_1", "1. Desenvolvi em nível inicial");
 define("HINT_CHA_2", "2. Desenvolvi em nível básico");

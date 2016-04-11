@@ -136,13 +136,13 @@ select{width:100%;}
   float:right;
  }
 
-.top-objetos-titulo{
+.top-disciplinas-titulo{
   float:left;
   width:500px;
 
 }
 
-div.top-objetos a{
+div.top-disciplinas a{
   text-decoration: none;
   color:white;
   font-size:16px;
@@ -161,12 +161,10 @@ div.top-cadastrobase a{
 .cadastrobase-content{
     margin-top:10%;
     position:relative;
-    padding-left:0%;
-    padding-right:0%;
-    width: 52%;
-    height: 100%
+    padding-left:3%;
+    padding-right:3%;
 
-    /*top:20px;*/
+    top:0px;
 
     margin:0 auto;
 }

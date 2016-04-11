@@ -18,6 +18,7 @@
     <!--script type="text/javascript" src="js/jquery.tooltipster.min.js"></script-->
     
     <script src="js/bootstrap-tagsinput.js"></script>
+	<script src="js/jquery-customselect.js"></script>
     
     <!-- Fim importação Jquery -->
 	<!-- Login -->

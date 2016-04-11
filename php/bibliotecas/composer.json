@@ -1,0 +1,21 @@
+{
+    "name": "Recoacomp",
+    "description": "Recomendador",
+    "type": "library",
+    "require": {
+        "ezyang/htmlpurifier": "^4.6",
+        "phpmailer/phpmailer": "^5.2",
+        "phpunit/phpunit": "^4.7",
+        "joshcam/mysqli-database-class": "^2.1"
+    },
+    "license": "Emp",
+    "authors": [
+        {
+            "name": "Arthur Adolfo",
+            "email": "arthur_adolfo@hotmail.com"
+        }
+    ],
+    "config": {
+        "vendor-dir": ""
+    }
+}

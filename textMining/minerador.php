@@ -1,5 +1,5 @@
 <?php
-	include("base.php");
+	include("../config/base.php");
 	/**
 	 * Classe para minerar o texto das avaliações dos OAs
 	 * @category Minerador
@@ -121,6 +121,7 @@
 										}
 									}
 									$sentido[$key]+=$sentidoVirgula[$key1];
+									echo "sentido: ";
 									var_dump($sentido);
 								}
 							}
@@ -411,7 +412,7 @@
 	        	$id = $database->lastInsertId();
 				//echo "hahaha";
 				//var_dump($id);
-	        	
+
 				$database = new Database;
 	        	$sql = "INSERT INTO sinonimos_minerador VALUES (NULL, :palavra, :sinonimo)";
 	           	$database->query($sql);

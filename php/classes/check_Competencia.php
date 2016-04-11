@@ -1,15 +1,15 @@
 <?php
-require_once("base.php");
+require_once("../../config/base.php");
 
 $nome = $_POST['nome'];
 
 try {
     $conn = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);   
-      
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
     $stmt = $conn->prepare('SELECT nome FROM competencia WHERE nome=:nome');
     $stmt->execute(array('nome' => $nome));
-  
+
     $row = $stmt->fetchAll();
         if(count($row)>0) {
             echo '<font color="red"><strong>'.WORDING_OA_ALREADY_EXISTS.'</strong></font>';

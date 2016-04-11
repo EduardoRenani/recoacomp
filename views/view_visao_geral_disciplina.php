@@ -22,7 +22,10 @@ include('_header.php');
     <script src="js/jquery.nouislider.all.min.js" type="text/javascript"></script> <!-- Slider -->
     <script type="text/javascript" src="js/jquery.form.js"></script>
     <script type="text/javascript" src="js/jquery.noty.packaged.min.js"></script>
-
+    
+    <!-- Pega Tempo de acesso -->
+    <script type="text/javascript" src="js/ajax.js"></script>
+    
     <script type="text/javascript">
     $(document).ready(function(){
         // Tabela com competências do sistema
@@ -286,9 +289,82 @@ include('_header.php');
                 icons: icons,
                 heightStyle: "content"
             });
+            $("#alunos").accordion({
+                header: "> div > h3",
+                active: false,
+                collapsible: true,
+                icons: icons,
+                heightStyle: "content"
+            });
+
         var iframe = document.getElementById('graficos');    
         $(window).mouseup(function(){iframe.src = iframe.src;});
         });
+
+        opacityModal = 0;
+        function fadeInModal() {
+            div = document.getElementById('modal-competencia');
+            divDelete = document.getElementById('closeModal');
+            divFundo = document.getElementsByClassName('fundoPreto')[0];
+            divFundo.style.display = "block";
+            divFundo.style.opacity = opacityModal;
+            div.style.opacity = opacityModal;
+            divDelete.style.opacity = opacityModal;
+            opacityModal+=0.01;
+            tModal = setTimeout(function() {fadeInModal()}, 1);
+            if (opacityModal >= 1) {
+                clearTimeout(tModal);
+            }
+        }
+
+        function fadeOutModal() {
+            div = document.getElementById('modal-competencia');
+            div1 = document.getElementById('closeModal');
+            divFundo = document.getElementsByClassName('fundoPreto')[0];
+            divFundo.style.opacity = opacityModal;
+            div1.style.opacity = opacityModal;
+            div.style.opacity = opacityModal;
+            opacityModal-=0.01;
+            tFadeOutModal = setTimeout(function() {fadeOutModal()}, 1);
+            if (opacityModal <= 0) {
+                divFundo.style.display = "none";
+                divDelete = document.getElementById('modal-competencia');
+                divDelete.parentNode.removeChild(divDelete);
+                divDeleteClose = document.getElementById('closeModal');
+                divDeleteClose.parentNode.removeChild(divDeleteClose);
+                clearInterval(window.tDeleteModal);
+                clearTimeout(tFadeOutModal);
+            }
+        }
+
+        function deleteModal() {
+            if(document.getElementById('modal-competencia')) {
+                if(document.getElementById('modal-competencia').contentDocument.getElementsByClassName('disciplinas-list').length != 0) {
+                    fadeOutModal();
+                    clearInterval(window.tDeleteModal);
+                    location.reload();
+                }
+            }
+        }
+
+        function modalCompetencia() {
+            modalClose = document.createElement('div');
+            modalClose.setAttribute("id", "closeModal");
+            modalClose.setAttribute("class", "text-right");
+            modalClose.setAttribute("onclick", "fadeOutModal()");
+            modalClose.setAttribute("style", "position: absolute; top: 12%; left: 0; font-size: 20px; background-color: ; z-index: 9999; width: 100%; padding-right: 33px;l");
+            modalClose.innerHTML = '<a href="#"><span class="glyphicon glyphicon-remove"></span></a>';
+            modal = document.createElement("iframe");
+            modal.setAttribute("src", "modal_cadastro_competencia.php");
+            modal.setAttribute("id", "modal-competencia");
+            modal.setAttribute("style", "position: absolute; z-index: 9998; top: 10%; left: 2.5%; background-color: #fff; width: 95%; height: 980px; overflow: hidden; opacity: 0; -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 5px; margin-bottom: 50px;");
+            modal.setAttribute("frameborder", "0");
+
+            document.getElementsByClassName('cadastrobase')[0].appendChild(modal);
+            document.getElementsByClassName('cadastrobase')[0].appendChild(modalClose);
+            fadeInModal();
+            tDeleteModal = setInterval("deleteModal()", 1);
+        }
     </script>
 
     <div class="fixedBackgroundGradient">
@@ -349,41 +425,56 @@ include('_header.php');
                         </form>
                     </div> <!-- END TAB 1-->
                     <div id="tabs-2">
+
+                        <div id="alunos">
                          <?php
                             $listaAlunosMatriculados = $disciplina->listaAlunosMatriculados($_POST['idDisciplina']);
                             if (empty($listaAlunosMatriculados))
                                echo 'Nenhum aluno matriculado';
                             else{ ?>
-                               <table class="table table-condensed">
-                                <thead>
-                                <tr>
-                                    <th>Nome de Usuário</th>
-                                    <th>Email</th>
-                                    <th>Tipo de Usuário</th>
-                                </tr>
-                                </thead>
-                                    <tbody>
                                     <?php
                                     $qtde = count($listaAlunosMatriculados);
                                     for($i=0; $i < $qtde; $i++){
                                     $idUser = $listaAlunosMatriculados[$i]['usuario_idusuario'];
                                     $dadosUsuario = $disciplina->getUserData($idUser);
-                                    echo
-                                        "<tr>".
-                                        "<td>".$dadosUsuario[0]['user_name']."</td>".
-                                        "<td>".$dadosUsuario[0]['user_email']."</td>";
-                                        if ($dadosUsuario[0]['acesso'] == 1)
-                                            echo "<td>".WORDING_USER_STUDENT."</td>";
-                                        elseif ($dadosUsuario[0]['acesso'] == 2)
-                                            echo "<td>".WORDING_USER_PROFESSOR."</td>";
-                                        elseif ($dadosUsuario[0]['acesso'] == 3)
-                                            echo "<td>".WORDING_USER_ADMIN."</td>";
-                                        echo "</tr>";
+                                    $idCompetencias = $disciplina->getCompetenciasDisciplina($_POST['idDisciplina'], 'idDisciplina');
+                                    foreach ($idCompetencias as $idCompetencia) {
+                                        $chas[$idUser][$idCompetencia[0]] = $comp->getCHAbyAluno($idCompetencia[0], $idUser);
+                                    }
+                                    echo '
+                                        <div class="group">
+                                            <h3>'.$dadosUsuario[0]['user_name'];
+                                    echo   '</h3>
+                                            <div>
+                                                <dl>
+                                                    <dt>Email</dt>
+                                                        <dd>'.$dadosUsuario[0]['user_email'].'</dd><br>
+                                                    <dt>Função</dt>';
+                                                    if ($dadosUsuario[0]['acesso'] == 1)
+                                                        echo "<dd>".WORDING_USER_STUDENT."</dd><br>";
+                                                    elseif ($dadosUsuario[0]['acesso'] == 2)
+                                                        echo "<dd>".WORDING_USER_PROFESSOR."</dd><br>";
+                                                    elseif ($dadosUsuario[0]['acesso'] == 3)
+                                                        echo "<dd>".WORDING_USER_ADMIN."</dd><br>";
+
+                                    foreach($chas[$idUser] as $key => $cha) {
+                                        $comp = new Competencia;
+                                        $nome = $comp->getArrayOfNamesById($key);
+                                        if($nome) echo "<dt>".$nome[0][0]."</dt>
+                                                    <dd>Conhecimento: ".$cha[0]["conhecimento"]."</dd>
+                                                    <dd>Habilidade: ".$cha[0]["habilidade"]."</dd>
+                                                    <dd>Atitude: ".$cha[0]["atitude"]."</dd><br>
+                                        ";
+                                    }
+                                    echo        '</dl>
+                                            </div>
+                                        </div>';
+                                        
+                                        
                                }
                            }
                            ?>
-                                    </tbody>
-                                </table>
+                           </div>
                     </div> <!-- END TAB 2 -->
                     <!-- Objetos associados a disciplina -->
                     <div id="tabs-3">
@@ -415,6 +506,7 @@ include('_header.php');
                             // Faz explode nas palavras chaves do objeto
                             $keyWords  = $dadosObjeto[0]['palavraChave'];
                             $palavrasChaves = explode(",", $keyWords);
+
                             echo '
                                 <div class="group">
                                     <h3>'.$dadosObjeto[0]['nome'].'</h3>
@@ -424,7 +516,7 @@ include('_header.php');
                                                 <dd>'.$dadosObjeto[0]['descricao'].'</dd>
                                             <br>
                                             <dt>URL</dt>
-                                                <dd><a href="'.$dadosObjeto[0]['url'].'" target="_blank">'.$dadosObjeto[0]['url'].'</a></dd>
+                                                <dd><a href="visualizarOA.php?url='.$dadosObjeto[0]['url'].'&idOA='.$dadosObjeto[0]['idcesta'].'&idDisciplina='.$_POST['idDisciplina'].'&idUsuario='.$_SESSION['user_id'].'" target="_blank">'.$dadosObjeto[0]['url'].'</a></dd>
                                             <br>
                                             <dt>Idioma</dt>';
                                             // Reescreve com acentos
@@ -583,6 +675,7 @@ include('_header.php');
                                     ?>
                                     </div>
                         </form>
+                        <center><div onclick="modalCompetencia();" class='botao-cadastra' style='width: 250px'><?=WORDING_CREATE_NEW_COMPETENCIA?></div></center>
                     </div> <!-- END Dados da competencia-->
                     <div id="tabs-5">
                         <?php
@@ -595,6 +688,7 @@ include('_header.php');
             </div> <!-- END DIV TABS -->
         </div> <!-- END cadastrobase-content -->
     </div> <!-- END cadastrobase -->
+    <div class="fundoPreto"></div>
 
 
 

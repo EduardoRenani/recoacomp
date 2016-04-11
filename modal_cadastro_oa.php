@@ -13,9 +13,8 @@ if (version_compare(PHP_VERSION, '5.3.7', '<')) {
     // (this library adds the PHP 5.5 password hashing functions to older versions of PHP)
     require_once('libraries/password_compatibility_library.php');
 }
-require_once('base.php');
+require_once('config/base.php');
 
-$login = new Login();
 $OA = new OA();
 
 //include('_header.php');
@@ -261,7 +260,7 @@ if (isset($OA)) {
 <script language="javascript">
         function mudaTab(qualTab) {
             if(qualTab == 1) {
-                if(document.getElementsByName('nome')[0].value.length > 0 && document.getElementsByName('palavrachave')[0].value.length > 0 && document.getElementsByName('idioma')[0].value.length > 0 && document.getElementsByName('descricao')[0].value.length > 0 && (document.getElementsByName('url')[0].value != "http://" && document.getElementsByName('url')[0].value != "")) {
+                if(document.getElementsByName('nome')[0].value.length > 0 && document.getElementsByName('palavrachave')[0].value.length > 0 && document.getElementsByName('idioma')[0].value.length > 0 && document.getElementsByName('descricao')[0].value.length > 0 && (document.getElementsByName('url')[0].value != "http://" && document.getElementsByName('url')[0].value != "" && $("#area_conhecimento").val() != "")) {
                     document.getElementsByName('nome')[0].style.border = "0";
                     document.getElementsByName('url')[0].style.border = "0";
                     document.getElementsByName('palavrachave')[0].style.border = "0";
@@ -356,27 +355,31 @@ if (isset($OA)) {
 
             }
             else if(qualTab == 3) {
-                console.log("oi");
-                divTab = document.getElementById('sub-conteudo2');
-                divTab.removeAttribute('class');
-                divTab.setAttribute('class', 'tab');
-                divTab = document.getElementById('sub-conteudo3');
-                divTab.removeAttribute('class');
-                divTab.setAttribute('class', 'tab-active');
-                document.getElementById('menudiv3').removeAttribute('class');
-                document.getElementById('menudiv3').setAttribute('class', 'meu-active');
-                document.getElementById('seta2').removeAttribute('class');
-                document.getElementById('seta2').setAttribute('class', 'meu-active');
-                document.getElementById('seta5').removeAttribute('class');
-                document.getElementById('seta5').setAttribute('class', 'seta-active');
-                document.getElementById('buttonNext').removeAttribute('onclick');
-                document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(4)');
-                document.getElementById('buttonPrevious').removeAttribute('onclick');
-                document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(9)');
+                if($("select")[3].value != "") {
+                    divTab = document.getElementById('sub-conteudo2');
+                    divTab.removeAttribute('class');
+                    divTab.setAttribute('class', 'tab');
+                    divTab = document.getElementById('sub-conteudo3');
+                    divTab.removeAttribute('class');
+                    divTab.setAttribute('class', 'tab-active');
+                    document.getElementById('menudiv3').removeAttribute('class');
+                    document.getElementById('menudiv3').setAttribute('class', 'meu-active');
+                    document.getElementById('seta2').removeAttribute('class');
+                    document.getElementById('seta2').setAttribute('class', 'meu-active');
+                    document.getElementById('seta5').removeAttribute('class');
+                    document.getElementById('seta5').setAttribute('class', 'seta-active');
+                    document.getElementById('buttonNext').removeAttribute('onclick');
+                    document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(4)');
+                    document.getElementById('buttonPrevious').removeAttribute('onclick');
+                    document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(9)');
+                }
+                else {
+                    $("select")[3].style = "border-color: #f00";
+                }
 
             }
             else if(qualTab == 4) {
-                        console.log("oi");
+                if(document.getElementsByName('descricao_educacional')[0].value.length > 0 && $("select")[4].value != "") {
                     divTab = document.getElementById('sub-conteudo3');
                     divTab.removeAttribute('class');
                     divTab.setAttribute('class', 'tab');
@@ -394,6 +397,22 @@ if (isset($OA)) {
                     document.getElementById('buttonNext').removeAttribute('style');
                     document.getElementById('buttonNext').setAttribute('style', 'float: none; display: none;');
                     document.getElementById('finisher').removeAttribute('style');
+                }
+                else {
+                    if(document.getElementsByName('descricao_educacional')[0].value.length == 0) {
+                        document.getElementsByName('descricao_educacional')[0].style.border = "1px solid #dc8810";
+                        document.getElementsByName('descricao_educacional')[0].setAttribute("placeholder", "Este campo é necessário");
+                    }
+                    else {
+                        document.getElementsByName('date')[0].style.border = "0";
+                    }
+                    if($("select")[4].value == "") {
+                        $("select")[4].style = "border-color: #f00";
+                    }
+                    else {
+                        $("select")[4].style = "border-color: #000";
+                    }
+                }
             }
             else if(qualTab == 7) {
                 divTab = document.getElementById('sub-conteudo1');

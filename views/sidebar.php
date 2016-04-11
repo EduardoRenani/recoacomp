@@ -24,6 +24,11 @@
 
 
     <script type="text/javascript">
+	$(function() {
+		$("#cadastro").click(function() {
+			$("#selectcadastro").toggle();
+		});
+	});
 
     //$(function() {
         function submitVisao(){

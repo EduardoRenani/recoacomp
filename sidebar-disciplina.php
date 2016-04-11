@@ -1,4 +1,4 @@
-<?php include('_header.php'); ?>
+
 
 <!-- TODO TRADUZIR-->
 <head>
@@ -42,7 +42,7 @@
     					<li>
 	   						<?php 
 							if ($_SESSION['acesso'] == 1)
-								include('_options_aluno.php'); 
+								include('views/_options_aluno.php'); 
 								//echo WORDING_USER_STUDENT . "<br />";
 							else if ($_SESSION['acesso'] == 2){
 								?>

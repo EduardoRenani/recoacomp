@@ -988,8 +988,11 @@ label,input,button,select,textarea {
 }*/
 
 label {
-    
-    margin-bottom: 5px;
+    margin-bottom: 15px;
+    margin-top: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    /*color: #fff;*/
 }
 
 select,textarea,input[type="text"],input[type="password"],input[type="datetime"],input[type="datetime-local"],input[type="date"],input[type="month"],input[type="time"],input[type="week"],input[type="number"],input[type="email"],input[type="url"],input[type="search"],input[type="tel"],input[type="color"],.uneditable-input {
@@ -1043,7 +1046,7 @@ input[type="file"],input[type="image"],input[type="submit"],input[type="reset"],
 }
 
 select,input[type="file"] {
-    height: 30px;
+    height: 40px;
     *margin-top: 4px;
     line-height: 30px;
 }

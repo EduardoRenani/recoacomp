@@ -1,4 +1,4 @@
-<?php include('_header.php'); ?>
+
 
 <!-- TODO TRADUZIR-->
 <head>
@@ -19,6 +19,12 @@
 <!-- Fim Home -->
 
     <script type="text/javascript">
+    $(function() {
+        $("#cadastro").click(function() {
+            $("#selectcadastro").toggle();
+        });
+    });
+    
     //$(function() {
         function submitVisao(){
             //document.getElementById('tipoUsuario').submit();
@@ -41,13 +47,13 @@
                         $usuario = new User($_SESSION['user_id']);
                         //print_r($usuario);
                         if ($usuario->getTipoVisao() == 1 && $_SESSION['acesso'] == 1) {// Se estiver com visão de aluno e visão de aluno
-                            include('_options_aluno.php');
+                            include('views/_options_aluno.php');
                         }
                         //elseif($_SESSION['acesso'] == 2 || $usuario->getTipoVisao() == 1){
                         //    include('_options_visao_aluno.php');
                         //}
                         elseif($_SESSION['acesso'] == 2 || $usuario->getTipoVisao() == 2){
-                            include('_options_professor.php');
+                            include('views/_options_professor.php');
                         }
                         else if($_SESSION['tipo_visao'] == 3){
                             echo WORDING_USER_ADMIN . "<br/>";

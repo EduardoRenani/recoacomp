@@ -176,8 +176,26 @@
     </script>
 
     <script type="text/javascript">
+    function frm_number_only_exc(){
+        // allowed: numeric keys, numeric numpad keys, backspace, del and delete keys
+        if ( event.keyCode == 37 || event.keyCode == 38 || event.keyCode == 39 || event.keyCode == 40 || event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || ( event.keyCode < 106 && event.keyCode > 95 ) ) { 
+            return true;
+        }else{
+            return false;
+        }
+    }
     $(document).ready(function(){
-        console.log("funfou!");
+        $("input.frm_number_only").keydown(function(event) { 
+     
+            if ( frm_number_only_exc() ) { 
+     
+            } else { 
+                    if ( event.keyCode < 48 || event.keyCode > 57 ) { 
+                            event.preventDefault();  
+                    }        
+            } 
+        }); 
+
         $("#url").keyup(function () { //user types username on inputfiled
             console.log("funfou!");
             var url = $(this).val(); //get the string typed by user
@@ -313,7 +331,7 @@ $(function(){AjaxCompetenciaListas()});
     <script language="javascript">
         function mudaTab(qualTab) {
             if(qualTab == 1) {
-                if(document.getElementsByName('nome')[0].value.length > 0 && document.getElementsByName('palavrachave')[0].value.length > 0 && document.getElementsByName('idioma')[0].value.length > 0 && document.getElementsByName('descricao')[0].value.length > 0 && (document.getElementsByName('url')[0].value != "http://" && document.getElementsByName('url')[0].value != "")) {
+                if(document.getElementsByName('nome')[0].value.length > 0 && document.getElementsByName('palavrachave')[0].value.length > 0 && document.getElementsByName('idioma')[0].value.length > 0 && document.getElementsByName('descricao')[0].value.length > 0 && (document.getElementsByName('url')[0].value != "http://" && document.getElementsByName('url')[0].value != "") && $("#area_conhecimento").val() != "") {
                     document.getElementsByName('nome')[0].style.border = "0";
                     document.getElementsByName('url')[0].style.border = "0";
                     document.getElementsByName('palavrachave')[0].style.border = "0";
@@ -408,26 +426,31 @@ $(function(){AjaxCompetenciaListas()});
 
             }
             else if(qualTab == 3) {
-                divTab = document.getElementById('sub-conteudo2');
-                divTab.removeAttribute('class');
-                divTab.setAttribute('class', 'tab');
-                divTab = document.getElementById('sub-conteudo3');
-                divTab.removeAttribute('class');
-                divTab.setAttribute('class', 'tab-active');
-                document.getElementById('menudiv3').removeAttribute('class');
-                document.getElementById('menudiv3').setAttribute('class', 'meu-active');
-                document.getElementById('seta2').removeAttribute('class');
-                document.getElementById('seta2').setAttribute('class', 'meu-active');
-                document.getElementById('seta4').removeAttribute('class');
-                document.getElementById('seta4').setAttribute('class', 'seta-active');
-                document.getElementById('buttonNext').removeAttribute('onclick');
-                document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(4)');
-                document.getElementById('buttonPrevious').removeAttribute('onclick');
-                document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(9)');
+                if($("select")[3].value != "") {
+                    divTab = document.getElementById('sub-conteudo2');
+                    divTab.removeAttribute('class');
+                    divTab.setAttribute('class', 'tab');
+                    divTab = document.getElementById('sub-conteudo3');
+                    divTab.removeAttribute('class');
+                    divTab.setAttribute('class', 'tab-active');
+                    document.getElementById('menudiv3').removeAttribute('class');
+                    document.getElementById('menudiv3').setAttribute('class', 'meu-active');
+                    document.getElementById('seta2').removeAttribute('class');
+                    document.getElementById('seta2').setAttribute('class', 'meu-active');
+                    document.getElementById('seta4').removeAttribute('class');
+                    document.getElementById('seta4').setAttribute('class', 'seta-active');
+                    document.getElementById('buttonNext').removeAttribute('onclick');
+                    document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(4)');
+                    document.getElementById('buttonPrevious').removeAttribute('onclick');
+                    document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(9)');
+                }
+                else {
+                    $("select")[3].style = "border-color: #f00";
+                }
 
             }
             else if(qualTab == 4) {
-                if(document.getElementsByName('descricao_educacional')[0].value.length > 0) {
+                if(document.getElementsByName('descricao_educacional')[0].value.length > 0 && $("select")[4].value != "") {
                     document.getElementsByName('descricao_educacional')[0].style.border = "0";
                     divTab = document.getElementById('sub-conteudo3');
                     divTab.removeAttribute('class');
@@ -453,6 +476,12 @@ $(function(){AjaxCompetenciaListas()});
                     }
                     else {
                         document.getElementsByName('date')[0].style.border = "0";
+                    }
+                    if($("select")[4].value == "") {
+                        $("select")[4].style = "border-color: #f00";
+                    }
+                    else {
+                        $("select")[4].style = "border-color: #000";
                     }
                 }
             }
@@ -496,8 +525,8 @@ $(function(){AjaxCompetenciaListas()});
                 document.getElementById('seta').setAttribute('class', 'seta-active');
                 document.getElementById('buttonNext').removeAttribute('onclick');
                 document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(1)');
-                document.getElementById('buttonPrevious').removeAttribute('style');
-                document.getElementById('buttonPrevious').setAttribute('style', 'float: none; display: none;');
+                document.getElementById('buttonPrevious').removeAttribute('onclick');
+                document.getElementById('buttonPrevious').setAttribute('onclick', 'index.php');
             }
             else if(qualTab == 8) {
                 divTab = document.getElementById('sub-conteudo2');
@@ -789,7 +818,7 @@ $(function(){AjaxCompetenciaListas()});
                         <div class="control-group">
                             <label class="control-label" for="date"><div style="float: left"><?php echo WORDING_DATE; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(5, '<?php echo HINT_DATA ?>')" onmouseout="deleteTooltip(5)">[ ? ]</div></div>
                             <div class="controls">
-                                <input id="date" type="text" name="date" required />
+                                <input id="date" type="text" class="frm_number_only" name="date" required />
                             </div>
                         </div>
                 </div>
@@ -847,6 +876,7 @@ $(function(){AjaxCompetenciaListas()});
                         <label class="control-label" for="recursoAprendizagem"><?php echo WORDING_LEARNING_RESOURCE; ?></label>
                         <div class="controls">
     						<select id = "recursoAprendizagem" name="recursoAprendizagem" required="true">
+    							<option value = "conteúdo teórico e atividades"><?php echo WORDING_CONTENT_THEORY ?></option>
     							<option value = "exercício"><?php echo WORDING_EXERCISE ?></option>
     							<option value = "simulação"><?php echo WORDING_SIMULATION ?></option>
     							<option value = "questionário"><?php echo WORDING_QUESTIONNAIRE ?></option>

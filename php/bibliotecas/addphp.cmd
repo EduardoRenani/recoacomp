@@ -1,0 +1,1 @@
+PATH=%PATH%;c:\wamp\bin\php\php5.5.12

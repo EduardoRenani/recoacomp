@@ -347,7 +347,7 @@ $(function(){
 <script language="javascript">
     function mudaTab(qualTab) {
         if(qualTab == 1) {
-            if(document.getElementsByName('senha')[0].value.length > 5 && document.getElementsByName('nomeCurso')[0].value.length > 0 && document.getElementsByName('nomeDisciplina')[0].value.length > 0 && document.getElementsByName('descricao')[0].value.length > 0) {
+            if(document.getElementsByName('senha')[0].value.length > 5 && document.getElementsByName('nomeCurso')[0].value.length > 0 && document.getElementsByName('nomeDisciplina')[0].value.length > 0 && document.getElementsByName('descricao')[0].value.length > 0 && $("#area_conhecimento").val() !="") {
                 document.getElementsByName('senha')[0].style.border = "0";
                 document.getElementsByName('nomeCurso')[0].style.border = "0";
                 document.getElementsByName('nomeDisciplina')[0].style.border = "0";
@@ -603,7 +603,7 @@ $(function(){
 <div class="fixedBackgroundGradient"></div>
 
 <div class="cadastrobase">
-    <div class="top-cadastrobase"><div class="text-left"><?php echo (WORDING_REGISTER_NOVA_DISCIPLINA); ?></div><div class="text-right" ><!-- <a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a>--></div></div>
+    <div class="top-cadastrobase"><div class="text-left"><?php if($_GET['tipo'] == "curso") {echo (WORDING_REGISTER_NOVO_CURSO);} else { echo (WORDING_REGISTER_NOVA_DISCIPLINA);} ?></div><div class="text-right" ><!-- <a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a>--></div></div>
         <div class="cadastrobase-content">
            <form method="post" action="" name="registrar_nova_disciplina" id="registrar_nova_disciplina">
             <!-- ID do usuário passado via hidden POST -->
@@ -691,7 +691,7 @@ $(function(){
                                 <span class="info-cadastro"><?php echo WORDING_ASSOCIATE_COMP; ?></span></br></br>
                                 <div class="cadastro-conteudo">
                                     <div class="cadastro-left-column">
-                                        <span class="titulo-cadastro">Competencias Disponíveis</span>
+                                        <span class="titulo-cadastro">Competências Disponíveis</span>
                                         <div class="search-cadastro">
                                             <div class="search">
                                                   <input type="text" class="search-cadastro" id="busca-competencias" placeholder="Pesquise uma competência">
@@ -705,7 +705,7 @@ $(function(){
                                     <div class=""></div>
 
                                     <div class="cadastro-right-column">
-                                        <span class="titulo-cadastro text-right">Competencias Selecionadas</span>
+                                        <span class="titulo-cadastro text-right">Competências Selecionadas</span>
                                         <ul id="tabela2">
                                         <!--<li class="ui-state-highlight">Item 1 selecionado</li>-->
                                         </ul>

@@ -31,7 +31,6 @@ function Ajax() {
 		meu_ajax.onreadystatechange = function () {
 	        if ( meu_ajax.readyState === 4 ) { //readyState === 4: terminou/completou a requisição
 	            if ( meu_ajax.status === 200 ) { //status === 200: sucesso
-	            	console.log("oi");
 	                console.log(meu_ajax.responseText);
 	                return true;
 	            } else if ( meu_ajax.status !== 0 ) { //status !== 200: erro ( meu_ajax.status === 0: ajax não enviado )

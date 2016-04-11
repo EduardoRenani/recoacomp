@@ -312,6 +312,15 @@ class Competencia{
         
     }
 
+    public function getCHAbyAluno($idCompetencia, $idAluno) {
+        $database = new Database();
+        $sql = "SELECT conhecimento, habilidade, atitude FROM usuario_competencias WHERE usuario_idusuario = :idUsuario AND competencia_idcompetencia = :idCompetencia";
+        $database->query($sql);
+        $database->bind(":idUsuario", $idAluno);
+        $database->bind(":idCompetencia", $idCompetencia);
+        return $database->resultSet();
+    }
+
     public function getArrayOfIDs(){
         if($this->databaseConnection()){
             $stmt = $this->db_connection->prepare("SELECT idcompetencia FROM competencia");

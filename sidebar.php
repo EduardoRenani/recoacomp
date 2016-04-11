@@ -44,7 +44,7 @@
     					<li>
 	   						<?php 
 							if ($_SESSION['acesso'] == 1)
-								include_once('_options_aluno.php'); 
+								include_once('views/_options_aluno.php'); 
 								//echo WORDING_USER_STUDENT . "<br />";
 							else if ($_SESSION['acesso'] == 2){
 								?>

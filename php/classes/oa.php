@@ -151,6 +151,7 @@ class OA{
     {
         if (isset($_POST["registrar_novo_OA"])) {
             // Função para cadastro de novo Objeto de Aprendizagem
+            //print_r($_POST);
             $this->criaOA(
                 //Categoria vida:
                 $_POST['date'],
@@ -204,11 +205,45 @@ class OA{
             foreach ($_POST as $key => $value)
                 echo $key.'='.$value.'<br />';
             //$this->loginWithPostData($_POST['user_name'], $_POST['user_password'], $_POST['user_rememberme']);
-        } // Se não estiver cadastrando nova competência, no construct ele retorna valores vazios.
-        else{
-            $this->this = null;
-        }
-
+        }elseif(isset($_POST["editar_OA"])){
+            /*
+            $this->editarDisciplina(            
+            $_POST['nomeCurso'],
+            $_POST['nomeDisciplina'],
+            $_POST['descricao'], 
+            $_POST['user_id'], 
+            $_POST['senha'], 
+            $_POST['arrayCompetencias'],
+            $_POST['conhecimento'],
+            $_POST['habilidade'],
+            $_POST['atitude'],
+            $_POST['idDisciplina']);
+            */
+        }elseif(isset($_POST["editar_nome_OA"])){
+            $this->editOAName($_POST['oa_name'],$_POST['idOA']);
+        }elseif(isset($_POST["editar_descricao_OA"])){
+            $this->editOADescription($_POST['oa_descricao'],$_POST['idOA']);
+        }elseif(isset($_POST["editar_keyword_OA"])){
+            $this->editOAPalavraChave($_POST['palavrachave'],$_POST['idOA']);
+        }elseif(isset($_POST["editar_idioma_OA"])){
+            $this->editOALanguage($_POST['idioma'],$_POST['idOA']);
+        }elseif(isset($_POST["editar_URL_OA"])){
+            $this->editOAURL($_POST['url'],$_POST['idOA']);
+        }elseif(isset($_POST["editar_area_conhecimento_OA"])){
+            $this->editOAAreaConhecimento($_POST['area_conhecimento'],$_POST['idOA']);
+        }elseif(isset($_POST["editar_formaUtilizacao"])){
+            $this->editOAFormaUtilizacao($_POST['oa_formaUtilizacao'],$_POST['idCT']);
+        }elseif(isset($_POST["editar_tipoOA"])){
+            $this->editOATipo($_POST['oa_tipoOA'],$_POST['idCT']);
+        }elseif(isset($_POST["editar_descricao_educacional_OA"])){
+            $this->editOADescricaoEducacional($_POST['oa_descricao_educacional'],$_POST['idCE']);
+        }elseif(isset($_POST["editar_faixa_OA"])){
+            $this->editOAFaixaEtaria($_POST['oa_faixaEtaria'],$_POST['idCE']);
+        }elseif(isset($_POST["editar_recurso_OA"])){
+            $this->editOARecursoAprendizagem($_POST['oa_recursoAprendizagem'],$_POST['idCE']);
+        }else{  // Se não estiver cadastrando novo OA, no construct ele retorna valores vazios
+            return null;
+        }      
     }
     /**
      * Função que verifica se a conexão com o BD existe, se nao existir é aberta
@@ -231,6 +266,7 @@ class OA{
      * Administra tod@ o sistema de Criação de Objetos de Aprendizagem
      * Verifica todos os erros possíveis e cria o OA se ele não existe
      */
+
     public function criaOA(
         //O cadastro necessita ser nessa ordem!
         // Alterações realizadas no cadastro de OA após reunião 04/09 - Delton Vaz
@@ -265,7 +301,8 @@ class OA{
             $this->tipoOA = $this->tipoOA.",".$tOA;
         }
 
-        print_r($this->tipoOA);
+        //echo "tipo OA";
+        //print_r($this->tipoOA);
         // Categoria Educacional
         $descricao_eduacional = trim($descricao_eduacional);
 
@@ -273,7 +310,8 @@ class OA{
         foreach($faixaEtaria as $fEtaria) {
             $this->faixaEtaria = $this->faixaEtaria.",".$fEtaria;
         }
-        print_r($this->faixaEtaria);
+         //echo "faixa etaria";
+        //print_r($this->faixaEtaria);
         
 
         $recursoAprendizagem = trim($recursoAprendizagem);
@@ -401,7 +439,7 @@ class OA{
                 $this->db_connection = null; // Fechar a última conexão
                 $this->databaseConnection(); // Abre Nova conexão
                 // Insert na CESTA
-                echo 'Chegou aee';
+
                 $stmt = $this->db_connection->prepare("
                         INSERT INTO
                         cesta(
@@ -603,6 +641,30 @@ class OA{
     }
 
     /**
+     * Função que retorna dados da categoria tecnica de um OA
+     * @param $idCategoriaTecnica
+     */
+    public function getDadosCategoriaTecnicaOA($idCategoriaTecnica){
+        $database = new Database();
+        $sql = "SELECT * FROM categoria_tecnica WHERE idcategoria_tecnica = :idCategoriaTecnica";
+        $database->query($sql);
+        $database->bind(":idCategoriaTecnica", $idCategoriaTecnica);
+        return $database->resultSet();
+    }
+
+    /**
+     * Função que retorna dados da categoria educacional de um OA
+     * @param $idCategoriaEducacional
+     */
+    public function getDadosCategoriaEducacionalOA($idCategoriaEducacional){
+        $database = new Database();
+        $sql = "SELECT * FROM categoria_eduacional WHERE idcategoria_eduacional = :idCategoriaEducacional";
+        $database->query($sql);
+        $database->bind(":idCategoriaEducacional", $idCategoriaEducacional);
+        return $database->resultSet();
+    }
+
+    /**
      * Função que retorna dados da categoria vida de um OA
      * @param $idCategoriaVida
      */
@@ -611,6 +673,18 @@ class OA{
         $sql = "SELECT * FROM areas_conhecimento ORDER BY nome_area_conhecimento ASC" ;
         $database->query($sql);
         //$database->bind(":idCategoriaVida", $idCategoriaVida);
+        return $database->resultSet();
+    }
+
+     /**
+     * Função que retorna nome da area de conhecimento pelo id
+     * @param $idCategoriaVida
+     */
+    public function getNomeAreaConhecimentobyId($id){
+        $database = new Database();
+        $sql = "SELECT nome_area_conhecimento FROM areas_conhecimento WHERE area_conhecimento_id = :id";
+        $database->query($sql);
+        $database->bind(":id", $id);
         return $database->resultSet();
     }
 
@@ -623,6 +697,206 @@ class OA{
         //$database->resultSet()[0]['nome'];
     }
 
+    /**
+    * Edita o nome do OA
+    */
+    public function editOAName($nomeOA, $idOA){
+        if (empty($nomeOA)) {
+            $this->errors[] = MESSAGE_OA_NAME_INVALID;
+
+        } elseif($this->databaseConnection()) {
+            // write user's new data into database
+            $editarNomeOA = $this->db_connection->prepare("UPDATE cesta SET nome = :nomeOA WHERE idcesta = :idOA");
+            $editarNomeOA->bindValue(':nomeOA', $nomeOA, PDO::PARAM_STR);
+            $editarNomeOA->bindValue(':idOA', $idOA, PDO::PARAM_INT);
+            $editarNomeOA->execute();
+            $this->messages[] = WORDING_EDIT_SUCESSFULLY;
+        }
+    }
+
+    /**
+    * Edita a descricao do OA
+    */
+    public function editOADescription($descricaoOA, $idOA){
+        if (empty($descricaoOA)) {
+            $this->errors[] = MESSAGE_OA_DESCRIPTION_INVALID;
+
+        } elseif($this->databaseConnection()) {
+            // write user's new data into database
+            $editarOA = $this->db_connection->prepare("UPDATE cesta SET descricao = :descricaoOA WHERE idcesta = :idOA");
+            $editarOA->bindValue(':descricaoOA', $descricaoOA, PDO::PARAM_STR);
+            $editarOA->bindValue(':idOA', $idOA, PDO::PARAM_INT);
+            $editarOA->execute();
+            $this->messages[] = WORDING_EDIT_SUCESSFULLY;
+        }
+    }
+
+    /**
+    * Edita as keywords do OA
+    */
+    public function editOAPalavraChave($palavraChaveOA, $idOA){
+        if (empty($palavraChaveOA)) {
+            $this->errors[] = MESSAGE_OA_DESCRIPTION_INVALID;
+
+        } elseif($this->databaseConnection()) {
+            // write user's new data into database
+            $editarOA = $this->db_connection->prepare("UPDATE cesta SET palavraChave = :palavraChaveOA WHERE idcesta = :idOA");
+            $editarOA->bindValue(':palavraChaveOA', $palavraChaveOA, PDO::PARAM_STR);
+            $editarOA->bindValue(':idOA', $idOA, PDO::PARAM_INT);
+            $editarOA->execute();
+            $this->messages[] = WORDING_EDIT_SUCESSFULLY;
+        }
+    }
+
+    /**
+    * Edita idioma do OA
+    */
+    public function editOALanguage($idiomaOA, $idOA){
+        if (empty($idiomaOA)) {
+            $this->errors[] = MESSAGE_OA_DESCRIPTION_INVALID;
+
+        } elseif($this->databaseConnection()) {
+            // write user's new data into database
+            $editarOA = $this->db_connection->prepare("UPDATE cesta SET idioma = :idiomaOA WHERE idcesta = :idOA");
+            $editarOA->bindValue(':idiomaOA', $idiomaOA, PDO::PARAM_STR);
+            $editarOA->bindValue(':idOA', $idOA, PDO::PARAM_INT);
+            $editarOA->execute();
+            $this->messages[] = WORDING_EDIT_SUCESSFULLY;
+        }
+    }
+
+    /**
+    * Edita URL do OA
+    */
+    public function editOAURL($urlOA, $idOA){
+        if (empty($urlOA)) {
+            $this->errors[] = MESSAGE_OA_DESCRIPTION_INVALID;
+
+        } elseif($this->databaseConnection()) {
+            // write user's new data into database
+            $editarOA = $this->db_connection->prepare("UPDATE cesta SET url = :urlOA WHERE idcesta = :idOA");
+            $editarOA->bindValue(':urlOA', $urlOA, PDO::PARAM_STR);
+            $editarOA->bindValue(':idOA', $idOA, PDO::PARAM_INT);
+            $editarOA->execute();
+            $this->messages[] = WORDING_EDIT_SUCESSFULLY;
+        }
+    }
+
+    /**
+    * Edita area conhecimento do OA
+    */
+    public function editOAAreaConhecimento($areaConhecimentoOA, $idOA){
+        if (empty($areaConhecimentoOA)) {
+            $this->errors[] = MESSAGE_OA_DESCRIPTION_INVALID;
+
+        } elseif($this->databaseConnection()) {
+            // write user's new data into database
+            $editarOA = $this->db_connection->prepare("UPDATE cesta SET area_conhecimento = :areaConhecimentoOA WHERE idcesta = :idOA");
+            $editarOA->bindValue(':areaConhecimentoOA', $areaConhecimentoOA, PDO::PARAM_STR);
+            $editarOA->bindValue(':idOA', $idOA, PDO::PARAM_INT);
+            $editarOA->execute();
+            $this->messages[] = WORDING_EDIT_SUCESSFULLY;
+        }
+    }
+
+    /**
+    * Edita forma de utilizacao do OA da categoria técnica (CT)
+    * @param $formaUtilizacao
+    * @param $idCT 
+    */
+    public function editOAFormaUtilizacao($formaUtilizacao, $idCT){
+        if (empty($formaUtilizacao)) {
+            $this->errors[] = MESSAGE_OA_UTILITY_TYPE_INVALID;
+
+        } elseif($this->databaseConnection()) {
+            // write user's new data into database
+            $editarOA = $this->db_connection->prepare("UPDATE categoria_tecnica SET tipoTecnologia = :formaUtilizacao WHERE idcategoria_tecnica = :idCT");
+            $editarOA->bindValue(':formaUtilizacao', $formaUtilizacao, PDO::PARAM_STR);
+            $editarOA->bindValue(':idCT', $idCT, PDO::PARAM_INT);
+            $editarOA->execute();
+            $this->messages[] = WORDING_EDIT_SUCESSFULLY;
+        }
+    }
+
+    /**
+    * Edita tipo do OA da categoria técnica (CT)
+    * @param $tipo
+    * @param $idCT 
+    */
+    public function editOATipo($tipoOA, $idCT){
+        if (empty($tipoOA)) {
+            $this->errors[] = MESSAGE_OA_UTILITY_TYPE_INVALID;
+        } elseif($this->databaseConnection()) {
+            $tipo = null;
+            foreach($tipoOA as $tOA) {
+                $tipo = $tipo.",".$tOA;
+            }
+            // write user's new data into database
+            $editarOA = $this->db_connection->prepare("UPDATE categoria_tecnica SET tipoFormato = :tipoFormato WHERE idcategoria_tecnica = :idCT");
+            $editarOA->bindValue(':tipoFormato', $tipo, PDO::PARAM_STR);
+            $editarOA->bindValue(':idCT', $idCT, PDO::PARAM_INT);
+            $editarOA->execute();
+            $this->messages[] = WORDING_EDIT_SUCESSFULLY;
+        }
+    }
+
+    /**
+    * Edita descrição educacional do OA da categoria educacional (CE)
+    * @param $descricaoEducacional
+    * @param $idCE
+    */
+    public function editOADescricaoEducacional($descricaoEducacional, $idCE){
+        if (empty($descricaoEducacional)) {
+            $this->errors[] = MESSAGE_OA_UTILITY_TYPE_INVALID;
+        } elseif($this->databaseConnection()) {
+            // write user's new data into database
+            $editarOA = $this->db_connection->prepare("UPDATE categoria_eduacional SET descricao = :descricaoEducacional WHERE idcategoria_eduacional = :idCE");
+            $editarOA->bindValue(':descricaoEducacional', $descricaoEducacional, PDO::PARAM_STR);
+            $editarOA->bindValue(':idCE', $idCE, PDO::PARAM_INT);
+            $editarOA->execute();
+            $this->messages[] = WORDING_EDIT_SUCESSFULLY;
+        }
+    }
+
+    /**
+    * Edita faixa etária do OA da categoria educacional (CE)
+    * @param $faixaEtaria
+    * @param $idCE
+    */
+    public function editOAFaixaEtaria($faixaEtaria, $idCE){
+        if (empty($faixaEtaria)) {
+            $this->errors[] = MESSAGE_OA_UTILITY_TYPE_INVALID;
+        } elseif($this->databaseConnection()) {
+            $faixa = null;
+                foreach($faixaEtaria as $fe) {
+                    $faixa = $faixa.",".$fe;
+                }
+            // write user's new data into database
+            $editarOA = $this->db_connection->prepare("UPDATE categoria_eduacional SET faixaEtaria = :faixaEtaria WHERE idcategoria_eduacional = :idCE");
+            $editarOA->bindValue(':faixaEtaria', $faixa, PDO::PARAM_STR);
+            $editarOA->bindValue(':idCE', $idCE, PDO::PARAM_INT);
+            $editarOA->execute();
+            $this->messages[] = WORDING_EDIT_SUCESSFULLY;
+        }
+    }
+
+    /**
+    * Edita recurso aprendizagem do OA da categoria educacional (CE)
+    * @param $recursoAprendizagem
+    * @param $idCE
+    */
+    public function editOARecursoAprendizagem($recursoAprendizagem, $idCE){
+        if (empty($recursoAprendizagem)) {
+            $this->errors[] = MESSAGE_OA_UTILITY_TYPE_INVALID;
+        } elseif($this->databaseConnection()) {
+            // write user's new data into database
+            $editarOA = $this->db_connection->prepare("UPDATE categoria_eduacional SET recursoAprendizagem = :recursoAprendizagem WHERE idcategoria_eduacional = :idCE");
+            $editarOA->bindValue(':recursoAprendizagem', $recursoAprendizagem, PDO::PARAM_STR);
+            $editarOA->bindValue(':idCE', $idCE, PDO::PARAM_INT);
+            $editarOA->execute();
+            $this->messages[] = WORDING_EDIT_SUCESSFULLY;
+        }
+    }
     
 } // Fecha CLass
 

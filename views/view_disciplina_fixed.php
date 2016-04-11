@@ -21,7 +21,7 @@
 
 </head>
 <div class="fixedBackgroundGradient"></div>
-<?php require_once("sidebar-disciplina.php"); ?>
+<?php require_once("views/sidebar-disciplina.php"); ?>
 
 <!-- ============== DISCIPLINAS ============== -->
 
@@ -76,7 +76,7 @@
                 for($i=0;$i<$cont;$i++){
                     
                     //PASSO 3: PEGAR O TITULO DA DISCIPLINA
-                    if($stmt = $mysqli -> prepare("SELECT `nomeDisciplina`, `nomeCurso`, `usuarioProfessorID`, `descricao` FROM `disciplina` WHERE `iddisciplina`=?")) {
+                    if($stmt = $mysqli -> prepare("SELECT `nomeDisciplina`, `nomeCurso`, `usuarioProfessorID`, `descricao`, `excluida` FROM `disciplina` WHERE `iddisciplina`=?")) {
 
                         $disc=array();
                         //$result=array();
@@ -90,7 +90,7 @@
 
                         /* Bind results */
 
-                        $stmt -> bind_result($disc['nomeDisc'],$disc['nomeCurso'],$disc['professor_id'], $disc['descricao']);
+                        $stmt -> bind_result($disc['nomeDisc'],$disc['nomeCurso'],$disc['professor_id'], $disc['descricao'], $disc['excluida']);
 
                         /* Fetch the value */
 
@@ -131,7 +131,7 @@
                     /* Close statement */
                     $stmt -> close();
                     }
-
+                    if(!$disc['excluida']) {
                     echo
                         "<li class='disciplinas-item'>".
                             "<div class='disciplina-item-content'>".
@@ -144,7 +144,7 @@
                                 "<input type='submit' value='Receber Recomendação'></br></br>".
                             "</form></div>".
                         "</li>";
-
+                    }
                     unset($disc);
                 }
                 $mysqli -> close();

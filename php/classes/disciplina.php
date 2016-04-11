@@ -556,13 +556,13 @@ class Disciplina {
      */
     public function getCompetenciasDisciplina($disciplinaId, $param){
         if($this->databaseConnection()){
-            if ($param == 'idDisciplina'){
+            if ($param === 'idDisciplina'){
                 $stmt = $this->db_connection->prepare("SELECT competencia_idcompetencia FROM disciplina_competencia WHERE disciplina_iddisciplina=:disciplinaId");
-            }else if ($param == 'conhecimento'){
+            }else if ($param === 'conhecimento'){
                 $stmt = $this->db_connection->prepare("SELECT conhecimento FROM disciplina_competencia WHERE disciplina_iddisciplina=:disciplinaId");
-            }else if ($param == 'habilidade'){
+            }else if ($param === 'habilidade'){
                 $stmt = $this->db_connection->prepare("SELECT habilidade FROM disciplina_competencia WHERE disciplina_iddisciplina=:disciplinaId");
-            }else if ($param == 'atitude'){
+            }else if ($param === 'atitude'){
                 $stmt = $this->db_connection->prepare("SELECT atitude FROM disciplina_competencia WHERE disciplina_iddisciplina=:disciplinaId");
             }
             $stmt->bindValue(':disciplinaId', $disciplinaId, PDO::PARAM_INT);
@@ -608,6 +608,16 @@ class Disciplina {
     public function getDescricaoDisciplinasNaoMatriculadas($userID){
         if($this->databaseConnection()){
             $stmt = $this->db_connection->prepare("SELECT descricao FROM disciplina WHERE iddisciplina NOT IN (SELECT disciplina_iddisciplina FROM usuario_disciplina WHERE usuario_idusuario=:userID)");
+            $stmt->bindParam(':userID',$userID, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }
+    }
+
+    // Retorna o Nome de todas as disciplinas em que o aluno NÃO está matriculado
+    public function getExcluidaDisciplinasNaoMatriculadas($userID){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT excluida FROM disciplina WHERE iddisciplina NOT IN (SELECT disciplina_iddisciplina FROM usuario_disciplina WHERE usuario_idusuario=:userID)");
             $stmt->bindParam(':userID',$userID, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll();

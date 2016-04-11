@@ -13,7 +13,7 @@
 <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="js/jplot/excanvas.js"></script><![endif]-->
 <?php
 
-require_once("base.php");
+require_once("config/base.php");
 
 $disciplina = new Disciplina;
 $disciplina->setIdDisciplina(intval($_GET['idDisciplina']));

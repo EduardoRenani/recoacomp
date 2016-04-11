@@ -38,27 +38,21 @@
     <div class="top-disciplinas">Meu Perfil</div>
         <div class="meu-perfil-content">  </br> 
 
-        <?php
-        $fileName = $_SESSION['user_id'].'.jpg';
-        $file = './img/profile_images/'.$fileName; // 'images/'.$file (physical path)
-
-        if (file_exists($file)) {
-            echo "<img width='200x' style='margin-left:75%;' src='img/profile_images/".$fileName."'>";
-
-        } else {
-             echo "<img width='200x' style='margin-left:75%;' src='img/profile_images/head.png'>";
-        }
+        <?php 
+            $foto = new Foto((int) $_SESSION['user_id']);
+            if(!is_null($foto->getCaminho())) echo "<img style='width: auto; height: 250px;' src='img/profile_images/".$foto->getNome()."'>";
+            else echo "<img style='width: 250px; height: auto;' src='img/profile_images/head.png'>";
         ?>
 
             <br>
             <p class="subtitle">Nome:</p><p class="content-perfil"> <?php echo $_SESSION['user_name']; ?></p></br>
             <p class="subtitle">E-mail:</p><p class="content-perfil"> <?php echo $_SESSION['user_email']; ?></p>
-        </div>  
-        <div class="button">
+                <div class="button">
             <form action="edit.php">
                 <input type="submit" value="Editar"></br></br>
             </form>
-        </div>
+        	</div>
+        </div>  
     </div>
 </div>
 
