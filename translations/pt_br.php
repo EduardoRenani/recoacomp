@@ -112,15 +112,23 @@ define("MESSAGE_COMPETENCIA_DOESNT_EXIST","Competência associada é inválida")
 define("MESSAGE_DISCIPLINA_COMPETENCIA_ALREADY_RELATED","Competência já associada a essa disciplina");
 define("WORDING_REGISTER_NOVA_DISCIPLINA", "Cadastrar Disciplina");
 define("WORDING_REGISTER_NOVO_CURSO", "Cadastrar Curso");
+define("WORDING_REGISTER_NOVO_PROJETO", "Cadastrar Projeto");
+define("WORDING_REGISTER_NOVO_OUTROS", "Cadastrar Outros");
 
 define("WORDING_EDIT_COURSE", "Editar Disciplina");
 define("WORDING_GLOBAL_COURSE", "Visão geral");
 define("WORDING_EDIT_COURSE_FINAL", "Finalizar edição da disciplina");
 define("WORDING_CREATE_NEW_COURSE", "Criar novo curso");
+define("WORDING_INSTITUTIONAL_NAME", "Nome da unidade");
 define("WORDING_COURSE_NAME", "Nome do curso");
 define("WORDING_DISCIPLINA_NAME", "Nome da disciplina");
+define("WORDING_PROJETO_NAME", "Nome da projeto");
+define("WORDING_OUTROS_NAME", "Nome de outros");
 define("WORDING_DISCIPLINA", "Disciplina ");
 define("WORDING_CREATE_DISCIPLINA", "Criar Disciplina");
+define("WORDING_CREATE_COURSE", "Criar Curso");
+define("WORDING_CREATE_PROJETO", "Criar Projeto");
+define("WORDING_CREATE_OUTROS", "Criar Outros");
 define("WORDING_CLEAR_CREATE_DISCIPLINA", "Limpar");
 define("WORDING_DISCIPLINA_DESCRICAO", "Descrição");
 define("WORDING_AREA_CONHECIMENTO", "Área de conhecimento");
@@ -180,6 +188,10 @@ define("WORDING_CHANGE_OA_AGE_GROUP","Alterar faixa etária do Objeto de Aprendi
 define("WORDING_CHANGE_OA_LEARNING_RESOURCE","Alterar recurso aprendizagem do Objeto de Aprendizagem");
 
 
+define("ATIVIDADE_OUTROS", "3");
+define("ATIVIDADE_PROJETO", "2");
+define("ATIVIDADE_CURSO", "1");
+define("ATIVIDADE_DISCIPLINA", "0");
 
 
 // -- Categoria Vida mensagens
@@ -204,7 +216,7 @@ define("WORDING_CONTENT_PROVIDER", "Provedor de Conteúdo");
 define("WORDING_ROTEIRIST", "Roteirista");
 define("WORDING_INSTRUCTIONAL_DESIGNER", "Designer Instrucional");
 define("WORDING_CONTENT_SPECIALIST", "Especialista em Conteúdo");
-define("WORDING_CONTENT_THEORY", "Conteúdo Teórico e Atividades");
+define("WORDING_CONTENT_THEORY", "Animação");
 define("WORDING_FILL_DATE", "Preencha a data");
 
 // -- Categoria Técnica mensagens
@@ -234,7 +246,7 @@ define("WORDING_WEB_PAGE", "Página da WEB");
 
 // -- Categoria Educacional mensagens
 define("WORDING_EDUCATIONAL_CATEGORY", "Categoria Educacional");
-define("WORDING_EDUCATIONAL_DESCRIPTION", "Descrição Educacional");
+define("WORDING_EDUCATIONAL_DESCRIPTION", "Uso Pedagógico na categoria Educacional");
 define("WORDING_ITERABILITY_NIVEL", "Nível Iteratividade");
 define("WORDING_ITERABILITY_TYPE", "Tipo Iteratividade");
 define("WORDING_VERY_LOW", "Muito Baixa");
@@ -245,7 +257,7 @@ define("WORDING_VERY_HIGH", "Muito Alto");
 define("WORDING_ACTIVE", "Ativa");
 define("WORDING_EXPOSITORY", "Expositiva");
 define("WORDING_MIXED", "Mista");
-define("WORDING_AGE_GROUP", "Faixa Etária");
+define("WORDING_AGE_GROUP", "Público Alvo");
 define("WORDING_CHILD", "Criança");
 define("WORDING_ADULT", "Adulto");
 define("WORDING_ELDERLY", "Idoso");
@@ -254,18 +266,18 @@ define("WORDING_EXERCISE", "Exercício");
 define("WORDING_SIMULATION", "Simulação");
 define("WORDING_QUESTIONNAIRE", "Questionário");
 define("WORDING_DIAGRAM", "Diagrama");
-define("WORDING_FIGURE", "Figura");
+define("WORDING_FIGURE", "Apresentação");
 define("WORDING_GRAPHIC", "Gráfico");
-define("WORDING_INDICE", "Índice");
-define("WORDING_SLIDE", "Slide");
+define("WORDING_INDICE", "Planilha");
+define("WORDING_SLIDE", "Pagina da Web");
 define("WORDING_TABLE", "Tabela");
 define("WORDING_TEST", "Teste");
-define("WORDING_EXPERIENCE", "Experiência");
-define("WORDING_PROBLEM", "Problema");
-define("WORDING_AUTO_AVALIATION", "Auto Avaliação");
+define("WORDING_EXPERIENCE", "Imagem");
+define("WORDING_PROBLEM", "Áudio");
+define("WORDING_AUTO_AVALIATION", "Jogo");
 define("WORDING_LECTURE", "Palestra");
-define("WORDING_MULTIM", "Materiais multimídias");
-define("WORDING_LEARNING_RESOURCE", "Recurso Aprendizagem");
+define("WORDING_MULTIM", "Livro Digital");
+define("WORDING_LEARNING_RESOURCE", "Recursos Educacionais do Objeto de Aprendizagem");
 define("WORDING_FINAL_USER", "Usuário Final");
 define("WORDING_PROFESSOR", "Professor");
 define("WORDING_STUDENT", "Aluno");
@@ -275,7 +287,8 @@ define("WORDING_TRAINING", "Treinamento");
 define("WORDING_OTHER", "Outro");
 define("WORDING_AMBIENT", "Ambiente");
 define("WORDING_FILL_EDUCACIONAL_DESCRIPTION", "Preencha a descrição educacional");
-define("WORDING_CHILD_EDUCATION", "Educação Infantil");
+define("WORDING_CHILD_EDUCATION", "Educação de jovens e adultos");
+define("WORDING_OLD_EDUCATION", "Educação de idosos");
 define("WORDING_BASIC_EDUCATION", "Ensino Fundamental");
 define("WORDING_HIGHSCOOL", "Ensino Médio");
 define("WORDING_PROFESSIONAL_EDUCATION", "Ensino Profissionalizante");
@@ -359,7 +372,7 @@ define("HINT_TECHONOLOGY_NAME", "");
 define("HINT_DURATION", "Tempo de duração (utilizado para sons, vídeos, animações)");
 
 //Categoria Educacional
-define("HINT_EDUCACIONAL_DESCRIPTION", "Exposição sobre possíveis formas de uso educacional deste OA.");
+define("HINT_EDUCACIONAL_DESCRIPTION", "Possíveis formas de uso pedagógico deste Objeto de Aprendizagem.");
 define("HINT_INTERACTIVITY_TYPE", "Qual modo de aprendizagem é possibilitado a partir da interatividade usuário-OA.");
 define("HINT_INTERACTIVITY_NIVEL", "O nível de comunicação deste OA com o usuário.");
 define("HINT_FINAL_USER", "Tipo de usuário para o qual foi desenvolvido o objeto");
@@ -380,4 +393,9 @@ define("HINT_CHA_1", "1. Desenvolvi em nível inicial");
 define("HINT_CHA_2", "2. Desenvolvi em nível básico");
 define("HINT_CHA_3", "3. Desenvolvi em nível intermediário");
 define("HINT_CHA_4", "4. Desenvolvi em nível avançado");
+define("HINT_CHA_0_DISCI", "0. Não aborda");
+define("HINT_CHA_1_DISCI", "1. Aborda em nível inicial");
+define("HINT_CHA_2_DISCI", "2. Aborda em nível básico");
+define("HINT_CHA_3_DISCI", "3. Aborda em nível intermediário");
+define("HINT_CHA_4_DISCI", "4. Aborda em nível avançado");
 define("HINT_CHA_OA", "Representa o quanto este objeto irá abordar os conhecimentos, habilidades e atitudes de cada competência cadastrada.");

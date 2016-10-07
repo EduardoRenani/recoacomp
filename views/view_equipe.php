@@ -69,10 +69,10 @@
                 <div class="team-member">
                     <div class="team-member-avatar" style="background-image:url('img/foto_delton.jpg');"></div>
                     <header>
-                        <h3>Delton de Andrade Vaz</h3>
+                        <h3>Glaucio Caldas</h3>
                         <h4>Backend - Graduando em Engenharia de Computação</h4>
-                        <h4>delton.vaz<span class="arroba"></span>gmail.com</h4>
-                        <h4><a href="http://lattes.cnpq.br/4664765912286835" target="_blank">Curriculo Lates</a></h4>
+                        <h4>glaucio.caldas<span class="arroba"></span>gmail.com</h4>
+                        <h4><a href="http://lattes.cnpq.br/8569411953532212" target="_blank">Curriculo Lates</a></h4>
                     </header>
                 </div>
 
@@ -99,10 +99,10 @@
                 <div class="team-member">
                     <div class="team-member-avatar" style="background-image:url('img/foto_fran.jpg');"></div>
                     <header>
-                        <h3>Francine Aires</h3>
-                        <h4>Designer – Graduanda em Design de Produto</h4>
-                        <h4>fran_a.m.a<span class="arroba"></span>hotmail.com</h4>
-                        <h4><a href="http://lattes.cnpq.br/0584801538800509" target="_blank">Curriculo Lates</a></h4>
+                        <h3>Larissa Camargo Justin</h3>
+                        <h4>Graduanda em Pedagogia - UFRGS</h4>
+                        <h4>larissacjustin<span class="arroba"></span>hotmail.com</h4>
+                        <h4><a href="http://lattes.cnpq.br/2335179803096194" target="_blank">Curriculo Lates</a></h4>
                     </header>
                 </div>
 

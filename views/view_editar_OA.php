@@ -113,8 +113,7 @@ if(!isset($_POST['editar_OA'])){
 
 ?>
 
-<!-- ============== SIDEBAR =============== -->
-<?php require_once("views/sidebar.php"); ?>
+<?php require_once("sidebar-disciplina.php"); ?>
 
 <!-- ============== OBJETOS QUE CRIEI ============== -->
 
@@ -260,6 +259,7 @@ if(!isset($_POST['editar_OA'])){
                         $descricaoEducacional = $OA->getDadosCategoriaEducacionalOA($idCategoriaEducacional)[0]['descricao'];
                         $faixaEtaria = substr($OA->getDadosCategoriaEducacionalOA($idCategoriaEducacional)[0]['faixaEtaria'], 1);
                         $recursoAprendizagem = $OA->getDadosCategoriaEducacionalOA($idCategoriaEducacional)[0]['recursoAprendizagem'];
+                        $grauInteratividade = $OA->getDadosCategoriaEducacionalOA($idCategoriaEducacional)[0]['grauInteratividade'];
 
                     ?>
                     <!-- Editar forma de utilização categoria técnica -->
@@ -338,6 +338,21 @@ if(!isset($_POST['editar_OA'])){
                         (<?php echo WORDING_CURRENTLY; ?>: <?php echo $recursoAprendizagem; ?>)<br />
                         <input type="hidden" name="idCE" value="<?php echo $idCategoriaEducacional ?>" />
                         <input type="submit" name="editar_recurso_OA" value="<?php echo WORDING_CHANGE_OA_LEARNING_RESOURCE; ?>" />
+                    </form><hr/>
+
+                    <!-- Editar grau de interatividade categoria educacional -->
+                    <form method="post" action="editar_OA.php" name="editar_grau_interatividade_OA">
+                        <label for="oa_grauInteratividade"><?php echo WORDING_NEW_OA_UTILITY_TYPE; ?></label>
+                        <select id = "oa_grauInteratividade" name="oa_grauInteratividade" required="true" style="height: 40px;">
+                                <option value = "1">Muito Baixa</option>
+                                <option value = "2">Baixa</option>
+                                <option value = "3">Média</option>
+                                <option value = "4">Alta</option>
+                                <option value = "5">Muito Alta</option>
+                        </select>
+                        (<?php echo WORDING_CURRENTLY; ?>: <?php echo $grauInteratividade; ?>)<br />
+                        <input type="hidden" name="idCE" value="<?php echo $idCategoriaEducacional ?>" />
+                        <input type="submit" name="editar_grau_interatividade_OA" value="Alterar grau de interatividade" />
                     </form><hr/>
 
                 </div> <!-- END TAB 3 -->

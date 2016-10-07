@@ -29,10 +29,14 @@ include('views/_header.php');
         $('.conteudo').find('button').click(function(){
             div = $(this).closest('div#conteudo').next('#conteudo-expansivel');
             if(!div.is(':visible')){
-                div.css('height','auto').slideDown(1000);
+                $(this).closest('div#conteudo').next('#conteudo-expansivel').next('#texto').show();
+                div.slideDown(1000);
+                div.next('#texto').next('#conteudo-expansivel').slideDown(1000);
                 $(this).find('span').removeClass('glyphicon-plus').addClass('glyphicon-minus');
             }else{
+                $(this).closest('div#conteudo').next('#conteudo-expansivel').next('#texto').hide();
                 div.slideUp();
+                div.next('#texto').next('#conteudo-expansivel').slideUp();
                 $(this).find('span').removeClass('glyphicon-minus').addClass('glyphicon-plus');
             }
 
@@ -43,7 +47,6 @@ include('views/_header.php');
             $('.conteudo').next('#conteudo-expansivel').find('a').click(function(){
                 div = $(this).closest('.recomendacao-item-content').find('#conteudo-expansivel');
                 if(!div.is(':visible')){
-                    div.css('height','auto').slideDown(1000);
                     //$(this).find('span').removeClass('glyphicon-plus').addClass('glyphicon-minus');
                 }else{
                     div.slideUp();

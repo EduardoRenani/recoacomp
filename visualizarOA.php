@@ -81,9 +81,9 @@
 			</div>
 			<div style='padding-left: 10px; width: 48%; float: left;'><textarea name="av_subj" placeholder='Deixe um comentário'></textarea></div>
 			<input type="hidden" name="id" value="<?php echo $_GET['idOA']; ?>" />
-			<button onclick="submitAvaliacoes();" style="width:100%;float:left;">Enviar Avaliações</button>
+			<a class="botao-med" onclick="submitAvaliacoes();" style="width:90%;margin-left:5%;margin-bottom: 10px;float:left;">Enviar Avaliações</a>
 			</form>
 		</div>
-		<iframe name="Stack" style="width: 100%; height: 80%" frameborder="0" id="iframe" src="<?php echo $_GET['url']; ?>"></iframe>
+		<iframe name="Stack" style="width: 100%; height: 80%;" frameborder="0" id="iframe" src="<?php echo $_GET['url']; ?>"></iframe>
 	</body>
 </html>

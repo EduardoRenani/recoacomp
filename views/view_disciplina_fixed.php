@@ -21,12 +21,12 @@
 
 </head>
 <div class="fixedBackgroundGradient"></div>
-<?php require_once("views/sidebar-disciplina.php"); ?>
+<?php require_once("sidebar-disciplina.php"); ?>
 
 <!-- ============== DISCIPLINAS ============== -->
 
 <div class="disciplinas">
-<div class="top-disciplinas">Disciplinas em que estou matriculado(a)</div>
+<div class="top-disciplinas">Atividades em que estou matriculado(a)</div>
         <div class="disciplinas-content">           
             <ul class="disciplinas-list">
 
@@ -74,81 +74,56 @@
                 $cont = count($listaDisc);
                 
                 for($i=0;$i<$cont;$i++){
-                    
-                    //PASSO 3: PEGAR O TITULO DA DISCIPLINA
-                    if($stmt = $mysqli -> prepare("SELECT `nomeDisciplina`, `nomeCurso`, `usuarioProfessorID`, `descricao`, `excluida` FROM `disciplina` WHERE `iddisciplina`=?")) {
-
-                        $disc=array();
-                        //$result=array();
-
-                        /* Bind parameters
-                        s - string, b - blob, i - int, etc */
-                        $stmt -> bind_param("i", $listaDisc[ $i ]);
-
-                        /* Execute it */
-                        $stmt -> execute();
-
-                        /* Bind results */
-
-                        $stmt -> bind_result($disc['nomeDisc'],$disc['nomeCurso'],$disc['professor_id'], $disc['descricao'], $disc['excluida']);
-
-                        /* Fetch the value */
-
-                        while( $stmt -> fetch() ){
-                            //array_push($disc,$result);
-                            /*$disc['nomeDisc'] = $result['nomeDisc'];
-                            $disc['nomeCurso'] = $result['nomeCurso'];
-                            $disc['professor_id'] = $result['professor_id'];
-                            $disc['descricao'] = $result['descricao'];*/
-                        }
-
-
-
-                        //unset($result);
-
-                        /* Close statement */
-                        $stmt -> close();
-
-                    }
-
-                    if($stmt = $mysqli -> prepare("SELECT `user_name`FROM `users` WHERE `user_id`=?")) {
-
-                    /* Bind parameters
-                    s - string, b - blob, i - int, etc */
-                    $stmt -> bind_param("i", $disc['professor_id']);
-
-                    /* Execute it */
-                    $stmt -> execute();
-
-                    /* Bind results */
-                    $stmt -> bind_result($disc['professor_name']);
-
-                    /* Fetch the value */
-                    while ($stmt -> fetch() ){
-                        //$professorName = $result;
-                    }
-
-                    /* Close statement */
-                    $stmt -> close();
-                    }
-                    if(!$disc['excluida']) {
-                    echo
-                        "<li class='disciplinas-item'>".
-                            "<div class='disciplina-item-content'>".
-                                "<h3>".utf8_encode($disc['nomeDisc'])."</h3>".
-                                "<h4>".utf8_encode($disc['nomeCurso'])." - ".utf8_encode($disc['professor_name'])."</h4>".
-                                "<p>".utf8_encode($disc['descricao'])."</p>".
-                            "</div>".
-                            "<div class='button'><form action='recomendacao.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
-                                "<input type='hidden' name='disc' value='".$listaDisc[ $i ]."'>".
-                                "<input type='submit' value='Receber Recomendação'></br></br>".
-                            "</form></div>".
-                        "</li>";
+                    $carregamento = new Carregamento;
+                    $disciplina = $carregamento->CarregaDados(array("iddisciplina" => $listaDisc[$i]), "disciplina");
+                    if(!$disciplina['excluida']) {
+                        $professor = $carregamento->CarregaDados(array("user_id" => $disciplina['usuarioProfessorID']), "users");
+						if($disciplina['tipo_atividade'] == ATIVIDADE_DISCIPLINA) {
+							$tipo_atividade = "Disciplina";
+						}
+						else if($disciplina['tipo_atividade'] == ATIVIDADE_CURSO) {
+							$tipo_atividade = "Curso";
+						}
+						else if($disciplina['tipo_atividade'] == ATIVIDADE_PROJETO) {
+							$tipo_atividade = "Projeto";
+						}
+						else if($disciplina['tipo_atividade'] == ATIVIDADE_OUTROS) {
+							$tipo_atividade = "Outros";
+						}
+                        echo
+                            "<li class='disciplinas-item'>".
+                                "<div class='disciplina-item-content'>".
+                                    "<h3>".utf8_encode($disciplina['nomeDisciplina'])."(".utf8_encode($tipo_atividade).")</h3>".
+                                    "<h4>".utf8_encode($disciplina['nomeCurso'])." - ".utf8_encode($professor['user_name'])."</h4>".
+                                    "<p>".utf8_encode($disciplina['descricao'])."</p>".
+                                "</div>".
+                                "<div class='button'><form action='recomendacao.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
+                                    "<input type='hidden' name='disc' value='".$listaDisc[ $i ]."'>".
+                                    "<input type='submit' value='Receber Recomendação'></br></br>".
+                                "</form></div>".
+                            "</li>";
                     }
                     unset($disc);
                 }
                 $mysqli -> close();
             ?>
+            
+                        <!-- Modal -->
+                        <div id="openModalCreateDisciplina" class="modalDialog" id="criarDisciplinaDialog">
+                                <div>
+                                    <a href="#close" title="Close" class="close">X</a>
+                                    <div class="top-cadastro"><?php echo 'Criar que tipo de atividade?'; ?></div>
+                                        <a href="cadastro_disciplina.php?tipo=disciplina" class="botao-med" title="Disciplina">Disciplina</a>
+                                        <hr>
+                                        <a href="cadastro_disciplina.php?tipo=curso" class="botao-med" title="Curso">Curso</a>
+                                        <hr>
+                                        <a href="cadastro_disciplina.php?tipo=projeto" class="botao-med" title="Projeto">Projeto</a>
+                                        <hr>
+                                        <a href="cadastro_disciplina.php?tipo=outros" class="botao-med" title="Curso">Outros</a>
+                                    <!--/div-->
+                                </div>
+                                <!-- /.top-cadastro -->
+                        </div>
                         <!--
                         <li class="disciplinas-item">
                             <div class="disciplina-item-content">

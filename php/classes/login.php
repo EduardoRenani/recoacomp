@@ -134,6 +134,32 @@ class Login
         }
     }
 
+
+    /*private function verificaCha() {
+    	$disciplinas = new Disciplina;
+    	$idDisciplinas = $disciplinas->getIdDisciplinasMatriculadas($user_id);
+    	foreach ($idDisciplinas as $idDisciplina) {
+    		$dataIni = $disciplinas->getInicioDisciplinaById($idDisciplina);
+    		$dataFim = $disciplinas->getFimDisciplinaById($idDisciplina);
+    		$arrayDataIni = explode("-", $dataIni);
+    		$arrayDataFim = explode("-", $dataFim);
+    		$arrayData[0] = (int) ((intval($arrayDataIni[0]) + intval($arrayDataFim[0]))/2);
+    		$arrayData[1] = (int) ((intval($arrayDataIni[1]) + intval($arrayDataFim[1]))/2);
+    		$arrayData[2] = (int) ((intval($arrayDataIni[2]) + intval($arrayDataFim[2]))/2);
+            $dataNum = ($arrayData[0]*10000)+($arrayData[1]*100)+($arrayData[2]);
+    		$data = implode("-", $arrayData);
+            $dataAtual = date("Y-m-d");
+            $dataAtual = explode("-", $dataAtual);
+            $arrayData[0] = (int) ((intval($dataAtual[0]));
+            $arrayData[1] = (int) ((intval($dataAtual[1]));
+            $arrayData[2] = (int) ((intval($dataAtual[2]));
+            $dataAtualNum = ($arrayData[0]*10000)+($arrayData[1]*100)+($arrayData[2]);
+            if($dataAtualNum >= $dataNum) {
+                    //manda notificacao para atualizar CHA;
+            }
+    	}
+    }*/
+
     /**
      * Checks if database connection is opened. If not, then this method tries to open it.
      * @return bool Success status of the database connecting process

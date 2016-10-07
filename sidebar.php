@@ -20,9 +20,9 @@
 
 </head>
 
-<div class="sidebar"> 
+<div class="sidebar">
 	<div class="top-sidebar">Bem-Vindo, <?php echo $_SESSION['user_name']?></div>
-        <div class="sidebar-content">           
+        <div class="sidebar-content">
                 <ul class="sidebar-menu">
                     <a href="index.php">
                     	<li style="z-index:1000; font-weight: 100;" class="active">
@@ -42,9 +42,9 @@
                     </a>
     				<a href="cadastro_disciplina.php">
     					<li>
-	   						<?php 
+	   						<?php
 							if ($_SESSION['acesso'] == 1)
-								include_once('views/_options_aluno.php'); 
+								include_once('views/_options_aluno.php');
 								//echo WORDING_USER_STUDENT . "<br />";
 							else if ($_SESSION['acesso'] == 2){
 								?>
@@ -54,12 +54,12 @@
 					<a href="cadastro_OA.php">
 						<li class="activeOA">
 								<?php echo WORDING_REGISTER_NOVO_OA; ?><br>
-								
+
 								<!-- <a href="cadastro_competencia.php"><li class="activeCompetencia"> -->
 								<!-- <?php echo WORDING_REGISTER_NOVA_COMPETENCIA; ?><br> -->
-								
+
 								<?php
-								//include('_options_professor.php'); 
+								//include('_options_professor.php');
 								//echo WORDING_USER_PROFESSOR . "<br/>";
 							}else if($_SESSION['acesso'] == 3)
 								echo WORDING_USER_ADMIN . "<br/>";
@@ -67,5 +67,5 @@
                     	</li>
                 	</a>
                 </ul>
-    	</div>  
+    	</div>
 </div>

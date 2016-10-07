@@ -1,4 +1,4 @@
-	<?php 
+	<?php
 		$usuario = new User($_SESSION['user_id']);
 		if(isset($_POST['codTipoUsuario'])){
 				// Update no banco de dados para o tipo de visão
@@ -7,7 +7,7 @@
 				//print_r($usuario->updateTipoVisao(1));
 				// Se está vendo como aluno
 				$tipoUsuario = $_POST['codTipoUsuario'];
-				if ($tipoUsuario  == 1){ 
+				if ($tipoUsuario  == 1){
 						$usuario->updateTipoVisao(1);
 						//print_r($usuario);
 						?>
@@ -18,11 +18,7 @@
 							</li>
 						</a>
 						<!-- Meu Perfil -->
-						<a href="profile_show.php">
-							<li>
-								Meu Perfil
-							</li>
-						</a>
+
 						<li class="visao">
 						<form method="post" action="#" id="tipoUsuario" name="tipoUsuario">
 							<select name="codTipoUsuario" onchange ="this.form.submit()" onfocus="this.selectedIndex = -1;"> <!-- -->
@@ -35,27 +31,22 @@
 				<?php
 				}else{ // Se está vendo como professor ?>
 					<!-- Meu Perfil -->
-					<a href="profile_show.php">
-						<li>
-							Meu Perfil
-						</li>
-					</a>
 					<!-- Minhas Disciplinas (que cadastrei) -->
 					<a href="disciplinas.php">
 						<li class="active">
-							Minhas Disciplinas
+							Minhas Atividades
 						</li>
 					</a>
 					<!-- Disciplinas em que estou matriculado (que cadastrei) -->
 					<a href="disciplinas_fixed.php">
 						<li>
-							Disciplinas em que estou matriculado(a)
+							Atividades em que estou matriculado(a)
 						</li>
 					</a>
 					<!-- Disciplina Disponíveis -->
 					<a href="disciplinas_disponiveis.php">
 						<li>
-							Disciplinas Disponíveis
+							Atividades Disponíveis
 						</li>
 					</a>
 					<!-- Cadastrar novo OA -->
@@ -64,10 +55,16 @@
 							<?= WORDING_REGISTER_NOVO_OA; ?>
 						</li>
 					</a>
-					<a href="cadastro_disciplina.php">
+					<!-- Editar novo OA -->
+					<a href="editar_OA.php">
 						<li>
-							<?= WORDING_REGISTER_NOVA_DISCIPLINA; ?>
+							Editar Objetos de Aprendizagem
 						</li>
+					</a>
+					<a href="#openModalCreateDisciplina">
+					<li id="cadastro">
+						Cadastrar...
+					</li>
 					</a>
 					<li class="visao">
 						<br><br>
@@ -81,33 +78,29 @@
 
 			<?php
 				} // end if
-		} else { // Se nao tiver setado o tipo de visão 
+		} else { // Se nao tiver setado o tipo de visão
 			$usuario->updateTipoVisao(2);
 			//print_r($usuario);
 			?>
 				<!-- Meu Perfil -->
-				<a href="profile_show.php">
-					<li>
-						Meu Perfil
-					</li>
-				</a>
+
 			<!-- Minhas Disciplinas (que cadastrei) -->
 				<a href="disciplinas.php">
 					<li>
-						Minhas Disciplinas
+						Minhas Atividades
 					</li>
 				</a>
-				
+
 				<!-- Disciplinas em que estou matriculado (que cadastrei) -->
 				<a href="disciplinas_fixed.php">
 					<li>
-						Disciplinas em que estou matriculado(a)
+						Atividades em que estou matriculado(a)
 					</li>
 				</a>
 				<!-- Disciplina Disponíveis -->
 				<a href="disciplinas_disponiveis.php">
 					<li>
-						Disciplinas Disponíveis
+						Atividades Disponíveis
 					</li>
 				</a>
 
@@ -117,23 +110,26 @@
 						<?= WORDING_REGISTER_NOVO_OA; ?>
 					</li>
 				</a>
-				
+					<!-- Editar novo OA -->
+					<a href="editar_OA.php">
+						<li>
+							Editar Objetos de Aprendizagem
+						</li>
+					</a>
 				<!-- Cadastrar novo...-->
 				<!--<a href="cadastro_disciplina.php">
 					<li>
 						<?= WORDING_REGISTER_NOVA_DISCIPLINA; ?>
 					</li>
 				</a>-->
-				<li id="cadastro">
-					Cadastrar...
-				</li>
-				<div id="selectcadastro" style="display: none;">
-					<a href="cadastro_disciplina.php?tipo=disciplina"><li>Disciplina</li></a>
-					<a href="cadastro_disciplina.php?tipo=curso"><li>Curso</li></a>
-				</div>
+				<a href="#openModalCreateDisciplina">
+					<li id="cadastro">
+						Cadastrar...
+					</li>
+					</a>
 
 				<!-- Ver como -->
-				
+
 				<li class="visao">
 					<form method="post" action="#" id="tipoUsuario" name="tipoUsuario">
 						<select name="codTipoUsuario" onchange ="this.form.submit()" onfocus="this.selectedIndex = -1;"> <!-- -->
@@ -142,7 +138,7 @@
 						</select>
 					</form>
 				</li>
-			
+
 	<?php
 		}
 	?>

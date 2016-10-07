@@ -17,7 +17,7 @@
 nav {
 
     float: right;
-    padding: 5px;  
+    padding: 5px;
 
 }
 
@@ -49,6 +49,9 @@ li {
     border-bottom:5px solid #108AC0;
     width:100%;
 }
+
+
+
 
 /*HEADER---------------------------------------------------------------------*/
 
@@ -68,7 +71,7 @@ li {
 nav {
 
     float: right;
-    padding: 5px;  
+    padding: 5px;
 
 }
 
@@ -88,7 +91,11 @@ a:hover#menu-icon {
 ul {
     list-style: none;
 }
+#botoes{
+	color #108ac0
 
+
+}
 li {
     display: inline-block;
     float: left;
@@ -102,9 +109,27 @@ li {
     font-weight:100;
     color:black;
 }
+#botoes span.tooltipster-icon{
+	border-radius: 100%;
+    box-sizing: border-box;
+    margin-left: 4px;
+    background: #ffaf05;
+    border: 1.5px solid  #c38604;
+    width: 2.3em;
+    height: 2.3em;
+    padding: 0.4em 0 0;
+    margin: 2em 0 0 -3em;
+    line-height: 1em;
+    float: left;
+    text-align: center;
+    font-size: 0.6em;
+}
 
-.header-large a{text-decoration:none;color:black;}
+.header-large a{text-decoration:none;color:#108ac0;}
 .header-large a:hover, a:active{color:grey;}
+
+
+
 
 /*SIDEBAR-----------------------------------------------------------------------*/
 .sidebar{
@@ -212,7 +237,7 @@ li {
 }
 
 .disciplinas-content{
-    
+
     width:95%;
     height:83%;
     margin:0 auto;
@@ -224,7 +249,7 @@ li {
     background-color:white;
     display:block;
     height:auto;
-    
+
     top:10px;
     width:100%;
     margin-bottom:15px;
@@ -233,29 +258,29 @@ li {
 .disciplinas-list ul{padding:0px;margin:0px; width:100%;}
 .disciplinas-item li{padding:0px;}
 
-  
-input[type=submit]{ /*customiza input de submit*/ 
+
+input[type=submit]{ /*customiza input de submit*/
   /*height: 50px; TODO ARRUMAR ESSES BOTÕES*/
   border: 0;
   width:180px;
   white-space: normal;
   text-align:center;
   height: 50px;
-  
+
 
 
     background: -webkit-linear-gradient(left, #26B3E8, #75CCD6); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(right, #26B3E8, #75CCD6); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(right, #26B3E8, #75CCD6); /* For Firefox 3.6 to 15 */
     background: linear-gradient(to right, #26B3E8, #75CCD6); /* Standard syntax (must be last) */
- 
+
   color: white;
   padding: 8px 14px;
   font-weight: 100;
   font-size: 18px;
   text-decoration: none;
   display: inline-block; /* needed for anchors */
- 
+
     -webkit-box-shadow: 0px 4px 0px 0px rgba(50, 50, 50, 0.47);
     -moz-box-shadow:    0px 4px 0px 0px rgba(50, 50, 50, 0.47);
     box-shadow:         0px 4px 0px 0px rgba(50, 50, 50, 0.47);
@@ -280,14 +305,14 @@ outline:none;
     -o-transform: translateY(4px);
     -ms-transform: translateY(4px);
     transform: translateY(4px);
-    
+
     -webkit-box-shadow: 0px 1px 0px 0px rgba(50, 50, 50, 0.47);
     -moz-box-shadow:    0px 1px 0px 0px rgba(50, 50, 50, 0.47);
     box-shadow:         0px 1px 0px 0px rgba(50, 50, 50, 0.47);
     outline:none;
   }
 
-  input[type=submit]:hover{ 
+  input[type=submit]:hover{
     outline:none;
   }
 
@@ -329,7 +354,7 @@ outline:none;
 }
 
 .objetos-content{
-    
+
     width:95%;
     height:83%;
     margin:0 auto;
@@ -341,7 +366,7 @@ outline:none;
     background-color:white;
     display:block;
     height:auto;
-    
+
     top:10px;
     width:100%;
     margin-bottom:15px;
@@ -350,29 +375,29 @@ outline:none;
 .objetos-list ul{padding:0px;margin:0px; width:100%;}
 .objetos-item li{padding:0px;}
 
-  
-input[type=submit]{ /*customiza input de submit*/ 
+
+input[type=submit]{ /*customiza input de submit*/
   /*height: 50px; TODO ARRUMAR ESSES BOTÕES*/
   border: 0;
   width:180px;
   white-space: normal;
   text-align:center;
   height: 50px;
-  
+
 
 
     background: -webkit-linear-gradient(left, #26B3E8, #75CCD6); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(right, #26B3E8, #75CCD6); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(right, #26B3E8, #75CCD6); /* For Firefox 3.6 to 15 */
     background: linear-gradient(to right, #26B3E8, #75CCD6); /* Standard syntax (must be last) */
- 
+
   color: white;
   padding: 8px 14px;
   font-weight: 100;
   font-size: 18px;
   text-decoration: none;
   display: inline-block; /* needed for anchors */
- 
+
     -webkit-box-shadow: 0px 4px 0px 0px rgba(50, 50, 50, 0.47);
     -moz-box-shadow:    0px 4px 0px 0px rgba(50, 50, 50, 0.47);
     box-shadow:         0px 4px 0px 0px rgba(50, 50, 50, 0.47);
@@ -397,14 +422,14 @@ outline:none;
     -o-transform: translateY(4px);
     -ms-transform: translateY(4px);
     transform: translateY(4px);
-    
+
     -webkit-box-shadow: 0px 1px 0px 0px rgba(50, 50, 50, 0.47);
     -moz-box-shadow:    0px 1px 0px 0px rgba(50, 50, 50, 0.47);
     box-shadow:         0px 1px 0px 0px rgba(50, 50, 50, 0.47);
     outline:none;
   }
 
-  input[type=submit]:hover{ 
+  input[type=submit]:hover{
     outline:none;
   }
 
@@ -424,7 +449,7 @@ outline:none;
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
-    margin-left: auto; 
+    margin-left: auto;
 
 padding:0% 0%;
 }

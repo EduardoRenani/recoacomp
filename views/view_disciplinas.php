@@ -66,7 +66,7 @@
 <!-- ============== DISCIPLINAS DIPONIVEIS ============== -->
 
 <div class="disciplinas">
-    <div class="top-disciplinas">Minhas Disciplinas</div>
+    <div class="top-disciplinas">Minhas Atividades</div>
         <div class="disciplinas-content">
             <ul class="disciplinas-list">
             <?php
@@ -79,10 +79,20 @@
                 $listaDisciplina[1] = $disciplina->getUserDisciplinas($_SESSION['user_id'], 'nomeCurso');
                 $listaDisciplina[2] = $disciplina->getUserDisciplinas($_SESSION['user_id'], 'descricao');
                 $listaDisciplina[3] = $disciplina->getUserDisciplinas($_SESSION['user_id'], 'id');
+                $listaDisciplina[4] = $disciplina->getUserDisciplinas($_SESSION['user_id'], 'tipo_atividade');
 
 
 
                 foreach ($disciplinasOrdemAlfabetica as $ordemAlfabetica => $disciplina) {
+					if($disciplina['tipo_atividade'] == ATIVIDADE_DISCIPLINA) {
+						$disciplina['tipo_atividade'] = "Disciplina";
+					} else if($disciplina['tipo_atividade'] == ATIVIDADE_CURSO) {
+						$disciplina['tipo_atividade'] = "Curso";
+					} else if($disciplina['tipo_atividade'] == ATIVIDADE_PROJETO) {
+						$disciplina['tipo_atividade'] = "Projeto";
+					} else if($disciplina['tipo_atividade'] == ATIVIDADE_OUTROS) {
+						$disciplina['tipo_atividade'] = "Outros";
+					}
                     // Se a disciplina não estiver com a flag excluida ela será mostrada
                     if($disciplina['excluida'] === '0'){
                         if(!(isset($_POST['codTipoUsuario']))){
@@ -90,7 +100,7 @@
                                 "<li class='disciplinas-item'>".
                                     "<div class='disciplina-item-content'>".
                                         "<div class='lista-disciplina'>".
-                                            "<h3>".$disciplina['nomeDisciplina']."</h3>".
+                                            "<h3>".$disciplina['nomeDisciplina']." (".$disciplina['tipo_atividade'].")</h3>".
                                             "<h4>".$disciplina['nomeCurso']."</h4>".
                                             "<p>".$disciplina['descricao'].
                                             "<br>".
@@ -117,6 +127,7 @@
                                     <a href="#close" title="Close" class="close">X</a>
                                     <div class="top-cadastro"><?php echo 'Excluir disciplina?'; ?></div>
                                         <a href="#close" class="botao-med" id="<?php echo $disciplina['iddisciplina']?>" onClick="deletarDisciplina();" title="Deletar">Excluir</a>
+                                        <hr>
                                         <a href="#close" class="botao-med" title="Cancelar">Cancelar</a>
                                     <!--/div-->
                                 </div>
@@ -129,6 +140,7 @@
                                     "<li class='disciplinas-item'>".
                                         "<div class='disciplina-item-content'>".
                                             "<div class='lista-disciplina'>".
+											"<h2>".$disciplina['tipo_atividade']."</h2>".
                                                 "<h3>".$disciplina['nomeDisciplina']."</h3>".
                                                 "<h4>".$disciplina['nomeCurso']."</h4>".
                                                 "<p>".$disciplina['descricao']."</p>".
@@ -167,6 +179,7 @@
                                         "<li class='disciplinas-item'>".
                                             "<div class='disciplina-item-content'>".
                                                 "<div class='lista-disciplina'>".
+												"<h2>".$disciplina['tipo_atividade']."</h2>".
                                                     "<h3>".$disciplina['nomeDisciplina']."</h3>".
                                                     "<h4>".$disciplina['nomeCurso']."</h4>".
                                                     "<p>".$disciplina['descricao'].
@@ -188,7 +201,25 @@
                         //<!-- /.modalDialog -->
                      } // end for
                     
+?>
 
+                        <!-- Modal -->
+                        <div id="openModalCreateDisciplina" class="modalDialog" id="criarDisciplinaDialog">
+                                <div>
+                                    <a href="#close" title="Close" class="close">X</a>
+                                    <div class="top-cadastro"><?php echo 'Criar que tipo de atividade?'; ?></div>
+                                        <a href="cadastro_disciplina.php?tipo=disciplina" class="botao-med" title="Disciplina">Disciplina</a>
+                                        <hr>
+                                        <a href="cadastro_disciplina.php?tipo=curso" class="botao-med" title="Curso">Curso</a>
+                                        <hr>
+                                        <a href="cadastro_disciplina.php?tipo=projeto" class="botao-med" title="Projeto">Projeto</a>
+                                        <hr>
+                                        <a href="cadastro_disciplina.php?tipo=outros" class="botao-med" title="Curso">Outros</a>
+                                    <!--/div-->
+                                </div>
+                                <!-- /.top-cadastro -->
+                        </div>
+<?php
 /*
                 $listaDisciplina[0] = $disciplina->getUserDisciplinas($_SESSION['user_id'], 'nomeDisciplina');
                 $listaDisciplina[1] = $disciplina->getUserDisciplinas($_SESSION['user_id'], 'nomeCurso');

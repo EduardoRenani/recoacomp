@@ -16,6 +16,8 @@
 
 		private $palavras;
 
+		private $palavrasChaves;
+
 		private $sentidos;
 
 		function __construct($id) {
@@ -107,11 +109,13 @@
 											if(!$this->isStopWord($palavra) && !$this->isAdverbio($palavra) && !$this->isInterjeicao($palavra)) {
 												if(is_null($sentidoVirgula[$key1])) {
 													$sentidoVirgula[$key1] = $this->verNoBanco($palavra);
+													if(!is_null($sentidoVirgula[$key1])) $this->setPalavrasChaves($key, $key1, $palavra, $sentidoVirgula[$key1]);
 													//if(is_null($sentidoVirgula[$key1])) $sentidoVirgula[$key1] = $this->pesquisarInternetSentido($palavra);
 													//if(is_null($sentidoVirgula[$key])) $sentidoVirgula[$key] = $this->pergunta($palavra);
 												}
 												else {
 													$sentidoAux = $this->verNoBanco($palavra);
+													if(!is_null($sentidoAux)) $this->setPalavrasChaves($key, $key1, $palavra, $sentidoAux);
 													//if(is_null($sentidoAux)) $sentidoAux = $this->pesquisarInternetSentido($palavra);
 													//if(is_null($sentidoAux)) $sentidoAux = $this->pergunta($palavra);
 													if(!is_null($sentidoAux)) $sentidoVirgula[$key1] = $sentidoVirgula[$key1]*$sentidoAux;
@@ -484,6 +488,14 @@
 			return $this->palavras;
 		}
 
+		public function setPalavrasChaves($key, $key1, $palavra, $sentido) {
+			$this->palavrasChaves[$key][$key1][] = array($palavra, $sentido);
+		}
+
+		public function getPalavrasChaves() {
+			return $this->palavrasChaves;
+		}
+
 		public function setPalavras($palavras) {
 			$this->validaArray($palavras);
 			$this->palavras = $palavras;
@@ -522,14 +534,27 @@
 	echo "<pre>";
 	var_dump($minerador->getPalavras());
 	echo "</pre>";
+	var_dump($minerador->getPalavrasChaves());
+	echo "</pre>";
+	echo "Frase: ";
+	echo $minerador->getTextos()[1]["comentario"];
+	echo "<br><br>";
+	echo "Separado por vírgulas (apenas palavras chaves): <br>";
+	foreach($minerador->getPalavrasChaves()[1] as $palavrasChaves) {
+		foreach ($palavrasChaves as $palavras) {
+			echo "	".$palavras[0]." = ".$palavras[1];
+		}
+		echo "<br>";
+	}
+	echo "<br>";
 	if($minerador->getSentidos()[1] > 0) {
-		echo "O dorneles gostou!";
+		echo "O usuário gostou do objeto!";
 	}
 	else if($minerador->getSentidos()[1] == 0) {
-		echo "O dorneles achou meio termo!";
+		echo "O usuário não sabe se gostou do objeto!";
 	}
 	else {
-		echo "O dorneles não gostou!";
+		echo "O usuário não gostou do objeto!";
 	}
 	//$minerador->aprenderPalavras();
 	//$minerador->aprenderStopWords();

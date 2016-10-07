@@ -1,13 +1,13 @@
 <!-- Disciplina Disponíveis -->
 <a href="disciplinas_disponiveis.php">
 	<li>
-		Disciplinas Disponíveis
+		Atividades Disponíveis
 	</li>
 </a>
 <!-- Disciplinas em que estou matriculado (que cadastrei) -->
 <a href="disciplinas_fixed.php">
 	<li>
-		Disciplinas em que estou matriculado(a)
+		Atividades em que estou matriculado(a)
 	</li>
 </a>
 <!-- Meu Perfil -->

@@ -378,6 +378,16 @@ class Competencia{
         }
     }
 
+    public function getArrayOfIDsByAluno($id){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT competencia_idcompetencia FROM usuario_competencias WHERE usuario_idusuario=:id");
+            $stmt->bindValue(':id',$id, PDO::PARAM_INT);
+            $stmt->execute();
+            $retorno = $stmt->fetchAll();
+            return ($retorno);
+        }
+    }
+
     public function getArrayOfIDsById($id){
         if($this->databaseConnection()){
             $stmt = $this->db_connection->prepare("SELECT idcompetencia FROM competencia WHERE idCompetencia=:id");

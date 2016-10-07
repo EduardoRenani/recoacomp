@@ -16,7 +16,7 @@ header{
     z-index:10;
 }
 
-nav ul, nav:active ul { 
+nav ul, nav:active ul {
         z-index:10;
         display: none;
         position: absolute;
@@ -47,6 +47,8 @@ nav ul, nav:active ul {
 }
 
 
+
+
 /*HEADER---------------------------------------------------------------------*/
 @media only screen and (max-width : 640px) {
 
@@ -63,8 +65,23 @@ header{
     font-weight:100;
     color:black;
 }
+#botoes span.tooltipster-icon{
+	border-radius: 100%;
+    box-sizing: border-box;
+    margin-left: 4px;
+    background: #ffaf05;
+    border: 1.5px solid  #c38604;
+    width: 2.3em;
+    height: 2.3em;
+    padding: 0.4em 0 0;
+    margin: 2em 0 0 -3em;
+    line-height: 1em;
+    float: left;
+    text-align: center;
+    font-size: 0.6em;
+}
 
-.header-large a{text-decoration:none;color:black;}
+.header-large a{text-decoration:none;color:#108ac0;}
 .header-large a:hover, a:active{color:grey;}
 
 #menu-icon{
@@ -72,7 +89,7 @@ header{
     z-index:10;
 }
 
-nav ul, nav:active ul { 
+nav ul, nav:active ul {
         z-index:10;
         display: none;
         position: absolute;
@@ -123,7 +140,7 @@ nav ul, nav:active ul {
     background-color:#108AC0;
     color:white;
 
-    
+
     font-size:18px;
     font-weight:100;
 
@@ -227,21 +244,21 @@ input[type=submit]{ /*customiza input de submit*/
   width:150px;
   white-space: normal;
   text-align:center;
-  
+
 
 
     background: -webkit-linear-gradient(left, #26B3E8, #75CCD6); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(right, #26B3E8, #75CCD6); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(right, #26B3E8, #75CCD6); /* For Firefox 3.6 to 15 */
     background: linear-gradient(to right, #26B3E8, #75CCD6); /* Standard syntax (must be last) */
- 
+
   color: white;
   padding: 8px 14px;
   font-weight: 100;
   font-size: 18px;
   text-decoration: none;
   display: inline-block; /* needed for anchors */
- 
+
     -webkit-box-shadow: 0px 4px 0px 0px rgba(50, 50, 50, 0.47);
     -moz-box-shadow:    0px 4px 0px 0px rgba(50, 50, 50, 0.47);
     box-shadow:         0px 4px 0px 0px rgba(50, 50, 50, 0.47);
@@ -264,7 +281,7 @@ border-radius: 5px;
     -o-transform: translateY(4px);
     -ms-transform: translateY(4px);
     transform: translateY(4px);
-    
+
     -webkit-box-shadow: 0px 1px 0px 0px rgba(50, 50, 50, 0.47);
     -moz-box-shadow:    0px 1px 0px 0px rgba(50, 50, 50, 0.47);
     box-shadow:         0px 1px 0px 0px rgba(50, 50, 50, 0.47);
@@ -283,7 +300,7 @@ border-radius: 5px;
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
-    margin-left: auto; 
+    margin-left: auto;
 
 padding:0% 0%;
 }

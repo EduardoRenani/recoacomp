@@ -49,16 +49,29 @@ function getDisciplinaId(id){
                 $listaDisciplina[2] = $disciplina->getDescricaoDisciplinasNaoMatriculadas($_SESSION['user_id']);
                 $listaDisciplina[3] = $disciplina->getIdDisciplinasNaoMatriculadas($_SESSION['user_id']);
                 $listaDisciplina[4] = $disciplina->getExcluidaDisciplinasNaoMatriculadas($_SESSION['user_id']);
+                $listaDisciplina[5] = $disciplina->getTipoAtividadeDisciplinasNaoMatriculadas($_SESSION['user_id']);
                 $contador = count($listaDisciplina[0]);
                 //Imprime o nome de cada disciplina
                 for($i=0; $i<$contador;$i++){
+					if($listaDisciplina[5][$i][0] == ATIVIDADE_DISCIPLINA) {
+						$listaDisciplina[5][$i][0] = "Disciplina";
+					}
+					else if($listaDisciplina[5][$i][0] == ATIVIDADE_CURSO) {
+						$listaDisciplina[5][$i][0] = "Curso";
+					}
+					else if($listaDisciplina[5][$i][0] == ATIVIDADE_PROJETO) {
+						$listaDisciplina[5][$i][0] = "Projeto";
+					}
+					else if($listaDisciplina[5][$i][0] == ATIVIDADE_OUTROS) {
+						$listaDisciplina[5][$i][0] = "Outros";
+					}
                     //var_dump($listaDisciplina[0][$i][3]);
                     if(!$listaDisciplina[4][$i][0]) {
                     echo
                         "<li class='disciplinas-item'>".
                             "<div class='disciplina-item-content'>".
                                 "<div class='lista-disciplina'>".
-                                    "<h3>".$listaDisciplina[0][$i][0]."</h3>".
+                                    "<h3>".$listaDisciplina[0][$i][0]."(".$listaDisciplina[5][$i][0].")</h3>".
                                     "<h4>".$listaDisciplina[1][$i][0]."</h4>".
                                     "<p>".$listaDisciplina[2][$i][0].
                                 "</div>".
@@ -94,5 +107,22 @@ function getDisciplinaId(id){
                 <!-- /.modalDialog -->
             </ul>
          </div>  
+         
+                        <!-- Modal -->
+                        <div id="openModalCreateDisciplina" class="modalDialog" id="criarDisciplinaDialog">
+                                <div>
+                                    <a href="#close" title="Close" class="close">X</a>
+                                    <div class="top-cadastro"><?php echo 'Criar que tipo de atividade?'; ?></div>
+                                        <a href="cadastro_disciplina.php?tipo=disciplina" class="botao-med" title="Disciplina">Disciplina</a>
+                                        <hr>
+                                        <a href="cadastro_disciplina.php?tipo=curso" class="botao-med" title="Curso">Curso</a>
+                                        <hr>
+                                        <a href="cadastro_disciplina.php?tipo=projeto" class="botao-med" title="Projeto">Projeto</a>
+                                        <hr>
+                                        <a href="cadastro_disciplina.php?tipo=outros" class="botao-med" title="Curso">Outros</a>
+                                    <!--/div-->
+                                </div>
+                                <!-- /.top-cadastro -->
+                        </div>
 
 </div>

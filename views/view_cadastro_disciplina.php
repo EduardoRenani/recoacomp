@@ -125,7 +125,7 @@ include('_header.php');
                 listaAtitudes = listaAtitudes.split("¬");
                 console.log(listaAtitudes);
                 console.log('oi');
-                document.getElementById('sub-conteudo2').innerHTML = '<div class="info-cadastro"><?php echo HINT_CHA."<br>".HINT_CHA_0."<br>".HINT_CHA_1."<br>".HINT_CHA_2."<br>".HINT_CHA_3."<br>".HINT_CHA_4;?></div>';
+                document.getElementById('sub-conteudo2').innerHTML = '<div class="info-cadastro"><?php echo HINT_CHA."<br>".HINT_CHA_0_DISCI."<br>".HINT_CHA_1_DISCI."<br>".HINT_CHA_2_DISCI."<br>".HINT_CHA_3_DISCI."<br>".HINT_CHA_4_DISCI;?></div>';
                 for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
                             listaConhecimentos[i] = listaConhecimentos[i].replace(/%0D%0A/g, ' ');
@@ -176,7 +176,7 @@ include('_header.php');
                 console.log(listaConhecimentos);
                 console.log(listaHabilidades);
                 console.log(listaAtitudes);
-                document.getElementById('sub-conteudo2').innerHTML = '<div class="info-cadastro"><?php echo HINT_CHA."<br>".HINT_CHA_0."<br>".HINT_CHA_1."<br>".HINT_CHA_2."<br>".HINT_CHA_3."<br>".HINT_CHA_4;?></div>';
+                document.getElementById('sub-conteudo2').innerHTML = '<div class="info-cadastro"><?php echo HINT_CHA."<br>".HINT_CHA_0_DISCI."<br>".HINT_CHA_1_DISCI."<br>".HINT_CHA_2_DISCI."<br>".HINT_CHA_3_DISCI."<br>".HINT_CHA_4_DISCI;?></div>';
                 for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
                             listaConhecimentos[i] = listaConhecimentos[i].replace(/%0D%0A/g, ' ');
@@ -307,7 +307,7 @@ function AjaxCompetenciaListas(){
                     console.log(listaAtitudes);
                     console.log(']');
                     console.log('oi');
-                    document.getElementById('sub-conteudo2').innerHTML = '<div class="info-cadastro"><?php echo HINT_CHA."<br>".HINT_CHA_0."<br>".HINT_CHA_1."<br>".HINT_CHA_2."<br>".HINT_CHA_3."<br>".HINT_CHA_4;?></div>';
+                    document.getElementById('sub-conteudo2').innerHTML = '<div class="info-cadastro"><?php echo HINT_CHA."<br>".HINT_CHA_0_DISCI."<br>".HINT_CHA_1_DISCI."<br>".HINT_CHA_2_DISCI."<br>".HINT_CHA_3_DISCI."<br>".HINT_CHA_4_DISCI;?></div>';
                     for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
                             listaConhecimentos[i] = listaConhecimentos[i].replace(/%0D%0A/g, ' ');
@@ -422,7 +422,7 @@ $(function(){
                 document.getElementById('buttonNext').removeAttribute('style');
                 //document.getElementById('buttonNext').setAttribute('style', 'float: none; display: none;');
                 document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(4)');
-                input = '<input id="finisher" class="info-cadastro" type="submit" name="registrar_nova_disciplina" value="<?php echo WORDING_CREATE_DISCIPLINA; ?>" />';
+                input = '<input id="finisher" class="info-cadastro" type="submit" name="registrar_nova_disciplina" value="<?php if($_GET['tipo'] == "curso") {echo WORDING_CREATE_COURSE;} elseif($_GET['tipo'] == "outros") {echo WORDING_CREATE_OUTROS;} elseif($_GET['tipo'] == "projeto") {echo WORDING_CREATE_PROJETO;} else { echo WORDING_CREATE_DISCIPLINA;} ?>" />';
                 document.getElementById('buttonNext').innerHTML = input;
             }
             else {
@@ -603,7 +603,7 @@ $(function(){
 <div class="fixedBackgroundGradient"></div>
 
 <div class="cadastrobase">
-    <div class="top-cadastrobase"><div class="text-left"><?php if($_GET['tipo'] == "curso") {echo (WORDING_REGISTER_NOVO_CURSO);} else { echo (WORDING_REGISTER_NOVA_DISCIPLINA);} ?></div><div class="text-right" ><!-- <a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a>--></div></div>
+    <div class="top-cadastrobase"><div class="text-left"><?php if($_GET['tipo'] == "curso") {echo (WORDING_REGISTER_NOVO_CURSO);} elseif($_GET['tipo'] == "projeto") {echo (WORDING_REGISTER_NOVO_PROJETO);} elseif($_GET['tipo'] == "outros") {echo (WORDING_REGISTER_NOVO_OUTROS);} else { echo (WORDING_REGISTER_NOVA_DISCIPLINA);} ?></div><div class="text-right" ><!-- <a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a>--></div></div>
         <div class="cadastrobase-content">
            <form method="post" action="" name="registrar_nova_disciplina" id="registrar_nova_disciplina">
             <!-- ID do usuário passado via hidden POST -->
@@ -622,14 +622,14 @@ $(function(){
                             <div id="sub-conteudo" class="tab-active">
                             <div class="control-group">
                                 <label class="control-label" for="nomeCurso">
-                                    <div style="float: left"><?php echo WORDING_COURSE_NAME; ?></div>
-                                    <div class="tooltiploco"><div onmouseover="toolTip(1, '<?php echo 'Ex. Curso Teste'?>')" onmouseout="deleteTooltip(1)">[ ? ]</div></div></label> <!-- TODO colocar variaveis mensagem tooltip -->
+                                    <div style="float: left"><?php echo WORDING_INSTITUTIONAL_NAME; ?></div>
+                                    <div class="tooltiploco"><div onmouseover="toolTip(1, '<?php echo 'Ex. Instituição Teste'?>')" onmouseout="deleteTooltip(1)">[ ? ]</div></div></label> <!-- TODO colocar variaveis mensagem tooltip -->
                                 <div class="controls">
                                     <input type="text" id="nomeCurso" name="nomeCurso" class="required">       
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="nomeDisciplina"><div style="float: left"><?php echo WORDING_DISCIPLINA_NAME; ?></div>
+                                <label class="control-label" for="nomeDisciplina"><div style="float: left"><?php if($_GET['tipo'] == "curso") {echo WORDING_COURSE_NAME;} elseif($_GET['tipo'] == "projeto") {echo WORDING_PROJETO_NAME;} elseif($_GET['tipo'] == "outros") {echo WORDING_OUTROS_NAME;} else { echo WORDING_DISCIPLINA_NAME;} ?></div>
                                     <div class="tooltiploco"><div onmouseover="toolTip(2, 'Ex. Disciplina Teste')" onmouseout="deleteTooltip(2)">[ ? ]</div></div></label>
                                 <div class="controls">
                                     <input type="text" id="nomeDisciplina" name="nomeDisciplina" class="required">       
@@ -662,6 +662,24 @@ $(function(){
                                 </div>
                             </div>
 
+
+                            <!-- Inicio e fim-->
+                            <div class="control-group">
+                                <label class="control-label" for="descricao"><div style="float: left">Início da Atividade</div><div class="tooltiploco">
+                                    <div onmouseover="toolTip(6, 'Inicio das atividades.')" onmouseout="deleteTooltip(6)">[ ? ]</div></div></label>
+                                    <div class="controls">
+                                        <input type="date" name="inicio">
+                                    </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="descricao"><div style="float: left">Término da atividade</div><div class="tooltiploco">
+                                    <div onmouseover="toolTip(7, 'Fim das atividades.')" onmouseout="deleteTooltip(7)">[ ? ]</div></div></label>
+                                    <div class="controls">
+                                        <input type="date" name="fim">
+                                    </div>
+                            </div>
+
                             <!-- Descrição-->
                             <div class="control-group">
                                 <label class="control-label" for="descricao"><div style="float: left"><?php echo WORDING_DISCIPLINA_DESCRICAO; ?></div><div class="tooltiploco">
@@ -684,7 +702,22 @@ $(function(){
                                 $descricaoAtitude = $competencia-> getDescricaoAtitude();
                                 //print_r($descricaoConhecimento); 
                                 ?>
+								<?php
+									if($_GET['tipo'] == "curso") {
+										$tipo_atividade = ATIVIDADE_CURSO;
+									} 
+									else if($_GET['tipo'] == "projeto") {
+										$tipo_atividade = ATIVIDADE_PROJETO;
+									}
+									else if($_GET['tipo'] == "outros") {
+										$tipo_atividade = ATIVIDADE_OUTROS;
+									}
+									else {
+										$tipo_atividade = ATIVIDADE_DISCIPLINA;
+									}
+								?>
                                 <input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" />
+                                <input type="hidden" id="tipoAtividade" name="tipo_atividade" value="<?php echo $tipo_atividade; ?>" />
                                 <input type="hidden" id="listaConhecimentos" name="listaConhecimentos" value="" />
                                 <input type="hidden" id="listaHabilidades" name="listaHabilidades" value="" />
                                 <input type="hidden" id="listaAtitudes" name="listaAtitudes" value="" />
@@ -739,7 +772,7 @@ $(function(){
                 <br /><br />
 
                 
-                <!--<input type="reset" name="limpar" value="<?php echo WORDING_CLEAR_CREATE_DISCIPLINA; ?>" />-->
+                <!--<input type="reset" name="limpar" value="<?php if($_GET['tipo'] == "curso") {echo WORDING_CLEAR_CREATE_COURSE;} else { echo WORDING_CLEAR_CREATE_DISCIPLINA;} ?>" />-->
 
             </form>
         </div>

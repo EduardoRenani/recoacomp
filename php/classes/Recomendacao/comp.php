@@ -180,7 +180,7 @@ class Comp{
 							<h3>Competência: ".$this->nomeComp."</h3>
 							<p>".$this->descricaoComp."</p>
 						</div>
-							<button type='button' class='btn-recomendacao btn-default btn-lg'>
+							<button type='button' class='botao-recomendacao'>
 							  <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
 							</button>
 						

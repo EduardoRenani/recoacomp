@@ -1,12 +1,11 @@
     
 
     <?php
-
     //chamar dentro od ordenar
 
     //if(array_key_exists($oa, $oas_ordenados));
     // não ordena
-    public function filtragemColaborativaGetVizinhos(){
+    function filtragemColaborativaGetVizinhos(){
 
         $this->db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
         $temp = $this->competencia[$pos]->getID(); //verificar
@@ -21,7 +20,7 @@
         $result = $sql->fetch(PDO::FETCH_NUM);
         if($result != NULL){
             foreach($result as $r){
-                $vizinhos[] = $r);
+                $vizinhos[] = $r;
             }
         }
 
@@ -61,7 +60,7 @@
         return $num/$den;
     }
 
-    public function filtragemColaborativaGetSimilaridade(){
+    function filtragemColaborativaGetSimilaridade(){
         $dados = array();
         $similaridades = array();
         $vizinhos = filtragemColaborativaGetVizinhos($id_competencia);
@@ -95,4 +94,5 @@
 
     }
 
+    filtragemColaborativaGetSimilaridade();
     ?>

@@ -58,6 +58,10 @@ class Disciplina {
      */
     private $area_conhecimento = null;
     /**
+     * @var int $tipo_atividade tipo de atividade da disciplina
+     */
+    private $tipo_atividade = null;
+    /**
      * @var Array $arrayCompetencias Array com competências
      */
     private $arrayCompetencias = "";
@@ -88,7 +92,10 @@ class Disciplina {
             $_POST['conhecimento'],
             $_POST['habilidade'],
             $_POST['atitude'],
-            $_POST['area_conhecimento']);
+            $_POST['area_conhecimento'],
+            $_POST['tipo_atividade'],
+            $_POST['inicio'],
+            $_POST['fim']);
             // Professor cria disciplina e entra nela
         }elseif(isset($_POST["verifica_senha"])){
             if (($this->checkPassword($_POST['senha'], $_POST['idDisciplina']))){
@@ -159,7 +166,7 @@ class Disciplina {
      * Administra toda o sistema de Criação de disciplina
      * Verifica todos os erros possíveis e cria a disciplina se ela não existe
      */
-    public function criaDisc($nomeCurso, $nomeDisciplina, $descricao, $usuarioProfessorID, $senha, $arrayCompetencias, $conhecimento, $habilidade, $atitude, $area_conhecimento){
+    public function criaDisc($nomeCurso, $nomeDisciplina, $descricao, $usuarioProfessorID, $senha, $arrayCompetencias, $conhecimento, $habilidade, $atitude, $area_conhecimento, $tipo_atividade){
        // Remove espaços em branco em excesso das strings
         $nomeCurso  = trim($nomeCurso);
         $nomeDisciplina = trim($nomeDisciplina);
@@ -167,13 +174,13 @@ class Disciplina {
         $senha = trim($senha);
         $arrayCompetencias = explode(',',$arrayCompetencias);
 
-
         $this->nomeCurso  = $nomeCurso;
         $this->nomeDisciplina = $nomeDisciplina;
         $this->descricao = $descricao;
         $this->senha = $senha;
         $this->area_conhecimento = $area_conhecimento;
         $this->arrayCompetencias = $arrayCompetencias;
+        $this->tipo_atividade = $tipo_atividade;
 
         //Validação de dados
         if (empty($nomeCurso)) {
@@ -198,6 +205,8 @@ class Disciplina {
             $this->errors[] = MESSAGE_INVALID_CHA;
         }elseif (empty($arrayCompetencias)){
             $this->errors[] = WORDING_NULL_COMPETENCE;
+        }elseif (empty($tipo_atividade)){
+            $this->errors[] = WORDING_NULL_COMPETENCE;
 
             //Fim de validações de dados de entrada
         //Inicio das validações de cadastro repitido
@@ -215,13 +224,16 @@ class Disciplina {
                     }
                 } else{
                     // Cadastro na tabela Disciplina
-                    $stmt = $this->db_connection->prepare("INSERT INTO disciplina(nomeCurso, nomeDisciplina, descricao, usuarioProfessorID, senha, area_conhecimento)  VALUES(:nomeCurso, :nomeDisciplina, :descricao, :usuarioProfessorID, :senha, :area_conhecimento)");
+                    $stmt = $this->db_connection->prepare("INSERT INTO disciplina(nomeCurso, nomeDisciplina, descricao, usuarioProfessorID, senha, area_conhecimento, tipo_atividade, inicio, fim)  VALUES(:nomeCurso, :nomeDisciplina, :descricao, :usuarioProfessorID, :senha, :area_conhecimento, :tipo_atividade, :inicio, :fim)");
                     $stmt->bindParam(':nomeCurso',$nomeCurso, PDO::PARAM_STR);
                     $stmt->bindParam(':nomeDisciplina',$nomeDisciplina, PDO::PARAM_STR);
                     $stmt->bindParam(':descricao',$descricao, PDO::PARAM_STR);
                     $stmt->bindParam(':usuarioProfessorID',$usuarioProfessorID, PDO::PARAM_INT);
                     $stmt->bindParam(':senha',$senha, PDO::PARAM_STR);
                     $stmt->bindParam(':area_conhecimento',$area_conhecimento, PDO::PARAM_INT);
+                    $stmt->bindParam(':tipo_atividade',$tipo_atividade, PDO::PARAM_INT);
+                    $stmt->bindParam(':inicio',$inicio, PDO::PARAM_STR);
+                    $stmt->bindParam(':fim',$fim, PDO::PARAM_STR);
                     $stmt->execute();
                     $ultimo_ID = $this->db_connection->lastInsertId();
                     $this->$ultimo_ID = $ultimo_ID;
@@ -574,14 +586,23 @@ class Disciplina {
 
 
     // Retorna o Nome de todas as disciplinas em que o aluno NÃO está matriculado
-    public function getNomeDisciplinasNaoMatriculadas($userID){
-        if($this->databaseConnection()){
-            $stmt = $this->db_connection->prepare("SELECT nomeDisciplina FROM disciplina WHERE iddisciplina NOT IN (SELECT disciplina_iddisciplina FROM usuario_disciplina WHERE usuario_idusuario=:userID)");
-            $stmt->bindParam(':userID',$userID, PDO::PARAM_INT);
-            $stmt->execute();
-            return $stmt->fetchAll();
-        }
-    }
+		public function getNomeDisciplinasNaoMatriculadas($userID){
+			if($this->databaseConnection()){
+				$stmt = $this->db_connection->prepare("SELECT nomeDisciplina FROM disciplina WHERE iddisciplina NOT IN (SELECT disciplina_iddisciplina FROM usuario_disciplina WHERE usuario_idusuario=:userID)");
+				$stmt->bindParam(':userID',$userID, PDO::PARAM_INT);
+				$stmt->execute();
+				return $stmt->fetchAll();
+			}
+		}
+
+		public function getTipoAtividadeDisciplinasNaoMatriculadas($userID){
+			if($this->databaseConnection()){
+				$stmt = $this->db_connection->prepare("SELECT tipo_atividade FROM disciplina WHERE iddisciplina NOT IN (SELECT disciplina_iddisciplina FROM usuario_disciplina WHERE usuario_idusuario=:userID)");
+				$stmt->bindParam(':userID',$userID, PDO::PARAM_INT);
+				$stmt->execute();
+				return $stmt->fetchAll();
+			}
+		}
 
     // Retorna o Nome de todas as disciplinas em que o aluno está matriculado
     public function getNomeDisciplinasMatriculadas($userID){
@@ -639,6 +660,30 @@ class Disciplina {
     public function getNomeDisciplinaById($id){
         if($this->databaseConnection()){
             $stmt = $this->db_connection->prepare("SELECT nomeDisciplina FROM disciplina WHERE iddisciplina=:id");
+            //$stmt->bindParam(':nome',, PDO::PARAM_STR);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            //print_r($stmt->execute());
+            return $stmt->fetchAll();
+        }
+    }
+
+
+    public function getInicioDisciplinaById($id){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT inicio FROM disciplina WHERE iddisciplina=:id");
+            //$stmt->bindParam(':nome',, PDO::PARAM_STR);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            //print_r($stmt->execute());
+            return $stmt->fetchAll();
+        }
+    }
+
+
+    public function getFimDisciplinaById($id){
+        if($this->databaseConnection()){
+            $stmt = $this->db_connection->prepare("SELECT fim FROM disciplina WHERE iddisciplina=:id");
             //$stmt->bindParam(':nome',, PDO::PARAM_STR);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
@@ -801,6 +846,8 @@ class Disciplina {
                 $stmt = $this->db_connection->prepare("SELECT nomeCurso FROM disciplina WHERE usuarioProfessorID=:userId");
             }else if ($param == 'descricao'){
                 $stmt = $this->db_connection->prepare("SELECT descricao FROM disciplina WHERE usuarioProfessorID=:userId");
+            }else if ($param == 'tipo_atividade'){
+                $stmt = $this->db_connection->prepare("SELECT tipo_atividade FROM disciplina WHERE usuarioProfessorID=:userId");
             }
             $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
             $stmt->execute();
@@ -1098,7 +1145,7 @@ class Disciplina {
             $indicesRejeicao[$indiceOA->getNomeOA()] = $indiceOA->getIndiceRejeicao();
         }
         asort($indicesRejeicao);
-        $indicesRejeicao = array_slice($indicesRejeicao, 0, 10);
+        //$indicesRejeicao = array_slice($indicesRejeicao, 0, 10);
         return $indicesRejeicao;
     }
 
@@ -1109,7 +1156,7 @@ class Disciplina {
             $indicesRelevancia[$indiceOA->getNomeOA()] = $indiceOA->getIndiceRelevancia();
         }
         arsort($indicesRelevancia);
-        $indicesRelevancia = array_slice($indicesRelevancia, 0, 10);
+        //$indicesRelevancia = array_slice($indicesRelevancia, 0, 10);
         return $indicesRelevancia;
     }
 

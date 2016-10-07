@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-	
+
     <title>Recoacomp</title>
 
     <!-- Importação do Jquery -->
@@ -16,10 +16,10 @@
     <script src="js/growl.js"></script>
     <script src="jquery.bootstrap.wizard.js"></script>
     <!--script type="text/javascript" src="js/jquery.tooltipster.min.js"></script-->
-    
+
     <script src="js/bootstrap-tagsinput.js"></script>
 	<script src="js/jquery-customselect.js"></script>
-    
+
     <!-- Fim importação Jquery -->
 	<!-- Login -->
 
@@ -39,7 +39,7 @@
     <link href="css/bootstrap-tagsinput.css" rel="stylesheet">
     <!-- Picklist cadastro de disciplinas -->
 
-    <!--MODIFICADO DELTON 16/07 link href="css/picklist.css" rel="stylesheet"-->    
+    <!--MODIFICADO DELTON 16/07 link href="css/picklist.css" rel="stylesheet"-->
     <link href="css/theme.css" rel="stylesheet">
 
     <!-- Custom CSS Login Page-->
@@ -53,14 +53,14 @@
 
     <!-- Custom Fonts -->
     <link href="font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	
+
 	<!-- Fim Login -->
-	
+
 
 <script>
 $(document).ready(function(){
     $('#menu-button' ).on( 'click', function () {
-         $('#menu-nav').toggle();   
+         $('#menu-nav').toggle();
     });
 });
 </script>
@@ -77,11 +77,11 @@ $(document).ready(function(){
                     <span>&nbsp;</span>
                     <span>&nbsp;</span>
                     <span>&nbsp;</span>
+					<span>&nbsp;</span>
                 </a>
             </div>
 
             <ul id="menu-nav">
-
                 <li><a href="#">Tutorial</a></li> <!--muda quando o usuario estiver logged in e leva para o home.html"-->
                 <li><a href="#">Sobre</a></li>
                 <li><a href="contato.php">Contato</a></li>
@@ -91,6 +91,7 @@ $(document).ready(function(){
     if ($login->isUserLoggedIn() == true) {
     ?>
                 <li><a href="index.php?logout"><?php echo WORDING_LOGOUT; ?></a></li>
+
     <?php
     }
     }
@@ -98,6 +99,22 @@ $(document).ready(function(){
             </ul>
 
         </nav>
+	<?php
+    if (isset($login)) {
+    if ($login->isUserLoggedIn() == true) {
+    ?>
+    		<ul id="botoes" class="botoes">
+				<li><a href='profile_show.php'><i class="fa fa-user fa-2x"></i></a></li>
+
+				<li><a href='notifications.php'><i class="fa fa-bell fa-2x"></i></a></li>
+					<span class="tooltipster-icon">(?)</span>
+			</ul>
+
+
+    <?php
+    }
+    }
+    ?>
 
 </header>
 
@@ -213,7 +230,7 @@ if (isset($OA)) {
                         echo"<script type='text/javascript'>";
 
                 echo "alert('".$message."');";
-  
+
             echo "</script>";
         }
     }

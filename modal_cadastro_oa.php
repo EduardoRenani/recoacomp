@@ -355,7 +355,6 @@ if (isset($OA)) {
 
             }
             else if(qualTab == 3) {
-                if($("select")[3].value != "") {
                     divTab = document.getElementById('sub-conteudo2');
                     divTab.removeAttribute('class');
                     divTab.setAttribute('class', 'tab');
@@ -372,14 +371,11 @@ if (isset($OA)) {
                     document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(4)');
                     document.getElementById('buttonPrevious').removeAttribute('onclick');
                     document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(9)');
-                }
-                else {
-                    $("select")[3].style = "border-color: #f00";
-                }
+               
 
             }
             else if(qualTab == 4) {
-                if(document.getElementsByName('descricao_educacional')[0].value.length > 0 && $("select")[4].value != "") {
+                if(document.getElementsByName('descricao_educacional')[0].value.length > 0 && $("select")[3].value != "") {
                     divTab = document.getElementById('sub-conteudo3');
                     divTab.removeAttribute('class');
                     divTab.setAttribute('class', 'tab');
@@ -406,11 +402,11 @@ if (isset($OA)) {
                     else {
                         document.getElementsByName('date')[0].style.border = "0";
                     }
-                    if($("select")[4].value == "") {
-                        $("select")[4].style = "border-color: #f00";
+                    if($("select")[3].value == "") {
+                        $("select")[3].style = "border-color: #f00";
                     }
                     else {
-                        $("select")[4].style = "border-color: #000";
+                        $("select")[3].style = "border-color: #000";
                     }
                 }
             }
@@ -637,7 +633,7 @@ if (isset($OA)) {
                             </select>
                         </div>
                     </div>
-                    <!-- TIPO FORMATO -->
+                    <!-- TIPO FORMATO
                     <div class="control-group">
                         <label class="control-label" for="tipoOA"><?php echo WORDING_OA_TYPE; ?> (Utilize o CTRL para selecionar mais de um)</label>
                         <div class="controls">
@@ -652,7 +648,7 @@ if (isset($OA)) {
                         </div>
                     </div>               
                 </div>
-                <!-- CATEGORIA EDUCACIONAL -->
+                CATEGORIA EDUCACIONAL -->
                 <div id="sub-conteudo3" class="tab">
                     <!-- DESCRIÇÃO EDUCACIONAL -->
                     <div class="control-group">

@@ -19,8 +19,8 @@
 
         <link href="css/jquery-customselect.css" rel="stylesheet" />
         <!-- Estava no Header-->
-        
-        
+
+
         <style>
         body { font-size: 62.5%; }
         label, input { display:block; width: 100%; }
@@ -34,7 +34,7 @@
         .validateTips { border: 1px solid transparent; padding: 0.3em; }
         .object_ok { border: 1px solid green; color: #333333; }
         .object_error { border: 1px solid #AC3962; color: #333333; }
- 
+
 
         </style>
 
@@ -59,15 +59,15 @@
         $("#tabela1 li").hide();
         _pesquisa = $(this);
         tecla = (e.keyCode ? e.keyCode : e.which);
-        if(tecla == 27){ 
-            _pesquisa.val('');  
+        if(tecla == 27){
+            _pesquisa.val('');
             $("#tabela1 li").show();
         }else{
             $('#tabela1 li').each(function(){
                if($(this).attr('name').toUpperCase().indexOf(_pesquisa.val().toUpperCase()) != -1){
                    $(this).show();
                }
-            }); 
+            });
         }
         });
 
@@ -94,7 +94,7 @@
                     listaAtitudes = listaAtitudes.split("¬");
                     console.log(listaAtitudes);
                     console.log('oi');
-                    document.getElementById('sub-conteudo6').innerHTML = '<div class="info-cadastro"><?php echo HINT_CHA."<br>".HINT_CHA_0."<br>".HINT_CHA_1."<br>".HINT_CHA_2."<br>".HINT_CHA_3."<br>".HINT_CHA_4;?></div>';
+                    document.getElementById('sub-conteudo6').innerHTML = '<div class="info-cadastro"><?php echo HINT_CHA."<br>".HINT_CHA_0_DISCI."<br>".HINT_CHA_1_DISCI."<br>".HINT_CHA_2_DISCI."<br>".HINT_CHA_3_DISCI."<br>".HINT_CHA_4_DISCI;?></div>';
                     for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
                             listaConhecimentos[i] = listaConhecimentos[i].replace(/%0D%0A/g, ' ');
@@ -144,7 +144,7 @@
                     console.log(listaConhecimentos);
                     console.log(listaHabilidades);
                     console.log(listaAtitudes);
-                    document.getElementById('sub-conteudo6').innerHTML = '<div class="info-cadastro"><?php echo HINT_CHA."<br>".HINT_CHA_0."<br>".HINT_CHA_1."<br>".HINT_CHA_2."<br>".HINT_CHA_3."<br>".HINT_CHA_4;?></div>';
+                    document.getElementById('sub-conteudo6').innerHTML = '<div class="info-cadastro"><?php echo HINT_CHA."<br>".HINT_CHA_0_DISCI."<br>".HINT_CHA_1_DISCI."<br>".HINT_CHA_2_DISCI."<br>".HINT_CHA_3_DISCI."<br>".HINT_CHA_4_DISCI;?></div>';
                     console.log(nomesCompetencias.length);
                     for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
@@ -161,7 +161,7 @@
                                         elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div id="conhecimento'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'conhecimento'+idCompetencias[i]+'\', \''+listaConhecimentos[i]+'\')" onmouseout="deleteTooltipComp(\'conhecimento'+idCompetencias[i]+'\')">[ ? ]</div></div><input type="number" min="0" max="4" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div id="habilidade'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'habilidade'+idCompetencias[i]+'\', \''+listaHabilidades[i]+'\')" onmouseout="deleteTooltipComp(\'habilidade'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="4" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div id="atitude'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'atitude'+idCompetencias[i]+'\', \''+listaAtitudes[i]+'\')" onmouseout="deleteTooltipComp(\'atitude'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="4" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
                                         document.getElementById('sub-conteudo6').appendChild(elementoAdd);
                         }
-                    
+
             //         $("#tabela2").html("<option value='text'>text</option>");
                },
                 update: function(event, ui) {
@@ -178,23 +178,23 @@
     <script type="text/javascript">
     function frm_number_only_exc(){
         // allowed: numeric keys, numeric numpad keys, backspace, del and delete keys
-        if ( event.keyCode == 37 || event.keyCode == 38 || event.keyCode == 39 || event.keyCode == 40 || event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || ( event.keyCode < 106 && event.keyCode > 95 ) ) { 
+        if ( event.keyCode == 37 || event.keyCode == 38 || event.keyCode == 39 || event.keyCode == 40 || event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || ( event.keyCode < 106 && event.keyCode > 95 ) ) {
             return true;
         }else{
             return false;
         }
     }
     $(document).ready(function(){
-        $("input.frm_number_only").keydown(function(event) { 
-     
-            if ( frm_number_only_exc() ) { 
-     
-            } else { 
-                    if ( event.keyCode < 48 || event.keyCode > 57 ) { 
-                            event.preventDefault();  
-                    }        
-            } 
-        }); 
+        $("input.frm_number_only").keydown(function(event) {
+
+            if ( frm_number_only_exc() ) {
+
+            } else {
+                    if ( event.keyCode < 48 || event.keyCode > 57 ) {
+                            event.preventDefault();
+                    }
+            }
+        });
 
         $("#url").keyup(function () { //user types username on inputfiled
             console.log("funfou!");
@@ -294,7 +294,7 @@ function AjaxCompetenciaListas(){
                     listaAtitudes = listaAtitudes.split("¬");
                     console.log(listaAtitudes);
                     console.log('oi');
-                    document.getElementById('sub-conteudo6').innerHTML = '<div class="info-cadastro"><?php echo HINT_CHA."<br>".HINT_CHA_0."<br>".HINT_CHA_1."<br>".HINT_CHA_2."<br>".HINT_CHA_3."<br>".HINT_CHA_4;?></div>';
+                    document.getElementById('sub-conteudo6').innerHTML = '<div class="info-cadastro"><?php echo HINT_CHA."<br>".HINT_CHA_0_DISCI."<br>".HINT_CHA_1_DISCI."<br>".HINT_CHA_2_DISCI."<br>".HINT_CHA_3_DISCI."<br>".HINT_CHA_4_DISCI;?></div>';
                     for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
                             listaConhecimentos[i] = listaConhecimentos[i].replace(/%0D%0A/g, ' ');
@@ -306,7 +306,7 @@ function AjaxCompetenciaListas(){
                             listaAtitudes[i] = listaAtitudes[i].replace(/%0D%0A/g, ' ');
                             listaAtitudes[i] = decodeURI(listaAtitudes[i]);
                         //elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'" >?</div></div><input type="number" min="0" max="4" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'">?</div></div><input type="number" min="0" max="4" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div class="tooltiploco"><div id="'+idCompetencias[i]+'">?</div></div><input type="number" min="0" max="4" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
-                        
+
                         var elementoAdd = document.createElement('div');
                                             elementoAdd.innerHTML = '<div id="nomesCompetencias"><h2>'+nomesCompetencias[i]+'</h2><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Conhecimento</h4><div id="conhecimento'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'conhecimento'+idCompetencias[i]+'\', \''+listaConhecimentos[i]+'\')" onmouseout="deleteTooltipComp(\'conhecimento'+idCompetencias[i]+'\')">[ ? ]</div></div><input type="number" min="0" max="4" value="0" name="conhecimento['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Habilidade</h4><div id="habilidade'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'habilidade'+idCompetencias[i]+'\', \''+listaHabilidades[i]+'\')" onmouseout="deleteTooltipComp(\'habilidade'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="4" value="0" name="habilidade['+idCompetencias[i]+']"></div><div style="position: relative; float: left; width: 32%; margin-right: 1%;"><h4>Atitude</h4><div id="atitude'+idCompetencias[i]+'" class="tooltiploco"><div onmouseover="toolTipComp(\'atitude'+idCompetencias[i]+'\', \''+listaAtitudes[i]+'\')" onmouseout="deleteTooltipComp(\'atitude'+idCompetencias[i]+'\')">?</div></div><input type="number" min="0" max="4" value="0" name="atitude['+idCompetencias[i]+']"></div></div>';
                                             document.getElementById('sub-conteudo6').appendChild(elementoAdd);
@@ -426,7 +426,6 @@ $(function(){AjaxCompetenciaListas()});
 
             }
             else if(qualTab == 3) {
-                if($("select")[3].value != "") {
                     divTab = document.getElementById('sub-conteudo2');
                     divTab.removeAttribute('class');
                     divTab.setAttribute('class', 'tab');
@@ -443,14 +442,11 @@ $(function(){AjaxCompetenciaListas()});
                     document.getElementById('buttonNext').setAttribute('onclick', 'mudaTab(4)');
                     document.getElementById('buttonPrevious').removeAttribute('onclick');
                     document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(9)');
-                }
-                else {
-                    $("select")[3].style = "border-color: #f00";
-                }
+                
 
             }
             else if(qualTab == 4) {
-                if(document.getElementsByName('descricao_educacional')[0].value.length > 0 && $("select")[4].value != "") {
+                if(document.getElementsByName('descricao_educacional')[0].value.length > 0 && $("select")[3].value != "") {
                     document.getElementsByName('descricao_educacional')[0].style.border = "0";
                     divTab = document.getElementById('sub-conteudo3');
                     divTab.removeAttribute('class');
@@ -477,11 +473,11 @@ $(function(){AjaxCompetenciaListas()});
                     else {
                         document.getElementsByName('date')[0].style.border = "0";
                     }
-                    if($("select")[4].value == "") {
-                        $("select")[4].style = "border-color: #f00";
+                    if($("select")[3].value == "") {
+                        $("select")[3].style = "border-color: #f00";
                     }
                     else {
-                        $("select")[4].style = "border-color: #000";
+                        $("select")[3].style = "border-color: #000";
                     }
                 }
             }
@@ -752,7 +748,7 @@ $(function(){AjaxCompetenciaListas()});
             </div>
             <div id="conteudo" class="clearfix">
             <!-- Inicio-->
-                <div id="sub-conteudo" class="tab-active"> 
+                <div id="sub-conteudo" class="tab-active">
                     <div class="control-group">
                         <label class="control-label" for="name"><div style="float: left"><?php echo WORDING_NAME; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(1, '<?php echo HINT_NAME ?>')" onmouseout="deleteTooltip(1)">[ ? ]</div></div>
                         <div class="controls">
@@ -771,7 +767,7 @@ $(function(){AjaxCompetenciaListas()});
                         <div class="controls">
                             <!-- input class="palavra_chave" multiple="multiple" id="palavrachave" name="palavrachave" class="required"/-->
                             <input type="text" data-role="tagsinput" id="palavrachave" name="palavrachave" class="required" />
-                            
+
                              <!-- TRADUZIR -->
                         </div>
                     </div>
@@ -786,7 +782,7 @@ $(function(){AjaxCompetenciaListas()});
                         </div>
                     </div>
                     <!-- Área de conhecimento-->
-                    <?php 
+                    <?php
                     $OA = new OA();
                     $OA = $OA->getAreasConhecimento();
                     ?>
@@ -796,7 +792,7 @@ $(function(){AjaxCompetenciaListas()});
                         <div class="controls">
                             <select id="area_conhecimento" name="area_conhecimento" class="custom-select">
                             <option value=''>Selecione..</option>
-                            <?php 
+                            <?php
                             foreach ($OA as $OBJETO) {
                                 echo '<option value="'.$OBJETO['area_conhecimento_id'].'">'.$OBJETO['nome_area_conhecimento'].'';
                             }
@@ -834,7 +830,7 @@ $(function(){AjaxCompetenciaListas()});
                             </select>
                         </div>
                     </div>
-                    <!-- TIPO FORMATO -->
+                    <!-- TIPO FORMATO
                     <div class="control-group">
                         <label class="control-label" for="tipoOA"><?php echo WORDING_OA_TYPE; ?> (Utilizar o CTRL para selecionar mais de um)</label>
                         <div class="controls">
@@ -847,7 +843,8 @@ $(function(){AjaxCompetenciaListas()});
                                 <option value = "pagina web"><?php echo WORDING_WEB_PAGE ?></option>
                             </select>
                         </div>
-                    </div>               
+                    </div>
+                    -->
                 </div>
                 <!-- CATEGORIA EDUCACIONAL -->
                 <div id="sub-conteudo3" class="tab">
@@ -863,19 +860,20 @@ $(function(){AjaxCompetenciaListas()});
                         <label class="control-label" for="faixaEtaria"><?php echo WORDING_AGE_GROUP; ?> (Utilizar o CTRL para selecionar mais de um)</label>
                         <div class="controls">
     						<select id = "faixaEtaria[]" name="faixaEtaria[]" required="true" multiple>
-    							<option value = "educacao infantil"><?php echo WORDING_CHILD_EDUCATION ?></option>
     							<option value = "ensino fundamental"><?php echo WORDING_BASIC_EDUCATION ?></option>
     							<option value = "ensino medio"><?php echo WORDING_HIGHSCOOL ?></option>
                                 <option value = "ensino profissionalizante"><?php echo WORDING_PROFESSIONAL_EDUCATION ?></option>
     							<option value = "ensino superior"><?php echo WORDING_COLLEGE ?></option>
+                                <option value = "educacao de jovens e adultos"><?php echo WORDING_CHILD_EDUCATION ?></option>
+                                <option value = "educacao de idosos"><?php echo WORDING_OLD_EDUCATION ?></option>
     						</select>
                         </div>
                     </div>
     				<!-- RECURSO APRENDIZAGEM -->
     				<div class="control-group">
-                        <label class="control-label" for="recursoAprendizagem"><?php echo WORDING_LEARNING_RESOURCE; ?></label>
+                        <label class="control-label" for="recursoAprendizagem"><?php echo WORDING_LEARNING_RESOURCE; ?> (Utilizar o CTRL para selecionar mais de um) </label>
                         <div class="controls">
-    						<select id = "recursoAprendizagem" name="recursoAprendizagem" required="true">
+    						<select id = "recursoAprendizagem[]" name="recursoAprendizagem[]" required="true" multiple>
     							<option value = "conteúdo teórico e atividades"><?php echo WORDING_CONTENT_THEORY ?></option>
     							<option value = "exercício"><?php echo WORDING_EXERCISE ?></option>
     							<option value = "simulação"><?php echo WORDING_SIMULATION ?></option>
@@ -896,7 +894,20 @@ $(function(){AjaxCompetenciaListas()});
                                 <option value = "palestra"><?php echo WORDING_MULTIMIDIA_MATERIAL?></option>
     						</select>
                         </div>
-                    </div>				
+                    </div>
+                    <!-- GRAU DE INTERATIVIDADE -->
+                    <div class="control-group">
+                        <label class="control-label" for="grauInteratividade">Grau de interatividade</label>
+                        <div class="controls">
+                            <select id = "grauInteratividade" name="grauInteratividade" required="true">
+                                <option value = "1">Muito Baixa</option>
+                                <option value = "2">Baixa</option>
+                                <option value = "3">Média</option>
+                                <option value = "4">Alta</option>
+                                <option value = "5">Muito Alta</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
     			<!-- CATEGORIA DIREITO -->
                 <!--div id="sub-conteudo4" class="tab"-->
@@ -907,7 +918,7 @@ $(function(){AjaxCompetenciaListas()});
     						<input type="radio" name="custo" value="true" id="custo" checked><?php echo WORDING_YES?>
     						<input type="radio" name="custo" value="false" id="custo"><?php echo WORDING_NO ?>
                         </div>
-                    </div-->				    
+                    </div-->
     				<!-- DIREITO AUTORAL -->
     				<!--div class="control-group">
                         <label class="control-label" for="direitoAutoral"><div style="float: left"><?php echo WORDING_COPYRIGHT ; ?></div><div style="float: left"><div class="tooltiploco"></label><div onmouseover="toolTip(14, '<?php echo HINT_AUTHORAL_LEGAL ?>')" onmouseout="deleteTooltip(14)">?</div></div></div></label>
@@ -915,14 +926,14 @@ $(function(){AjaxCompetenciaListas()});
     						<input type="radio" name="direitoAutoral" id="direitoAutoral" value="1" checked><?php echo WORDING_YES?>
     						<input type="radio" name="direitoAutoral" id="direitoAutoral" value="0"><?php echo WORDING_NO ?>
                         </div>
-                    </div-->					
+                    </div-->
     				<!-- USO -->
     				<!--div class="control-group">
                         <label class="control-label" for="uso"><div style="float: left"><?php echo WORDING_USE; ?></div><div style="float: left"><div class="tooltiploco"><div onmouseover="toolTip(15, '<?php echo HINT_USE ?>')" onmouseout="deleteTooltip(15)">?</div></div></div></label>
                         <div class="controls">
     						<textarea name="uso" id="uso" ROWS="5" COLS="40"></textarea>
                         </div>
-                    </div>	
+                    </div>
                 </div-->
 
                 <div id="sub-conteudo5" class="tab">
@@ -954,15 +965,15 @@ $(function(){AjaxCompetenciaListas()});
 
                 <div id="sub-conteudo6" class="tab">
                     <!--TELA DE BOTAR NÚMERO NO CHA /-->
-                    <!--input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" /-->     
+                    <!--input type="hidden" id="arrayCompetencias" name="arrayCompetencias" value="" /-->
                 </div>
 
     			<input id="finisher" style="display: none;" type="submit" name="registrar_novo_OA" value="<?php echo WORDING_REGISTER_OA; ?>" />
-            </div> 
+            </div>
             <ul class="pager wizard">
                 <li class="next" style="float:right"><div id="buttonNext" class='button-next text-left' onclick="mudaTab(1)"><a href="javascript:;">Próximo</a></div></li>
                 <li class="previous" id="buttonPrevious" onclick="mudaTab(3)"><div class="text-right button-voltar"><a href="javascript:;">Voltar</a></div></li>
-            </ul>   
+            </ul>
         </div>
     </form>
     </div>

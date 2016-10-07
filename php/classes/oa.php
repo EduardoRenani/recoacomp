@@ -162,6 +162,7 @@ class OA{
                 $_POST['descricao_educacional'],
                 $_POST['faixaEtaria'],
                 $_POST['recursoAprendizagem'],
+                $_POST['grauInteratividade'],
                 // Dados Gerais
                 $_POST['idusuario'],
                 $_POST['descricao'],
@@ -189,6 +190,7 @@ class OA{
                 $_POST['descricao_educacional'],
                 $_POST['faixaEtaria'],
                 $_POST['recursoAprendizagem'],
+                $_POST['grauInteratividade'],
                 // Dados Gerais
                 $_POST['idusuario'],
                 $_POST['descricao'],
@@ -241,6 +243,8 @@ class OA{
             $this->editOAFaixaEtaria($_POST['oa_faixaEtaria'],$_POST['idCE']);
         }elseif(isset($_POST["editar_recurso_OA"])){
             $this->editOARecursoAprendizagem($_POST['oa_recursoAprendizagem'],$_POST['idCE']);
+        }elseif(isset($_POST["editar_grau_interatividade_OA"])){
+            $this->editOAGrauInteratividade($_POST['oa_grauInteratividade'],$_POST['idCE']);
         }else{  // Se não estiver cadastrando novo OA, no construct ele retorna valores vazios
             return null;
         }      
@@ -279,6 +283,7 @@ class OA{
         $descricao_eduacional,
         $faixaEtaria, // Pode ser mais de uma
         $recursoAprendizagem,
+        $grauInteratividade,
         //Dados gerais
         $idusuario,
         $descricao,
@@ -388,14 +393,17 @@ class OA{
                         categoria_eduacional(
                             descricao,
                             faixaEtaria,
-                            recursoAprendizagem)
+                            recursoAprendizagem,
+                            grauInteratividade)
                         VALUES(
                             :descricao_educacional,
                             :faixaEtaria,
-                            :recursoAprendizagem)");
+                            :recursoAprendizagem,
+                            :grauInteratividade)");
                 $stmt->bindParam(':descricao_educacional',$descricao_eduacional, PDO::PARAM_STR);
                 $stmt->bindParam(':faixaEtaria',$this->faixaEtaria, PDO::PARAM_STR);
                 $stmt->bindParam(':recursoAprendizagem',$recursoAprendizagem, PDO::PARAM_STR);
+                $stmt->bindParam(':grauInteratividade',$grauInteratividade, PDO::PARAM_STR);
                 $stmt->execute();
                 // Id categoria educacional pega o last insert
                 $this->idCategoriaEduacional = $this->db_connection->lastInsertId();
@@ -892,6 +900,24 @@ class OA{
             // write user's new data into database
             $editarOA = $this->db_connection->prepare("UPDATE categoria_eduacional SET recursoAprendizagem = :recursoAprendizagem WHERE idcategoria_eduacional = :idCE");
             $editarOA->bindValue(':recursoAprendizagem', $recursoAprendizagem, PDO::PARAM_STR);
+            $editarOA->bindValue(':idCE', $idCE, PDO::PARAM_INT);
+            $editarOA->execute();
+            $this->messages[] = WORDING_EDIT_SUCESSFULLY;
+        }
+    }
+
+    /**
+    * Edita grau de interatividade do OA da categoria educacional (CE)
+    * @param $recursoAprendizagem
+    * @param $idCE
+    */
+    public function editOAGrauInteratividade($grauInteratividade, $idCE){
+        if (empty($grauInteratividade)) {
+            $this->errors[] = MESSAGE_OA_UTILITY_TYPE_INVALID;
+        } elseif($this->databaseConnection()) {
+            // write user's new data into database
+            $editarOA = $this->db_connection->prepare("UPDATE categoria_eduacional SET grauInteratividade = :grauInteratividade WHERE idcategoria_eduacional = :idCE");
+            $editarOA->bindValue(':grauInteratividade', $grauInteratividade, PDO::PARAM_STR);
             $editarOA->bindValue(':idCE', $idCE, PDO::PARAM_INT);
             $editarOA->execute();
             $this->messages[] = WORDING_EDIT_SUCESSFULLY;

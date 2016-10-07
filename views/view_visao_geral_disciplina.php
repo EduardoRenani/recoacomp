@@ -365,6 +365,12 @@ include('_header.php');
             fadeInModal();
             tDeleteModal = setInterval("deleteModal()", 1);
         }
+
+        $(function() {
+            $("#conhecimento_user").attr("title", $("#conhecimento").attr("title"));
+            $("#habilidade_user").attr("title", $("#habilidade").attr("title"));
+            $("#atitude_user").attr("title", $("#atitude").attr("title"));
+        });
     </script>
 
     <div class="fixedBackgroundGradient">
@@ -377,7 +383,7 @@ include('_header.php');
         $idDisciplina = $_POST['idDisciplina'];
         ?>
         <div class="top-cadastrobase">
-            <div class="text-left"><?php echo (WORDING_GLOBAL_COURSE).': '.$nomeDisciplina; ?>
+            <div class="text-left"><?php echo $nomeDisciplina; ?>
             </div>
             <div class="text-right" ><!-- <a href="index.php"><span class="glyphicon glyphicon-chevron-left"></span></a>-->
             </div>
@@ -385,13 +391,25 @@ include('_header.php');
             <div class="cadastrobase-content">
                 <div id="tabs">
                     <ul>
-                        <li><a href="#tabs-1">Alterar dados gerais</a></li>
-                        <li><a href="#tabs-2">Alunos Matriculados</a></li>
-                        <li><a href="#tabs-3">OAs Vinculados</a></li>
-                        <li><a href="#tabs-4">Alterar competências</a></li>
-                        <li><a href="#tabs-5">Relatório</a></li>
+                        <li><a href="#tabs-1">Visão geral</a></li>
+                        <li><a href="#tabs-2">Alterar dados gerais</a></li>
+                        <li><a href="#tabs-3">Alunos Matriculados</a></li>
+                        <li><a href="#tabs-4">OAs Vinculados</a></li>
+                        <li><a href="#tabs-5">Alterar competências</a></li>
+                        <li><a href="#tabs-6">Relatório</a></li>
                     </ul>
                     <div id="tabs-1">
+                        <div id="nome-disciplina">
+                            Nome da atividade: <?php echo $nomeDisciplina; ?>
+                        </div>
+                        <div id="nome-curso">
+                            Nome da unidade: <?php echo $nomeCurso; ?>
+                        </div>
+                        <div id="descricao">
+                            Descrição: <?php echo $descricao; ?>
+                        </div>
+                    </div> <!-- END TAB 1-->
+                    <div id="tabs-2">
                         <form method="post" action="editar_disciplina.php" name="editar_nome_disciplina">
                             <label for="disciplina_name"><?php echo WORDING_NEW_DISCIPLINA_NAME; ?></label>
                             <input id="disciplina_name" type="text" name="disciplina_name"/> (<?php echo WORDING_CURRENTLY; ?>: <?php echo $nomeDisciplina; ?>)<br />
@@ -423,8 +441,8 @@ include('_header.php');
                             <input type="hidden" name="idDisciplina" value="<?php echo $idDisciplina ?>" />
                             <input type="submit" name="editar_descricao" value="<?php echo WORDING_EDIT_DESCRIPTION; ?>" />
                         </form>
-                    </div> <!-- END TAB 1-->
-                    <div id="tabs-2">
+                    </div> <!-- END TAB 2-->
+                    <div id="tabs-3">
 
                         <div id="alunos">
                          <?php
@@ -460,11 +478,69 @@ include('_header.php');
                                     foreach($chas[$idUser] as $key => $cha) {
                                         $comp = new Competencia;
                                         $nome = $comp->getArrayOfNamesById($key);
-                                        if($nome) echo "<dt>".$nome[0][0]."</dt>
-                                                    <dd>Conhecimento: ".$cha[0]["conhecimento"]."</dd>
-                                                    <dd>Habilidade: ".$cha[0]["habilidade"]."</dd>
-                                                    <dd>Atitude: ".$cha[0]["atitude"]."</dd><br>
-                                        ";
+                                        if($nome) {
+                                            $chaConhecimento = "Sem dados";
+                                            $chaHabilidade = "Sem dados";
+                                            $chaAtitude = "Sem dados";
+                                            if($cha) {
+                                                switch($cha[0]["conhecimento"]) {
+                                                    case '0':
+                                                        $chaConhecimento = HINT_CHA_0;
+                                                        break;
+                                                    case '1':
+                                                        $chaConhecimento = HINT_CHA_1;
+                                                        break;
+                                                    case '2':
+                                                        $chaConhecimento = HINT_CHA_2;
+                                                        break;
+                                                    case '3':
+                                                        $chaConhecimento = HINT_CHA_3;
+                                                        break;
+                                                    case '4':
+                                                        $chaConhecimento = HINT_CHA_4;
+                                                        break;
+                                                }
+                                                switch($cha[0]["habilidade"]) {
+                                                    case '0':
+                                                        $chaHabilidade = HINT_CHA_0;
+                                                        break;
+                                                    case '1':
+                                                        $chaHabilidade = HINT_CHA_1;
+                                                        break;
+                                                    case '2':
+                                                        $chaHabilidade = HINT_CHA_2;
+                                                        break;
+                                                    case '3':
+                                                        $chaHabilidade = HINT_CHA_3;
+                                                        break;
+                                                    case '4':
+                                                        $chaHabilidade = HINT_CHA_4;
+                                                        break;
+                                                }
+                                                switch($cha[0]["atitude"]) {
+                                                    case '0':
+                                                        $chaAtitude = HINT_CHA_0;
+                                                        break;
+                                                    case '1':
+                                                        $chaAtitude = HINT_CHA_1;
+                                                        break;
+                                                    case '2':
+                                                        $chaAtitude = HINT_CHA_2;
+                                                        break;
+                                                    case '3':
+                                                        $chaAtitude = HINT_CHA_3;
+                                                        break;
+                                                    case '4':
+                                                        $chaAtitude = HINT_CHA_4;
+                                                        break;
+                                                }
+                                            }
+                                            echo "<dt>".$nome[0][0]."</dt>
+                                                    <dd><label id='conhecimento_user' for='conhecimento_user' title=''>Conhecimento: <span class='glyphicon glyphicon-question-sign'></span></label> ".$chaConhecimento."</dd>
+                                                    <dd><label id='habilidade_user' for='habilidade_user' title=''>Habilidade: <span class='glyphicon glyphicon-question-sign'></span></label> ".$chaHabilidade."</dd>
+                                                    <dd><label id='atitude_user' for='atitude_user' title=''>Atitude: <span class='glyphicon glyphicon-question-sign'></span></label> ".$chaAtitude."</dd>
+                                            ";
+                                        }
                                     }
                                     echo        '</dl>
                                             </div>
@@ -475,9 +551,9 @@ include('_header.php');
                            }
                            ?>
                            </div>
-                    </div> <!-- END TAB 2 -->
+                    </div> <!-- END TAB 3 -->
                     <!-- Objetos associados a disciplina -->
-                    <div id="tabs-3">
+                    <div id="tabs-4">
                         <!-- TODO -->
                         <div id="objetos">
                         <?php
@@ -556,9 +632,9 @@ include('_header.php');
                         }
                         ?>
                         </div><!-- END DIV objetos -->
-                    </div><!-- END TAB 3-->
+                    </div><!-- END TAB 4-->
                     <!-- Dados da competência -->
-                    <div id="tabs-4">
+                    <div id="tabs-5">
                         <!-- Lista de competências -->
                         <form method="post" action="editar_disciplina.php" name="editar_competencia" class="editarCompetencia">
                                 <input type="hidden" id="nomeCompetencia" value="" />
@@ -591,14 +667,14 @@ include('_header.php');
                                                     </div>
                                                     <!-- Conhecimento -->
                                                     <div class="content-valor-conhecimento">
-                                                        <label for="conhecimento" title="<?php echo "".$descricaoConhecimento['conhecimento_descricao']; ?>">Conhecimento: <span class="glyphicon glyphicon-question-sign"></span></label>
+                                                        <label id="conhecimento" for="conhecimento" title="<?php echo "".$descricaoConhecimento['conhecimento_descricao']; ?>">Conhecimento: <span class="glyphicon glyphicon-question-sign"></span></label>
                                                         <br>
                                                         <input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="conhecimento" type="number" min="0" max="4" value="0" disabled></input>
                                                     </div>
                                                     <br>
                                                     <!-- Habilidade -->
                                                     <div class="content-valor-habilidade">
-                                                        <label for="habilidade" title="<?php echo "".$descricaoHabilidade['habilidade_descricao']; ?>">Habilidade: <span class="glyphicon glyphicon-question-sign"></span></label>
+                                                        <label id="habilidade" for="habilidade" title="<?php echo "".$descricaoHabilidade['habilidade_descricao']; ?>">Habilidade: <span class="glyphicon glyphicon-question-sign"></span></label>
                                                         <br>
                                                         <input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="habilidade" type="number" min="0" max="4" value="0" disabled></input>
 
@@ -606,7 +682,7 @@ include('_header.php');
                                                     <br>
                                                     <!-- Atitude -->
                                                     <div class="content-valor-atitude">
-                                                        <label for="atitude" title="<?php echo "".$descricaoAtitude['atitude_descricao']; ?>">Atitude: <span class="glyphicon glyphicon-question-sign"></span></label>
+                                                        <label id="atitude" for="atitude" title="<?php echo "".$descricaoAtitude['atitude_descricao']; ?>">Atitude: <span class="glyphicon glyphicon-question-sign"></span></label>
                                                         <br>
                                                         <input class="input-dados" id="<?php echo "".$idCompetencia; ?>" name="atitude" type="number" min="0" max="4" value="0" disabled></input>
                                                     </div>
@@ -677,13 +753,13 @@ include('_header.php');
                         </form>
                         <center><div onclick="modalCompetencia();" class='botao-cadastra' style='width: 250px'><?=WORDING_CREATE_NEW_COMPETENCIA?></div></center>
                     </div> <!-- END Dados da competencia-->
-                    <div id="tabs-5">
+                    <div id="tabs-6">
                         <?php
                             echo "<iframe id='graficos' charset='utf-8' style='width: 100%; height: 1350px;' frameborder='0' scrolling='no' src='painel_disciplina.php?idDisciplina=".$_POST['idDisciplina']."'>";
                             echo "</iframe>";
                         ?>
 
-                    </div> <!-- END TAB 5-->
+                    </div> <!-- END TAB 6-->
                     <!-- Objetos associados a disciplina -->
             </div> <!-- END DIV TABS -->
         </div> <!-- END cadastrobase-content -->

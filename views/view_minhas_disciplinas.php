@@ -42,18 +42,10 @@ function getDisciplinaId(id){
                 // Exibir todas as disciplinas disponiveis e permitir cadastros nas mesmas
                 
 
-                $listaDisciplina = array();
-                                
-                $listaDisciplina[0] = $disciplina->getUserDisciplinas($_SESSION['user_id'], 'nomeDisciplina');
-                $listaDisciplina[1] = $disciplina->getUserDisciplinas($_SESSION['user_id'], 'nomeCurso');
-                $listaDisciplina[2] = $disciplina->getUserDisciplinas($_SESSION['user_id'], 'descricao');
-                //$listaDisciplina[1] = $disciplina->getNomeCursosNaoMatriculados($_SESSION['user_id']);
-                //$listaDisciplina[2] = $disciplina->getDescricaoDisciplinasNaoMatriculadas($_SESSION['user_id']);
-                $listaDisciplina[3] = $disciplina->getIdDisciplinasNaoMatriculadas($_SESSION['user_id']);
-                $contador = count($listaDisciplina[0]);
-                //Imprime o nome de cada disciplina
-                //print_r($listaDisciplina[0]);
-                for($i=0; $i<$contador;$i++){
+                $carregamento = new Carregamento;
+				$disciplians = $carregamento->carregaDadosAssociacao($_SESSION['user_id'], "usuario_disciplina", array('usuario_idusuario', 'disciplina_iddisciplina'));
+				var_dump($dsiciplinas);
+                /*for($i=0; $i<$contador;$i++){
                     echo
                         "<li class='disciplinas-item'>".
                             "<div class='disciplina-item-content'>".
@@ -91,7 +83,7 @@ function getDisciplinaId(id){
                         </div>
                         <!-- /.top-cadastro -->
                 </div>
-                <?php } ?>
+                <?php }*/ ?>
                 <!-- /.modalDialog -->
             </ul>
          </div>  

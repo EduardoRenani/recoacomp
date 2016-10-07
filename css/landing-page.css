@@ -6,13 +6,13 @@ html {
     height: 100%;
 }
 
-div.fixedBackgroundGradient {  
+div.fixedBackgroundGradient {
       background: -moz-linear-gradient(top, rgba(38,179,232,0.8), rgba(117,204,214,0.8)), url("../img/pattern1.png");
     background: -webkit-linear-gradient(bottom, rgba(38,179,232,0.8), rgba(117,204,214,0.8)), url("../img/pattern1.png");
     background: -o-linear-gradient(top, rgba(38,179,232,0.8), rgba(117,204,214,0.8)), url("../img/pattern1.png");
-    background: linear-gradient(to top, rgba(38,179,232,0.8), rgba(117,204,214,0.8)), url("../img/pattern1.png"); 
-  height: 100%; width: 100%;  
-  position: fixed; top: 55px; left: 0px;  
+    background: linear-gradient(to top, rgba(38,179,232,0.8), rgba(117,204,214,0.8)), url("../img/pattern1.png");
+  height: 100%; width: 100%;
+  position: fixed; top: 55px; left: 0px;
   z-index: 0000;
 }
 
@@ -33,7 +33,7 @@ div.fixedBackgroundGradient {
 
 nav {
     float: right;
-    padding: 5px;  
+    padding: 5px;
 }
 
 ul {
@@ -114,7 +114,7 @@ nav {
   box-shadow:rgba(50, 50, 50, 0.2) 0px 5px 0px 0px;
 }
 
-nav ul, { 
+nav ul, {
         z-index:10;
         position: absolute;
         padding: 20px;
@@ -141,7 +141,7 @@ nav ul, {
 
 div.login form { /*customização básica do from*/
     display:block;
-    width:70%; 
+    width:70%;
     margin:0 auto;
     text-align:left;
      position:relative;
@@ -202,7 +202,7 @@ div.login input[type=submit] { /*botão login*/
     -o-transform: translateY(4px);
     -ms-transform: translateY(4px);
     transform: translateY(4px);
-    
+
     -webkit-box-shadow: 0px 1px 0px 0px rgba(50, 50, 50, 0.47);
     -moz-box-shadow:    0px 1px 0px 0px rgba(50, 50, 50, 0.47);
     box-shadow:         0px 1px 0px 0px rgba(50, 50, 50, 0.47);
@@ -241,12 +241,12 @@ div.login input[type=submit] { /*botão login*/
     margin-bottom:15px;
 }
 
-.login { /*janelinha do login*/	
+.login { /*janelinha do login*/
     background-color:white;
     position:inherit;
     padding:0%;
     margin-top:10%;
-    
+
     margin-left:auto;
     margin-right:auto;
 
@@ -255,7 +255,7 @@ div.login input[type=submit] { /*botão login*/
     min-width:30%;
     min-height:340px;
     max-height:405px;
-    
+
     -webkit-box-shadow: 5px 5px 0px 0px rgba(50, 50, 50, 0.2);
     -moz-box-shadow:    5px 5px 0px 0px rgba(50, 50, 50, 0.2);
     box-shadow:         5px 5px 0px 0px rgba(50, 50, 50, 0.2);
@@ -317,16 +317,16 @@ div.login input[type=submit] { /*botão login*/
     pointer-events: auto;
 }
 
-.modalDialog > div {     
-    width: 500px;     
+.modalDialog > div {
+    width: 500px;
     height:auto;
 
-    position: relative;     
-    margin: 10% auto;     
-    padding: 0px 0px 2% 0px;     
+    position: relative;
+    margin: 10% auto;
+    padding: 0px 0px 2% 0px;
     border-radius: 5px;
-    background: #fff;  
-    text-align:center;   
+    background: #fff;
+    text-align:center;
 }
 
 .close {
@@ -341,7 +341,7 @@ div.login input[type=submit] { /*botão login*/
     width: 24px;
     text-decoration: none;
     font-weight: bold;
-    
+
 }
 
 .top-cadastro { /*header da janelinha do login*/
@@ -366,7 +366,7 @@ div.login input[type=submit] { /*botão login*/
 
 
 @media only screen and (max-width : 425px) {
-    
+
     .intro-header {
         padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
         padding-bottom: 50px;
@@ -400,7 +400,7 @@ div.login input[type=submit] { /*botão login*/
 
     .login{ /*janelinha do login*/
         z-index:50;
-      
+
         background-color:white;
         position:inherit;
         padding:0%;
@@ -412,7 +412,7 @@ div.login input[type=submit] { /*botão login*/
         min-width:30%;
         min-height:200px;
         max-height:370px;
-        
+
         -webkit-box-shadow: 5px 5px 0px 0px rgba(50, 50, 50, 0.2);
         -moz-box-shadow:    5px 5px 0px 0px rgba(50, 50, 50, 0.2);
         box-shadow:         5px 5px 0px 0px rgba(50, 50, 50, 0.2);

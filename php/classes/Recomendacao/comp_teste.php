@@ -182,7 +182,7 @@ class CompTeste{
 							<p>".$this->descricaoComp."</p>".
 							'Número de Objeto(s) recomendado(s): '.$cont.'<br/>'.
 						"</div>
-							<button type='button' class='btn-recomendacao btn-default btn-lg'>
+							<button type='button' class='botao-recomendacao'>
 							  <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
 							</button>						
 						</li></div><div id='conteudo-expansivel'>";
