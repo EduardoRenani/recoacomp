@@ -50,7 +50,7 @@
         idOA = id;
     }
 
-    function deletarDisciplina() {
+    function deletarOA() {
         //console.log(idDisciplina);
         jQuery.ajax({
             type: "GET",
@@ -148,7 +148,7 @@ if(!isset($_POST['editar_OA'])){
                             <div>
                                 <a href="#close" title="Close" class="close">X</a>
                                 <div class="top-cadastro"><?php echo 'Excluir OA?'; ?></div>
-                                    <a href="#close" class="botao-med" id="<?php echo $oa['idcesta']?>" onClick="deletarDisciplina();" title="Deletar">Excluir</a>
+                                    <a href="#close" class="botao-med" id="<?php echo $oa['idcesta']?>" onClick="deletarOA();" title="Deletar">Excluir</a>
                                     <br><br>
                                     <a href="#close" class="botao-med" title="Cancelar">Cancelar</a>
                                 <!--/div-->

@@ -13,6 +13,11 @@ include('_header.php');
     <link href="css/jquery.nouislider.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
+    <!-- Custom CSS -->
+    <link href="css/home.css" rel="stylesheet">
+    <link rel='stylesheet' media='screen and (min-width: 0px) and (max-width: 425px)' href='css/home-xs.css' />
+    <link rel='stylesheet' media='screen and (min-width: 425px) and (max-width: 1100px)' href='css/home-small.css' />
+    <link rel='stylesheet' media='screen and (min-width: 1100px)' href='css/home-large.css' />
 
 
     <!-- JS -->
@@ -408,6 +413,10 @@ include('_header.php');
                         <div id="descricao">
                             Descrição: <?php echo $descricao; ?>
                         </div>
+                        <form action="responder_instrumento.php" method="POST">
+                            <input type="hidden" name="iddisciplina" value="<?php echo $_POST['idDisciplina']; ?>">
+                            <input type="submit" value="Responder instrumento">
+                        </form>
                     </div> <!-- END TAB 1-->
                     <div id="tabs-2">
                         <form method="post" action="editar_disciplina.php" name="editar_nome_disciplina">

@@ -166,7 +166,7 @@ class Disciplina {
      * Administra toda o sistema de Criação de disciplina
      * Verifica todos os erros possíveis e cria a disciplina se ela não existe
      */
-    public function criaDisc($nomeCurso, $nomeDisciplina, $descricao, $usuarioProfessorID, $senha, $arrayCompetencias, $conhecimento, $habilidade, $atitude, $area_conhecimento, $tipo_atividade){
+    public function criaDisc($nomeCurso, $nomeDisciplina, $descricao, $usuarioProfessorID, $senha, $arrayCompetencias, $conhecimento, $habilidade, $atitude, $area_conhecimento, $tipo_atividade, $inicio, $fim){
        // Remove espaços em branco em excesso das strings
         $nomeCurso  = trim($nomeCurso);
         $nomeDisciplina = trim($nomeDisciplina);
@@ -205,8 +205,8 @@ class Disciplina {
             $this->errors[] = MESSAGE_INVALID_CHA;
         }elseif (empty($arrayCompetencias)){
             $this->errors[] = WORDING_NULL_COMPETENCE;
-        }elseif (empty($tipo_atividade)){
-            $this->errors[] = WORDING_NULL_COMPETENCE;
+        }elseif (is_null($tipo_atividade)){
+            $this->errors[] = "Erro tipo de atividade. ".$tipo_atividade;
 
             //Fim de validações de dados de entrada
         //Inicio das validações de cadastro repitido
@@ -224,7 +224,7 @@ class Disciplina {
                     }
                 } else{
                     // Cadastro na tabela Disciplina
-                    $stmt = $this->db_connection->prepare("INSERT INTO disciplina(nomeCurso, nomeDisciplina, descricao, usuarioProfessorID, senha, area_conhecimento, tipo_atividade, inicio, fim)  VALUES(:nomeCurso, :nomeDisciplina, :descricao, :usuarioProfessorID, :senha, :area_conhecimento, :tipo_atividade, :inicio, :fim)");
+                    $stmt = $this->db_connection->prepare("INSERT INTO disciplina(iddisciplina, nomeCurso, nomeDisciplina, descricao, usuarioProfessorID, senha, area_conhecimento, tipo_atividade, inicio, fim)  VALUES(NULL, :nomeCurso, :nomeDisciplina, :descricao, :usuarioProfessorID, :senha, :area_conhecimento, :tipo_atividade, :inicio, :fim)");
                     $stmt->bindParam(':nomeCurso',$nomeCurso, PDO::PARAM_STR);
                     $stmt->bindParam(':nomeDisciplina',$nomeDisciplina, PDO::PARAM_STR);
                     $stmt->bindParam(':descricao',$descricao, PDO::PARAM_STR);
@@ -232,8 +232,8 @@ class Disciplina {
                     $stmt->bindParam(':senha',$senha, PDO::PARAM_STR);
                     $stmt->bindParam(':area_conhecimento',$area_conhecimento, PDO::PARAM_INT);
                     $stmt->bindParam(':tipo_atividade',$tipo_atividade, PDO::PARAM_INT);
-                    $stmt->bindParam(':inicio',$inicio, PDO::PARAM_STR);
-                    $stmt->bindParam(':fim',$fim, PDO::PARAM_STR);
+                    $stmt->bindParam(':inicio',date("Y-m-d", strtotime($inicio)), PDO::PARAM_STR);
+                    $stmt->bindParam(':fim',date("Y-m-d", strtotime($fim)), PDO::PARAM_STR);
                     $stmt->execute();
                     $ultimo_ID = $this->db_connection->lastInsertId();
                     $this->$ultimo_ID = $ultimo_ID;
@@ -277,7 +277,7 @@ class Disciplina {
                     $host  = $_SERVER['HTTP_HOST'];
                     $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
                     $extra = 'index.php';
-                    echo "<script language='JavaScript'> setTimeout(function () {window.location='http://".$host.$uri."/".$extra."';}, 100); </script> ";
+                    //echo "<script language='JavaScript'> setTimeout(function () {window.location='http://".$host.$uri."/".$extra."';}, 100); </script> ";
                  }
         }
     }
@@ -1178,6 +1178,28 @@ class Disciplina {
             throw new InvalidArgumentException("Erro! Esperava inteiro, recebeu ".gettype($id), E_USER_ERROR);
         }
         $this->idDisciplina = $id;
+    }
+
+    public function hasInstrumento($id) {
+        $database = new Database();
+        $sql = "SELECT * FROM instrumento_disciplina WHERE iddisciplina = :idDisciplina";
+        $database->query($sql);
+        $database->bind(":idDisciplina", $id);
+        $database->execute();
+        if($database->rowCount() > 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public function getInstrumentos($id) {
+        $database = new Database();
+        $sql = "SELECT * FROM instrumento_disciplina WHERE iddisciplina = :idDisciplina";
+        $database->query($sql);
+        $database->bind(":idDisciplina", $id);
+        return $database->resultSet();
     }
 
 

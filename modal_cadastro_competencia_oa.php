@@ -367,7 +367,7 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
 <script language="javascript">
     function mudaTab(qualTab) {
         if(qualTab == 1) {
-            if(document.getElementById('status').innerHTML == "OK" && document.getElementsByName('nome')[0].value.length > 0 && document.getElementsByName('descricaoNome')[0].value.length > 0 && document.getElementsByName('conhecimentoDescricao')[0].value.length > 0 && document.getElementsByName('habilidadeDescricao')[0].value.length > 0 && document.getElementsByName('atitudeDescricao')[0].value.length > 0) {
+            if(document.getElementById('status').innerHTML == "OK" && document.getElementsByName('nome')[0].value.length > 0 && document.getElementsByName('descricaoNome')[0].value.length < 200 && document.getElementsByName('descricaoNome')[0].value.length > 0 && document.getElementsByName('conhecimentoDescricao')[0].value.length > 0 && document.getElementsByName('habilidadeDescricao')[0].value.length > 0 && document.getElementsByName('atitudeDescricao')[0].value.length > 0) {
                 document.getElementsByName('descricaoNome')[0].style.border = "0";
                 document.getElementsByName('conhecimentoDescricao')[0].style.border = "0";
                 document.getElementsByName('habilidadeDescricao')[0].style.border = "0";
@@ -657,7 +657,7 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
                             <input id="finisher" style="display: none;" type="submit" name="registrar_nova_competencia" value="<?php echo WORDING_CREATE_COMPETENCA; ?>" />
 
                             <ul class="pager wizard">
-                                <li class="next" style="float:right"><div id="buttonNext" class='text-left' onclick="mudaTab(1)"><a class="button-next" href="javascript:;">Próximo</a></div></li>
+                                <input id="finisher" style="display: block;" type="submit" name="registrar_nova_competencia" value="<?php echo WORDING_CREATE_COMPETENCA; ?>" />
                                 <li class="previous" style="float:none; display: none;" id="buttonPrevious" onclick="mudaTab(2)"><div class="text-right button-voltar"><a href="javascript:;">Voltar</a></div></li>
                             </ul>
 

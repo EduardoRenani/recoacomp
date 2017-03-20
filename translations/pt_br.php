@@ -60,8 +60,8 @@ define("WORDING_CURRENTLY", "Atual");
 define("WORDING_EDIT_USER_DATA", "Alterar dados do usuário");
 define("WORDING_EDIT_YOUR_CREDENTIALS", "Alteração de Dados");
 define("WORDING_FORGOT_MY_PASSWORD", "Esqueci minha senha");
-define("WORDING_LOGIN", "Log in");
-define("WORDING_LOGOUT", "Log out");
+define("WORDING_LOGIN", "Entrar");
+define("WORDING_LOGOUT", "Sair");
 define("WORDING_NEW_EMAIL", "Novo email");
 define("WORDING_NEW_PASSWORD", "Nova senha");
 define("WORDING_NEW_PASSWORD_REPEAT", "Repita nova senha");
@@ -91,7 +91,7 @@ define("WORDING_KEYWORDS", "Palavras-chave");
 define("WORDING_LANGUAGE", "Idioma");
 define("WORDING_NAME_COMPETENCIA", "Nome da Competência: ");
 define("WORDING_OA_LIST", "Nome dos OA separados por \";\" : ");
-define("WORDING_AVAILABLE_COURSES", "Disciplinas disponíveis");
+define("WORDING_AVAILABLE_COURSES", "Atividades disponíveis");
 define("WORDING_REGISTER_SUCESSFULLY", "Cadastro efetuado com sucesso!");
 define("WORDING_EDIT_SUCESSFULLY", "Edição efetuada com sucesso!");
 define("WORDING_TEAM", "Equipe");
@@ -102,41 +102,42 @@ define("VISAO_PROFESSOR", "2");
 // Página editar disciplina
 define("WORDING_EDIT_DESCRIPTION", "Alterar descrição");
 define("WORDING_NEW_DESCRIPTION", "Nova descrição");
+define("HINT_INTERATIVITY_DESCRIPTION", "De forma simplificada, o nível de interatividade de um objeto de aprendizagem (OA) define-se de acordo com as condições ou as possibilidades de intervenção e resposta que o OA permite ao estudante, podendo ser de nível baixo (pouca ou nenhuma possibilidade de intervenção/resposta, como em um texto estático) a nível alto (grande possibilidade de intervenção/resposta, como em um jogo)");
 
 
 
 //Cadastro de Disciplina Mensagens
-define("MESSAGE_DISCIPLINA_ALREADY_EXISTS","A seguinte disciplina já existe: ");
-define("MESSAGE_DISCIPLINA_DOESNT_EXIST","Disciplina não existe");
+define("MESSAGE_DISCIPLINA_ALREADY_EXISTS","A seguinte atividade de ensino já existe: ");
+define("MESSAGE_DISCIPLINA_DOESNT_EXIST","Atividade de ensino não existe");
 define("MESSAGE_COMPETENCIA_DOESNT_EXIST","Competência associada é inválida");
 define("MESSAGE_DISCIPLINA_COMPETENCIA_ALREADY_RELATED","Competência já associada a essa disciplina");
-define("WORDING_REGISTER_NOVA_DISCIPLINA", "Cadastrar Disciplina");
+define("WORDING_REGISTER_NOVA_DISCIPLINA", "Cadastrar Atividade de Ensino");
 define("WORDING_REGISTER_NOVO_CURSO", "Cadastrar Curso");
 define("WORDING_REGISTER_NOVO_PROJETO", "Cadastrar Projeto");
 define("WORDING_REGISTER_NOVO_OUTROS", "Cadastrar Outros");
 
-define("WORDING_EDIT_COURSE", "Editar Disciplina");
+define("WORDING_EDIT_COURSE", "Editar Atividade de Ensino");
 define("WORDING_GLOBAL_COURSE", "Visão geral");
-define("WORDING_EDIT_COURSE_FINAL", "Finalizar edição da disciplina");
+define("WORDING_EDIT_COURSE_FINAL", "Finalizar edição da Atividade de Ensino");
 define("WORDING_CREATE_NEW_COURSE", "Criar novo curso");
 define("WORDING_INSTITUTIONAL_NAME", "Nome da unidade");
 define("WORDING_COURSE_NAME", "Nome do curso");
-define("WORDING_DISCIPLINA_NAME", "Nome da disciplina");
+define("WORDING_DISCIPLINA_NAME", "Nome da Atividade de Ensino");
 define("WORDING_PROJETO_NAME", "Nome da projeto");
 define("WORDING_OUTROS_NAME", "Nome de outros");
-define("WORDING_DISCIPLINA", "Disciplina ");
-define("WORDING_CREATE_DISCIPLINA", "Criar Disciplina");
-define("WORDING_CREATE_COURSE", "Criar Curso");
-define("WORDING_CREATE_PROJETO", "Criar Projeto");
-define("WORDING_CREATE_OUTROS", "Criar Outros");
+define("WORDING_DISCIPLINA", "Atividade de Ensino ");
+define("WORDING_CREATE_DISCIPLINA", "Concluir cadastro");
+define("WORDING_CREATE_COURSE", "Concluir cadastro");
+define("WORDING_CREATE_PROJETO", "Concluir cadastro");
+define("WORDING_CREATE_OUTROS", "Concluir cadastro");
 define("WORDING_CLEAR_CREATE_DISCIPLINA", "Limpar");
 define("WORDING_DISCIPLINA_DESCRICAO", "Descrição");
 define("WORDING_AREA_CONHECIMENTO", "Área de conhecimento");
 define("WORDING_CREATE_NEW_COMPETENCIA", "Criar nova competência");
-define("WORDING_CANT_ASSOCIATE_COMPETENCIA","A competencia citada em sequência não pode ser associada a essa disciplina ou já foi associada previamente");
+define("WORDING_CANT_ASSOCIATE_COMPETENCIA","A competencia citada em sequência não pode ser associada a essa atividade de ensino ou já foi associada previamente");
 define("WORDING_CREATED_SUCESSFULLY"," criada com sucesso!");
 define("WORDING_CREATE_SUCESSFULLY"," criado com sucesso!");
-define("WORDING_FILL_NAME_DISCIPLINA","Preencha o nome da disciplina");
+define("WORDING_FILL_NAME_DISCIPLINA","Preencha o nome da atividade de ensino");
 define("WORDING_FILL_PASSWORD","Preencha a senha");
 define("WORDING_SELECT_COMPETENCIA","Selecione a(s) competências(s)");
 define("WORDING_FILL_YOUR_CHA","Preencha seu CHA");
@@ -145,11 +146,11 @@ define("WORDING_FINALIZE","Finalizar");
 define("WORDING_TEST_REC","Testar recomendação");
 define("WORDING_REGISTER_CHA","Cadastrar Perfil");
 define("WORDING_NULL_COMPETENCE","Nenhuma competência foi selecionada");
-define("WORDING_NEW_DISCIPLINA_NAME","Novo nome para disciplina");
+define("WORDING_NEW_DISCIPLINA_NAME","Novo nome para a atividade de ensino");
 define("WORDING_NEW_COURSE_NAME","Novo nome para curso");
-define("WORDING_CHANGE_DISCIPLINA_NAME","Alterar nome da disciplina");
+define("WORDING_CHANGE_DISCIPLINA_NAME","Alterar nome da atividade de ensino");
 define("WORDING_CHANGE_COURSE_NAME","Alterar nome do curso");
-define("MESSAGE_DISCIPLINA_NAME_INVALID", "Nome da disciplina inválido.");
+define("MESSAGE_DISCIPLINA_NAME_INVALID", "Nome da atividade de ensino inválido.");
 define("MESSAGE_COURSE_NAME_INVALID", "Nome do curso inválido.");
 
 
@@ -321,7 +322,7 @@ define("WORDING_REGISTER_NOVA_COMPETENCIA", "Cadastrar Competência");
 define("WORDING_COMPETENCIA", "Competência ");
 define("WORDING_CHA", "CHA ");
 define("WORDING_CREATE_COMPETENCA", "Criar Nova Competência");
-define("WORDING_ASSOCIATE_OA", "Associar OA's para nova competência");
+define("WORDING_ASSOCIATE_OA", "Associar OAS para nova competência");
 define("WORDING_ASSOCIATE_COMP", "Associar à disciplina as competências que serão abordadas por ela.");
 define("WORDING_ASSOCIATE_COMP_OA", "Associar uma ou mais competências abordadas por este objeto de aprendizagem.");
 define("WORDING_ASSOCIATE_OA_COMP", "Associar um ou mais objetos de aprendizagem que apóiem o desenvolvimento desta nova competência.");
@@ -343,9 +344,9 @@ define("MESSAGE_INVALID_CHA", "CHA inválido!");
 define("WORDING_OA_CHA", "CHA do OA");
 
 //Sidebar
-define("WORDING_ACTIVE_COURSES", "Minhas disciplinas ativas");
-define("WORDING_CLOSED_COURSES", "Minhas disciplinas encerradas");
-define("WORDING_MY_COURSES", "Minhas disciplinas");
+define("WORDING_ACTIVE_COURSES", "Minhas atividades de ensino ativas");
+define("WORDING_CLOSED_COURSES", "Minhas atividades de ensino encerradas");
+define("WORDING_MY_COURSES", "Minhas atividades de ensino");
 define("WORDING_MY_PROFILE", "Meu perfil");
 
 //Hints dos metadados dos OAS
@@ -388,6 +389,8 @@ define("HINT_COMPETENCY", "Este metadado define os tipos de competências que um
 //Textos de ajuda CHA
 define("TEXT_CHA", "Indicar um valor de 0 a 5");
 define("HINT_CHA", "Indicar um valor de 0 a 4, que expresse o quanto você considera possuir desenvolvido os conhecimentos, habilidades e atitudes de cada competência abordada por esta disciplina:");
+define("HINT_CHA_OA", "Indicar um valor de 0 a 4, que expresse o quanto este objeto de aprendizagem  apóia o desenvolvimento dos conhecimentos, habilidades e atitudes de cada competência abordada por esta disciplina:");
+define("HINT_CHA_DISCI", "Indicar um valor de 0 a 4, que expresse o quanto esta atividade de ensino apóia o desenvolvimento dos conhecimentos, habilidades e atitudes de cada  competência vinculada:");
 define("HINT_CHA_0", "0. Não desenvolvi");
 define("HINT_CHA_1", "1. Desenvolvi em nível inicial");
 define("HINT_CHA_2", "2. Desenvolvi em nível básico");
@@ -398,4 +401,3 @@ define("HINT_CHA_1_DISCI", "1. Aborda em nível inicial");
 define("HINT_CHA_2_DISCI", "2. Aborda em nível básico");
 define("HINT_CHA_3_DISCI", "3. Aborda em nível intermediário");
 define("HINT_CHA_4_DISCI", "4. Aborda em nível avançado");
-define("HINT_CHA_OA", "Representa o quanto este objeto irá abordar os conhecimentos, habilidades e atitudes de cada competência cadastrada.");

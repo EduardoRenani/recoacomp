@@ -49,7 +49,7 @@
                 location.reload();
                 //console.log(response);
                 /*var n = noty({
-                    text: 'Disciplina excluida com sucesso',
+                    text: 'Atividade de ensino excluida com sucesso',
                     layout: 'topCenter',
                     theme: 'relax', // or 'relax'
                     type: 'information',

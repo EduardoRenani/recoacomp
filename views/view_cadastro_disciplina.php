@@ -10,6 +10,7 @@ include('_header.php');
 ?>
 <!-- IMPORTAÇÃO JQUERY-->
 <head>
+
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="css/tooltip.css">
     <link href="css/base_cadastro.css" rel="stylesheet">
@@ -17,6 +18,12 @@ include('_header.php');
     <link href="css/landing-page.css" rel="stylesheet">
     <script src="js/jquery-customselect.js"></script>
     <link href="css/jquery-customselect.css" rel="stylesheet" />
+
+<!-- Custom CSS -->
+<link href="css/home.css" rel="stylesheet">
+<link rel='stylesheet' media='screen and (min-width: 0px) and (max-width: 425px)' href='css/home-xs.css' />
+<link rel='stylesheet' media='screen and (min-width: 425px) and (max-width: 1100px)' href='css/home-small.css' />
+<link rel='stylesheet' media='screen and (min-width: 1100px)' href='css/home-large.css' />
 
     <style>
     .tooltip {
@@ -125,7 +132,7 @@ include('_header.php');
                 listaAtitudes = listaAtitudes.split("¬");
                 console.log(listaAtitudes);
                 console.log('oi');
-                document.getElementById('sub-conteudo2').innerHTML = '<div class="info-cadastro"><?php echo HINT_CHA."<br>".HINT_CHA_0_DISCI."<br>".HINT_CHA_1_DISCI."<br>".HINT_CHA_2_DISCI."<br>".HINT_CHA_3_DISCI."<br>".HINT_CHA_4_DISCI;?></div>';
+                document.getElementById('sub-conteudo2').innerHTML = '<div class="info-cadastro"><?php echo HINT_CHA_DISCI."<br>".HINT_CHA_0_DISCI."<br>".HINT_CHA_1_DISCI."<br>".HINT_CHA_2_DISCI."<br>".HINT_CHA_3_DISCI."<br>".HINT_CHA_4_DISCI;?></div>';
                 for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
                             listaConhecimentos[i] = listaConhecimentos[i].replace(/%0D%0A/g, ' ');
@@ -176,7 +183,7 @@ include('_header.php');
                 console.log(listaConhecimentos);
                 console.log(listaHabilidades);
                 console.log(listaAtitudes);
-                document.getElementById('sub-conteudo2').innerHTML = '<div class="info-cadastro"><?php echo HINT_CHA."<br>".HINT_CHA_0_DISCI."<br>".HINT_CHA_1_DISCI."<br>".HINT_CHA_2_DISCI."<br>".HINT_CHA_3_DISCI."<br>".HINT_CHA_4_DISCI;?></div>';
+                document.getElementById('sub-conteudo2').innerHTML = '<div class="info-cadastro"><?php echo HINT_CHA_DISCI."<br>".HINT_CHA_0_DISCI."<br>".HINT_CHA_1_DISCI."<br>".HINT_CHA_2_DISCI."<br>".HINT_CHA_3_DISCI."<br>".HINT_CHA_4_DISCI;?></div>';
                 for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
                             listaConhecimentos[i] = listaConhecimentos[i].replace(/%0D%0A/g, ' ');
@@ -200,7 +207,7 @@ include('_header.php');
                 var arrayCompetencias = $("#tabela2").sortable('toArray').toString();
                 //window.alert(nomesCompetencias);
 
-                document.getElementById('arrayCompetencias').value = arrayCompetencias;
+                document.getElementById('arrayCompetencias').value = arrayCompetencias+",";
             }
         });
     });
@@ -307,7 +314,7 @@ function AjaxCompetenciaListas(){
                     console.log(listaAtitudes);
                     console.log(']');
                     console.log('oi');
-                    document.getElementById('sub-conteudo2').innerHTML = '<div class="info-cadastro"><?php echo HINT_CHA."<br>".HINT_CHA_0_DISCI."<br>".HINT_CHA_1_DISCI."<br>".HINT_CHA_2_DISCI."<br>".HINT_CHA_3_DISCI."<br>".HINT_CHA_4_DISCI;?></div>';
+                    document.getElementById('sub-conteudo2').innerHTML = '<div class="info-cadastro"><?php echo HINT_CHA_DISCI."<br>".HINT_CHA_0_DISCI."<br>".HINT_CHA_1_DISCI."<br>".HINT_CHA_2_DISCI."<br>".HINT_CHA_3_DISCI."<br>".HINT_CHA_4_DISCI;?></div>';
                     for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
                             listaConhecimentos[i] = listaConhecimentos[i].replace(/%0D%0A/g, ' ');
@@ -577,7 +584,7 @@ $(function(){
                 listaAtitudes = listaAtitudes.split("¬");
                 console.log(listaAtitudes);
                 console.log('oi');
-                document.getElementById('sub-conteudo2').innerHTML = '<div><div class="info-cadastro"><?php echo HINT_CHA."<br>".HINT_CHA_0."<br>".HINT_CHA_1."<br>".HINT_CHA_2."<br>".HINT_CHA_3."<br>".HINT_CHA_4;?></div></div>';
+                document.getElementById('sub-conteudo2').innerHTML = '<div><div class="info-cadastro"><?php echo HINT_CHA_DISCI."<br>".HINT_CHA_0."<br>".HINT_CHA_1."<br>".HINT_CHA_2."<br>".HINT_CHA_3."<br>".HINT_CHA_4;?></div></div>';
                 for (i = 0; i < nomesCompetencias.length; i++) {
                             listaConhecimentos[i] = encodeURI(listaConhecimentos[i]);
                             listaConhecimentos[i] = listaConhecimentos[i].replace(/%0D%0A/g, ' ');
@@ -666,7 +673,7 @@ $(function(){
                             <!-- Inicio e fim-->
                             <div class="control-group">
                                 <label class="control-label" for="descricao"><div style="float: left">Início da Atividade</div><div class="tooltiploco">
-                                    <div onmouseover="toolTip(6, 'Inicio das atividades.')" onmouseout="deleteTooltip(6)">[ ? ]</div></div></label>
+                                    <div onmouseover="toolTip(5, 'Inicio das atividades.')" onmouseout="deleteTooltip(5)">[ ? ]</div></div></label>
                                     <div class="controls">
                                         <input type="date" name="inicio">
                                     </div>
@@ -674,7 +681,7 @@ $(function(){
 
                             <div class="control-group">
                                 <label class="control-label" for="descricao"><div style="float: left">Término da atividade</div><div class="tooltiploco">
-                                    <div onmouseover="toolTip(7, 'Fim das atividades.')" onmouseout="deleteTooltip(7)">[ ? ]</div></div></label>
+                                    <div onmouseover="toolTip(6, 'Fim das atividades.')" onmouseout="deleteTooltip(6)">[ ? ]</div></div></label>
                                     <div class="controls">
                                         <input type="date" name="fim">
                                     </div>
@@ -683,7 +690,7 @@ $(function(){
                             <!-- Descrição-->
                             <div class="control-group">
                                 <label class="control-label" for="descricao"><div style="float: left"><?php echo WORDING_DISCIPLINA_DESCRICAO; ?></div><div class="tooltiploco">
-                                    <div onmouseover="toolTip(5, 'Exposição do tema abordado pelo objeto e seus objetivo.')" onmouseout="deleteTooltip(5)">[ ? ]</div></div></label>
+                                    <div onmouseover="toolTip(7, 'Exposição do tema abordado pela atividade e seus objetivos.')" onmouseout="deleteTooltip(7)">[ ? ]</div></div></label>
                                     <div class="controls">
                                         <textarea name="descricao" id="descricao" ROWS="5" COLS="40" class="required"></textarea>
                                     </div>

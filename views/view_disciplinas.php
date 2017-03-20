@@ -85,7 +85,7 @@
 
                 foreach ($disciplinasOrdemAlfabetica as $ordemAlfabetica => $disciplina) {
 					if($disciplina['tipo_atividade'] == ATIVIDADE_DISCIPLINA) {
-						$disciplina['tipo_atividade'] = "Disciplina";
+						$disciplina['tipo_atividade'] = "Atividade de Ensino";
 					} else if($disciplina['tipo_atividade'] == ATIVIDADE_CURSO) {
 						$disciplina['tipo_atividade'] = "Curso";
 					} else if($disciplina['tipo_atividade'] == ATIVIDADE_PROJETO) {
@@ -125,7 +125,7 @@
                         <div id="openModalDeleteDisciplina" class="modalDialog" id="excluirDisciplinaDialog">
                                 <div>
                                     <a href="#close" title="Close" class="close">X</a>
-                                    <div class="top-cadastro"><?php echo 'Excluir disciplina?'; ?></div>
+                                    <div class="top-cadastro"><?php echo 'Excluir atividade de ensino?'; ?></div>
                                         <a href="#close" class="botao-med" id="<?php echo $disciplina['iddisciplina']?>" onClick="deletarDisciplina();" title="Deletar">Excluir</a>
                                         <hr>
                                         <a href="#close" class="botao-med" title="Cancelar">Cancelar</a>

@@ -29,18 +29,52 @@ include('views/_header.php');
         $('.conteudo').find('button').click(function(){
             div = $(this).closest('div#conteudo').next('#conteudo-expansivel');
             if(!div.is(':visible')){
-                div.css('height','auto').slideDown(1000);
+                $(this).closest('div#conteudo').next('#conteudo-expansivel').next('#texto').show();
+                div.slideDown(1000);
+                div.next('#texto').next('#conteudo-expansivel').slideDown(1000);
                 $(this).find('span').removeClass('glyphicon-plus').addClass('glyphicon-minus');
             }else{
+                $(this).closest('div#conteudo').next('#conteudo-expansivel').next('#texto').hide();
                 div.slideUp();
+                div.next('#texto').next('#conteudo-expansivel').slideUp();
                 $(this).find('span').removeClass('glyphicon-minus').addClass('glyphicon-plus');
             }
 
         });
+
+            $('.conteudo').next('#conteudo-expansivel').find('a').click(function(){
+                div = $(this).closest('.recomendacao-item-content').find('#conteudo-expansivel');
+                if(!div.is(':visible')){
+                    //$(this).find('span').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+                }else{
+                    div.slideUp();
+                    //$(this).find('span').removeClass('glyphicon-minus').addClass('glyphicon-plus');
+                }
+
+            });
+
+        $("input[type='checkbox']").change(function() {
+            var list = "";
+
+        $("input[type='checkbox']").each(function() {
+            if (this.checked) {
+                list = list + '.' + $(this).attr('id');
+            }
+        });
+
+         if (list !== '') {
+            $("li.disciplinas-item").hide();
+             $(list).show();
+        } else {
+            $("li.disciplinas-item").show();
+      }
     });
+});
+
 </script>
 <div class='fixedBackgroundGradient'></div>
 <?php
+
 
 
 
@@ -79,3 +113,25 @@ if ($login->isUserLoggedIn() == true) {
     // for demonstration purposes, we simply show the "you are not logged in" view.
     include("views/not_logged_in.php");
 }
+?>
+<div style="position: fixed; right: 0px; width: 240px;">
+    <ul class="subnav">
+      <li class="lifilter">
+        <label><input type="checkbox" class="filtercheck" id="download" />download</label>
+      </li>
+      <li class="lifilter">
+        <label><input type="checkbox" class="filtercheck" id="navegador" />navegador</label>
+      </li>
+    </ul>
+    <ul class="subnav3">
+      <li class="lifilter3">
+        <label><input type="checkbox" class="filtercheck2" id="ingles" />ingles</label>
+      </li>
+      <li class="lifilter3">
+        <label><input type="checkbox" class="filtercheck2" id="portugues" />portugues</label>
+      </li>
+      <li class="lifilter3">
+        <label><input type="checkbox" class="filtercheck2" id="espanhol" />espanhol</label>
+      </li>
+    </ul>
+</div>

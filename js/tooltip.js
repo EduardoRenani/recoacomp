@@ -45,6 +45,7 @@
         tooltip.innerHTML = texto;
         div1 = document.createElement('div');
         div1.style.width = "200px";
+        div1.style.position = "absolute";
         div1.appendChild(tooltip);
         div.appendChild(div1);
         opacityTip = 0;

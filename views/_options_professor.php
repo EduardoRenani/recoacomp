@@ -1,26 +1,36 @@
 	<?php
 		$usuario = new User($_SESSION['user_id']);
-		if(isset($_POST['codTipoUsuario'])){
+		if(isset($_GET['codTipoUsuario'])){
 				// Update no banco de dados para o tipo de visão
 				//print_r($usuario);
                 //$usuario->updateTipoVisao(1);
 				//print_r($usuario->updateTipoVisao(1));
 				// Se está vendo como aluno
-				$tipoUsuario = $_POST['codTipoUsuario'];
+				$tipoUsuario = $_GET['codTipoUsuario'];
 				if ($tipoUsuario  == 1){
 						$usuario->updateTipoVisao(1);
 						//print_r($usuario);
 						?>
 						<!-- Disciplina Disponíveis -->
-						<a href="disciplinas_disponiveis.php">
+						<a href="disciplinas_disponiveis.php?codTipoUsuario=1#">
 							<li>
-								Disciplinas Disponíveis
+								Atividades Disponíveis
+							</li>
+						</a>
+						<!-- Disciplinas em que estou matriculado (que cadastrei) -->
+						<a href="disciplinas_fixed.php?codTipoUsuario=1#">
+							<li>
+								Atividades em que estou matriculado(a)
 							</li>
 						</a>
 						<!-- Meu Perfil -->
-
+						<a href="preferences.php">
+							<li>
+								Preferências
+							</li>
+						</a>
 						<li class="visao">
-						<form method="post" action="#" id="tipoUsuario" name="tipoUsuario">
+						<form method="get" action="#" id="tipoUsuario" name="tipoUsuario">
 							<select name="codTipoUsuario" onchange ="this.form.submit()" onfocus="this.selectedIndex = -1;"> <!-- -->
 								<option value="<?php echo VISAO_ALUNO ?>" selected >Visão de Aluno</option>
 								<option value="<?php echo VISAO_PROFESSOR?>">Visão de Professor</option>
@@ -66,9 +76,19 @@
 						Cadastrar...
 					</li>
 					</a>
+					<a href="instrumento.php">
+					<li>
+								Cadastrar Instrumento de Avaliação
+					</li>
+					</a>
+					<a href="preferences.php">
+					<li>
+								Preferências
+					</li>
+					</a>
 					<li class="visao">
 						<br><br>
-						<form method="post" action="#" id="tipoUsuario" name="tipoUsuario">
+						<form method="get" action="#" id="tipoUsuario" name="tipoUsuario">
 							<select name="codTipoUsuario" onchange ="this.form.submit()" onfocus="this.selectedIndex = -1;"> <!-- -->
 								<option value="<?php echo VISAO_ALUNO ?>">Visão de Aluno</option>
 								<option value="<?php echo VISAO_PROFESSOR?>" selected>Visão de Professor</option>
@@ -127,11 +147,20 @@
 						Cadastrar...
 					</li>
 					</a>
-
+					<a href="instrumento.php">
+					<li>
+								Cadastrar Instrumento de Avaliação
+					</li>
+					</a>
+				<a href="preferences.php">
+					<li>
+								Preferências
+					</li>
+					</a>
 				<!-- Ver como -->
 
 				<li class="visao">
-					<form method="post" action="#" id="tipoUsuario" name="tipoUsuario">
+					<form method="get" action="#" id="tipoUsuario" name="tipoUsuario">
 						<select name="codTipoUsuario" onchange ="this.form.submit()" onfocus="this.selectedIndex = -1;"> <!-- -->
 							<option value="<?php echo VISAO_ALUNO ?>">Visão de Aluno</option>
 							<option value="<?php echo VISAO_PROFESSOR?>" selected>Visão de Professor</option>

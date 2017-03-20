@@ -14,7 +14,7 @@
 						<!-- Disciplina Disponíveis -->
 						<a href="disciplinas_disponiveis.php">
 							<li>
-								Disciplinas Disponíveis
+								Atividades Disponíveis
 							</li>
 						</a>
 						<!-- Meu Perfil -->
@@ -35,19 +35,19 @@
 					<!-- Minhas Disciplinas (que cadastrei) -->
 					<a href="disciplinas.php">
 						<li class="active">
-							Minhas Disciplinas
+							Minhas Atividades
 						</li>
 					</a>
 					<!-- Disciplina Disponíveis -->
 					<a href="disciplinas_disponiveis.php">
 						<li>
-							Disciplinas Disponíveis
+							Atividades Disponíveis
 						</li>
 					</a>
 					<!-- Disciplinas em que estou matriculado (que cadastrei) -->
 					<a href="disciplinas_fixed.php">
 						<li>
-							Disciplinas em que estou matriculado(a)
+							Atividades em que estou matriculado(a)
 						</li>
 					</a>
 					<!-- Meu Perfil -->
@@ -102,6 +102,16 @@
 						Meu Perfil
 					</li>
 				</a>
+					<a href="instrumento.php">
+					<li>
+								Cadastrar Instrumento de Avaliação
+					</li>
+					</a>
+				<a href="preferences.php">
+							<li>
+								Preferências
+							</li>
+						</a>
 				<!-- Ver como -->
 				
 				<li class="visao">

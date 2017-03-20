@@ -193,7 +193,11 @@ class Comp{
 																	"id_oa" => $v[$c]['ID'],
 																	"data" => date("Y/m/d"))
 															 ,"recomendacao");
-						echo"<li class='disciplinas-item'  style='border-bottom: 1px solid #ddd; margin-bottom: 0; width: 95%; margin: auto;'>";
+						$carregamento = new Carregamento();
+						$oa_info = $carregamento->carregaDados(array('idcesta' => $v[$c]['ID']), "cesta");
+						$categoria_tecnica = $carregamento->carregaDados(array("idcategoria_tecnica" => $oa_info['idcategoria_tecnica']), "categoria_tecnica");
+						$categoria_educacional = $carregamento->carregaDados(array("idcategoria_eduacional" => $oa_info['idcategoria_eduacional']), "categoria_eduacional");
+						echo"<li class='disciplinas-item ".$oa_info['idioma']." ".$categoria_tecnica['tipoTecnologia']." ".$categoria_educacional['ambiente']." ".$categoria_educacional['grauInteratividade']." ".$categoria_educacional['recursoAprendizagem']." ".$categoria_educacional['usuarioFinal']."'  style='border-bottom: 1px solid #ddd; margin-bottom: 0; width: 95%; margin: auto;'>";
 			                    echo "<div class='recomendacao-item-content'>";
 			                    		echo 'Número de Objeto(s) recomendado(s): '.$cont.'<br/>';
 

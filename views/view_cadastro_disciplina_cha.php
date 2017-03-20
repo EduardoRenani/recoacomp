@@ -92,7 +92,42 @@ include('_header.php');
             <input type="hidden" name="okay" value="okay" />
             <input type="hidden" name="senha" value="<?php echo $_POST['senha']; ?>" />
 
-            <label>
+            <?php
+                $instrumentos = $disciplina->getInstrumentos($_POST['idDisciplina']);
+                foreach ($instrumentos as $instrumento) {
+                    echo "<input type='hidden' name='competencias[]' value='".$instrumento['idcompetencia']."'>";
+                    echo "<input type='hidden' name='idinstrumentos[]' value='".$instrumento['id']."'>";
+                    echo "<li class='disciplinas-item' style='text-align: left;'>";
+                    echo "<div class='disciplina-item-content'>";
+                    echo "<h2>Competência: ".$competencia->getNomeCompetenciaById(intval($instrumento['idcompetencia']))[0]['nome']."</h2>";
+                    echo "<h4>Situação problema:</h4>";
+                    echo "<h4>".$instrumento['problema_um']."</h4>";
+                    echo "<br><h5>Com relação a esta situação, aponte seus conhecimentos, habilidades e atitudes.</h5>";
+                    echo "<h5>Competência</h5>";
+                    echo "<h5><input type='radio' name='conhecimento[".$instrumento['idcompetencia']."]' value='0'> Não possuo</h5>";
+                    echo "<h5><input type='radio' name='conhecimento[".$instrumento['idcompetencia']."]' value='1'> Tenho Noção, mas ainda tenho dúvidas</h5>";
+                    echo "<h5><input type='radio' name='conhecimento[".$instrumento['idcompetencia']."]' value='2'> Tenho noções básicas</h5>";
+                    echo "<h5><input type='radio' name='conhecimento[".$instrumento['idcompetencia']."]' value='3'> Não tenho plena certeza</h5>";
+                    echo "<h5><input type='radio' name='conhecimento[".$instrumento['idcompetencia']."]' value='4'> Tenho plena certeza</h5>";
+                    echo "<br><h5>Habilidade</h5>";
+                    echo "<h5><input type='radio' name='habilidade[".$instrumento['idcompetencia']."]' value='0'> Não sei os conceitos, não conheço as técnicas e não sei qual postura tomar.</h5>";
+                    echo "<h5><input type='radio' name='habilidade[".$instrumento['idcompetencia']."]' value='1'> Conheço os conceitos, porém não sei as técnicas e quais posturas tomar.</h5>";
+                    echo "<h5><input type='radio' name='habilidade[".$instrumento['idcompetencia']."]' value='2'> Conheço as técnicas, mas não conheço os conceitos e atitudes necessárias.</h5>";
+                    echo "<h5><input type='radio' name='habilidade[".$instrumento['idcompetencia']."]' value='3'> Sei qual postura assumir, mas não conheço os conceitos e habilidades.</h5>";
+                    echo "<h5><input type='radio' name='habilidade[".$instrumento['idcompetencia']."]' value='4'> Conheço dois desses elementos: conhecimentos, habilidades e atitudes.</h5>";
+                    echo "<h5><input type='radio' name='habilidade[".$instrumento['idcompetencia']."]' value='5'> Conheço os conceitos, técnicas e atitudes a tomar.</h5>";
+                    echo "<br><h5>Atitude</h5>";
+                    echo "<h5><input type='radio' name='atitude[".$instrumento['idcompetencia']."]' value='0'> Não sei os conceitos, não conheço as técnicas e não sei qual postura tomar.</h5>";
+                    echo "<h5><input type='radio' name='atitude[".$instrumento['idcompetencia']."]' value='1'> Conheço os conceitos, porém não sei as técnicas e quais posturas tomar.</h5>";
+                    echo "<h5><input type='radio' name='atitude[".$instrumento['idcompetencia']."]' value='2'> Conheço as técnicas, mas não conheço os conceitos e atitudes necessárias.</h5>";
+                    echo "<h5><input type='radio' name='atitude[".$instrumento['idcompetencia']."]' value='3'> Sei qual postura assumir, mas não conheço os conceitos e habilidades.</h5>";
+                    echo "<h5><input type='radio' name='atitude[".$instrumento['idcompetencia']."]' value='4'> Conheço dois desses elementos: conhecimentos, habilidades e atitudes.</h5>";
+                    echo "<h5><input type='radio' name='atitude[".$instrumento['idcompetencia']."]' value='5'> Conheço os conceitos, técnicas e atitudes a tomar.</h5>";
+                    echo "<div>";
+                    echo "</li>";
+                }
+            ?>
+            <!--<label>
             <h2>Importante: os dados aqui informados serão utilizados para a recomendação</h2><br>
             <h4>
             Indicar um valor de 0 a 4, que represente o quanto esta disciplina irá abordar os conhecimentos, habilidades e atitudes de cada competência cadastrada:<br>
@@ -109,7 +144,7 @@ include('_header.php');
                 //echo $_POST["idDisciplina"];
                 $arrayIdCompetencias = $disciplina->getCompetenciaFromDisciplinaById($_POST["idDisciplina"]);
 
-                foreach ($arrayIdCompetencias as $competenciaId) {
+                /*foreach ($arrayIdCompetencias as $competenciaId) {
                     
                     echo "<input type='hidden' id='arrayCHA' name='competencias[]' value=".$competenciaId[0]." />";
 
@@ -126,9 +161,9 @@ include('_header.php');
                     <h4>Atitude</h4>
                     <input type='number' name='atitude[".$competenciaId[0]."]' min='0' max='4' value='0' oninput='this.form.conhecimento".$competenciaId[0].".value=this.value' />
                     <br>";
-                }
+                }*/
                                  
-            ?>
+            ?>-->
             <br>
             <input type="submit" name="verifica_senha" value="<?php echo WORDING_FINALIZE; ?>" />
 

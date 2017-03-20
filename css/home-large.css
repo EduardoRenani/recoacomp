@@ -1,4 +1,4 @@
-
+﻿
 /*HEADER---------------------------------------------------------------------*/
 
 
@@ -98,7 +98,7 @@ ul {
 }
 li {
     display: inline-block;
-    float: left;
+    float: right;
     padding: 10px
 }
 
@@ -110,6 +110,8 @@ li {
     color:black;
 }
 #botoes span.tooltipster-icon{
+    position: absolute;
+    right: 380px;
 	border-radius: 100%;
     box-sizing: border-box;
     margin-left: 4px;
@@ -118,7 +120,7 @@ li {
     width: 2.3em;
     height: 2.3em;
     padding: 0.4em 0 0;
-    margin: 2em 0 0 -3em;
+    margin: 0.7em 0 0 -3em;
     line-height: 1em;
     float: left;
     text-align: center;
@@ -135,9 +137,9 @@ li {
 .sidebar{
     background-color:white;
 
-    height:60%;
-    min-height:500px;
-    max-height:600px;
+    height:65%;
+    min-height:525px;
+    max-height:700px;
 
     width:20%;
     min-width:250px;

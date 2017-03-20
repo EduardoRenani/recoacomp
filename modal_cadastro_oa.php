@@ -648,33 +648,35 @@ if (isset($OA)) {
                         </div>
                     </div>               
                 </div>
-                CATEGORIA EDUCACIONAL -->
+                <!-- CATEGORIA EDUCACIONAL -->
                 <div id="sub-conteudo3" class="tab">
                     <!-- DESCRIÇÃO EDUCACIONAL -->
                     <div class="control-group">
-                        <label class="control-label" for="descricao_educacional"><div style="float: left"><?php echo WORDING_EDUCATIONAL_DESCRIPTION; ?></div><div class="tooltiploco"></label><div onmouseover="toolTip(6, '<?php echo HINT_EDUCACIONAL_DESCRIPTION ?>')" onmouseout="deleteTooltip(6)">[ ? ]</div></div>
+                        <label class="control-label" for="descricao_educacional"><div style="float: left"><?php echo WORDING_EDUCATIONAL_DESCRIPTION; ?></div><div class="tooltiploco"><div onmouseover="toolTip(6, '<?php echo HINT_EDUCACIONAL_DESCRIPTION ?>')" onmouseout="deleteTooltip(6)">[ ? ]</div></div></label>
                         <div class="controls">
                             <textarea name="descricao_educacional" id="descricao_educacional" ROWS="5" COLS="40"></textarea>
                         </div>
                     </div>
                     <!-- FAIXA ETÁRIA -->
                     <div class="control-group">
-                        <label class="control-label" for="faixaEtaria"><?php echo WORDING_AGE_GROUP; ?> (Utilize o CTRL para selecionar mais de um)</label>
+                        <label class="control-label" for="faixaEtaria"><?php echo WORDING_AGE_GROUP; ?> (Utilizar o CTRL para selecionar mais de um)</label>
                         <div class="controls">
                             <select id = "faixaEtaria[]" name="faixaEtaria[]" required="true" multiple>
-                                <option value = "educacao infantil"><?php echo WORDING_CHILD_EDUCATION ?></option>
                                 <option value = "ensino fundamental"><?php echo WORDING_BASIC_EDUCATION ?></option>
                                 <option value = "ensino medio"><?php echo WORDING_HIGHSCOOL ?></option>
                                 <option value = "ensino profissionalizante"><?php echo WORDING_PROFESSIONAL_EDUCATION ?></option>
                                 <option value = "ensino superior"><?php echo WORDING_COLLEGE ?></option>
+                                <option value = "educacao de jovens e adultos"><?php echo WORDING_CHILD_EDUCATION ?></option>
+                                <option value = "educacao de idosos"><?php echo WORDING_OLD_EDUCATION ?></option>
                             </select>
                         </div>
                     </div>
                     <!-- RECURSO APRENDIZAGEM -->
                     <div class="control-group">
-                        <label class="control-label" for="recursoAprendizagem"><?php echo WORDING_LEARNING_RESOURCE; ?></label>
+                        <label class="control-label" for="recursoAprendizagem"><?php echo WORDING_LEARNING_RESOURCE; ?> (Utilizar o CTRL para selecionar mais de um) </label>
                         <div class="controls">
-                            <select id = "recursoAprendizagem" name="recursoAprendizagem" required="true">
+                            <select id = "recursoAprendizagem[]" name="recursoAprendizagem[]" required="true" multiple>
+                                <option value = "conteúdo teórico e atividades"><?php echo WORDING_CONTENT_THEORY ?></option>
                                 <option value = "exercício"><?php echo WORDING_EXERCISE ?></option>
                                 <option value = "simulação"><?php echo WORDING_SIMULATION ?></option>
                                 <option value = "questionário"><?php echo WORDING_QUESTIONNAIRE ?></option>
@@ -694,7 +696,20 @@ if (isset($OA)) {
                                 <option value = "palestra"><?php echo WORDING_MULTIMIDIA_MATERIAL?></option>
                             </select>
                         </div>
-                    </div>              
+                    </div>
+                    <!-- GRAU DE INTERATIVIDADE -->
+                    <div class="control-group">
+                        <label class="control-label" for="grauInteratividade">Grau de interatividade<div class="tooltiploco"><div onmouseover="toolTip(7, '<?php echo HINT_INTERATIVITY_DESCRIPTION ?>')" onmouseout="deleteTooltip(7)">[ ? ]</div></div></label>
+                        <div class="controls">
+                            <select id = "grauInteratividade" name="grauInteratividade" required="true">
+                                <option value = "1">Muito Baixa</option>
+                                <option value = "2">Baixa</option>
+                                <option value = "3">Média</option>
+                                <option value = "4">Alta</option>
+                                <option value = "5">Muito Alta</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
                 <!-- CATEGORIA DIREITO -->
                 <!--div id="sub-conteudo4" class="tab"-->

@@ -51,12 +51,24 @@
 		</script>
 	</head>
 	<body onload="document_OnLoad(<?= $_GET['idOA']; ?>, <?= $_GET['idUsuario']; ?>, <?= $_GET['idDisciplina']; ?>)">
-		<div style="width: 100%; height: 20%;">
+		<div style="width: 100%; height: 20%;font-size: 16px;">
 
 			<!--Se quiserem remover o módulo de avaliação qualitativa, basta enviar o form para outra página e excluir a div com ID "modulo_avaliacao_qualitativa" abaixo-->
 			<form id="form_avaliacoes" action="modulo_avaliacao_quali.php" method="POST" onsubmit="return false;">
-			<div class='rating'>
-				<h5>Por favor, classifique:</h5>
+			
+
+			<!--MODULO DE AVALIACAO QUALITATIVA-->
+			<div id="modulo_avaliacao_qualitativa" style="width:50%;float:right;">
+				<h3>Dessas frases, marque a que melhor complementa sua classificação desse objeto:</h3>
+				<p><input type="radio" name="av_quali" value="4">Não gostei do formato desse formato.</input></p>
+				<p><input type="radio" name="av_quali" value="1">Achei super útil, complementa o conteúdo abordado em aula.</input></p>
+				<p><input type="radio" name="av_quali" value="2">Super fácil, o conteúdo não trouxe nenhuma novidade para mim.</input></p>
+				<p><input type="radio" name="av_quali" value="3">Não entendi porque esse objeto foi recomendado nessa disciplina.</input></p>
+				<p><input type="radio" name="av_quali" value="5">Achei complexo demais, abordava temas que nunca ouvi falar.</input></p>
+
+			</div>
+			<div style='padding-left: 10px; width: 48%; float: left;'><div class='rating'>
+				<h3>Por favor, classifique:</h3>
 				<input type='radio' id='classificacao5' name='rating' value='5' />
 				<label for='classificacao5' title='Adorei'></label>
 				<input type='radio' id='classificacao4' name='rating' value='4' />
@@ -67,23 +79,13 @@
 				<label for='classificacao2' title='Não gostei'></label>
 				<input type='radio' id='classificacao1' name='rating' value='1' />
 				<label for='classificacao1' title='Detestei'></label>
-			</div>
-
-			<!--MODULO DE AVALIACAO QUALITATIVA-->
-			<div id="modulo_avaliacao_qualitativa" style="width:50%;float:right;">
-				<h5>Dessas frases, marque a que melhor complementa sua classificação desse objeto:</h5>
-				<p><input type="radio" name="av_quali" value="4">Não gostei do formato desse formato.</input></p>
-				<p><input type="radio" name="av_quali" value="1">Achei super útil, complementa o conteúdo abordado em aula.</input></p>
-				<p><input type="radio" name="av_quali" value="2">Super fácil, o conteúdo não trouxe nenhuma novidade para mim.</input></p>
-				<p><input type="radio" name="av_quali" value="3">Não entendi porque esse objeto foi recomendado nessa disciplina.</input></p>
-				<p><input type="radio" name="av_quali" value="5">Achei complexo demais, abordava temas que nunca ouvi falar.</input></p>
-
-			</div>
-			<div style='padding-left: 10px; width: 48%; float: left;'><textarea name="av_subj" placeholder='Deixe um comentário'></textarea></div>
+			</div><textarea name="av_subj" placeholder='Deixe um comentário'></textarea></div>
 			<input type="hidden" name="id" value="<?php echo $_GET['idOA']; ?>" />
-			<a class="botao-med" onclick="submitAvaliacoes();" style="width:90%;margin-left:5%;margin-bottom: 10px;float:left;">Enviar Avaliações</a>
+			<div style="float: left; width:100%; height: 80px; text-align: center; margin-top: 20px">
+				<a class="botao-med" onclick="submitAvaliacoes();" style="width:200px;">Enviar Avaliações</a>
+			</div>
 			</form>
 		</div>
-		<iframe name="Stack" style="width: 100%; height: 80%;" frameborder="0" id="iframe" src="<?php echo $_GET['url']; ?>"></iframe>
+		<iframe name="Stack" style="width: 100%; height: 80%;float:left;" frameborder="0" id="iframe" src="<?php echo $_GET['url']; ?>"></iframe>
 	</body>
 </html>
