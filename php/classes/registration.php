@@ -61,7 +61,6 @@ class Registration
                 // "Adding the charset to the DSN is very important for security reasons,
                 // most examples you'll see around leave it out. MAKE SURE TO INCLUDE THE CHARSET!"
                 $this->db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
-                echo 'conexaoBD';
                 return true;
             // If an error is catched, database connection failed
             } catch (PDOException $e) {
@@ -77,6 +76,7 @@ class Registration
      */
     private function registerNewUser($user_name, $user_email, $user_password, $user_password_repeat)
     {
+        var_dump($user_name);
         // we just remove extra space on username and email
         $user_name  = trim($user_name);
         $user_email = trim($user_email);

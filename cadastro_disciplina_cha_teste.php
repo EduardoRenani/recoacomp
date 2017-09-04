@@ -13,6 +13,7 @@ require_once('config/base.php');
 // so this single line handles the entire login process.
 $disciplina = new Disciplina();
 $competencia = new Competencia();
+$instrumento_oa = new Instrumento();
 //include("views/view_cadastro_disciplina.php");
 // ... ask if we are logged in here:
 if (($login->isUserLoggedIn() == true) && ($login->getUserAccess() == 2) || ($login->getUserAccess() == 3)){

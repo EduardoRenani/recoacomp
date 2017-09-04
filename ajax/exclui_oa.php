@@ -8,12 +8,12 @@ $idOA = $_GET['idOA'];
 try {
 	// Deleta da tabela de relação de disciplina competência
 	$db_connection = new PDO('mysql:host='. DB_HOST .';dbname='. DB_NAME . ';charset=utf8', DB_USER, DB_PASS);
-	$excluirOA = $db_connection->prepare("DELETE FROM disciplina_competencia WHERE discplina_iddisciplina = :idDisciplina");
+	$excluirOA = $db_connection->prepare("DELETE FROM competencia_oa WHERE id_OA = :idOA");
 	$excluirOA->bindValue(':idOA', $idOA, PDO::PARAM_INT);
 	$excluirOA->execute();
 
 	// Atualiza a tabela das disciplinas
-	$excluirOA = $db_connection->prepare("UPDATE OA SET excluida = 1 WHERE idOA = :idOA");
+	$excluirOA = $db_connection->prepare("DELETE FROM cesta WHERE idcesta = :idOA");
 	$excluirOA->bindValue(':idOA', $idOA, PDO::PARAM_INT);
 	$excluirOA->execute();
 	echo $idOA;

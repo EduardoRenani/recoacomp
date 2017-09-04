@@ -650,27 +650,27 @@ $(window).mouseup(function(){fazAjaxCompetencias();});
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label" for="descricaoNome"><?php echo WORDING_COMPETENCIA_DESCRICAO; ?></label><div class="tooltiploco"></label><div onmouseover="toolTip(1, 'Descrição textual do conteúdo da competência')" onmouseout="deleteTooltip(1)">[?]</div></div>
+                                    <label class="control-label" for="descricaoNome"><?php echo WORDING_COMPETENCIA_DESCRICAO; ?></label><div class="tooltiploco"></label><div onmouseover="toolTip(1, ' Conjunto de elementos compostos pelos Conhecimentos, Habilidades e pelas Atitudes, sintetizados na sigla CHA. Tal conjunto é estruturado em um contexto determinado com o intuito de solucionar um problema, lidar com uma situação nova. Ex.: competência COMUNICAÇÃO -  está fundamentada na clareza e na objetividade da expressão oral, gestual e escrita.')" onmouseout="deleteTooltip(1)">[?]</div></div>
                                     <div class="controls">
                                         <textarea name="descricaoNome" Rows="5" COLS="40"></textarea>
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label" for="conhecimentoDescricao"><?php echo WORDING_CONHECIMENTO_DESCRICAO; ?></label>
+                                    <label class="control-label" for="conhecimentoDescricao"><?php echo WORDING_CONHECIMENTO_DESCRICAO; ?></label><div class="tooltiploco"></label><div onmouseover="toolTip(1, ' Relacionado ao saber conhecer; refere-se à representação organizada da realidade. Ex: Com relação ao ato de comunicar - Norma culta da língua, compreender regras de comportamento, formas de comunicação, público/receptores.')" onmouseout="deleteTooltip(1)">[?]</div></div>
                                     <div class="controls">
                                         <input type="text" data-role="tagsinput" id="conhecimentoDescricao" name="conhecimentoDescricao" class="required" />
                                         <!--textarea name="conhecimentoDescricao" Rows="5" COLS="40"></textarea-->
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label" for="habilidadeDescricao"><?php echo WORDING_HABILIDADE_DESCRICAO; ?></label>
+                                    <label class="control-label" for="habilidadeDescricao"><?php echo WORDING_HABILIDADE_DESCRICAO; ?></label><div class="tooltiploco"></label><div onmouseover="toolTip(1, ' Relacionada ao saber fazer, refere-se aos conhecimentos processuais e procedimentais para aresolução de um problema. Ex: Com relação ao ato de comunicar – Escrever de forma clara, objetiva e coerente; interpretar mensagens recebidas; saber como impostar a voz; saber articular as palavras e usar vocabulário adequado.')" onmouseout="deleteTooltip(1)">[?]</div></div>
                                     <div class="controls">
                                         <input type="text" data-role="tagsinput" id="habilidadeDescricao" name="habilidadeDescricao" class="required" />
                                         <!--textarea name="habilidadeDescricao" Rows="5" COLS="40"></textarea-->
                                     </div>
                                 </div>  
                                 <div class="control-group">
-                                    <label class="control-label" for="atitudeDescricao"><?php echo WORDING_ATITUDE_DESCRICAO; ?></label>
+                                    <label class="control-label" for="atitudeDescricao"><?php echo WORDING_ATITUDE_DESCRICAO; ?></label><div class="tooltiploco"></label><div onmouseover="toolTip(1, '  Relacionada ao saber ser e conviver; refere-se a aspectos sociais e afetivos que orientam  a conduta em relação aos outros, ao trabalho ou a situações. Ex.: Com relação ao ato de comunicar - Ser expressivo, empático, cauteloso e articulado.')" onmouseout="deleteTooltip(1)">[?]</div></div>
                                     <div class="controls">
                                         <input type="text" data-role="tagsinput" id="atitudeDescricao" name="atitudeDescricao" class="required" />
                                         <!-- textarea name="atitudeDescricao" Rows="5" COLS="40"></textarea-->

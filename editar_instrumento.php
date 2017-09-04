@@ -9,19 +9,18 @@ if (version_compare(PHP_VERSION, '5.3.7', '<')) {
     require_once('libraries/password_compatibility_library.php');
 }
 require_once('config/base.php');
+
 // create a login object. when this object is created, it will do all login/logout stuff automatically
 // so this single line handles the entire login process.
 $disciplina = new Disciplina();
 $competencia = new Competencia();
-$instrumento_oa = new Instrumento();
-//include("views/view_cadastro_disciplina.php");
+$instrumento = new Instrumento();
+
 // ... ask if we are logged in here:
-if (($login->isUserLoggedIn() == true) && ($login->getUserAccess() == 2) || ($login->getUserAccess() == 3) || ($login->getUserAccess() == 1)){
+if ($login->isUserLoggedIn() == true) {
     // the user is logged in. you can do whatever you want here.
     // for demonstration purposes, we simply show the "you are logged in" view.
-
-    include("views/view_cadastro_disciplina_cha.php");
-
+    include("views/view_editar_instrumento.php");
 
 } else {
     // the user is not logged in. you can do whatever you want here.

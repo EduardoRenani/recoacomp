@@ -28,10 +28,12 @@ class User {
         $sql = "SELECT * FROM users WHERE user_id = :idUsuario";
         $database->query($sql);
         $database->bind(":idUsuario", $this->id);
-        $this->setName($database->resultSet()[0]['user_name']);
-        $this->setEmail($database->resultSet()[0]['user_email']);
-        $this->setAcesso($database->resultSet()[0]['acesso']);
-        $this->setTipoVisao($database->resultSet()[0]['tipo_visao']);
+        if(isset($database->resultSet()[0])) {
+            $this->setName($database->resultSet()[0]['user_name']);
+            $this->setEmail($database->resultSet()[0]['user_email']);
+            $this->setAcesso($database->resultSet()[0]['acesso']);
+            $this->setTipoVisao($database->resultSet()[0]['tipo_visao']);
+        }
         return $database->resultSet();
     }
 

@@ -21,9 +21,5 @@
 			Cadastrar Instrumento de Avaliação
 </li>
 </a>
-<a href="preferences.php">
-	<li>
-		Preferências
-	</li>
-</a>
+
 <br>

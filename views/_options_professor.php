@@ -24,14 +24,10 @@
 							</li>
 						</a>
 						<!-- Meu Perfil -->
-						<a href="preferences.php">
-							<li>
-								Preferências
-							</li>
-						</a>
+
 						<li class="visao">
 						<form method="get" action="#" id="tipoUsuario" name="tipoUsuario">
-							<select name="codTipoUsuario" onchange ="this.form.submit()" onfocus="this.selectedIndex = -1;"> <!-- -->
+							<select name="codTipoUsuario" onchange ="this.form.submit()"> <!-- -->
 								<option value="<?php echo VISAO_ALUNO ?>" selected >Visão de Aluno</option>
 								<option value="<?php echo VISAO_PROFESSOR?>">Visão de Professor</option>
 							</select>
@@ -81,15 +77,11 @@
 								Cadastrar Instrumento de Avaliação
 					</li>
 					</a>
-					<a href="preferences.php">
-					<li>
-								Preferências
-					</li>
-					</a>
+
 					<li class="visao">
 						<br><br>
 						<form method="get" action="#" id="tipoUsuario" name="tipoUsuario">
-							<select name="codTipoUsuario" onchange ="this.form.submit()" onfocus="this.selectedIndex = -1;"> <!-- -->
+							<select name="codTipoUsuario" onchange ="this.form.submit()"> <!-- -->
 								<option value="<?php echo VISAO_ALUNO ?>">Visão de Aluno</option>
 								<option value="<?php echo VISAO_PROFESSOR?>" selected>Visão de Professor</option>
 							</select>
@@ -152,16 +144,12 @@
 								Cadastrar Instrumento de Avaliação
 					</li>
 					</a>
-				<a href="preferences.php">
-					<li>
-								Preferências
-					</li>
-					</a>
+
 				<!-- Ver como -->
 
 				<li class="visao">
 					<form method="get" action="#" id="tipoUsuario" name="tipoUsuario">
-						<select name="codTipoUsuario" onchange ="this.form.submit()" onfocus="this.selectedIndex = -1;"> <!-- -->
+						<select name="codTipoUsuario" onchange ="this.form.submit()"> <!-- -->
 							<option value="<?php echo VISAO_ALUNO ?>">Visão de Aluno</option>
 							<option value="<?php echo VISAO_PROFESSOR?>" selected>Visão de Professor</option>
 						</select>

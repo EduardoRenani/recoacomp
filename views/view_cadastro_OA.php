@@ -364,6 +364,7 @@ $(function(){AjaxCompetenciaListas()});
                     document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(7)');
                 }
                 else {
+                    $("html, body").animate({ scrollTop: 0 }, "fast");
                     if(document.getElementsByName('nome')[0].value.length == 0) {
                         document.getElementsByName('nome')[0].style.border = "1px solid #dc8810";
                         document.getElementsByName('nome')[0].setAttribute("placeholder", "Este campo é necessário");
@@ -421,6 +422,7 @@ $(function(){AjaxCompetenciaListas()});
                     document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(8)');
                 }
                 else {
+                    $("html, body").animate({ scrollTop: 0 }, "fast");
                     if(document.getElementsByName('date')[0].value.length == 0) {
                         document.getElementsByName('date')[0].style.border = "1px solid #dc8810";
                         document.getElementsByName('date')[0].setAttribute("placeholder", "Este campo é necessário");
@@ -472,6 +474,7 @@ $(function(){AjaxCompetenciaListas()});
                     document.getElementById('buttonPrevious').setAttribute('onclick', 'mudaTab(11)');
                 }
                 else {
+                    $("html, body").animate({ scrollTop: 0 }, "fast");
                     if(document.getElementsByName('descricao_educacional')[0].value.length == 0) {
                         document.getElementsByName('descricao_educacional')[0].style.border = "1px solid #dc8810";
                         document.getElementsByName('descricao_educacional')[0].setAttribute("placeholder", "Este campo é necessário");
@@ -508,6 +511,7 @@ $(function(){AjaxCompetenciaListas()});
                     document.getElementById('finisher').removeAttribute('style');
                 }
                 else {
+                    $("html, body").animate({ scrollTop: 0 }, "fast");
                     document.getElementById("sub-conteudo5").getElementsByTagName('span')[1].innerHTML = "<span style='color: #dc8810'>Escolha uma competência";
                     document.getElementById("tabela1").style.border = "1px solid #dc8810";
                     document.getElementById("tabela2").style.border = "1px solid #dc8810";
@@ -858,14 +862,14 @@ $(function(){AjaxCompetenciaListas()});
                     <div class="control-group">
                         <label class="control-label" for="descricao_educacional"><div style="float: left"><?php echo WORDING_EDUCATIONAL_DESCRIPTION; ?></div><div class="tooltiploco"><div onmouseover="toolTip(6, '<?php echo HINT_EDUCACIONAL_DESCRIPTION ?>')" onmouseout="deleteTooltip(6)">[ ? ]</div></div></label>
                         <div class="controls">
-                            <textarea name="descricao_educacional" id="descricao_educacional" ROWS="5" COLS="40"></textarea>
+                            <textarea name="descricao_educacional" id="descricao_educacional" ROWS="5" COLS="40" required></textarea>
                         </div>
                     </div>
     				<!-- FAIXA ETÁRIA -->
     				<div class="control-group">
                         <label class="control-label" for="faixaEtaria"><?php echo WORDING_AGE_GROUP; ?> (Utilizar o CTRL para selecionar mais de um)</label>
                         <div class="controls">
-    						<select id = "faixaEtaria[]" name="faixaEtaria[]" required="true" multiple>
+    						<select id = "faixaEtaria[]" name="faixaEtaria[]" multiple required>
     							<option value = "ensino fundamental"><?php echo WORDING_BASIC_EDUCATION ?></option>
     							<option value = "ensino medio"><?php echo WORDING_HIGHSCOOL ?></option>
                                 <option value = "ensino profissionalizante"><?php echo WORDING_PROFESSIONAL_EDUCATION ?></option>
@@ -879,7 +883,7 @@ $(function(){AjaxCompetenciaListas()});
     				<div class="control-group">
                         <label class="control-label" for="recursoAprendizagem"><?php echo WORDING_LEARNING_RESOURCE; ?> (Utilizar o CTRL para selecionar mais de um) </label>
                         <div class="controls">
-    						<select id = "recursoAprendizagem[]" name="recursoAprendizagem[]" required="true" multiple>
+    						<select id = "recursoAprendizagem[]" name="recursoAprendizagem[]" required="true" multiple required>
     							<option value = "conteúdo teórico e atividades"><?php echo WORDING_CONTENT_THEORY ?></option>
     							<option value = "exercício"><?php echo WORDING_EXERCISE ?></option>
     							<option value = "simulação"><?php echo WORDING_SIMULATION ?></option>
@@ -905,7 +909,7 @@ $(function(){AjaxCompetenciaListas()});
                     <div class="control-group">
                         <label class="control-label" for="grauInteratividade">Grau de interatividade<div class="tooltiploco"><div onmouseover="toolTip(7, '<?php echo HINT_INTERATIVITY_DESCRIPTION ?>')" onmouseout="deleteTooltip(7)">[ ? ]</div></div></label>
                         <div class="controls">
-                            <select id = "grauInteratividade" name="grauInteratividade" required="true">
+                            <select id = "grauInteratividade" name="grauInteratividade" required="true" required>
                                 <option value = "1">Muito Baixa</option>
                                 <option value = "2">Baixa</option>
                                 <option value = "3">Média</option>

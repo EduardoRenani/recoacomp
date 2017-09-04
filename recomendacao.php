@@ -24,7 +24,110 @@ require_once('config/base.php');
 // so this single line handles the entire login process.
 include('views/_header.php');
 ?>
+<style>
+body {
+    font-family: "Lato", sans-serif;
+}
+#mySidenav .parent .sub-nav {
+  display: none;
+}
+#mySidenav .parent .sub-nav {
+  display: none;
+}
+#seta-filtro{
+  height:100%;
+  cursor: pointer;
+  cursor:hand;color: white;
+  position: fixed;
+  right: 1px;
+  font-size: 90px;
+  padding-top: 350px;
+
+}
+#mySidenav {
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 55;
+    right: 0;
+    background-color: #fff;
+    overflow-x: hidden;
+    transition: 0s;
+    bottom: 0;
+    width: 0px;
+    border-left: solid 30px #108ac0;
+    height:100%;
+    padding-top: 55px;
+}
+#mySidenav.aberto {
+    width: 250px;
+    top: 55px;
+    border-left:solid 30px #108ac0;
+    padding-top:55px;
+}
+
+#seta-filtro.rotate{
+    cursor: pointer;
+    cursor:hand;
+    color: white;
+    position: fixed;
+    right: 220px;
+    font-size: 90px;
+    height:100%;
+    padding-top: 295px;
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    left: 23px;
+    font-size: 36px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.sidenav label {
+    margin: initial;
+}
+</style>
 <script language='javascript'>
+      $(document).ready(function() {
+        $('#showmenu1').click(function() {
+                $('.subnav1').slideToggle("fast");
+
+        });
+    });
+      $(document).ready(function() {
+        $('#showmenu2').click(function() {
+                $('.subnav2').slideToggle("fast");
+        });
+    });
+      $(document).ready(function() {
+        $('#showmenu3').click(function() {
+                $('.subnav3').slideToggle("fast");
+        });
+    });
+      $(document).ready(function() {
+        $('#showmenu4').click(function() {
+                $('.subnav4').slideToggle("fast");
+        });
+    });
+      $(document).ready(function() {
+        $('#showmenu5').click(function() {
+                $('.subnav5').slideToggle("fast");
+        });
+    });
     $(document).ready(function(){
         $('.conteudo').find('button').click(function(){
             div = $(this).closest('div#conteudo').next('#conteudo-expansivel');
@@ -53,23 +156,76 @@ include('views/_header.php');
 
             });
 
-        $("input[type='checkbox']").change(function() {
-            var list = "";
+  var $filterCheckboxes = $('input[type="checkbox"');
 
-        $("input[type='checkbox']").each(function() {
-            if (this.checked) {
-                list = list + '.' + $(this).attr('id');
-            }
-        });
+$filterCheckboxes.on('change', function() {
 
-         if (list !== '') {
-            $("li.disciplinas-item").hide();
-             $(list).show();
-        } else {
-            $("li.disciplinas-item").show();
-      }
+  var selectedFilters = {};
+
+  $filterCheckboxes.filter(':checked').each(function() {
+
+    if (!selectedFilters.hasOwnProperty(this.name)) {
+      selectedFilters[this.name] = [];
+    }
+
+    selectedFilters[this.name].push(this.value);
+
+  });
+
+  // cria uma seleção de todos os elementos que podem ser filtrados
+  var $filteredResults = $('.disciplinas-item');
+
+  // loop over the selected filter name -> (array) values pairs
+  $.each(selectedFilters, function(name, filterValues) {
+
+    // filtra cada elemento de classe .disciplinas-item
+    $filteredResults = $filteredResults.filter(function() {
+
+      var matched = false,
+        currentFilterValues = $(this).data('category').split(' ');
+
+      // loop over each category value in the current .flower's data-category
+      $.each(currentFilterValues, function(_, currentFilterValue) {
+
+        // if the current category exists in the selected filters array
+        // set matched to true, and stop looping. as we're ORing in each
+        // set of filters, we only need to match once
+
+        if ($.inArray(currentFilterValue, filterValues) != -1) {
+          matched = true;
+          return false;
+        }
+      });
+
+      // se o match ocorreu, o elemento .disciplinas-item é retornado
+      return matched;
+
     });
+  });
+
+  $('.disciplinas-item').hide().filter($filteredResults).show();
+
+
+
+
+
 });
+$("#seta-filtro").on('click', function () {
+    $("#mySidenav").toggleClass("aberto");
+    $("#seta-filtro").toggleClass("rotate");
+    
+});
+});
+
+
+function toggle(el) {
+var tag=document.getElementById(el);
+  tag.style.display = tag.style.display === 'block' ? 'none' : 'block';
+}
+
+
+
+
 
 </script>
 <div class='fixedBackgroundGradient'></div>
@@ -80,6 +236,7 @@ include('views/_header.php');
 
 require_once("views/sidebar.php");
 
+$instrumento_oa = new Instrumento();
 // ... ask if we are logged in here:
 if ($login->isUserLoggedIn() == true) {
     // the user is logged in. you can do whatever you want here.
@@ -99,7 +256,7 @@ if ($login->isUserLoggedIn() == true) {
         echo
         "<div class='disciplinas-recomendacao'>".
         "<div class='top-disciplinas'>Recomendação</div><div class='recomendacao-content' style='padding: 0'>";
-            
+
             $c= new Recomendacao($id,$vet);
 
         echo "</div></div></div>";
@@ -107,31 +264,128 @@ if ($login->isUserLoggedIn() == true) {
 
     }
 
-    
+  
 } else {
     // the user is not logged in. you can do whatever you want here.
     // for demonstration purposes, we simply show the "you are not logged in" view.
     include("views/not_logged_in.php");
 }
 ?>
-<div style="position: fixed; right: 0px; width: 240px;">
-    <ul class="subnav">
-      <li class="lifilter">
-        <label><input type="checkbox" class="filtercheck" id="download" />download</label>
-      </li>
-      <li class="lifilter">
-        <label><input type="checkbox" class="filtercheck" id="navegador" />navegador</label>
-      </li>
-    </ul>
-    <ul class="subnav3">
-      <li class="lifilter3">
-        <label><input type="checkbox" class="filtercheck2" id="ingles" />ingles</label>
-      </li>
-      <li class="lifilter3">
-        <label><input type="checkbox" class="filtercheck2" id="portugues" />portugues</label>
-      </li>
-      <li class="lifilter3">
-        <label><input type="checkbox" class="filtercheck2" id="espanhol" />espanhol</label>
-      </li>
-    </ul>
+<div id="mySidenav" class="sidenav"><h1 id="seta-filtro">&#x2039;</h1>
+  <div id="showmenu1" style="padding-bottom: 20px;"><p style="font-size:23px;cursor: pointer;cursor:hand;"><strong>Idioma &#x203A;</strong></p></div>
+  <div class="subnav1" style="display:none">
+    <form>
+      <label >
+        <input type="checkbox" style="font-size: 16px" name="oa-ling" value="portugues" id="portugues" /> Português</label>
+      <br>
+      <label >
+        <input type="checkbox" style="font-size: 16px" name="oa-ling" value="ingles" id="ingles" /> Inglês</label>
+      <br>
+      <label >
+        <input type="checkbox" style="font-size: 16px" name="oa-ling" value="espanhol" id="espanhol" /> Espanhol</label>
+      <br>
+      <label >
+        <input type="checkbox" style="font-size: 16px" name="oa-ling" value="alemao" id="alemao" /> Alemão</label>
+    </form>
+  </div>
+  <div id="showmenu2" style="padding-bottom: 20px;border-style: solid;border-color: grey white white white;border-width: 1px;"><p style="font-size:23px;cursor: pointer;cursor:hand;"><strong>Modo de visualização &#x203A;</strong></p></div>
+  <div class="subnav2" style="display:none">
+  <form>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-visual" value="download" id="download" /> Download</label>
+    <br>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-visual" value="navegador" id="navegador" /> Web</label>
+  </form>
+</div>
+
+<!--   <div id="showmenu3" style="padding-bottom: 20px;border-style: solid;border-color: grey white white white;border-width: 1px;"><p style="font-size:23px;cursor: pointer;cursor:hand;"><strong>Público Alvo &#x203A;</strong></p></div>
+  <div class="subnav3" style="display:none">
+  <form>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-pub" value="infantil" id="infantil" /> Ensino Infantil</label>
+    <br>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-pub" value="fundamental" id="fundamental" /> Ensino Fundamental</label>
+    <br>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-pub" value="medio" id="medio" /> Ensino Médio</label>
+    <br>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-pub" value="adultos" id="adultos" /> Educação de Jovens e Adultos</label>
+    <br>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-pub" value="profissionalizante" id="profissionalizante" /> Educação Profissionalizante</label>
+    <br>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-pub" value="superior" id="superior" /> Ensino Superior</label>
+  </form>
+  </div>
+  <div id="showmenu4" style="padding-bottom: 20px;border-style: solid;border-color: grey white white white;"><p style="font-size:23px;cursor: pointer;cursor:hand;"><strong>Sistema Operacional &#x203A;</strong></p></div>
+  <div class="subnav4" style="display:none">
+  <form>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-so" value="windows" id="windows" /> Windows</label>
+    <br>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-so" value="linux" id="linux" /> Linux</label>
+    <br>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-so" value="mac" id="mac" /> Mac OS</label>
+    <br>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-so" value="ios" id="ios" /> iOS</label>
+    <br>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-so" value="android" id="android" /> Android</label>
+    <br>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-so" value="phone" id="phone" /> Windows Phone</label>
+  </form>
+  </div> -->
+  <div id="showmenu5" style="padding-bottom: 20px;border-style: solid;border-color: grey white white;border-width: 1px;"><p style="font-size:23px;cursor: pointer;cursor:hand;"><strong>Recurso de Aprendizagem &#x203A;</strong></p></div>
+  <div class="subnav5" style="display:none">
+  <form>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-recurso" value="exercício" id="exercício" /> Exercício</label>
+    <br>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-recurso" value="gráfico" id="gráfico" /> Gráfico</label>
+    <br>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-recurso" value="diagrama" id="diagrama" /> Diagrama</label>
+    <br>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-recurso" value="simulação" id="simulação" /> Simulação</label>
+    <br>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-recurso" value="problema" id="problema" /> Problema</label>
+    <br>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-recurso" value="video" id="video" /> Vídeo</label>
+    <br>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-recurso" value="documento" id="documento" /> Documento</label>
+    <br>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-recurso" value="jogo" id="jogo" /> Jogo</label>
+    <br>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-recurso" value="animacao" id="animacao" /> Animação</label>
+    <br>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-recurso" value="audio" id="audio" /> Áudio</label>
+    <br>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-recurso" value="pagina" id="pagina" /> Página da Web</label>
+    <br>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-recurso" value="livro" id="livro" /> Livro Digital</label>
+    <br>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-recurso" value="conteúdo" id="conteúdo" /> Conteúdo Teórico e Atividades</label>
+    <br>
+    <label >
+      <input type="checkbox" style="font-size: 16px" name="oa-recurso" value="multimídia" id="multimídia" /> Material Multimídia</label>
+  </form>
 </div>

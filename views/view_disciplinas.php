@@ -83,38 +83,38 @@
 
 
 
-                foreach ($disciplinasOrdemAlfabetica as $ordemAlfabetica => $disciplina) {
-					if($disciplina['tipo_atividade'] == ATIVIDADE_DISCIPLINA) {
-						$disciplina['tipo_atividade'] = "Atividade de Ensino";
-					} else if($disciplina['tipo_atividade'] == ATIVIDADE_CURSO) {
-						$disciplina['tipo_atividade'] = "Curso";
-					} else if($disciplina['tipo_atividade'] == ATIVIDADE_PROJETO) {
-						$disciplina['tipo_atividade'] = "Projeto";
-					} else if($disciplina['tipo_atividade'] == ATIVIDADE_OUTROS) {
-						$disciplina['tipo_atividade'] = "Outros";
+                foreach ($disciplinasOrdemAlfabetica as $ordemAlfabetica => $new_disciplina) {
+					if($new_disciplina['tipo_atividade'] == ATIVIDADE_DISCIPLINA) {
+						$new_disciplina['tipo_atividade'] = "Atividade de Ensino";
+					} else if($new_disciplina['tipo_atividade'] == ATIVIDADE_CURSO) {
+						$new_disciplina['tipo_atividade'] = "Curso";
+					} else if($new_disciplina['tipo_atividade'] == ATIVIDADE_PROJETO) {
+						$new_disciplina['tipo_atividade'] = "Projeto";
+					} else if($new_disciplina['tipo_atividade'] == ATIVIDADE_OUTROS) {
+						$new_disciplina['tipo_atividade'] = "Outros";
 					}
                     // Se a disciplina não estiver com a flag excluida ela será mostrada
-                    if($disciplina['excluida'] === '0'){
+                    if($new_disciplina['excluida'] === '0'){
                         if(!(isset($_POST['codTipoUsuario']))){
                             echo
                                 "<li class='disciplinas-item'>".
                                     "<div class='disciplina-item-content'>".
                                         "<div class='lista-disciplina'>".
-                                            "<h3>".$disciplina['nomeDisciplina']." (".$disciplina['tipo_atividade'].")</h3>".
-                                            "<h4>".$disciplina['nomeCurso']."</h4>".
-                                            "<p>".$disciplina['descricao'].
+                                            "<h3>".$new_disciplina['nomeDisciplina']." (".$new_disciplina['tipo_atividade'].")</h3>".
+                                            "<h4>".$new_disciplina['nomeCurso']."</h4>".
+                                            "<p>".$new_disciplina['descricao'].
                                             "<br>".
-                                            "<br><a href='#openModalDeleteDisciplina' id=".$disciplina['iddisciplina']." class='botao-med' onClick='getDisciplinaId(this.id)'>Excluir</a>". // 
+                                            "<br><a href='#openModalDeleteDisciplina' id=".$new_disciplina['iddisciplina']." class='botao-med' onClick='getDisciplinaId(this.id)'>Excluir</a>". // 
                                         "</div>".
                                     "</div>".
                                     "<div style='display: block;'>".
                                         "<form method='post' action='editar_disciplina.php' name='senha_disciplina'>".
-                                            "<input type='hidden' id='idDisciplina' name='idDisciplina' value=".$disciplina['iddisciplina']." />".
+                                            "<input type='hidden' id='idDisciplina' name='idDisciplina' value=".$new_disciplina['iddisciplina']." />".
                                             "<input type='submit' name='editar_disciplina.php' action='' value='Informações da Disciplina' />".
                                         "</form>".
                                         "<div class='button'>".
                                         "<form action='cadastro_disciplina_cha_teste.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
-                                           "<input type='hidden' name='disc' value='".$disciplina['iddisciplina']."'>".
+                                           "<input type='hidden' name='disc' value='".$new_disciplina['iddisciplina']."'>".
                                             "<input type='submit' value='Testar Recomendação'></br></br>".
                                             "</form>".
                                         "</div>".

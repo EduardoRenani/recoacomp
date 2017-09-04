@@ -90,18 +90,54 @@
 						else if($disciplina['tipo_atividade'] == ATIVIDADE_OUTROS) {
 							$tipo_atividade = "Outros";
 						}
-                        echo
-                            "<li class='disciplinas-item'>".
-                                "<div class='disciplina-item-content'>".
-                                    "<h3>".utf8_encode($disciplina['nomeDisciplina'])."(".utf8_encode($tipo_atividade).")</h3>".
-                                    "<h4>".utf8_encode($disciplina['nomeCurso'])." - ".utf8_encode($professor['user_name'])."</h4>".
-                                    "<p>".utf8_encode($disciplina['descricao'])."</p>".
-                                "</div>".
-                                "<div class='button'><form action='recomendacao.php' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
-                                    "<input type='hidden' name='disc' value='".$listaDisc[ $i ]."'>".
-                                    "<input type='submit' value='Receber Recomendação'></br></br>".
-                                "</form></div>".
-                            "</li>";
+                        $new_disciplina = new Disciplina();
+                        if(!$new_disciplina->hasInstrumento() || (!$new_disciplina->checkMeio($listaDisc[$i]) && !$new_disciplina->checkFim($listaDisc[$i]))) {
+                            echo "<li class='disciplinas-item'>".
+                                    "<div class='disciplina-item-content'>".
+                                        "<h3>".$disciplina['nomeDisciplina']."(".$tipo_atividade.")</h3>".
+                                        "<h4>".$disciplina['nomeCurso']." - ".$professor['user_name']."</h4>".
+                                        "<p>".$disciplina['descricao']."</p>".
+                                    "</div>".
+                                    "<div class='button'><form action='recomendacao.php?codTipoUsuario=".$_GET['codTipoUsuario']."' method='POST'>"./*action é só para mostrar, no site em si não tem isso*/
+                                        "<input type='hidden' name='disc' value='".$listaDisc[ $i ]."'>".
+                                        "<input type='submit' value='Receber Recomendação'></br></br>".
+                                    "</form></div>".
+                                "</li>";
+                        }
+                        else if($new_disciplina->hasInstrumento() && $new_disciplina->checkMeio($listaDisc[$i])) {
+                            echo "<li class='disciplinas-item'>".
+                                    "<div class='disciplina-item-content'>".
+                                        "<h3>".$disciplina['nomeDisciplina']."(".$tipo_atividade.")</h3>".
+                                        "<h4>".$disciplina['nomeCurso']." - ".$professor['user_name']."</h4>".
+                                        "<p>".$disciplina['descricao']."</p>".
+                                    "</div>".
+                                    "<div class='button'><form method='post' action='cadastro_disciplina_cha.php?redirecionar=1&codTipoUsuario=".$_GET['codTipoUsuario']."' name='senha_disciplina'>
+                                        <input type='hidden' name='senha' value='".$disciplina['senha']."'>
+                                        <input type='hidden' id='idUsuario' name='idUsuario' value='".$_SESSION['user_id']."'>
+                                        <input type='hidden' id='idDisciplina' name='idDisciplina' value='".$listaDisc[$i]."'>
+                                        <input type='hidden' name='okay' value='nope'>
+                                        <input type='hidden' id='link' name='link' value='/recoacomp/disciplinas_disponiveis.php'>
+                                        <input type='submit' name='verifica_senha' action='' value='Receber Recomendação'>
+                                    </form></div>".
+                                "</li>";
+                        }
+                        else if($new_disciplina->hasInstrumento()) {
+                            echo "<li class='disciplinas-item'>".
+                                    "<div class='disciplina-item-content'>".
+                                        "<h3>".$disciplina['nomeDisciplina']."(".$tipo_atividade.")</h3>".
+                                        "<h4>".$disciplina['nomeCurso']." - ".$professor['user_name']."</h4>".
+                                        "<p>".$disciplina['descricao']."</p>".
+                                    "</div>".
+                                    "<div class='button'><form method='post' action='cadastro_disciplina_cha.php?redirecionar=1&codTipoUsuario=".$_GET['codTipoUsuario']."' name='senha_disciplina'>
+                                        <input type='hidden' name='senha' value='".$disciplina['senha']."'>
+                                        <input type='hidden' id='idUsuario' name='idUsuario' value='".$_SESSION['user_id']."'>
+                                        <input type='hidden' id='idDisciplina' name='idDisciplina' value='".$listaDisc[$i]."'>
+                                        <input type='hidden' name='okay' value='nope'>
+                                        <input type='hidden' id='link' name='link' value='/recoacomp/disciplinas_disponiveis.php'>
+                                        <input type='submit' name='verifica_senha' action='' value='Receber Recomendação'>
+                                    </form></div>".
+                                "</li>";
+                        }
                     }
                     unset($disc);
                 }

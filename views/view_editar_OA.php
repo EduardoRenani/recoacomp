@@ -12,7 +12,7 @@
     <link rel='stylesheet' media='screen and (min-width: 1100px)' href='css/home-large.css' />
     <link href="css/editar_OA.css" rel="stylesheet">
     <link href="css/jquery-customselect.css" rel="stylesheet" />
-       
+
 
     <!-- Custom Fonts -->
     <link href="font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -20,12 +20,12 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
 
-    
+
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script type="text/javascript" src="js/jquery.noty.packaged.min.js"></script>
     <script src="js/jquery-customselect.js"></script>
-    
+
     <!-- Fim Home -->
 
     <script type="text/javascript">
@@ -46,7 +46,7 @@
 
     function getOAId(id){
         var idOA = id;
-        document.getElementById('idOA').value = id;
+		$("#openModalDeleteDisciplina").find('.botao-med').first().attr('id', idOA);
         idOA = id;
     }
 
@@ -55,8 +55,8 @@
         jQuery.ajax({
             type: "GET",
             url: "ajax/exclui_oa.php",
-            data: { 
-                idOA : idOA,
+            data: {
+                idOA : $("#openModalDeleteDisciplina").find('.botao-med').first().attr('id'),
             },
             cache: false,
             // importantinho.
@@ -64,10 +64,11 @@
                 alert(e);
             },
             success: function(response){
+				console.log(response);
                 location.reload();
         }
     });
-        
+
     }
 
     $(function() {
@@ -84,7 +85,23 @@
 </head>
 <div class="fixedBackgroundGradient"></div>
 
-<?php 
+                        <!-- Modal -->
+                        <div id="openModalCreateDisciplina" class="modalDialog" id="criarDisciplinaDialog">
+                                <div>
+                                    <a href="#close" title="Close" class="close">X</a>
+                                    <div class="top-cadastro"><?php echo 'Criar que tipo de atividade?'; ?></div>
+                                        <a href="cadastro_disciplina.php?tipo=disciplina" class="botao-med" title="Disciplina">Disciplina</a>
+                                        <hr>
+                                        <a href="cadastro_disciplina.php?tipo=curso" class="botao-med" title="Curso">Curso</a>
+                                        <hr>
+                                        <a href="cadastro_disciplina.php?tipo=projeto" class="botao-med" title="Projeto">Projeto</a>
+                                        <hr>
+                                        <a href="cadastro_disciplina.php?tipo=outros" class="botao-med" title="Curso">Outros</a>
+                                    <!--/div-->
+                                </div>
+                                <!-- /.top-cadastro -->
+                        </div>
+<?php
 
 if (isset($oa)) {
     if ($oa->errors) {
@@ -102,14 +119,14 @@ if (isset($oa)) {
                         echo"<script type='text/javascript'>";
 
                 echo "alert('".$message."');";
-  
+
             echo "</script>";
         }
     }
 }
 
 // Importante! Não remover essa linha
-if(!isset($_POST['editar_OA'])){  
+if(!isset($_POST['editar_OA'])){
 
 ?>
 
@@ -122,7 +139,7 @@ if(!isset($_POST['editar_OA'])){
         <div class="objetos-content">
             <ul class="objetos-list">
             <?php
-                    // Exibir todos os objetos que foi cadastrado pelo usuário no sistema               
+                    // Exibir todos os objetos que foi cadastrado pelo usuário no sistema
     				//print_r($oa->getListaOAbyUser($_SESSION['user_id']));
     				$objetos = $oa->getListaOAbyUser($_SESSION['user_id']);
     				foreach($objetos as $objetosSistema => $oa){
@@ -136,11 +153,11 @@ if(!isset($_POST['editar_OA'])){
                                         "<form method='post' action='#' name='editar_OA'>".
                                             "<input type='hidden' id='idOA' name='idOA' value=".$oa['idcesta']." />".
                                             "<input type='submit' class='botao-excluir' name='editar_OA' action='' value='Informações do Objeto' />".
-                                        "</form>                               
-                                        <a href='#openModalDeleteDisciplina' id=".$oa['idcesta']." class='botao-excluir' onClick='getOAId(this.id)'>Excluir</a>". // 
+                                        "</form>
+                                        <a href='#openModalDeleteDisciplina' id=".$oa['idcesta']." class='botao-excluir' onClick='getOAId(this.id)'>Excluir</a>". //
                                     "</div>".
                                 "</div>".
-                            "</li>";				
+                            "</li>";
     				} // end for each
 			?>
                     <!-- Modal -->
@@ -156,13 +173,30 @@ if(!isset($_POST['editar_OA'])){
                             <!-- /.top-cadastro -->
                     </div> <!-- div modal -->
             </ul>
-         </div>  
+         </div>
 
 </div>
 
 
-<?php  
-}else{ // aqui vem o código lindo da parte de edição de objetos TODO 
+                        <!-- Modal -->
+                        <div id="openModalCreateDisciplina" class="modalDialog" id="criarDisciplinaDialog">
+                                <div>
+                                    <a href="#close" title="Close" class="close">X</a>
+                                    <div class="top-cadastro"><?php echo 'Criar que tipo de atividade?'; ?></div>
+                                        <a href="cadastro_disciplina.php?tipo=disciplina" class="botao-med" title="Disciplina">Disciplina</a>
+                                        <hr>
+                                        <a href="cadastro_disciplina.php?tipo=curso" class="botao-med" title="Curso">Curso</a>
+                                        <hr>
+                                        <a href="cadastro_disciplina.php?tipo=projeto" class="botao-med" title="Projeto">Projeto</a>
+                                        <hr>
+                                        <a href="cadastro_disciplina.php?tipo=outros" class="botao-med" title="Curso">Outros</a>
+                                    <!--/div-->
+                                </div>
+                                <!-- /.top-cadastro -->
+                        </div>
+
+<?php
+}else{ // aqui vem o código lindo da parte de edição de objetos TODO
         $objeto = $oa->getDadosOA($_POST['idOA']);
     ?>
     <div class='cadastrobase'>
@@ -223,21 +257,21 @@ if(!isset($_POST['editar_OA'])){
                     <!-- Editar URL -->
                     <form method="post" action="editar_OA.php" name="editar_area_conhecimento_OA">
                         <label for="oa_area_conhecimento"><?php echo WORDING_NEW_OA_KNOWLEDGE_AREA; ?></label>
-                        <?php 
+                        <?php
                             $OA = new OA();
                             $OA = $OA->getAreasConhecimento();
                         ?>
                         <select id="area_conhecimento" name="area_conhecimento" class="custom-select">
                         <option value=''>Selecione..</option>
-                            <?php 
+                            <?php
                             foreach ($OA as $AC) {
                                 echo '<option value="'.$AC['area_conhecimento_id'].'">'.$AC['nome_area_conhecimento'].'';
                             }
                             ?>
                         </select>
-                        (<?php 
-                            echo WORDING_CURRENTLY.': '; 
-                            $idAC = $objeto[0]['area_conhecimento']; 
+                        (<?php
+                            echo WORDING_CURRENTLY.': ';
+                            $idAC = $objeto[0]['area_conhecimento'];
                             $OA = new OA();
                             echo $OA->getNomeAreaConhecimentobyId($idAC)[0]['nome_area_conhecimento'];
                         ?>)
@@ -248,10 +282,10 @@ if(!isset($_POST['editar_OA'])){
                     <!-- Formulário para editar o nome do curso -->
                 </div> <!-- END TAB 1-->
                 <div id="tabs-2">
-                    <?php 
-                        $idCategoriaVida = $objeto[0]['idcategoria_vida']; 
-                        $idCategoriaTecnica = $objeto[0]['idcategoria_tecnica']; 
-                        $idCategoriaEducacional = $objeto[0]['idcategoria_eduacional']; 
+                    <?php
+                        $idCategoriaVida = $objeto[0]['idcategoria_vida'];
+                        $idCategoriaTecnica = $objeto[0]['idcategoria_tecnica'];
+                        $idCategoriaEducacional = $objeto[0]['idcategoria_eduacional'];
                         $OA = new OA();
                         $date = date_create($OA->getDadosCategoriaVidaOA($idCategoriaVida)[0]['data_2']);
                         $formaUtilizacao = $OA->getDadosCategoriaTecnicaOA($idCategoriaTecnica)[0]['tipoTecnologia'];
@@ -297,7 +331,7 @@ if(!isset($_POST['editar_OA'])){
                         <input type="hidden" name="idCE" value="<?php echo $idCategoriaEducacional ?>" />
                         <input type="submit" name="editar_descricao_educacional_OA" value="<?php echo WORDING_CHANGE_OA_DESCRIPTION; ?>" />
                     </form><hr/>
-                    
+
                     <!-- Editar faixa etária -->
                     <form method="post" action="editar_OA.php" name="editar_faixa_OA">
                         <label for="oa_faixaEtaria"><?php echo WORDING_NEW_OA_AGE_GROUP; ?></label>
@@ -362,8 +396,41 @@ if(!isset($_POST['editar_OA'])){
 
 
 
+                        <!-- Modal -->
+                        <div id="openModalCreateDisciplina" class="modalDialog" id="criarDisciplinaDialog">
+                                <div>
+                                    <a href="#close" title="Close" class="close">X</a>
+                                    <div class="top-cadastro"><?php echo 'Criar que tipo de atividade?'; ?></div>
+                                        <a href="cadastro_disciplina.php?tipo=disciplina" class="botao-med" title="Disciplina">Disciplina</a>
+                                        <hr>
+                                        <a href="cadastro_disciplina.php?tipo=curso" class="botao-med" title="Curso">Curso</a>
+                                        <hr>
+                                        <a href="cadastro_disciplina.php?tipo=projeto" class="botao-med" title="Projeto">Projeto</a>
+                                        <hr>
+                                        <a href="cadastro_disciplina.php?tipo=outros" class="botao-med" title="Curso">Outros</a>
+                                    <!--/div-->
+                                </div>
+                                <!-- /.top-cadastro -->
+                        </div>
 
 
 <?php } // end set if isset post ?>
+
+                        <!-- Modal -->
+                        <div id="openModalCreateDisciplina" class="modalDialog" id="criarDisciplinaDialog">
+                                <div>
+                                    <a href="#close" title="Close" class="close">X</a>
+                                    <div class="top-cadastro"><?php echo 'Criar que tipo de atividade?'; ?></div>
+                                        <a href="cadastro_disciplina.php?tipo=disciplina" class="botao-med" title="Disciplina">Disciplina</a>
+                                        <hr>
+                                        <a href="cadastro_disciplina.php?tipo=curso" class="botao-med" title="Curso">Curso</a>
+                                        <hr>
+                                        <a href="cadastro_disciplina.php?tipo=projeto" class="botao-med" title="Projeto">Projeto</a>
+                                        <hr>
+                                        <a href="cadastro_disciplina.php?tipo=outros" class="botao-med" title="Curso">Outros</a>
+                                    <!--/div-->
+                                </div>
+                                <!-- /.top-cadastro -->
+                        </div>
 <?php include('_footer.php'); ?>
 

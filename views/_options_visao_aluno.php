@@ -24,7 +24,7 @@
 							</li>
 						</a>
 						<form method="post" action="#" id="tipoUsuario" name="tipoUsuario">
-							<select name="codTipoUsuario" onchange ="this.form.submit()" onfocus="this.selectedIndex = -1;"> <!-- -->
+							<select name="codTipoUsuario" onchange ="this.form.submit()"> <!-- -->
 								<option value="<?php echo VISAO_ALUNO ?>" selected >Visão de Aluno</option>
 								<option value="<?php echo VISAO_PROFESSOR?>">Visão de Professor</option>
 							</select>
@@ -70,7 +70,7 @@
 					<li>
 						<br><br>
 						<form method="post" action="#" id="tipoUsuario" name="tipoUsuario">
-							<select name="codTipoUsuario" onchange ="this.form.submit()" onfocus="this.selectedIndex = -1;"> <!-- -->
+							<select name="codTipoUsuario" onchange ="this.form.submit()"> <!-- -->
 								<option value="<?php echo VISAO_ALUNO ?>">Visão de Aluno</option>
 								<option value="<?php echo VISAO_PROFESSOR?>" selected>Visão de Professor</option>
 							</select>
@@ -107,16 +107,12 @@
 								Cadastrar Instrumento de Avaliação
 					</li>
 					</a>
-				<a href="preferences.php">
-							<li>
-								Preferências
-							</li>
-						</a>
+
 				<!-- Ver como -->
 				
 				<li class="visao">
 					<form method="post" action="#" id="tipoUsuario" name="tipoUsuario">
-						<select name="codTipoUsuario" onchange ="this.form.submit()" onfocus="this.selectedIndex = -1;"> <!-- -->
+						<select name="codTipoUsuario" onchange ="this.form.submit()"> <!-- -->
 							<option value="<?php echo VISAO_ALUNO ?>" selected>Visão de Aluno</option>
 							<option value="<?php echo VISAO_PROFESSOR?>">Visão de Professor</option>
 						</select>

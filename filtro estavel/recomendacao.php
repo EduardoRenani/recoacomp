@@ -31,24 +31,12 @@ body {
 #mySidenav .parent .sub-nav {
   display: none;
 }
-#mySidenav .parent .sub-nav {
-  display: none;
-}
-#seta-filtro{
-  height:100%;
-  cursor: pointer;
-  cursor:hand;color: white;
-  position: fixed;
-  right: 1px;
-  font-size: 90px;
-  padding-top: 350px;
 
-}
-#mySidenav {
+.sidenav {
     width: 0;
     position: fixed;
     z-index: 1;
-    top: 55;
+    top: 0;
     right: 0;
     background-color: #fff;
     overflow-x: hidden;
@@ -56,30 +44,16 @@ body {
     bottom: 0;
     width: 0px;
     border-left: solid 30px #108ac0;
-    height:100%;
-    padding-top: 55px;
-}
-#mySidenav.aberto {
-    width: 250px;
-    top: 55px;
-    border-left:solid 30px #108ac0;
-    padding-top:55px;
 }
 
-#seta-filtro.rotate{
-    cursor: pointer;
-    cursor:hand;
-    color: white;
-    position: fixed;
-    right: 220px;
-    font-size: 90px;
-    height:100%;
-    padding-top: 295px;
-    -ms-transform: rotate(180deg);
-    -webkit-transform: rotate(180deg);
-    -o-transform: rotate(180deg);
-    -moz-transform: rotate(180deg);
-    transform: rotate(180deg);
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 23px;
+    color: #818181;
+    display: block;
+    transition: 0s;
+	right: 0;
 }
 
 .sidenav a:hover, .offcanvas a:focus{
@@ -105,6 +79,7 @@ body {
       $(document).ready(function() {
         $('#showmenu1').click(function() {
                 $('.subnav1').slideToggle("fast");
+
         });
     });
       $(document).ready(function() {
@@ -155,7 +130,7 @@ body {
 
             });
 
-  var $filterCheckboxes = $('input[type="checkbox"]');
+  var $filterCheckboxes = $('input[type="checkbox"');
 
 $filterCheckboxes.on('change', function() {
 
@@ -204,14 +179,23 @@ $filterCheckboxes.on('change', function() {
 
   $('.disciplinas-item').hide().filter($filteredResults).show();
 
-});
-$("#seta-filtro").on('click', function () {
-    $("#mySidenav").toggleClass("aberto");
-    $("#seta-filtro").toggleClass("rotate");
-    
-});
-});
 
+
+
+
+});
+});
+	function openNav() {
+    document.getElementById("mySidenav").style = "width: 250px; top: 55px;border-left:solid 30px #108ac0";
+    document.getElementById("seta-filtro2").style = "cursor: pointer;cursor:hand;color: white; position: fixed; top: 550px; right: 220px; font-size: 90px";
+    document.getElementById("seta-filtro").style = "visibility:hidden";
+}
+
+	function closeNav() {
+    document.getElementById("mySidenav").style = "width: 0px; top: 55px;";
+    document.getElementById("seta-filtro").style = "cursor: pointer;cursor:hand;color: white; position: fixed; top: 550px; right: 2px; font-size: 90px";
+    document.getElementById("seta-filtro2").style = "visibility:hidden";
+}
 function toggle(el) {
 var tag=document.getElementById(el);
   tag.style.display = tag.style.display === 'block' ? 'none' : 'block';
@@ -227,9 +211,9 @@ var tag=document.getElementById(el);
 
 
 
+
 require_once("views/sidebar.php");
 
-$instrumento_oa = new Instrumento();
 // ... ask if we are logged in here:
 if ($login->isUserLoggedIn() == true) {
     // the user is logged in. you can do whatever you want here.
@@ -240,13 +224,6 @@ if ($login->isUserLoggedIn() == true) {
     if(isset($_POST['disc'])){
 
         $id = $_POST['disc'];
-        $competencias = $_POST['competencias'];
-        $conhecimento = $_POST['conhecimento'];
-        $habilidade = $_POST['habilidade'];
-        $atitude = $_POST['atitude'];
-        //print_r($competencias);
-        //print_r($conhecimento);
-        //print_r($habilidade);
 
         $vet = null;
         /*$vet=array();
@@ -257,7 +234,7 @@ if ($login->isUserLoggedIn() == true) {
         "<div class='disciplinas-recomendacao'>".
         "<div class='top-disciplinas'>Recomendação</div><div class='recomendacao-content' style='padding: 0'>";
 
-            $c= new RecomendacaoTeste($id,$vet);
+            $c= new Recomendacao($id,$vet);
 
         echo "</div></div></div>";
 
@@ -271,8 +248,8 @@ if ($login->isUserLoggedIn() == true) {
     include("views/not_logged_in.php");
 }
 ?>
-
-<div id="mySidenav" class="sidenav"><h1 id="seta-filtro">&#x2039;</h1>
+<div style= "top:55px;" id="mySidenav" class="sidenav"><h1  onclick="openNav()" id="seta-filtro" style="cursor: pointer;cursor:hand;color: white; position: fixed; top: 550px; right: 1px; font-size: 90px;">&#x2039;</h1>
+  <h1  onclick="closeNav()" id="seta-filtro2" style="visibility:hidden">&#x203A;</h1>
   <div id="showmenu1" style="padding-bottom: 20px;"><p style="font-size:23px;cursor: pointer;cursor:hand;"><strong>Idioma &#x203A;</strong></p></div>
   <div class="subnav1" style="display:none">
     <form>
@@ -389,4 +366,6 @@ if ($login->isUserLoggedIn() == true) {
     <label >
       <input type="checkbox" style="font-size: 16px" name="oa-recurso" value="multimídia" id="multimídia" /> Material Multimídia</label>
   </form>
+</div>
+
 </div>

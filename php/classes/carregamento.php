@@ -61,6 +61,29 @@
         }
 
         /**
+         * Carrega dados do banco de dados pelo id
+         * @param array campos da banda a ser definido
+         * @param string nome da tabela a ser acessada
+         */
+        public function carregaDadosAll($campos, $tabela) {
+            if(!is_array($campos)){
+                throw new InvalidArgumentException("Erro ao definar os campos, esperava um array de campos. Recebeu ".gettype($campos).Utilidades::debugBacktrace(), E_USER_ERROR);
+            }
+
+            if(!is_string($tabela)){
+                throw new InvalidArgumentException("Erro ao definar a tabela, esperava uma string. Recebeu ".gettype($tabela).Utilidades::debugBacktrace(), E_USER_ERROR);
+            }
+            
+            $query = new MysqliDb();
+
+            foreach ($campos as $coluna => $valor) {
+                $query->where($coluna, $valor);
+            }
+
+            return $query->get($tabela);
+        }
+
+        /**
          * Carrega dados do banco de dados ordenado
          * @param array campos da banda a ser definido
          * @param string nome da tabela a ser acessada

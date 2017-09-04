@@ -31,9 +31,6 @@ body {
 #mySidenav .parent .sub-nav {
   display: none;
 }
-#mySidenav .parent .sub-nav {
-  display: none;
-}
 #seta-filtro{
   height:100%;
   cursor: pointer;
@@ -105,6 +102,7 @@ body {
       $(document).ready(function() {
         $('#showmenu1').click(function() {
                 $('.subnav1').slideToggle("fast");
+
         });
     });
       $(document).ready(function() {
@@ -155,7 +153,7 @@ body {
 
             });
 
-  var $filterCheckboxes = $('input[type="checkbox"]');
+  var $filterCheckboxes = $('input[type="checkbox"');
 
 $filterCheckboxes.on('change', function() {
 
@@ -204,12 +202,18 @@ $filterCheckboxes.on('change', function() {
 
   $('.disciplinas-item').hide().filter($filteredResults).show();
 
+
+
+
+
 });
+
 $("#seta-filtro").on('click', function () {
     $("#mySidenav").toggleClass("aberto");
     $("#seta-filtro").toggleClass("rotate");
     
 });
+
 });
 
 function toggle(el) {
@@ -227,9 +231,9 @@ var tag=document.getElementById(el);
 
 
 
+
 require_once("views/sidebar.php");
 
-$instrumento_oa = new Instrumento();
 // ... ask if we are logged in here:
 if ($login->isUserLoggedIn() == true) {
     // the user is logged in. you can do whatever you want here.
@@ -240,13 +244,6 @@ if ($login->isUserLoggedIn() == true) {
     if(isset($_POST['disc'])){
 
         $id = $_POST['disc'];
-        $competencias = $_POST['competencias'];
-        $conhecimento = $_POST['conhecimento'];
-        $habilidade = $_POST['habilidade'];
-        $atitude = $_POST['atitude'];
-        //print_r($competencias);
-        //print_r($conhecimento);
-        //print_r($habilidade);
 
         $vet = null;
         /*$vet=array();
@@ -257,7 +254,7 @@ if ($login->isUserLoggedIn() == true) {
         "<div class='disciplinas-recomendacao'>".
         "<div class='top-disciplinas'>Recomendação</div><div class='recomendacao-content' style='padding: 0'>";
 
-            $c= new RecomendacaoTeste($id,$vet);
+            $c= new Recomendacao($id,$vet);
 
         echo "</div></div></div>";
 
@@ -271,7 +268,6 @@ if ($login->isUserLoggedIn() == true) {
     include("views/not_logged_in.php");
 }
 ?>
-
 <div id="mySidenav" class="sidenav"><h1 id="seta-filtro">&#x2039;</h1>
   <div id="showmenu1" style="padding-bottom: 20px;"><p style="font-size:23px;cursor: pointer;cursor:hand;"><strong>Idioma &#x203A;</strong></p></div>
   <div class="subnav1" style="display:none">
@@ -389,4 +385,6 @@ if ($login->isUserLoggedIn() == true) {
     <label >
       <input type="checkbox" style="font-size: 16px" name="oa-recurso" value="multimídia" id="multimídia" /> Material Multimídia</label>
   </form>
+</div>
+
 </div>

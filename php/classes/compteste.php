@@ -1,4 +1,4 @@
-
+﻿
 <?php
 /**
  * User: Cláuser
@@ -195,7 +195,7 @@ class CompTeste{
 						$oa_info = $carregamento->carregaDados(array('idcesta' => $v[$c]['ID']), "cesta");
 						$categoria_tecnica = $carregamento->carregaDados(array("idcategoria_tecnica" => $oa_info['idcategoria_tecnica']), "categoria_tecnica");
 						$categoria_educacional = $carregamento->carregaDados(array("idcategoria_eduacional" => $oa_info['idcategoria_eduacional']), "categoria_eduacional");
-						echo"<li class='disciplinas-item ".$oa_info['idioma']." ".$categoria_tecnica['tipoTecnologia']." ".$categoria_educacional['ambiente']." ".$categoria_educacional['grauInteratividade']." ".$categoria_educacional['recursoAprendizagem']." ".$categoria_educacional['usuarioFinal']."'  style='border-bottom: 1px solid #ddd; margin-bottom: 0; width: 95%; margin: auto;'>";
+						echo"<li class='disciplinas-item' data-category='".$oa_info['idioma']." ".$categoria_tecnica['tipoTecnologia']." ".$categoria_educacional['ambiente']." ".$categoria_educacional['grauInteratividade']." ".$categoria_educacional['recursoAprendizagem']." ".$categoria_educacional['usuarioFinal']."'  style='border-bottom: 1px solid #ddd; margin-bottom: 0; width: 95%; margin: auto;'>";
 			                    
 			                    echo "<div class='recomendacao-item-content'>";
 

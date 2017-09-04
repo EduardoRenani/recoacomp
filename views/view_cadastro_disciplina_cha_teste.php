@@ -39,14 +39,26 @@ include('_header.php');
             <div class="info-cadastro"><?php echo HINT_CHA."<br>".HINT_CHA_0."<br>".HINT_CHA_1."<br>".HINT_CHA_2."<br>".HINT_CHA_3."<br>".HINT_CHA_4;?></div>
             <?php
                 $instrumentos = $disciplina->getInstrumentos($_POST['disc']);
-                foreach ($instrumentos as $instrumento) {
+                if(sizeof($instrumentos) != 0) {
+			foreach ($instrumentos as $instrumento) {
                     echo "<input type='hidden' name='competencias[]' value='".$instrumento['idcompetencia']."'>";
                     echo "<input type='hidden' name='idinstrumentos[]' value='".$instrumento['id']."'>";
                     echo "<li class='disciplinas-item' style='text-align: left;'>";
                     echo "<div class='disciplina-item-content'>";
                     echo "<h2>Competência: ".$competencia->getNomeCompetenciaById(intval($instrumento['idcompetencia']))[0]['nome']."</h2>";
                     echo "<h4>Situação problema:</h4>";
-                    echo "<h4>".$instrumento['problema_um']."</h4>";
+                    if(!$disciplina->checkMeio($_POST['disc']) && !$disciplina->checkFim($_POST['disc'])) {
+                        echo "<input type='hidden' name='num_problema' value='1'>";
+                        echo "<h4>".$instrumento['problema_um']."</h4>";
+                    }
+                    else if($disciplina->checkMeio($_POST['disc'])) {
+                        echo "<input type='hidden' name='num_problema' value='2'>";
+                        echo "<h4>".$instrumento['problema_dois']."</h4>";
+                    }
+                    else {
+                        echo "<input type='hidden' name='num_problema' value='3'>";
+                        echo "<h4>".$instrumento['problema_tres']."</h4>";
+                    }
                     echo "<br><h5>Com relação a esta situação, aponte seus conhecimentos, habilidades e atitudes.</h5>";
                     echo "<h5>Competência</h5>";
                     echo "<h5><input type='radio' name='conhecimento[".$instrumento['idcompetencia']."]' value='0'> Não possuo</h5>";
@@ -68,10 +80,12 @@ include('_header.php');
                     echo "<h5><input type='radio' name='atitude[".$instrumento['idcompetencia']."]' value='4'> Tenho plena certeza</h5>";
                     echo "<div>";
                     echo "</li>";
-                }
+                	}
+		}
+		else {
             ?>
             <?php
-                /*//echo $_POST["idDisciplina"];
+                //echo $_POST["idDisciplina"];
                 $arrayIdCompetencias = $disciplina->getCompetenciaFromDisciplinaById($_POST["disc"]);
 
                 foreach ($arrayIdCompetencias as $competenciaId) {
@@ -108,8 +122,8 @@ include('_header.php');
                         </div>
 
                     ";
-                }
-                */
+                	}
+		}
             ?>
             <br>
             <input type="submit" name="verifica_senha" value="<?php echo WORDING_TEST_REC; ?>" />

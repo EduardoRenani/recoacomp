@@ -14,15 +14,15 @@ define( 'IP_DATABASE', 'localhost' );
 * @var string NOME_DATABASE
 *
 */
-define( 'NOME_DATABASE', 'recomendador-test' );
+define( 'NOME_DATABASE', 'recoacomp' );
 /**
 * Usuário do banco de dados
 * @var string USUARIO_DATABASE
 */
-define( 'USUARIO_DATABASE', 'recoacomp' );
+define( 'USUARIO_DATABASE', 'root' );
 
 /**
 * A senha de acesso ao banco de dados
 * @var string SENHA_DATABASE
 */
-define( 'SENHA_DATABASE', 'recoacomp' );
+define( 'SENHA_DATABASE', 'root' );

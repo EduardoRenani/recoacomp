@@ -13,6 +13,7 @@ require_once('config/base.php');
 // create a login object. when this object is created, it will do all login/logout stuff automatically
 // so this single line handles the entire login process.
 $disciplina = new Disciplina();
+$instrumento_objeto = new Instrumento();
 
 // ... ask if we are logged in here:
 if ($login->isUserLoggedIn() == true) {

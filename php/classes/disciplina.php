@@ -692,6 +692,26 @@ class Disciplina {
         }
     }
 
+    public function checkMeio($id) {
+        if ((strtotime($this->getInicioDisciplinaById($id)[0]['inicio'])+strtotime($this->getFimDisciplinaById($id)[0]['fim']))/2 <= strtotime(date('Y-m-d')) && strtotime(date('Y-m-d')) < strtotime($this->getFimDisciplinaById($id)[0]['fim'])) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
+
+    public function checkFim($id) {
+        if (strtotime(date('Y-m-d')) >= strtotime($this->getFimDisciplinaById($id)[0]['fim'])) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
+
     // Retorna o id professor da disciplina pelo id da disciplina
     public function getProfessorDisciplinaById($id){
         if($this->databaseConnection()){

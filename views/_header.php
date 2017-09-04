@@ -69,7 +69,7 @@ $(document).ready(function(){
 <body>
     <!-- ============== HEADER ============== -->
 <header class="header-large">
-    <a href="index.php" id="logo"></a> <!--muda quando o usuario estiver logged in e leva para o home.html"-->
+    <a href="index.php?codTipoUsuario=<?php echo $_GET['codTipoUsuario']; ?>" id="logo"></a> <!--muda quando o usuario estiver logged in e leva para o home.html"-->
         <nav >
 
             <div id="menu-button">
@@ -106,7 +106,7 @@ $(document).ready(function(){
     		<ul id="botoes" class="botoes">
 				<li><a href='profile_show.php'><i class="fa fa-user fa-2x"></i></a></li>
 
-				<li><a href='notifications.php'><i class="fa fa-bell fa-2x"></i></a></li>
+				<li><a><i class="fa fa-bell fa-2x"></i></a></li>
 					<span class="tooltipster-icon">(?)</span>
 			</ul>
 

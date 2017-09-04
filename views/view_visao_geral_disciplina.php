@@ -301,6 +301,13 @@ include('_header.php');
                 icons: icons,
                 heightStyle: "content"
             });
+            $("#relatorio").accordion({
+                header: "> div > h3",
+                active: false,
+                collapsible: true,
+                icons: icons,
+                heightStyle: "content"
+            });
 
         var iframe = document.getElementById('graficos');    
         $(window).mouseup(function(){iframe.src = iframe.src;});
@@ -413,9 +420,16 @@ include('_header.php');
                         <div id="descricao">
                             Descrição: <?php echo $descricao; ?>
                         </div>
-                        <form action="responder_instrumento.php" method="POST">
+                        <form action="editar_instrumento.php" method="POST">
+							<?php
+								$instrumentos = $disciplina->getInstrumentos($_POST['idDisciplina']);
+								if(!empty($instrumentos)) {
+							?>
                             <input type="hidden" name="iddisciplina" value="<?php echo $_POST['idDisciplina']; ?>">
-                            <input type="submit" value="Responder instrumento">
+                            <input type="submit" value="Editar instrumentos">
+							<?php
+								}
+							?>
                         </form>
                     </div> <!-- END TAB 1-->
                     <div id="tabs-2">
@@ -763,11 +777,26 @@ include('_header.php');
                         <center><div onclick="modalCompetencia();" class='botao-cadastra' style='width: 250px'><?=WORDING_CREATE_NEW_COMPETENCIA?></div></center>
                     </div> <!-- END Dados da competencia-->
                     <div id="tabs-6">
+                        <div id="relatorio">
                         <?php
-                            echo "<iframe id='graficos' charset='utf-8' style='width: 100%; height: 1350px;' frameborder='0' scrolling='no' src='painel_disciplina.php?idDisciplina=".$_POST['idDisciplina']."'>";
+                            echo '<div class="group">
+                                    <h3>Alunos';
+                            echo   '</h3>
+                                    <div>
+                                        ';
+                            echo "<iframe id='graficos_instrumento' charset='utf-8' style='width: 100%; height: 1000px;' frameborder='0' scrolling='yes' src='grafico_instrumento.php?idDisciplina=".$_POST['idDisciplina']."'>";
                             echo "</iframe>";
+                            echo "</div></div>";
+                            echo '<div class="group">
+                                    <h3>Objetos';
+                            echo   '</h3>
+                                    <div>
+                                        ';
+                            echo "<iframe id='graficos' charset='utf-8' style='width: 100%; height: 1000px;' frameborder='0' scrolling='yes' src='painel_disciplina.php?idDisciplina=".$_POST['idDisciplina']."'>";
+                            echo "</iframe>";
+                            echo "</div></div>";
                         ?>
-
+                        </div>
                     </div> <!-- END TAB 6-->
                     <!-- Objetos associados a disciplina -->
             </div> <!-- END DIV TABS -->
